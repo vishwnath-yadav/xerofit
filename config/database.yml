@@ -27,3 +27,14 @@ development:
 #   database: db/production.sqlite3
 #   pool: 5
 #   timeout: 5000
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: xerofit_dev
+  pool: 5
+  timeout: 5000
+  username: postgres
+  password: postgres
+  port: 5432
+  encoding: LATIN1
