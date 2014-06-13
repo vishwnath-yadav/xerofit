@@ -4,7 +4,14 @@ Xerofit::Application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  
+  FACEBOOK_KEY = "1441124259474236"
+  FACEBOOK_SECRET = "93b2c340b13ed77606c4d2b5129b9381"
+
+  APP_ID = "1044996955605-gr0lvpu3ejbf4jlc2ghh3ut3vt78h8er.apps.googleusercontent.com"
+  APP_SECRET_ID = "EiJx0W5quLsbidRx-n2Y6AyE"
+
+  TWITTER_KEY = "OfWiBajwBXc5SMdR5fDxfR6O7"
+  TWITTER_SECRET = "ig8B2noq4szAMMKAuzn37ssT98bB7ZDRPZy8FeFCy0K6zSxbEz"
   config.cache_classes = false
 
   # Do not eager load code on boot.
