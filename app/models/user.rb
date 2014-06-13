@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
         user.enabled = false
         user.skip_confirmation!   # assuming the user model has a name
         user.save(:validate => false)
+        Emailer.user_registration_mail(user.email).deliver
         @user = user
       end
     else
