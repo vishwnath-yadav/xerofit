@@ -1,0 +1,14 @@
+<div>
+  <%= simple_nested_form_for(@users, as: :user, url: (@users.to_param.nil? ? admin_users_path : admin_user_path(@users))) do |user| %>
+    <div class="form-inputs">
+      <%= user.hidden_field :role, value: params[:role] %>
+      <%= user.input :fullname, required: true, autofocus: true %>
+      <%= user.input :email, required: true, autofocus: true %>
+      <%= user.input :password, required: true %>
+    </div>
+    <div class="btn-group margin_20">
+      <%= link_to 'Back', admin_users_path, class: 'btn btn-default' %>
+      <%= user.button :submit, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

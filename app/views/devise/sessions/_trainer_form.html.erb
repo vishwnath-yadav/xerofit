@@ -1,0 +1,16 @@
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+  <div class="login_field">
+         <%= f.input :fullname, required: true %>
+    </div>
+    
+  <div class="login_field">
+      <%= f.input :email, required: true, autofocus: true %>
+    </div>
+    
+    <div class="login_field">
+    <%= f.input :password, required: true %>
+    </div>
+     <span class="lost_pass_txt">You agree to Xerofit's <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</span>
+     <%= f.button :submit, "Create Account", :class=>"signin_btn mar_bot_zero" %>
+   <%end%>

@@ -1,0 +1,13 @@
+<div class="middle_wrapper">
+	<div class="home_mid">
+    	<h2>Meet Xero.</h2>
+        <p>Your online personal trainer
+with all the answers.</p>
+			<%=link_to "Users", users_sign_up_new_path, class: "user_btn"%>
+			<%=link_to "Trainers", new_user_registration_path, class: "user_btn"%>
+			<% if current_user.present? %>
+				<%=link_to "payment", new_subscription_path, class: "user_btn"%>
+			<% end %>
+    </div>
+</div>
+        
