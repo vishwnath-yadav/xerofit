@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     else
       @user.provider = auth.provider
       @user.uid = auth.uid
-      @user.save.save(:validate => false)
+      @user.save(:validate => false)
     end
     return @user
   end
