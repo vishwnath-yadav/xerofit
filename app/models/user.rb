@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
         user.fullname = auth.info.name
+        user.role = "normaluser"
+        user.enabled = false
         user.skip_confirmation!   # assuming the user model has a name
         user.save(:validate => false)
         @user = user
@@ -40,7 +42,7 @@ class User < ActiveRecord::Base
     else
       @user.provider = auth.provider
       @user.uid = auth.uid
-      @user.save
+      @user.save.save(:validate => false)
     end
     return @user
   end
