@@ -28,14 +28,14 @@ module Xerofit
       # STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
       # STRIPE_PUB_KEY = "pk_test_tPb28bRAb7DWYFpeU9l8oKhB"
 
-      FACEBOOK_KEY = "1441124259474236"
-      FACEBOOK_SECRET = "93b2c340b13ed77606c4d2b5129b9381"
+      # FACEBOOK_KEY = "1441124259474236"
+      # FACEBOOK_SECRET = "93b2c340b13ed77606c4d2b5129b9381"
 
-      APP_ID = "1044996955605-gr0lvpu3ejbf4jlc2ghh3ut3vt78h8er.apps.googleusercontent.com"
-      APP_SECRET_ID = "EiJx0W5quLsbidRx-n2Y6AyE"
+      # APP_ID = "1044996955605-gr0lvpu3ejbf4jlc2ghh3ut3vt78h8er.apps.googleusercontent.com"
+      # APP_SECRET_ID = "EiJx0W5quLsbidRx-n2Y6AyE"
 
-      TWITTER_KEY = "OfWiBajwBXc5SMdR5fDxfR6O7"
-      TWITTER_SECRET = "ig8B2noq4szAMMKAuzn37ssT98bB7ZDRPZy8FeFCy0K6zSxbEz"
+      # TWITTER_KEY = "OfWiBajwBXc5SMdR5fDxfR6O7"
+      # TWITTER_SECRET = "ig8B2noq4szAMMKAuzn37ssT98bB7ZDRPZy8FeFCy0K6zSxbEz"
 
       config.action_mailer.delivery_method = :smtp
         ActionMailer::Base.smtp_settings = {
