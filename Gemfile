@@ -44,7 +44,6 @@ gem 'devise'
 
  gem 'simple_form'
  gem 'nested_form'
- gem 'cancan'
  gem 'whenever'
  gem 'enumerize'
  gem 'settingslogic'
