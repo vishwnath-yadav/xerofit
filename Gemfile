@@ -56,6 +56,7 @@ gem 'devise'
  gem 'omniauth-facebook'
  gem 'omniauth-twitter'
  gem "omniauth-google-oauth2"
+ gem 'rails_12factor'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
