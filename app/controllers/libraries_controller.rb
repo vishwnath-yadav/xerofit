@@ -1,7 +1,7 @@
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	def index
-		@libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		@libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 7).order('created_at DESC')
 	end
 	
 	def new
@@ -47,9 +47,9 @@ class LibrariesController < ApplicationController
 
 	def sort_video
 		if params[:val] == 'Name'
-		  @libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5).order('title ASC')
+		  @libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 7).order('title ASC')
 		elsif params[:val] == 'Date'
-		  @libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+		  @libraries = Library.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 7).order('created_at DESC')
 		end
 		respond_to do |format|
 	        format.js

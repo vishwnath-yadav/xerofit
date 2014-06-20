@@ -9,7 +9,11 @@
 </head>
 		<% if @use_default_layout %>
   		<%= stylesheet_link_tag "css/application", media: "all", "data-turbolinks-track" => true %>
-			<body> 
+			<% if controller_name == "home" && action_name == "index" %>
+				<body class="home_bg size">
+			<% else %>
+				<body>
+			<% end %>
 				<div id="page_wrapper">
 			    	<%=render "layouts/header"%>
 					<%= yield %>
