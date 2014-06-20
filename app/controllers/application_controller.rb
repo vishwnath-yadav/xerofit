@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if resource.admin?
       admin_dashboard_path
     else
-      root_path
+      dashboard_path
     end
   end
 

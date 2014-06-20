@@ -1,0 +1,11 @@
+<div id="page_wrapper">
+	<div class="middle_wrapper">
+		<div class="dashboard_mid">
+	    	<h3>Dashboard</h3>
+			<% if current_user.trainer? %>
+				<%= render "trainer_left_menu" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<%= render template: 'layouts/application' %>

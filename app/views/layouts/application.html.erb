@@ -3,13 +3,13 @@
 <head>
   <title>Xerofit</title>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
 	<%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <%= csrf_meta_tags %>
 </head>
 		<% if @use_default_layout %>
   		<%= stylesheet_link_tag "css/application", media: "all", "data-turbolinks-track" => true %>
-			<body class="home_bg size"> 
+			<body> 
 				<div id="page_wrapper">
 			    	<%=render "layouts/header"%>
 					<%= yield %>

@@ -1,0 +1,33 @@
+<div class="middle_wrapper">
+	<div class="dashboard_mid">
+    <h3>Excercise Library</h3>
+		<div class="sort_col">
+     	<label>Sort by:</label>
+      <select name="" class="sort_select">
+        <option value="Date">Date</option>
+        <option value="Name">Name</option>
+        <!-- <option value="Muscle group">Muscle group</option> -->
+      </select>
+    </div>
+    <div class="library_col">
+      <%= render "home" %>
+    </div>
+			
+    <div class="pagination">
+      <%= will_paginate @libraries %>
+    </div>
+
+  </div>
+</div>
+
+<script>
+$(function (){  
+  $('.sort_select').on('change', function(){
+    var v= $(this).val();
+   $.ajax({
+    type: "GET",
+    url: "/sort_video?val=" + v
+   });
+  });
+}); 
+</script>

@@ -1,0 +1,71 @@
+<% if action_name == "edit" && controller_name == "libraries" %>
+  <%= render "upload_edit" %>
+<% else %>
+  <%= render "upload" %>
+<% end %>
+
+<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library))) do |lib| %>
+  <div class="exer_rht_col">
+    <div style="color:red;">
+      <% if @library.errors.full_messages.any? %>
+      <ul>
+      <% @library.errors.full_messages.each do |error_message| %>
+        <li><%= error_message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    </div>
+    <%= hidden_field_tag :video, "", class: "video_id" %>
+
+    <div class="exr_field_col">
+      <label>Title</label>
+      <%= lib.text_field :title %>
+    </div>
+        
+    <div class="exr_field_col">
+      <label>Directions</label>
+      <%= lib.text_area :directions %>
+    </div>
+      
+    <div class="exr_field_col">
+      <label>Category</label>
+      <div class="fancy_select">
+        <%= lib.select :category, ['one','two','three'], prompt: "Select Category" %>
+      </div>
+    </div>
+
+    <div class="exr_field_col">
+    	<label>Level of Difficulty</label>
+      <div class="fancy_select">
+        <%= lib.select :difficulty, ['Higher','Average','Lower'], prompt: "Select Difficulty" %>
+      </div>
+    </div>
+      
+    <div class="exr_field_col">
+    	<label>Number of Target Muscle Groups</label>
+      <input name="" type="button" class="fancy_input active" value="1"/>
+      <input name="" type="button" class="fancy_input" value="2"/>
+      <input name="" type="button" class="fancy_input" value="3"/>
+      <input name="" type="button" class="fancy_input" value="4"/>
+      <input name="" type="button" class="fancy_input" value="5"/>
+    </div>
+    <% i = 0 %>
+    <%= lib.fields_for :target_muscle_groups do |builder| %>
+      <% abc = TargetMuscleGroup::MUSCLES_TYPE[i] %>
+      <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder} %>
+      <%i += 1%>
+    <%end%>
+  </div>
+  <div class="save_col">
+    <% if action_name == "edit" && controller_name == "libraries" %>
+      <%= lib.submit "Save changes", class: "save_btn" %>
+    <% else %>
+      <%= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: true %>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+
+

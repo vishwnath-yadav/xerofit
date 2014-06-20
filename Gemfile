@@ -55,8 +55,17 @@ gem 'devise'
  gem 'omniauth-facebook'
  gem 'omniauth-twitter'
  gem "omniauth-google-oauth2"
- gem 'rails_12factor'
-
+ gem 'rails_12factor', group: :production
+ gem 'panda', '~> 1.6.0'
+ gem 'carrierwave'
+ gem 'carrierwave-video'
+ gem 'carrierwave_backgrounder'
+ gem 'delayed_job_active_record'
+ gem "remotipart"
+ gem 'carrierwave-aws'
+ gem 'mini_magick'
+ gem 'rmagick'
+ gem 'will_paginate'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

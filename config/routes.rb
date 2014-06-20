@@ -31,13 +31,22 @@ Xerofit::Application.routes.draw do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do
       member do
-        put :enable
-        put :disable
+        patch :enable
+        patch :disable
       end
     end
     
   end
   resources :subscriptions
+  resources :users do
+    get :dashboard
+    get :library
+  end
+  get 'dashboard', to: 'dashboard#index', as: :dashboard
+  resources :libraries 
+  resources :videos, only: [:create]
+  resources :workout_builders
+  get :sort_video, to: 'libraries#sort_video'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

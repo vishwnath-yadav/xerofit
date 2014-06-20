@@ -29,6 +29,75 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: libraries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE libraries (
+    id integer NOT NULL,
+    user_id integer,
+    title character varying(255),
+    directions character varying(255),
+    category character varying(255),
+    difficulty character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: libraries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE libraries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: libraries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
+
+
+--
+-- Name: library_videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE library_videos (
+    id integer NOT NULL,
+    panda_video_id character varying(255),
+    video character varying(255),
+    library_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    image character varying(255)
+);
+
+
+--
+-- Name: library_videos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE library_videos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: library_videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE library_videos_id_seq OWNED BY library_videos.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -71,6 +140,39 @@ ALTER SEQUENCE subscriptions_id_seq OWNED BY subscriptions.id;
 
 
 --
+-- Name: target_muscle_groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE target_muscle_groups (
+    id integer NOT NULL,
+    library_id integer,
+    target_muscle_group character varying(255),
+    target_type character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: target_muscle_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE target_muscle_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: target_muscle_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE target_muscle_groups_id_seq OWNED BY target_muscle_groups.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -96,7 +198,8 @@ CREATE TABLE users (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     provider character varying(255),
-    uid character varying(255)
+    uid character varying(255),
+    avatar character varying(255)
 );
 
 
@@ -123,7 +226,28 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY library_videos ALTER COLUMN id SET DEFAULT nextval('library_videos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY target_muscle_groups ALTER COLUMN id SET DEFAULT nextval('target_muscle_groups_id_seq'::regclass);
 
 
 --
@@ -134,11 +258,35 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: libraries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY libraries
+    ADD CONSTRAINT libraries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: library_videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY library_videos
+    ADD CONSTRAINT library_videos_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY subscriptions
     ADD CONSTRAINT subscriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: target_muscle_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY target_muscle_groups
+    ADD CONSTRAINT target_muscle_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -181,3 +329,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140610180639');
 INSERT INTO schema_migrations (version) VALUES ('20140612111216');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613065125');
+
+INSERT INTO schema_migrations (version) VALUES ('20140616110825');
+
+INSERT INTO schema_migrations (version) VALUES ('20140617101708');
+
+INSERT INTO schema_migrations (version) VALUES ('20140618064743');
+
+INSERT INTO schema_migrations (version) VALUES ('20140618122041');
+
+INSERT INTO schema_migrations (version) VALUES ('20140620104935');

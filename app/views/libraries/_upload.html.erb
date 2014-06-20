@@ -1,0 +1,51 @@
+<div class="exer_lft_col">
+    <%= simple_form_for(@libvideo, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %>
+        <div class="form-inputs">
+          <%= video.file_field :video %>
+        </div>
+          <%= video.button :submit, class: "video_submit" %>
+      <% end %>
+      <div class="progress">  
+         <div class="bar"></div >  
+         <div class="percent">0%</div >  
+       </div>
+       <div id="status"></div>  
+    <div class="thumbnail_col">
+      <h5>Video Thumbnail</h5>
+
+        <%#= render "thumbnail" %>
+      </div>
+      <!-- <div class=""><p>It will take few minutes</p></div> -->
+    <p><a href="#">Load more thumnails...</a></p>
+</div>
+
+<form>  
+</form>  
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>  
+ <script src="http://malsup.github.com/jquery.form.js"></script>  
+ <script>  
+ (function() {  
+     var bar = $('.bar');  
+     var percent = $('.percent');  
+     var status = $('#status');  
+     $('form').ajaxForm({  
+       beforeSend: function() {  
+         //status.empty();  
+         var percentVal = '0%';  
+         bar.width(percentVal)  
+         percent.html(percentVal);  
+       },  
+       uploadProgress: function(event, position, total, percentComplete) {  
+         var percentVal = percentComplete + '%';  
+         bar.width(percentVal)  
+         percent.html(percentVal);  
+       },  
+       complete: function(xhr) {  
+         bar.width("100%");  
+         percent.html("100%");  
+         //status.html(xhr.responseText);  
+       }  
+    });   
+ })();      
+
+ </script>

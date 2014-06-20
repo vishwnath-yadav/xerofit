@@ -1,0 +1,8 @@
+development:
+    access_key: d3ea161b9561daf5f164
+    secret_key: 02b1cceb04385fad936a
+    cloud_id: df1b18a79fb9f85502b3b71a8c8f629e
+production:
+    access_key: d3ea161b9561daf5f164
+    secret_key: 02b1cceb04385fad936a
+    cloud_id: df1b18a79fb9f85502b3b71a8c8f629e

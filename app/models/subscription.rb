@@ -3,10 +3,7 @@ class Subscription < ActiveRecord::Base
 
 	def save_with_payment
 	  if valid?
-	  	logger.debug("vaid")
 	    customer = Stripe::Customer.create(description: "This is xerofit test", card: stripe_card_token)
-	    logger.debug(">>>>>>>>>>>>")
-	    logger.debug(customer)
 	    self.customer_id = customer.id
 	    save!
 	  end
