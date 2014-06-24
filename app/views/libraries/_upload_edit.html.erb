@@ -6,26 +6,7 @@
     </video> 
     <div class="thumbnail_col">
       <h5>Video Thumbnail</h5>
-      <% temp = 0 %>
-      <% j = 2 %>
-      <% for i in 0..j %>
-        <% if(temp == 0) %>
-         <ul>
-          <li><%= image_tag(@library.library_video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %>
-          </li>
-          <% temp = temp+1 %>
-        <% elsif(temp<2) %>
-          <li class="margn45"><%= image_tag(@library.library_video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %></li>
-          <% temp = temp+1 %>
-        <% else %>
-          <li><%= image_tag(@library.library_video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %></li>
-          <% temp = 0 %>
-          </ul>
-        <% end %>
-        <%if !(6%3 == 0)%>
-          </ul>
-        <%end%>
-      <% end %>
+      <%= render 'thumbnail' %>
     </div>
-    <p><a href="#">Load more thumnails...</a></p>
+    <p class="load_more"><a href='javascript:void(0)'>Load more thumnails...</a></p>
 </div>

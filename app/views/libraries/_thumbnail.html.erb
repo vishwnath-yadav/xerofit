@@ -1,20 +1,46 @@
-<h5>Video Thumbnail</h5>
+<% if action_name == 'edit' && controller_name == 'libraries' %>
   <% temp = 0 %>
-  <% for i in 0..2 %>
+  <%# j = @size %>
+  <%# j = j-1 %>
+  <%# for i in 0..j %>
+  <ul id="see_more">
+  <% @size.each_with_index do |library, index| %>
     <% if(temp == 0) %>
-     <ul>
-      <li><%= image_tag(@video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %>
+      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %>
       </li>
       <% temp = temp+1 %>
     <% elsif(temp<2) %>
-      <li class="margn45"><%= image_tag(@video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %></li>
       <% temp = temp+1 %>
     <% else %>
-      <li><%= image_tag(@video.panda_mp4.screenshots[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb") %></li>
       <% temp = 0 %>
-      </ul>
     <% end %>
-    <%if !(6%3 == 0)%>
-      </ul>
-    <%end%>
   <% end %>
+  </ul>
+<% else %>
+  <% temp = 0 %>
+  <%# j = @size %>
+  <ul>
+  <% @video.panda_mp4.screenshots.each_with_index do |library, index|  %>
+    <% if(temp == 0) %>
+      <li><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %>
+      </li>
+      <% temp = temp+1 %>
+    <% elsif(temp<2) %>
+      <li class="margn45"><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <% temp = temp+1 %>
+    <% else %>
+      <li><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <% temp = 0 %>
+    <% end %>
+    <%#if !(6%3 == 0)%>
+      <!-- </ul> -->
+    <%#end%>
+  <% end %>
+  </ul>
+<% end %>
+
+
+
+

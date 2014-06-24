@@ -1,3 +1,4 @@
+
 Xerofit::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   # devise_for :users, :controllers => {:sessions => "sessions"}
@@ -26,7 +27,8 @@ Xerofit::Application.routes.draw do
     end
   end
 
-  root 'home#index'
+  root 'website#home'
+
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do
@@ -37,7 +39,12 @@ Xerofit::Application.routes.draw do
     end
     
   end
-  resources :subscriptions
+  resources :subscriptions do
+    collection do
+     get 'trainers_in'
+     get 'trainers_confirm' 
+    end
+  end
   resources :users do
     get :dashboard
     get :library
@@ -47,6 +54,11 @@ Xerofit::Application.routes.draw do
   resources :videos, only: [:create]
   resources :workout_builders
   get :sort_video, to: 'libraries#sort_video'
+  get :see_more_thumbnail, to: 'libraries#see_more_thumbnail'
+
+  get 'trainers' => 'website#trainers'
+  get 'terms' => 'website#terms'
+  get 'privacy' => 'website#privacy'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

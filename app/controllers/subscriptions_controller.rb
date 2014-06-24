@@ -1,4 +1,13 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < WebsiteController
+
+	layout 'application', only: [:new]
+
+	def trainers_in
+	end
+
+	def trainers_confirm
+	end
+
 	def new
 		@subscription = Subscription.new
 	end

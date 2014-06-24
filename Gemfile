@@ -65,7 +65,8 @@ gem 'devise'
  gem 'carrierwave-aws'
  gem 'mini_magick'
  gem 'rmagick'
- gem 'will_paginate'
+ # gem 'will_paginate'
+ gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

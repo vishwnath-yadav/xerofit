@@ -23,29 +23,62 @@ $( document ).ready(function() {
    
     $('.del').remove();
     var number_of_select = $(this).val();
+    $('.active').removeClass('active');
+    $(this).addClass('active');
     var i=0;
     var target = ['Primary Target', 'Second Target', 'Thired Target', 'Fouth Target', 'Fifth Target']
-    var option = ['one', 'two', 'three']
+    var option = ['body', 'sholder', 'arms']
     for(i=0; i<number_of_select; i++)
     {
     
-    var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='one'>One</option> <option value='two'>Two</option> <option value='three'>Three</option></select>";
+    var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='body'>Body</option> <option value='sholder'>Sholder</option> <option value='arms'>Arms</option></select>";
 
 
     var form_create = "<div class='exr_field_col del'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
     $('.exer_rht_col').append(form_create);
     }
-
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/target_muscle_group?val=' + number_of_select
-    // });
-    
   });
 
+  // $('.image_url').click(function(){
+  //   alert($(this).val());
+
+  // })
+
+  $('.li_class').click(function(){
+
+    $('.li_change').removeClass('li_change');
+    $(this).addClass('li_change');
+
+  })
+  
+  $('.load_more').click(function(){
+   
+    $('.image_hide').each(function( index ) {
+      
+      if(index<3)
+      {
+        $(this).removeClass('image_hide');
+        
+      }
+
+
+      if($('.image_hide').size() == 0)
+      {
+        $('.load_more').hide();
+      }
+      // else
+      // {
+      //   return true;
+      //   alert("345")
+      // }
+
+    });
+  });
+
+  // $('.thumbnail_col ul').hide();
+    
 
   
-
   // $('#video_upload_form').on('change', function() {
   //   $(this).submit();
   // });

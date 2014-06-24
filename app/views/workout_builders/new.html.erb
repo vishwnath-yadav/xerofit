@@ -3,9 +3,9 @@
    	  <div class="back_arrow"><a href="#">Back</a></div>
     </div>
     <div class="head_cent"> 
-        <a href="#"><img src="images/cb_1.jpg" width="27" height="27" alt="cb_1" /></a>
-        <a href="#"><img src="images/cb_2.jpg" width="23" height="27" alt="cb_2" class="m_32"/></a>
-        <a href="#"><img src="images/cb_3.jpg" width="35" height="27" alt="cb_3" /></a>
+        <a href="#"><img src="/assets/cb_1.jpg" width="27" height="27" alt="cb_1" /></a>
+        <a href="#"><img src="/assets/cb_2.jpg" width="23" height="27" alt="cb_2" class="m_32"/></a>
+        <a href="#"><img src="/assets/cb_3.jpg" width="35" height="27" alt="cb_3" /></a>
     </div>
     <div class="head_rht">
    	  <div class="next_arrow"><a href="#">Next</a></div>
@@ -13,84 +13,14 @@
 </div>
 <div class="middle_wrapper">
 	<div class="workout_col">
-    	<div class="workout_col_left">
-        	<div class="search_col">
-            	<input name="" type="button" class="search_btn" />
-            	<input name="" type="text" / class="search_icon" value="Search within library...">
-            </div>
-            <div class="fitler_col">
-            	<div class="filter_icon"><a href="#">Filters</a></div>
-            	<div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Single-Arm Sumo Burpee Clean and Press</a></h6>
-                    <p>Legs, Thighs</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-                <div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Dumbbell Gladiator Press</a></h6>
-                    <p>Biceps</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-                <div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Dumbbell Gladiator Press</a></h6>
-                    <p>Biceps</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-                <div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Gorilla Jump</a></h6>
-                    <p>Legs, Shoulders</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-                <div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Belly Pushup</a></h6>
-                    <p>Chest, Triceps</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-                <div class="white_list">
-                	<div class="white_list_left">
-                	<h6><a href="#">Single-Arm Sumo Burpee Row</a></h6>
-                    <p>Legs, Back Biceps</p>
-                    </div>
-                    <div class="dots_img"><img src="images/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-                </div>
-            </div>
-        </div>
+    	<%= render "workout_left_menu" %>
         <div class="workout_col_mid">
         	<div class="col_1">
             	<h2>New Workout</h2>
                 <p>Workout Subtitle</p>
             </div>
-            <div class="add_photo"><img src="images/add_photo.jpg" width="590" height="259" alt="add_photo" /></div>
-      </div>
-        <div class="workout_col_rght">
-        	<div class="move_detail">DETAILS</div>
-            	<div class="detail_form">
-                	<div class="form_field">
-                    	<label>Name:</label>
-                        <input name="" type="text" class="detail_input"/>
-                        <span class="detail_char">26/50 Character</span>
-                    </div>
-                    <div class="form_field">
-                    	<label>Subtitle:</label>
-                        <textarea name="" cols="" rows="3" class="detail_msg"></textarea>
-                        <span class="detail_char">0/50 Character</span>
-                    </div>
-                    <div class="form_field">
-                    	<label>Description:</label>
-                        <textarea name="" cols="" rows="6" class="detail_msg"></textarea>
-                        <span class="detail_char">0/450 Character</span>
-                    </div>
-                </div>
-            </div>
+            <div class="add_photo"><img src="/assets/add_photo.jpg" width="590" height="259" alt="add_photo" /></div>
         </div>
+        <%= render "workout_right_menu" %>
     </div>
 </div>

@@ -211,8 +211,8 @@ span.lost_pass_txt a:hover{
 .exer_lft_col .thumbnail_col h5{ color:#2f302d; font-size: 16px; margin-bottom:10px;}
 .exer_lft_col .thumbnail_col p a{ color:#999b99; font-size:13px; font-style:normal;}
 .exer_lft_col .thumbnail_col p a:hover{color:#000}
-.exer_lft_col .thumbnail_col ul{margin:0 0 55px; float: left; width:100%; padding:0px;}
-.exer_lft_col .thumbnail_col ul li{width:168px; float:left; height:92px; list-style:none; display:inline;}
+.exer_lft_col .thumbnail_col ul{margin:0 0 2px; float: left; width:100%; padding:0px;}
+.exer_lft_col .thumbnail_col ul li{width:168px; float:left; list-style:none; display:inline;}
 .exer_lft_col .thumbnail_col ul li.margn45{margin:0px 42px;}
 .exer_lft_col .thumbnail_col ul li img{width:100%; height:auto;}
 .exer_rht_col{width:367px; float:right;}
@@ -967,6 +967,7 @@ margin-right: 31px;
 }
 .pagination{
 	width:45%;
+	margin-right: -27%;
 	float:right;
 }
 .pagination ul{
@@ -1247,3 +1248,6 @@ background: #fff;
 .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }  
 .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }  
 .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+.image_hide{ display:none !important;}
+.li_class{ margin-bottom: 50px; cursor:pointer; }
+.li_change{ border:2px solid #333;}

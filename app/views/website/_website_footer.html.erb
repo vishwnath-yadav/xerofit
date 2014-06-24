@@ -1,0 +1,16 @@
+<footer class="main-footer">
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 foot-left">
+                <span>© 2014 Xerofit, LLC.</span>
+            </div>
+            <div class="col-xs-6 col-sm-4 foot-mid">
+                <%= link_to image_tag('website/icons/facebook_icon@2x.png', :alt => 'Xerofit Facebook', :height => 24, :class => 'social-foot-link'), 'http://facebook.com/xerofitness' %>
+                <%= link_to image_tag('website/icons/twitter_icon@2x.png', :alt => 'Xerofit Twitter', :height => 24, :class => 'social-foot-link'), 'http://twitter.com/xerofitness' %>
+            </div>
+            <div class="hidden-xs zcol-xs-12 col-sm-4 foot-right">
+                <span>Made in Seattle <%= link_to('Terms', { :controller => :website, :action => :terms }) %> • <%= link_to('Privacy', { :controller => :website, :action => :privacy }) %></span>
+            </div>
+        </div>
+    </section>
+</footer>
