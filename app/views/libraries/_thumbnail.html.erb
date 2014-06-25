@@ -1,8 +1,5 @@
 <% if action_name == 'edit' && controller_name == 'libraries' %>
   <% temp = 0 %>
-  <%# j = @size %>
-  <%# j = j-1 %>
-  <%# for i in 0..j %>
   <ul id="see_more">
   <% @size.each_with_index do |library, index| %>
     <% if(temp == 0) %>
@@ -18,29 +15,28 @@
     <% end %>
   <% end %>
   </ul>
-<% else %>
-  <% temp = 0 %>
+<% end %>
+  <!-- <%# temp = 0 %>
   <%# j = @size %>
   <ul>
-  <% @video.panda_mp4.screenshots.each_with_index do |library, index|  %>
-    <% if(temp == 0) %>
-      <li><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %>
+  <%# @video.panda_mp4.screenshots.each_with_index do |library, index|  %>
+    <%# if(temp == 0) %>
+      <li><%#= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %>
       </li>
-      <% temp = temp+1 %>
-    <% elsif(temp<2) %>
-      <li class="margn45"><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
-      <% temp = temp+1 %>
-    <% else %>
-      <li><%= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
-      <% temp = 0 %>
-    <% end %>
+      <%# temp = temp+1 %>
+    <%# elsif(temp<2) %>
+      <li class="margn45"><%#= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <%# temp = temp+1 %>
+    <%# else %>
+      <li><%#= image_tag(index[i], width: "167", height: "93", alt: "upload_thumb") %></li>
+      <%# temp = 0 %>
+    <%# end %>
     <%#if !(6%3 == 0)%>
-      <!-- </ul> -->
+      </ul> -->
     <%#end%>
-  <% end %>
-  </ul>
-<% end %>
-
+  <%# end %>
+  <!-- </ul> -->
+<%# end %> 
 
 
 

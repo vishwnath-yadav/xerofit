@@ -13,7 +13,7 @@ class LibrariesController < ApplicationController
 	def edit
 		@library = Library.find(params[:id])
 		@size = @library.library_video.panda_mp4.screenshots
-
+		Rails.logger.debug @size.inspect
 	end
 	
 	def create
