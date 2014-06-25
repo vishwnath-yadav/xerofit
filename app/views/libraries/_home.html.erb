@@ -3,7 +3,7 @@
     <h6>Create New Exercise</h6></a>
   </li>
   <% @libraries.each_with_index do |library, index| %>
-    <li><a href="<%= edit_library_path(library) %>"><img src="/assets/ex_1.jpg" width="231" height="130" alt="cn_1" /></a>
+    <li><a href="<%= edit_library_path(library) %>"><img src="<%= library.library_video.image %>" width="231" height="130" alt="cn_1" /></a>
       <h6><%= library.title %></h6>
        <p><%= library.created_at.strftime("%B %d,%Y") %></p>
     </li>

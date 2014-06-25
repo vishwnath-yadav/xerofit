@@ -925,7 +925,8 @@ margin-right: 31px;
 	margin-right:0px;
 }
 .library_col ul li img{
-	width:100%;
+	width:231px !important;
+	height:130px !important;
 	float:left;
 	margin-bottom:5px;
 	height:auto;

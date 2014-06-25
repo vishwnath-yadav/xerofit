@@ -36,6 +36,7 @@ class LibrariesController < ApplicationController
 
 	def update
 		@library = Library.find(params[:id])
+		@video = @library.library_video.update_attributes(:image => params[:image])
 		respond_to do |format|
 	      if @library.update_attributes(library_params)
 	        format.html { redirect_to libraries_path, notice: 'successfully updated prescription.' }

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :libraries 
-
+  has_many :workout_builders
    ROLES = %w[admin trainer normaluser]
 
    validates :role, presence: true

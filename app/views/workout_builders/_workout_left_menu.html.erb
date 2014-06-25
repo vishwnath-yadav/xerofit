@@ -3,49 +3,16 @@
     	<input name="" type="button" class="search_btn" />
     	<input name="" type="text" / class="search_icon" value="Search within library...">
     </div>
-    <div class="fitler_col">
+    <div class="fitler_col" id="filter_library_col">
     	<div class="filter_icon"><a href="#">Filters</a></div>
+        <% @libraries.each do |lib|%>
     	<div class="white_list">
         	<div class="white_list_left">
-        	<h6><a href="#">Single-Arm Sumo Burpee Clean and Press</a></h6>
-            <p>Legs, Thighs</p>
+            	<h6><a href="javascript:void(0)"><%= lib.title %></a></h6>
+                <p><%= lib.category %></p>
             </div>
             <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
         </div>
-        <!-- <div class="white_list">
-        	<div class="white_list_left">
-        	<h6><a href="#">Dumbbell Gladiator Press</a></h6>
-            <p>Biceps</p>
-            </div>
-            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-        </div>
-        <div class="white_list">
-        	<div class="white_list_left">
-        	<h6><a href="#">Dumbbell Gladiator Press</a></h6>
-            <p>Biceps</p>
-            </div>
-            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-        </div>
-        <div class="white_list">
-        	<div class="white_list_left">
-        	<h6><a href="#">Gorilla Jump</a></h6>
-            <p>Legs, Shoulders</p>
-            </div>
-            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-        </div>
-        <div class="white_list">
-        	<div class="white_list_left">
-        	<h6><a href="#">Belly Pushup</a></h6>
-            <p>Chest, Triceps</p>
-            </div>
-            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
-        </div>
-        <div class="white_list">
-        	<div class="white_list_left">
-        	<h6><a href="#">Single-Arm Sumo Burpee Row</a></h6>
-            <p>Legs, Back Biceps</p>
-            </div>
-            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div> -->
-        </div>
+        <% end %>
     </div>
 </div>
