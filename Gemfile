@@ -64,7 +64,7 @@ gem 'devise'
  gem "remotipart"
  gem 'carrierwave-aws'
  gem 'mini_magick'
- gem 'rmagick'
+ # gem 'rmagick'
  # gem 'will_paginate'
  gem 'kaminari'
 # Use Capistrano for deployment

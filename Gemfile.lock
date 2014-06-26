@@ -169,7 +169,6 @@ GEM
     remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rmagick (2.13.2)
     ruby-hmac (0.4.0)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -256,7 +255,6 @@ DEPENDENCIES
   rails (= 4.0.3)
   rails_12factor
   remotipart
-  rmagick
   sass-rails (~> 4.0.0)
   sdoc
   settingslogic

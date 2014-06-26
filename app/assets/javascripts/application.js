@@ -18,9 +18,7 @@
 
 
 $( document ).ready(function() {
-  // $(".fancy_input").unbind();
   $(document).on("click", ".fancy_input", function() {
-   
     $('.del').remove();
     var number_of_select = $(this).val();
     $('.active').removeClass('active');
@@ -34,26 +32,6 @@ $( document ).ready(function() {
     var form_create = "<div class='exr_field_col del'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
     $('.exer_rht_col').append(form_create);
     }
-  });
-
-  $('.li_class').click(function(){
-    $('.li_change').removeClass('li_change');
-    $(this).addClass('li_change');
-    var s = $(this).find('img').prop('src');
-    $('.image_url').val(s);
-  });
-  
-  $('.load_more').click(function(){
-    $('.image_hide').each(function( index ) {
-      if(index<3)
-      {
-        $(this).removeClass('image_hide');
-      }
-      if($('.image_hide').size() == 0)
-      {
-        $('.load_more').hide();
-      }
-    });
   });
 });
 

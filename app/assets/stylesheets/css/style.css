@@ -1252,3 +1252,19 @@ background: #fff;
 .image_hide{ display:none !important;}
 .li_class{ margin-bottom: 50px; cursor:pointer; }
 .li_change{ border:2px solid #333;}
+.ui-progressbar {
+  position: relative;
+ }
+.progress-label {
+  position: absolute;
+  left: 41%;
+  top: 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #eee;
+  font-size: 15px;
+}
+.progressbar_div{
+  height: 25px;
+  margin: 15px 0 0;
+  width: 100%;
+}
