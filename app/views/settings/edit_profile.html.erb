@@ -1,0 +1,82 @@
+<div class="middle_wrapper">
+	<div class="dashboard_mid">
+        <%=  render "setting_left_menu" %>
+        <div class="setting_edit">
+      		<h2>Edit Profile</h2>
+            <%= simple_form_for(@user, url: setting_path(@user), :html => { :multipart => true } ) do |user| %>
+                <div class="setting_form">
+                    	<div class="setting_form_field">
+                        	<!-- <label>First Name</label>
+                            <input name="" type="text" class="setting_input"/> -->
+                            <%= user.input :fullname, input_html: { class: "setting_input" } %>
+                        </div>
+                        <div class="setting_form_field ml_27">
+                        	<!-- <label>Zip/Postal Code</label>
+                            <input name="" type="text" class="setting_input"/> -->
+                            <%= user.input :pin_code, input_html: { class: "setting_input" } %>
+                        </div>
+                        <div class="setting_form_field wdt_100">
+                        	<!-- <label>Email Address</label>
+                            <input name="" type="text" class="setting_input" value="xxxxxx"/> -->
+                            <%= user.input :email, input_html: { class: "setting_input" } %>
+                        </div>
+                        <div class="setting_form_field wdt_100">
+                        	<!-- <label>Date of Birth</label>
+                            <div class="fancy_select dob_select">
+                            <select name="" >
+                            <option>Month</option>
+                             <%#= f.input :age, collection: 18..60 %>
+                            </select>
+                            </div>
+                            <div class="fancy_select dob_select m27">
+                            <select name="">
+                            <option>Day</option>
+                            </select>
+                            </div>
+                            <div class="fancy_select dob_select">
+                            <select name="">
+                            <option>Year</option>
+                            </select>
+                            </div> -->
+                          
+                          <%= user.input :date_of_birth, as: :date, start_year: Date.today.year - 90,
+                                  end_year: Date.today.year - 12, order: [:day, :month, :year] %>
+                        </div>
+                        <div class="setting_form_field wdt_100">
+                            <%= user.input :gender, :collection => ['Female', 'Male','Rather not say'], :as => :radio_buttons %>
+                        	<!-- <label>Gender</label>
+                            <div class="radio_col">
+                            <span class="radio_btn"><input name="" type="radio" value="" /></span> <label class="label1">Female</label>
+                            </div>
+                            <div class="radio_col">
+                            <span class="radio_btn"><input name="" type="radio" value="" /></span><label class="label1">Male</label>
+                            </div>
+                            <div class="radio_col">
+                            <span class="radio_btn"><input name="" type="radio" value="" /></span><label class="label1">Rather not say</label>
+                            </div> -->
+                        </div>
+                        
+                        <div class="profile_col">
+                       	    <div class="profile_col_left">
+                           	    <h5>Profile Photo</h5>
+                                <%= image_tag @user.pic.url(:medium) %>
+                                    <!-- <img src="/assets/profile_img.jpg" width="111" height="111" alt="profile_img" /> -->
+                            </div>
+                             <h6>Upload your photo...</h6>
+                             <p>Image should be at least 300px by 300px.</p>
+                             <!-- <input name="" type="button" class="choose_btn" value="Choose file"/> -->
+                             <%#= user.file_format :Avatar %>
+                             <%= user.file_field :pic %>
+                             
+                        </div>
+                </div>
+                <div class="save_col save_col1">
+                    <%= user.button :button, "Save changes", :class=>"save_btn save_btn1" %>
+                </div>
+            <% end %>
+          </div>
+    </div>
+</div>
+<div class="ft_xero">
+	@ 2014 Xerofit, LLC.
+</div>
