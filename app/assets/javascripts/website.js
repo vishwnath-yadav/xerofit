@@ -6,7 +6,7 @@
 
 
 $(function(){
-    $('.hero-bg-flex').css({'height': (($(window).height()))+'px'});
+   $('.hero-bg-flex').css({'height': (($(window).height()))+'px'});
     $('.hero-content-container').css({'height': (($(window).height() - 60))+'px'});
     $(window).resize(function(){
         $('.hero-bg-flex').css({'height': (($(window).height()))+'px'});

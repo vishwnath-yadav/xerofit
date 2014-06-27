@@ -1,13 +1,17 @@
-<div class="middle_wrapper">
-	<div class="home_mid">
-    	<h2>Meet Xero.</h2>
-        <p>Your online personal trainer
-with all the answers.</p>
-			<%=link_to "Users", users_sign_up_new_path, class: "user_btn"%>
-			<%=link_to "Trainers", new_user_registration_path, class: "user_btn"%>
-			<% if current_user.present? %>
-				<%=link_to "payment", new_subscription_path, class: "user_btn"%>
-			<% end %>
+  <section class="container">
+    <div class="row">
+     <div class="col-xs-12 col-md-8 col-md-offset-2 hero-content-container">
+      <div class="flex-wrap">
+       <div class="flex">
+        <hgroup class="hero-cap">
+         <h1>Meet Xero.</h1>
+         <h2>Your online personal trainer with all the right moves.</h2>
+        </hgroup>
+        <a href="#" class="btn btn-white hero-cta">Try out Xerofit</a>
+       </div>
+      </div>
+     </div>
     </div>
-</div>
+   </section>
+
         

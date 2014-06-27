@@ -20,7 +20,6 @@
 $( document ).ready(function() {
   // $(".fancy_input").unbind();
   $(document).on("click", ".fancy_input", function() {
-   
     $('.del').remove();
     var number_of_select = $(this).val();
     $('.active').removeClass('active');

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Xerofit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/636428/615064/css/fonts.css" />
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "admin/application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<%= render partial: 'layouts/admin_header' %>
+	<div class="container">
+		<div class="row">
+			<%= render partial: 'layouts/admin_menu' %>
+			<div class="col-md-9">
+        		<%= yield %>
+	        	</br>
+	        	</br>
+        	</div>
+    	</div>
+  </div>
+</body>
+</html>
+
+
+

@@ -4,7 +4,6 @@
 }
 
 #trainer-hero {
-
     h1 {
         font-size: 42px;
         @media (max-width: $screen-sm-min) { font-size: 32px; }
@@ -29,9 +28,9 @@
     @media (max-width: $screen-sm-min) { font-size: 24px; }
 }
 
-#exercise-ball-sec-img { background-image: url("website/trainers/trainer_move_04_flip_1x.png"); }
-#trainer-tablet-sec-img { background-image: url("website/trainers/trainer_move_01_flip_1x.png"); }
-#boxing-match-sec-img { background-image: url("website/trainers/trainer_move_09_1x.png"); }
+#exercise-ball-sec-img { background-image: url("/assets/website/trainers/trainer_move_04_flip_1x.png"); }
+#trainer-tablet-sec-img { background-image: url("/assets/website/trainers/trainer_move_01_flip_1x.png"); }
+#boxing-match-sec-img { background-image: url("/assets/website/trainers/trainer_move_09_1x.png"); }
 
 
 //

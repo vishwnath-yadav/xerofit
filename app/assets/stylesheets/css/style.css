@@ -36,7 +36,7 @@ p{}
 .fr{float:right;}
 .fnone{float: none}
 body.home_bg{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
-body.home_bg.size{background:url(/assets/home_bg_img.jpg) no-repeat center center; background-size: cover;}
+body.home_bg.size{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
 body.signup_bg{ background:url(/assets/signup_bg.jpg) no-repeat center center; background-size: cover;}
 body.signup_bg.sing_size{ background:url(/assets/signup_bg.jpg) no-repeat ; background-size: cover;}
 body.gry_bg{background:#f4f4f5}
@@ -125,14 +125,14 @@ margin-right: 20px;}
 
 
 
-.popup_wrapper{max-width:470px; overflow:hidden; position:relative; background:#fff; margin:5% auto 0; border-radius:6px;}
+.popup_wrapper{max-width:470px; overflow:hidden; position:relative; background:#fff; margin:3% auto 0; border-radius:6px;}
 .popup_wrapper.wdt380{width:380px;}
 .popup_wrapper.wdt901{max-width:901px;}
 .left_pop{
 	width:450px;
 	float:left;
 	background:url(/assets/left_bg.png) no-repeat right 60%;
-	padding:20px 35px 20px 20px;
+	padding:2px 35px 20px 20px;
 }
 .left_pop.rght_pop{
 	background:none;
@@ -163,9 +163,9 @@ padding-bottom: 21px;
 .popup_wrapper .popup_header p a {color:#00a1ff; text-decoration:underline;}
 .popup_wrapper .popup_header p a:hover{color:#000;}
 .popup_wrapper .popp_middle{width:100%; float:left; padding:32px 50px;}
-.login_field{width:100%; float:left; margin-bottom:26px;}
+.login_field{width:100%; float:left; margin-bottom:12px;}
 .login_field label{color:#4a4a4a; font-size:16px; margin-bottom:15px; float:left; width:100%;}
-.login_field input{ border-radius:5px; outline: none; padding:11px; border:1px solid #d9d9d9; width:100%; float:left; color:#d9d9d9; font-family: 'gotham_extralightregular'; font-style:italic; font-size:14px;}
+.login_field input{ border-radius:5px; outline: none; padding:6px; border:1px solid #d9d9d9; width:100%; float:left; color:#d9d9d9; font-family: 'gotham_extralightregular'; font-style:italic; font-size:14px;}
 .signin_btn{ background: #72c9b8;
 
 font-size: 16px;
@@ -1252,3 +1252,19 @@ background: #fff;
 .image_hide{ display:none !important;}
 .li_class{ margin-bottom: 50px; cursor:pointer; }
 .li_change{ border:2px solid #333;}
+.ui-progressbar {
+  position: relative;
+ }
+.progress-label {
+  position: absolute;
+  left: 41%;
+  top: 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #eee;
+  font-size: 15px;
+}
+.progressbar_div{
+  height: 25px;
+  margin: 15px 0 0;
+  width: 100%;
+}
