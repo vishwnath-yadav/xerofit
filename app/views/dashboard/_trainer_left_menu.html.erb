@@ -1,9 +1,12 @@
 <div class="dash_left">
   <div class="dorian_col">
-    <img src="/assets/chase_large_img.jpg" width="201" height="201" alt="chase_large_img" /> 
-        
-  <h5>Dorian Chase</h5>
-        <h6>@dorian</h6>
+    <% if current_user.pic.present? %>
+      <img src="<%=current_user.pic.url(:medium)%>" width="201" height="201" alt="chase_large_img" />
+    <% else %>
+      <img src="/assets/profile_img.jpg" width="201" height="201" alt="chase_large_img" />
+    <% end %>   
+  <h5><%=current_user.fullname %></h5>
+        <!-- <h6>@dorian</h6> -->
   </div>
   <div class="profile_col">
   		<h4>Profile Setup</h4>

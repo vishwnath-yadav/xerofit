@@ -272,7 +272,14 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     provider character varying(255),
     uid character varying(255),
-    avatar character varying(255)
+    avatar character varying(255),
+    pin_code integer,
+    date_of_birth date,
+    gender character varying(255),
+    pic_file_name character varying(255),
+    pic_content_type character varying(255),
+    pic_file_size integer,
+    pic_updated_at timestamp without time zone
 );
 
 
@@ -503,6 +510,14 @@ INSERT INTO schema_migrations (version) VALUES ('20140624073552');
 
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
+INSERT INTO schema_migrations (version) VALUES ('20140625071514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625080723');
+
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
+
+INSERT INTO schema_migrations (version) VALUES ('20140627124520');
+
+INSERT INTO schema_migrations (version) VALUES ('20140627133531');

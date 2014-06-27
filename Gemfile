@@ -67,6 +67,7 @@ gem 'devise'
  # gem 'rmagick'
  # gem 'will_paginate'
  gem 'kaminari'
+ gem "paperclip", "~> 4.1"
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
