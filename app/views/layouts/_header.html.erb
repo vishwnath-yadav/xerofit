@@ -1,10 +1,10 @@
-<%if action_name == "home" && !current_user.present?%>
+<%if action_name == "home"%>
 	<header id="hero-img-home" class="hero-bg-flex">
         <%= render :partial => 'layouts/anon_hero_header' %>
         <%= render :partial => 'common_templates/home_section'%>
     </header>
     <%=yield%>
-<%elsif action_name == "trainers" && !current_user.present?%>
+<%elsif action_name == "trainers"%>
     <header id="hero-img-trainers" class="hero-bg-flex ">
         <%= render :partial => 'layouts/anon_hero_header' %>
         <%=render "layouts/trainers_head"%>
