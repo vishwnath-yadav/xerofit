@@ -38,5 +38,26 @@
   <!-- </ul> -->
 <%# end %> 
 
-
+<script>
+$(document).ready(function(){
+  $('.li_class').click(function(){
+    $('.li_change').removeClass('li_change');
+    $(this).addClass('li_change');
+    var s = $(this).find('img').prop('src');
+    $('.image_url').val(s);
+  });
+  $('.load_more').click(function(){
+    $('.image_hide').each(function( index ) {
+      if(index<3)
+      {
+        $(this).removeClass('image_hide');
+      }
+      if($('.image_hide').size() == 0)
+      {
+        $('.load_more').hide();
+      }
+    });
+  });
+})
+</script>
 

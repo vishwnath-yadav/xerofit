@@ -1,27 +1,41 @@
 <div class="exer_lft_col">
-    <%= simple_form_for(@libvideo, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %>
-        <div class="form-inputs">
-          <%= video.file_field :video %>
-        </div>
-        <input type="button" value="submit video" class="video_submit">
-        <%#= video.button :button, class: "video_submit" %>
-      <% end %>
-      <div class="progress">
-          <div class="progress-bar" aria-valuetransitiongoal="75" aria-valuemin="-1337" aria-valuemax="9000"></div>
-      </div>
-       
-    <div class="thumbnail_col">
-      <h5>Video Thumbnail</h5>
+  <%= simple_form_for(@libvideo, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %>
+    <div class="form-inputs">
+      <%= video.file_field :video %>
+    </div>
+    <input type="button" value="submit video" class="video_submit">
+  <% end %>
 
-        <%#= render "thumbnail" %>
-      </div>
-      <!-- <div class=""><p>It will take few minutes</p></div> -->
-    <p><a href="#">Load more thumnails...</a></p>
+  <div id="progressbar" class="progressbar_div"><div class="progress-label"></div></div>
+    <div class="thumbnail_col">
+      <!-- <h5>Video Thumbnail</h5> -->
+    </div>
+    <!-- <p><a href="#">Load more thumnails...</a></p> -->
 </div>
 
 <script>
-   $('.video_submit').click(function(){
-      $('.progress .bar').progressbar();         
-      $("#video_upload_form").submit();
-   });
+  $('.video_submit').click(function(){
+    $("#video_upload_form").submit();
+    $(function() {
+      var progressbar = $( "#progressbar" ),
+      progressLabel = $( ".progress-label" );
+      progressbar.progressbar({
+          value: false,
+          change: function() {
+          progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+        },
+        complete: function() {
+          progressLabel.text( "Complete!" );
+        }
+      });
+      function progress() {
+        var val = progressbar.progressbar( "value" ) || 0;
+        progressbar.progressbar( "value", val + 1 );
+        if ( val < 99 ) {
+          setTimeout( progress, 100 );
+        }
+      }
+      setTimeout( progress, 3000 );
+    });       
+  });
  </script>
