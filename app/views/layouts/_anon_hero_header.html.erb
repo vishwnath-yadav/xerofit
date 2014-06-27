@@ -1,12 +1,10 @@
 <div id="global-header" class="navbar hero-header" role="navigation">
     <div class="container-fluid">
         <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-            <%= link_to ' ', { :controller => :website, :action => :home }, :id => 'xerofit-offcanvas-logo', :class => 'offcanvas-logo' %>
-
             <ul class="nav navmenu-nav offcanvas-main-nav">
                 <li><%= link_to 'Discover', '#', { :class => 'discover-link' } %></li>
                 <li><%= link_to 'How it Works', '#', { :class => 'how-it-works-link' } %></li>
-                <li><%= link_to('Xerofit Trainers', { :controller => :website, :action => :trainers }) %></li>
+                <li><%= link_to('Xerofit Trainers', trainers_path) %></li>
             </ul>
         </div>
 
@@ -20,15 +18,14 @@
             <ul class="main-nav nav navmenu-nav navbar-collapse collapse">
                 <li><%= link_to 'Discover', '#', { :class => 'discover-link' } %></li>
                 <li><%= link_to 'How it Works', '#', { :class => 'how-it-works-link' } %></li>
-                <li><%= link_to('Xerofit Trainers', { :controller => :website, :action => :trainers }) %></li>
+                <li><%= link_to('Xerofit Trainers', trainers_path) %></li>
             </ul>
             <div class="nav-logo-wrap navbar-collapse collapse">
-                <%= link_to ' ', { :controller => :website, :action => :home }, :id => 'xerofit-navbar-logo-light', :class => 'xerofit-navbar-logo' %>
+                <%= link_to ' ', home_index_path, :id => 'xerofit-navbar-logo-light', :class => 'xerofit-navbar-logo' %>
             </div>
 
             <div class="util-nav">
-                <!-- <a href="#" class="btn btn-white small-btn" data-toggle="modal" data-target="#trainer-signup-pop">Join</a> -->
-                <!-- <div class="head_rht"> -->
+                
                     <%if current_user %>
                         <%=link_to "Logout", destroy_user_session_path, :method => :delete, :class=>"btn btn-white small-btn"%>
                     <%else%>

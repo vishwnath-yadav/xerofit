@@ -1,0 +1,20 @@
+$base-font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+$base-font-weight: 300;
+$base-font-color: #4C4D4E;
+
+
+* body {
+    font-family: $base-font-family;
+    font-weight: $base-font-weight;
+    font-style: normal;
+    line-height: 1.4;
+    color: $base-font-color;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+* h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}

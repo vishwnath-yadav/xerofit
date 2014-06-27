@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-	before_filter :authenticate_user!
+	# before_filter :authenticate_user!
 	def index
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(5)
 	end

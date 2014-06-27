@@ -2,43 +2,24 @@
 <html>
 <head>
   <title>Xerofit</title>
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "https://js.stripe.com/v1/" %>
-	<%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <%= render :partial => 'website/headscripts/google_analytics' %>
+  <%= render :partial => 'website/headscripts/visual_web_optimizer' %>
+  <%= render :partial => 'website/headscripts/facebook_ads' %>
+  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/636428/615064/css/fonts.css" />
+  <%= stylesheet_link_tag "css/application", media: "all", "data-turbolinks-track" => true %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+
   <%= csrf_meta_tags %>
 </head>
-		<% if @use_default_layout %>
-  		<%= stylesheet_link_tag "css/application", media: "all", "data-turbolinks-track" => true %>
-  			<% if !current_user.present? %>
-			<%# if controller_name == "home" && action_name == "index" %>
-				<body class="home_bg size">
-			<% else %>
-				<body>
-			<% end %>
-				<div id="page_wrapper">
-			    	<%=render "layouts/header"%>
-					<%= yield %>
-					<%=render "layouts/footer"%>
-				</div>
-			</body>
-		<% else %>
-			<%= stylesheet_link_tag "admin/application", media: "all", "data-turbolinks-track" => true %>
-			<body>
-				<%= render partial: 'layouts/admin_header' %>
-				<div class="container">
-    			<div class="row">
-						<%= render partial: 'layouts/admin_menu' %>
-						<div class="col-md-9">
-			        <%= yield %>
-			        </br>
-			        </br>
-			        </div>
-			      <% end %>
-			    </div>
-			  </div>
-      </body>
+		<body class="<%=%>">
+			<div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
+	    	<%=render "layouts/header"%>
+				<%=render "layouts/footer"%>
+			</div>
+		</body>
 </html>
 
 

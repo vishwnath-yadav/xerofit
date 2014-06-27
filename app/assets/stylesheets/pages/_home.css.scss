@@ -13,7 +13,7 @@
 header { width: 100%; height: 100%; }
 
 #hero-img-home {
-    background: image-url("/assets/website/homepage/boardwalk_hero_xl.jpg") no-repeat left center;
+    background: image-url("website/homepage/boardwalk_hero_xl.jpg") no-repeat left center;
     @include bgcover();
 }
 
@@ -23,7 +23,7 @@ header { width: 100%; height: 100%; }
     text-align: center;
     width: 100%;
     height: 100%;
-    min-height: 480px;
+    min-height: 30px;
 }
 
 .hero-cap {
@@ -136,9 +136,9 @@ h3 {
     @media (min-width: $screen-lg-min) { height: 580px;}
 }
 
-#jump-rope-sec-img { background-image: url("website/homepage/jump_rope_1x.png"); }
-#dumbbell-lunge-sec-img { background-image: url("website/homepage/dumbbell_lunge_flip_1x.png"); }
-#yoga-bliss-sec-img { background-image: url("website/homepage/yoga_bliss_flip_1x.png"); }
+#jump-rope-sec-img { background-image: url("/assets/website/homepage/jump_rope_1x.png"); }
+#dumbbell-lunge-sec-img { background-image: url("/assets/website/homepage/dumbbell_lunge_flip_1x.png"); }
+#yoga-bliss-sec-img { background-image: url("/assets/website/homepage/yoga_bliss_flip_1x.png"); }
 
 .section-rs-img {
     background-size: contain;

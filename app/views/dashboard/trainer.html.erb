@@ -1,46 +1,90 @@
-<div class="middle_wrapper">
-<div class="dashboard_mid">
-        <h3>Dashboard</h3>
-        <%= render "trainer_left_menu" %>
-    
-<div class="dash_rght">
-	<div class="gray_bg">
-    	<ul>
-        	<li><img src="/assets/ex_img.jpg" width="49" height="49" alt="ex_img" />
-            <h5>1. Upload Exercise</h5>
-            <p>Build up a library.</p></li>
-            <li class="gray_mlr"><img src="/assets/workout_img.jpg" width="45" height="49" alt="workout_img" />
-            <h5>2. Create Workouts</h5>
-            <p>Organize into workouts.</p></li>
-            <li><img src="/assets/content_img.jpg" width="49" height="49" alt="content_img" />
-            <h5>1. Publish Content</h5>
-            <p>Sell in the marketplace.</p></li>
-        </ul>
-  </div>
-  <div class="alerts_col">
-  		<h4>Alerts & Updates<span class="ques"></span></h4>
-        <div class="alerts_col_desc">
-        	<h5>All clear, there's nothing to see here.</h5>
-			    <p>(But that doesn't mean there won't be soon)</p>
+<header id="hero-img-trainers" class="hero-bg-flex">
+    <%= render :partial => 'anon_hero_header' %>
+
+    <section id="trainer-hero" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 hero-content-container">
+                <div class="flex-wrap">
+                    <div class="flex">
+                        <hgroup id="trainer-hero" class="hero-cap">
+                            <h1>Make money while you sleep.</h1>
+                            <h4>Every time someone downloads a workout or exercise you submit to Xerofit, you get paid... no website or programming skills required.</h4>
+                        </hgroup>
+                        <a href="#" class="btn btn-white hero-cta" data-toggle="modal" data-target="#trainer-signup-pop">Become a Xerofit Trainer</a>
+                    </div>
+                </div>
+            </div>
         </div>
-  </div>
-  
-  <div class="alerts_col">
-		<h4>Marketplace Performance<span class="ques"></span></h4>
-    	<div class="market_list">
-      	<ul>
-        	<li class="list_1">Name</li>
-          <li class="list_2">Date Added</li>
-          <li class="list_2">Impressions</li>
-          <li class="list_2">Conversion Rate</li>
-          <li class="list_3">Sales</li>
-        </ul>
-      </div>
-      <div class="alerts_col_desc">
-      	<h5>The marketplace isn't quite ready yet...</h5>
-  			<p>But that's why you're here right?</p>
-      </div>
-  </div>
-</div>
-</div>
+    </section>
+</header>
+
+<div role="main">
+    <section class="section-block cta-section">
+        <section class="container">
+            <hgroup role="banner">
+                <h2 class="cta-heading">If you’re an awesome personal trainer, Xerofit gives you money to prove it.</h2>
+            </hgroup>
+        </section>
+    </section>
+
+    <section class="section-block section-color">
+        <section class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-push-6 match-col-height section-cap">
+                    <div class="flex-wrap">
+                        <div class="flex">
+                            <h3>Exposure.</h3>
+                            <p>Increase your personal brand with limitless visibility to Xerofit users. The more people ‘like’ your workouts, the more Xero feels confident to feature your exercises. Quality content goes viral.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-pull-6 match-col-height section-rs-img-container">
+                    <figure id="exercise-ball-sec-img" class="section-rs-img section-rs-img-left"></figure>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="section-block">
+        <section class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 match-col-height section-cap">
+                    <div class="flex-wrap">
+                        <div class="flex">
+                            <h3>Easy.</h3>
+                            <p>Forget the headache and cost associated with having a website, hosting, marketing, merchant account, etc. No high tech skills needed to make money online as a personal trainer, Xerofit has it all.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 match-col-height">
+                    <figure id="trainer-tablet-sec-img" class="section-rs-img section-rs-img-right match-col-height"></figure>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="section-block section-color">
+        <section class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-push-6 match-col-height section-cap">
+                    <div class="flex-wrap">
+                        <div class="flex">
+                            <h3>Leverage.</h3>
+                            <p>Submit once, get paid every time a Xerofit user downloads it. Popular uploads can make you $50, $100, even $500 per week from your one-time initial submission. Make money 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-pull-6 match-col-height section-rs-img-container">
+                    <figure id="boxing-match-sec-img" class="section-rs-img section-rs-img-left match-col-height"></figure>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="section-block cta-section">
+        <div class="container">
+            <h2 class="cta-heading">Submitting your workouts to Xerofit is fast, easy, and free.</h2>
+            <a href="#" class="btn btn-fill cta-btn" data-toggle="modal" data-target="#trainer-signup-pop">Try out Xerofit for free</a>
+        </div>
+    </section>
 </div>
