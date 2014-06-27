@@ -19,12 +19,14 @@
             	<h2>New Workout</h2>
                 <p>Workout Subtitle</p>
             </div>
-            <div class="add_photo">
+            <div class="add_photo ">
+              <ol>
                 <p class="placeholder">hello</p> 
                     <!-- <ul>
                         <li class="placeholder">
                         </li>
                    </ul> -->
+                 </ol>
             </div>
         </div>
         <%= render "workout_right_menu" %>
@@ -34,17 +36,17 @@
 
 <script>
   $(function() {
-    $( ".white_list" ).draggable({
-        appendTo: "add_photo",
+    $( ".white_list_left h6" ).draggable({
+        appendTo: "add_photo ol",
         helper: "clone"
     });
-    $( ".add_photo" ).droppable({
+    $( ".add_photo ol" ).droppable({
       activeClass: "ui-state-default",
       hoverClass: "ui-state-hover",
       accept: ":not(.ui-sortable-helper)",
       drop: function( event, ui ) {
-        // $( this ).find( ".placeholder" ).remove();
-        $("<div class='white_list_left'></div>").text(ui.draggable.text()).appendTo(this);
+        $( this ).find( ".placeholder" ).remove();
+        $("<li> </li>").html(ui.draggable.html()).appendTo(this);
     }
     })
   });
