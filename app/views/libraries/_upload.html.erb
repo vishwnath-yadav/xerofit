@@ -24,7 +24,7 @@
             change: function() {
               var vl = progressbar.progressbar( "value" );
               vl = vl ? vl+" %" : '';
-              progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+              progressLabel.text( vl );
             },
             complete: function() {
               progressLabel.text( "Complete!" );
