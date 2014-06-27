@@ -49,7 +49,7 @@ Xerofit::Application.routes.draw do
     get :dashboard
     get :library
   end
-  get 'dashboard', to: 'dashboard#index', as: :dashboard
+  get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   resources :libraries 
   resources :videos, only: [:create]
   resources :workout_builders

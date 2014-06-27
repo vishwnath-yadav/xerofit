@@ -15,7 +15,7 @@
       </ul>
     <% end %>
     </div>
-    <%= hidden_field_tag :video, "", class: "video_id" %>
+    <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="exr_field_col">
       <label>Title</label>
@@ -60,7 +60,7 @@
     <% if action_name == "edit" && controller_name == "libraries" %>
       <%= lib.submit "Save changes", class: "save_btn" %>
     <% else %>
-      <%= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: true %>
+      <%= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: "#{@video_id.present? ? false : true}" %>
     <% end %>
   </div>
 <% end %>

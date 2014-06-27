@@ -254,6 +254,8 @@ CREATE TABLE users (
     fullname character varying(255),
     email character varying(255) DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    role character varying(255),
+    enabled boolean DEFAULT true,
     reset_password_token character varying(255),
     reset_password_sent_at timestamp without time zone,
     remember_created_at timestamp without time zone,

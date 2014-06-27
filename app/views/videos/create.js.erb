@@ -1,2 +1,6 @@
-$(".video_id").val("<%=@video.id%>");
-$('#panda_video_enable').attr('disabled', false)
+<%if !@video.errors.present?%>
+	$(".video_id").val("<%=@video.id%>");
+	var progressbar = $( "#progressbar" );
+	progressbar.progressbar( "value", 100 );
+	$('#panda_video_enable').attr('disabled', false);
+<%end%>

@@ -1264,7 +1264,7 @@ background: #fff;
   font-size: 15px;
 }
 .progressbar_div{
-  height: 25px;
+  height: 25px !important;
   margin: 15px 0 0;
   width: 100%;
 }

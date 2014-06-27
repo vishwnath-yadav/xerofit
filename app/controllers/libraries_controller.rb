@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-	# before_filter :authenticate_user!
+	before_filter :authenticate_user!
 	def index
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(5)
 	end
@@ -18,8 +18,9 @@ class LibrariesController < ApplicationController
 	def create
 	  @library = Library.new(library_params)
 	  @library.user_id = current_user.id
+	  @video_id = params[:video]
 	  if @library.save
-	  	video = LibraryVideo.find(params[:video])
+	  	video = LibraryVideo.find(@video_id)
 	  	video.library = @library
 	  	video.save
 	    redirect_to libraries_path, :notice => "Thank you for uploading video!"

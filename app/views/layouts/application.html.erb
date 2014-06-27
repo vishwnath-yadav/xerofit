@@ -10,6 +10,8 @@
   <%= render :partial => 'website/headscripts/facebook_ads' %>
   <link rel="stylesheet" type="text/css" href="//cloud.typography.com/636428/615064/css/fonts.css" />
   <%= stylesheet_link_tag "css/application", media: "all", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 
   <%= csrf_meta_tags %>

@@ -10,7 +10,7 @@
         <%=render "layouts/trainers_head"%>
     </header>
     <%=yield%>
-<%elsif current_user.present?%>
+<%elsif !current_user.present?%>
     <header id="hero-img-home" class="hero-bg-flex ">
         <%= render :partial => 'layouts/anon_hero_header' %>
         <%=yield%>
