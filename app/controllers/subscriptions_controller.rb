@@ -1,5 +1,5 @@
 class SubscriptionsController < WebsiteController
-
+	before_filter :authenticate_user!
 	layout 'application', only: [:new]
 
 	def trainers_in

@@ -29,6 +29,43 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE addresses (
+    id integer NOT NULL,
+    country character varying(255),
+    address1 character varying(255),
+    address2 character varying(255),
+    state character varying(255),
+    pin_code integer,
+    phone_number integer,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE addresses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE addresses_id_seq OWNED BY addresses.id;
+
+
+--
 -- Name: blocks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -340,6 +377,13 @@ ALTER SEQUENCE workout_builders_id_seq OWNED BY workout_builders.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY addresses ALTER COLUMN id SET DEFAULT nextval('addresses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::regclass);
 
 
@@ -390,6 +434,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 ALTER TABLE ONLY workout_builders ALTER COLUMN id SET DEFAULT nextval('workout_builders_id_seq'::regclass);
+
+
+--
+-- Name: addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY addresses
+    ADD CONSTRAINT addresses_pkey PRIMARY KEY (id);
 
 
 --
@@ -521,3 +573,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140625101524');
 INSERT INTO schema_migrations (version) VALUES ('20140627124520');
 
 INSERT INTO schema_migrations (version) VALUES ('20140627133531');
+
+INSERT INTO schema_migrations (version) VALUES ('20140630055608');

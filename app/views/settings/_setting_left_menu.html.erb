@@ -2,9 +2,9 @@
 	<div class="setting_col">
     	<h5>Settings</h5>
     	<ul>
-        	<li><a href="<%=setting_edit_profile_path(current_user.id)%>" class="active li_active">Edit Profile</a></li>
-            <li><a href="<%= setting_payment_billing_path(current_user.id)%>" class="li_active">Payment & Billing</a></li>
-            <li><a href="javascript:void(0)" class="li_active">Change Password</a></li>
+        	<li><a href="<%= edit_profile_settings_path %>" class="active li_active">Edit Profile</a></li>
+            <li><a href="<%= payment_billing_settings_path %>" class="li_active">Payment & Billing</a></li>
+            <li><a href="<%= change_password_settings_path %>" class="li_active">Change Password</a></li>
             <li><a href="javascript:void(0)" class="li_active">Marketplace Website</a></li>
         </ul>
     </div>

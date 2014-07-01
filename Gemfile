@@ -64,6 +64,7 @@ gem 'devise'
  gem "remotipart"
  gem 'carrierwave-aws'
  gem 'mini_magick'
+ gem 'carmen-rails'
  # gem 'rmagick'
  # gem 'will_paginate'
  gem 'kaminari'

@@ -3,7 +3,7 @@
         <%=  render "setting_left_menu" %>
         <div class="setting_edit">
       		<h2>Edit Profile</h2>
-            <%= simple_form_for(@user, url: setting_path(@user), :html => { :multipart => true } ) do |user| %>
+            <%= simple_nested_form_for(@user, url: setting_path(@user), :html => { :multipart => true } ) do |user| %>
                 <div class="setting_form">
                     	<div class="setting_form_field">
                         	<!-- <label>First Name</label>
@@ -11,8 +11,8 @@
                             <%= user.input :fullname, input_html: { class: "setting_input" } %>
                         </div>
                         <div class="setting_form_field ml_27">
-                        	<!-- <label>Zip/Postal Code</label>
-                            <input name="" type="text" class="setting_input"/> -->
+                        	<!-- <label>Zip/Postal Code</label> -->
+                            <!-- <input name="" type="text" class="setting_input"/> -->
                             <%= user.input :pin_code, input_html: { class: "setting_input" } %>
                         </div>
                         <div class="setting_form_field wdt_100">

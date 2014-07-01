@@ -35,6 +35,11 @@ GEM
       sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
+    carmen (1.0.1)
+      unicode_utils (~> 1.4.0)
+    carmen-rails (1.0.1)
+      carmen (~> 1.0.0)
+      rails
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -223,6 +228,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -240,6 +246,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   cancan
+  carmen-rails
   carrierwave
   carrierwave-aws
   carrierwave-video
