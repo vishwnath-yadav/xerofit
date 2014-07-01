@@ -330,6 +330,41 @@ ALTER SEQUENCE workout_builders_id_seq OWNED BY workout_builders.id;
 
 
 --
+-- Name: workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE workouts (
+    id integer NOT NULL,
+    name character varying(255),
+    subtitle character varying(255),
+    description character varying(255),
+    state character varying(255) DEFAULT 'initiated'::character varying,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: workouts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE workouts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workouts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE workouts_id_seq OWNED BY workouts.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -383,6 +418,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 ALTER TABLE ONLY workout_builders ALTER COLUMN id SET DEFAULT nextval('workout_builders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq'::regclass);
 
 
 --
@@ -450,6 +492,14 @@ ALTER TABLE ONLY workout_builders
 
 
 --
+-- Name: workouts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY workouts
+    ADD CONSTRAINT workouts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -506,3 +556,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
+
+INSERT INTO schema_migrations (version) VALUES ('20140627140011');

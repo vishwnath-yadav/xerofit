@@ -1,0 +1,18 @@
+<div class="workout_col_left">
+	<div class="search_col">
+    	<input name="" type="button" class="search_btn" />
+    	<input name="" type="text" / class="search_icon" value="Search within library...">
+    </div>
+    <div class="fitler_col" id="filter_library_col">
+    	<div class="filter_icon"><a href="#">Filters</a></div>
+        <% @libraries.each do |lib|%>
+    	<div class="white_list">
+        	<div class="white_list_left">
+            	<h6 style="cursor:pointer;" draggable="true" ondragstart="drag_start(event)" id="lib_<%=lib.id%>"><%= lib.title %></h6>
+                <p><%= lib.category %></p>
+            </div>
+            <div class="dots_img"><img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" /></div>
+        </div>
+        <% end %>
+    </div>
+</div>

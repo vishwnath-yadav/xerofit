@@ -1,3 +1,3 @@
 class Block < ActiveRecord::Base
-	belongs_to :workout_builder
+	belongs_to :workout
 end

@@ -1,0 +1,39 @@
+ <%= simple_form_for @workout, :url => @workout.new_record? ? workouts_path : workout_path(@workout), :html => {:method => @workout.new_record? ? "post" : "put", id: "workout_form"}, :remote => true do |f| %>
+
+    <% if @workout_1.present? && @workout_1.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@workout.errors.count, "error") %> prohibited
+            this workout from being saved:
+          </h2>
+          <ul>
+            <% @workout.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+	<div class="form_field">
+        <%= f.input :name, required: true, input_html: { class: "detail_input" } %>
+    	<!-- <label>Name:</label>
+        <input name="" type="text" class="detail_input"/> -->
+        <span class="detail_char">26/50 Character</span>
+    </div>
+    <div class="form_field">
+        <%= f.input :subtitle, as: :text, required: true, input_html: { class: "detail_msg" } %>
+    	<!-- <label>Subtitle:</label>
+        <textarea name="" cols="" rows="3" class="detail_msg"></textarea> -->
+        <span class="detail_char">0/50 Character</span>
+    </div>
+    <div class="form_field">
+        <%= f.input :description, as: :text, input_html: { class: "detail_msg" } %>
+    	<!-- <label>Description:</label>
+        <textarea name="" cols="" rows="6" class="detail_msg"></textarea> -->
+        <span class="detail_char">0/450 Character</span>
+    </div>
+    <div>
+        <button class="signin_btn request_bt wrk_out_form" name="button" type="button">Save</button>
+        <%#= f.button :button, "Save",  %>
+        <!-- <input type="submit" name="Save" value="Save"> -->
+    </div>
+<% end %>
