@@ -8,9 +8,11 @@
               <p class="wrk_subhead">Workout Subtitle</p>
               <%=hidden_field_tag :workout_id%>
             </div>
-            <div class="add_photo drag_lib" id="drop_div" ondrop="drag_drop(event)" ondragover="return false">
-              
-            </div>
+            <%=form_tag("/workouts/save_blocks", method: "post") do |bl|%>
+              <div class="add_photo drag_lib">
+                
+              </div>
+            <%end%>
         </div>
         <%= render "workout_right_menu" %>
     </div>

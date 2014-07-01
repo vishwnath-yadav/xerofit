@@ -1,4 +1,4 @@
-<div class="met_tab">
+<div class="met_tab" id="block_1" ondrop="drag_drop(event, 1)" ondragover="return false">
     <div class="met_tab_col">
     	<div class="met_head">
         	<div class="tab_arrow">
@@ -9,13 +9,11 @@
              <p><span class="b1">0</span> moves // Circuit repeat: 4X</p>
              </div>
         </div>
-        <div class="met_tab_desc" id="b1">
+        <div class="met_tab_desc">
+            <%=hidden_field_tag "block_id", 1 %>
         	<ul>
             	<li>
                     Drag Here Libraries
-                	<!-- <span class="nummeric">1</span>
-                	<h6>Single-Arm Sumo Burpee Jump</h6>
-                    <p>30 seconds</p> -->
                 </li>
             </ul>
         </div>
