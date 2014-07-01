@@ -66,6 +66,14 @@ Xerofit::Application.routes.draw do
   get 'trainers' => 'website#trainers'
   get 'terms' => 'website#terms'
   get 'privacy' => 'website#privacy'
+  
+  resources :settings do
+    get 'edit_profile'
+    get 'payment_billing'
+    get 'change_password'
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

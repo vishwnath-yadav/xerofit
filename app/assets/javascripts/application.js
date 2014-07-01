@@ -33,5 +33,12 @@ $( document ).ready(function() {
     $('.exer_rht_col').append(form_create);
     }
   });
+
+  $('.li_active').click(function() {
+    $('.li_active').removeClass('active');
+    $(this).addClass('active');
+  })
+
+
 });
 
