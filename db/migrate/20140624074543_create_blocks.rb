@@ -3,8 +3,8 @@ class CreateBlocks < ActiveRecord::Migration
     create_table :blocks do |t|
       t.string :name
       t.string :subtitle
+      t.string :block_type
       t.integer :workout_id
-      t.string :workout_type
 
       t.timestamps
     end

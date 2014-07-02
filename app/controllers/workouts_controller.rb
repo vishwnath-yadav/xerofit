@@ -29,19 +29,18 @@ class WorkoutsController < ApplicationController
 
 	def get_workout_sub_block
 		Rails.logger.debug ">>>>>"
-		@block = Block.new(:name => params[:title])
-		@block.workout_type=params[:name]
-		logger.debug(@block.inspect)
+		@block = Block.new(:name => params[:title], :block_type=> params[:type])
+		@block.save
 		respond_to do |format|
-			if @block.save
-				format.js 
-			end
+			format.js 
 		end
 	end
 
 
 	def save_blocks
-		Rails.logger.debug ">>>>>>>>>>>>>>>>>>"
+		@workout = Workout.find(params[:workout_id])
+		block_hash = params[:workout]
+		@workout.save_blocks_and_libs(block_hash)
 		redirect_to :back
 	end
 
