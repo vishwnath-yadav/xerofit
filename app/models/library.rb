@@ -2,6 +2,7 @@ class Library < ActiveRecord::Base
 	belongs_to :user
 	has_many :target_muscle_groups
 	has_one :library_video
+	has_many :blocks, through: :LibraryBlocks
 	accepts_nested_attributes_for :target_muscle_groups
 
 	validates :title, :directions, :category, :difficulty, presence: true

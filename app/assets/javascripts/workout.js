@@ -8,13 +8,13 @@ $( document ).ready(function() {
     $.fancybox.close();
   });
 
-  $(".workout_submit").click(function(){
-  	 name = $("input[name='radio']:checked").attr('id');
-     split_name = name.split("_");
+  $(".block_type_submit").click(function(){
+  	 type = $("input[name='radio']:checked").attr('id');
+     type = type.split("_")[1];
      title = $('.title').val();
   	 url = '/workouts/get_workout_sub_block';
-	 $.get(url, {name:split_name[1],title:title}, function (data) {
-	});
+	 $.get(url, {type:type,title:title}, function (data) {
+	 });
   });
 
   $('#publish').click(function(){
@@ -44,7 +44,5 @@ function drag_drop(e, id) {
     }
     $('.b'+id).text(size + 1);
     var lib_id = element.split("_");
-    alert(lib_id[1]);
-    alert(id);
-    $('#new_workout_form').append('<input type="hidden" name=workout["'+id+'"]["'+lib_id[1]+'"] value="'+lib_id[1]+'">');
+    $('#new_workout_form').append('<input type=hidden name=workout['+id+']['+lib_id[1]+'] value='+lib_id[1]+'>');
 }
