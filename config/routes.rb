@@ -22,7 +22,6 @@ Xerofit::Application.routes.draw do
   resources :home do
     member do
     end
-
     collection do
       get 'confirmation'
     end
@@ -38,22 +37,30 @@ Xerofit::Application.routes.draw do
         patch :disable
       end
     end
-    
   end
+  
   resources :subscriptions do
     collection do
      get 'trainers_in'
      get 'trainers_confirm' 
     end
   end
+  
   resources :users do
     get :dashboard
     get :library
   end
+ 
   get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
+  
   resources :libraries 
   resources :videos, only: [:create]
-  resources :workout_builders
+  resources :workouts do
+    collection do
+      get 'get_workout_sub_block'
+    end
+  end
+  
   get :sort_video, to: 'libraries#sort_video'
   get :see_more_thumbnail, to: 'libraries#see_more_thumbnail'
 

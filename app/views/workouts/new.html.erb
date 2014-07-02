@@ -1,0 +1,22 @@
+<%=render "workout_head"%>
+<div class="middle_wrapper">
+	<div class="workout_col">
+    	<%= render "workout_left_menu" %>
+        <div class="workout_col_mid">
+        	<div class="col_1">
+            	<h2 class="wrk_head">New Workout</h2>
+              <p class="wrk_subhead">Workout Subtitle</p>
+              <%=hidden_field_tag :workout_id%>
+            </div>
+            <div class="add_photo drag_lib" id="drop_div" ondrop="drag_drop(event)" ondragover="return false">
+              
+            </div>
+        </div>
+        <%= render "workout_right_menu" %>
+    </div>
+</div>
+<%=render "block_type_modal"%>
+
+<script>
+
+</script>

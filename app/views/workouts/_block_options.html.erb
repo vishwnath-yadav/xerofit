@@ -1,0 +1,26 @@
+ <form>
+	<div class="form_field">   
+        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_circuit", name: "radio"}) %>
+        <span class="wrk_block_types">Circuit</span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 3 or more library.
+    </div>
+    <div class="form_field">
+        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_superset", name: "radio"}) %>
+        <span class="wrk_block_types">SuperSet</span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 2 library.
+    </div>
+    <div class="form_field">
+        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_individual", name: "radio"}) %>
+        <span class="wrk_block_types">Individual</span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 1 library.
+    </div>
+    <label>Title</label>
+    <input type='text' name='Title' value="" class="title">
+    <input type='button' value="Ok" class='workout_submit'>
+</form>

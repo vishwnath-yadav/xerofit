@@ -42,6 +42,7 @@ body.signup_bg.sing_size{ background:url(/assets/signup_bg.jpg) no-repeat ; back
 body.gry_bg{background:#f4f4f5}
 body.dashboard{background:#f2f2f2;}
 body.pop{background:#d9d9d9;}
+.dashboard{background:#f2f2f2;}
 #page_wrapper{width: 100%; float: left; min-height:100%;
 	position:relative;}
 .header_wrapper{width: 100%; padding:12px 29px; float: left; height: 60px; box-shadow: 0 0 10px #bbbbbb; background: #fff; border-bottom: 1px solid #e6e6e6}
@@ -1267,4 +1268,37 @@ background: #fff;
   height: 25px !important;
   margin: 15px 0 0;
   width: 100%;
+}
+
+.ml{
+	margin-left: 50%;
+}
+
+.green_txt{
+	color: green;
+}
+
+.wrk_block_types{
+	color: #b3adaf;
+	font-family: 'gotham-bookgotham-book';
+	font-size: 16px;
+}
+
+.blc_type_head{
+	margin: 0 18% 5% 26%;
+	font-size: 16px;
+	border-bottom: 1px solid;
+}
+
+.blc_type_pop{
+	border: 1px solid #eee;
+	margin: 1px 1px;
+	padding: 5px 5px;
+	color: #b3adaf;
+	display: none;
+}
+
+.new_pop_class{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
