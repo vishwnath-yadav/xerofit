@@ -45,6 +45,8 @@ class WorkoutsController < ApplicationController
 		redirect_to :back
 	end
 
+	def marketplace
+	end
 	private
 	  def workout_params
 	    params.require(:workout).permit!
