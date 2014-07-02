@@ -9,4 +9,6 @@ class Workout < ActiveRecord::Base
 	      self.state.try(&:to_sym) == state
 	    end
 	end
+
+	
 end

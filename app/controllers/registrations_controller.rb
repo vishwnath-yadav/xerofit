@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.skip_confirmation!
     if @user.save
       Emailer.user_registration_mail(@user.email).deliver
-      redirect_to home_index_path
+      redirect_to confirmation_home_index_path
     else
       render "users_sign_up_new"
     end

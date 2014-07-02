@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :libraries 
+  has_many :addresses
+  has_many :subscriptions
+  accepts_nested_attributes_for :addresses
   has_many :workouts
    ROLES = %w[admin trainer normaluser]
 
@@ -17,6 +20,11 @@ class User < ActiveRecord::Base
     define_method "#{role}?" do
       self.role == role
     end
+  end
+
+  def build_association
+    1.times{addresses.build if self.addresses.empty? }
+    1.times{subscriptions.build if self.subscriptions.empty? }
   end
 
 

@@ -23,6 +23,7 @@ Xerofit::Application.routes.draw do
     member do
     end
     collection do
+      get 'confirmation'
     end
   end
 
@@ -57,6 +58,7 @@ Xerofit::Application.routes.draw do
   resources :workouts do
     collection do
       get 'get_workout_sub_block'
+      post 'save_blocks'
     end
   end
   
@@ -68,10 +70,15 @@ Xerofit::Application.routes.draw do
   get 'privacy' => 'website#privacy'
   
   resources :settings do
-    get 'edit_profile'
-    get 'payment_billing'
-    get 'change_password'
+    collection do
+      get 'edit_profile'
+      get 'payment_billing'
+      get 'change_password'
+      put 'changed_password'
+      get 'save_payment_billing'
+    end
   end
+  get '/subregion_options' => 'settings#subregion_options'
 
 
   # Example of regular route:

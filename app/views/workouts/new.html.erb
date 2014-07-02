@@ -6,10 +6,10 @@
         	<div class="col_1">
             	<h2 class="wrk_head">New Workout</h2>
               <p class="wrk_subhead">Workout Subtitle</p>
-              <%=hidden_field_tag :workout_id%>
             </div>
-            <%=form_tag("/workouts/save_blocks", method: "post") do |bl|%>
+            <%=form_tag("/workouts/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
               <div class="add_photo drag_lib">
+              <%=hidden_field_tag :workout_id %>
                 
               </div>
             <%end%>

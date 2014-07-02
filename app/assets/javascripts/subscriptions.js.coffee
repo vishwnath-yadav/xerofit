@@ -8,12 +8,10 @@ jQuery ->
 subscription =
   setupForm: ->
 
-    $('#new_subscription').submit ->
-      $("#new_subscription").html('<img src="/assets/ajax-loader.gif" style="float:right;margin-right:40px">')
-      $('input[type=submit]').attr('disabled', true)
+    $('.subscrip').click ->
+      $(".subscrip").html('<img src="/assets/ajax-loader.gif">');
       if $('#card_number').length
         subscription.processCard()
-        false
       else
         true
   
@@ -27,8 +25,9 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#subscription_stripe_card_token').val(response.id)
-      $('#new_subscription')[0].submit()
+      $('#user_subscriptions_stripe_card_token').val(response.id)
+      $('#payment_billing')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
-      $('input[type=submit]').attr('disabled', false)
+      $('#stripe_error').text(response.error.message);
+      alert(response.error.message)
+      $(".subscrip").html('<a href="javascript:void(0)" class="save_btn save_btn1">Save</a>');

@@ -8,11 +8,17 @@ $( document ).ready(function() {
     $.fancybox.close();
   });
 
-  $(".block_type").click(function(){
-  	 name = $(this).attr('id');
+  $(".workout_submit").click(function(){
+  	 name = $("input[name='radio']:checked").attr('id');
+     split_name = name.split("_");
+     title = $('.title').val();
   	 url = '/workouts/get_workout_sub_block';
-	 $.get(url, {name:name}, function (data) {
+	 $.get(url, {name:split_name[1],title:title}, function (data) {
 	});
+  });
+
+  $('#publish').click(function(){
+    $('#new_workout_form').submit();
   });
   var isRecycled = false;
 });
@@ -37,4 +43,8 @@ function drag_drop(e, id) {
       $("#block_"+id).find('.met_tab_desc ul').append('<li><span class="nummeric">1</span><h6>'+text+'</h6><p>30 seconds</p></li>');
     }
     $('.b'+id).text(size + 1);
+    var lib_id = element.split("_");
+    alert(lib_id[1]);
+    alert(id);
+    $('#new_workout_form').append('<input type="hidden" name=workout["'+id+'"]["'+lib_id[1]+'"] value="'+lib_id[1]+'">');
 }

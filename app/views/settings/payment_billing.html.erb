@@ -1,77 +1,67 @@
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
         <%=  render "setting_left_menu" %>
+        <%= simple_form_for(@user, url: save_payment_billing_settings_path, method: "get", html: {id: "payment_billing"}) do |user| %>
         <div class="setting_edit">
       		<h2>Payment & Billing</h2>
             <div class="setting_form">
-            <h5>Payment Method</h5>
-            	<div class="setting_form_field wdt_100">
-                	<label>Credit Card Number</label>
-                    <input name="" type="text" class="setting_input" value="xxxx"/>
-                </div>
-               <div class="col_wdt">
-                    <div class="setting_form_field wdt_30">
-                	   <label>Expiration</label>
-                        <input name="" type="text" class="setting_input exp" value="MM"/>
-                        <span class="divider"><img src="/assets/divider.jpg" width="7" height="12" alt="divider" /></span>
-                        <input name="" type="text" class="setting_input exp" value="YY"/>
-                    </div>
+                <h5>Payment Method</h5>
+                <%#= user.fields_for :subscriptions do |sub| %>
+                    <%#= sub.hidden_field :stripe_card_token %>
+                <%#end %>
                 
+                <div class="setting_form_field wdt_100">
+                    <label>Credit Card Number</label>
+                    <%= text_field_tag :card_number, nil, name: nil, class: "setting_input" %>
+                </div>
+                <div class="col_wdt">
+                    <div class="setting_form_field wdt_30">
+                        <%= label_tag :card_month, "Card Expiration" %>  
+                        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "setting_input exp"} %>
+                        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "setting_input exp"} %>
+                    </div>
                     <div class="setting_form_field wdt_30 fr">
                 	   <label>Security Code</label>
-                       <input name="" type="text" class="setting_input" value="CVV"/>
+                        <%= text_field_tag :card_code, nil, name: nil, class: "setting_input"%>
                     </div>
                 </div>
                 <h5>Billing Information</h5>
-               
                 <div class="setting_form_field wdt_100">
-                	<label>Country</label>
-                    <div class="fancy_select">
-                        <select name="">
-            	           <option>Please Specify</option>
-                        </select>
+                  <%= user.input :fullname, input_html: { class: "setting_input" } %>
+                </div>
+                <%= user.fields_for :addresses do |address| %>
+                    <div class="setting_form_field wdt_100">
+                        <label>Address 1</label>
+                        <%= address.text_field :address1, class: "setting_input" %>
                     </div>
-                </div>
-                
-                <div class="setting_form_field wdt_100">
-                	<label>Full Name</label>
-                    <input name="" type="text" class="setting_input"/>
-                </div>
-                
-                <div class="setting_form_field wdt_100">
-                	<label>Address 1</label>
-                    <input name="" type="text" class="setting_input"/>
-                </div>
-                
-                <div class="setting_form_field wdt_100">
-                	<label>Address 2</label>
-                    <input name="" type="text" class="setting_input"/>
-                </div>
-                
-                <div class="setting_form_field">
-                	<label>State</label>
-                    <div class="fancy_select">
-                        <select name="">
-            	           <option>Please Specify</option>
-                        </select>
+                    <div class="setting_form_field wdt_100">
+                        <label>Address 2</label>
+                        <%= address.text_field :address2, class: "setting_input" %>
                     </div>
-                </div>
-                
-                <div class="setting_form_field ml_27">
-                	<label>Zip/Postal Code</label>
-                    <input name="" type="text" class="setting_input"/>
-                </div>
-                <div class="clear"></div>
-                <div class="setting_form_field">
-                	<label>Phone Number</label>
-                    <input name="" type="text" class="setting_input"/>
+                    <div class="setting_form_field wdt_100">
+                        <label>Country</label>
+                        <%= address.country_select :country, {priority: %w(US CA), prompt: 'Please select a country'}, class: "fancy_select", id: "country_select" %>
+                    </div>
+                    <div class="setting_form_field">
+                    	<label>State</label>
+                        <%= render partial: 'subregion_select', locals: {parent_region: address.object.country, add: address} %>
+                    </div>
+                    <div class="setting_form_field ml_27">
+                    	<label>Zip/Postal Code</label>
+                        <%= address.text_field :pin_code, class: "setting_input" %>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="setting_form_field">
+                    	<label>Phone Number</label>
+                        <!-- <input name="" type="text" class="setting_input"/> -->
+                        <%= address.text_field :phone_number, class: "setting_input" %>
+                    </div>
+                <% end %>
+                <div class="save_col save_col1 subscrip">
+                   <%= link_to 'Save','javascript:void(0)', class: "save_btn save_btn1" %>
                 </div>
             </div>
-            
-            <div class="save_col save_col1">
-	                <input name="" type="button" class="save_btn save_btn1" value="Save changes">
-            </div>
-        </div>
+        <% end %>
     </div>
 </div>
 <div class="ft_xero">

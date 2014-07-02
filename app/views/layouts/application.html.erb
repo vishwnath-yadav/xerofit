@@ -17,10 +17,25 @@
   <%= csrf_meta_tags %>
 </head>
 		<body class="<%=%>">
-			<div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
-	    	<%=render "layouts/header"%>
-				<%=render "layouts/footer"%>
-			</div>
+    <div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
+    	<div class="messages">
+          <% if flash[:error] %>
+              <p class="flashes alert alert-error"><%= flash[:error] %></p>
+            <% end %>
+            <% if flash[:notice] %>
+              <p class="flashes alert alert-info"><%= flash[:notice] %></p>
+            <% end %>
+            <% if flash[:alert] %>
+              <p class="flashes alert alert-block"><%= flash[:alert] %></p>
+            <% end %>
+            <% if flash[:success] %>
+              <p class="flashes alert alert-success"><%= flash[:success] %></p>
+          <% end %>
+        </div>
+      <%=render "layouts/header"%>
+        
+			<%=render "layouts/footer"%>
+		</div>
 		</body>
 </html>
 
