@@ -58,6 +58,7 @@ Xerofit::Application.routes.draw do
   resources :workouts do
     collection do
       get 'get_workout_sub_block'
+      post 'save_blocks'
     end
   end
   

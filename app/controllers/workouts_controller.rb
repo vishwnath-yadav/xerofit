@@ -39,6 +39,12 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+
+	def save_blocks
+		Rails.logger.debug ">>>>>>>>>>>>>>>>>>"
+		redirect_to :back
+	end
+
 	private
 	  def workout_params
 	    params.require(:workout).permit!

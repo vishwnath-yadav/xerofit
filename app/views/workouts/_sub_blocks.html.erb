@@ -1,4 +1,4 @@
-<div class="met_tab">
+<div class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
     <div class="met_tab_col">
     	<div class="met_head">
         	<div class="tab_arrow">
@@ -9,13 +9,13 @@
              <p><span class="b<%= @block.id %>">0</span> moves // <%= @block.workout_type.capitalize%> repeat: <%= @block.name_type %></p>
              </div>
         </div>
-        <div class="met_tab_desc" id="b<%= @block.id %>">
+
+        <!-- <div class="met_tab_desc" id="b<%= @block.id %>"> -->
+        <div class="met_tab_desc">
+            <%=hidden_field_tag "block_id", @block.id %>
         	<ul>
             	<li>
                     Drag Here Libraries
-                	<!-- <span class="nummeric">1</span>
-                	<h6>Single-Arm Sumo Burpee Jump</h6>
-                    <p>30 seconds</p> -->
                 </li>
             </ul>
         </div>
