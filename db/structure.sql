@@ -660,6 +660,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140624073552');
 
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
+INSERT INTO schema_migrations (version) VALUES ('20140625071514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625080723');
+
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
