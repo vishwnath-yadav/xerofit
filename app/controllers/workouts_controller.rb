@@ -44,8 +44,31 @@ class WorkoutsController < ApplicationController
 		redirect_to :back
 	end
 
+	def load_lib_details
+		@lib_detail = params[:lib_detail].present? ? LibraryDetail.find(params[:lib_detail]) : nil
+		if !@lib_detail.present?
+			@lib_detail = LibraryDetail.new()
+			@lib_detail.save
+		end
+		respond_to do |format|
+			format.js 
+		end
+	end
+
+	def save_lib_details
+		lib_detail = LibraryDetail.find(params[:lib_detail_id])
+		if lib_detail.present?
+			lib_detail.update_attributes(library_detail_params)
+		end
+		render json: "success"
+	end
+
 	private
 	  def workout_params
 	    params.require(:workout).permit!
+	  end
+
+	  def library_detail_params
+	  	params.require(:library_detail).permit!
 	  end
 end

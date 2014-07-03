@@ -59,6 +59,8 @@ Xerofit::Application.routes.draw do
     collection do
       get 'get_workout_sub_block'
       post 'save_blocks'
+      get 'load_lib_details'
+      patch 'save_lib_details'
     end
   end
   

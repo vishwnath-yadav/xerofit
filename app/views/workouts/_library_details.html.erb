@@ -1,0 +1,83 @@
+<div class="move_detail">Move Details</div>
+<%= simple_form_for(@lib_detail, url: "/workouts/save_lib_details", remote: true) do |ld| %>
+<%=hidden_field_tag :lib_detail_id, @lib_detail.id%>
+<div class="gray_1">
+	<div class="check_col"><input name="" type="checkbox" value="" /><label>Repetititons</label></div>
+    <div class="check_desc">
+     <div class="fancy_select">
+    <select name="" >
+    <option>Range of reps</option>
+    </select>
+    </div>
+    <div class="min_max_col">
+    	<div class="min_col min_col_1">
+        	 <div class="fancy_select">
+                <%= ld.input :repetition, collection: LibraryDetail::REP, include_blank: false, label: false, input_html: {class: "lib_detail_sel"} %>
+            </div>
+            <label>Min</label>
+        </div>
+        <div class="min_col min_col_1">
+        	 <div class="fancy_select">
+                <%= ld.input :repetition, collection: LibraryDetail::REP, include_blank: false, label: false, input_html: {class: "lib_detail_sel"} %>
+            </div>
+            <label>Max</label>
+        </div>
+        <div class="check_col_1"><input name="" type="checkbox" value="" /><label>On each side</label></div>
+    </div>
+    </div>
+</div>
+<div class="gray_1">
+	<div class="check_col">
+        <%=ld.input :weight, :input_html => { class: "lib_detail_chk" }%>
+    </div>
+    
+</div>
+<div class="gray_1">
+	<div class="check_col">
+        <%=ld.input :distance, :input_html => { class: "lib_detail_chk" }%>
+    </div>
+    
+</div>
+<div class="gray_1">
+	<div class="check_col"><input name="" type="checkbox" value="" /><label>Time/Duration</label></div>
+    <div class="check_desc">
+    <div class="min_max_col mt">
+    	<div class="min_col min_col_1">
+        	 <div class="fancy_select">
+        	<%= ld.input :time, collection: LibraryDetail::REP, include_blank: false, label: false, input_html: {class: "lib_detail_sel"} %>
+            </div>
+        </div>
+         <div class="fancy_select w60">
+        <%= ld.input :duration, collection: LibraryDetail::DURATION, include_blank: false, label: false, input_html: {class: "lib_detail_sel"} %>
+    </div>
+        
+    </div>
+    </div>
+</div>
+<div class="gray_1">
+	<div class="check_col"><input name="" type="checkbox" value="" /><label>Tempo</label></div>
+    <div class="check_desc">
+    <div class="min_max_col mt">
+    	<div class="min_col min_col_1">
+        	 <div class="fancy_select">
+        	<%= ld.input :temp_lower, collection: LibraryDetail::TEMPO, include_blank: false, label: false, input_html: {class: "min_max_select lib_detail_sel"} %>
+            </div>
+            <label>Lower</label>
+        </div>
+        <div class="min_col min_col_1 ">
+        	 <div class="fancy_select">
+        	<%= ld.input :temp_pause, collection: LibraryDetail::TEMPO, include_blank: false, label: false, input_html: {class: "min_max_select lib_detail_sel"} %>
+            </div>
+            <label>Pause</label>
+        </div>
+        <div class="min_col min_col_1 min_m">
+        	 <div class="fancy_select">
+        	<%= ld.input :temp_lift, collection: LibraryDetail::TEMPO, include_blank: false, label: false, input_html: {class: "min_max_select lib_detail_sel"} %>
+            </div>
+            <label>Lift</label>
+        </div>
+        
+    </div>
+    </div>
+</div>
+<% end %>
