@@ -44,7 +44,7 @@ $( document ).ready(function() {
   });
 
   $('#publish').click(function(){
-    var varify = false;
+    var verify = false;
     $('.met_tab_desc').each(function(){
       var b_id = $(this).find('#block_id').val();
       var b_type = $(this).find('#block_type_'+b_id).val();
@@ -57,7 +57,7 @@ $( document ).ready(function() {
         return false;
       }
     });
-    if(!varify){
+    if(verify == false){
       $('#new_workout_form').submit();
     }
   });
