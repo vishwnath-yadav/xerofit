@@ -508,7 +508,10 @@ p{
 .workout_col_left{
 	width:25%;
 	float:left;
-	
+	max-height: 628px;
+	min-height: 628px;
+	overflow-y: scroll;
+	background: #f2f2f2;
 }
 .search_col{
 	background:#f9f9f9;
@@ -586,6 +589,9 @@ p{
 	border-right:1px solid #e1e3e5;
 	border-left:1px solid #e1e3e5;
 	padding:36px;
+	max-height: 628px;
+	min-height: 628px;
+	overflow-y: scroll;
 }
 .col_1{
 	width:100%;
@@ -743,6 +749,7 @@ width: 19px;}
 .workout_col_rght {
 width: 25%;
 float: left;
+min-height: 628px;
 }
 .move_detail{
 	font-size:14px;
