@@ -68,7 +68,7 @@ body.pop{background:#d9d9d9;}
 	font-family: 'gotham_extralightregular';
 	padding-right:25px;
 	line-height:25px;
-	width:14.3%;
+	width:16.3%;
 	float:right;
 	margin-top:4px;
 }
@@ -553,6 +553,7 @@ p{
 	background:#fff;
 	padding:8px;
 	margin-bottom:9px;
+	cursor: pointer;
 }
 .white_list_left{
 	width:90%;
@@ -626,6 +627,8 @@ p{
 	background:#f2f2f2;
 	border-radius:5px;
 	padding:10px;
+	margin-bottom: 10px;
+	cursor: pointer;
 }
 .head_rght{
 	width:90%;
@@ -645,12 +648,17 @@ p{
 	margin:0px;
 	font-style:normal;
 }
-.tab_arrow{
-	width:17px;
-	float:left;
-	margin-right:10px;
-	margin-top:10px;
+.tab_arrow {
+width: 16px;
+float: left;
+margin-right: 10px;
+margin-top: 10px;
+background: url("/assets/tab_arrow_rgt.jpg") no-repeat;
+background-position: 0 0;
+text-indent: -9999px;
+display: block;
 }
+.tab_arrow.right_arow{ background-position: -17px 0px;}
 .met_tab_desc{
 	width:100%;
 	float:left;
@@ -667,8 +675,12 @@ list-style:none;
 padding: 8px 0px 8px 6px;
 border-bottom: 1px solid #ccc;
 font-size: 13px;
+cursor: pointer;
 }
 .met_tab_desc ul li:hover{background:#ceeff2}
+
+.li_active{background:#ceeff2}
+
 .met_tab_desc ul li span{
 	width:13px;
 	height:13px;
@@ -788,7 +800,7 @@ float: left;
 margin-right: 31px;
 }
 .min_col.min_col_1{
-	width:24%;
+	width:20%;
 }
 .fancy_select.w60{ width:60%}
 .min_m{
@@ -814,7 +826,7 @@ margin-right: 31px;
 	margin:0px;
 }
 .check_col_1{
-	width:35%;
+	width:32%;
 	float:left;
 }
 .check_col_1 label{
@@ -1307,3 +1319,6 @@ background: #fff;
 	margin-top: 70px;
 	margin-left: 140px;
 }
+.m50{
+	margin: 50% 40% 100% 47%;
+	}

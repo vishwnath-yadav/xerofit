@@ -1,0 +1,3 @@
+ $(".workout_col_rght").html("<%= escape_javascript(render(:partial => 'library_details')) %>")
+ $("#block_<%=params[:block_id]%>_<%=params[:lib_id]%>").val("<%=@lib_detail.id%>");
+ $("#<%=params[:block_id]%>_<%=params[:lib_id]%>").attr('data-libdetail', "<%=@lib_detail.id%>");

@@ -60,6 +60,8 @@ Xerofit::Application.routes.draw do
       get 'get_workout_sub_block'
       get 'marketplace'
       post 'save_blocks'
+      get 'load_lib_details'
+      patch 'save_lib_details'
     end
   end
   

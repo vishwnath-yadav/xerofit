@@ -1,6 +1,7 @@
 class Block < ActiveRecord::Base
 	belongs_to :workout
-	has_many :libraries, through: :LibraryBlocks
+	has_many :library_blocks
+	has_many :libraries, through: :library_blocks
 
 	def name_type
 		if block_type == "circuit"

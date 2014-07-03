@@ -206,6 +206,45 @@ ALTER SEQUENCE library_blocks_id_seq OWNED BY library_blocks.id;
 
 
 --
+-- Name: library_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE library_details (
+    id integer NOT NULL,
+    repetition character varying(255),
+    weight boolean,
+    distance boolean,
+    "time" character varying(255),
+    duration character varying(255),
+    temp_lower character varying(255),
+    temp_pause character varying(255),
+    temp_lift character varying(255),
+    library_block_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: library_details_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE library_details_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: library_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE library_details_id_seq OWNED BY library_details.id;
+
+
+--
 -- Name: library_videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -480,6 +519,13 @@ ALTER TABLE ONLY library_blocks ALTER COLUMN id SET DEFAULT nextval('library_blo
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY library_details ALTER COLUMN id SET DEFAULT nextval('library_details_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY library_videos ALTER COLUMN id SET DEFAULT nextval('library_videos_id_seq'::regclass);
 
 
@@ -556,6 +602,14 @@ ALTER TABLE ONLY libraries
 
 ALTER TABLE ONLY library_blocks
     ADD CONSTRAINT library_blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: library_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY library_details
+    ADD CONSTRAINT library_details_pkey PRIMARY KEY (id);
 
 
 --
@@ -677,3 +731,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140627140011');
 INSERT INTO schema_migrations (version) VALUES ('20140630055608');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702090254');
+
+INSERT INTO schema_migrations (version) VALUES ('20140702121642');
