@@ -62,7 +62,7 @@ $( document ).ready(function() {
     }
   });
   
-    $(document).on("click",".met_tab_desc ul li", function(){
+  $(document).on("click",".met_tab_desc ul li", function(){
     $('.li_active').removeClass('li_active');
     $(this).addClass('li_active');
     var lib_id = $(this).attr('id').split("_")[1];
@@ -97,15 +97,13 @@ function drag_start(e) {
 function drag_drop(e, id) {
     var element = e.dataTransfer.getData("Text");
     var text = document.getElementById(element).innerHTML;
-    $('.b'+id).text(size + 1);
     var lib_id = element.split("_")[1];
     var size = parseInt($('.b'+id).text());
+    alert($('.b'+id).text());
     $('.li_active').removeClass('li_active');
     var block_type = $('#block_type_'+id).val();
     var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
-    
     var check = check_library_count(li_size, block_type, false);
-   
     if(check != ''){
       alert(check);
     }
@@ -115,7 +113,8 @@ function drag_drop(e, id) {
       else{
           $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="nummeric" data-libdetail="">1</span><h6>'+text+'</h6><p>30 seconds</p></li>');
           $('.b'+id).text(size + 1);
-    load_library_content('',id, lib_id);
+          alert(size + 1);
+          load_library_content('',id, lib_id);
           $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
       }
 }
