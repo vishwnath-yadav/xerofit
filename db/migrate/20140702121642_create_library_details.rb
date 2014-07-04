@@ -1,7 +1,7 @@
 class CreateLibraryDetails < ActiveRecord::Migration
   def change
     create_table :library_details do |t|
-      t.string :repetition
+      t.boolean :repetition
       t.boolean :weight
       t.boolean :distance
       t.string :time
