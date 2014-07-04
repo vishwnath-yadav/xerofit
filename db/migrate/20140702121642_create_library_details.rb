@@ -10,7 +10,6 @@ class CreateLibraryDetails < ActiveRecord::Migration
       t.string :temp_pause
       t.string :temp_lift
       t.integer :library_block_id
-
       t.timestamps
     end
   end
