@@ -1,24 +1,24 @@
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
         <%=  render "setting_left_menu" %>
-        <%= simple_form_for(@user, url: save_payment_billing_settings_path, method: "get", html: {id: "payment_billing"}) do |user| %>
+        <%= simple_form_for(@user, url: save_payment_billing_settings_path, method: "post", html: {id: "payment_billing"}) do |user| %>
         <div class="setting_edit">
       		<h2>Payment & Billing</h2>
             <div class="setting_form">
                 <h5>Payment Method</h5>
-                <%#= user.fields_for :subscriptions do |sub| %>
-                    <%#= sub.hidden_field :stripe_card_token %>
-                <%#end %>
+                <%= user.fields_for :subscriptions do |sub| %>
+                    <%= sub.hidden_field :stripe_card_token %>
+                <%end %>
                 
                 <div class="setting_form_field wdt_100">
                     <label>Credit Card Number</label>
                     <%= text_field_tag :card_number, nil, name: nil, class: "setting_input" %>
                 </div>
                 <div class="col_wdt">
-                    <div class="setting_form_field wdt_30">
+                    <div class="setting_form_field wdt_70">
                         <%= label_tag :card_month, "Card Expiration" %>  
-                        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "setting_input exp"} %>
-                        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "setting_input exp"} %>
+                        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "setting_input exp wdt_30 mr15"} %>
+                        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "setting_input exp wdt_30"} %>
                     </div>
                     <div class="setting_form_field wdt_30 fr">
                 	   <label>Security Code</label>
@@ -30,6 +30,8 @@
                   <%= user.input :fullname, input_html: { class: "setting_input" } %>
                 </div>
                 <%= user.fields_for :addresses do |address| %>
+                    <%address_type = Address::ADDRESS_TYPE[0]%>
+                    <%= address.hidden_field :address_type, value: address_type %>
                     <div class="setting_form_field wdt_100">
                         <label>Address 1</label>
                         <%= address.text_field :address1, class: "setting_input" %>

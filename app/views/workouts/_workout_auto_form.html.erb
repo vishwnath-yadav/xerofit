@@ -1,0 +1,12 @@
+<%if @workout.new_record?%>
+	<%= simple_form_for @workout, :url => workouts_path, :html => {:method =>"post", id: "workout_form_auto"}, :remote => true do |f| %>
+		<h2 class="wrk_head" data-name="name">New Workout</h2>
+		<p class="wrk_subhead" data-name="subtitle">Workout Subtitle</p>
+	<%end%>
+<%else%>
+	<%= simple_form_for @workout, :url => workout_path(@workout), :html => {:method => "put", id: "workout_form_auto"}, :remote => true do |f| %>
+		<%=hidden_field_tag :workid, @workout.id %>
+		<h2 class="wrk_head" data-name="name"><%=@workout.name%></h2>
+		<p class="wrk_subhead" data-name="subtitle"><%=@workout.subtitle%></p>
+	<%end%>
+<%end%>

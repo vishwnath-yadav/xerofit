@@ -3,7 +3,7 @@ $( document ).ready(function() {
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
      $("#workout_form").submit();
   });
-
+ 
   $(".wrk_add_opt").click(function(){
     var name=$('#workout_id').val();
     if(name)
@@ -62,13 +62,20 @@ $( document ).ready(function() {
     }
   });
   
-  $(document).on("click",".met_tab_desc ul li", function(){
-    $('.li_active').removeClass('li_active');
-    $(this).addClass('li_active');
-    var lib_id = $(this).attr('id').split("_")[1];
-    var block_id = $(this).attr('id').split("_")[0];
-    var lib_detail = $(this).attr('data-libdetail');
-    load_library_content(lib_detail, block_id, lib_id);
+  $(document).on("click",".met_tab_desc ul li", function(e){
+    if($(e.target).hasClass("rm")){
+      var id = $(this).attr('id');
+      $("#block_"+id).remove();
+      $(this).remove();
+    }
+    else{
+      $('.li_active').removeClass('li_active');
+      $(this).addClass('li_active');
+      var lib_id = $(this).attr('id').split("_")[1];
+      var block_id = $(this).attr('id').split("_")[0];
+      var lib_detail = $(this).attr('data-libdetail');
+      load_library_content(lib_detail, block_id, lib_id);
+    }
   });
 
   $(document).on('change', ".lib_detail_sel", function(){
@@ -82,6 +89,22 @@ $( document ).ready(function() {
   $(document).on('click', ".met_head", function(){
     $(this).siblings().toggle('slow');
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
+  });
+
+  $(document).on('click', ".wrk_head,.wrk_subhead", function(){
+    var name = $(this).attr('data-name');
+    var text = $(this).text();
+    $(this).html('<input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value="'+text+'">');
+    $( ".workout_auto_input").focus();
+  });
+
+  $(document).on('blur', ".blur_input", function(){
+      $("#workout_form_auto").submit();
+  });
+
+  $('.fetured_li ul li').mouseover(function(){
+    $('.active_tab').removeClass('active_tab');
+    $(this).addClass('active_tab');
   });
 });
 
@@ -110,11 +133,12 @@ function drag_drop(e, id) {
           alert("Library Already Exists");
       }
       else{
-          $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
+          $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
           $('.b'+id).text(size);
           load_library_content('',id, lib_id);
           $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
       }
+      $('.dots_img').remove() //removing all dots from dropped lis
 }
 
 function check_library_count(li_size, block_type, publish){

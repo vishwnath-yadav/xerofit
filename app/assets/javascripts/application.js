@@ -37,7 +37,11 @@ $( document ).ready(function() {
   $('.li_active').click(function() {
     $('.li_active').removeClass('active');
     $(this).addClass('active');
-  })
+  });
+
+  $('.custom-upload input[type=file]').change(function(){
+    $(this).next().find('input').val($(this).val());
+  });
 
 
   $('#country_select').on("change", function() {

@@ -2,6 +2,8 @@ class Workout < ActiveRecord::Base
 	belongs_to :user
 	has_many :blocks
 
+	# validates :name, :subtitle, presence: true
+
 	STATES = [:initiated, :completed]
 
 	Workout::STATES.each do |state|

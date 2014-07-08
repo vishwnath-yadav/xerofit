@@ -386,13 +386,13 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
-    pin_code integer,
-    date_of_birth date,
-    gender character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
-    pic_updated_at timestamp without time zone
+    pic_updated_at timestamp without time zone,
+    pin_code character varying(255),
+    date_of_birth date,
+    gender character varying(255)
 );
 
 

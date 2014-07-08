@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-
+  validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :libraries 
   has_many :addresses
   has_many :subscriptions
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :addresses, :subscriptions
   has_many :workouts
    ROLES = %w[admin trainer normaluser]
 
@@ -29,6 +30,25 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && self.enabled
+  end
+
+  def day
+    self.date_of_birth.present? ? self.date_of_birth.day : 0
+  end
+
+  def month
+    self.date_of_birth.present? ? self.date_of_birth.month : 0
+  end
+
+  def year
+    self.date_of_birth.present? ? self.date_of_birth.year : 0
+  end
+
+  def dob(day, month, year)
+    if !day.blank? && !month.blank? && !year.blank?
+      self.date_of_birth = Date.strptime("#{day}/#{month}/#{year}", '%m/%d/%Y')
+      self.save
+    end
   end
 
   def inactive_message

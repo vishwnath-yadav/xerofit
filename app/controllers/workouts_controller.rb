@@ -44,9 +44,6 @@ class WorkoutsController < ApplicationController
 		redirect_to :back
 	end
 
-	def marketplace
-	end
-
 	def load_lib_details
 		@lib_detail = params[:lib_detail].present? ? LibraryDetail.find(params[:lib_detail]) : nil
 		if !@lib_detail.present?

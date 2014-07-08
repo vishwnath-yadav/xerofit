@@ -14,7 +14,7 @@
         <div class="met_tab_desc">
             <%=hidden_field_tag "block_id", @block.id %>
             <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type %>
-        	<ul>
+        	<ul class="sortable">
             	<!-- <li>   
                     Drag Here Libraries
                 </li> -->
@@ -22,3 +22,7 @@
         </div>
     </div>
 </div>
+<script>
+  $( ".sortable" ).sortable();
+  $( ".sortable" ).disableSelection();
+</script>
