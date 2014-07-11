@@ -5,40 +5,33 @@ $( document ).ready(function() {
   });
  
   $(".wrk_add_opt").click(function(){
-    var name=$('#workout_id').val();
-    if(name)
-    {
+    var name = $('#workout_id').val();
+    if(name){
       $.fancybox.open({
             href: '#wrk_add_option',
             type: 'inline'
-
         });
     }
-    else
-    {
+    else   {
       alert("Please fill workout details");
     }
 
   });
 
-  // $(".wrk_add_opt").fancybox();
   $(".close_icon").click(function(){
     $.fancybox.close();
   });
 
   $(".block_type_submit").click(function(){
-
   	 type = $("input[name='radio']:checked").attr('id');
      type = type.split("_")[1];
      title = $('.title').val();
-     if(title)
-     {
+     if(title){
   	   url = '/workouts/get_workout_sub_block';
 	     $.get(url, {type:type,title:title}, function (data) {
-	   });
+	     });
      }
-    else
-    {
+    else{
       $('.title').css('border-color','red');
     }
   });
@@ -50,7 +43,6 @@ $( document ).ready(function() {
       var b_type = $(this).find('#block_type_'+b_id).val();
       var li_size = $(this).find('ul li').size();
       var check = check_library_publish(li_size, b_type)
-
       if(check != ''){
         verify = true;
         alert(check);
@@ -92,20 +84,37 @@ $( document ).ready(function() {
   });
 
   $(document).on('click', ".wrk_head,.wrk_subhead", function(){
-    var name = $(this).attr('data-name');
-    var text = $(this).text();
-    $(this).html('<input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value="'+text+'">');
-    $( ".workout_auto_input").focus();
+    if($('.workout_auto_input').length < 1){
+      $( ".workout_auto_input").focus();
+      var name = $(this).attr('data-name');
+      $(this).hide();
+      $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input"></p>');
+      $('.workout_auto_input').focus();
+    }
   });
 
   $(document).on('blur', ".blur_input", function(){
+    var txt = $(this).val();
+    var name = $(this).attr('name');
+    if(txt == '' && name.indexOf('name') > -1){
+      alert("Title Can't be blank");    
+    }
+    else if(name.indexOf('subtitle') > -1 && $('.wrk_head').text() == "Workout Title"){
+      alert("Title Can't be blank");    
+      $('.wrk_subhead').show();
+      $(this).parent().remove();
+    }
+    else{
       $("#workout_form_auto").submit();
+    }
   });
 
   $('.fetured_li ul li').mouseover(function(){
     $('.active_tab').removeClass('active_tab');
     $(this).addClass('active_tab');
   });
+
+  
 });
 
 function remove_msg(){
@@ -143,15 +152,13 @@ function drag_drop(e, id) {
 
 function check_library_count(li_size, block_type, publish){
   var alrt = "";
-  if((block_type == "superset")&&(li_size == 2))
-    {
+  if((block_type == "superset")&&(li_size == 2)){
       alrt = "Superset Block must have exactly 2 libraries.";
-    }
-    else if((block_type == "individual")&&(li_size>0))
-    {
-       alrt = "Individual Block must have exactly 1 library";
-    }
-    return alrt;
+  }
+  else if((block_type == "individual")&&(li_size>0)){
+   alrt = "Individual Block must have exactly 1 library";
+  }
+  return alrt;
 }
 
 function load_library_content(lib_detail, block_id, lib_id){
@@ -163,19 +170,16 @@ function load_library_content(lib_detail, block_id, lib_id){
 
 function check_library_publish(li_size, block_type){
   var alrt = "";
-  if((block_type == "superset")&&(li_size<2))
-    {
-      alrt = "Superset Block must have exactly 2 libraries.";
-    }
-    else if((block_type == "individual")&&(li_size<1))
-    {
-       alrt = "Individual Block must have exactly 1 library";
-    }
-    else if(block_type == "circuit" && li_size<3)
-    {
-       alrt = "Circuit Block must have minimum 3 library";
-    }
-    return alrt;
+  if((block_type == "superset")&&(li_size<2)){
+    alrt = "Superset Block must have exactly 2 libraries.";
+  }
+  else if((block_type == "individual")&&(li_size<1)){
+   alrt = "Individual Block must have exactly 1 library";
+  }
+  else if(block_type == "circuit" && li_size<3){
+    alrt = "Circuit Block must have minimum 3 library";
+  }
+  return alrt;
 }
 
 function check_library_present(lib_id, id){
@@ -188,4 +192,13 @@ function check_library_present(lib_id, id){
     }
   });
   return present;
+}
+
+function sort_lis(obj){
+  console.log(">>>>>>>>>>>");
+  $(obj).parent().find('li').each(function(i, val){
+    console.log(val+">>>>"+i);
+    console.log($(this).find('.nummeric').text());
+    $(this).find('.nummeric').text(i + 1);
+  });
 }

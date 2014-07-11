@@ -23,6 +23,7 @@
     </div>
 </div>
 <script>
-  $( ".sortable" ).sortable();
-  $( ".sortable" ).disableSelection();
+  $( ".sortable" ).sortable({
+  stop: function( event, ui ) {sort_lis($(ui.item));}
+});
 </script>

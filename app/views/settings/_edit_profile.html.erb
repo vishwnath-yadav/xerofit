@@ -44,10 +44,10 @@
 																	<h6>Upload your photo...</h6>
 																	<p>Image should be at least 300px by 300px.</p>
                   	<div class="custom-upload">
-                        <%=user.file_field :pic%>
+                        <input type="file" class="hidden" id="user_pic" name=user[pic]>
                         <div class="fake-file">
                             <span class="choose_btn">Browse</span>
-                            <input disabled="disabled" >
+                            <input disabled="disabled">
                         </div>
                     </div>
 																</div>

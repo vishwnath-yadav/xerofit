@@ -39,6 +39,11 @@ $( document ).ready(function() {
     $(this).addClass('active');
   });
 
+  $(".choose_btn").click(function(){
+     $(this).css('background', '#72c9b8');
+     $("#user_pic").click();
+  });
+
   $('.custom-upload input[type=file]').change(function(){
     $(this).next().find('input').val($(this).val());
   });
