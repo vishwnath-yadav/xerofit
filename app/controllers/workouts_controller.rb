@@ -51,7 +51,6 @@ class WorkoutsController < ApplicationController
 
 	def filter
 		filter_order = params[:order]
-		Rails.logger.debug params[:lib_list].inspect
 		lib_list = params[:lib_list]
 		if filter_order == 'asc'
 			@libraries = Library.where(user_id: current_user.id, id: lib_list).order('title ASC')
@@ -74,7 +73,7 @@ class WorkoutsController < ApplicationController
 				@libraries = Library.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
 			end
 		else
-			@libraries = @lib.where("user_id = ?", current_user.id)
+			@libraries = Library.where("user_id = ?", current_user.id)
 		end
 
 		respond_to do |format|
