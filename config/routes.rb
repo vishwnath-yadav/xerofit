@@ -87,7 +87,7 @@ Xerofit::Application.routes.draw do
   end
   get '/subregion_options' => 'settings#subregion_options'
 
-  resources :websites do
+  resources :website do
     collection do
       get 'trainers'
       get 'terms'
