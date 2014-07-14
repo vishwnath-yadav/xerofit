@@ -540,13 +540,17 @@ p{
 	background:#f2f2f2;
 }
 .filter_icon{
-	background:url(/assets/filter_icon.jpg) no-repeat right 3px;
-	padding-right:15px;
+	background:url(/assets/down_icon.jpg) no-repeat right 3px;
+	padding-right:20px;
 	font-size:11px;
 	color:#7e8082;
 	font-family: 'gotham_extralightregular';
 	float:right;
 	margin-bottom:20px;
+	opacity: .6;
+}
+.filter_icon.asc{
+	background:url(/assets/up-icon.jpg) no-repeat right 3px;
 }
 .filter_icon a{color:#7e8082; text-decoration:none;}
 .filter_icon a:hover{color:#000;}
@@ -1506,3 +1510,4 @@ margin-left: 14px;}
 	font-style: normal;
 	margin: 5px 0 10px !important;
 }
+

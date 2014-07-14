@@ -3,7 +3,36 @@ $( document ).ready(function() {
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
      $("#workout_form").submit();
   });
- 
+
+  $(document).on("click", "#filter_change", function(){
+    var lib_id = [];
+    $('.library_list .white_list').each(function(){
+      lib_id.push($(this).attr('id').split("_")[1]);
+    });
+    
+
+    var filter_cls = $(this).attr("class");
+    url = '/workouts/filter';
+    $(this).toggleClass('asc', 500);
+    var type = $(this).hasClass("asc") ? 'asc' : 'desc';
+    $.get(url, {order:type, lib_list:lib_id}, function (data) {
+     });
+  });
+
+  $(".search_btn").click( function(){
+    var search_txt = $(".search_icon").val();
+    var type = $("#filter_change").hasClass("asc") ? 'asc' : 'desc';
+    url = '/workouts/search_lib';
+    $.get(url, {search_value:search_txt, order:type}, function (data) {
+    });
+  });
+  $('.search_icon').keypress(function(e){
+      if(e.which == 13){//Enter key pressed
+        $('.search_btn').click();//Trigger search button click event
+      }
+  });
+
+
   $(".wrk_add_opt").click(function(){
     var name = $('#workout_id').val();
     if(name){

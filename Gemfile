@@ -69,6 +69,7 @@ gem 'devise'
  # gem 'will_paginate'
  gem 'kaminari'
  gem "paperclip", "~> 4.1"
+ gem 'rails4-autocomplete'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
