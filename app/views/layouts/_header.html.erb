@@ -20,7 +20,7 @@
         <div class="head_lft">
          <ul>
             <%if current_user && current_user.role == 'trainer'%>
-                <li><%= link_to "Dashboard", dashboard_path %></li>
+                <li><%= link_to "Dashboard", trainer_dashboard_index_path %></li>
                 <li><%= link_to "Library",  libraries_path %></li>
                 <li><%= link_to "Workout Builder", new_workout_path %></li>
                 <li><%= link_to "Settings", settings_path %></li>

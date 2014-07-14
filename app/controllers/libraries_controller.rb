@@ -60,8 +60,6 @@ class LibrariesController < ApplicationController
 	end
 
 	def see_more_thumbnail
-
-
 	end
 
 	private

@@ -1,4 +1,4 @@
-<div class="dash_left">
+  <div class="dash_left">
   <div class="dorian_col">
     <% if current_user.pic.present? %>
       <img src="<%=current_user.pic.url(:medium)%>" width="201" height="201" alt="chase_large_img" />
@@ -21,11 +21,11 @@
   <div class="profile_col">
   		<h4>Quick Links</h4>
   		<ul>
-        	<li><a href="#">Add New Excercises</a></li>
-            <li><a href="#">Workout Builder</a></li>
-            <li><a href="#">My Published Content</a></li>
-            <li><a href="#">Account Settings</a></li>
-            <li><a href="#">Tips & Tricks</a></li>
+        	<li><%=link_to "Add New Excercises", new_library_path%></li>
+            <li><%=link_to "Workout Builder", new_workout_path%></li>
+            <li><%=link_to "My Published Content", "javascript:void(0)"%></li>
+            <li><%=link_to "Account Settings", settings_path%></li>
+            <li><%=link_to "Tips & Tricks", "javascript:void(0)"%></li>
       </ul>
   </div>
 </div>
