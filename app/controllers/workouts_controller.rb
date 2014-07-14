@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
+	autocomplete :library, :title, :full => true
 	def new
 		@workout = Workout.new
 		@libraries = Library.where(user_id: current_user.id)
@@ -44,21 +45,43 @@ class WorkoutsController < ApplicationController
 		redirect_to :back
 	end
 
+
 	def marketplace
 	end
 
 	def filter
 		filter_order = params[:order]
+		Rails.logger.debug params[:lib_list].inspect
+		lib_list = params[:lib_list]
 		if filter_order == 'asc'
-			@libraries = Library.where(user_id: current_user.id).order('title ASC')
+			@libraries = Library.where(user_id: current_user.id, id: lib_list).order('title ASC')
 		else
-			@libraries = Library.where(user_id: current_user.id).order('title DESC')
+			@libraries = Library.where(user_id: current_user.id, id: lib_list).order('title DESC')
 		end
 
 		respond_to do |format|
 			format.js 
 		end
 	end
+
+	def search_lib
+		search_value = params[:search_value]
+		filter_order = params[:order]
+		if !search_value.blank?
+			if filter_order == 'asc'
+				@libraries = Library.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
+			else
+				@libraries = Library.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
+			end
+		else
+			@libraries = @lib.where("user_id = ?", current_user.id)
+		end
+
+		respond_to do |format|
+			format.js 
+		end
+	end
+
 
 	def load_lib_details
 		@lib_detail = params[:lib_detail].present? ? LibraryDetail.find(params[:lib_detail]) : nil

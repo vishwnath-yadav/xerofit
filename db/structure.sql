@@ -221,7 +221,11 @@ CREATE TABLE library_details (
     temp_lift character varying(255),
     library_block_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    rep_min character varying(255),
+    rep_max character varying(255),
+    rep_each_side boolean,
+    rep_option character varying(255)
 );
 
 
@@ -733,3 +737,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140630055608');
 INSERT INTO schema_migrations (version) VALUES ('20140702090254');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702121642');
+
+INSERT INTO schema_migrations (version) VALUES ('20140704094148');

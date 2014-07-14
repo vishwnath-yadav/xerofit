@@ -25,9 +25,9 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#user_subscriptions_stripe_card_token').val(response.id)
+      $('#user_subscriptions_attributes_0_stripe_card_token').val(response.id)
       $('#payment_billing')[0].submit()
     else
       $('#stripe_error').text(response.error.message);
-      alert(response.error.message);
-      $(".subscrip").html('<a href="javascript:void(o)" class="save_btn save_btn1">Save</a>');
+      alert(response.error.message)
+      $(".subscrip").html('<a href="javascript:void(0)" class="save_btn save_btn1">Save</a>');

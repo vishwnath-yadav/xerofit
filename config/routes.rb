@@ -58,11 +58,12 @@ Xerofit::Application.routes.draw do
   resources :workouts do
     collection do
       get 'get_workout_sub_block'
-      get 'marketplace'
       post 'save_blocks'
       get 'load_lib_details'
       patch 'save_lib_details'
       get 'filter'
+      get 'search_lib'
+      get 'autocomplete_library_title'
     end
   end
   
@@ -75,11 +76,11 @@ Xerofit::Application.routes.draw do
   
   resources :settings do
     collection do
-      get 'edit_profile'
       get 'payment_billing'
       get 'change_password'
-      put 'changed_password'
-      get 'save_payment_billing'
+      put 'update_password'
+      post 'save_payment_billing'
+      get 'marketplace'
     end
   end
   get '/subregion_options' => 'settings#subregion_options'

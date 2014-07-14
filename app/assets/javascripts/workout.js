@@ -4,64 +4,63 @@ $( document ).ready(function() {
      $("#workout_form").submit();
   });
 
-  // $('#filter_change').on("click",function(){
   $(document).on("click", "#filter_change", function(){
-    alert(">>>>>>");
-    var filter_cls = $(this).attr("class");
-    if(filter_cls == 'filter_icon'){
-      $(this).removeClass('filter_icon');
-      $(this).addClass('filter_icon1');
-      type = "asc"
-      url = '/workouts/filter';
-       $.get(url, {order:type}, function (data) {
-     });
-    }
-    else{
-      $(this).addClass('filter_icon');
-      $(this).removeClass('filter_icon1');
-      type = "desc"
-      url = '/workouts/filter';
-       $.get(url, {order:type}, function (data) {
-     });
-    }
+    var lib_id = [];
+    $('.library_list .white_list').each(function(){
+      lib_id.push($(this).attr('id').split("_")[1]);
+    });
+    
 
+    var filter_cls = $(this).attr("class");
+    url = '/workouts/filter';
+    $(this).toggleClass('asc', 500);
+    var type = $(this).hasClass("asc") ? 'asc' : 'desc';
+    $.get(url, {order:type, lib_list:lib_id}, function (data) {
+     });
   });
 
+  $(".search_btn").click( function(){
+    var search_txt = $(".search_icon").val();
+    var type = $("#filter_change").hasClass("asc") ? 'asc' : 'desc';
+    url = '/workouts/search_lib';
+    $.get(url, {search_value:search_txt, order:type}, function (data) {
+    });
+  });
+  $('.search_icon').keypress(function(e){
+      if(e.which == 13){//Enter key pressed
+        $('.search_btn').click();//Trigger search button click event
+      }
+  });
+
+
   $(".wrk_add_opt").click(function(){
-    var name=$('#workout_id').val();
-    if(name)
-    {
+    var name = $('#workout_id').val();
+    if(name){
       $.fancybox.open({
             href: '#wrk_add_option',
             type: 'inline'
-
         });
     }
-    else
-    {
+    else   {
       alert("Please fill workout details");
     }
 
   });
 
-  // $(".wrk_add_opt").fancybox();
   $(".close_icon").click(function(){
     $.fancybox.close();
   });
 
   $(".block_type_submit").click(function(){
-
   	 type = $("input[name='radio']:checked").attr('id');
      type = type.split("_")[1];
      title = $('.title').val();
-     if(title)
-     {
+     if(title){
   	   url = '/workouts/get_workout_sub_block';
 	     $.get(url, {type:type,title:title}, function (data) {
-	   });
+	     });
      }
-    else
-    {
+    else{
       $('.title').css('border-color','red');
     }
   });
@@ -73,7 +72,6 @@ $( document ).ready(function() {
       var b_type = $(this).find('#block_type_'+b_id).val();
       var li_size = $(this).find('ul li').size();
       var check = check_library_publish(li_size, b_type)
-
       if(check != ''){
         verify = true;
         alert(check);
@@ -85,13 +83,20 @@ $( document ).ready(function() {
     }
   });
   
-    $(document).on("click",".met_tab_desc ul li", function(){
-    $('.li_active').removeClass('li_active');
-    $(this).addClass('li_active');
-    var lib_id = $(this).attr('id').split("_")[1];
-    var block_id = $(this).attr('id').split("_")[0];
-    var lib_detail = $(this).attr('data-libdetail');
-    load_library_content(lib_detail, block_id, lib_id);
+  $(document).on("click",".met_tab_desc ul li", function(e){
+    if($(e.target).hasClass("rm")){
+      var id = $(this).attr('id');
+      $("#block_"+id).remove();
+      $(this).remove();
+    }
+    else{
+      $('.li_active').removeClass('li_active');
+      $(this).addClass('li_active');
+      var lib_id = $(this).attr('id').split("_")[1];
+      var block_id = $(this).attr('id').split("_")[0];
+      var lib_detail = $(this).attr('data-libdetail');
+      load_library_content(lib_detail, block_id, lib_id);
+    }
   });
 
   $(document).on('change', ".lib_detail_sel", function(){
@@ -105,6 +110,37 @@ $( document ).ready(function() {
   $(document).on('click', ".met_head", function(){
     $(this).siblings().toggle('slow');
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
+  });
+
+  $(document).on('click', ".wrk_head,.wrk_subhead", function(){
+    if($('.workout_auto_input').length < 1){
+      $( ".workout_auto_input").focus();
+      var name = $(this).attr('data-name');
+      $(this).hide();
+      $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input"></p>');
+      $('.workout_auto_input').focus();
+    }
+  });
+
+  $(document).on('blur', ".blur_input", function(){
+    var txt = $(this).val();
+    var name = $(this).attr('name');
+    if(txt == '' && name.indexOf('name') > -1){
+      alert("Title Can't be blank");    
+    }
+    else if(name.indexOf('subtitle') > -1 && $('.wrk_head').text() == "Workout Title"){
+      alert("Title Can't be blank");    
+      $('.wrk_subhead').show();
+      $(this).parent().remove();
+    }
+    else{
+      $("#workout_form_auto").submit();
+    }
+  });
+
+  $('.fetured_li ul li').mouseover(function(){
+    $('.active_tab').removeClass('active_tab');
+    $(this).addClass('active_tab');
   });
 });
 
@@ -120,15 +156,12 @@ function drag_start(e) {
 function drag_drop(e, id) {
     var element = e.dataTransfer.getData("Text");
     var text = document.getElementById(element).innerHTML;
-    $('.b'+id).text(size + 1);
     var lib_id = element.split("_")[1];
-    var size = parseInt($('.b'+id).text());
+    var size = parseInt($('.b'+id).text()) + 1;
     $('.li_active').removeClass('li_active');
     var block_type = $('#block_type_'+id).val();
     var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
-    
     var check = check_library_count(li_size, block_type, false);
-   
     if(check != ''){
       alert(check);
     }
@@ -136,24 +169,23 @@ function drag_drop(e, id) {
           alert("Library Already Exists");
       }
       else{
-          $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="nummeric" data-libdetail="">1</span><h6>'+text+'</h6><p>30 seconds</p></li>');
-          $('.b'+id).text(size + 1);
-    load_library_content('',id, lib_id);
+          $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
+          $('.b'+id).text(size);
+          load_library_content('',id, lib_id);
           $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
       }
+      $('.dots_img').remove() //removing all dots from dropped lis
 }
 
 function check_library_count(li_size, block_type, publish){
   var alrt = "";
-  if((block_type == "superset")&&(li_size == 2))
-    {
+  if((block_type == "superset")&&(li_size == 2)){
       alrt = "Superset Block must have exactly 2 libraries.";
-    }
-    else if((block_type == "individual")&&(li_size>0))
-    {
-       alrt = "Individual Block must have exactly 1 library";
-    }
-    return alrt;
+  }
+  else if((block_type == "individual")&&(li_size>0)){
+   alrt = "Individual Block must have exactly 1 library";
+  }
+  return alrt;
 }
 
 function load_library_content(lib_detail, block_id, lib_id){
@@ -165,19 +197,16 @@ function load_library_content(lib_detail, block_id, lib_id){
 
 function check_library_publish(li_size, block_type){
   var alrt = "";
-  if((block_type == "superset")&&(li_size<2))
-    {
-      alrt = "Superset Block must have exactly 2 libraries.";
-    }
-    else if((block_type == "individual")&&(li_size<1))
-    {
-       alrt = "Individual Block must have exactly 1 library";
-    }
-    else if(block_type == "circuit" && li_size<3)
-    {
-       alrt = "Circuit Block must have minimum 3 library";
-    }
-    return alrt;
+  if((block_type == "superset")&&(li_size<2)){
+    alrt = "Superset Block must have exactly 2 libraries.";
+  }
+  else if((block_type == "individual")&&(li_size<1)){
+   alrt = "Individual Block must have exactly 1 library";
+  }
+  else if(block_type == "circuit" && li_size<3){
+    alrt = "Circuit Block must have minimum 3 library";
+  }
+  return alrt;
 }
 
 function check_library_present(lib_id, id){
@@ -190,4 +219,10 @@ function check_library_present(lib_id, id){
     }
   });
   return present;
+}
+
+function sort_lis(obj){
+  $(obj).parent().find('li').each(function(i, val){
+    $(this).find('.nummeric').text(i + 1);
+  });
 }

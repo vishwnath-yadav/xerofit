@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require autocomplete-rails
 //= require turbolinks
 //= require_tree .
 
@@ -37,7 +38,16 @@ $( document ).ready(function() {
   $('.li_active').click(function() {
     $('.li_active').removeClass('active');
     $(this).addClass('active');
-  })
+  });
+
+  $(".choose_btn").click(function(){
+     $(this).css('background', '#72c9b8');
+     $("#user_pic").click();
+  });
+
+  $('.custom-upload input[type=file]').change(function(){
+    $(this).next().find('input').val($(this).val());
+  });
 
 
   $('#country_select').on("change", function() {

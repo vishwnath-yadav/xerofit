@@ -2,17 +2,29 @@
 <div class="middle_wrapper">
 	<div class="workout_col">
     <span class="work_out_left_menu">
-    	<%= render "workout_left_menu" %>
+      <div class="workout_col_left">
+        <div class="search_col">
+            <input name="" type="button" class="search_btn" />
+            <%= autocomplete_field_tag 'title', '', autocomplete_library_title_workouts_path, :class => "search_icon", :placeholder=>"Search within library..." %>
+        </div>
+        <div class="fitler_col" id="filter_library_col">
+          <div class="filter_icon asc" id="filter_change">
+            Filter
+          </div>
+          <span class="library_list">
+  	       <%= render "workout_left_menu" %>
+         </span>
+        </div>
+      </div>
     </span>
         <div class="workout_col_mid">
-          <div class="col_1">
-              <h2 class="wrk_head">New Workout</h2>
-              <p class="wrk_subhead">Workout Subtitle</p>
+        	<div class="col_1" id="workout_auto_form">
+              <%=render "workout_auto_form"%>
             </div>
             <%=form_tag("/workouts/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
               <div class="add_photo drag_lib">
               <%=hidden_field_tag :workout_id %>
-                
+                <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
               </div>
               <div class="hidden_field_workout">
               </div>

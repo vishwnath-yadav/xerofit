@@ -2,10 +2,19 @@
 	<div class="setting_col">
     	<h5>Settings</h5>
     	<ul>
-        	<li><a href="<%= edit_profile_settings_path %>" class="active li_active">Edit Profile</a></li>
-            <li><a href="<%= payment_billing_settings_path %>" class="li_active">Payment & Billing</a></li>
-            <li><a href="<%= change_password_settings_path %>" class="li_active">Change Password</a></li>
-            <li><a href="javascript:void(0)" class="li_active">Marketplace Website</a></li>
+        	<li>
+        		<%=link_to "Edit Profile", settings_path, :class=>"active"%>
+        	</li>
+         <li>
+         	<%=link_to "Payment & Billing", payment_billing_settings_path%>
+         </li>
+         <li>
+         	<%=link_to "Change Password", change_password_settings_path%>
+         </li>
+         <li>
+         	<%=link_to "MarketPlace Website", marketplace_settings_path%>
+         </li>
         </ul>
     </div>
 </div>
+
