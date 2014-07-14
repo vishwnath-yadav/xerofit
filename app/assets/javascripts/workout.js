@@ -113,8 +113,6 @@ $( document ).ready(function() {
     $('.active_tab').removeClass('active_tab');
     $(this).addClass('active_tab');
   });
-
-  
 });
 
 function remove_msg(){
@@ -195,10 +193,7 @@ function check_library_present(lib_id, id){
 }
 
 function sort_lis(obj){
-  console.log(">>>>>>>>>>>");
   $(obj).parent().find('li').each(function(i, val){
-    console.log(val+">>>>"+i);
-    console.log($(this).find('.nummeric').text());
     $(this).find('.nummeric').text(i + 1);
   });
 }
