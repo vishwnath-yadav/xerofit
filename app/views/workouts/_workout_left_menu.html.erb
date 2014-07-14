@@ -4,7 +4,7 @@
     	<input name="" type="text" / class="search_icon" value="Search within library...">
     </div>
     <div class="fitler_col" id="filter_library_col">
-    	<div class="filter_icon"><a href="#">Filters</a></div>
+    	<div class="filter_icon" id= "filter_change"><a href="javascript:void(0)">Filters  </a></div>
         <% @libraries.each do |lib|%>
     	<div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=lib.id%>">
         	<div class="white_list_left">

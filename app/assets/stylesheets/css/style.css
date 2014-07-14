@@ -537,7 +537,16 @@ p{
 	background:#f2f2f2;
 }
 .filter_icon{
-	background:url(/assets/filter_icon.jpg) no-repeat right 3px;
+	background:url(/assets/down_icon.jpg) no-repeat right 3px;
+	padding-right:15px;
+	font-size:11px;
+	color:#7e8082;
+	font-family: 'gotham_extralightregular';
+	float:right;
+	margin-bottom:20px;
+}
+.filter_icon1{
+	background:url(/assets/up-icon.jpg) no-repeat right 3px;
 	padding-right:15px;
 	font-size:11px;
 	color:#7e8082;

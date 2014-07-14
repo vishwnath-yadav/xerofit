@@ -4,6 +4,29 @@ $( document ).ready(function() {
      $("#workout_form").submit();
   });
 
+  // $('#filter_change').on("click",function(){
+  $(document).on("click", "#filter_change", function(){
+    alert(">>>>>>");
+    var filter_cls = $(this).attr("class");
+    if(filter_cls == 'filter_icon'){
+      $(this).removeClass('filter_icon');
+      $(this).addClass('filter_icon1');
+      type = "asc"
+      url = '/workouts/filter';
+       $.get(url, {order:type}, function (data) {
+     });
+    }
+    else{
+      $(this).addClass('filter_icon');
+      $(this).removeClass('filter_icon1');
+      type = "desc"
+      url = '/workouts/filter';
+       $.get(url, {order:type}, function (data) {
+     });
+    }
+
+  });
+
   $(".wrk_add_opt").click(function(){
     var name=$('#workout_id').val();
     if(name)

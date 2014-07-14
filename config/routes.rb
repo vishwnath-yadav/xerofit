@@ -62,6 +62,7 @@ Xerofit::Application.routes.draw do
       post 'save_blocks'
       get 'load_lib_details'
       patch 'save_lib_details'
+      get 'filter'
     end
   end
   

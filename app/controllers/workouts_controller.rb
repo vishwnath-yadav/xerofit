@@ -47,6 +47,19 @@ class WorkoutsController < ApplicationController
 	def marketplace
 	end
 
+	def filter
+		filter_order = params[:order]
+		if filter_order == 'asc'
+			@libraries = Library.where(user_id: current_user.id).order('title ASC')
+		else
+			@libraries = Library.where(user_id: current_user.id).order('title DESC')
+		end
+
+		respond_to do |format|
+			format.js 
+		end
+	end
+
 	def load_lib_details
 		@lib_detail = params[:lib_detail].present? ? LibraryDetail.find(params[:lib_detail]) : nil
 		if !@lib_detail.present?
