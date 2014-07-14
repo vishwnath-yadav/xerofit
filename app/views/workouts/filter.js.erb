@@ -1,0 +1,11 @@
+$('.work_out_left_menu').html("<%= escape_javascript(render(:partial => 'workout_left_menu')) %>");
+var filter_cls = $('#filter_change').attr("class");
+alert(filter_cls);
+if(filter_cls == 'filter_icon'){
+  $('#filter_change').removeClass('filter_icon');
+  $('#filter_change').addClass('filter_icon1');
+}
+else{
+  $('#filter_change').addClass('filter_icon');
+  $('#filter_change').removeClass('filter_icon1');
+}
