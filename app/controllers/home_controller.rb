@@ -13,5 +13,10 @@ class HomeController < ApplicationController
     	redirect_to new_user_session_path
     end
   end
+
+  def test
+    @library = Library.new
+    @libvideo = LibraryVideo.new
+  end
   
 end

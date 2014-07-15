@@ -1,8 +1,8 @@
 <%if !@video.errors.present?%>
 	$(".video_id").val("<%=@video.id%>");
-	var progressbar = $( "#progressbar" );
-	progressbar.progressbar( "value", 100 );
-	var complete = $('.video_uplod_txt p').text().split("of")[1];
-	$('.video_uplod_txt p').text(complete+' of '+complete);
+	//var progressbar = $( "#progressbar" );
+	//progressbar.progressbar( "value", 100 );
+	//var complete = $('.video_uplod_txt p').text().split("of")[1];
+	$('.video_uplod_txt p').text('successfully uploaded');
 	$('#panda_video_enable').attr('disabled', false);
 <%end%>

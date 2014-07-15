@@ -16,33 +16,40 @@
     </div>
   <% end %>
 <script>
-var vall = 0, size=0, upl=0, upl1=0;
-$( "#progressbar" ).progressbar({
-  value: 0
-});
+var size=0, upl=0, upl1=0;
 $(".upload_video").click(function(){
   $("#library_video_video").click();
 });
 $('#library_video_video').on('change', function(e) {
   size = (this.files[0].size/1024/1024).toFixed(2);
-  upl = size/10;
+  upl = size/100;
    $('.video_uplod_txt h2').text(e.target.files[0].name);
    $('.video_uplod_txt p').text(upl+' MB of '+size+' MB');
-    setTimeout(bar, 300);
+   $("#video_upload_form").submit();
  });
-function bar(){
-  vall += 10;
-  upl1 += upl;
-  $( "#progressbar" ).progressbar({
-      value: vall
-    });
-  $('.video_uplod_txt p').text(upl1+' MB of '+size+' MB');
-  if(vall < 80){
-    setTimeout(bar, 300);
-  }
-  else{
-    $('.upload_video').removeClass('upload_video')
-    $("#video_upload_form").submit();
-  }
-}
+ (function() {  
+ $('form').ajaxForm({  
+   beforeSend: function() {  
+     var percentVal = 0;  
+     $( "#progressbar" ).progressbar({
+      value: percentVal
+    });  
+   },  
+   uploadProgress: function(event, position, total, percentComplete) {  
+     var percentVal = percentComplete;  
+     $( "#progressbar" ).progressbar({
+        value: percentVal
+      });   
+     upl1 = (upl * percentVal).toFixed(2);
+     $('.video_uplod_txt p').text(upl1+' MB of '+size+' MB');
+     if(percentVal >= 99 ){
+       console.log("completing");
+       $('.video_uplod_txt p').text('please wait.. uploading to server');
+       }
+   },  
+   complete: function(xhr) {  
+    
+   }  
+ });   
+ })(); 
 </script>

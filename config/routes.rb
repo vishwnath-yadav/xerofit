@@ -24,6 +24,7 @@ Xerofit::Application.routes.draw do
   resources :home do
     collection do
       get 'confirmation'
+      get 'test'
     end
   end
 
