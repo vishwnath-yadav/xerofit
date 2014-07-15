@@ -1,0 +1,63 @@
+ 
+ <style>  
+ body { padding: 30px }  
+ form { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }  
+ .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }  
+ .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }  
+ .percent { position:absolute; display:inline-block; top:3px; left:48%; }  
+ </style>  
+  <div class="exer_lft_col">
+  <div class="video_uplod">
+   <div class="video_uplod_icon upload_video">
+    <img src="/assets/upload_icon.png" width="46" height="38" alt="Upload" />
+    </div>
+    <div class="video_uplod_txt">
+       <h2>No file choosen</h2>
+          <div id="progressbar"></div>
+          <p></p>
+      </div>
+  </div>
+</div>
+   <h1>File Upload Progress Demo</h1>  
+     <%= simple_form_for(@libvideo, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %> 
+     <%= video.file_field :video %>
+     <input type="submit" value="Upload File">  
+   <%end%>  
+ <script src="http://malsup.github.com/jquery.form.js"></script>  
+ <script> 
+ var size = 0; 
+ var upl = 0;
+ $('#library_video_video').on('change', function(e) {
+  size = (this.files[0].size/1024/1024).toFixed(2);
+  upl = size/100;
+   $('.video_uplod_txt h2').text(e.target.files[0].name);
+   $('.video_uplod_txt p').text(upl+' MB of '+size+' MB');
+   $("#video_upload_form").submit();
+ });
+ (function() {  
+ $('form').ajaxForm({  
+   beforeSend: function() {  
+     var percentVal = 0;  
+     $( "#progressbar" ).progressbar({
+      value: percentVal
+    });  
+   },  
+   uploadProgress: function(event, position, total, percentComplete) {  
+     var percentVal = percentComplete;  
+     $( "#progressbar" ).progressbar({
+        value: percentVal
+      });   
+     upl1 = (upl * percentVal).toFixed(2);
+     $('.video_uplod_txt p').text(upl1+' MB of '+size+' MB');
+     if(percentVal >= 99 ){
+       console.log("completing");
+       $('.video_uplod_txt p').text('please wait.. uploading to server');
+       }
+   },  
+   complete: function(xhr) {  
+    
+   }  
+ });   
+ })();      
+ </script>  
+ 
