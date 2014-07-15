@@ -769,7 +769,7 @@ min-height: 628px;
 .move_detail{
 	 border-bottom: 1px solid #d3d3d3;
     color: #74787a;
-    font-family: 'gotham-bookgotham-book';
+    /*font-family: 'gotham-bookgotham-book';*/
     font-size: 14px;
     padding: 4px 0;
     text-align: center;';
