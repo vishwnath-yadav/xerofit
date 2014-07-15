@@ -251,6 +251,7 @@ function sort_lis(obj){
 function show_text_size(){
   $('.detail_char').each(function(){
     var size = $(this).attr('data-size');
+    
     var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
       $(this).text(input_len+' of '+ size+' Character');
   })
