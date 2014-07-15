@@ -35,17 +35,16 @@
 </div>
 <%=render "block_type_modal"%>
 
-<script type="text/javascript">
-   $(document).ready(function(){
-    var setElementHeight = function () {
-      var height = $(window).height();
-      var header_height = 2 * $('.header_wrapper').innerHeight();
-      $('.autoheight').css('min-height', (height - header_height - 5));
-    };
+ <script type="text/javascript">
+//    $(document).ready(function(){
+//     var setElementHeight = function () {
+//       var height = $(window).height();
+//       var header_height = 2 * $('.header_wrapper').innerHeight();
+//       $('.autoheight').css('min-height', (height - header_height - 5));
+//     };
 
-    $(window).on("resize", function () {
-      setElementHeight();
-    }).resize();
-  });
-   
+//     $(window).on("resize", function () {
+//       setElementHeight();
+//     }).resize();
+//   });
  </script>
