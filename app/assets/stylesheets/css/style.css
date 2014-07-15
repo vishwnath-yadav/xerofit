@@ -508,8 +508,7 @@ p{
 .workout_col_left{
 	width:25%;
 	float:left;
-	max-height: 628px;
-	min-height: 628px;
+
 	overflow-y: scroll;
 	background: #f2f2f2;
 }
@@ -593,8 +592,7 @@ p{
 	border-right:1px solid #e1e3e5;
 	border-left:1px solid #e1e3e5;
 	padding:36px;
-	max-height: 628px;
-	min-height: 628px;
+
 	overflow-y: scroll;
 }
 .col_1{
@@ -1510,4 +1508,10 @@ margin-left: 14px;}
 	font-style: normal;
 	margin: 5px 0 10px !important;
 }
+
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+input:focus:-moz-placeholder { opacity:0; } /* FF 4-18 */
+input:focus::-moz-placeholder { opacity:0; }
 

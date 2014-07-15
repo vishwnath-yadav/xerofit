@@ -51,19 +51,7 @@ $( document ).ready(function() {
     $.fancybox.close();
   });
 
-  $(".block_type_submit").click(function(){
-  	 type = $("input[name='radio']:checked").attr('id');
-     type = type.split("_")[1];
-     title = $('.title').val();
-     if(title){
-  	   url = '/workouts/get_workout_sub_block';
-	     $.get(url, {type:type,title:title}, function (data) {
-	     });
-     }
-    else{
-      $('.title').css('border-color','red');
-    }
-  });
+  
 
   $('#publish').click(function(){
     var verify = false;
@@ -116,8 +104,9 @@ $( document ).ready(function() {
     if($('.workout_auto_input').length < 1){
       $( ".workout_auto_input").focus();
       var name = $(this).attr('data-name');
+      var text = $("#workout_"+name).val();
       $(this).hide();
-      $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input"></p>');
+      $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value='+text+'></p>');
       $('.workout_auto_input').focus();
     }
   });
@@ -142,7 +131,39 @@ $( document ).ready(function() {
     $('.active_tab').removeClass('active_tab');
     $(this).addClass('active_tab');
   });
+
+  $("#workout_form input, textarea").keyup(function(){
+    var obj = $(this).closest('.form_field').find('span.detail_char');
+    var max_size = parseInt(obj.attr('data-size'));
+    var size = $(this).val().length
+    obj.text(size+'/'+max_size+' Character');
+  });
+
+  $(".block_type_submit").click(function(){
+     create_sub_block();
+  });
+
+  $(document).on('keyup','.sub_block_title_input',function(e){
+    if(e.keyCode == 13){
+      create_sub_block();
+      return false;
+    }
+  });
 });
+
+function create_sub_block(){
+  var type = $("input[name='radio']:checked").attr('id');
+  type = type.split("_")[1];
+  var title = $('.title').val();
+  if(title){
+    url = '/workouts/get_workout_sub_block';
+    $.get(url, {type:type,title:title}, function (data) {
+    });
+  }
+  else{
+    $('.title').css('border-color','red');
+  }
+}
 
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');

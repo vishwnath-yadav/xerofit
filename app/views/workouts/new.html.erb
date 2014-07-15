@@ -1,8 +1,8 @@
 <%=render "workout_head"%>
-<div class="middle_wrapper">
+<div class="middle_wrapper ">
 	<div class="workout_col">
     <span class="work_out_left_menu">
-      <div class="workout_col_left">
+      <div class="workout_col_left autoheight">
         <div class="search_col">
             <input name="" type="button" class="search_btn" />
             <%= autocomplete_field_tag 'title', '', autocomplete_library_title_workouts_path, :class => "search_icon", :placeholder=>"Search within library..." %>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </span>
-        <div class="workout_col_mid">
+        <div class="workout_col_mid autoheight">
         	<div class="col_1" id="workout_auto_form">
               <%=render "workout_auto_form"%>
             </div>
@@ -35,6 +35,16 @@
 </div>
 <%=render "block_type_modal"%>
 
-<script>
+<script type="text/javascript">
+ $(document).ready(function(){
+  var setElementHeight = function () {
+    var height = $(window).height();
+    var header_height = 2 * $('.header_wrapper').innerHeight();
+    $('.autoheight').css('min-height', (height - header_height - 5));
+  };
 
-</script>
+  $(window).on("resize", function () {
+    setElementHeight();
+  }).resize();
+});
+ </script>
