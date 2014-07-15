@@ -533,7 +533,6 @@ p{
 	padding:2px 5px 2px 5px;
 }
 .fitler_col{
-	
 	width:100%;
 	float:left;
 	padding:10px 15px;
@@ -768,14 +767,11 @@ float: left;
 min-height: 628px;
 }
 .move_detail{
-	font-size:14px;
-	color:#74787a;
-	float:left;
-	padding: 9px 20px;
-   border-bottom: 1px solid #d3d3d3;
-   text-align:center;
-   width:100%;
-   font-family: 'gotham-bookgotham-book';
+    border-bottom: 1px solid #d3d3d3;
+    color: #74787a;
+    font-size: 14px;
+    padding: 4px 0;
+    text-align: center;
 }
 .gray_1{
 	width:100%;
