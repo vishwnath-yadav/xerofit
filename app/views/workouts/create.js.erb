@@ -1,6 +1,6 @@
 $('.detail_form').html("<%= escape_javascript(render(:partial => 'workout_form')) %>");
 <%if !@workout.errors.present?%>
-	//show_text_size();
+	show_text_size();
 	$(".success").addClass('move_detail').html('Workout Created');
 	$("#workout_auto_form").html("<%= escape_javascript(render(:partial => 'workout_auto_form'))%>");
 	$("#workout_id").val("<%=@workout.id%>");
