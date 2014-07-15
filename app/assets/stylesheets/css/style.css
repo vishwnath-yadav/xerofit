@@ -767,14 +767,12 @@ float: left;
 min-height: 628px;
 }
 .move_detail{
-	font-size:14px;
-	color:#74787a;
-	float:left;
-	padding: 9px 20px;
-   border-bottom: 1px solid #d3d3d3;
-   text-align:center;
-   width:100%;
-   font-family: 'gotham-bookgotham-book';
+	 border-bottom: 1px solid #d3d3d3;
+    color: #74787a;
+    font-family: 'gotham-bookgotham-book';
+    font-size: 14px;
+    padding: 4px 0;
+    text-align: center;';
 }
 .gray_1{
 	width:100%;

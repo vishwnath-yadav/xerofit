@@ -132,10 +132,10 @@ $( document ).ready(function() {
     $(this).addClass('active_tab');
   });
 
-  $("#workout_form input, textarea").keyup(function(){
+  $(document).on('keyup',"#workout_form input, textarea", function(){
     var obj = $(this).closest('.form_field').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
-    var size = $(this).val().length
+    var size = $(this).val().length;
     obj.text(size+'/'+max_size+' Character');
   });
 
@@ -246,4 +246,12 @@ function sort_lis(obj){
   $(obj).parent().find('li').each(function(i, val){
     $(this).find('.nummeric').text(i + 1);
   });
+}
+
+function show_text_size(){
+  $('.detail_char').each(function(){
+    var size = $(this).attr('data-size');
+    var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
+      $(this).text(input_len+' of '+ size+' Character');
+  })
 }
