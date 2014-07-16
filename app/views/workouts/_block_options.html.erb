@@ -1,20 +1,20 @@
 	<div class="form_field">   
-        <%= radio_button_tag("wrk_blocks_type", "", checked = true, options = {class: "block_type", id: "type_circuit", name: "radio"}) %>
-        <span class="wrk_block_types">Circuit</span>
+        <%= radio_button_tag("wrk_blocks_type", "", checked = true, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[0]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[0]%></span>
     </div>
     <div class="block_msg">
       You can create exactly 3 or more library.
     </div>
     <div class="form_field">
-        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_superset", name: "radio"}) %>
-        <span class="wrk_block_types">SuperSet</span>
+        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[1]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[1]%></span>
     </div>
     <div class="block_msg">
       You can create exactly 2 library.
     </div>
     <div class="form_field">
-        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_individual", name: "radio"}) %>
-        <span class="wrk_block_types">Individual</span>
+        <%= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[2]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[2]%></span>
     </div>
     <div class="block_msg">
       You can create exactly 1 library.

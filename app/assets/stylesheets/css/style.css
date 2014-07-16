@@ -764,7 +764,8 @@ height: 20px;
 .workout_col_rght {
 width: 25%;
 float: left;
-min-height: 628px;
+overflow-y: scroll;
+
 }
 .move_detail{
     border-bottom: 1px solid #d3d3d3;
@@ -1515,4 +1516,7 @@ input:focus::-moz-placeholder { opacity:0; }
 #workout_description{
 	resize:vertical;
 	overflow:auto;	
+}
+.block_hide .met_tab_col{
+	opacity: 0;
 }

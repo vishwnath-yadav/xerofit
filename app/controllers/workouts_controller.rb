@@ -4,6 +4,9 @@ class WorkoutsController < ApplicationController
 	def new
 		@workout = Workout.new
 		@libraries = Library.where(user_id: current_user.id)
+		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
+		@block.save
+		@display = "block_hide"
 	end
 
 	def create
@@ -29,9 +32,9 @@ class WorkoutsController < ApplicationController
 	end
 
 	def get_workout_sub_block
-		Rails.logger.debug ">>>>>"
 		@block = Block.new(:name => params[:title], :block_type=> params[:type])
 		@block.save
+		@display = params[:display]
 		respond_to do |format|
 			format.js 
 		end

@@ -51,8 +51,6 @@ $( document ).ready(function() {
     $.fancybox.close();
   });
 
-  
-
   $('#publish').click(function(){
     var verify = false;
     $('.met_tab_desc').each(function(){
@@ -88,7 +86,7 @@ $( document ).ready(function() {
   });
 
   $(document).on('change', ".lib_detail_sel", function(){
-      $(".edit_library_detail").submit();
+    $(".edit_library_detail").submit();
   });
 
   $(document).on('click', ".lib_detail_chk", function(){
@@ -155,9 +153,20 @@ function create_sub_block(){
   var type = $("input[name='radio']:checked").attr('id');
   type = type.split("_")[1];
   var title = $('.title').val();
+  sub_block_ajax(type, title, '');
+}
+
+function create_individual_sub_block(){
+  var type = BLOCK_TYPE[2];
+  var title = 'Individual';
+  sub_block_ajax(type, title, 'block_hide');
+}
+
+function sub_block_ajax(type, title, display){
+
   if(title){
     url = '/workouts/get_workout_sub_block';
-    $.get(url, {type:type,title:title}, function (data) {
+    $.get(url, {type:type,title:title,display:display}, function (data) {
     });
   }
   else{
@@ -175,6 +184,7 @@ function drag_start(e) {
 }
 
 function drag_drop(e, id) {
+    individual_block_show(id);
     var element = e.dataTransfer.getData("Text");
     var text = document.getElementById(element).innerHTML;
     var lib_id = element.split("_")[1];
@@ -198,13 +208,21 @@ function drag_drop(e, id) {
       $('.dots_img').remove() //removing all dots from dropped lis
 }
 
+function individual_block_show(id){
+  if($('.drag_img').length){
+    $('.drag_img').remove();
+  }
+  $('#block_'+id).removeClass('block_hide');
+  create_individual_sub_block();
+}
+
 function check_library_count(li_size, block_type, publish){
   var alrt = "";
-  if((block_type == "superset")&&(li_size == 2)){
-      alrt = "Superset Block must have exactly 2 libraries.";
+  if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
+      alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == "individual")&&(li_size>0)){
-   alrt = "Individual Block must have exactly 1 library";
+  else if((block_type == BLOCK_TYPE[2])&&(li_size>0)){
+   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
   }
   return alrt;
 }
@@ -218,14 +236,14 @@ function load_library_content(lib_detail, block_id, lib_id){
 
 function check_library_publish(li_size, block_type){
   var alrt = "";
-  if((block_type == "superset")&&(li_size<2)){
-    alrt = "Superset Block must have exactly 2 libraries.";
+  if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
+    alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == "individual")&&(li_size<1)){
-   alrt = "Individual Block must have exactly 1 library";
+  else if((block_type == BLOCK_TYPE[2])&&(li_size<1)){
+   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
   }
-  else if(block_type == "circuit" && li_size<3){
-    alrt = "Circuit Block must have minimum 3 library";
+  else if(block_type == BLOCK_TYPE[0] && li_size<3){
+    alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
   }
   return alrt;
 }

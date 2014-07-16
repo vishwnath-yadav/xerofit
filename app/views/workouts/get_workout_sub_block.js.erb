@@ -1,5 +1,10 @@
 if($('.hidden_field_workout').find('.input:hidden').length == 0){
 	$('.drag_img').remove();
 }
-$('.drag_lib').append("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
+if($('.block_hide').length){
+	$('.block_hide').before("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
+}
+else{
+	$('.drag_lib').append("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
+}
 $.fancybox.close();
