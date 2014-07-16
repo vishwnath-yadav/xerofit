@@ -97,11 +97,13 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_lib_details
-		lib_detail = LibraryDetail.find(params[:lib_detail_id])
-		if lib_detail.present?
-			lib_detail.update_attributes(library_detail_params)
+		@lib_detail = LibraryDetail.find(params[:lib_detail_id])
+		if @lib_detail.present?
+			@lib_detail.update_attributes(library_detail_params)
 		end
-		render json: "success"
+		respond_to do |format|
+			format.js {render 'load_lib_details.js.erb'}
+		end
 	end
 
 	private

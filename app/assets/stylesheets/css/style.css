@@ -31,10 +31,7 @@ body {margin: 0px; padding: 0px; height:100%;   font-family: 'gotham-bookgotham-
 
 h1,h2,h3,h4,h5,h6{margin: 0px; font-weight:normal; padding: 0px;}
 p{}
-.clear{clear: both;}
-.fl{float: left}
-.fr{float:right;}
-.fnone{float: none}
+
 body.home_bg{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
 body.home_bg.size{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
 body.signup_bg{ background:url(/assets/signup_bg.jpg) no-repeat center center; background-size: cover;}
@@ -854,6 +851,18 @@ margin-right: 31px;
 	font-family: 'gotham-bookgotham-book';
 	color:#626364;
 }
+
+.min_col_1 .integer  input{
+	width: 55px;
+	border-radius: 3px;
+	border: none;
+	padding: 7px;
+}
+
+.min_col_1 .integer input:focus{
+	outline: none;
+}
+
 .second_select{
 	width:30%;
 	float:left;
@@ -1332,6 +1341,10 @@ background: #fff;
 	color: green;
 }
 
+.red_txt{
+	color: red;
+}
+
 .wrk_block_types{
 	color: #b3adaf;
 	font-family: 'gotham-bookgotham-book';
@@ -1519,4 +1532,14 @@ input:focus::-moz-placeholder { opacity:0; }
 }
 .block_hide .met_tab_col{
 	opacity: 0;
+}
+
+.clear{clear: both;}
+.fl{float: left}
+.fr{float:right;}
+.fnone{float: none}
+
+button[disabled], html input[disabled] {
+cursor: default;
+background: #ccc;
 }

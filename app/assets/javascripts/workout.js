@@ -93,6 +93,23 @@ $( document ).ready(function() {
     $(".edit_library_detail").submit();
   });
 
+  $(document).on('blur', ".lib_detail_inp", function(){
+    var $input = $(this).find('input');
+    var val = parseInt($input.val());
+    var max = parseInt($input.attr('max'));
+    var min = parseInt($input.attr('min'));
+    if(val > max || val < min){
+      // $('.success').addClass('move_detail').text('number must be between '+min+' and '+max)
+      $input.css('border','1px solid red');
+      $input.val(min);
+      alert('number must be between '+min+' and '+max);
+      setTimeout(function(){$input.css('border','none')}, 3000);
+    }
+    else{
+      $(".edit_library_detail").submit();
+    }
+  });
+
   $(document).on('click', ".met_head", function(){
     $(this).siblings().toggle('slow');
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
