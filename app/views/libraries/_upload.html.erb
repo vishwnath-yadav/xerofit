@@ -36,13 +36,12 @@ $('#library_video_video').on('change', function(e) {
     });  
    },  
    uploadProgress: function(event, position, total, percentComplete) {  
-     var percentVal = percentComplete;  
-     $( "#progressbar" ).progressbar({
-        value: percentVal
-      });   
-     upl1 = (upl * percentVal).toFixed(2);
+     upl1 = (upl * percentComplete).toFixed(2);
      $('.video_uplod_txt p').text(upl1+' MB of '+size+' MB');
-     if(percentVal >= 99 ){
+     $( "#progressbar" ).progressbar({
+        value: percentComplete
+      });   
+     if(percentComplete >= 99 ){
        console.log("completing");
        $('.video_uplod_txt p').text('please wait.. uploading to server');
        }
