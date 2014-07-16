@@ -102,7 +102,7 @@ $( document ).ready(function() {
     if($('.workout_auto_input').length < 1){
       $( ".workout_auto_input").focus();
       var name = $(this).attr('data-name');
-      var text = $("#workout_"+name).val();
+      var text = $(this).attr('data-val');
       $(this).hide();
       $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value='+text+'></p>');
       $('.workout_auto_input').focus();
@@ -184,7 +184,6 @@ function drag_start(e) {
 }
 
 function drag_drop(e, id) {
-    individual_block_show(id);
     var element = e.dataTransfer.getData("Text");
     var text = document.getElementById(element).innerHTML;
     var lib_id = element.split("_")[1];
@@ -193,13 +192,17 @@ function drag_drop(e, id) {
     var block_type = $('#block_type_'+id).val();
     var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
     var check = check_library_count(li_size, block_type, false);
-    if(check != ''){
+    if(!$('#workid').length){
+      alert("Please fill workout details.")
+    }
+    else if(check != ''){
       alert(check);
     }
     else if (check_library_present(lib_id, id)){
           alert("Library Already Exists");
       }
       else{
+          individual_block_show(id);
           $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
           $('.b'+id).text(size);
           load_library_content('',id, lib_id);
