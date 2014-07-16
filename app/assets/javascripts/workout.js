@@ -216,7 +216,9 @@ function individual_block_show(id){
     $('.drag_img').remove();
   }
   $('#block_'+id).removeClass('block_hide');
-  create_individual_sub_block();
+  if(!$('.block_hide').length){
+    create_individual_sub_block();
+  }
 }
 
 function check_library_count(li_size, block_type, publish){
