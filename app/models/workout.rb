@@ -2,7 +2,7 @@ class Workout < ActiveRecord::Base
 	belongs_to :user
 	has_many :blocks
 
-	# validates :name, :subtitle, presence: true
+	validates :name, presence: true
 
 	STATES = [:initiated, :completed]
 

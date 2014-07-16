@@ -1,5 +1,7 @@
 
 Xerofit::Application.routes.draw do
+  root 'website#home'
+  
   devise_for :users, :controllers => {:registrations => "registrations"}
   # devise_for :users, :controllers => {:sessions => "sessions"}
   # get '/auth/:provider/callback', to: 'sessions#create'
@@ -20,14 +22,11 @@ Xerofit::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :home do
-    member do
-    end
     collection do
       get 'confirmation'
+      get 'test'
     end
   end
-
-  root 'website#home'
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
@@ -51,10 +50,21 @@ Xerofit::Application.routes.draw do
     get :library
   end
  
-  get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
+  resources :dashboard do
+    collection do 
+      get 'trainer'
+    end
+  end
+  # get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   
-  resources :libraries 
   resources :videos, only: [:create]
+  resources :libraries do 
+    collection do
+      get 'sort_video'
+      get 'see_more_thumbnail'
+    end
+  end
+  
   resources :workouts do
     collection do
       get 'get_workout_sub_block'
@@ -67,13 +77,6 @@ Xerofit::Application.routes.draw do
     end
   end
   
-  get :sort_video, to: 'libraries#sort_video'
-  get :see_more_thumbnail, to: 'libraries#see_more_thumbnail'
-
-  get 'trainers' => 'website#trainers'
-  get 'terms' => 'website#terms'
-  get 'privacy' => 'website#privacy'
-  
   resources :settings do
     collection do
       get 'payment_billing'
@@ -84,6 +87,15 @@ Xerofit::Application.routes.draw do
     end
   end
   get '/subregion_options' => 'settings#subregion_options'
+
+  resources :website do
+    collection do
+      get 'trainers'
+      get 'terms'
+      get 'privacy'
+    end
+  end
+
 
 
   # Example of regular route:

@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require autocomplete-rails
+
 //= require turbolinks
 //= require_tree .
 
@@ -49,7 +49,6 @@ $( document ).ready(function() {
     $(this).next().find('input').val($(this).val());
   });
 
-
   $('#country_select').on("change", function() {
     select_wrapper = $('#order_state_code_wrapper')
 
@@ -57,7 +56,6 @@ $( document ).ready(function() {
     country_code = $(this).val();
     url = "/subregion_options?parent_region=" +country_code
     select_wrapper.load(url)
-
   });
 });
 
