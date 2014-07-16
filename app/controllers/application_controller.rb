@@ -9,13 +9,11 @@ class ApplicationController < ActionController::Base
   #   @use_default_layout = true
   # end
 
-  def after_sign_in_path_for(resource)
-    if resource.admin?
-      admin_dashboard_path
-    else
-      trainer_dashboard_index_path
-    end
-  end
+  # def after_sign_in_path_for(resource)
+  #   # if resource.trainer?
+  #   #   trainer_dashboard_index_path
+  #   # end
+  # end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
