@@ -10,7 +10,6 @@ $( document ).ready(function() {
       lib_id.push($(this).attr('id').split("_")[1]);
     });
     
-
     var filter_cls = $(this).attr("class");
     url = '/workouts/filter';
     $(this).toggleClass('asc', 500);
