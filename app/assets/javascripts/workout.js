@@ -52,19 +52,31 @@ $( document ).ready(function() {
   });
 
   $('#publish').click(function(){
-    var verify = false;
-    $('.met_tab_desc').each(function(){
-      var b_id = $(this).find('#block_id').val();
-      var b_type = $(this).find('#block_type_'+b_id).val();
-      var li_size = $(this).find('ul li').size();
-      var check = check_library_publish(li_size, b_type)
-      if(check != ''){
-        verify = true;
-        alert(check);
-        return false;
-      }
-    });
-    if(verify == false){
+    var verify = true;
+    if(!$('#workid').length){
+      verify = false;
+      alert("Please fill workout details.");
+    }
+    else if($('.met_tab_desc').length <= 1){
+      verify = false;
+      alert("Please create sub blocks.");
+    }
+    else{
+      $('.met_tab_desc').each(function(){
+        if(!$(this).closest('.block_hide').length){
+          var b_id = $(this).find('#block_id').val();
+          var b_type = $(this).find('#block_type_'+b_id).val();
+          var li_size = $(this).find('ul li').size();
+          var check = check_library_publish(li_size, b_type)
+          if(check != ''){
+            verify = false;
+            alert(check);
+            return false;
+          }
+        }
+      });
+    }
+    if(verify){
       $('#new_workout_form').submit();
     }
   });

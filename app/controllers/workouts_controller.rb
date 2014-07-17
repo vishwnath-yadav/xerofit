@@ -31,6 +31,15 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def index
+		@workouts = Workout.where(:state=>"completed")
+	end
+
+	def show
+		@workout = Workout.find(params[:id])
+		@workout.increase_visit
+	end
+
 	def get_workout_sub_block
 		@block = Block.new(:name => params[:title], :block_type=> params[:type])
 		@block.save
@@ -45,6 +54,8 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:workout_id])
 		block_hash = params[:workout]
 		@workout.save_blocks_and_libs(block_hash)
+		@workout.state = "completed"
+		@workout.save
 		redirect_to :back
 	end
 

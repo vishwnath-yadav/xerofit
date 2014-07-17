@@ -1,6 +1,7 @@
 class Workout < ActiveRecord::Base
-	belongs_to :user
 	has_many :blocks
+	has_one :statastic
+	belongs_to :user
 
 	validates :name, presence: true
 
@@ -17,11 +18,8 @@ class Workout < ActiveRecord::Base
 			block = Block.find(key)
 			block.workout_id = self.id
 			block.save!
-			logger.debug("blcok #{block.id}")
 			value.each do|k, v|
 				lib = Library.find(k)
-				logger.debug(">>>>>>>>>>>>>>>>")
-				logger.debug(lib.id)
 				lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)
 				lib_block.save!
 				lib_detail = LibraryDetail.find(v)
@@ -31,6 +29,19 @@ class Workout < ActiveRecord::Base
 				end
 			end
 		end
+	end
+
+	def increase_visit
+		if self.statastic.present?
+			self.statastic.visits += 1
+		else
+			self.statastic = Statastic.new(visits: 1)
+		end
+		self.save
+	end
+
+	def most_popular
+		Workout.joins(:statastic).where(state: "completed").order('statastics.visits DESC').limit(5)
 	end
 	
 end
