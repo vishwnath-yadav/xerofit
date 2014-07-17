@@ -45,6 +45,8 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:workout_id])
 		block_hash = params[:workout]
 		@workout.save_blocks_and_libs(block_hash)
+		@workout.state = "completed"
+		@workout.save
 		redirect_to :back
 	end
 

@@ -6,7 +6,20 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Xerofit"
+  config.site_title_link = "/"    ## Rails url helpers do not work here
 
+  config.namespace :admin do |admin|
+    admin.allow_comments = false
+  end
+
+  # config.namespace :admin do |admin|
+  #   admin.build_menu :utility_navigation do |menu|
+  #     # menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info", html_options: { target: :blank }
+  #     admin.add_logout_button_to_menu menu # can also pass priority & html_options for link_to to use
+  #   end
+  # end
+
+  
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #

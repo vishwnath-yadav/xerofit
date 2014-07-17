@@ -17,11 +17,8 @@ class Workout < ActiveRecord::Base
 			block = Block.find(key)
 			block.workout_id = self.id
 			block.save!
-			logger.debug("blcok #{block.id}")
 			value.each do|k, v|
 				lib = Library.find(k)
-				logger.debug(">>>>>>>>>>>>>>>>")
-				logger.debug(lib.id)
 				lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)
 				lib_block.save!
 				lib_detail = LibraryDetail.find(v)
