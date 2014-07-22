@@ -1,4 +1,7 @@
-<div class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
+<div class="met_tab <%=@display%>" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
+     <%if @workout.present? && @workout.new_record?%>
+        <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
+    <%end%>
     <div class="met_tab_col">
     	<div class="met_head">
         	<div class="tab_arrow">

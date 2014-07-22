@@ -50,22 +50,32 @@ $( document ).ready(function() {
     $.fancybox.close();
   });
 
-  
-
   $('#publish').click(function(){
-    var verify = false;
-    $('.met_tab_desc').each(function(){
-      var b_id = $(this).find('#block_id').val();
-      var b_type = $(this).find('#block_type_'+b_id).val();
-      var li_size = $(this).find('ul li').size();
-      var check = check_library_publish(li_size, b_type)
-      if(check != ''){
-        verify = true;
-        alert(check);
-        return false;
-      }
-    });
-    if(verify == false){
+    var verify = true;
+    if(!$('#workid').length){
+      verify = false;
+      alert("Please fill workout details.");
+    }
+    else if($('.met_tab_desc').length <= 1){
+      verify = false;
+      alert("Please create sub blocks.");
+    }
+    else{
+      $('.met_tab_desc').each(function(){
+        if(!$(this).closest('.block_hide').length){
+          var b_id = $(this).find('#block_id').val();
+          var b_type = $(this).find('#block_type_'+b_id).val();
+          var li_size = $(this).find('ul li').size();
+          var check = check_library_publish(li_size, b_type)
+          if(check != ''){
+            verify = false;
+            alert(check);
+            return false;
+          }
+        }
+      });
+    }
+    if(verify){
       $('#new_workout_form').submit();
     }
   });
@@ -87,11 +97,28 @@ $( document ).ready(function() {
   });
 
   $(document).on('change', ".lib_detail_sel", function(){
-      $(".edit_library_detail").submit();
+    $(".edit_library_detail").submit();
   });
 
   $(document).on('click', ".lib_detail_chk", function(){
     $(".edit_library_detail").submit();
+  });
+
+  $(document).on('blur', ".lib_detail_inp", function(){
+    var $input = $(this).find('input');
+    var val = parseInt($input.val());
+    var max = parseInt($input.attr('max'));
+    var min = parseInt($input.attr('min'));
+    if(val > max || val < min){
+      // $('.success').addClass('move_detail').text('number must be between '+min+' and '+max)
+      $input.css('border','1px solid red');
+      $input.val(min);
+      alert('number must be between '+min+' and '+max);
+      setTimeout(function(){$input.css('border','none')}, 3000);
+    }
+    else{
+      $(".edit_library_detail").submit();
+    }
   });
 
   $(document).on('click', ".met_head", function(){
@@ -103,7 +130,7 @@ $( document ).ready(function() {
     if($('.workout_auto_input').length < 1){
       $( ".workout_auto_input").focus();
       var name = $(this).attr('data-name');
-      var text = $("#workout_"+name).val();
+      var text = $(this).attr('data-val');
       $(this).hide();
       $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value='+text+'></p>');
       $('.workout_auto_input').focus();
@@ -154,9 +181,20 @@ function create_sub_block(){
   var type = $("input[name='radio']:checked").attr('id');
   type = type.split("_")[1];
   var title = $('.title').val();
+  sub_block_ajax(type, title, '');
+}
+
+function create_individual_sub_block(){
+  var type = BLOCK_TYPE[2];
+  var title = 'Individual';
+  sub_block_ajax(type, title, 'block_hide');
+}
+
+function sub_block_ajax(type, title, display){
+
   if(title){
     url = '/workouts/get_workout_sub_block';
-    $.get(url, {type:type,title:title}, function (data) {
+    $.get(url, {type:type,title:title,display:display}, function (data) {
     });
   }
   else{
@@ -182,13 +220,17 @@ function drag_drop(e, id) {
     var block_type = $('#block_type_'+id).val();
     var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
     var check = check_library_count(li_size, block_type, false);
-    if(check != ''){
+    if(!$('#workid').length){
+      alert("Please fill workout details.")
+    }
+    else if(check != ''){
       alert(check);
     }
     else if (check_library_present(lib_id, id)){
           alert("Library Already Exists");
       }
       else{
+          individual_block_show(id);
           $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
           $('.b'+id).text(size);
           load_library_content('',id, lib_id);
@@ -197,13 +239,23 @@ function drag_drop(e, id) {
       $('.dots_img').remove() //removing all dots from dropped lis
 }
 
+function individual_block_show(id){
+  if($('.drag_img').length){
+    $('.drag_img').remove();
+  }
+  $('#block_'+id).removeClass('block_hide');
+  if(!$('.block_hide').length){
+    create_individual_sub_block();
+  }
+}
+
 function check_library_count(li_size, block_type, publish){
   var alrt = "";
-  if((block_type == "superset")&&(li_size == 2)){
-      alrt = "Superset Block must have exactly 2 libraries.";
+  if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
+      alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == "individual")&&(li_size>0)){
-   alrt = "Individual Block must have exactly 1 library";
+  else if((block_type == BLOCK_TYPE[2])&&(li_size>0)){
+   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
   }
   return alrt;
 }
@@ -217,14 +269,14 @@ function load_library_content(lib_detail, block_id, lib_id){
 
 function check_library_publish(li_size, block_type){
   var alrt = "";
-  if((block_type == "superset")&&(li_size<2)){
-    alrt = "Superset Block must have exactly 2 libraries.";
+  if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
+    alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == "individual")&&(li_size<1)){
-   alrt = "Individual Block must have exactly 1 library";
+  else if((block_type == BLOCK_TYPE[2])&&(li_size<1)){
+   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
   }
-  else if(block_type == "circuit" && li_size<3){
-    alrt = "Circuit Block must have minimum 3 library";
+  else if(block_type == BLOCK_TYPE[0] && li_size<3){
+    alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
   }
   return alrt;
 }

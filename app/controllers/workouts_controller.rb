@@ -4,6 +4,9 @@ class WorkoutsController < ApplicationController
 	def new
 		@workout = Workout.new
 		@libraries = Library.where(user_id: current_user.id)
+		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
+		@block.save
+		@display = "block_hide"
 	end
 
 	def create
@@ -28,10 +31,19 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def index
+		@workouts = Workout.where(:state=>"completed")
+	end
+
+	def show
+		@workout = Workout.find(params[:id])
+		@workout.increase_visit
+	end
+
 	def get_workout_sub_block
-		Rails.logger.debug ">>>>>"
 		@block = Block.new(:name => params[:title], :block_type=> params[:type])
 		@block.save
+		@display = params[:display]
 		respond_to do |format|
 			format.js 
 		end
@@ -42,6 +54,8 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:workout_id])
 		block_hash = params[:workout]
 		@workout.save_blocks_and_libs(block_hash)
+		@workout.state = "completed"
+		@workout.save
 		redirect_to :back
 	end
 
@@ -94,11 +108,13 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_lib_details
-		lib_detail = LibraryDetail.find(params[:lib_detail_id])
-		if lib_detail.present?
-			lib_detail.update_attributes(library_detail_params)
+		@lib_detail = LibraryDetail.find(params[:lib_detail_id])
+		if @lib_detail.present?
+			@lib_detail.update_attributes(library_detail_params)
 		end
-		render json: "success"
+		respond_to do |format|
+			format.js {render 'load_lib_details.js.erb'}
+		end
 	end
 
 	private

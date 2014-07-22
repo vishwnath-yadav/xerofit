@@ -24,7 +24,8 @@
             <%=form_tag("/workouts/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
               <div class="add_photo drag_lib">
               <%=hidden_field_tag :workout_id %>
-                <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
+               
+                <%=render "sub_blocks"%>
               </div>
               <div class="hidden_field_workout">
               </div>
@@ -40,7 +41,7 @@
     var setElementHeight = function () {
       var height = $(window).height();
       var header_height = 2 * $('.header_wrapper').innerHeight();
-      $('.autoheight').css('min-height', (height - header_height - 5));
+      $('.autoheight').css('height', (height - header_height - 5));
     };
 
     $(window).on("resize", function () {
