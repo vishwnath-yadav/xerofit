@@ -62,6 +62,7 @@ Xerofit::Application.routes.draw do
     collection do
       get 'sort_video'
       get 'see_more_thumbnail'
+      post 'get_lib_items'
     end
   end
   

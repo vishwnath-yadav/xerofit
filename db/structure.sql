@@ -226,7 +226,8 @@ CREATE TABLE libraries (
     category character varying(255),
     difficulty character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    status character varying(255)
 );
 
 
@@ -941,3 +942,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140716133059');
 INSERT INTO schema_migrations (version) VALUES ('20140716133120');
 
 INSERT INTO schema_migrations (version) VALUES ('20140717095831');
+
+INSERT INTO schema_migrations (version) VALUES ('20140721095936');

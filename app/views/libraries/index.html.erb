@@ -1,16 +1,30 @@
+<div class="create_heading">
+    <div class="plus_icon">
+      <a href="/libraries/new">
+        <img src="/assets/plus_icon.png"/>
+      </a>
+    </div>
+      
+    <div class="search_bar_col">
+      <input type="text" placeholder="Search">
+      <input type="button" class="search_btn">
+    </div>
+
+    <div class="select_bar_col">
+      <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post") do |f|%>
+         <%= hidden_field_tag :select_option%>
+         <%= hidden_field_tag :view_type%>
+         <%= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
+         <%= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
+        <span class="grid_icon grid_icon_active view_type" data-name="grid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="list_icon"  data-name="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <%end%>
+    </div>
+</div>
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
-    <h3>Excercise Library</h3>
-		<div class="sort_col">
-     	<label>Sort by:</label>
-      <select name="" class="sort_select">
-        <option value="Date">Date</option>
-        <option value="Name">Name</option>
-        <!-- <option value="Muscle group">Muscle group</option> -->
-      </select>
-    </div>
     <div class="library_col">
-      <%= render "home" %>
+      <%= render "list" %>
     </div>
 			
       <%#= will_paginate @libraries, :remote=>true, :next_label => 'Next', :previous_label => 'Previous', :inner_window=>0, :outer_windows=>0 %>
@@ -19,6 +33,9 @@
      </div>-->
 
   </div>
+</div>
+<div class="create_heading pad20">
+  
 </div>
 
 <script>
