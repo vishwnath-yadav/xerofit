@@ -3,6 +3,9 @@
       <a href="/libraries/new">
         <img src="/assets/plus_icon.png"/>
       </a>
+      <div class="hover_box">
+      <a href="/libraries/new">Add New</a> 
+    </div>
     </div>
       
     <div class="search_bar_col">
@@ -14,8 +17,26 @@
       <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post") do |f|%>
          <%= hidden_field_tag :select_option%>
          <%= hidden_field_tag :view_type%>
-         <%= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
-         <%= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
+         
+         <div class="custom_select_wrap">
+          <span class="custom_select">
+            <select class="default">
+              <option>Fun & Bizarre</option>
+              <option>Online Marketing</option>
+              <option>Graphics & Design</option>
+            </select>
+          </span>
+        </div>
+        <div class="custom_select_wrap">
+            <span class="custom_select status_select">
+              <select class="default">
+                <option class="green_icon">Fun & Bizarre</option>
+                <option>Online Marketing</option>
+                <option>Graphics & Design</option>
+              </select>
+        </div>
+         <%#= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
+         <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
         <span class="grid_icon grid_icon_active view_type" data-name="grid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span class="list_icon"  data-name="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       <%end%>

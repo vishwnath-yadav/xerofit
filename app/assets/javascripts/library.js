@@ -8,5 +8,11 @@ $( document ).ready(function() {
      var name = $(this).attr('data-name');
      $('#view_type').val(name);
   });
+
+   $(function () {
+      $('.default').dropkick();
+    });
 });
+
+
 

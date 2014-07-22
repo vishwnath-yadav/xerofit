@@ -1,4 +1,4 @@
-<div class="exer_lft_col">
+<div class="exer_lft_col" id="dragandrophandler">
   <div class="video_uplod">
    <div class="video_uplod_icon upload_video">
     <img src="/assets/upload_icon.png" width="46" height="38" alt="Upload" />
@@ -24,11 +24,8 @@ $(".upload_video").click(function(){
   $("#library_video_video").click();
 });
 $('#library_video_video').on('change', function(e) {
-  size = (this.files[0].size/1024/1024).toFixed(2);
-  upl = size/100;
-   $('.video_uplod_txt h2').text(e.target.files[0].name);
-   $('.video_uplod_txt p').text(upl+' MB of '+size+' MB');
-   $("#video_upload_form").submit();
+  var file = e.target.files[0];
+  handleFileUpload(file,$(this));
  });
  (function() {  
  $('form').ajaxForm({  
@@ -53,5 +50,86 @@ $('#library_video_video').on('change', function(e) {
     
    }  
  });   
+ var obj = $("#dragandrophandler");
+  obj.on('dragenter', function (e) 
+  {
+      e.stopPropagation();
+      e.preventDefault();
+      $(this).css('border', '1px solid #0B85A1');
+  });
+  obj.on('dragover', function (e) 
+  {
+       e.stopPropagation();
+       e.preventDefault();
+  });
+  obj.on('drop', function (e) 
+  {
+       $(this).css('border', '1px dotted #0B85A1');
+       e.preventDefault();
+       var files = e.originalEvent.dataTransfer.files;
+       console.log(files[0].path);
+       //We need to send dropped files to Server
+       //$("#library_video_video").val(files[0].name);
+       $("#video_upload_form").append('file', files[0]);
+       handleFileUpload(files[0],obj);
+  });
+
+  $(document).on('dragenter', function (e) 
+{
+    e.stopPropagation();
+    e.preventDefault();
+});
+$(document).on('dragover', function (e) 
+{
+  e.stopPropagation();
+  e.preventDefault();
+  obj.css('border', '2px dotted #0B85A1');
+});
+$(document).on('drop', function (e) 
+{
+    e.stopPropagation();
+    e.preventDefault();
+});
  })(); 
+
+ function handleFileUpload(file,obj){
+  var fd = new FormData();
+  fd.append('file', file);
+
+  sendFileToServer(fd,status);
+  // size = (file.size/1024/1024).toFixed(2);
+  // upl = size/100;
+  //  $('.video_uplod_txt h2').text(file.name);
+  //  $('.video_uplod_txt p').text(upl+' MB of '+size+' MB');
+  //  $("#video_upload_form").submit();
+ }
+function sendFileToServer(formData,status)
+{
+    var uploadURL ="http://localhost:3000/videos"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        
+                    }, false);
+                }
+            return xhrobj;
+        },
+        url: uploadURL,
+        type: "GET",
+        contentType:false,
+        processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            //status.setProgress(100);
+ 
+            //$("#status1").append("File upload Done<br>");           
+        }
+    }); 
+}
+
+ 
 </script>
