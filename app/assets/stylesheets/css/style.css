@@ -1695,4 +1695,10 @@ text-align: center;}
 .type_select{ min-width:100px; float:left; border:1px solid #fff; background:#fff}
 .dk_options_inner .green_icon{background:url(/assets/green_circle.png) no-repeat;}
 
-
+.dis_cls{
+	pointer-events: none;
+   cursor: default;	
+}
+.grid_pointer{
+	cursor: pointer;
+}

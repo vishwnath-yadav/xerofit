@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-
+//= require autocomplete-rails
 //= require turbolinks
 //= require_tree .
 
@@ -33,6 +33,10 @@ $( document ).ready(function() {
     var form_create = "<div class='exr_field_col del'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
     $('.exer_rht_col').append(form_create);
     }
+  });
+  
+  $('#panda_video_enable').click(function(){
+    $('#video_library_info').submit();
   });
 
   $('.li_active').click(function() {

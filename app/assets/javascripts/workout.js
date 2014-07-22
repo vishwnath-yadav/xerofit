@@ -10,7 +10,6 @@ $( document ).ready(function() {
       lib_id.push($(this).attr('id').split("_")[1]);
     });
     
-
     var filter_cls = $(this).attr("class");
     url = '/workouts/filter';
     $(this).toggleClass('asc', 500);
@@ -19,7 +18,7 @@ $( document ).ready(function() {
      });
   });
 
-  $(".search_btn").click( function(){
+  $(".workout_search_btn").click( function(){
     var search_txt = $(".search_icon").val();
     var type = $("#filter_change").hasClass("asc") ? 'asc' : 'desc';
     url = '/workouts/search_lib';
@@ -28,7 +27,7 @@ $( document ).ready(function() {
   });
   $('.search_icon').keypress(function(e){
       if(e.which == 13){//Enter key pressed
-        $('.search_btn').click();//Trigger search button click event
+        $('.workout_search_btn').click();//Trigger search button click event
       }
   });
 

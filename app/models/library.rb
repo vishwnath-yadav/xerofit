@@ -18,7 +18,7 @@ class Library < ActiveRecord::Base
 
 	STATUS = ["Saved as Draft", "Waiting for Approval", "Approved and Active", "Needs Attention"]
 	
-	TYPE = ["Exercises", "Workouts", "Programmes", "Collections"]
+	TYPE = ["Exercises", "Workouts"]
 
 	def build_association
 		1.times{target_muscle_groups.build if self.target_muscle_groups.empty? }

@@ -9,12 +9,13 @@
     </div>
       
     <div class="search_bar_col">
-      <input type="text" placeholder="Search">
-      <input type="button" class="search_btn">
+      <!-- <input id= "search_lib_by_name" type="text" placeholder="Search"> -->
+      <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
+      <input type="button" class="search_btn" id="lib_name_for_search">
     </div>
 
     <div class="select_bar_col">
-      <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post") do |f|%>
+      <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%>
          <%= hidden_field_tag :select_option%>
          <%= hidden_field_tag :view_type%>
          
@@ -37,14 +38,15 @@
         </div>
          <%#= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
          <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
-        <span class="grid_icon grid_icon_active view_type" data-name="grid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span class="list_icon"  data-name="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="list_icon view_type grid_pointer"  data-name="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
       <%end%>
     </div>
 </div>
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
-    <div class="library_col">
+    <div class="library_col  library_view">
       <%= render "list" %>
     </div>
 			

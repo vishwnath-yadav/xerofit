@@ -1,5 +1,6 @@
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
+	autocomplete :library, :title, :full => true
 	def index
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(5)
 	end
@@ -46,6 +47,43 @@ class LibrariesController < ApplicationController
 	        format.json { render json: @library.errors, status: :unprocessable_entity }
 	      end
     	end
+	end
+
+	def get_lib_items
+		@view = params[:view_type]
+		if params[:select_option] == "sel_status"
+		  if params[:select_status].present?
+				@libraries = Library.where(:user_id => current_user, :status => params[:select_status])
+			else
+				@libraries = Library.where(:user_id => current_user)
+			end
+		elsif params[:select_option] == "sel_type"
+			if params[:select_type] == "Exercises"
+				@libraries = Library.where(:user_id => current_user)
+			elsif params[:select_type] == "Workouts"
+				@libraries = Library.where(:user_id => current_user)
+			else
+				@libraries = Library.where(:user_id => current_user)
+			end
+		else
+			@libraries = Library.where(:user_id => current_user)
+		end
+
+		respond_to do |format|
+			format.js
+		end
+	end 
+
+	def library_search_by_name
+		@view = params[:type]
+		if params[:name].present?
+			@libraries = Library.where(user_id: current_user, title: params[:name])
+		else
+			@libraries = Library.where(user_id: current_user)
+		end
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def sort_video

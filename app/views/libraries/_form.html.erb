@@ -4,7 +4,7 @@
   <%= render "upload" %>
 <% end %>
 
-<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library))) do |lib| %>
+<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'video_library_info'}) do |lib| %>
   <div class="exer_rht_col">
     <div style="color:red;">
       <% if @library.errors.full_messages.any? %>
@@ -57,13 +57,13 @@
     <%end%>
   </div>
   <!-- <div class="save_col">
-    <% if action_name == "edit" && controller_name == "libraries" %>
-      <%= lib.submit "Save changes", class: "save_btn" %>
-    <% elsif @video_id.present?%>
-      <%= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable' %>
-    <% else%>
-      <%= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: true %>
-    <% end %>
+    <%# if action_name == "edit" && controller_name == "libraries" %>
+      <%#= lib.submit "Save changes", class: "save_btn" %>
+    <%# elsif @video_id.present?%>
+      <%#= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable' %>
+    <%# else%>
+      <%#= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: true %>
+    <%# end %>
   </div> -->
 <% end %>
 
