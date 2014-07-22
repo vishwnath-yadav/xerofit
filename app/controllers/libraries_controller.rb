@@ -48,6 +48,34 @@ class LibrariesController < ApplicationController
     	end
 	end
 
+	def get_lib_items
+		Rails.logger.debug ">>>>>???????????"
+		@view = params[:view_type]
+		if params[:select_option] == "sel_status"
+		  if params[:select_status].present?
+				@libraries = Library.where(:user_id => current_user, :status => params[:select_status])
+			else
+				@libraries = Library.where(:user_id => current_user)
+			end
+		elsif params[:select_option] == "sel_type"
+			if params[:select_type] == "Exercises"
+				@libraries = Library.where(:user_id => current_user)
+			elsif params[:select_type] == "Workouts"
+				@libraries = Library.where(:user_id => current_user)
+			else
+				@libraries = Library.where(:user_id => current_user)
+			end
+		else
+			@libraries = Library.where(:user_id => current_user)
+		end
+
+		Rails.logger.debug @libraries.inspect
+
+		respond_to do |format|
+			format.js
+		end
+	end 
+
 	def sort_video
 		if params[:val] == 'Name'
 		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(5).order('title ASC')

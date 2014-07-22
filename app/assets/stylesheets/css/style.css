@@ -1619,4 +1619,10 @@ position: relative;
 top: -7px;}
 .list_icon.list_icon_active{background:url(/assets/list_icon_active.png) no-repeat center center; }
 .grid_icon.grid_icon_active{background:url(/assets/grid_icon_active.png) no-repeat center center; }
-
+.dis_cls{
+	pointer-events: none;
+   cursor: default;	
+}
+.grid_pointer{
+	cursor: pointer;
+}

@@ -34,6 +34,10 @@ $( document ).ready(function() {
     $('.exer_rht_col').append(form_create);
     }
   });
+  
+  $('#panda_video_enable').click(function(){
+    $('#video_library_info').submit();
+  });
 
   $('.li_active').click(function() {
     $('.li_active').removeClass('active');

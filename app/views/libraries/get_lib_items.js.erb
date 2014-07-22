@@ -1,0 +1,5 @@
+<% if params[:select_option] == "sel_type" && params[:select_type] == "Workouts" %>
+	$('.library_view').html("<%= escape_javascript(render(:partial => '/workouts/show_workouts')) %>");
+<% else %>
+	$('.library_view').html("<%= escape_javascript(render(:partial => @view)) %>");
+<% end %>

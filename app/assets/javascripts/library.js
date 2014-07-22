@@ -4,9 +4,10 @@ $( document ).ready(function() {
      $('#select_option').val(name);
   });
 
-  $(document).on("change", ".view_type", function(){
+  $(document).on("click", ".view_type", function(){
      var name = $(this).attr('data-name');
      $('#view_type').val(name);
+     $('#search_grid_list_form').submit();
   });
 });
 
