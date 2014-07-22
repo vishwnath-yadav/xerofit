@@ -6,8 +6,9 @@
     </div>
       
     <div class="search_bar_col">
-      <input type="text" placeholder="Search">
-      <input type="button" class="search_btn">
+      <!-- <input id= "search_lib_by_name" type="text" placeholder="Search"> -->
+      <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
+      <input type="button" class="search_btn" id="lib_name_for_search">
     </div>
 
     <div class="select_bar_col">
