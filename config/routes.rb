@@ -1,5 +1,7 @@
 
 Xerofit::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'website#home'
   
   devise_for :users, :controllers => {:registrations => "registrations"}
@@ -28,15 +30,15 @@ Xerofit::Application.routes.draw do
     end
   end
 
-  namespace :admin do
-    get '/', to: 'dashboard#index', as: :dashboard
-    resources :users do
-      member do
-        patch :enable
-        patch :disable
-      end
-    end
-  end
+  # namespace :admin do
+  #   get '/', to: 'dashboard#index', as: :dashboard
+  #   resources :users do
+  #     member do
+  #       patch :enable
+  #       patch :disable
+  #     end
+  #   end
+  # end
   
   resources :subscriptions do
     collection do
