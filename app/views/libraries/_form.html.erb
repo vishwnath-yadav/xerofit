@@ -5,7 +5,7 @@
 <% end %>
 
 <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'video_library_info'}) do |lib| %>
-  <div class="exer_rht_col">
+  <div class="exer_rht_col lib_form_rgt">
     <div style="color:red;">
       <% if @library.errors.full_messages.any? %>
       <ul>

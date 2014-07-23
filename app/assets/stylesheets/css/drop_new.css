@@ -142,7 +142,8 @@ box-shadow: 0 0 6px #ccc;
 
 .dk_container {
   display: none;
-  float: left; 
+  float: left;
+  width: 190px; 
 }
 
   .dk_container a {

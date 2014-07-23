@@ -19,6 +19,15 @@
 
 
 $( document ).ready(function() {
+
+    $(".home_toggle").click(function(){
+      $(".home_nav_toggle").slideToggle();
+    })  
+
+    $(".user_name").click(function(){
+      $(".signout_col").slideToggle();
+    }) 
+
   $(document).on("click", ".fancy_input", function() {
     $('.del').remove();
     var number_of_select = $(this).val();

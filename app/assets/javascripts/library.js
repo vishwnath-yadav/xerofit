@@ -21,13 +21,7 @@ $( document ).ready(function() {
   });
 
   $(document).on("click","#lib_name_for_search",function(){
-    var type = $('#view_type').val();
-    var status = $('#view_type').val();
-  	var view_type = $('#view_type').val();
-  	var name = $('#search_lib_by_name').val();
-  	url = '/libraries/library_search_by_name';
-  	$.get(url, {name:name,type:type}, function (data) {
-     });
+  	$('#search_grid_list_form').submit();
   });
 
   $('#search_lib_by_name').keypress(function(e){

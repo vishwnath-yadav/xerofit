@@ -9,7 +9,6 @@
     </div>
    <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%> 
     <div class="search_bar_col">
-      <!-- <input id= "search_lib_by_name" type="text" placeholder="Search"> -->
       <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
       <input type="button" class="search_btn" id="lib_name_for_search">
     </div>
@@ -37,8 +36,6 @@
               </select>
             </span>
         </div>
-         <%#= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
-         <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
         <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid" id="grid_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span class="list_icon view_type grid_pointer"  data-name="list" id="list_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </div>
@@ -62,14 +59,5 @@
 </div>
 
 <script>
-$(function (){  
-  $('.sort_select').on('change', function(){
-    var v= $(this).val();
-   $.ajax({
-    type: "GET",
-    url: "/libraries/sort_video?val=" + v
-   });
-  });
-}); 
-setTimeout(load_select_click); 
+  setTimeout(load_select_click); 
 </script>

@@ -15,7 +15,7 @@ index do
   filter :created_at, :label => "Registers"
 
   form do |f|
-    f.inputs "Dane użytkownika" do
+    f.inputs "Update User" do
       f.input :role
       f.input :fullname
       f.input :email

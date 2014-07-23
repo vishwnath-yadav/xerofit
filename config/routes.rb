@@ -1,6 +1,5 @@
 
-Xerofit::Application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
+Xerofit::Application.routes.draw do  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'website#home'
   
@@ -59,7 +58,7 @@ Xerofit::Application.routes.draw do
   end
   # get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   
-  resources :videos, only: [:create]
+  resources :videos, only: [:create,:update,:destroy]
   resources :libraries do 
     collection do
       get 'sort_video'

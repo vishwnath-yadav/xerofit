@@ -17,35 +17,48 @@
     </header>
 <%else%>
     <div class="header_wrapper">
-        <div class="head_lft">
-         <ul>
-            <%if current_user && current_user.role == 'trainer'%>
-                <li><%= link_to "Dashboard", trainer_dashboard_index_path %></li>
-                <li><%= link_to "Library",  libraries_path %></li>
-                <li><%= link_to "Workout Builder", new_workout_path %></li>
-                <li><%= link_to "Settings", settings_path %></li>
-            <% else %>
-                <li><a href="#">Discover</a></li>
-                <li><a href="#">How it Works</a></li>
-            <%end%>
-          </ul>
+        <div class="home_nav">
+            <a href="#" class="home_toggle">Home</a>
+            <div class="home_nav_toggle">
+                <ul>
+                    <li>
+                    <a href="#"><img src="/assets/home_icon.png" alt="Home" />
+                    Home</a> </li>
+                    
+                    <li>
+                    <a href="#"><img src="/assets/fitness_icon.png" alt="Home" />
+                    Fitness Library</a> </li>
+                    
+                    <li>
+                    <a href="#"><img src="/assets/workout_icon.png" alt="Home" />
+                    Workout Builder</a> </li>
+                    <div class="clear"></div>
+                    <li>
+                    <a href="#"><img src="/assets/support_icon.png" alt="Home" />
+                    Support</a> </li>
+                    
+                    <li>
+                    <a href="#"><img src="/assets/performance_icon.png" alt="Home" />
+                    Performance</a> </li>
+                    
+                    
+                </ul>
+            </div>
         </div>
-        <div class="head_cent">
-            <%=link_to home_index_path do%>
-                <img src="/assets/logo.png" alt="Xero" width="66" height="36" border="0" />
-            <%end%>
+        <div class="xerofit_logo">
+        <a href="#"><img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" /></a>
         </div>
-        <div class="head_rht">
-          <ul>
-            <%if current_user %>
-                <li><%=link_to "Logout", destroy_user_session_path, :method => :delete, :class=>"join"%></li>
-            <%else%>
-                <li><%=link_to "Login", new_user_session_path, :class=>"join"%></li>
-                <li class="or">or</li>
-                <li><%=link_to "Join",  combo_signup_path, :class=>"join" %></li>
-            <%end%>
-            </ul>
+        <div class="user_detail">
+            <span class="notification_img"><img src="/assets/notification_icon.png" alt="notification" /></span>
+            <span class="user_img"><img src="/assets/user_img.png" alt="user" /></span>
+            <span class="user_name">Morgan Flaharty</span>
+            <div class="signout_col">
+                <ul>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Signout</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
+  </div>
     <%=yield%>
 <%end%>

@@ -1,8 +1,25 @@
-<div class="rght_btns">
+<div class="create_heading">
+    <div class="lib_image_box"><img src="/assets/video_img.png" /></div>
+    <div class="lib_text_box">
+    <h4>Title</h4>
+    <p><img src="/assets/red_circle.png" />Status<p>
+    </div>
+</div>
+
+<div class="libray_detail wht_bg">
+  <div class="lib_img_coll">
+    <div class="lib_image_box"><img src="/assets/video_img.png" /></div>
+    <div class="lib_text_box">
+    <h4>Title</h4>
+    
+    </div>
+
+    <div class="rght_btns">
   <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="save">Save</a>
   <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">submit with status</a>
-</div>
-<div class="libray_detail">
+  </div>
+  </div>
+  
 <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
   <div class="exer_rht_col">
     <div style="color:red;">
@@ -84,6 +101,10 @@
 	<p>Uppload test dummy test </p>
 	<a href="#" class="remove_video_btn">Replace this video</a>
 </div>
+</div>
+
+<div class="create_heading pad20">
+  
 </div>
 
 
