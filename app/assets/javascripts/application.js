@@ -20,6 +20,14 @@
 
 $( document ).ready(function() {
 
+    $(window).scroll(function(){
+      var sticky = $('.lib_img_coll'),
+      scroll = $(window).scrollTop();
+
+      if (scroll >= 100) sticky.addClass('fixed');
+      else sticky.removeClass('fixed');
+    });
+
     $(".home_toggle").click(function(){
       $(".home_nav_toggle").slideToggle();
     })  
