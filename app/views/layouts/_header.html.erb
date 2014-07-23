@@ -18,42 +18,42 @@
 <%else%>
     <div class="header_wrapper">
         <div class="home_nav">
-            <a href="#" class="home_toggle">Home</a>
+            <a href="javascript:void(0)" class="home_toggle"><%= change_menu_title(controller_name)%></a>
             <div class="home_nav_toggle">
                 <ul>
                     <li>
-                    <a href="#"><img src="/assets/home_icon.png" alt="Home" />
+                    <a href="/"><img src="/assets/home_icon.png" alt="Home" />
                     Home</a> </li>
                     
                     <li>
-                    <a href="#"><img src="/assets/fitness_icon.png" alt="Home" />
+                    <a href="/libraries"><img src="/assets/fitness_icon.png" alt="Home" />
                     Fitness Library</a> </li>
                     
                     <li>
-                    <a href="#"><img src="/assets/workout_icon.png" alt="Home" />
+                    <a href="/workouts/new"><img src="/assets/workout_icon.png" alt="Home" />
                     Workout Builder</a> </li>
                     <div class="clear"></div>
                     <li>
-                    <a href="#"><img src="/assets/support_icon.png" alt="Home" />
+                    <a href="javascript:void(0)"><img src="/assets/support_icon.png" alt="Home" />
                     Support</a> </li>
                     
                     <li>
-                    <a href="#"><img src="/assets/performance_icon.png" alt="Home" />
+                    <a href="javascript:void(0)"><img src="/assets/performance_icon.png" alt="Home" />
                     Performance</a> </li>
                 </ul>
             </div>
         </div>
         <div class="xerofit_logo">
-        <a href="#"><img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" /></a>
+        <a href="/"><img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" /></a>
         </div>
         <div class="user_detail">
             <span class="notification_img"><img src="/assets/notification_icon.png" alt="notification" /></span>
             <span class="user_img"><img src="/assets/user_img.png" alt="user" /></span>
-            <span class="user_name">Morgan Flaharty</span>
+            <span class="user_name"><%= current_user.fullname %></span>
             <div class="signout_col">
                 <ul>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Signout</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                    <li><%=link_to "Signout", destroy_user_session_path, :method => :delete %></li>
                 </ul>
             </div>
         </div>

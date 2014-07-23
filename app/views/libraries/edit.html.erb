@@ -1,22 +1,22 @@
 <div class="create_heading">
-    <div class="lib_image_box"><img src="/assets/video_img.png" /></div>
+    <div class="lib_image_box"><img src="<%= @library.library_video ? @library.library_video.image : '/assets/video_img.png' %>" /></div>
     <div class="lib_text_box">
-    <h4>Title</h4>
-    <p><img src="/assets/red_circle.png" />Status<p>
+    <h4><%= @library.title.titleize%></h4>
+    <p><img src="<%= status_icon(@library.status)%>" /><%= @library.status %><p>
     </div>
 </div>
 
 <div class="libray_detail wht_bg">
   <div class="lib_img_coll">
-    <div class="lib_image_box"><img src="/assets/video_img.png" /></div>
+    <div class="lib_image_box"><img src="<%= @library.library_video ? @library.library_video.image : '/assets/video_img.png' %>" /></div>
     <div class="lib_text_box">
-    <h4>Title</h4>
+    <h4><%= @library.title.titleize%></h4>
     
     </div>
 
     <div class="rght_btns">
   <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="save">Save</a>
-  <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">submit with status</a>
+  <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>
   </div>
   </div>
   
