@@ -7,7 +7,7 @@
       <a href="/libraries/new">Add New</a> 
     </div>
     </div>
-      
+   <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%> 
     <div class="search_bar_col">
       <!-- <input id= "search_lib_by_name" type="text" placeholder="Search"> -->
       <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
@@ -15,7 +15,6 @@
     </div>
 
     <div class="select_bar_col">
-      <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%>
          <%= hidden_field_tag :type%>
          <%= hidden_field_tag :status%>
          <%= hidden_field_tag :view_type, "grid"%>
@@ -42,9 +41,8 @@
          <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
         <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid" id="grid_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span class="list_icon view_type grid_pointer"  data-name="list" id="list_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
-      <%end%>
-    </div>
+      </div>
+    <%end%>
 </div>
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
