@@ -24,83 +24,77 @@
   <div class="exer_rht_col">
     <div style="color:red;">
       <% if @library.errors.full_messages.any? %>
-      <ul>
-      <% @library.errors.full_messages.each do |error_message| %>
-        <li><%= error_message %></li>
-      <% end %>
-      </ul>
-    <% end %>
-    </div>
-    <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
-    <%= hidden_field_tag :image, "", class: "image_url" %>
-    <%= hidden_field_tag :status_change, "", class: "status" %>
-    <div class="lib_des_lft">
-    <div class="exr_field_col">
-      <label>Title</label>
-      <%= lib.text_field :title %>
-    </div>
+        <ul>
+          <% @library.errors.full_messages.each do |error_message| %>
+            <li><%= error_message %></li>
+          <% end %>
+        </ul>
+      <%end%>
+      <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
+      <%= hidden_field_tag :image, "", class: "image_url" %>
+      <%= hidden_field_tag :status_change, "", class: "status" %>
+      <div class="lib_des_lft">
+      <div class="exr_field_col">
+        <label>Title</label>
+        <%= lib.text_field :title %>
+      </div>
         
-    
-      
-    <div class="exr_field_col number_mus">
-    	<label>Number of Target Muscle Groups</label>
-      <input name="" type="button" class="fancy_input active" value="1"/>
-      <input name="" type="button" class="fancy_input" value="2"/>
-      <input name="" type="button" class="fancy_input" value="3"/>
-      <input name="" type="button" class="fancy_input" value="4"/>
-      <input name="" type="button" class="fancy_input" value="5"/>
-    </div>
-    <% i = 0 %>
-    <%= lib.fields_for :target_muscle_groups do |builder| %>
-      <% abc = TargetMuscleGroup::MUSCLES_TYPE[i] %>
-      <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder} %>
-      <%i += 1%>
-    <%end%>
-</div>
-<div class="lib_des_rht">
-    <div class="exr_field_col">
-      <label>Directions</label>
-      <%= lib.text_area :directions %>
-    </div>
-      
-    <div class="exr_field_col cate_wd48">
-      <label>Category</label>
-      <div class="fancy_select">
-        <%= lib.select :category, Library::CATEGORIES, prompt: "Select Category" %>
+      <div class="exr_field_col number_mus">
+      	<label>Number of Target Muscle Groups</label>
+        <input name="" type="button" class="fancy_input active" value="1"/>
+        <input name="" type="button" class="fancy_input" value="2"/>
+        <input name="" type="button" class="fancy_input" value="3"/>
+        <input name="" type="button" class="fancy_input" value="4"/>
+        <input name="" type="button" class="fancy_input" value="5"/>
       </div>
-    </div>
-
-    <div class="exr_field_col level_wd48">
-    	<label>Level of Difficulty</label>
-      <div class="fancy_select">
-        <%= lib.select :difficulty, Library::DIFFICULTIES, prompt: "Select Difficulty" %>
-      </div>
-    </div>
-</div>
+      <% i = 0 %>
+      <%= lib.fields_for :target_muscle_groups do |builder| %>
+        <% abc = TargetMuscleGroup::MUSCLES_TYPE[i] %>
+        <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder} %>
+        <%i += 1%>
+      <%end%>
   </div>
-  <!-- <div class="save_col">
-    <%# if action_name == "edit" && controller_name == "libraries" %>
-      <%#= lib.submit "Save changes", class: "save_btn" %>
-    <%# elsif @video_id.present?%>
-      <%#= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable' %>
-    <%# else%>
-      <%#= lib.submit "Save changes", class: "save_btn", id: 'panda_video_enable', disabled: true %>
-    <%# end %>
-  </div> -->
-<% end %>
+  <div class="lib_des_rht">
+      <div class="exr_field_col">
+        <label>Directions</label>
+        <%= lib.text_area :directions %>
+      </div>
+        
+      <div class="exr_field_col cate_wd48">
+        <label>Category</label>
+        <div class="fancy_select">
+          <%= lib.select :category, Library::CATEGORIES, prompt: "Select Category" %>
+        </div>
+      </div>
 
-<%= render "upload_edit" %>
-<div class="lib_edit_botom">
-	<h5>Replace Video</h5>
-	<p>Uppload test dummy test </p>
-	<a href="#" class="replace_video_btn">Replace this video</a>
-</div>
-
-<div class="lib_edit_botom">
-	<h5>Replace Video</h5>
-	<p>Uppload test dummy test </p>
-	<a href="#" class="remove_video_btn">Replace this video</a>
-</div>
+      <div class="exr_field_col level_wd48">
+      	<label>Level of Difficulty</label>
+        <div class="fancy_select">
+          <%= lib.select :difficulty, Library::DIFFICULTIES, prompt: "Select Difficulty" %>
+        </div>
+      </div>
+  </div>
+    </div>
+    
+  <% end %>
+  
+  <% if @library.library_video.present? %>
+    <span class="upload_edit"><%= render "upload_edit" %></span>
+    <span class="replace_video"><%= render "upload" %></span>
+    <div class="lib_edit_botom">
+      <h5>Replace Video</h5>
+      <p>Upload New or Replace video </p>
+      <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn"%>
+    </div>
+    <div class="lib_edit_botom">
+      <h5>Remove Video</h5>
+      <p>Remove Uploaded Video</p>
+      <%=link_to "Remove this video", video_path(@library.library_video.id), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+    </div>
+  <% else %>
+    <%= render "upload" %>
+    
+  <% end %>
 </div>
 
 <div class="create_heading pad20">

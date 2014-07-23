@@ -117,6 +117,10 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def workout_details
+		@workouts = Workout.first
+	end
+
 	private
 	  def workout_params
 	    params.require(:workout).permit!

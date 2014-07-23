@@ -1,5 +1,6 @@
+Xerofit::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
-Xerofit::Application.routes.draw do  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'website#home'
   
@@ -78,6 +79,7 @@ Xerofit::Application.routes.draw do  devise_for :admin_users, ActiveAdmin::Devi
       get 'filter'
       get 'search_lib'
       get 'autocomplete_library_title'
+      get 'workout_details'
     end
   end
   

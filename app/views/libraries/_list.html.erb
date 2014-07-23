@@ -8,12 +8,21 @@
   <% @libraries.each_with_index do |library, index| %>
     <li>
       <span class="thumb_text">
-        <img src="<%= library.library_video.image %>" class="list_view_img" />
-        <%= library.title %>
+        <% if library.library_video.image.present? %> 
+          <a href="<%= edit_library_path(library) %>">
+            <img src="<%= library.library_video.image %>" class="list_view_img" />
+            <%= library.title %>
+          </a>
+        <% else %>
+          <a href="<%= edit_library_path(library) %>">
+            <img src="/assets/ex_2.jpg" class="list_view_img" />
+            <%= library.title %>
+          </a>
+        <% end %>
       </span>
        <span>Single Move</span>
         <span>
-          <img src="/assets/green_circle.png" class="list_view_circle" /> 
+          <img src="<%= status_icon(library.status)%>" class="list_view_circle" /> 
           <%= library.status %>
         </span>
         <span><%= library.updated_at.strftime("%B %d,%Y") %></span>

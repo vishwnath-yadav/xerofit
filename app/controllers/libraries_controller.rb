@@ -2,7 +2,7 @@ class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
 	def index
-		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(5)
+		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
 	end
 	
 	def new
@@ -13,7 +13,9 @@ class LibrariesController < ApplicationController
 	
 	def edit
 		@library = Library.find(params[:id])
-		@size = @library.library_video.panda_mp4.screenshots
+		if @library.library_video.present?
+			@size = @library.library_video.panda_mp4.screenshots
+		end
 	end
 	
 	def create
@@ -22,8 +24,10 @@ class LibrariesController < ApplicationController
 	  @video_id = params[:video]
 	  if @library.save
 	  	video = LibraryVideo.find(@video_id)
+	  	# video.image = video.panda_mp4.screenshots[0]
 	  	video.library = @library
 	  	video.save
+	  	Rails.logger.debug video.inspect
 	    redirect_to libraries_path, :notice => "Thank you for uploading video!"
 	  else
 	  	@libvideo = LibraryVideo.new
@@ -40,7 +44,6 @@ class LibrariesController < ApplicationController
 		@video = @library.library_video.update_attributes(:image => params[:image])
 		if params[:status_change] == Library::STATUS[1]
 			respond_to do |format|
-
 		      if @library.update_attributes(library_params)
 		      	@library.status = Library::STATUS[1] 
 		      	@library.save
@@ -92,9 +95,9 @@ class LibrariesController < ApplicationController
 
 	def sort_video
 		if params[:val] == 'Name'
-		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(5).order('title ASC')
+		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(16).order('title ASC')
 		elsif params[:val] == 'Date'
-		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(5).order('created_at DESC')
+		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
 		end
 		respond_to do |format|
 	        format.js
