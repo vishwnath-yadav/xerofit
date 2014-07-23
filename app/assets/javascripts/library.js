@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+
+  $(document).on("click", ".replace_video_btn", function() {
+     $('.upload_edit').css('display','none');
+     $('.replace_video').css('display','block');
+    $('.lib_edit_botom').css('display','none');
+  });
  
   $('.type_select ul li').click(function(){
     $('#select_option').val("type");

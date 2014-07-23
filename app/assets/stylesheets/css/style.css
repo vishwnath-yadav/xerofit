@@ -1021,8 +1021,9 @@ margin-right: 31px;
 .library_col ul li{
 	list-style:none;
 	float:left;
-	text-align:center;
+	text-align:left;
 	width:21.6%;
+	margin-bottom: 12px;
 	margin-right:34px;
 }
 .library_col ul li:last-child{
@@ -1042,11 +1043,13 @@ margin-right: 31px;
 	margin-bottom:5px;
 }
 .library_col ul li p{
-	font-size:10px;
-	color:#cdcecd;
-	font-family: 'gotham-bookgotham-book';
-	margin:0px;
-	font-style:normal;
+	font-size: 10px;
+color: #cdcecd;
+font-family: 'gotham-bookgotham-book';
+margin: 0px;
+font-style: normal;
+float: left;
+width: 100%;
 }
 .sort_col{
 	width:15%;
@@ -1628,9 +1631,10 @@ margin-right: 11PX;
 }
 
 .library_col ul li img.list_view_circle{width: auto !important;
-height: auto !important; position: relative;
-top: 4px;
-margin-right: 11PX;}
+height: auto !important;
+position: relative;
+top: 1px;
+margin-right: 6px;}
 .plus_icon{width:20%; float: left }
 .search_bar_col{width: auto;
 float: left;
@@ -1703,4 +1707,16 @@ text-align: center;}
 }
 .grid_pointer{
 	cursor: pointer;
+}
+.replace_video{
+	display: none;
+}
+
+.lib_header_image{
+	width: 170px !important;
+	height: auto !important;
+	margin-left: 10PX;
+	padding-left: 40px;
+	padding-top: 16px;
+	padding-bottom: 19px;
 }

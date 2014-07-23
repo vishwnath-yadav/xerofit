@@ -59,7 +59,7 @@ Xerofit::Application.routes.draw do
   end
   # get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   
-  resources :videos, only: [:create]
+  resources :videos, only: [:create,:update,:destroy]
   resources :libraries do 
     collection do
       get 'sort_video'
@@ -79,6 +79,7 @@ Xerofit::Application.routes.draw do
       get 'filter'
       get 'search_lib'
       get 'autocomplete_library_title'
+      get 'workout_details'
     end
   end
   
