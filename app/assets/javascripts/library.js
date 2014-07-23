@@ -6,6 +6,14 @@ $( document ).ready(function() {
 
   $(document).on("click", ".view_type", function(){
      var name = $(this).attr('data-name');
+     if(name == "grid"){
+      $('#grid_view').attr('class','grid_icon grid_icon_active grid_pointer view_type');
+      $('#list_view').attr('class','list_icon grid_pointer view_type')
+     }
+     else{
+      $('#grid_view').attr('class','grid_icon grid_pointer view_type');
+      $('#list_view').attr('class','list_icon list_icon_active grid_pointer view_type');
+     }
      $('#view_type').val(name);
      $('#search_grid_list_form').submit();
   });

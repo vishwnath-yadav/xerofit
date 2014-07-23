@@ -38,8 +38,8 @@
         </div>
          <%#= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
          <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
-        <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span class="list_icon view_type grid_pointer"  data-name="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid" id="grid_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="list_icon view_type grid_pointer"  data-name="list" id="list_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
       <%end%>
     </div>

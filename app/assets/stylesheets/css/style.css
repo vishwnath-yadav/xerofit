@@ -222,6 +222,7 @@ list-style: none;
 position: relative;
 display: inline;
 margin-bottom: 17px;}
+.select_thumb{display: block !important;}
 .thumbnail_col ul li .video_title{display: none;
 position: absolute;
 top: 0;
@@ -232,6 +233,7 @@ text-align: center;
 color: #fff;}
 .thumbnail_col ul li .video_title.div_blck{display: block;}
 .thumbnail_col ul li:hover > .video_title{display: block;}
+
 P.load_more{float: left;
 width: 100%; text-align: right;}
 .big_video_col h5 {
@@ -1373,10 +1375,10 @@ background: #fff;
 .browse_btn:hover{border:1px solid #000}
 
 
+.image_hide{ display:none !important;}
 /*.progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }  
 .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }  
 .percent { position:absolute; display:inline-block; top:3px; left:48%; }
-.image_hide{ display:none !important;}
 .li_class{ margin-bottom: 50px; cursor:pointer; }
 .li_change{ border:2px solid #333;}
 .ui-progressbar {
