@@ -16,25 +16,27 @@
 
     <div class="select_bar_col">
       <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%>
-         <%= hidden_field_tag :select_option%>
-         <%= hidden_field_tag :view_type%>
-         
+         <%= hidden_field_tag :type%>
+         <%= hidden_field_tag :status%>
+         <%= hidden_field_tag :view_type, "grid"%>
          <div class="custom_select_wrap">
-          <span class="custom_select">
+          <span class="custom_select type_select">
             <select class="default">
-              <option>Fun & Bizarre</option>
-              <option>Online Marketing</option>
-              <option>Graphics & Design</option>
+              <option>All Type</option>
+              <option>Excercises</option>
+              <option>Workouts</option>
             </select>
           </span>
         </div>
         <div class="custom_select_wrap">
             <span class="custom_select status_select">
               <select class="default">
-                <option class="green_icon">Fun & Bizarre</option>
-                <option>Online Marketing</option>
-                <option>Graphics & Design</option>
+                <option class="green_icon">All Status</option>
+                <%=Library::STATUS.each do |st|%>
+                  <option><%=st%></option>
+                <%end%>
               </select>
+            </span>
         </div>
          <%#= select_tag "select_type", options_for_select(Library::STATUS), class: "sel_opt", prompt: "All Type", "data-name"=> "sel_type" %>
          <%#= select_tag "select_status", options_for_select(Library::TYPE ),class: "sel_opt", prompt: "All Status", "data-name"=> "sel_status" %>
@@ -47,7 +49,7 @@
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
     <div class="library_col  library_view">
-      <%= render "list" %>
+      <%= render "grid" %>
     </div>
 			
       <%#= will_paginate @libraries, :remote=>true, :next_label => 'Next', :previous_label => 'Previous', :inner_window=>0, :outer_windows=>0 %>
@@ -71,4 +73,5 @@ $(function (){
    });
   });
 }); 
+setTimeout(load_select_click); 
 </script>

@@ -1,7 +1,9 @@
 $( document ).ready(function() {
-  $(document).on("change", ".sel_opt", function(){
-     var name = $(this).attr('data-name');
-     $('#select_option').val(name);
+ 
+  $('.type_select ul li').click(function(){
+    $('#select_option').val("type");
+    $('#select_option_val').val($(this).text());
+    $('#search_grid_list_form').submit();
   });
 
   $(document).on("click", ".view_type", function(){
@@ -29,6 +31,18 @@ $( document ).ready(function() {
       $('.default').dropkick();
     });
 });
+load_select_click = function() {
+  $('.status_select ul li').click(function(){
+    $('#status').val($(this).text());
+    $('#search_grid_list_form').submit();
+  });
+
+  $('.type_select ul li').click(function(){
+    $('#type').val($(this).text());
+    $('#search_grid_list_form').submit();
+  });
+}
+
 
 
 

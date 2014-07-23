@@ -51,24 +51,12 @@ class LibrariesController < ApplicationController
 
 	def get_lib_items
 		@view = params[:view_type]
-		if params[:select_option] == "sel_status"
-		  if params[:select_status].present?
-				@libraries = Library.where(:user_id => current_user, :status => params[:select_status])
-			else
-				@libraries = Library.where(:user_id => current_user)
-			end
-		elsif params[:select_option] == "sel_type"
-			if params[:select_type] == "Exercises"
-				@libraries = Library.where(:user_id => current_user)
-			elsif params[:select_type] == "Workouts"
-				@libraries = Library.where(:user_id => current_user)
-			else
-				@libraries = Library.where(:user_id => current_user)
-			end
-		else
-			@libraries = Library.where(:user_id => current_user)
+		status = params[:status]
+		if params[:type] == "Excercises"
+			@libraries = Library.where(:user_id => current_user, :status => params[:status])
+		elsif params[:type] == "Workouts"
+			@workouts = Workout.where(:user_id => current_user)
 		end
-
 		respond_to do |format|
 			format.js
 		end
