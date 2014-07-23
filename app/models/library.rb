@@ -20,6 +20,10 @@ class Library < ActiveRecord::Base
 	
 	TYPE = ["Exercises", "Workouts"]
 
+	scope :by_status, lambda { |status| where(status: status) unless status == "All Status" || status.blank? }
+	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
+  
+
 	def build_association
 		1.times{target_muscle_groups.build if self.target_muscle_groups.empty? }
 	end

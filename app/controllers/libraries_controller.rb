@@ -66,10 +66,11 @@ class LibrariesController < ApplicationController
 	def get_lib_items
 		@view = params[:view_type]
 		status = params[:status]
-		if params[:type] == "Excercises"
-			@libraries = Library.where(:user_id => current_user, :status => params[:status])
-		elsif params[:type] == "Workouts"
+		name = params[:title]
+		if params[:type] == "Workouts"
 			@workouts = Workout.where(:user_id => current_user)
+		else
+			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		end
 		respond_to do |format|
 			format.js

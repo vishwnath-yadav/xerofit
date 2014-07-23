@@ -21,9 +21,10 @@ $( document ).ready(function() {
   });
 
   $(document).on("click","#lib_name_for_search",function(){
-  	var type = $('#view_type').val();
+    var type = $('#view_type').val();
+    var status = $('#view_type').val();
+  	var view_type = $('#view_type').val();
   	var name = $('#search_lib_by_name').val();
-
   	url = '/libraries/library_search_by_name';
   	$.get(url, {name:name,type:type}, function (data) {
      });
@@ -31,7 +32,7 @@ $( document ).ready(function() {
 
   $('#search_lib_by_name').keypress(function(e){
       if(e.which == 13){//Enter key pressed
-        $('#lib_name_for_search').click();//Trigger search button click event
+        $('#search_grid_list_form').submit();
       }
   });
 
