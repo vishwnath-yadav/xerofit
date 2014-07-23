@@ -40,7 +40,6 @@ class LibrariesController < ApplicationController
 		@video = @library.library_video.update_attributes(:image => params[:image])
 		if params[:status_change] == Library::STATUS[1]
 			respond_to do |format|
-
 		      if @library.update_attributes(library_params)
 		      	@library.status = Library::STATUS[1] 
 		      	@library.save
