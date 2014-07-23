@@ -4,19 +4,24 @@
   <% @size.each_with_index do |library, index| %>
     <% if(temp == 0) %>
       <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %>
-        <div class="video_title">sddsd</div>
+        <div class="video_title">Selected</div>
       </li>
       <% temp = temp+1 %>
     <% elsif(temp<2) %>
-      <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %></li>
+      <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %>
+        <div class="video_title">Selected</div>
+      </li>
       <% temp = temp+1 %>
     <% else %>
-      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb") %></li>
+      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb") %>
+        <div class="video_title">Selected</div>
+      </li>
       <% temp = 0 %>
     <% end %>
   <% end %>
   </ul>
 <% end %>
+<p class="load_more"><a href='javascript:void(0)'>Load more thumnails...</a></p>
   <!-- <%# temp = 0 %>
   <%# j = @size %>
   <ul>
@@ -42,11 +47,14 @@
 <script>
 $(document).ready(function(){
   $('.li_class').click(function(){
-    $('.li_change').removeClass('li_change');
-    $(this).addClass('li_change');
+    // $('.li_change').removeClass('li_change');
+    // $(this).addClass('li_change');
     var s = $(this).find('img').prop('src');
     $('.image_url').val(s);
+    $('.select_thumb').removeClass('select_thumb');
+    $(this).find('.video_title').addClass('select_thumb');
   });
+
   $('.load_more').click(function(){
     $('.image_hide').each(function( index ) {
       if(index<3)

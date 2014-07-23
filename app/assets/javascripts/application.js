@@ -34,6 +34,13 @@ $( document ).ready(function() {
     $('.exer_rht_col').append(form_create);
     }
   });
+
+
+  $('.edit_lib').click(function(){
+    var status = $(this).attr('lib-status');
+    $('.status').val(status);
+    $('#edit_video_info').submit();
+  });
   
   $('#panda_video_enable').click(function(){
     $('#video_library_info').submit();
