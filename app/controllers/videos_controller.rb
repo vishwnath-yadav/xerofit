@@ -3,33 +3,22 @@ class VideosController < ApplicationController
 	
 
 	def create
-		@video = LibraryVideo.new(video_params)
 		if !params[:video_old_id].present?
-		  	respond_to do |format|
-		      if @video.save
-	      		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
-	      		@video.update_attributes(panda_video_id: p_video.id)
-	      		# @video.update_attributes(image: @video.panda_mp4.screenshots[0])
-	      		if params[:lib_id].present?
-	      			@video.update_attributes(library_id: params[:lib_id])
-	      		end
-		        format.js
-		      end
-	    	end
+			@video = LibraryVideo.new(video_params)
 	    else
 	    	@video = LibraryVideo.find(params[:video_old_id])
-	    	respond_to do |format|
-		      if @video.save
-	      		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
-	      		@video.update_attributes(panda_video_id: p_video.id)
-	      		Rails.logger.debug @video.inspect
-	      		if library.present?
-	      			@video.update_attributes(library_id: library.id)
-	      		end
-		        format.js
-    		   end
-    		end
 	    end
+	    respond_to do |format|
+	      if @video.save
+      		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
+      		@video.panda_video_id = p_video.id
+      		if params[:lib_id].present?
+      			@video.library_id = params[:lib_id]
+      		end
+      		@video.save
+	      end
+	        format.js
+    	end
 	end
 
 	def destroy

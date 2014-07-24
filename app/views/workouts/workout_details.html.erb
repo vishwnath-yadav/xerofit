@@ -1,12 +1,17 @@
 <div class="create_heading">
-    <div class="lib_image_box"><img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+  <div class="prev_lib_col">
+    <a href="#">&lt; Previous Library</a>
+    <a href="#" class="fr">Next Library &gt;</a>
+  </div>
+    <div class="lib_image_box">
+      <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
       <h4><%= @workouts.title.titleize%></h4>
       <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
     </div>
 </div>
-
+<div class="middle_wrapper">
 <div class="libray_detail wht_bg">
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
@@ -62,7 +67,9 @@
       <div class="big_video_col">
          <h5>Cover Image</h5>
          <p>For best results, your image should be square and atleast 500px by 500px</p>
+         <div class="upload_gry_box">
             <%= lib.file_field :pic %>
+          </div>
       </div>
   <% end %>
 </div>
@@ -70,6 +77,7 @@
   <h5>Remove Workout</h5>
   <p>Permanently remove the workout from xerofit. Proceed with caution, this action cann't be undone!</p>
   <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+</div>
 </div>
 
   

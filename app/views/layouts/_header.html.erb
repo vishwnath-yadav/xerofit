@@ -44,10 +44,14 @@
             </div>
         </div>
         <div class="xerofit_logo">
-        <a href="/"><img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" /></a>
+        <a href="/">
+            <img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" />
+        </a>
         </div>
         <div class="user_detail">
-            <span class="notification_img"><img src="/assets/notification_icon.png" alt="notification" /></span>
+            <span class="notification_img">
+                <img src="/assets/notification_icon.png" alt="notification" />
+            </span>
             <span class="user_img">
                 <%if current_user.pic.present?%>
                     <%= image_tag current_user.pic.url(:medium) %>
