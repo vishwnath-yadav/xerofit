@@ -1928,3 +1928,21 @@ margin-bottom: 20px;
 .pd30{
 	padding: 0 30px;
 }
+
+.text_para{
+	color: black;
+	font-style: normal;
+	text-align: center;
+}
+.text_paral{
+	color: black;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.lib_move_title{
+	font-weight: bold;
+	font-size: 22px;
+	padding-bottom: 25px;
+	padding-top: 14px;
+}
