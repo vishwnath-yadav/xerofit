@@ -1,5 +1,7 @@
 <% if params[:type] == "Workouts" %>
 	$('.library_view').html('<%= escape_javascript(render(:partial => "/workouts/#{@view}")) %>');
-<% else %>
+<% end %>
+
+<% if params[:type] == "Excercises" %>
 	$('.library_view').html("<%= escape_javascript(render(:partial => @view)) %>");
 <% end %>

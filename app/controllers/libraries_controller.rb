@@ -71,9 +71,13 @@ class LibrariesController < ApplicationController
 		@view = params[:view_type]
 		status = params[:status]
 		name = params[:title]
+		@list = []
 		if params[:type] == "Workouts"
 			@workouts = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
+		elsif params[:type] == "Excercises"
+			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		else
+			@workouts = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
 			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		end
 		respond_to do |format|
