@@ -12,7 +12,6 @@ class Workout < ActiveRecord::Base
 	validates :name, presence: true
 
 	STATES = [:initiated, :completed]
-	CATEGORIES = ["Agility", "BodybuildingBodyweight","Cardio","Core","Dance","Dumbbell","Endurance","Exercise Ball","Kettlebell","Martial Arts","Medicine Ball","Office","Pilates","Playground","Postnatal","Prenatal","Pull Ups","Recovery","Resistance Bands","Stairs","Stretching","TRX","Warm Up","Yoga"]
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Status" || status.blank? }
 	scope :by_name, lambda { |name| where('name ilike ?', name+"%") unless name.blank? }

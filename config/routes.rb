@@ -79,7 +79,9 @@ Xerofit::Application.routes.draw do
       get 'filter'
       get 'search_lib'
       get 'autocomplete_library_title'
-      get 'workout_details'
+    end
+    member do
+        get 'workout_details'
     end
   end
   

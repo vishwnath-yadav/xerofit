@@ -25,11 +25,23 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
+		if params[:status_change] == Library::STATUS[1]
+			@workout.status = Library::STATUS[1]	
+		end
 		@workout.update_attributes(workout_params)
 		respond_to do |format|
+			format.html { redirect_to :back}
 			format.js {render 'create'}
 		end
 	end
+
+	def destroy
+		@workout = Workout.find(params[:id])
+		@workout.state = Workout::STATES[0]
+		@workout.save
+		redirect_to libraries_path
+	end
+
 
 	def index
 		@workouts = Workout.where(:state=>"completed")
@@ -45,7 +57,6 @@ class WorkoutsController < ApplicationController
 		@block.save
 		@display = params[:display]
 		respond_to do |format|
-			format.html { redirect_to :back}
 			format.js 
 		end
 	end
@@ -119,7 +130,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def workout_details
-		@workouts = Workout.first
+		@workouts = Workout.find(params[:id])
 	end
 
 	private

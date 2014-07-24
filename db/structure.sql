@@ -571,15 +571,12 @@ CREATE TABLE workouts (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-<<<<<<< HEAD
-    status character varying(255)
-=======
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
-    category character varying(255)
->>>>>>> 1ccad13ebf4b48ca0cdc0da7c9e797fdad784655
+    category character varying(255),
+    status character varying(255)
 );
 
 
@@ -953,4 +950,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140717095831');
 
 INSERT INTO schema_migrations (version) VALUES ('20140721095936');
 
+INSERT INTO schema_migrations (version) VALUES ('20140724052810');
+
 INSERT INTO schema_migrations (version) VALUES ('20140724053107');
+
+INSERT INTO schema_migrations (version) VALUES ('20140724053834');

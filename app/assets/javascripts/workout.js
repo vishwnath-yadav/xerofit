@@ -138,8 +138,8 @@ $( document ).ready(function() {
   });
 
   $('.edit_work').click(function(){
-    // var status = $(this).attr('lib-status');
-    // $('.status').val(status);
+    var status = $(this).attr('lib-status');
+    $('.workout_status').val(status);
     $('#edit_workout_info').submit();
   });
 
