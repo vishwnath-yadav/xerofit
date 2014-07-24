@@ -1764,7 +1764,7 @@ top: -1px;}
 .rght_btns a.cancel_btn.rht_active{border: 1px solid #24c4d4; color: #24c4d4}
 .create_heading.pad20{padding: 20px 10px;}
 ul.exer_list_view{width: 100%; float:left }
-ul.exer_list_view li{ width: 100%; text-align: left; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; float: left;  list-style: none; display: inline;} 	
+ul.exer_list_view li{min-height: 0px; width: 100%; text-align: left; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; float: left;  list-style: none; display: inline;} 	
 ul.exer_list_view li span{float: left; width: 20%;}
 ul.exer_list_view li span.thumb_text{width: 40%}
 .library_col ul li img.list_view_img {

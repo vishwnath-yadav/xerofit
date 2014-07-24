@@ -19,7 +19,7 @@
                 <%= ls.title %>
               </a>
           <% else %>
-            <a hrefls="<%= edit_library_path(ls) %>">
+            <a href="<%= edit_library_path(ls) %>">
               <% if ls.library_video.image.present? %> 
                 <img src="<%= ls.library_video.image %>" class="list_view_img" />
               <% else %>
