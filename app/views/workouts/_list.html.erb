@@ -8,15 +8,15 @@
   <% @workouts.each_with_index do |workout, index| %>
     <li>
       <span class="thumb_text">
-        <% if false %> 
-          <a href="#">
-            <img src="<%#= workout.pic.url() %>" class="list_view_img" />
-            <%= workout.name %>
+        <% if workout.pic.present? %> 
+          <a href="<%= workout_details_workout_path(workout) %>">
+            <img src="<%= workout.pic.url(:thumb) %>" class="list_view_img" />
+            <%= workout.title %>
           </a>
         <% else %>
-          <a href="#">
+          <a href="<%= workout_details_workout_path(workout) %>">
             <img src="/assets/ex_2.jpg" class="list_view_img" />
-            <%= workout.name %>
+            <%= workout.title %>
           </a>
         <% end %>
       </span>

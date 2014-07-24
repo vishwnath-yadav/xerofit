@@ -107,6 +107,12 @@ class LibrariesController < ApplicationController
 	def see_more_thumbnail
 	end
 
+	def destroy
+		@library = Library.find(params[:id])
+		@library.destroy
+		redirect_to libraries_path
+	end
+
 	private
 	  def library_params
 	    params.require(:library).permit!

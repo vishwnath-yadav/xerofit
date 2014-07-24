@@ -92,7 +92,7 @@
     <div class="lib_edit_botom">
       <h5>Remove Video</h5>
       <p>Remove Uploaded Video</p>
-      <%=link_to "Remove this video", video_path(@library.library_video.id), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+      <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
     </div>
   <% else %>
     <%= render "upload" %>

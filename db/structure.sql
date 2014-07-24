@@ -567,7 +567,7 @@ ALTER SEQUENCE workout_builders_id_seq OWNED BY workout_builders.id;
 
 CREATE TABLE workouts (
     id integer NOT NULL,
-    name character varying(255),
+    title character varying(255),
     subtitle character varying(255),
     description character varying(255),
     state character varying(255) DEFAULT 'initiated'::character varying,
@@ -956,3 +956,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140724052810');
 INSERT INTO schema_migrations (version) VALUES ('20140724053107');
 
 INSERT INTO schema_migrations (version) VALUES ('20140724053834');
+
+INSERT INTO schema_migrations (version) VALUES ('20140724085147');

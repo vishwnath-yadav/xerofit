@@ -11,11 +11,13 @@
             choose file
           </span>
       </div>
-      <div>
-        <span class="full_workout">
-          Upload full workout
-        </span>
-      </div>
+      <%if action_name == "new"%>
+        <div>
+          <span class="full_workout">
+            Upload full workout
+          </span>
+        </div>
+      <%end%>
   </div>
 </div>
 <%= simple_form_for(LibraryVideo.new, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %>
@@ -29,7 +31,6 @@
 
 var size=0, upl=0, upl1=0, prg = $("#progressbar");
 $(document).on("click",".upload_video", function(){
-  alert(">>>>>>d")
   $("#library_video_video").click();
 });
 $('#library_video_video').on('change', function(e) {

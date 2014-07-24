@@ -117,6 +117,9 @@ font-size: 13px;}
 .notification_img img{position: relative;
 top: 5px;}
 .user_detail .user_img{width:28px; margin-left:20px; height:28px; float:left}
+.user_detail .user_img img{width: 28px;
+height: 28px;
+border-radius: 100%;}
 .user_detail .user_name{line-height: 28px;
 float: left;
 margin-left: 4px;

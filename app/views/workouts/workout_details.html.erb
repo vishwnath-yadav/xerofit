@@ -2,8 +2,8 @@
     <div class="lib_image_box"><img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
-      <h4><%= @workouts.name.titleize%></h4>
-      <p><img src="" />Status</p>
+      <h4><%= @workouts.title.titleize%></h4>
+      <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
     </div>
 </div>
 
@@ -14,12 +14,12 @@
         <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
-        <h4><%= @workouts.name.titleize%></h4>
+        <h4><%= @workouts.title.titleize%></h4>
       </div>
     </span>
     <div class="rght_btns">
       <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="save">Save</a>
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="<%= Workout::STATES[0] %>">Submit with review</a>
+      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>
     </div>
   </div>
 
@@ -34,13 +34,11 @@
           </ul>
         <% end %>
       </div>
-      <%#= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
-      <%#= hidden_field_tag :image, "", class: "image_url" %>
-      <%#= hidden_field_tag :status_change, "", class: "status" %>
+      <%= hidden_field_tag :status_change, "", class: "workout_status" %>
       <div class="lib_des_lft">
         <div class="exr_field_col">
           <label>Title</label>
-          <%= lib.text_field :name %>
+          <%= lib.text_field :title %>
         </div>
         <div class="exr_field_col">
           <label>Subtitle</label>
@@ -48,7 +46,7 @@
         </div>
         <div class="exr_field_col">
           <label>Category</label>
-          <%= lib.select :category, Workout::CATEGORIES, prompt: "Select Category" %>
+          <%= lib.select :category, Library::CATEGORIES, prompt: "Select Category" %>
         </div>
       </div>
       <div class="lib_des_rht">
@@ -67,14 +65,11 @@
             <%= lib.file_field :pic %>
       </div>
   <% end %>
-
-    
-    
 </div>
 <div class="lib_edit_botom">
   <h5>Remove Workout</h5>
   <p>Permanently remove the workout from xerofit. Proceed with caution, this action cann't be undone!</p>
-  <%=link_to "Remove this Workout","", :class => "remove_video_btn"%>
+  <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
 </div>
 
   
