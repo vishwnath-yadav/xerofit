@@ -16,7 +16,7 @@
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
       <div class="lib_image_box">
-        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
         <h4><%= @workouts.title.titleize%></h4>
@@ -71,7 +71,15 @@
          <h5>Cover Image</h5>
          <p>For best results, your image should be square and atleast 500px by 500px</p>
          <div class="upload_gry_box">
-            <%= lib.file_field :pic %>
+            <p>Upload your image</p>
+            <%#= lib.file_field :pic %>
+            <div class="custom-upload">
+                  <%= lib.file_field :pic %>
+                  <div class="fake-file">
+                      <span class="choose_btn wrk_chos">Browse</span>
+                      <input disabled="disabled">
+                  </div>
+              </div>
           </div>
       </div>
   <% end %>

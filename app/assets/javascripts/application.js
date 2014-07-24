@@ -43,7 +43,7 @@ $( document ).ready(function() {
     }) 
 
   $(document).on("click", ".fancy_input", function() {
-    $('.del').remove();
+    $('.mus_select').remove();
     var number_of_select = $(this).val();
     $('.active').removeClass('active');
     $(this).addClass('active');
@@ -53,8 +53,8 @@ $( document ).ready(function() {
     for(i=0; i<number_of_select; i++)
     {
     var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='body'>Body</option> <option value='sholder'>Sholder</option> <option value='arms'>Arms</option></select>";
-    var form_create = "<div class='exr_field_col del'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
-    $('.exer_rht_col').append(form_create);
+    var form_create = "<div class='exr_field_col mus_select'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
+    $('.mus_count').after(form_create);
     }
   });
 
@@ -79,8 +79,14 @@ $( document ).ready(function() {
      $("#user_pic").click();
   });
 
-  $('.custom-upload input[type=file]').change(function(){
-    $(this).next().find('input').val($(this).val());
+  $(".wrk_chos").click(function(){
+     $(this).css('background', '#72c9b8');
+     $("#workout_pic").click();
+  });
+
+  $('.custom-upload input[type=file]').change(function(e){
+    var file = e.target.files[0].name;
+    $(this).next().find('input').val(file);
   });
 
   $('#country_select').on("change", function() {

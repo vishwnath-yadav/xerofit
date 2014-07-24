@@ -16,7 +16,7 @@ $( document ).ready(function() {
     size = (file.size/1024/1024).toFixed(2);
     if(size < 10){
       upl = size/100;
-      if(prg.length){
+      if($("#progressbar").length || $("#progressbar1").length){
         prg.parent().find('p').text(upl+' MB of '+size+' MB');
         prg.parent().find('h2').text(file.name);
       }

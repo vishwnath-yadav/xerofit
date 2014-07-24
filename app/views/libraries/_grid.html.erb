@@ -5,7 +5,7 @@
           <% if ls.move_type == "workouts" %>
             <a href="<%= workout_details_workout_path(ls) %>">
               <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url() %>" width="231" height="130" alt="cn_1" />
+                <img src="<%= ls.pic.url(:square) %>" width="231" height="130" alt="cn_1" />
                 <% else %>
                   <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
                 <%end%>

@@ -1903,8 +1903,25 @@ text-align: center;}
 
 .upload_gry_box {
 background: #efefef;
-padding: 37px;
+padding: 35px 0 75px 54px;
 width: 33%;
+margin-bottom: 20px;
+}
+
+
+.upload_gry_box .custom-upload .fake-file input{
+	background: none repeat scroll 0 0 #eee;
+	border: medium none;
+	border-radius: 3px;
+	color: #9c9e9f;
+	font-size: 9px;
+	padding: 0;
+	margin-top: 10px;
+}
+
+.upload_gry_box p{
+color: #000;
+margin-left: -18px;
 margin-bottom: 20px;
 }
 
