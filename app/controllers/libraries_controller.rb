@@ -48,7 +48,7 @@ class LibrariesController < ApplicationController
 		      if @library.update_attributes(library_params)
 		      	@library.status = Library::STATUS[1] 
 		      	@library.save
-		        format.html { redirect_to libraries_path, notice: 'successfully updated Library.' }
+		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
 		        format.json { head :no_content }
 		      else
 		        format.html { render action: "edit" }
@@ -58,7 +58,7 @@ class LibrariesController < ApplicationController
 		else
 			respond_to do |format|
 		      if @library.update_attributes(library_params)
-		        format.html { redirect_to libraries_path, notice: 'successfully updated Library.' }
+		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
 		        format.json { head :no_content }
 		      else
 		        format.html { render action: "edit" }
@@ -74,10 +74,8 @@ class LibrariesController < ApplicationController
 		name = params[:title]
 		@list = []
 		if params[:type] == "Workouts"
-			logger.debug("DSFSDFsdf")
 			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
 		elsif params[:type] == "Excercises"
-			logger.debug("Dfdsfsdfddddddddddddd")
 			@list = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		else
 			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)

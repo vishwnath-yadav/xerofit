@@ -3,7 +3,7 @@
       <a href="#">&lt; Previous Library</a>
       <a href="#" class="fr">Next Library &gt;</a>
     </div>
-    <div class="lib_image_box"><img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
       <h4><%= @library.title.titleize%></h4>
@@ -17,7 +17,7 @@
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
           <div class="lib_image_box">
-            <img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+            <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
           </div>
           <div class="lib_text_box">
             <h4><%= @library.title.titleize%></h4>
@@ -49,13 +49,13 @@
             <%= lib.text_field :title %>
           </div>
             
-          <div class="exr_field_col number_mus">
+          <div class="exr_field_col number_mus mus_count">
           	<label>Number of Target Muscle Groups</label>
             <%(1..5).each do |no|%>
               <input name="" type="button" class="fancy_input <%=@library.target_muscle_groups.count == no ? 'active' : ''%>" value="<%=no%>"/>
             <%end%>
           </div>
-          <div class="exr_field_col number_mus">
+          <div class="exr_field_col number_mus mus_select">
             <% i = 0 %>
             <%= lib.fields_for :target_muscle_groups do |builder| %>
               <% abc = TargetMuscleGroup::MUSCLES_TYPE[i] %>

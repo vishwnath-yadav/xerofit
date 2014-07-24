@@ -1,10 +1,14 @@
 <%if !@video.errors.present?%>
 	$(".video_id").val("<%=@video.id%>");
-	prg.parent().find('p').text('successfully uploaded');
-	$('#library_title').val(prg.parent().find('h2').text());
-	$('#panda_video_enable').removeClass('dis_cls');
-	$('#panda_video_enable').addClass('rht_active');
 	if($('#dragandrophandler').is(':visible')){
 		$("#video_library_info").submit();
+	}
+	if($("#progressbar").length || $("#progressbar1").length){
+		$('#library_title').val(prg.parent().find('h2').text());
+		$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
+		prg.parent().find('p').text('successfully uploaded');
+	}
+	else{
+		$("#edit_video_info").submit();	
 	}
 <%end%>
