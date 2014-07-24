@@ -39,6 +39,14 @@ $( document ).ready(function() {
    $(function () {
       $('.default').dropkick();
     });
+
+   $(".full_workout").click(function(){
+      $.fancybox.open({
+            href: '#dragandrophandler',
+            type: 'inline'
+        });
+      prg = $("#progressbar1");
+    });
 });
 load_select_click = function() {
   $('.status_select ul li').click(function(){
