@@ -1,9 +1,29 @@
-<div class="rght_btns">
-  <a href="javascript:void(0)" class="cancel_btn rht_active" >Save</a>
-  <a href="javascript:void(0)" class="cancel_btn rht_active" >Submit for review</a>
+<div class="create_heading">
+    <div class="lib_image_box"><img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+    </div>
+    <div class="lib_text_box">
+      <h4><%= @workouts.name.titleize%></h4>
+      <p><img src="" />Status</p>
+    </div>
 </div>
-<div class="libray_detail">
-  <%= simple_nested_form_for(@workouts, url: (library_path(@workouts)), html: {id: 'edit_video_info'}) do |lib| %>
+
+<div class="libray_detail wht_bg">
+  <div class="lib_img_coll">
+    <span class="show_img_on_scol">
+      <div class="lib_image_box">
+        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+      </div>
+      <div class="lib_text_box">
+        <h4><%= @workouts.name.titleize%></h4>
+      </div>
+    </span>
+    <div class="rght_btns">
+      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="save">Save</a>
+      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="<%= Workout::STATES[0] %>">Submit with review</a>
+    </div>
+  </div>
+
+  <%= simple_nested_form_for(@workouts, url: (workout_path(@workouts)), html: {id: 'edit_workout_info'}) do |lib| %>
     <div class="exer_rht_col">
       <div style="color:red;">
         <% if @workouts.errors.full_messages.any? %>
@@ -14,9 +34,9 @@
           </ul>
         <% end %>
       </div>
-      <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
-      <%= hidden_field_tag :image, "", class: "image_url" %>
-      <%= hidden_field_tag :status_change, "", class: "status" %>
+      <%#= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
+      <%#= hidden_field_tag :image, "", class: "image_url" %>
+      <%#= hidden_field_tag :status_change, "", class: "status" %>
       <div class="lib_des_lft">
         <div class="exr_field_col">
           <label>Title</label>
@@ -28,7 +48,7 @@
         </div>
         <div class="exr_field_col">
           <label>Category</label>
-          <%= text_field_tag :category %>
+          <%= lib.select :category, Workout::CATEGORIES, prompt: "Select Category" %>
         </div>
       </div>
       <div class="lib_des_rht">
@@ -38,25 +58,23 @@
           </div>
       </div>
     </div>
+    <hr>
+    <div class="exer_lft_col">
+      <h4>Workout Media</h4>
+      <div class="big_video_col">
+         <h5>Cover Image</h5>
+         <p>For best results, your image should be square and atleast 500px by 500px</p>
+            <%= lib.file_field :pic %>
+      </div>
   <% end %>
-  <hr>
-  <div class="exer_lft_col">
-    <!-- <img src="/assets/video_img.png" width="586" height="330" alt="Video" />  -->
-    <%#= image_tag(@user.video_url) if @user.avatar? %>
-    <h4>Workout Media</h4>
-    <div class="big_video_col">
-       <h5>Cover Image</h5>
-       <p>For best results, your image should be square and atleast 500px by 500px</p>
-    
-  </div>
 
-    <div class="thumbnail_col">
-      <div class="lib_edit_botom">
-        <h5>Remove Workout</h5>
-        <p>Permanently remove the workout from xerofit. Proceed with caution, this action cann't be undone!</p>
-        <%=link_to "Remove this Workout","", :class => "remove_video_btn"%>
-    </div>
-    </div>
+    
     
 </div>
+<div class="lib_edit_botom">
+  <h5>Remove Workout</h5>
+  <p>Permanently remove the workout from xerofit. Proceed with caution, this action cann't be undone!</p>
+  <%=link_to "Remove this Workout","", :class => "remove_video_btn"%>
+</div>
+
   

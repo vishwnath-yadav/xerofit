@@ -45,6 +45,7 @@ class WorkoutsController < ApplicationController
 		@block.save
 		@display = params[:display]
 		respond_to do |format|
+			format.html { redirect_to :back}
 			format.js 
 		end
 	end
