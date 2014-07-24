@@ -9,7 +9,7 @@ ActiveAdmin.register Workout do
 
   index do
     selectable_column
-    column "Name", :name
+    column "Name", :title
     column "Subtitle", :subtitle
     #column "Category", :category
     column "Description", :description
@@ -17,7 +17,7 @@ ActiveAdmin.register Workout do
     column "Updated At", :updated_at
     actions
   end
-  filter :name
+  filter :title
   filter :status
   filter :subtitle
   filter :created_at, :label => "Created"
@@ -29,7 +29,7 @@ ActiveAdmin.register Workout do
       logger.debug("calling updates method")
       if !params[:reason].blank?
         workout = Workout.find(params[:id])
-        Emailer.send_lib_status_change_mail(workout.user.email, params[:reason], workout.name, params[:workout][:status], "Workout").deliver
+        Emailer.send_lib_status_change_mail(workout.user.email, params[:reason], workout.title, params[:workout][:status], "Workout").deliver
       end
       super
     end 

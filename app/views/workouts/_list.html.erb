@@ -12,12 +12,12 @@
           <% if workout.pic.present? %> 
             <a href="<%= workout_details_workout_path(workout) %>">
               <img src="<%= workout.pic.url(:thumb) %>" class="list_view_img" />
-              <%= workout.name %>
+              <%= workout.title %>
             </a>
           <% else %>
             <a href="<%= workout_details_workout_path(workout) %>">
               <img src="/assets/ex_2.jpg" class="list_view_img" />
-              <%= workout.name %>
+              <%= workout.title %>
             </a>
           <% end %>
         </span>

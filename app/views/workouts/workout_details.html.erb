@@ -2,7 +2,7 @@
     <div class="lib_image_box"><img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
-      <h4><%= @workouts.name.titleize%></h4>
+      <h4><%= @workouts.title.titleize%></h4>
       <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
     </div>
 </div>
@@ -14,7 +14,7 @@
         <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
-        <h4><%= @workouts.name.titleize%></h4>
+        <h4><%= @workouts.title.titleize%></h4>
       </div>
     </span>
     <div class="rght_btns">
@@ -38,7 +38,7 @@
       <div class="lib_des_lft">
         <div class="exr_field_col">
           <label>Title</label>
-          <%= lib.text_field :name %>
+          <%= lib.text_field :title %>
         </div>
         <div class="exr_field_col">
           <label>Subtitle</label>

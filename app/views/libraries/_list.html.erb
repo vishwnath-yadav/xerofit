@@ -1,35 +1,43 @@
-<% if @libraries.present? %>
-  <ul class="exer_list_view">
-    <li>
-      <span class="thumb_text">Name</span>
-       <span>Type</span>
-        <span>Status</span>
-         <span>Last Modified</span>
-    </li>
-    <% @libraries.each_with_index do |library, index| %>
+<ul class="exer_list_view">
+  <li>
+    <span class="thumb_text">Name</span>
+    <span>Type</span>
+    <span>Status</span>
+    <span>Last Modified</span>
+  </li>
+<% if @list.present? %>
+    <% @list.each_with_index do |ls, index| %>
       <li>
         <span class="thumb_text">
-          <% if library.library_video.image.present? %> 
-            <a href="<%= edit_library_path(library) %>">
-              <img src="<%= library.library_video.image %>" class="list_view_img" />
-              <%= library.title %>
-            </a>
+          <% if ls.move_type == "workouts" %>
+              <a href="<%= workout_details_workout_path(ls) %>">
+                <% if ls.pic.present? %> 
+                  <img src="<%= ls.pic.url(:thumb) %>" class="list_view_img" />
+                <% else %>
+                  <img src="/assets/ex_2.jpg" class="list_view_img" />
+                <% end %>
+                <%= ls.title %>
+              </a>
           <% else %>
-            <a href="<%= edit_library_path(library) %>">
-              <img src="/assets/ex_2.jpg" class="list_view_img" />
-              <%= library.title %>
+            <a hrefls="<%= edit_library_path(ls) %>">
+              <% if ls.library_video.image.present? %> 
+                <img src="<%= ls.library_video.image %>" class="list_view_img" />
+              <% else %>
+                <img src="/assets/ex_2.jpg" class="list_view_img" />
+              <% end %>
+              <%= ls.title %>
             </a>
           <% end %>
         </span>
-         <span>Single Move</span>
+         <span><%=ls.move_type%></span>
           <span>
-            <img src="<%= status_icon(library.status)%>" class="list_view_circle" /> 
-            <%= library.status %>
+            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
+            <%= ls.status %>
           </span>
-          <span><%= library.updated_at.strftime("%B %d,%Y") %></span>
+          <span><%= ls.updated_at.strftime("%B %d,%Y") %></span>
       </li>
     <%end%>
-  </ul>
 <% else %>
-  <h4> No Excercises Record Found...</h4>
+  <li><span> No Record Found...</span><li>
 <% end %>
+</ul>

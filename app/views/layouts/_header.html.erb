@@ -48,7 +48,13 @@
         </div>
         <div class="user_detail">
             <span class="notification_img"><img src="/assets/notification_icon.png" alt="notification" /></span>
-            <span class="user_img"><img src="/assets/user_img.png" alt="user" /></span>
+            <span class="user_img">
+                <%if current_user.pic.present?%>
+                    <%= image_tag current_user.pic.url(:medium) %>
+                <%else%>
+                    <img src="/assets/user_img.png" alt="user" />
+                <%end%>
+            </span>
             <span class="user_name"><%= current_user.fullname %></span>
             <div class="signout_col">
                 <ul>

@@ -2,21 +2,21 @@
   <ul>
     <% @workouts.each_with_index do |workout, index| %>
     	<% if workout.pic.present? %>
-      <li>
-        <a href="<%= workout_details_workout_path(workout) %>">
-          <img src="<%= workout.pic.url() %>" width="231" height="130" alt="cn_1" />
-        </a>
-        <h6><%= workout.name %></h6>
-         <p>
-          <img src="<%= status_icon(workout.status)%>" class="list_view_circle" /> 
-          <%= workout.status %></p>
-      </li>
+        <li>
+          <a href="<%= workout_details_workout_path(workout) %>">
+            <img src="<%= workout.pic.url() %>" width="231" height="130" alt="cn_1" />
+          </a>
+          <h6><%= workout.title %></h6>
+           <p>
+            <img src="<%= status_icon(workout.status)%>" class="list_view_circle" /> 
+            <%= workout.status %></p>
+        </li>
       <% else %>
         <li>
           <a href="#">
           <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
         </a>
-        <h6><%= workout.name %></h6>
+        <h6><%= workout.title %></h6>
          <p><img src="<%= status_icon(workout.status)%>" class="list_view_circle" /> <%= workout.status %></p>
       </li>
       <% end %>

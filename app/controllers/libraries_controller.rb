@@ -3,6 +3,7 @@ class LibrariesController < ApplicationController
 	autocomplete :library, :title, :full => true
 	def index
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
+		@list = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
 	end
 	
 	def new
@@ -73,13 +74,17 @@ class LibrariesController < ApplicationController
 		name = params[:title]
 		@list = []
 		if params[:type] == "Workouts"
-			@workouts = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
+			logger.debug("DSFSDFsdf")
+			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
 		elsif params[:type] == "Excercises"
-			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
+			logger.debug("Dfdsfsdfddddddddddddd")
+			@list = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		else
-			@workouts = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
-			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
+			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
+			@list << Library.by_name(name).by_status(status).where(:user_id => current_user)
 		end
+
+		@list = @list.flatten
 		respond_to do |format|
 			format.js
 		end
@@ -109,6 +114,12 @@ class LibrariesController < ApplicationController
 	end
 
 	def see_more_thumbnail
+	end
+
+	def destroy
+		@library = Library.find(params[:id])
+		@library.destroy
+		redirect_to libraries_path
 	end
 
 	private
