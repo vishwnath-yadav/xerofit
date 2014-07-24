@@ -1,11 +1,12 @@
 class VideosController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create]
+	
+
 	def create
 		@video = LibraryVideo.new(video_params)
 		if !params[:video_old_id].present?
 		  	respond_to do |format|
 		      if @video.save
-		      	Rails.logger.debug ">>>>>>>"
 	      		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
 	      		@video.update_attributes(panda_video_id: p_video.id)
 	      		# @video.update_attributes(image: @video.panda_mp4.screenshots[0])
@@ -26,7 +27,8 @@ class VideosController < ApplicationController
 	      			@video.update_attributes(library_id: library.id)
 	      		end
 		        format.js
-	    	end
+    		   end
+    		end
 	    end
 	end
 

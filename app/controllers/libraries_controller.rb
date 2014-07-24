@@ -72,7 +72,7 @@ class LibrariesController < ApplicationController
 		status = params[:status]
 		name = params[:title]
 		if params[:type] == "Workouts"
-			@workouts = Workout.where(:user_id => current_user)
+			@workouts = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
 		else
 			@libraries = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		end

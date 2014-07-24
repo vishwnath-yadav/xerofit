@@ -81,14 +81,17 @@ margin-left: -64px;}
 .user_detail{width: auto;
 float: right;
 position: relative; }
-.signout_col{display:none; margin-top: 44px;
+.signout_col{
+display:none; margin-top: 44px;
 position: absolute;
 background: #fff;
 float: left;
 box-shadow: 0 0 6px #ccc;
 left: 50px;
 width: 65%;
-padding: 6px 0px;}
+padding: 6px 0px;
+z-index: 9999;
+}
 .signout_col ul{margin:0px; padding:0px;}
 .signout_col:after{content: '';
 background: url(/assets/select_arrow_1.png) no-repeat left 0px;

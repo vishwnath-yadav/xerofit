@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   # end
 
   # def after_sign_in_path_for(resource)
-  #   # if resource.trainer?
-  #   #   trainer_dashboard_index_path
-  #   # end
+  #   if resource.trainer?
+  #     trainer_dashboard_index_path
+  #   end
   # end
 
   rescue_from CanCan::AccessDenied do |exception|

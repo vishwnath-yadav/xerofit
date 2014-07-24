@@ -1,0 +1,31 @@
+<ul class="exer_list_view">
+  <li>
+    <span class="thumb_text">Name</span>
+     <span>Type</span>
+      <span>Status</span>
+       <span>Last Modified</span>
+  </li>
+  <% @workouts.each_with_index do |workout, index| %>
+    <li>
+      <span class="thumb_text">
+        <% if false %> 
+          <a href="#">
+            <img src="<%#= workout.pic.url() %>" class="list_view_img" />
+            <%= workout.name %>
+          </a>
+        <% else %>
+          <a href="#">
+            <img src="/assets/ex_2.jpg" class="list_view_img" />
+            <%= workout.name %>
+          </a>
+        <% end %>
+      </span>
+       <span>workout</span>
+        <span>
+          <img src="<%= status_icon(workout.status)%>" class="list_view_circle" /> 
+          <%= workout.status %>
+        </span>
+        <span><%= workout.updated_at.strftime("%B %d,%Y") %></span>
+    </li>
+  <%end%>
+</ul>

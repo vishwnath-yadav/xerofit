@@ -6,11 +6,12 @@ class Emailer < ActionMailer::Base
     mail(to: email, subject: "Thanks for showing interest in Xerofit")
   end
 
-  def send_lib_status_change_mail(email, msg, title, status)
+  def send_lib_status_change_mail(email, msg, title, status, model)
   	@message = msg
   	@status = status
   	@title = title
   	@email = email
-    mail(to: email, subject: "Your library Status has been updated")
+    @model = model
+    mail(to: email, subject: "Your #{model} Status has been updated")
   end
 end

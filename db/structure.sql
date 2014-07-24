@@ -573,7 +573,8 @@ CREATE TABLE workouts (
     state character varying(255) DEFAULT 'initiated'::character varying,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    status character varying(255)
 );
 
 
@@ -944,3 +945,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140716133120');
 INSERT INTO schema_migrations (version) VALUES ('20140717095831');
 
 INSERT INTO schema_migrations (version) VALUES ('20140721095936');
+
+INSERT INTO schema_migrations (version) VALUES ('20140724053107');

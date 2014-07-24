@@ -15,7 +15,7 @@ width: 40%;}
 .lib_text_field{width: 100%; float:left; margin-bottom: 10px;}
 </style>
 
-<%= simple_form_for [:admin, @library] do |f| %>
+<%= simple_form_for [:admin, @workout] do |f| %>
 	<div class="lib_text_field">
 		<label class="lib_label">Status</label>
 		<%= f.input :status, collection: Library::STATUS, include_blank: false, label: false,input_html: {class: "lib_input"}%>
