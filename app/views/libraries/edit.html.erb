@@ -33,6 +33,9 @@
   
 <div class="middle_wrapper">
   <div class="exer_rht_col pd30">
+    <div class= "lib_move_title">
+      Basic Move Information
+    </div>
     <div style="color:red;">
       <% if @library.errors.full_messages.any? %>
         <ul>
@@ -92,12 +95,12 @@
    <span class="upload_edit"><%= render "upload_edit" %></span>
     <div class="lib_edit_botom">
       <h5>Replace Video</h5>
-      <p>Upload New or Replace video </p>
+      <p>Upload a new video file for this move to replace the old one.</p>
       <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn upload_video"%>
     </div>
     <div class="lib_edit_botom">
       <h5>Remove Video</h5>
-      <p>Remove Uploaded Video</p>
+      <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
       <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
     </div>
   <% end %>

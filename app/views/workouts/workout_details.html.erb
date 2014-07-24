@@ -30,6 +30,9 @@
 
   <%= simple_nested_form_for(@workouts, url: (workout_path(@workouts)), html: {id: 'edit_workout_info'}) do |lib| %>
     <div class="exer_rht_col">
+      <div class= "lib_move_title">
+        Basic Workout Information
+      </div>
       <div style="color:red;">
         <% if @workouts.errors.full_messages.any? %>
           <ul>
@@ -75,7 +78,7 @@
 </div>
 <div class="lib_edit_botom">
   <h5>Remove Workout</h5>
-  <p>Permanently remove the workout from xerofit. Proceed with caution, this action cann't be undone!</p>
+  <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
   <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
 </div>
 </div>

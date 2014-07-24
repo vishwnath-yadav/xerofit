@@ -28,7 +28,6 @@ class LibrariesController < ApplicationController
 	  	# video.image = video.panda_mp4.screenshots[0]
 	  	video.library = @library
 	  	video.save
-	  	Rails.logger.debug video.inspect
 	    redirect_to libraries_path, :notice => "Thank you for uploading video!"
 	  else
 	  	@libvideo = LibraryVideo.new
