@@ -73,7 +73,7 @@
     border-bottom: 1px solid #ddd;
     font-size: 12px;
 color: #000;
-    padding:8px 10px 8px 30px; 
+    padding:8px 10px 8px 48px; 
   }
   .dk_options a:hover, .dk_options:focus,
   .dk_options .dk_option_current a {
@@ -101,23 +101,22 @@ color: #000;
     padding-left: 5px;
     background: #ddd;
   }
-    .status_select .dk_options_inner li{position: relative;}
-  .status_select .dk_options_inner li:nth-child(1):after{content: '';
-background: url(/assets/green_circle.png) no-repeat;
-position: absolute;
-width: 20px;
-height: 20px;
-left: 30px;
-top: 59px;}
-  
 
-  .status_select .dk_options_inner li:nth-child(2):after{content: '';
-background: url(/assets/green_circle.png) no-repeat;
-position: absolute;
-width: 20px;
-height: 20px;
-left: 30px;
-top: 59px;}
+  .dk_options_inner li{position: relative;}
+  .status_select .dk_options_inner li{position: relative;}
+  .status_select .dk_options_inner li:nth-child(1):before{padding-left: 33px;}
+
+  .status_select .dk_options_inner li:nth-child(2):before{content:''; background:url(/assets/grey_circle.png) no-repeat; left: 30px;
+top: 12px; position:absolute; width:20px; height:20px;}
+
+  .status_select .dk_options_inner li:nth-child(3):before{content:''; background:url(/assets/yellow_circle.png) no-repeat; left: 11px; left: 30px;
+top: 12px;  position:absolute; width:20px; height:20px;}
+
+    .status_select .dk_options_inner li:nth-child(4):before{content:''; background:url(/assets/green_circle.png) no-repeat; left: 30px;
+top: 12px; position:absolute; width:20px; height:20px;}
+
+.status_select .dk_options_inner li:nth-child(5):before{content:''; background:url(/assets/red_circle.png) no-repeat; left: 30px;
+top: 12px; position:absolute; width:20px; height:20px;}
   
     .dk_options .dk_optgroup > span {
       display: block;
