@@ -27,8 +27,8 @@ ActiveAdmin.register Library do
   controller do
     def update
       logger.debug("calling updates method")
-      if !params[:reason].blank?
-        lib = Library.find(params[:id])
+      lib = Library.find(params[:id])
+      if !params[:reason].blank? && lib.status != params[:library][:status] 
         Emailer.send_lib_status_change_mail(lib.user.email, params[:reason], lib.title, params[:library][:status], "Library").deliver
       end
       super
