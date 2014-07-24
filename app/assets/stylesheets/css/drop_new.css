@@ -124,7 +124,7 @@ top: 12px; position:absolute; width:20px; height:20px;}
       font-style: italic;
       color: #444;
       background: #ddd;
-      border-bottom: ;
+      border-bottom: none;
     }
     .dk_options .dk_optgroup.disabled,
     .dk_options .dk_optgroup.disabled > span {
