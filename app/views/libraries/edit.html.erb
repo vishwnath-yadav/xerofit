@@ -9,13 +9,14 @@
 
 <div class="libray_detail wht_bg">
   <div class="lib_img_coll">
-    <div class="lib_image_box">
-      <img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
-    </div>
-    <div class="lib_text_box">
-      <h4><%= @library.title.titleize%></h4>
-    </div>
-
+    <span class="show_img_on_scol">
+      <div class="lib_image_box">
+        <img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+      </div>
+      <div class="lib_text_box">
+        <h4><%= @library.title.titleize%></h4>
+      </div>
+    </span>
     <div class="rght_btns">
       <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="save">Save</a>
       <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>

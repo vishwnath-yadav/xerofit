@@ -24,8 +24,14 @@ $( document ).ready(function() {
       var sticky = $('.lib_img_coll'),
       scroll = $(window).scrollTop();
 
-      if (scroll >= 100) sticky.addClass('fixed');
-      else sticky.removeClass('fixed');
+      if(scroll >= 100){
+        sticky.addClass('fixed');
+        $('.show_img_on_scol').css('display','block');
+      }
+      else{
+       sticky.removeClass('fixed');
+       $('.show_img_on_scol').css('display','none');
+     }
     });
 
     $(".home_toggle").click(function(){
