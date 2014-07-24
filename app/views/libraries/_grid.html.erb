@@ -1,16 +1,32 @@
-<ul>
-  <% @libraries.each_with_index do |library, index| %>
-  	<% if library.library_video.image.present? %>
-    <li><a href="<%= edit_library_path(library) %>"><img src="<%= library.library_video.image %>" width="231" height="130" alt="cn_1" /></a>
-      <h6><%= library.title %></h6>
-       <p><img src="<%= status_icon(library.status)%>" class="list_view_circle" /> <%= library.status %></p>
-    </li>
-    <% else %>
-    <li><a href="<%= edit_library_path(library) %>"><img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" /></a>
-      <h6><%= library.title %></h6>
-       <p><img src="<%= status_icon(library.status)%>" class="list_view_circle" /> <%= library.status %></p>
-    </li>
+  <ul>
+  <% if @list.present? %>
+    <% @list.each_with_index do |ls, index| %>
+      <li>
+          <% if ls.move_type == "workouts" %>
+            <a href="<%= workout_details_workout_path(ls) %>">
+              <% if ls.pic.present? %>
+                <img src="<%= ls.pic.url() %>" width="231" height="130" alt="cn_1" />
+                <% else %>
+                  <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
+                <%end%>
+              </a>
+            <%else%>
+              <a href="<%= edit_library_path(ls) %>">
+                <% if ls.library_video.image.present? %>
+                  <img src="<%= ls.library_video.image %>" width="231" height="130" alt="cn_1" />
+                <% else %>
+                    <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
+                <%end%>
+              </a>
+            <%end%>
+          <h6><%= ls.title %></h6>
+          <p>
+            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
+            <%= ls.status %>
+          </p>
+      </li>
     <% end %>
-
-  <% end %>
+<% else %>
+  <li><span> No Excercises Record Found...</span></li>
+<% end %> 
 </ul>
