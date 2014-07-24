@@ -288,24 +288,21 @@ ALTER SEQUENCE library_blocks_id_seq OWNED BY library_blocks.id;
 
 CREATE TABLE library_details (
     id integer NOT NULL,
-    repetition boolean DEFAULT true,
-    weight boolean DEFAULT true,
-    distance boolean DEFAULT true,
-    is_duration boolean DEFAULT true,
-    minute integer DEFAULT 0,
-    second integer DEFAULT 0,
-    is_tempo boolean DEFAULT true,
-    temp_lower integer DEFAULT 1,
-    temp_pause integer DEFAULT 1,
-    temp_lift integer DEFAULT 1,
-    rep_min integer DEFAULT 1,
-    rep_max integer DEFAULT 1,
-    rep_total integer DEFAULT 1,
-    rep_each_side boolean DEFAULT true,
-    rep_option character varying(255),
+    repetition character varying(255),
+    weight boolean,
+    distance boolean,
+    "time" character varying(255),
+    duration character varying(255),
+    temp_lower character varying(255),
+    temp_pause character varying(255),
+    temp_lift character varying(255),
     library_block_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    rep_min character varying(255),
+    rep_max character varying(255),
+    rep_each_side boolean,
+    rep_option character varying(255)
 );
 
 
@@ -498,13 +495,13 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
+    pin_code integer,
+    date_of_birth date,
+    gender character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
-    pic_updated_at timestamp without time zone,
-    pin_code character varying(255),
-    date_of_birth date,
-    gender character varying(255)
+    pic_updated_at timestamp without time zone
 );
 
 
@@ -573,7 +570,12 @@ CREATE TABLE workouts (
     state character varying(255) DEFAULT 'initiated'::character varying,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    pic_file_name character varying(255),
+    pic_content_type character varying(255),
+    pic_file_size integer,
+    pic_updated_at timestamp without time zone,
+    category character varying(255)
 );
 
 
@@ -917,6 +919,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140624073552');
 
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
+INSERT INTO schema_migrations (version) VALUES ('20140625071514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625080723');
+
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
@@ -933,8 +939,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140702090254');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702121642');
 
-INSERT INTO schema_migrations (version) VALUES ('20140704094146');
-
 INSERT INTO schema_migrations (version) VALUES ('20140704094148');
 
 INSERT INTO schema_migrations (version) VALUES ('20140716133059');
@@ -944,3 +948,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140716133120');
 INSERT INTO schema_migrations (version) VALUES ('20140717095831');
 
 INSERT INTO schema_migrations (version) VALUES ('20140721095936');
+
+INSERT INTO schema_migrations (version) VALUES ('20140724052810');
+
+INSERT INTO schema_migrations (version) VALUES ('20140724053834');

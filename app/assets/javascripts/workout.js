@@ -137,6 +137,12 @@ $( document ).ready(function() {
     }
   });
 
+  $('.edit_work').click(function(){
+    // var status = $(this).attr('lib-status');
+    // $('.status').val(status);
+    $('#edit_workout_info').submit();
+  });
+
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
     var name = $(this).attr('name');
