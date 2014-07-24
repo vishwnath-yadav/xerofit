@@ -74,10 +74,8 @@ class LibrariesController < ApplicationController
 		name = params[:title]
 		@list = []
 		if params[:type] == "Workouts"
-			logger.debug("DSFSDFsdf")
 			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
 		elsif params[:type] == "Excercises"
-			logger.debug("Dfdsfsdfddddddddddddd")
 			@list = Library.by_name(name).by_status(status).where(:user_id => current_user)
 		else
 			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)

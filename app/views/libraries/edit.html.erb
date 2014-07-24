@@ -1,9 +1,11 @@
 <div class="create_heading">
-    <div class="prev_lib_col">
-      <a href="#">&lt; Previous Library</a>
-      <a href="#" class="fr">Next Library &gt;</a>
+    <div class="prev_lib_col" id="<%= @library.id%>">
+      <!-- <a href="javascript:void(0)" class="lib_order" data-name="pre">&lt; Previous Library</a>
+      <a href="javascript:void(0)" class="fr lib_order" data-name="next">Next Library &gt;</a> -->
+      <%= link_to("< Previous Library", edit_library_path(@library.previous_post)) if @library.previous_post%>
+      <%= link_to("Next Library >", edit_library_path(@library.next_post), :class => 'fr') if @library.next_post %>
     </div>
-    <div class="lib_image_box"><img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
       <h4><%= @library.title.titleize%></h4>
@@ -16,7 +18,7 @@
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
       <div class="lib_image_box">
-        <img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+        <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
         <h4><%= @library.title.titleize%></h4>
