@@ -1,4 +1,8 @@
 <div class="create_heading">
+    <div class="prev_lib_col">
+      <a href="#">&lt; Previous Library</a>
+      <a href="#" class="fr">Next Library &gt;</a>
+    </div>
     <div class="lib_image_box"><img src="<%= @library.library_video.image ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
@@ -8,6 +12,7 @@
 </div>
 
 <div class="libray_detail wht_bg">
+  <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
       <div class="lib_image_box">
@@ -17,13 +22,15 @@
         <h4><%= @library.title.titleize%></h4>
       </div>
     </span>
-    <div class="rght_btns">
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="save">Save</a>
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>
-    </div>
+    <div class="lib_img_coll">
+        <div class="rght_btns">
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="save">Save</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>
+        </div>
+      </div>
   </div>
   
-<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
+
   <div class="exer_rht_col">
     <div style="color:red;">
       <% if @library.errors.full_messages.any? %>
@@ -100,9 +107,7 @@
   <% end %>
 </div>
 
-<div class="create_heading pad20">
-  
-</div>
+
 
 
 
