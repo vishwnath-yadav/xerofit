@@ -30,9 +30,7 @@
 <script>
 
 var size=0, upl=0, upl1=0, prg = $("#progressbar");
-$(document).on("click",".upload_video", function(){
-  $("#library_video_video").click();
-});
+
 $('#library_video_video').on('change', function(e) {
   var file = e.target.files[0];
   size = (file.size/1024/1024).toFixed(2);

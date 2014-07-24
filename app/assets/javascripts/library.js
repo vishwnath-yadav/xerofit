@@ -1,10 +1,31 @@
 $( document ).ready(function() {
 
-  $(document).on("click", ".replace_video_btn", function() {
-     $('.upload_edit').css('display','none');
-     $('.replace_video').css('display','block');
-     $('.lib_edit_botom').css('display','none');
+  // $(document).on("click", ".replace_video_btn", function() {
+  //    // $('.upload_edit').css('display','none');
+  //    // $('.replace_video').css('display','block');
+  //    // $('.lib_edit_botom').css('display','none');
+  //    $("#library_video_video").click();
+  // });
+
+  $(document).on("click",".upload_video", function(){
+    $("#library_video_video").click();
   });
+
+  $('#library_video_video').on('change', function(e) {
+    var file = e.target.files[0];
+    size = (file.size/1024/1024).toFixed(2);
+    if(size < 10){
+      upl = size/100;
+      if(prg.length){
+        prg.parent().find('p').text(upl+' MB of '+size+' MB');
+        prg.parent().find('h2').text(file.name);
+      }
+      $("#video_upload_form").submit();
+    }
+  else{
+    alert("size cannot be greater than 250mb");    
+  }
+ });
  
   $('.type_select ul li').click(function(){
     $('#select_option').val("type");
