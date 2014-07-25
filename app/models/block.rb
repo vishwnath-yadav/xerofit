@@ -15,5 +15,8 @@ class Block < ActiveRecord::Base
 		end
 	end
 
+	def get_lib_detail(lib_id)
+		LibraryBlock.where(block_id: self.id , library_id: lib_id).last.library_detail.id
+	end
 	
 end

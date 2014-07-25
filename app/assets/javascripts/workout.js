@@ -84,6 +84,7 @@ $( document ).ready(function() {
     if($(e.target).hasClass("rm")){
       var id = $(this).attr('id');
       $("#block_"+id).remove();
+      remove_library_from_block(id)
       $(this).remove();
     }
     else{
@@ -92,7 +93,7 @@ $( document ).ready(function() {
       var lib_id = $(this).attr('id').split("_")[1];
       var block_id = $(this).attr('id').split("_")[0];
       var lib_detail = $(this).attr('data-libdetail');
-      load_library_content(lib_detail, block_id, lib_id);
+      load_library_content(lib_detail, block_id, lib_id, '');
     }
   });
 
@@ -183,6 +184,12 @@ $( document ).ready(function() {
   });
 });
 
+function remove_library_from_block(id){
+  url = '/workouts/remove_library_from_block';
+  $.get(url, {lib_block:id}, function (data) {
+  });
+}
+
 function create_sub_block(){
   var type = $("input[name='radio']:checked").attr('id');
   type = type.split("_")[1];
@@ -239,7 +246,7 @@ function drag_drop(e, id) {
           individual_block_show(id);
           $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
           $('.b'+id).text(size);
-          load_library_content('',id, lib_id);
+          load_library_content('',id, lib_id, size);
           $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
       }
       $('.dots_img').remove() //removing all dots from dropped lis
@@ -266,10 +273,10 @@ function check_library_count(li_size, block_type, publish){
   return alrt;
 }
 
-function load_library_content(lib_detail, block_id, lib_id){
+function load_library_content(lib_detail, block_id, lib_id, move){
   $(".workout_col_rght").html('<img src="/assets/ajax-loader.gif" class="m50">');
   var url = '/workouts/load_lib_details'
-  $.get(url, {lib_detail:lib_detail,lib_id:lib_id,block_id:block_id}, function (data) {
+  $.get(url, {lib_detail:lib_detail,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
    });
 }
 
