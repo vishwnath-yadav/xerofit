@@ -62,7 +62,7 @@ class LibrariesController < ApplicationController
 		filter_order = params[:filter]
 		title = params[:title]
 		if filter_order == 'asc'
-			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title ASC')
+			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title asc')
 		else
 			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title DESC')
 		end

@@ -294,13 +294,16 @@ CREATE TABLE library_details (
     repetitions boolean DEFAULT true,
     weight boolean DEFAULT true,
     distance boolean DEFAULT true,
+    dist_option character varying(255),
+    dist_val integer DEFAULT 1,
+    weight_val integer DEFAULT 1,
     duration boolean DEFAULT true,
     minute integer DEFAULT 0,
     second integer DEFAULT 0,
     tempo boolean DEFAULT true,
-    temp_lower integer DEFAULT 1,
-    temp_pause integer DEFAULT 1,
-    temp_lift integer DEFAULT 1,
+    temp_lower integer DEFAULT 0,
+    temp_pause integer DEFAULT 0,
+    temp_lift integer DEFAULT 0,
     rep_min integer DEFAULT 1,
     rep_max integer DEFAULT 1,
     rep_total integer DEFAULT 1,
@@ -308,10 +311,7 @@ CREATE TABLE library_details (
     rep_option character varying(255),
     library_block_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    dist_option character varying(255),
-    dist_val integer DEFAULT 1,
-    weight_val integer DEFAULT 1
+    updated_at timestamp without time zone
 );
 
 
@@ -970,10 +970,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140724082647');
 
 INSERT INTO schema_migrations (version) VALUES ('20140724085147');
 
-INSERT INTO schema_migrations (version) VALUES ('20140725053946');
-
 INSERT INTO schema_migrations (version) VALUES ('20140725054513');
-
-INSERT INTO schema_migrations (version) VALUES ('20140725063050');
 
 INSERT INTO schema_migrations (version) VALUES ('20140725095333');
