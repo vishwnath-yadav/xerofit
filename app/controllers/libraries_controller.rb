@@ -57,6 +57,21 @@ class LibrariesController < ApplicationController
 	    end
 	end
 
+
+	def filter
+		filter_order = params[:filter]
+		title = params[:title]
+		if filter_order == 'asc'
+			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title ASC')
+		else
+			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title DESC')
+		end
+		Rails.logger.debug @libraries.inspect
+		respond_to do |format|
+			format.js 
+		end
+	end
+
 	def get_lib_items
 		@view = params[:view_type]
 		status = params[:status]
