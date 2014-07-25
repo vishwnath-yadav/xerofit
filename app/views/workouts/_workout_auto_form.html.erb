@@ -1,6 +1,6 @@
 <%if @workout.new_record?%>
 	<%= simple_form_for @workout, :url => workouts_path, :html => {:method =>"post", id: "workout_form_auto"}, :remote => true do |f| %>
-		<h2 class="wrk_head" data-name="name" data-val="">Workout Title</h2>
+		<h2 class="wrk_head" data-name="title" data-val="">Workout Title</h2>
 		<p class="wrk_subhead" data-name="subtitle" data-val="">Workout Subtitle</p>
 	<%end%>
 <%else%>
