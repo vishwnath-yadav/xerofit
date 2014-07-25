@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+  prg = $("#progressbar");
   // $(document).on("click", ".replace_video_btn", function() {
   //    // $('.upload_edit').css('display','none');
   //    // $('.replace_video').css('display','block');
@@ -14,7 +14,15 @@ $( document ).ready(function() {
   $('#library_video_video').on('change', function(e) {
     var file = e.target.files[0];
     size = (file.size/1024/1024).toFixed(2);
-    if(size < 250){
+    if(size < 1024 && $('#dragandrophandler').is(':visible')){
+      upl = size/100;
+      if($("#progressbar").length || $("#progressbar1").length){
+        prg.parent().find('p').text(upl+' MB of '+size+' MB');
+        prg.parent().find('h2').text(file.name);
+      }
+      $("#video_upload_form").submit();
+    }
+    else if(size < 250){
       upl = size/100;
       if($("#progressbar").length || $("#progressbar1").length){
         prg.parent().find('p').text(upl+' MB of '+size+' MB');
