@@ -1,4 +1,4 @@
-<% current_user.libraries.each do |lib|%>
+<% @libraries.each do |lib|%>
     <div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=lib.id%>">
         <div class="white_list_left">
             <h6><%= lib.title %></h6>

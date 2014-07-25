@@ -68,6 +68,7 @@ Xerofit::Application.routes.draw do
       get 'autocomplete_library_title'
       post 'get_lib_items'
       get 'target_msle_group'
+      post 'filter'
     end
   end
   
@@ -77,7 +78,6 @@ Xerofit::Application.routes.draw do
       post 'save_blocks'
       get 'load_lib_details'
       patch 'save_lib_details'
-      get 'filter'
       get 'search_lib'
       get 'autocomplete_library_title'
       get 'remove_library_from_block'
