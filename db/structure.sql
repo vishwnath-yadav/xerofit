@@ -152,7 +152,8 @@ CREATE TABLE blocks (
     block_type character varying(255),
     workout_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    move integer DEFAULT 0
 );
 
 
@@ -971,3 +972,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140724085147');
 INSERT INTO schema_migrations (version) VALUES ('20140725053946');
 
 INSERT INTO schema_migrations (version) VALUES ('20140725063050');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725095333');

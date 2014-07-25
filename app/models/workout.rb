@@ -29,8 +29,11 @@ class Workout < ActiveRecord::Base
 			block.save!
 			value.each do|k, v|
 				lib = Library.find(k)
-				lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)
-				lib_block.save!
+				lib_block = LibraryBlock.where(:library_id=>lib.id, :block_id=>block.id).last
+				if !lib_block.present?
+					lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)
+					lib_block.save!
+				end
 				lib_detail = LibraryDetail.find(v)
 				if lib_detail.present?
 					lib_detail.library_block_id = lib_block.id

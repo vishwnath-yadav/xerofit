@@ -71,6 +71,14 @@ class WorkoutsController < ApplicationController
 		redirect_to :back
 	end
 
+	def remove_library_from_block
+		id = params[:lib_block].split("_")
+		lib_block = LibraryBlock.where(block_id: id[0], library_id: id[1]).last
+		lib_block.library_detail.destroy
+		lib_block.destroy
+		render text: true
+	end
+
 
 	def marketplace
 	end
@@ -113,6 +121,11 @@ class WorkoutsController < ApplicationController
 		if !@lib_detail.present?
 			@lib_detail = LibraryDetail.new()
 			@lib_detail.save
+		end
+		if !params[:move].blank?
+			block = Block.find(params[:block_id])
+			block.move = params[:move]
+			block.save
 		end
 		respond_to do |format|
 			format.js 
