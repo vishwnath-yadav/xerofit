@@ -14,7 +14,7 @@ $( document ).ready(function() {
   $('#library_video_video').on('change', function(e) {
     var file = e.target.files[0];
     size = (file.size/1024/1024).toFixed(2);
-    if(size < 10){
+    if(size < 250){
       upl = size/100;
       if($("#progressbar").length || $("#progressbar1").length){
         prg.parent().find('p').text(upl+' MB of '+size+' MB');

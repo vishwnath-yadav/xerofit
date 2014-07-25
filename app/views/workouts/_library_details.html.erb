@@ -1,4 +1,13 @@
 <div class="move_detail">Move Details</div>
+<div style="color:red;">
+    <% if @lib_detail.errors.full_messages.any? %>
+      <ul>
+      <% @lib_detail.errors.full_messages.each do |error_message| %>
+        <%= error_message %>
+      <% end %>
+      </ul>
+    <% end %>
+</div>
 <div class="red_txt success"></div>
 <%= simple_form_for(@lib_detail, url: "/workouts/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
 <%=hidden_field_tag :lib_detail_id, @lib_detail.id%>

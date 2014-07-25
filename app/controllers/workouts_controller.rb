@@ -135,6 +135,7 @@ class WorkoutsController < ApplicationController
 	def save_lib_details
 		@lib_detail = LibraryDetail.find(params[:lib_detail_id])
 		if @lib_detail.present?
+			Rails.logger.debug ">>>>>>>>>>>>>>>>>"
 			@lib_detail.update_attributes(library_detail_params)
 		end
 		respond_to do |format|
