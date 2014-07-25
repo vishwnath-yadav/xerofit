@@ -1,9 +1,8 @@
-<%(1..@num).each do |num|%>
+<%(0..@num).each do |num|%>
 	<div class="exr_field_col del number_mus">
-	  	<label><%= TargetMuscleGroup::MUSCLES_TYPE[num] %></label>
+	  	<label><%= TargetMuscleGroup::MUSCLES_TYPE[num][0] %></label>
 	    <div class="fancy_select">
-	    	<%=select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", options_for_select(TargetMuscleGroup::MUSCLES_TYPE_OPT_1), prompt: "Select Primary Target" %>
-	        <%#= select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", TargetMuscleGroup::MUSCLES_TYPE_OPT_"#{num}", prompt: "Select Primary Target" %>
+	    	<%=select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", options_for_select(TargetMuscleGroup::MUSCLES_TYPE[num][1]), prompt: "Select Primary Target" %>
 	    </div>
 	</div>
 <%end%>

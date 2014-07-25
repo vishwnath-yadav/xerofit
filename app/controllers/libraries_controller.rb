@@ -110,8 +110,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def target_msle_group
-		Rails.logger.debug ">>>>>>>>"
-		@num = params[:number].to_i
+		@num = params[:number].to_i - 1
 		respond_to do |format|
 	        format.js
         end

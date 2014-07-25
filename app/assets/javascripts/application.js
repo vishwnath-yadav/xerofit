@@ -59,15 +59,12 @@ $( document ).ready(function() {
   // });
 
   $(document).on("click", ".fancy_input", function() {
-    $('.mus_select').remove();
-    var number_of_select = $(this).val();
+     var number_of_select = $(this).val();
      $('.active').removeClass('active');
      $(this).addClass('active');
-    
      url = "/libraries/target_msle_group"
      $.get(url, {number:number_of_select}, function (data) {
      });
-
   });
 
 

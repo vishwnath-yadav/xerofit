@@ -53,15 +53,15 @@
             
           <div class="exr_field_col number_mus mus_count">
           	<label>Number of Target Muscle Groups</label>
-            <%(1..5).each do |no|%>
-              <input name="" type="button" class="fancy_input <%=@library.target_muscle_groups.count == no ? 'active' : ''%>" value="<%=no%>"/>
+            <%(1..8).each do |no|%>
+              <input name="" type="button" class="fancy_input <%= no == @library.target_muscle_groups.count ? 'active' : ''%>"  value="<%=no%>"/>
             <%end%>
           </div>
-          <div class="exr_field_col number_mus mus_select">
+          <div class="exr_field_col number_mus mus_select targets_sel">
             <% i = 0 %>
             <%= lib.fields_for :target_muscle_groups do |builder| %>
-              <% abc = TargetMuscleGroup::MUSCLES_TYPE[i] %>
-              <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder} %>
+              <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
+              <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
               <%i += 1%>
             <%end%>
           </div>
@@ -89,7 +89,8 @@
             <label>Equipment</label>
             <h5 style="color:black;">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
             <div class="fancy_select sel_wid">
-              <%= lib.input :equipment, collection: Library::EQUIPMENT_LIST, :prompt => "Choose all that apply", input_html: {:multiple => true, :size => 5}, label: false, include_blank: false %>
+              <%= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "" } %>
+              <%#= lib.input :equipment, collection: Library::EQUIPMENT_LIST, :prompt => "Choose all that apply",{:multiple => true, :size =>3}, label: false, include_blank: false %>
               <%#= lib.select :equipment, Library::EQUIPMENT_LIST, {prompt: "Select Equipment"},  input_html: {:multiple => true, :size => 5}%>
             </div>
               <%#= select_tag "equipment", options_for_select(Library::EQUIPMENT_LIST), :multiple => true, :size => 5 %>
