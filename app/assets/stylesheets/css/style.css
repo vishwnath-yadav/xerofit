@@ -1511,6 +1511,8 @@ background: #fff;
 	margin-left: 50%;
 }
 
+.wd50{width: 50%}
+
 .green_txt{
 	color: green;
 }
@@ -1840,20 +1842,39 @@ top: 2px;}
 .list_icon.list_icon_active{background:url(/assets/list_icon_active.png) no-repeat center center; }
 .grid_icon.grid_icon_active{background:url(/assets/grid_icon_active.png) no-repeat center center; }
 
-.plus_icon{width:50px; height:auto; float:left;}
+.plus_icon{width:50px; position: relative; height:auto; float:left;}
 .plus_icon:hover > .hover_box{display:block}
 .hover_box{ background: #262728;
 font-size: 12px;
 color: #fff;
 padding: 5px;
 float: left;
-margin-top:5px;
-display:none;
+margin-top: 5px;
+display: none;
 position: absolute;
 min-width: 60px;
-text-align: center;}
+text-align: center;
+top: 26px;
+width: 80px;
+border-radius: 5px;}
+.plus_icon img{margin-left: 26px;}
+.hover_box:after{background: url(/assets/tip_icon.png) no-repeat;
+content: '';
+width: 10px;
+height: 5px;
+position: absolute;
+top: -5px;
+left: 50%;
+margin-left: -5px;}
+.tool_tip_col {
+width: auto;
+position: relative;
+float: left;
+}
+.tool_tip_col .hover_box{left: -24px;
+top: 33px;}
 .hover_box a{color:#fff; text-decoration:none}
-
+.tool_tip_col:hover > .hover_box{display:block}
 .type_select{ min-width:100px; float:left; background:#fff}
 .dk_options_inner .green_icon{background:url(/assets/green_circle.png) no-repeat;}
 

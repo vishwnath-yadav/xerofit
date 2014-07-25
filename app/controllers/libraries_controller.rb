@@ -109,6 +109,14 @@ class LibrariesController < ApplicationController
 		redirect_to libraries_path
 	end
 
+	def target_msle_group
+		Rails.logger.debug ">>>>>>>>"
+		@num = params[:number].to_i
+		respond_to do |format|
+	        format.js
+        end
+	end
+
 	private
 	  def library_params
 	    params.require(:library).permit!

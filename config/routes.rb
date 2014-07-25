@@ -67,6 +67,7 @@ Xerofit::Application.routes.draw do
       get 'library_search_by_name'
       get 'autocomplete_library_title'
       post 'get_lib_items'
+      get 'target_msle_group'
     end
   end
   
