@@ -392,6 +392,9 @@ height: 21px;
 -moz-appearance: none;
 appearance: none;
 }
+
+.sel_wid{width: 90%}
+.sel_wid select{width: 100%; height: 85px}
 .exr_field_col input.fancy_input{
 	background:#fdfcfb;
 	width:18.9%;

@@ -42,28 +42,18 @@ class LibrariesController < ApplicationController
 	def update
 		@library = Library.find(params[:id])
 		@video = @library.library_video.update_attributes(:image => params[:image])
-		if params[:status_change] == Library::STATUS[1]
-			respond_to do |format|
-		      if @library.update_attributes(library_params)
-		      	@library.status = Library::STATUS[1] 
-		      	@library.save
+		respond_to do |format|
+		    if @library.update_attributes(library_params)
+				if params[:status_change] == Library::STATUS[1]
+			      	@library.status = Library::STATUS[1] 
+			      	@library.save
+			    end
 		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
 		        format.json { head :no_content }
-		      else
+		    else
 		        format.html { render action: "edit" }
 		        format.json { render json: @library.errors, status: :unprocessable_entity }
-		      end
-		  	end
-		else
-			respond_to do |format|
-		      if @library.update_attributes(library_params)
-		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
-		        format.json { head :no_content }
-		      else
-		        format.html { render action: "edit" }
-		        format.json { render json: @library.errors, status: :unprocessable_entity }
-		      end
-		  	end
+		    end
 	    end
 	end
 
