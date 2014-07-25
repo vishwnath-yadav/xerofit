@@ -12,7 +12,7 @@ class Library < ActiveRecord::Base
 
 	validates :title, presence: true
 
-	validates :equipment, :length => { :maximum => 5, :message=>"size can not be greater than 5."}
+	validates :equipment, :length => { :maximum => 6, :message=>"size can not be greater than 5."}
 	
 	CATEGORIES = ["Agility", "Bodybuilding","Bodyweight","Cardio","Core","Dance","Dumbbell","Endurance","Exercise Ball","Kettlebell","Martial Arts","Medicine Ball","Office","Pilates","Playground","Postnatal","Prenatal","Pull Ups","Recovery","Resistance Bands","Stairs","Stretching","TRX","Warm Up","Yoga"]
 
