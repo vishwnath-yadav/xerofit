@@ -1,7 +1,7 @@
 <div class="create_heading">
   <div class="prev_lib_col">
-    <%= link_to("< Previous Workout",  workout_details_workout_path(@workouts.previous_post)) if @workouts.previous_post%>
-      <%= link_to("Next Workout >",  workout_details_workout_path(@workouts.next_post), :class => 'fr') if @workouts.next_post %>
+    <%= link_to("< Fitness Library", libraries_path) %>
+    <%= link_to("Next Workout >",  workout_details_workout_path(@workouts.next_post), :class => 'fr') if @workouts.next_post %>
   </div>
     <div class="lib_image_box">
       <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />

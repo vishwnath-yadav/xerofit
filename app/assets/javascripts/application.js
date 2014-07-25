@@ -42,20 +42,32 @@ $( document ).ready(function() {
       $(".signout_col").slideToggle();
     }) 
 
+  // $(document).on("click", ".fancy_input", function() {
+  //   $('.mus_select').remove();
+  //   var number_of_select = $(this).val();
+  //   $('.active').removeClass('active');
+  //   $(this).addClass('active');
+  //   var i=0;
+  //   var target = ['Primary Target', 'Second Target', 'Thired Target', 'Fouth Target', 'Fifth Target']
+  //   var option = ['body', 'sholder', 'arms']
+  //   for(i=0; i<number_of_select; i++)
+  //   {
+  //   var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='body'>Body</option> <option value='sholder'>Sholder</option> <option value='arms'>Arms</option></select>";
+  //   var form_create = "<div class='exr_field_col mus_select'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
+  //   $('.mus_count').after(form_create);
+  //   }
+  // });
+
   $(document).on("click", ".fancy_input", function() {
     $('.mus_select').remove();
     var number_of_select = $(this).val();
-    $('.active').removeClass('active');
-    $(this).addClass('active');
-    var i=0;
-    var target = ['Primary Target', 'Second Target', 'Thired Target', 'Fouth Target', 'Fifth Target']
-    var option = ['body', 'sholder', 'arms']
-    for(i=0; i<number_of_select; i++)
-    {
-    var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='body'>Body</option> <option value='sholder'>Sholder</option> <option value='arms'>Arms</option></select>";
-    var form_create = "<div class='exr_field_col mus_select'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
-    $('.mus_count').after(form_create);
-    }
+     $('.active').removeClass('active');
+     $(this).addClass('active');
+    
+     url = "/libraries/target_msle_group"
+     $.get(url, {number:number_of_select}, function (data) {
+     });
+
   });
 
 

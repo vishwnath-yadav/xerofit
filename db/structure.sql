@@ -229,7 +229,8 @@ CREATE TABLE libraries (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     status character varying(255),
-    move_type character varying(255) DEFAULT 'Single Move'::character varying
+    move_type character varying(255) DEFAULT 'Single Move'::character varying,
+    equipment character varying(255)[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -503,13 +504,13 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
+    pin_code integer,
+    date_of_birth date,
+    gender character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
-    pic_updated_at timestamp without time zone,
-    pin_code character varying(255),
-    date_of_birth date,
-    gender character varying(255)
+    pic_updated_at timestamp without time zone
 );
 
 
@@ -579,12 +580,12 @@ CREATE TABLE workouts (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    status character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     category character varying(255),
+    status character varying(255),
     move_type character varying(255) DEFAULT 'workouts'::character varying
 );
 
@@ -929,6 +930,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140624073552');
 
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
+INSERT INTO schema_migrations (version) VALUES ('20140625071514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625080723');
+
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
@@ -944,8 +949,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140630055608');
 INSERT INTO schema_migrations (version) VALUES ('20140702090254');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702121642');
-
-INSERT INTO schema_migrations (version) VALUES ('20140704094146');
 
 INSERT INTO schema_migrations (version) VALUES ('20140704094148');
 
@@ -970,6 +973,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140724082647');
 INSERT INTO schema_migrations (version) VALUES ('20140724085147');
 
 INSERT INTO schema_migrations (version) VALUES ('20140725053946');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725054513');
 
 INSERT INTO schema_migrations (version) VALUES ('20140725063050');
 

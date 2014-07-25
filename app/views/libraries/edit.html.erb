@@ -1,9 +1,6 @@
 <div class="create_heading">
     <div class="prev_lib_col" id="<%= @library.id%>">
-      <!-- <a href="javascript:void(0)" class="lib_order" data-name="pre">&lt; Previous Library</a>
-      <a href="javascript:void(0)" class="fr lib_order" data-name="next">Next Library &gt;</a> -->
-      <%= link_to("< Previous Library", edit_library_path(@library.previous_post)) if @library.previous_post%>
-      <%= link_to("Next Library >", edit_library_path(@library.next_post), :class => 'fr') if @library.next_post %>
+      <%= link_to("< Fitness Library", libraries_path) %>
     </div>
     <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
     </div>
@@ -87,6 +84,15 @@
             <div class="fancy_select">
               <%= lib.select :difficulty, Library::DIFFICULTIES, prompt: "Select Difficulty" %>
             </div>
+          </div>
+          <div class="exr_field_col ">
+            <label>Equipment</label>
+            <h5 style="color:black;">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
+            <div class="fancy_select sel_wid">
+              <%= lib.input :equipment, collection: Library::EQUIPMENT_LIST, :prompt => "Choose all that apply", input_html: {:multiple => true, :size => 5}, label: false, include_blank: false %>
+              <%#= lib.select :equipment, Library::EQUIPMENT_LIST, {prompt: "Select Equipment"},  input_html: {:multiple => true, :size => 5}%>
+            </div>
+              <%#= select_tag "equipment", options_for_select(Library::EQUIPMENT_LIST), :multiple => true, :size => 5 %>
           </div>
       </div>
     </div>
