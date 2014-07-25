@@ -1,0 +1,16 @@
+<span class="work_out_left_menu">
+  <div class="workout_col_left autoheight">
+    <div class="search_col">
+        <input name="" type="button" class="search_btn workout_search_btn" />
+        <%= autocomplete_field_tag 'title', '', autocomplete_library_title_workouts_path, :class => "search_icon", :placeholder=>"Search within library..." %>
+    </div>
+    <div class="fitler_col" id="filter_library_col">
+      <div class="filter_icon asc" id="filter_change">
+        Filter
+      </div>
+      <span class="library_list">
+       <%= render "workout_left_menu" %>
+     </span>
+    </div>
+  </div>
+</span>

@@ -1,0 +1,35 @@
+<div class="met_tab" id="block_<%= block.id %>" ondrop="drag_drop(event, <%= block.id %>)" ondragover="return false">
+    <div class="met_tab_col">
+    	<div class="met_head">
+        	<div class="tab_arrow">
+       	        down
+             </div>
+             <div class="head_rght">
+             <h4><%= block.name %></h4>
+             <p><span class="b<%= block.id %>"><%=block.move%></span> moves // <%= block.block_type.capitalize%> repeat: <%= block.name_type %></p>
+             </div>
+        </div>
+
+        <div class="met_tab_desc">
+            <%=hidden_field_tag "block_id", block.id %>
+            <%=hidden_field_tag "block_type_#{block.id}", block.block_type %>
+            <ul class="sortable">
+                <%block.libraries.each_with_index do |lib, ind|%>
+                    <li id="<%=block.id%>_<%=lib.id%>" data-libdetail="<%=block.get_lib_detail(lib.id)%>">
+                        <span class="rm" id="rm_<%=block.id%>_<%=lib.id%>">
+                            X
+                        </span>
+                        <span class="nummeric" data-libdetail="<%=block.get_lib_detail(lib.id)%>"><%=ind + 1%>
+                        </span>
+                        <h6><%=lib.title%></h6>
+                    </li>
+                <%end%>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+  $( ".sortable" ).sortable({
+  stop: function( event, ui ) {sort_lis($(ui.item));}
+});
+</script>
