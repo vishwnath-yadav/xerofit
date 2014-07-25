@@ -289,13 +289,13 @@ ALTER SEQUENCE library_blocks_id_seq OWNED BY library_blocks.id;
 
 CREATE TABLE library_details (
     id integer NOT NULL,
-    repetition boolean DEFAULT true,
+    repetitions boolean DEFAULT true,
     weight boolean DEFAULT true,
     distance boolean DEFAULT true,
-    is_duration boolean DEFAULT true,
+    duration boolean DEFAULT true,
     minute integer DEFAULT 0,
     second integer DEFAULT 0,
-    is_tempo boolean DEFAULT true,
+    tempo boolean DEFAULT true,
     temp_lower integer DEFAULT 1,
     temp_pause integer DEFAULT 1,
     temp_lift integer DEFAULT 1,
@@ -306,7 +306,10 @@ CREATE TABLE library_details (
     rep_option character varying(255),
     library_block_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    dist_option character varying(255),
+    dist_val integer DEFAULT 1,
+    weight_val integer DEFAULT 1
 );
 
 
@@ -964,3 +967,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140724082537');
 INSERT INTO schema_migrations (version) VALUES ('20140724082647');
 
 INSERT INTO schema_migrations (version) VALUES ('20140724085147');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725053946');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725063050');
