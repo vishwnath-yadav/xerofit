@@ -338,6 +338,7 @@ padding: 5px;
 border: 1px solid #e1e0dd;}
 .exr_field_col label{color:#2a2c28; font-size: 14px;
 margin-bottom: 6px; float:left; width:100%;}
+.exr_field_col h4{color: #a5afbb; padding-bottom: 5px;}
 .exr_field_col input, .exr_field_col textarea{width:100%; outline:none; resize:none; padding:8px 6px; float:left; border-radius:5px; border:1px solid #e1e0dd; font-size:12px;
 color:#777778;}
 .libray_detail{float: left;

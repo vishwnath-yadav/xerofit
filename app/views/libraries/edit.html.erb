@@ -52,7 +52,8 @@
           </div>
             
           <div class="exr_field_col number_mus mus_count">
-          	<label>Number of Target Muscle Groups</label>
+            <h4>Additional Details</h4>
+          	<label>Target Muscle Groups</label>
             <%(1..8).each do |no|%>
               <input name="" type="button" class="fancy_input <%= no == @library.target_muscle_groups.count ? 'active' : ''%>"  value="<%=no%>"/>
             <%end%>

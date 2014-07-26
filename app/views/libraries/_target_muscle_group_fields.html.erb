@@ -1,6 +1,6 @@
 <div class="exr_field_col">
   	<label><%= abc %></label>
     <div class="fancy_select">
-        <%= lib.select :target_muscle_group, TargetMuscleGroup::MUSCLES_TYPE[i][1], prompt: "Select Primary Target" %>
+        <%= lib.select :target_muscle_group, TargetMuscleGroup::MUSCLES_TYPE[i][1], prompt: "Choose #{TargetMuscleGroup::MUSCLES_TYPE[i][0]}" %>
     </div>
 </div>
