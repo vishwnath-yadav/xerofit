@@ -337,7 +337,7 @@ width: 100%; text-align: right; display: none;}
 .exer_lft_col .thumbnail_col ul li img{width:100%; height:auto;}
 .exer_rht_col{width:100%; float:right;}
 .exr_field_col{width:100%; float:left; margin-bottom:20px;}
-.targets_sel .exr_field_col{width:40%; margin-right:55px;}
+.targets_sel .exr_field_col{width:40%; margin-right:35px;}
 #workout_category{border-radius: 5px;
 padding: 5px;
 border: 1px solid #e1e0dd;}
@@ -376,8 +376,8 @@ width: 48%;}
 float: right;}
 .exr_field_col.number_mus{width: 90%;}
 .exr_field_col textarea{height:121px}
-.fancy_select{width:100%; float:left; border-radius:5px; padding:5px; border:1px solid #e1e0dd; position: relative;
-background:url(/assets/select_arrow.png) no-repeat right #fdfcfb; overflow: hidden; font-size: 12px; }
+.fancy_select{width:100%; float:left; border-radius:5px; padding:5px 0 5px 5px; border:1px solid #e1e0dd; 
+background:url(/assets/select_arrow.png) no-repeat right #fdfcfb;  font-size: 12px; }
 .fancy_select.dob_select{width:31%;}
 .fancy_select.dob_select select{width:120%}
 .fancy_select.dob_select.m27{ margin:0px 17px;}
@@ -398,7 +398,35 @@ height: 21px;
 -moz-appearance: none;
 appearance: none;
 }
-
+.fancy_select ul{ margin: 0px; padding: 0px;}
+.fancy_select ul li{width: 100%;
+float: left;
+list-style: none;
+display: block;
+position: relative;}
+.fancy_select ul li ul{display: none}
+.fancy_select ul li:hover{background: #ccc;}
+.fancy_select ul li:hover > ul {
+display: block;
+position: absolute;
+right: -91px;
+z-index: 9;
+background: #fff;
+border-radius: 5px;
+padding: 4px;
+top: 0;
+box-shadow: 0 0px 5px #ccc;
+border: 1px solid #ccc;
+}
+.drop_toggle{width: 100%;
+float: left;
+border-radius: 5px;
+padding: 5px 0 5px 5px;
+border: 1px solid #e1e0dd;
+background: url(/assets/select_arrow.png) no-repeat right #fff;
+box-shadow: 0 0 5px #ccc;
+font-size: 12px;}
+.fancy_select ul li.sub_arw{background: url(/assets/arrow.png) no-repeat top right;}
 .sel_wid{width: 90%}
 .sel_wid select{width: 100%; height: 85px}
 .exr_field_col input.fancy_input{

@@ -6,6 +6,9 @@ $( document ).ready(function() {
   //    // $('.lib_edit_botom').css('display','none');
   //    $("#library_video_video").click();
   // });
+  $(document).on("click",".del",function(){
+    $(this).find(".fancy_select").slideToggle();
+  });
 
   $(document).on("click",".upload_video", function(){
     $("#library_video_video").click();

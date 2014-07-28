@@ -48,7 +48,7 @@
         <input name="" type="button" class="fancy_input <%=no == 1 ? 'active' : ''%>" value="<%=no%>"/>
       <%end%>
     </div>
-    <span class="targets_sel">
+    <span class="exr_field_col targets_sel">
     <% i = 0 %>
     <%= lib.fields_for :target_muscle_groups do |builder| %>
       <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
