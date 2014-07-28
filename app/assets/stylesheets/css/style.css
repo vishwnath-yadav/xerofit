@@ -337,6 +337,7 @@ width: 100%; text-align: right; display: none;}
 .exer_lft_col .thumbnail_col ul li img{width:100%; height:auto;}
 .exer_rht_col{width:100%; float:right;}
 .exr_field_col{width:100%; float:left; margin-bottom:20px;}
+.targets_sel .exr_field_col{width:40%; margin-right:55px;}
 #workout_category{border-radius: 5px;
 padding: 5px;
 border: 1px solid #e1e0dd;}
@@ -373,7 +374,7 @@ width: 48%;}
 .exr_field_col.cate_wd48{width: 48%;}
 .exr_field_col.level_wd48{width: 48%;
 float: right;}
-.exr_field_col.number_mus{width: 59%;}
+.exr_field_col.number_mus{width: 90%;}
 .exr_field_col textarea{height:121px}
 .fancy_select{width:100%; float:left; border-radius:5px; padding:5px; border:1px solid #e1e0dd; position: relative;
 background:url(/assets/select_arrow.png) no-repeat right #fdfcfb; overflow: hidden; font-size: 12px; }
