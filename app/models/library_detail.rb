@@ -6,7 +6,7 @@ class LibraryDetail < ActiveRecord::Base
 	DURATION = ["Seconds", "Minutes", "Hours"]
 	TEMPO = (0..5).to_a
 	REP_TYPE = ["Repeat Until Failure","Number Range","Fixed Number"]
-	DIST_OPT = ["Miles","Feets","Meters", "Kilometers"]
+	DIST_OPT = ["Miles","Feet","Meters", "Kilometers"]
 
 	def validate_workout
 		if !(repetitions or distance  or duration)

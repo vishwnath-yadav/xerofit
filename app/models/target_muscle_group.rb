@@ -10,13 +10,13 @@ class TargetMuscleGroup < ActiveRecord::Base
 	MUSCLES_TYPE_OPT_7 = ["Legs", "Calves", "Hamstrings", "Quadriceps"]
 	MUSCLES_TYPE_OPT_8 = ["Shoulders", "Anterior", "Posterior"]
 
-	MUSCLES_TYPE = [["Primary Target",MUSCLES_TYPE_OPT_1],
-	 ["Second Target", MUSCLES_TYPE_OPT_2], 
-	 ["Third Target",MUSCLES_TYPE_OPT_3],
-	 ["Fourth Target",MUSCLES_TYPE_OPT_4],
-	 ["Fifth Target",MUSCLES_TYPE_OPT_5],
-	 ["Sixth Target",MUSCLES_TYPE_OPT_6],
-	 ["Seventh Target",MUSCLES_TYPE_OPT_7],
-	 ["Eighth Target",MUSCLES_TYPE_OPT_8]]
+	MUSCLES_TYPE = [["Primary",MUSCLES_TYPE_OPT_1],
+	 ["Second", MUSCLES_TYPE_OPT_2], 
+	 ["Third",MUSCLES_TYPE_OPT_3],
+	 ["Fourth",MUSCLES_TYPE_OPT_4],
+	 ["Fifth",MUSCLES_TYPE_OPT_5],
+	 ["Sixth",MUSCLES_TYPE_OPT_6],
+	 ["Seventh",MUSCLES_TYPE_OPT_7],
+	 ["Eighth",MUSCLES_TYPE_OPT_8]]
 
 end

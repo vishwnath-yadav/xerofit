@@ -504,13 +504,13 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
+    pin_code character varying(255),
+    date_of_birth date,
+    gender character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
-    pic_updated_at timestamp without time zone,
-    pin_code character varying(255),
-    date_of_birth date,
-    gender character varying(255)
+    pic_updated_at timestamp without time zone
 );
 
 
@@ -534,40 +534,6 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: workout_builders; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE workout_builders (
-    id integer NOT NULL,
-    name character varying(255),
-    subtitle character varying(255),
-    description character varying(255),
-    user_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: workout_builders_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE workout_builders_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: workout_builders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE workout_builders_id_seq OWNED BY workout_builders.id;
-
-
---
 -- Name: workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -580,11 +546,11 @@ CREATE TABLE workouts (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    status character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
+    status character varying(255),
     category character varying(255),
     move_type character varying(255) DEFAULT 'workouts'::character varying
 );
@@ -704,13 +670,6 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY workout_builders ALTER COLUMN id SET DEFAULT nextval('workout_builders_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq'::regclass);
 
 
@@ -819,14 +778,6 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: workout_builders_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY workout_builders
-    ADD CONSTRAINT workout_builders_pkey PRIMARY KEY (id);
-
-
---
 -- Name: workouts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -926,8 +877,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140618122041');
 
 INSERT INTO schema_migrations (version) VALUES ('20140620104935');
 
-INSERT INTO schema_migrations (version) VALUES ('20140624073552');
-
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
@@ -945,10 +894,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140630055608');
 INSERT INTO schema_migrations (version) VALUES ('20140702090254');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702121642');
-
-INSERT INTO schema_migrations (version) VALUES ('20140704094146');
-
-INSERT INTO schema_migrations (version) VALUES ('20140704094148');
 
 INSERT INTO schema_migrations (version) VALUES ('20140716133059');
 

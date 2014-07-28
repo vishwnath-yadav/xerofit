@@ -49,7 +49,7 @@ body.pop{background:#d9d9d9;}
 .wrapper{min-height: 100%; float:left;}
 .header_wrapper{width:100%; padding: 13px 10px; float:left;  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; background:#fff; border-bottom:1px solid #e3e3e3;}
 .header_wrapper .home_nav{width:auto; float:left;}
-.home_nav_toggle{z-index:9999999;display:none; margin-top: 24px; position:absolute; background:#fff; float:left; box-shadow:0 0 6px #ccc; }
+.home_nav_toggle{z-index: 9; display:none; margin-top: 24px; position:absolute; background:#fff; float:left; box-shadow:0 0 6px #ccc; }
 .home_nav_toggle ul{margin:0px; padding:0px;}
 .home_nav_toggle:after{content: '';
 background: url(/assets/select_arrow_1.png) no-repeat left 0px;
@@ -329,6 +329,10 @@ color: #000;
 font-size: 13px;
 margin-bottom: 10px;
 }
+
+P.load_less{float: left;
+width: 100%; text-align: right; display: none;}
+
 .exer_lft_col .thumbnail_col ul li.margn45{margin:0px 42px;}
 .exer_lft_col .thumbnail_col ul li img{width:100%; height:auto;}
 .exer_rht_col{width:100%; float:right;}
@@ -338,6 +342,7 @@ padding: 5px;
 border: 1px solid #e1e0dd;}
 .exr_field_col label{color:#2a2c28; font-size: 14px;
 margin-bottom: 6px; float:left; width:100%;}
+.exr_field_col h4{color: #a5afbb; padding-bottom: 5px;}
 .exr_field_col input, .exr_field_col textarea{width:100%; outline:none; resize:none; padding:8px 6px; float:left; border-radius:5px; border:1px solid #e1e0dd; font-size:12px;
 color:#777778;}
 .libray_detail{float: left;
@@ -1992,4 +1997,11 @@ margin-bottom: 20px;
 	font-size: 22px;
 	padding-bottom: 25px;
 	padding-top: 14px;
+}
+
+.equ_cls{
+	width: 100%;
+    color: black;
+    font-size: 13px;
+    height: 80px !important;
 }
