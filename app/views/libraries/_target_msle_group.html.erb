@@ -2,6 +2,8 @@
 	<div class="exr_field_col del">
 	  	<label><%= TargetMuscleGroup::MUSCLES_TYPE[num][0] %></label>
 	    <div class="fancy_select">
+	    	<%= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "" %>
+    		<%= hidden_field_tag :sub_target_muscle_group, "", class: "" %>
 	    	<%=select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", options_for_select(TargetMuscleGroup::MUSCLES_TYPE[num][1]), prompt: "Choose #{TargetMuscleGroup::MUSCLES_TYPE[num][0]}" %>
 	    </div>
 	</div>
