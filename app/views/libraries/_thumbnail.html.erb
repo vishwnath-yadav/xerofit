@@ -4,7 +4,7 @@
   <% @size.each_with_index do |library, index| %>
     <% if(temp == 0) %>
       <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb") %>
-        <div class="video_title">Selected</div>
+        <div class="video_title <%= (index == 0)? 'select_thumb' : '' %>">Selected</div>
       </li>
       <% temp = temp+1 %>
     <% elsif(temp<2) %>
@@ -21,7 +21,8 @@
   <% end %>
   </ul>
 <% end %>
-<p class="load_more"><a href='javascript:void(0)'>Load more...</a></p>
+<p class="load_more"><a href='javascript:void(0)'>Show all...</a></p>
+<p class="load_less"><a href='javascript:void(0)'>Show less...</a></p>
   <!-- <%# temp = 0 %>
   <%# j = @size %>
   <ul>
@@ -57,13 +58,24 @@ $(document).ready(function(){
 
   $('.load_more').click(function(){
     $('.image_hide').each(function( index ) {
-      if(index<3)
-      {
-        $(this).removeClass('image_hide');
-      }
+      $(this).addClass('image_show');
+      $(this).removeClass('image_hide');
       if($('.image_hide').size() == 0)
       {
         $('.load_more').hide();
+        $('.load_less').show();
+      }
+    });
+  });
+
+  $('.load_less').click(function(){
+    $('.image_show').each(function( index ) {
+      $(this).addClass('image_hide');
+      $(this).removeClass('image_show');
+      if($('.image_show').size() == 0)
+      {
+        $('.load_less').hide();
+        $('.load_more').show();
       }
     });
   });

@@ -15,7 +15,15 @@ class LibrariesController < ApplicationController
 	def edit
 		@library = Library.find(params[:id])
 		if @library.library_video.present?
-			@size = @library.library_video.panda_mp4.screenshots
+			size = @library.library_video.panda_mp4.screenshots
+			image = @library.library_video.image
+			if size.include?(image)
+				index = size.index(image)
+				temp = size[index]
+				size[index] = size[0]
+				size[0] = temp
+			end
+			@size = size	
 		end
 	end
 	
