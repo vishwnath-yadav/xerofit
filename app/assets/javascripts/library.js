@@ -10,6 +10,16 @@ $( document ).ready(function() {
     $(this).find(".fancy_select").slideToggle();
   });
 
+  $(document).on("click",".sub_arw ul li",function(){
+    sub_menu=$(this).attr('data-subgroup');
+    alert(sub_menu);
+    $('.target_muscle_submenu').val(sub_menu);
+    menu = $(this).closest('ul').attr('data-group');
+    $('.target_muscle_menu').val(menu);
+    alert(menu);
+  });
+  
+
   $(document).on("click",".upload_video", function(){
     $("#library_video_video").click();
   });

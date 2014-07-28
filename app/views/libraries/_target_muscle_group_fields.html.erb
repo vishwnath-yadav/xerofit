@@ -1,6 +1,23 @@
 <div class="exr_field_col">
   	<label><%= abc %></label>
-    <div class="fancy_select">
-        <%= lib.select :target_muscle_group, TargetMuscleGroup::MUSCLES_TYPE[i][1], prompt: "Choose #{TargetMuscleGroup::MUSCLES_TYPE[i][0]}" %>
-    </div>
+  	<div class="drop_toggle">t</div>
+	    <div class="fancy_select">
+	    	<%= lib.input :target_muscle_group, :as => :hidden, class: "target_muscle_menu" %>
+    		<%= lib.input :sub_target_muscle_group, :as => :hidden, class: "target_muscle_submenu" %>
+	    	<ul>
+	    		<%TargetMuscleGroup::MUSCLES_TYPE[i][1].each do |mus|%>
+	    			<li class="sub_arw"><%=mus%>
+	    				<ul data-group="<%=mus%>">
+	    					<li data-subgroup="dfdF">dfdF</li>
+	    					<li data-subgroup="dfdF">dfdF</li>
+	    					<li data-subgroup="dfdF">dfdF</li>
+	    				</ul>
+	    			</li>
+	    		<%end%>
+	    	</ul>
+	    	<%#=select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", options_for_select(TargetMuscleGroup::MUSCLES_TYPE[num][1]), prompt: "Choose #{TargetMuscleGroup::MUSCLES_TYPE[num][0]}" %>
+
+	    	<%#= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "" %>
+    		<%#= hidden_field_tag :sub_target_muscle_group, "", class: "" %>
+	    </div>
 </div>
