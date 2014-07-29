@@ -55,7 +55,7 @@
             <h4>Additional Details</h4>
           	<label>Target Muscle Groups</label>
             <%(1..5).each do |no|%>
-              <input name="" type="button" class="fancy_input <%= no == @library.target_muscle_groups.count ? 'active' : ''%>"  value="<%=no%>"/>
+              <input name="" type="button" class="fancy_input wd16<%= no == @library.target_muscle_groups.count ? ' active' : ''%>"  value="<%=no%>"/>
             <%end%>
           </div>
           <div class="exr_field_col number_mus mus_select targets_sel">
@@ -88,7 +88,7 @@
           </div>
           <div class="exr_field_col ">
             <label>Equipment</label>
-            <h5 style="color:black;">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
+            <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
             <div>
               <%= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "equ_cls" } %>
             </div>

@@ -61,9 +61,10 @@ $( document ).ready(function() {
   $(document).on("click", ".fancy_input", function() {
      var number_of_select = $(this).val();
      $('.active').removeClass('active');
+     lib_id = $('#lib_id').attr('id');
      $(this).addClass('active');
      url = "/libraries/target_msle_group"
-     $.get(url, {number:number_of_select}, function (data) {
+     $.get(url, {number:number_of_select, lib_id:lib_id}, function (data) {
      });
   });
 

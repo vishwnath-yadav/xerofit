@@ -2,15 +2,15 @@ class CreateLibraryDetails < ActiveRecord::Migration
   def change
     create_table :library_details do |t|
       t.boolean :repetitions, default: true
-      t.boolean :weight, default: true
-      t.boolean :distance, default: true
+      t.boolean :weight, default: false
+      t.boolean :distance, default: false
       t.string  :dist_option 
       t.integer :dist_val, default: 1
       t.integer :weight_val, default: 1
-      t.boolean :duration, default: true
+      t.boolean :duration, default: false
       t.integer :minute, default: 0
       t.integer :second, default: 0
-      t.boolean :tempo, default: true
+      t.boolean :tempo, default: false
       t.integer :temp_lower, default: 0
       t.integer :temp_pause, default: 0
       t.integer :temp_lift, default: 0

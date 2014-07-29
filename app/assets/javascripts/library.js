@@ -11,12 +11,13 @@ $( document ).ready(function() {
   });
 
   $(document).on("click",".sub_arw ul li",function(){
-    sub_menu=$(this).attr('data-subgroup');
-    alert(sub_menu);
-    $('.target_muscle_submenu').val(sub_menu);
-    menu = $(this).closest('ul').attr('data-group');
-    $('.target_muscle_menu').val(menu);
-    alert(menu);
+    var sub_menu=$(this).attr('data-subgroup');
+    var $parent = $(this).closest('ul');
+    var menu = $parent.attr('data-group');
+    var id = $parent.attr('data-id');
+    $('.target_muscle_menu_'+id).val(menu);
+    $('.target_muscle_submenu_'+id).val(sub_menu);
+    $('.target_'+id).text(menu);
   });
   
 

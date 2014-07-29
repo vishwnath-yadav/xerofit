@@ -133,6 +133,9 @@ class LibrariesController < ApplicationController
 	end
 
 	def target_msle_group
+		if params[:lib_id] != "lib_id"
+			@lib = Library.find(params[:lib_id])
+		end
 		@num = params[:number].to_i - 1
 		respond_to do |format|
 	        format.js

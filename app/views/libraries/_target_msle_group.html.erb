@@ -1,17 +1,23 @@
 <%(0..@num).each do |num|%>
 	<div class="exr_field_col del">
 	  	<label><%= TargetMuscleGroup::MUSCLES_TYPE[num][0] %></label>
-	  	<div class="drop_toggle">t</div>
-	    <div class="fancy_select">
-	    	<%= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "target_muscle_menu" %>
-    		<%= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][sub_target_muscle_group]", "", class: "target_muscle_submenu" %>
+	  	<div class="toggle_rel">
+	  	<div class="drop_toggle target_<%=num%>">
+	  		<%= (@lib.present?&&@lib.target_muscle_groups.present?) ?  @lib.target_muscle_groups[num].target_muscle_group : "Choose #{TargetMuscleGroup::MUSCLES_TYPE[num][0]}"%>
+	  	</div>
+	    <div class="fancy_select toggle_abs" style="display:none;">
+	    	<%= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "target_muscle_menu_#{num}" %>
+    		<%= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][sub_target_muscle_group]", "", class: "target_muscle_submenu_#{num}" %>
 	    	<ul>
-	    		<%TargetMuscleGroup::MUSCLES_TYPE[num][1].each do |mus|%>
-	    			<li class="sub_arw"><%=mus%>
-	    				<ul data-group="<%=mus%>">
-	    					<li data-subgroup="dfdF">dfdF</li>
-	    					<li data-subgroup="dfdF">dfdF</li>
-	    					<li data-subgroup="dfdF">dfdF</li>
+	    		<%TargetMuscleGroup::MUSCLES_TYPE[num][1].each do |key, value|%>
+	    			<li class="sub_arw">
+	    				<%=key%>
+	    				<ul data-group="<%=key%>" data-id="<%=num%>">
+	    					<%value.each do |sub_opt|%>
+	    						<li data-subgroup="<%=sub_opt%>">
+	    							<%=sub_opt%>
+	    						</li>
+    						<%end%>
 	    				</ul>
 	    			</li>
 	    		<%end%>
@@ -21,5 +27,6 @@
 	    	<%#= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "" %>
     		<%#= hidden_field_tag :sub_target_muscle_group, "", class: "" %>
 	    </div>
+	</div>
 	</div>
 <%end%>

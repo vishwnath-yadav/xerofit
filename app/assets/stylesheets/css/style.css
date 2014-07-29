@@ -402,14 +402,17 @@ appearance: none;
 .fancy_select ul li{width: 100%;
 float: left;
 list-style: none;
+padding:5px 1px 5px 11px;
+color: #111;
 display: block;
 position: relative;}
+.fancy_select ul li:hover{background-color: #ccc}
 .fancy_select ul li ul{display: none}
 .fancy_select ul li:hover{background: #ccc;}
 .fancy_select ul li:hover > ul {
 display: block;
 position: absolute;
-right: -91px;
+right: -210px;
 z-index: 9;
 background: #fff;
 border-radius: 5px;
@@ -417,21 +420,26 @@ padding: 4px;
 top: 0;
 box-shadow: 0 0px 5px #ccc;
 border: 1px solid #ccc;
+width: 210px;
 }
 .drop_toggle{width: 100%;
 float: left;
 border-radius: 5px;
+color: #111;
 padding: 5px 0 5px 5px;
 border: 1px solid #e1e0dd;
 background: url(/assets/select_arrow.png) no-repeat right #fff;
 box-shadow: 0 0 5px #ccc;
 font-size: 12px;}
 .fancy_select ul li.sub_arw{background: url(/assets/arrow.png) no-repeat top right;}
+.fancy_select ul li.sub_arw:hover{background: url(/assets/arrow.png) no-repeat top right #b8e1e6;}
+
+
 .sel_wid{width: 90%}
 .sel_wid select{width: 100%; height: 85px}
 .exr_field_col input.fancy_input{
 	background:#fdfcfb;
-	width:11.3%;
+	width:18.6%;
 	border:1px solid #ccc;
 	padding:7px;
 	font-size:12px;
@@ -446,6 +454,9 @@ font-size: 12px;}
 .exr_field_col input.fancy_input.active, .exr_field_col input.fancy_input:hover{background:#b8e1e6; border:1px solid #93b4b8}
 .exr_field_col input.fancy_input:last-child{
 	margin-right:0px;
+}
+.exr_field_col input.fancy_input.wd16{
+	width: 16.6%;
 }
 /*=======DASHBOARD-PAGES END==========*/
 
@@ -2029,8 +2040,22 @@ margin-bottom: 20px;
 }
 
 .equ_cls{
-	width: 100%;
+	width: 48%;
     color: black;
     font-size: 13px;
     height: 80px !important;
+    float: left;
+	border-radius: 5px;
+	padding: 5px 0 5px 5px;
+	border: 1px solid #e1e0dd;
 }
+
+.equ_h5{
+	color: black;
+	margin: 10px 0 10px;
+}
+
+.toggle_rel{position: relative; float: left; width: 100%;}
+.toggle_abs{position: absolute;
+top: 29px;background: #fff;
+z-index: 9;}
