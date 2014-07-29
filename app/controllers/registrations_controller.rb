@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  # before_filter :configure_permitted_parameters, if: :devise_controller?
+  
   def new
     super
   end
@@ -36,6 +38,10 @@ class RegistrationsController < Devise::RegistrationsController
   private
   def user_params
     params.require(:user).permit(:fullname, :email, :password, :role)
+  end
+
+  def after_sign_in_path_for(resource)
+    trainer_dashboard_index_path
   end
 
 end

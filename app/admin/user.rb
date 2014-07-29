@@ -16,9 +16,10 @@ index do
 
   form do |f|
     f.inputs "Update User" do
-      f.input :role
+      f.input :role, :prompt => 'Choose one', :required => true, :label => "Role", as: :select, collection: User::ROLESFORADMIN, :input_html => { :class => 'select_box'} 
       f.input :fullname
       f.input :email
+      f.input :password
       f.input :enabled
     end
      f.actions
