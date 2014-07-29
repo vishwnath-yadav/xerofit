@@ -2,7 +2,7 @@
   	<label><%= abc %></label>
   	<div class="toggle_rel">
   	<div class="drop_toggle target_<%=i%>">
-  		<%= @library.new_record? ? "Choose #{abc}" : @library.target_muscle_groups[i].target_muscle_group%>
+  		<%= get_select_val(@library, i, abc)%>
   	</div>
 	    <div class="fancy_select toggle_abs" style="display:none;" >
 	    	<%= lib.hidden_field  :target_muscle_group, class: "target_muscle_menu_#{i}" %>
