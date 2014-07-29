@@ -10,4 +10,8 @@ module LibrariesHelper
 			status = "/assets/red_circle.png"
 		end
 	end
+
+	def get_select_val(library, i, abc)
+	  library.new_record? ? "Choose #{abc}" : library.target_muscle_groups[i].target_muscle_group.blank? ? "Choose #{abc}" : library.target_muscle_groups[i].target_muscle_group 
+	end
 end
