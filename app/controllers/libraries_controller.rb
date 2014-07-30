@@ -29,7 +29,7 @@ class LibrariesController < ApplicationController
 			end
 			@size = size	
 		end
-
+		@size.pop()
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
 	end
 	
