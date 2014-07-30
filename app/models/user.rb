@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   accepts_nested_attributes_for :addresses, :subscriptions
   has_many :workouts
-   ROLES = %w[admin trainer normaluser]
+  ROLES = %w[admin trainer normaluser]
+  ROLESFORADMIN = %w[trainer normaluser]
 
    validates :role, presence: true
 
