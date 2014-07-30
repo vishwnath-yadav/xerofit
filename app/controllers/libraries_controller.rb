@@ -2,8 +2,12 @@ class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
 	def index
+		@list = []
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
-		@list = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
+		@list = Library.where(user_id: current_user.id)
+		@list << Workout.where(:user_id => current_user, state: :completed)
+
+		@list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
 	end
 	
 	def new
@@ -25,6 +29,8 @@ class LibrariesController < ApplicationController
 			end
 			@size = size	
 		end
+
+		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
 	end
 	
 	def create
@@ -133,9 +139,11 @@ class LibrariesController < ApplicationController
 	end
 
 	def target_msle_group
+		
 		if params[:lib_id] != "lib_id"
 			@lib = Library.find(params[:lib_id])
 		end
+		@pre_num = params[:len].to_i
 		@num = params[:number].to_i - 1
 		respond_to do |format|
 	        format.js

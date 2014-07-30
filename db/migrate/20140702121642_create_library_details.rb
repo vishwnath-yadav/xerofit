@@ -17,7 +17,7 @@ class CreateLibraryDetails < ActiveRecord::Migration
       t.integer :rep_min, default: 1
       t.integer :rep_max, default: 1
       t.integer :rep_total, default: 1
-      t.boolean :rep_each_side, default: true
+      t.boolean :rep_each_side, default: false
       t.string :rep_option
       t.integer :library_block_id
       t.timestamps

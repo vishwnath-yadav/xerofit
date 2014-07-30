@@ -2059,3 +2059,11 @@ margin-bottom: 20px;
 .toggle_abs{position: absolute;
 top: 29px;background: #fff;
 z-index: 9;}
+
+.dis_link{
+	border:1px solid #CCCCCC !important;
+	color:#CCCCCC !important;
+	pointer-events: none;
+   	cursor: default;
+}
+

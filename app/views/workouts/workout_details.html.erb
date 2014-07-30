@@ -1,7 +1,7 @@
 <div class="create_heading">
   <div class="prev_lib_col">
     <%= link_to("< Fitness Library", libraries_path) %>
-    <%= link_to("Workout Builder >",  edit_workout_path(@workouts), :class => 'fr') %>
+    <%= link_to("Workout Builder >", edit_workout_path(@workouts), :class => 'fr') %>
   </div>
     <div class="lib_image_box">
       <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
@@ -16,15 +16,15 @@
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
       <div class="lib_image_box">
-        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_2.jpg' %>" />
+        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
         <h4><%= @workouts.title.titleize%></h4>
       </div>
     </span>
     <div class="rght_btns">
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="save">Save</a>
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work" lib-status="<%= Library::STATUS[1] %>">Submit with review</a>
+      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
+      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
     </div>
   </div>
 
@@ -46,21 +46,21 @@
       <div class="lib_des_lft">
         <div class="exr_field_col">
           <label>Title</label>
-          <%= lib.text_field :title %>
+          <%= lib.text_field :title, class: "for_work_change" %>
         </div>
         <div class="exr_field_col">
           <label>Subtitle</label>
-          <%= lib.text_field :subtitle %>
+          <%= lib.text_field :subtitle, class: "for_work_change" %>
         </div>
         <div class="exr_field_col">
           <label>Category</label>
-          <%= lib.select :category, Library::CATEGORIES, prompt: "Select Category" %>
+          <%= lib.select :category, Library::CATEGORIES,{}, prompt: "Select Category", class: "for_work_change" %>
         </div>
       </div>
       <div class="lib_des_rht">
           <div class="exr_field_col">
             <label>Discription</label>
-            <%= lib.text_area :description %>
+            <%= lib.text_area :description, class: "for_work_change" %>
           </div>
       </div>
     </div>
@@ -90,5 +90,15 @@
   <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
 </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var v = $('.wrk_rvw').attr('work-attr');
+    if(v == "true")
+    {
+      $('.wrk_rvw').removeClass('dis_link')
+    }
+  });
+</script>
 
   
