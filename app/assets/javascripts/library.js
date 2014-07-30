@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+
   prg = $("#progressbar");
   // $(document).on("click", ".replace_video_btn", function() {
   //    // $('.upload_edit').css('display','none');
@@ -6,6 +7,22 @@ $( document ).ready(function() {
   //    // $('.lib_edit_botom').css('display','none');
   //    $("#library_video_video").click();
   // });
+  
+
+  $(document).on("change keyup",".for_on_change",function(){
+    $('.chg_save').removeClass('dis_link');
+    check_require_field();
+  });
+
+  $(document).on("change",".for_on_changed",function(){
+    $('.chg_save').removeClass('dis_link');
+  });
+  
+  $(document).on("click",".for_on_change1",function(){
+    $('.chg_save').removeClass('dis_link');
+    check_require_field();
+  });
+
   $(document).on("click",".del",function(){
     $(this).find(".fancy_select").slideToggle();
   });
@@ -98,6 +115,30 @@ load_select_click = function() {
   });
 }
 
+function check_require_field(){
+  var flag= 1;
+  $(".for_on_change").each(function() {
+    key = $(this).val();
+    if(key == null || key == '')
+    {
+      flag=0;
+    }
+  });
 
+  var target = $('.for_target_change').val();
+  var len = $(".select_thumb").length;
+  
+  if((len <= 0)||(target == null)||(target == '')){
+    flag = 0;
+  }
+  if(flag == 1)
+  {
+  $('.chg_lin').removeClass('dis_link');
+  }
+  else{
+    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib chg_lin dis_link');
+  }
+  console.log(flag);
+}
 
 

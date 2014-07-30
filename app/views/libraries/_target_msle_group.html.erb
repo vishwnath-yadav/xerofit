@@ -1,5 +1,5 @@
-<%(0..@num).each do |num|%>
-	<div class="exr_field_col del">
+<%(@pre_num..@num).each do |num|%>
+	<div class="exr_field_col del fancy_count">
 	  	<label><%= TargetMuscleGroup::MUSCLES_TYPE[num][0] %></label>
 	  	<div class="toggle_rel">
 	  	<div class="drop_toggle target_<%=num%>">
@@ -22,10 +22,6 @@
 	    			</li>
 	    		<%end%>
 	    	</ul>
-	    	<%#=select_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", options_for_select(TargetMuscleGroup::MUSCLES_TYPE[num][1]), prompt: "Choose #{TargetMuscleGroup::MUSCLES_TYPE[num][0]}" %>
-
-	    	<%#= hidden_field_tag "library[target_muscle_groups_attributes][#{num}][target_muscle_group]", "", class: "" %>
-    		<%#= hidden_field_tag :sub_target_muscle_group, "", class: "" %>
 	    </div>
 	</div>
 	</div>

@@ -1,4 +1,27 @@
 $( document ).ready(function() {
+
+  $(document).on("change keyup",".for_work_change",function(){
+    $('.wrk_sve').removeClass('dis_link');
+    var flag= 1;
+    $(".for_work_change").each(function() {
+      key = $(this).val();
+      if((key == null)||(key == ''))
+      {
+        flag=0;
+      }
+    });
+
+    if(flag == 1)
+    {
+    $('.wrk_rvw').removeClass('dis_link');
+    }
+    else{
+      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw');
+    }
+    console.log(flag);
+    console.log($('#workout_category').val());
+  });
+
   $(document).on("click", ".wrk_out_form", function(){
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
      $("#workout_form").submit();
@@ -226,10 +249,10 @@ function drag_drop(e, id) {
     var block_type = $('#block_type_'+id).val();
     var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
     var check = check_library_count(li_size, block_type, false);
-    if(!$('#workid').length){
-      alert("Please fill workout details.")
-    }
-    else if(check != ''){
+    // if(!$('#workid').length){
+    //   alert("Please fill workout details.")
+    // }
+    if(check != ''){
       alert(check);
     }
     else if (check_library_present(lib_id, id)){
