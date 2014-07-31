@@ -5,7 +5,6 @@ class LibrariesController < ApplicationController
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
 		@list = Library.where(user_id: current_user.id)
 		@list << Workout.where(:user_id => current_user, state: :completed)
-
 		@list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
 		# @list = Library.list_view("","","",current_user)
 		# @list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
@@ -31,7 +30,7 @@ class LibrariesController < ApplicationController
 			end
 			@size = size	
 		end
-		@size.pop()
+		@size.size > 6 ? @size.pop() : @size
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
 	end
 	
