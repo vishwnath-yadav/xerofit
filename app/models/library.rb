@@ -28,10 +28,6 @@ class Library < ActiveRecord::Base
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
   
 
-	def build_association
-		1.times{target_muscle_groups.build if self.target_muscle_groups.empty? }
-	end
-
 	def save_status
 		self.status = STATUS[0]
 		self.save
@@ -43,5 +39,28 @@ class Library < ActiveRecord::Base
 
 	def next_post
 	  self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
+	end
+
+	def self.list_view(status,name,type,user)
+		@list = []
+		if type == "Workouts"
+			@list = Workout.by_name(name).by_status(status).where(:user_id => user, state: :completed)
+		elsif type == "Excercises"
+			@list = Library.by_name(name).by_status(status).where(:user_id => user)
+		else
+			@list = Workout.by_name(name).by_status(status).where(:user_id => user, state: :completed)
+			@list << Library.by_name(name).by_status(status).where(:user_id => user)
+		end
+	end
+
+	def update_target_muscle(target_muscles)
+		target_muscles.each do |k, v|
+			if !v.has_key?("target_muscle_group")
+				tmg = TargetMuscleGroup.where(id: v["id"]).last
+				if tmg.present?
+					tmg.destroy
+				end
+			end
+		end
 	end
 end

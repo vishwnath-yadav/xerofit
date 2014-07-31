@@ -2,18 +2,20 @@ class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
 	def index
-		@list = []
 		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
 		@list = Library.where(user_id: current_user.id)
 		@list << Workout.where(:user_id => current_user, state: :completed)
 
 		@list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
+		# @list = Library.list_view("","","",current_user)
+		# @list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
+		
 	end
 	
 	def new
 		@library = Library.new
 		@libvideo = LibraryVideo.new
-		@library.build_association
+		5.times { @library.target_muscle_groups.build }
 	end
 	
 	def edit
@@ -56,17 +58,12 @@ class LibrariesController < ApplicationController
 	def update
 		@library = Library.find(params[:id])
 		@video = @library.library_video.update_attributes(:image => params[:image])
+		@library.update_target_muscle(params[:library][:target_muscle_groups_attributes])
 		respond_to do |format|
 		    if @library.update_attributes(library_params)
-				if params[:status_change] == Library::STATUS[1]
-			      	@library.status = Library::STATUS[1] 
-			      	@library.save
-			    end
 		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
-		        format.json { head :no_content }
 		    else
 		        format.html { render action: "edit" }
-		        format.json { render json: @library.errors, status: :unprocessable_entity }
 		    end
 	    end
 	end
@@ -90,17 +87,8 @@ class LibrariesController < ApplicationController
 		@view = params[:view_type]
 		status = params[:status]
 		name = params[:title]
-		@list = []
-		if params[:type] == "Workouts"
-			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
-		elsif params[:type] == "Excercises"
-			@list = Library.by_name(name).by_status(status).where(:user_id => current_user)
-		else
-			@list = Workout.by_name(name).by_status(status).where(:user_id => current_user, state: :completed)
-			@list << Library.by_name(name).by_status(status).where(:user_id => current_user)
-		end
-
-		@list = @list.flatten
+		type = params[:type]
+		@list = Library.list_view(status,name,type,current_user).flatten
 		respond_to do |format|
 			format.js
 		end
@@ -136,18 +124,6 @@ class LibrariesController < ApplicationController
 		@library = Library.find(params[:id])
 		@library.destroy
 		redirect_to libraries_path
-	end
-
-	def target_msle_group
-		
-		if params[:lib_id] != "lib_id"
-			@lib = Library.find(params[:lib_id])
-		end
-		@pre_num = params[:len].to_i
-		@num = params[:number].to_i - 1
-		respond_to do |format|
-	        format.js
-        end
 	end
 
 	private

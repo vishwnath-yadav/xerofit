@@ -1,9 +1,0 @@
-<% if @pre_num <= @num %>
-	$('.targets_sel').append("<%= escape_javascript(render(:partial => '/libraries/target_msle_group')) %>");
-<% elsif @pre_num > @num %>
-	<%@pre_num = @pre_num - 1%>
-	<%while @pre_num > @num do%>
-		$('.fancy_count:last').remove();
-		<%@pre_num = @pre_num - 1%>
-	<%end%>
-<% end %>

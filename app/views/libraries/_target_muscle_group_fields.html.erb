@@ -1,12 +1,12 @@
-<div class="exr_field_col del">
+<div class="exr_field_col del fancy_count">
   	<label><%= abc %></label>
   	<div class="toggle_rel">
-  	<div class="drop_toggle target_<%=i%> fancy_count">
+  	<div class="drop_toggle target_<%=i%>">
   		<%= get_select_val(@library, i, abc)%>
   	</div>
 	    <div class="fancy_select toggle_abs" style="display:none;" >
-	    	<%= lib.hidden_field  :target_muscle_group, class: "target_muscle_menu_#{i} for_target_change" %>
-    		<%= lib.hidden_field  :sub_target_muscle_group, class: "target_muscle_submenu_#{i} " %>
+	    	<%= lib.hidden_field  :target_muscle_group, class: "target_muscle_menu_#{i} for_target_change taget_val" %>
+    		<%= lib.hidden_field  :sub_target_muscle_group, class: "target_muscle_submenu_#{i} taget_sub_val" %>
 	    	<ul>
 	    		<%TargetMuscleGroup::MUSCLES_TYPE[i][1].each do |key, value|%>
 	    			<li class="sub_arw"><%=key%>

@@ -49,17 +49,10 @@ $( document ).ready(function() {
 
 
   $(".wrk_add_opt").click(function(){
-    var name = $('#workout_id').val();
-    if(name){
-      $.fancybox.open({
-            href: '#wrk_add_option',
-            type: 'inline'
-        });
-    }
-    else   {
-      alert("Please fill workout details");
-    }
-
+    $.fancybox.open({
+      href: '#wrk_add_option',
+      type: 'inline'
+    });
   });
 
   $(".close_icon").click(function(){
@@ -214,6 +207,7 @@ function create_sub_block(){
 }
 
 function create_individual_sub_block(){
+  $('.drag_img').remove();
   var type = BLOCK_TYPE[2];
   var title = 'Individual';
   sub_block_ajax(type, title, 'block_hide');
@@ -269,11 +263,8 @@ function drag_drop(e, id) {
 }
 
 function individual_block_show(id){
-  if($('.drag_img').length){
-    $('.drag_img').remove();
-  }
-  $('#block_'+id).removeClass('block_hide');
-  if(!$('.block_hide').length){
+  if($("#block_"+id).find('.block_hide').length){
+    $('.block_hide').removeClass('block_hide');
     create_individual_sub_block();
   }
 }
