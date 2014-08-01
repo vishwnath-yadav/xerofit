@@ -12,8 +12,21 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     logger.debug(">>>>>>>>>>>>>>>>>>>>login>>>>")
     if resource.is_a?(Admin)
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       admin_index_path
     else
+      logger.debug("**************************")
+      logger.debug("**************************")
+      logger.debug("**************************")
+      logger.debug("**************************")
+      logger.debug("**************************")
+      logger.debug("**************************")
+      logger.debug("**************************")
       trainer_dashboard_index_path
     end
   end
