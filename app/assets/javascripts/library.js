@@ -131,9 +131,8 @@ function check_require_field(){
   if((len <= 0)||(target == null)||(target == '')){
     flag = 0;
   }
-  if(flag == 1)
-  {
-  $('.chg_lin').removeClass('dis_link');
+  if(flag == 1){
+    $('.chg_lin').removeClass('dis_link');
   }
   else{
     $('.chg_lin').attr('class','cancel_btn rht_active edit_lib chg_lin dis_link');
