@@ -12,19 +12,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     logger.debug(">>>>>>>>>>>>>>>>>>>>login>>>>")
     if params[:admin_user].present?
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       '/admin'
     else
-      logger.debug("**************************")
-      logger.debug("**************************")
-      logger.debug("**************************")
-      logger.debug("**************************")
-      logger.debug("**************************")
-      logger.debug("**************************")
       trainer_dashboard_index_path
     end
   end
