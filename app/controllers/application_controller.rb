@@ -11,8 +11,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     logger.debug(">>>>>>>>>>>>>>>>>>>>login>>>>")
-    if resource.is_a?(Admin)
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+    if params[:admin_user].present?
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
@@ -20,7 +19,6 @@ class ApplicationController < ActionController::Base
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       admin_index_path
     else
-      logger.debug("**************************")
       logger.debug("**************************")
       logger.debug("**************************")
       logger.debug("**************************")
