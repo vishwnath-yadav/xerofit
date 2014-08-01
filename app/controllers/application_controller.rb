@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-      admin_index_path
+      '/admin'
     else
       logger.debug("**************************")
       logger.debug("**************************")
