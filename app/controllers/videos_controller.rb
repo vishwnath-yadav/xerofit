@@ -27,16 +27,6 @@ class VideosController < ApplicationController
 		redirect_to :back
 	end
 
-	# def update
-	# 	Rails.logger.debug ">>>>>>>>>>>>"
-	# 	# @library = Library.find(params[:id])
-	# 	# if @library.library_video.present?
-
-	# 	# else
-	# 	# end
-	# 	redirect_to :back
-	# end
-
 	private
 	def video_params
         params.require(:library_video).permit(:video)

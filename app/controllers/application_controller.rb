@@ -10,15 +10,11 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_in_path_for(resource)
-    logger.debug("finding")
-    logger.debug(resource)
+    logger.debug(">>>>>>>>>>>>>>>>>>>>login>>>>")
     if resource.is_a?(Admin)
-      logger.debug("finding admin userjsdkjsdlj sdfljsdf")
-      admin_dashboard_path
+      admin_index_path
     else
-      logger.debug("Not found")
       trainer_dashboard_index_path
-      # root_path
     end
   end
 

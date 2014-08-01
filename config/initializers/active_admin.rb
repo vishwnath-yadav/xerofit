@@ -123,7 +123,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-    config.root_to = 'admin/dashboard#index'
+    # config.root_to = 'admin/dashboard#index'
 
 
   # == Admin Comments

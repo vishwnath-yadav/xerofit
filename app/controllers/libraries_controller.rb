@@ -76,7 +76,6 @@ class LibrariesController < ApplicationController
 		else
 			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title DESC')
 		end
-		Rails.logger.debug @libraries.inspect
 		respond_to do |format|
 			format.js 
 		end
