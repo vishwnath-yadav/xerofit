@@ -18,4 +18,12 @@ module LibrariesHelper
           library.target_muscle_groups[i].target_muscle_group 
       	end
 	end
+
+	def trg_hide(library,i)
+		library.target_muscle_groups[i].target_muscle_group.blank? ? 'dis_non' : 'dis_blk'
+	end
+
+	def trg_count(library,i)
+		i==(library.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]).count ? ' active' : ''
+	end
 end

@@ -44,7 +44,7 @@
       <%end%>
       <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
       <%= hidden_field_tag :image, "", class: "image_url" %>
-      <%= hidden_field_tag :status_change, "", class: "status" %>
+      <%= lib.hidden_field :status%>
       <div class="lib_des_lft">
           <div class="exr_field_col">
             <label>Title</label>
@@ -55,16 +55,18 @@
             <h4>Additional Details</h4>
           	<label>Target Muscle Groups</label>
             <%(1..5).each do |no|%>
-              <input name="" type="button" class="fancy_input wd16<%= no == @library.target_muscle_groups.count ? ' active' : ''%>"  value="<%=no%>"/>
+              <input name="" type="button" class="fancy_input wd16 <%= trg_count(@library, no)%>"  value="<%=no%>"/>
             <%end%>
           </div>
           <div class="exr_field_col number_mus mus_select targets_sel">
             <% i = 0 %>
             <%= lib.fields_for :target_muscle_groups do |builder| %>
+            <span class="edit_tmg <%= trg_hide(@library,i)%>">
               <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
               <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
               <%i += 1%>
             <%end%>
+          </span>
           </div>
       </div>
       <div class="lib_des_rht ">

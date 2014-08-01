@@ -1785,7 +1785,7 @@ input:focus::-moz-placeholder { opacity:0; }
 	resize:vertical;
 	overflow:auto;	
 }
-.block_hide .met_tab_col{
+.block_hide.met_tab_col{
 	opacity: 0;
 }
 
@@ -2067,3 +2067,14 @@ z-index: 9;}
    	cursor: default;
 }
 
+.dis_non{
+ display: none;
+}
+
+.dis_blk{
+	display: block;
+}
+
+.drag_img{
+	margin-top: 40px;
+}

@@ -59,21 +59,32 @@ $( document ).ready(function() {
   // });
 
   $(document).on("click", ".fancy_input", function() {
-     var number_of_select = $(this).val();
-     len = $('.fancy_count').length;
+     var select_count = $(this).val();
+     len = $('.edit_tmg:visible').length;
      $('.active').removeClass('active');
      lib_id = $('#lib_id').attr('id');
      $(this).addClass('active');
-
-     url = "/libraries/target_msle_group"
-     $.get(url, {number:number_of_select, lib_id:lib_id, len:len}, function (data) {
-     });
+     if(len<=select_count){
+       for(i=0;i<select_count;i++){
+         $(".edit_tmg:eq("+i+")").css('display','block');
+       }
+     }
+     else
+     {
+        for(i=4;i>=select_count;i--){
+         $(".edit_tmg:eq("+i+")").css('display','none');
+         $(".drop_toggle:eq("+i+")").text("Choose "+MUSCLES_TYPE[i]);
+         $(".taget_val:eq("+i+")").val("");
+         $(".taget_sub_val:eq("+i+")").val("");
+        }
+        $('.chg_save').removeClass('dis_link');
+     }
   });
 
 
   $('.edit_lib').click(function(){
     var status = $(this).attr('lib-status');
-    $('.status').val(status);
+    $('#library_status').val(status);
     $('#edit_video_info').submit();
   });
   

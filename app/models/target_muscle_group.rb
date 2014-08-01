@@ -23,4 +23,6 @@ class TargetMuscleGroup < ActiveRecord::Base
 	 ["Other", MUSCLES_TYPE_OPTION],
 	 ["Other", MUSCLES_TYPE_OPTION],
 	 ["Other", MUSCLES_TYPE_OPTION]]
+
+	 default_scope order('id ASC')
 end
