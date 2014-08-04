@@ -40,8 +40,4 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:fullname, :email, :password, :role)
   end
 
-  def after_sign_in_path_for(resource)
-    trainer_dashboard_index_path
-  end
-
 end

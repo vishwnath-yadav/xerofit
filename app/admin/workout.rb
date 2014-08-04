@@ -26,7 +26,6 @@ ActiveAdmin.register Workout do
 
   controller do
     def update
-      logger.debug("calling updates method")
       if !params[:reason].blank? && workout.status != params[:workout][:status]
         workout = Workout.find(params[:id]) 
         Emailer.send_lib_status_change_mail(workout.user.email, params[:reason], workout.title, params[:workout][:status], "Workout").deliver
