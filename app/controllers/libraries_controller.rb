@@ -1,14 +1,18 @@
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
+	
 	def index
-		@libraries = Library.where(user_id: current_user.id).order('created_at DESC').page(params[:page]).per(16)
-		@list = Library.where(user_id: current_user.id)
-		@list << Workout.where(:user_id => current_user, state: :completed)
-		@list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
-		# @list = Library.list_view("","","",current_user)
-		# @list = @list.order('created_at DESC').page(params[:page]).per(16).flatten
-		
+		@view = params[:view_type]
+		status = params[:status]
+		name = params[:title]
+		type = params[:type]
+		logger.debug("#{@view} >>> #{status} :: #{name} :: #{type}")
+		@list = Library.list_view(status,name,type,current_user, params[:page])
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 	
 	def new
@@ -83,17 +87,6 @@ class LibrariesController < ApplicationController
 			format.js 
 		end
 	end
-
-	def get_lib_items
-		@view = params[:view_type]
-		status = params[:status]
-		name = params[:title]
-		type = params[:type]
-		@list = Library.list_view(status,name,type,current_user).flatten
-		respond_to do |format|
-			format.js
-		end
-	end 
 
 	def library_search_by_name
 		@view = params[:type]

@@ -13,7 +13,7 @@ class Workout < ActiveRecord::Base
 
 	STATES = [:initiated, :completed]
 
-	scope :by_status, lambda { |status| where(status: status) unless status == "All Status" || status.blank? }
+	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
   
 	Workout::STATES.each do |state|

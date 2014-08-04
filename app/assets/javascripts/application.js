@@ -113,6 +113,7 @@ $( document ).ready(function() {
   });
 
   $('.custom-upload input[type=file]').change(function(e){
+    $('.wrk_sve').removeClass('dis_link');
     var file = e.target.files[0].name;
     $(this).next().find('input').val(file);
   });

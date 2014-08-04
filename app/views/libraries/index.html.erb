@@ -7,7 +7,7 @@
       <a href="/libraries/new">Add New</a> 
     </div>
     </div>
-   <%= form_tag(get_lib_items_libraries_path, remote: true, method: "post", id: "search_grid_list_form") do |f|%> 
+   <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%> 
     <div class="search_bar_col">
       <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
       <input type="button" class="search_btn" id="lib_name_for_search">

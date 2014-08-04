@@ -66,7 +66,6 @@ Xerofit::Application.routes.draw do
       get 'see_more_thumbnail'
       get 'library_search_by_name'
       get 'autocomplete_library_title'
-      post 'get_lib_items'
       post 'filter'
     end
   end
