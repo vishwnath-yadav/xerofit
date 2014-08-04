@@ -64,6 +64,11 @@ $( document ).ready(function() {
      $('.active').removeClass('active');
      lib_id = $('#lib_id').attr('id');
      $(this).addClass('active');
+     
+     if((len<select_count)||(len>select_count)){
+      $('.chg_save').removeClass('dis_link');
+     }
+
      if(len<=select_count){
        for(i=0;i<select_count;i++){
          $(".edit_tmg:eq("+i+")").css('display','block');
@@ -84,7 +89,7 @@ $( document ).ready(function() {
 
   $('.edit_lib').click(function(){
     var status = $(this).attr('lib-status');
-    $('#library_status').val(status);
+    $('#status').val(status);
     $('#edit_video_info').submit();
   });
   

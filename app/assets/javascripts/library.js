@@ -34,7 +34,7 @@ $( document ).ready(function() {
     var id = $parent.attr('data-id');
     $('.target_muscle_menu_'+id).val(menu);
     $('.target_muscle_submenu_'+id).val(sub_menu);
-    $('.target_'+id).text(menu);
+    $('.target_'+id).text(sub_menu);
   });
   
 
