@@ -8,7 +8,7 @@ class LibrariesController < ApplicationController
 		name = params[:title]
 		type = params[:type]
 		logger.debug("#{@view} >>> #{status} :: #{name} :: #{type}")
-		@list = Library.list_view(status,name,type,current_user, params[:page])
+		@list = Library.list_view(status,name,type,current_user, params[:page]).flatten
 		respond_to do |format|
 			format.html
 			format.js
