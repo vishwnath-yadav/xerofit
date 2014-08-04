@@ -19,7 +19,7 @@
                 <%end%>
               </a>
             <%end%>
-          <h6><%= ls.title (ls.move_type) %></h6>
+          <h6><%= "#{ls.title} (#{ls.move_type})" %></h6>
           <p>
             <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
             <%= ls.status %>
