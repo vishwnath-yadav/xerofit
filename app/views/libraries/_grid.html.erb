@@ -5,9 +5,9 @@
           <% if ls.move_type == "workouts" %>
             <a href="<%= workout_details_workout_path(ls) %>">
               <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:medium) %>" width="231" height="130" alt="cn_1" />
+                <img src="<%= ls.pic.url(:medium) %>" alt="cn_1" />
                 <% else %>
-                  <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
+                  <img src="/assets/ex_2.jpg" alt="cn_1" />
                 <%end%>
               </a>
             <%else%>
@@ -19,7 +19,7 @@
                 <%end%>
               </a>
             <%end%>
-          <h6><%= ls.title %></h6>
+          <h6><%= ls.title (ls.move_type) %></h6>
           <p>
             <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
             <%= ls.status %>

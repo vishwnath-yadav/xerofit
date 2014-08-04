@@ -16,7 +16,7 @@ module LibrariesHelper
 		if library.new_record? || tgm.sub_target_muscle_group.blank?
 	      "Choose #{abc}"
         else
-          "#{tgm.target_muscle_group} #{tgm.sub_target_muscle_group}"
+          (tgm.sub_target_muscle_group.include? "All") ? tgm.sub_target_muscle_group : "#{tgm.target_muscle_group} #{tgm.sub_target_muscle_group}"
       	end
 	end
 

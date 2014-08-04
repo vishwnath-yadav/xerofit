@@ -42,7 +42,6 @@ class Library < ActiveRecord::Base
 	end
 
 	def self.list_view(status,name,type,user)
-		@list = []
 		if type == "Workouts"
 			@list = Workout.by_name(name).by_status(status).where(:user_id => user, state: :completed)
 		elsif type == "Excercises"

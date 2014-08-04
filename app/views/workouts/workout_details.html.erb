@@ -3,8 +3,8 @@
     <%= link_to("< Fitness Library", libraries_path) %>
     <%= link_to("Workout Builder >", edit_workout_path(@workouts), :class => 'fr') %>
   </div>
-    <div class="lib_image_box">
-      <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+    <div class="wrk_image_box">
+      <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_2.jpg' %>" />
     </div>
     <div class="lib_text_box">
       <h4><%= @workouts.title.titleize%></h4>
@@ -15,8 +15,8 @@
 <div class="libray_detail wht_bg">
   <div class="lib_img_coll">
     <span class="show_img_on_scol">
-      <div class="lib_image_box">
-        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:thumb) : '/assets/ex_2.jpg' %>" />
+      <div class="wrk_image_box_sm">
+        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_2.jpg' %>" />
       </div>
       <div class="lib_text_box">
         <h4><%= @workouts.title.titleize%></h4>

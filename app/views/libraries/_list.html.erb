@@ -12,9 +12,9 @@
           <% if ls.move_type == "workouts" %>
               <a href="<%= workout_details_workout_path(ls) %>">
                 <% if ls.pic.present? %> 
-                  <img src="<%= ls.pic.url(:thumb) %>" class="list_view_img" />
+                  <img src="<%= ls.pic.url(:thumb) %>" class='list_view_img wrk' />
                 <% else %>
-                  <img src="/assets/ex_2.jpg" class="list_view_img" />
+                  <img src="/assets/ex_2.jpg" class="list_view_img wrk" />
                 <% end %>
                 <%= ls.title %>
               </a>
