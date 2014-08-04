@@ -50,7 +50,7 @@ class Library < ActiveRecord::Base
 			@list = Workout.by_name(name).by_status(status).where(:user_id => user, state: :completed)
 			@list << Library.by_name(name).by_status(status).where(:user_id => user)
 		end
-		 Kaminari.paginate_array(@list.flatten).page(0).per(16)
+		 # Kaminari.paginate_array(@list.flatten).page(0).per(16)
 	end
 
 	def update_target_muscle(target_muscles)
