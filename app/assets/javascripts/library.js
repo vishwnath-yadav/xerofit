@@ -29,11 +29,12 @@ $( document ).ready(function() {
 
   $(document).on("click",".sub_arw ul li",function(){
     var sub_menu=$(this).attr('data-subgroup');
+    var sub_cat=$(this).attr('data-subcat');
     var $parent = $(this).closest('ul');
     var menu = $parent.attr('data-group');
     var id = $parent.attr('data-id');
     $('.target_muscle_menu_'+id).val(menu);
-    $('.target_muscle_submenu_'+id).val(sub_menu);
+    $('.target_muscle_submenu_'+id).val(sub_cat);
     $('.target_'+id).text(sub_menu);
   });
   

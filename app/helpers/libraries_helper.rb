@@ -12,10 +12,11 @@ module LibrariesHelper
 	end
 
 	def get_select_val(library, i, abc)
-		if library.new_record? || library.target_muscle_groups[i].sub_target_muscle_group.blank?
+		tgm = library.target_muscle_groups[i]
+		if library.new_record? || tgm.sub_target_muscle_group.blank?
 	      "Choose #{abc}"
         else
-          library.target_muscle_groups[i].sub_target_muscle_group 
+          "#{tgm.target_muscle_group} #{tgm.sub_target_muscle_group}"
       	end
 	end
 

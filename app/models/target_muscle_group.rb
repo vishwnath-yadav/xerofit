@@ -14,7 +14,7 @@ class TargetMuscleGroup < ActiveRecord::Base
 						   "Back" => ["All Back","Upper", "Lower", "Lats", "Traps", "Neck"],
 						   "Chest" => ["All Chest","Lower", "Upper", "Inner", "Outer"],
 						   "Core" => ["All Core","Upper Abs", "Lower Abs", "Obliques"],
-						   "Hips" =>["All Hips","Hip Flexors", "Inside", "Outside"],
+						   "Hips" =>["All Hips","Flexors", "Inside", "Outside"],
 						   "Legs" =>["All Legs","Calves","Glutes", "Hamstrings", "Quadriceps"],
 						   "Shoulders" => ["All Shoulders","Anterior", "Posterior"]}
 

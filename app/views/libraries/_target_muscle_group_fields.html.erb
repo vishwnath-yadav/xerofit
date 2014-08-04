@@ -1,9 +1,9 @@
 <div class="exr_field_col del fancy_count">
   	<label><%= abc %></label>
   	<div class="toggle_rel">
-  	<div class="drop_toggle target_<%=i%>">
-  		<%= get_select_val(@library, i, abc)%>
-  	</div>
+	  	<div class="drop_toggle target_<%=i%>">
+	  		<%= get_select_val(@library, i, abc)%>
+	  	</div>
 	    <div class="fancy_select toggle_abs" style="display:none;" >
 	    	<%= lib.hidden_field  :target_muscle_group, class: "target_muscle_menu_#{i} for_target_change taget_val" %>
     		<%= lib.hidden_field  :sub_target_muscle_group, class: "target_muscle_submenu_#{i} taget_sub_val" %>
@@ -11,8 +11,8 @@
 	    		<%TargetMuscleGroup::MUSCLES_TYPE[i][1].each do |key, value|%>
 	    			<li class="sub_arw"><%=key%>
 	    				<ul data-group="<%=key%>" data-id="<%=i%>">
-	    					<%value.each do |sub_opt|%>
-	    						<li class= "for_on_change1" data-subgroup="<%=sub_opt%>"><%=sub_opt%></li>
+	    					<%value.each_with_index do |sub_opt, ind|%>
+	    						<li class= "for_on_change1" data-subgroup='<%=ind > 0 ? "#{key} #{sub_opt}" : sub_opt%>' data-subcat="<%=sub_opt%>"><%=sub_opt%></li>
     						<%end%>
 	    				</ul>
 	    			</li>
