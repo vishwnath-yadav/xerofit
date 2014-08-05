@@ -1,5 +1,8 @@
 #encoding: utf-8
 ActiveAdmin.register User do
+
+menu :label => "Users", :priority => 1
+
 index do
     selectable_column
     column "Role", :role
@@ -16,7 +19,7 @@ index do
 
   form do |f|
     f.inputs "Update User" do
-      f.input :role, :prompt => 'Choose one', :required => true, :label => "Role", as: :select, collection: User::ROLESFORADMIN, :input_html => { :class => 'select_box'} 
+      f.input :role, :prompt => 'Choose Role', :required => true, :label => "Role", as: :select, collection: User::ROLESFORADMIN, :input_html => { :class => 'select_box'} 
       f.input :fullname
       f.input :email
       f.input :password

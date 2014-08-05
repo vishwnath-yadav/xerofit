@@ -1,4 +1,7 @@
 ActiveAdmin.register Library do
+    
+  menu :label => "Libraries", :priority => 2
+
   actions :all, :except => [:new, :delete]
 
   config.clear_action_items!
