@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
   prg = $("#progressbar");
   // $(document).on("click", ".replace_video_btn", function() {
   //    // $('.upload_edit').css('display','none');
@@ -7,7 +6,14 @@ $( document ).ready(function() {
   //    // $('.lib_edit_botom').css('display','none');
   //    $("#library_video_video").click();
   // });
-  
+  // $("input[type=text], textarea")
+  $(document).on('keyup',"input[type=text], textarea", function(){
+    var obj = $(this).closest('.exr_field_col').find('span.detail_char');
+    var max_size = parseInt(obj.attr('data-size'));
+    var size = $(this).val().length;
+    var actual = max_size - size 
+    obj.text(actual);
+  });
 
   $(document).on("change keyup",".for_on_change",function(){
     $('.chg_save').removeClass('dis_link');
@@ -141,4 +147,13 @@ function check_require_field(){
   console.log(flag);
 }
 
+function show_text_actual_size(){
+  $('.detail_char').each(function(){
+    var size = $(this).attr('data-size');
+    
+    var input_len = $(this).closest('.exr_field_col').find('input, textarea').val().length;
+     var actual = size - input_len; 
+      $(this).text(actual);
+  })
+}
 

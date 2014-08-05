@@ -7,6 +7,7 @@ class Library < ActiveRecord::Base
 	has_many :blocks, through: :library_blocks
 	
 	after_create :save_status
+	after_create :create_target_muscle_group
 
 	accepts_nested_attributes_for :target_muscle_groups
 
@@ -61,6 +62,13 @@ class Library < ActiveRecord::Base
 					tmg.destroy
 				end
 			end
+		end
+	end
+
+	def create_target_muscle_group
+
+		(1..5).each do |trg|
+			TargetMuscleGroup.create(library_id: self.id)
 		end
 	end
 end

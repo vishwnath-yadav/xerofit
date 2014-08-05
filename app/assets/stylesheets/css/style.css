@@ -1190,6 +1190,27 @@ margin-right: 31px;
 	margin-right:34px;
 	min-height: 192px;
 }
+.library_col.library_view ul li{list-style: none;
+float: left;
+text-align: left;
+width: 25%;
+margin-bottom: 0;
+min-height: 192px;
+border-bottom: 1px solid lightgray;
+float: left;
+padding: 16px 18px;
+margin-right: 0;
+border-right: 1px solid lightgray;
+text-align: center;} 	
+
+.library_col.library_view ul li img {
+ width: 130px !important; 
+height: 130px !important;
+float: none;
+margin-bottom: 15px;
+height: auto;
+display: inline-block;
+}
 .library_col ul li:last-child{
 	margin-right:0px;
 }
@@ -1203,6 +1224,7 @@ margin-right: 31px;
 .library_col ul li h6{
 	font-size:15px;
 	color:#484947;
+	text-align: left;
 	font-family: 'gotham-bookgotham-book';
 	margin-bottom:5px;
 	margin-left: 12px
@@ -1210,6 +1232,7 @@ margin-right: 31px;
 .library_col ul li p{
 	font-size: 10px;
 color: #cdcecd;
+text-align: left;
 font-family: 'gotham-bookgotham-book';
 margin: 0px;
 font-style: normal;
@@ -1217,9 +1240,15 @@ float: left;
 width: 100%;
 padding-left: 10px;
 }
+.library_col.library_view ul li.wdth_img img{width: 100% !important}
+.library_col ul li.border_none{border-right: 0px;}
 .sort_col{
 	width:15%;
 	float:right;
+}
+.library_col.library_view ul li.wdth_img p img {
+width: 14px !important;
+height: 12px !important;
 }
 .sort_col label{
 	width:auto;

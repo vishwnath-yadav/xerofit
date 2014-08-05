@@ -1,25 +1,25 @@
   <ul>
   <% if @list.present? %>
     <% @list.each_with_index do |ls, index| %>
-      <li>
+      <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
           <% if ls.move_type == "workouts" %>
             <a href="<%= workout_details_workout_path(ls) %>">
               <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:thumb) %>" alt="cn_1" />
+                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
                 <% else %>
-                  <img src="/assets/ex_2.jpg" alt="cn_1" />
+                  <img src="/assets/ex_1.png" alt="cn_1" />
                 <%end%>
               </a>
             <%else%>
               <a href="<%= edit_library_path(ls) %>">
                 <% if ls.library_video.image.present? %>
-                  <img src="<%= ls.library_video.image %>" width="231" height="130" alt="cn_1" />
+                  <img src="<%= ls.library_video.image %>" alt="cn_1" />
                 <% else %>
-                    <img src="/assets/ex_2.jpg" width="231" height="130" alt="cn_1" />
+                    <img src="/assets/ex_2.png" alt="cn_1" />
                 <%end%>
               </a>
             <%end%>
-          <h6><%= "#{ls.title} (#{ls.move_type})" %></h6>
+          <h6><%= ls.title %></h6>
           <p>
             <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
             <%= ls.status %>

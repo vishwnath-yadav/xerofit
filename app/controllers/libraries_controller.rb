@@ -35,6 +35,7 @@ class LibrariesController < ApplicationController
 			@size = size	
 		end
 		@size.size > 6 ? @size.pop() : @size
+		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
 	end
 	
@@ -44,7 +45,6 @@ class LibrariesController < ApplicationController
 	  @video_id = params[:video]
 	  if @library.save
 	  	video = LibraryVideo.find(@video_id)
-	  	# video.image = video.panda_mp4.screenshots[0]
 	  	video.library = @library
 	  	video.save
 	    redirect_to libraries_path, :notice => "Thank you for uploading video!"

@@ -230,7 +230,9 @@ CREATE TABLE libraries (
     updated_at timestamp without time zone,
     status character varying(255),
     move_type character varying(255) DEFAULT 'Single Move'::character varying,
-    equipment character varying(255)[] DEFAULT '{}'::character varying[]
+    equipment character varying(255)[] DEFAULT '{}'::character varying[],
+    help character varying(255),
+    work character varying(255)
 );
 
 
@@ -981,3 +983,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140725063050');
 INSERT INTO schema_migrations (version) VALUES ('20140725095333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140728120233');
+
+INSERT INTO schema_migrations (version) VALUES ('20140805055704');

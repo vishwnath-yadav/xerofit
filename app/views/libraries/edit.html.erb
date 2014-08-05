@@ -2,7 +2,7 @@
     <div class="prev_lib_col" id="<%= @library.id%>">
       <%= link_to("< Fitness Library", libraries_path) %>
     </div>
-    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
     </div>
     <div class="lib_text_box">
       <h4><%= @library.title.titleize%></h4>
@@ -15,7 +15,7 @@
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
           <div class="lib_image_box">
-            <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.jpg' %>" />
+            <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
           </div>
           <div class="lib_text_box">
             <h4><%= @library.title.titleize%></h4>
@@ -48,20 +48,41 @@
       <div class="lib_des_lft">
           <div class="exr_field_col">
             <label>Title</label>
-            <%= lib.text_field :title, class: "for_on_change" %>
+            <%= lib.text_field :title, class: "for_on_change", maxlength: "80" %>
+            <span class="detail_char" data-size="80">80</span>
           </div>
-            
+
+          <div class="exr_field_col">
+            <label>Helpful Tips and Tricks (optional) </label>
+            <%= lib.text_area :help, class: "for_on_change", maxlength: "150" %>
+            <span class="detail_char" data-size="150">150</span>
+          </div>
+          
+          <div class="exr_field_col cate_wd48">
+            <label>Category</label>
+            <div class="fancy_select">
+              <%= lib.select :category, Library::CATEGORIES, {}, prompt: "Select Category", class: "for_on_change" %>
+            </div>
+          </div>
+
+          <div class="exr_field_col level_wd48">
+            <label>Level of Difficulty</label>
+            <div class="fancy_select">
+              <%= lib.select :difficulty, Library::DIFFICULTIES,{}, prompt: "Select Difficulty", class: "for_on_change" %>
+            </div>
+          </div>
+
           <div class="exr_field_col number_mus mus_count">
             <h4>Additional Details</h4>
           	<label>Target Muscle Groups</label>
             <%(1..5).each do |no|%>
-              <input name="" type="button" class="fancy_input wd16 <%= trg_count(@library, no)%>"  value="<%=no%>"/>
+              <input name="" type="button" class="fancy_input wd16 <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
             <%end%>
           </div>
           <div class="exr_field_col number_mus mus_select targets_sel">
             <% i = 0 %>
             <%= lib.fields_for :target_muscle_groups do |builder| %>
-              <span class="edit_tmg <%= trg_hide(@library,i)%>">
+              <span class="edit_tmg <%= trg_hide(@library,i,@count)%>">
                 <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
                 <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
                 <%i += 1%>
@@ -72,22 +93,17 @@
       <div class="lib_des_rht ">
           <div class="exr_field_col">
             <label>Directions</label>
-            <%= lib.text_area :directions, class: "for_on_change" %>
-          </div>
-            
-          <div class="exr_field_col cate_wd48">
-            <label>Category</label>
-            <div class="fancy_select">
-              <%= lib.select :category, Library::CATEGORIES, {}, prompt: "Select Category", class: "for_on_change" %>
-            </div>
+            <%= lib.text_area :directions, class: "for_on_change", maxlength: "450" %>
+            <span class="detail_char" data-size="450">450</span>
           </div>
 
-          <div class="exr_field_col level_wd48">
-          	<label>Level of Difficulty</label>
-            <div class="fancy_select">
-              <%= lib.select :difficulty, Library::DIFFICULTIES,{}, prompt: "Select Difficulty", class: "for_on_change" %>
-            </div>
+          <div class="exr_field_col">
+            <label>Why it Works (optional)</label>
+            <%= lib.text_area :work, class: "for_on_change", maxlength: "150" %>
+            <span class="detail_char" data-size="150">150</span>
           </div>
+            
+          
           <div class="exr_field_col ">
             <label>Equipment</label>
             <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
@@ -133,6 +149,7 @@ $(document).ready(function(){
   {
     $('.chg_lin').removeClass('dis_link')
   }
+  show_text_actual_size();
 });
 </script>
 

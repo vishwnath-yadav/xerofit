@@ -20,11 +20,23 @@ module LibrariesHelper
       	end
 	end
 
-	def trg_hide(library,i)
-		library.target_muscle_groups[i].target_muscle_group.blank? ? 'dis_non' : 'dis_blk'
+	def trg_hide(library,i, counts)
+		if (i<=1)&&(counts == 0)
+			'dis_blk'
+		elsif (i>=0)&&(counts != 0)
+			library.target_muscle_groups[i].target_muscle_group.blank? ? 'dis_non' : 'dis_blk'
+		else
+			'dis_non'
+		end
 	end
 
-	def trg_count(library,i)
-		i==(library.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]).count ? ' active' : ''
+	def trg_count(library,i, counts)
+		if (i==2)&&(counts == 0)
+			'active'
+		elsif (i>=1)&&(counts != 0)	
+			i==(library.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]).count ? ' active' : ''
+		else
+			''
+		end
 	end
 end
