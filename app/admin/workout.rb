@@ -1,4 +1,7 @@
 ActiveAdmin.register Workout do
+
+  menu :label => "Uncut Workouts", :priority => 3
+
   actions :all, :except => [:new, :delete]
 
   config.clear_action_items!
