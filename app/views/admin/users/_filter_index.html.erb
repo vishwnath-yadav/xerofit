@@ -1,23 +1,29 @@
 <table class="table table-bordered table-striped">
+  <tr>
+    <th>#</th>
+    <th>Email</th>
+    <th>Fullname</th>
+    <th>Role</th>
+    <th>Date Registered</th>
+    <th>Action</th>
+  </tr>
+  <% if @users.present? %>
+    <% @users.each_with_index do |user, ind| %>
+      <%ind += 1%>
       <tr>
-        <th>#</th>
-        <th>Email</th>
-        <th>Fullname</th>
-        <th>Role</th>
-        <th>Date Registered</th>
-        <th>Action</th>
+        <td><%=ind%></td>
+        <td><%=user.email%></td>
+        <td><%=user.fullname%></td>
+        <td><%=user.role%></td>
+        <td><%=user.created_at%></td>
+        <td>
+          <%=link_to "Edit", edit_admin_user_path(user)%> | <%=link_to "Delete", admin_user_path(user), :confirm => "Are you sure?"%>
+        </td>
       </tr>
-      <% @users.each_with_index do |user, ind| %>
-        <%ind += 1%>
-        <tr>
-          <td><%=ind%></td>
-          <td><%=user.email%></td>
-          <td><%=user.fullname%></td>
-          <td><%=user.role%></td>
-          <td><%=user.created_at%></td>
-          <td>
-            <%=link_to "Edit", edit_admin_user_path(user)%> | <%=link_to "Delete", admin_user_path(user), :confirm => "Are you sure?"%>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+    <% end %>
+  <% else %>
+  <tr>
+    <td colspan="6">Record not found...... </td>
+  </tr>
+  <% end %>
+</table>

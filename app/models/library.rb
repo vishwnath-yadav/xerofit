@@ -69,9 +69,8 @@ class Library < ActiveRecord::Base
 	end
 
 	def create_target_muscle_group
-
 		(1..5).each do |trg|
-			TargetMuscleGroup.create(library_id: self.id)
+			TargetMuscleGroup.create(library_id: self.id, target_muscle_group: "")
 		end
 	end
 
