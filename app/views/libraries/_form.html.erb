@@ -15,6 +15,7 @@
         </ul>
       <% end %>
     </div>
+    <%= lib.hidden_field :is_full_workout, value: false, class: "full_workout" %>
     <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="exr_field_col">
@@ -40,25 +41,6 @@
         <%= lib.select :difficulty, Library::DIFFICULTIES, prompt: "Choose one" %>
       </div>
     </div>
-      
-    <!-- <div class="exr_field_col new_muscle_group">
-      <h4>Additional Details</h4>
-    	<label>Target Muscle Groups</label>
-      <%#(1..5).each do |no|%>
-        <input name="" type="button" class="fancy_input <%#=no == 1 ? 'active' : ''%>" value="<%#=no%>"/>
-      <%#end%>
-    </div>
-    
-    <span class="exr_field_col targets_sel">
-      <%# i = 0 %>
-      <%#= lib.fields_for :target_muscle_groups do |builder| %>
-        <span class="edit_tmg" style="display:<%#=i > 0 ? 'none' : 'block'%>">
-          <%# abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
-          <%#=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
-          <%#i += 1%>
-        </span>
-      <%#end%>
-    </span> -->
   </div>
 <% end %>
 

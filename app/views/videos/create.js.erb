@@ -1,7 +1,5 @@
 <%if !@video.errors.present?%>
-	if($('#dragandrophandler').is(':visible')){
-		$("#video_library_info").submit();
-	}
+	
 	if($("#progressbar").length || $("#progressbar1").length){
 		if(prg.parent().find('h2').text())
 		{
@@ -10,8 +8,18 @@
 		}
 		$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
 		prg.parent().find('p').text('successfully uploaded');
+		if(prg.attr('id') == "progressbar1"){
+			$(".full_workout").val(true);
+		}
+		else{
+			$(".full_workout").val(false);
+		}
+		if($('#dragandrophandler').is(':visible')){
+			$("#video_library_info").submit();
+		}
 	}
 	else{
 		$("#edit_video_info").submit();	
 	}
+
 <%end%>

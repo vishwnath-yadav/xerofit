@@ -232,7 +232,8 @@ CREATE TABLE libraries (
     move_type character varying(255) DEFAULT 'Single Move'::character varying,
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
-    work character varying(255)
+    work character varying(255),
+    is_full_workout boolean DEFAULT false
 );
 
 
@@ -979,3 +980,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140725095333');
 INSERT INTO schema_migrations (version) VALUES ('20140728120233');
 
 INSERT INTO schema_migrations (version) VALUES ('20140805055704');
+
+INSERT INTO schema_migrations (version) VALUES ('20140806104309');
