@@ -1,6 +1,6 @@
 
-  <ul>
   <% if @list.present? %>
+    <ul>
     <% @list.each_with_index do |ls, index| %>
       <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
           <% if ls.move_type == "workouts" %>
@@ -27,9 +27,9 @@
           </p>
       </li>
     <% end %>
-<% else %>
-  <li><span> No Record Found...</span></li>
-<% end %> 
 </ul>
+<% else %>
+  <span> No Record Found...</span>
+<% end %> 
 
 <%= paginate @list %>

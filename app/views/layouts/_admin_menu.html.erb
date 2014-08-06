@@ -2,10 +2,14 @@
   <hr>
   <ul class="nav nav-pills nav-stacked">
     <li class="nav-header"></li>
-    <li><a href="<%= admin_users_path %>"><i class="glyphicon glyphicon-list"></i> All </a></li>
+    <li>
+    	<a href="<%= admin_users_path %>">
+    		<i class="glyphicon glyphicon-list"></i>
+    		 Users
+	    </a>
+    </li>
     <li><a href="<%= admin_users_path(type: :admin) %>"><i class="glyphicon glyphicon-briefcase"></i> Admins List </a></li>
     <li><a href="<%= admin_users_path(type: :trainer) %>"><i class="glyphicon glyphicon-briefcase"></i> Trainers List </a></li>
-    <li><a href="<%= admin_users_path(type: :normaluser) %>"><i class="glyphicon glyphicon-briefcase"></i> Normal User List </a></li>
   </ul>
   <hr>
 </div>

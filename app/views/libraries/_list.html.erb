@@ -1,11 +1,11 @@
-<ul class="exer_list_view">
-  <li>
-    <span class="thumb_text">Name</span>
-    <span>Type</span>
-    <span>Status</span>
-    <span class="tx_rht">Last Modified</span>
-  </li>
 <% if @list.present? %>
+  <ul class="exer_list_view">
+    <li>
+      <span class="thumb_text">Name</span>
+      <span>Type</span>
+      <span>Status</span>
+      <span class="tx_rht">Last Modified</span>
+    </li>
     <% @list.each_with_index do |ls, index| %>
       <li>
         <span class="thumb_text">
@@ -37,9 +37,9 @@
           <span class="tx_rht"><%= ls.updated_at.strftime("%B %d,%Y") %></span>
       </li>
     <%end%>
+  </ul>
 <% else %>
-  <li><span> No Record Found...</span><li>
+  <span> No Record Found...</span>
 <% end %>
-</ul>
 
 <%= paginate @list, :remote => true %>

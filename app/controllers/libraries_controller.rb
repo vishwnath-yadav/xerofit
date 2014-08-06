@@ -1,7 +1,8 @@
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
-	
+	layout :resolve_layout    
+
 	def index
 		@view = params[:view_type]
 		status = params[:status]
@@ -23,7 +24,8 @@ class LibrariesController < ApplicationController
 	
 	def edit
 		@library = Library.find(params[:id])
-		if @library.library_video.present?
+		@size = []
+		if @library.library_video.present? && @library.library_video.panda_video.present? 
 			size = @library.library_video.panda_mp4.screenshots
 			@image = @library.library_video.image
 			if size.include?(@image)
@@ -129,4 +131,6 @@ class LibrariesController < ApplicationController
 	  def library_params
 	    params.require(:library).permit!
 	  end
+
+  	
 end

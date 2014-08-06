@@ -1,4 +1,7 @@
+<%show_if_admin = current_user.admin?%>
+<%hide_if_admin = !current_user.admin?%>
 <div class="create_heading">
+  <%if hide_if_admin%>
     <div class="plus_icon">
       <a href="<%= new_library_path %>">
         <img src="/assets/plus_icon.png"/>
@@ -7,11 +10,14 @@
       <a href="<%= new_library_path %>">Add New</a> 
     </div>
     </div>
+  <%end%>
    <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%> 
-    <div class="search_bar_col">
-      <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
-      <input type="button" class="search_btn" id="lib_name_for_search">
-    </div>
+    <%if hide_if_admin%>
+      <div class="search_bar_col">
+        <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
+        <input type="button" class="search_btn" id="lib_name_for_search">
+      </div>
+    <%end%>
 
     <div class="select_bar_col">
          <%= hidden_field_tag :type%>
@@ -66,4 +72,6 @@
 </div>
 <script>
   setTimeout(load_select_click); 
+  $('.admin_li').removeClass('active')
+  $('.admin_li.library').addClass('active');
 </script>

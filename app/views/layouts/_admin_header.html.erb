@@ -1,23 +1,40 @@
-<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-  <div class="container">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-toggle"></span>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/admin">Dashboard</a>
-      <a class="navbar-brand" href="javascript:void(0)">XeroFit</a>
+      <%=link_to "Xerofit", admin_dashboard_path, class: "navbar-brand"%>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        
-        <li class="dropdown">
-          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="/admin"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
-          <ul id="g-account-menu" class="dropdown-menu" role="menu">
-            <li><a href="<% destroy_user_session_path %>">My Profile</a></li>
-          </ul>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="admin_li users">
+          <%=link_to "Users", admin_users_path%>
         </li>
-        <li><%= link_to destroy_user_session_path, :method => :delete do %><i class="glyphicon glyphicon-lock"></i> Logout<% end %></li>
+        <li class="admin_li library">
+          <%=link_to "Libraries", libraries_path%>
+        </li>
+        <li class="admin_li workout">
+          <%=link_to "Uncut Workouts", admin_dashboard_path%>
+        </li>
       </ul>
-    </div>
-  </div>
-</div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="javascript:void(0)"><%=current_user.email%></a>
+        </li>
+        <li>
+          <%=link_to destroy_user_session_path, :method => :delete do%>
+            <strong>
+              <i class="glyphicon glyphicon-off"></i>
+            </strong>
+          <%end%> 
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

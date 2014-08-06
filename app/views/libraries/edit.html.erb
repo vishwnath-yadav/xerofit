@@ -1,3 +1,5 @@
+<%show_if_admin = current_user.admin?%>
+<%hide_if_admin = !current_user.admin?%>
 <div class="create_heading">
     <div class="prev_lib_col" id="<%= @library.id%>">
       <%= link_to("< Fitness Library", libraries_path) %>
@@ -24,7 +26,9 @@
 
         <div class="rght_btns">
           <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="save">Save</a>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+          <%if hide_if_admin%>
+            <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+          <%end%>
         </div>
       </div>
   </div>
@@ -44,8 +48,12 @@
       <%end%>
       <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
       <%= hidden_field_tag :image, "", class: "image_url" %>
-      <%= hidden_field_tag :status%>
       <div class="lib_des_lft">
+          <%if show_if_admin%>
+            <%=render "common_templates/change_status", f: lib%>
+          <%else%>
+            <%= hidden_field_tag :status%>
+          <%end%>
           <div class="exr_field_col">
             <label>Title</label>
             <%= lib.text_field :title, class: "for_on_change", maxlength: "80" %>
@@ -117,16 +125,18 @@
   
   <% if @library.library_video.present? %>
    <span class="upload_edit"><%= render "upload_edit" %></span>
-    <div class="lib_edit_botom">
-      <h5>Replace Video</h5>
-      <p>Upload a new video file for this move to replace the old one.</p>
-      <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn upload_video"%>
-    </div>
-    <div class="lib_edit_botom">
-      <h5>Remove Video</h5>
-      <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
-      <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
-    </div>
+   <%if hide_if_admin%>
+      <div class="lib_edit_botom">
+        <h5>Replace Video</h5>
+        <p>Upload a new video file for this move to replace the old one.</p>
+        <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn upload_video"%>
+      </div>
+      <div class="lib_edit_botom">
+        <h5>Remove Video</h5>
+        <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
+        <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+      </div>
+    <% end %>
   <% end %>
 </div>
 </div>
@@ -151,6 +161,8 @@ $(document).ready(function(){
   }
   show_text_actual_size();
 });
+  $('.admin_li').removeClass('active')
+  $('.admin_li.library').addClass('active');
 </script>
 
 
