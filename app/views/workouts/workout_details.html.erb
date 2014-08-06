@@ -47,8 +47,8 @@
         <% end %>
       </div>
       <div class="lib_des_lft">
-          <%=render "common_templates/change_status", f: lib%>
         <%if show_if_admin%>
+          <%=render "common_templates/change_status", f: lib%>
         <%else%>
             <%= hidden_field_tag :status, "", class: "workout_status" %>
         <%end%>
