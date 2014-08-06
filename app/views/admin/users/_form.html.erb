@@ -23,12 +23,12 @@
         <label for="inputEmail">Email</label>
         <%= lib.text_field :email, class: "form-control input-wid", placeholder: "Email" %>
     </div>
-    <%#if @user.new_record?%>
+    <%if @user.new_record?%>
         <div class="form-group">
             <label for="inputPassword">Password</label>
             <%= lib.password_field :password, class: "form-control input-wid", placeholder: "Password" %>
         </div>
-    <%#end%>
+    <%end%>
     <div class="form-group">
         <label for="role">Role</label>
         <%= lib.select :role, User::ROLES, {}, class: "form-control input-wid" %>
