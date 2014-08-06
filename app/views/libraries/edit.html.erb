@@ -61,14 +61,14 @@
           <div class="exr_field_col cate_wd48">
             <label>Category</label>
             <div class="fancy_select">
-              <%= lib.select :category, Library::CATEGORIES, {}, prompt: "Select Category", class: "for_on_change" %>
+              <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
             </div>
           </div>
 
           <div class="exr_field_col level_wd48">
             <label>Level of Difficulty</label>
             <div class="fancy_select">
-              <%= lib.select :difficulty, Library::DIFFICULTIES,{}, prompt: "Select Difficulty", class: "for_on_change" %>
+              <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
             </div>
           </div>
 

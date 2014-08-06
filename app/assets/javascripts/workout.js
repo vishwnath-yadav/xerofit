@@ -194,7 +194,7 @@ $( document ).ready(function() {
 });
 
 function remove_library_from_block(id){
-  url = '/workouts/remove_library_from_block';
+  url = '/builder/remove_library_from_block';
   $.get(url, {lib_block:id}, function (data) {
   });
 }
@@ -216,7 +216,7 @@ function create_individual_sub_block(){
 function sub_block_ajax(type, title, display){
 
   if(title){
-    url = '/workouts/get_workout_sub_block';
+    url = '/builder/get_workout_sub_block';
     $.get(url, {type:type,title:title,display:display}, function (data) {
     });
   }
@@ -282,7 +282,7 @@ function check_library_count(li_size, block_type, publish){
 
 function load_library_content(lib_detail, block_id, lib_id, move){
   $(".workout_col_rght").html('<img src="/assets/ajax-loader.gif" class="m50">');
-  var url = '/workouts/load_lib_details'
+  var url = '/builder/load_lib_details'
   $.get(url, {lib_detail:lib_detail,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
    });
 }

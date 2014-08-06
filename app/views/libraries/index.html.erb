@@ -1,10 +1,10 @@
 <div class="create_heading">
     <div class="plus_icon">
-      <a href="/libraries/new">
+      <a href="<%= new_library_path %>">
         <img src="/assets/plus_icon.png"/>
       </a>
       <div class="hover_box">
-      <a href="/libraries/new">Add New</a> 
+      <a href="<%= new_library_path %>">Add New</a> 
     </div>
     </div>
    <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%> 
@@ -56,9 +56,9 @@
     <div class="library_col  library_view">
       <%= render "grid" %>
     </div>
-			
+      
+      
       <%#= will_paginate @libraries, :remote=>true, :next_label => 'Next', :previous_label => 'Previous', :inner_window=>0, :outer_windows=>0 %>
-       <%#= paginate @list, :window => 2%>
     <!-- <div class="pagination">
      </div>-->
 

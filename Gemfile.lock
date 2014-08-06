@@ -15,6 +15,14 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
+GIT
+  remote: https://github.com/namick/obfuscate_id.git
+  revision: cfd58d6415c9def363884d682836807390849c11
+  specs:
+    obfuscate_id (0.0.4)
+      rails (>= 3.2.15)
+      scatter_swap (~> 0.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +242,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    scatter_swap (0.0.3)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -306,6 +315,7 @@ DEPENDENCIES
   kaminari
   mini_magick
   nested_form
+  obfuscate_id!
   omniauth
   omniauth-facebook
   omniauth-google-oauth2

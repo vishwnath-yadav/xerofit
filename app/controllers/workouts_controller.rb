@@ -63,7 +63,7 @@ class WorkoutsController < ApplicationController
 
 
 	def save_blocks
-		@workout = Workout.find(params[:workout_id])
+		@workout = Workout.find_by_id(params[:workout_id])
 		block_hash = params[:workout]
 		@workout.save_blocks_and_libs(block_hash)
 		@workout.state = "completed"

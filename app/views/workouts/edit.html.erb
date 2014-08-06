@@ -6,7 +6,7 @@
       	<div class="col_1" id="workout_auto_form">
           <%=render "workout_auto_form"%>
         </div>
-        <%=form_tag("/workouts/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+        <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
           <div class="add_photo drag_lib">
             <%=hidden_field_tag :workout_id, @workout.id %>
             <%@workout.blocks.each do |block|%>

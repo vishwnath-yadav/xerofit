@@ -7,8 +7,8 @@ class LibrariesController < ApplicationController
 		status = params[:status]
 		name = params[:title]
 		type = params[:type]
-		logger.debug("#{@view} >>> #{status} :: #{name} :: #{type}")
-		@list = Library.list_view(status,name,type,current_user, params[:page]).flatten
+		@list1 = Library.list_view(status,name,type,current_user, params[:page])
+		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.html
 			format.js
@@ -60,7 +60,9 @@ class LibrariesController < ApplicationController
 
 	def update
 		@library = Library.find(params[:id])
-		@video = @library.library_video.update_attributes(:image => params[:image])
+		if params[:image].present?
+			@video = @library.library_video.update_attributes(:image => params[:image])
+		end
 		@library.update_target_muscle(params[:library][:target_muscle_groups_attributes])
 		if params[:status] == Library::STATUS[1]
 			@library.status = Library::STATUS[1]	

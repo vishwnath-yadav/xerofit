@@ -1,3 +1,4 @@
+
   <ul>
   <% if @list.present? %>
     <% @list.each_with_index do |ls, index| %>
@@ -30,3 +31,5 @@
   <li><span> No Record Found...</span></li>
 <% end %> 
 </ul>
+
+<%= paginate @list %>

@@ -9,7 +9,7 @@
     <% end %>
 </div>
 <div class="red_txt success"></div>
-<%= simple_form_for(@lib_detail, url: "/workouts/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
+<%= simple_form_for(@lib_detail, url: "/builder/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
 <%=hidden_field_tag :lib_detail_id, @lib_detail.id%>
 
 <%disabled = is_disabled(@lib_detail)%>

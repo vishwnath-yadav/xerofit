@@ -1906,9 +1906,22 @@ top: -1px;}
 .rght_btns a.cancel_btn.rht_active{border: 1px solid #24c4d4; color: #24c4d4}
 .create_heading.pad20{padding: 20px 10px;}
 ul.exer_list_view{width: 100%; float:left }
-ul.exer_list_view li{min-height: 0px; width: 100%; text-align: left; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; float: left;  list-style: none; display: inline;} 	
-ul.exer_list_view li span{float: left; width: 20%;}
-ul.exer_list_view li span.thumb_text{width: 35%}
+.library_col ul.exer_list_view li {
+min-height: 0px;
+width: 100%;
+border-right: 0;
+text-align: left;
+border-bottom: 1px solid #ccc;
+padding-bottom: 10px;
+margin-bottom: 10px;
+float: left;
+list-style: none;
+display: inline}
+ul.exer_list_view li span.tx_rht{text-align: right;}
+ul.exer_list_view li span{float: left; width: 20%; text-align: left;}
+ul.exer_list_view li span.thumb_text{width: 35%;
+}
+ul.exer_list_view li span.thumb_text img{width: 100%; height: auto;}
 .library_col ul li img.list_view_img {
 width: 78px !important;
 height: auto !important;
@@ -2151,4 +2164,27 @@ z-index: 9;}
 
 .drag_img{
 	margin-top: 40px;
+}
+
+.pagination{width: 22% !important;}
+
+.pagination ul li{
+	width: 12% !important;
+	margin-bottom: 0;
+	min-height: 0px !important;
+	float: left;
+	padding: 2px 3px !important;
+	margin-right: 0;
+	text-align: center;
+	border-bottom: none !important;
+}
+
+.pagination ul li:first-child{
+	width: 20% !important;
+}
+
+.pagination ul li:last-child{
+	width: 30% !important;
+	margin-right: 0px !important;
+	border: 0px !important; 
 }

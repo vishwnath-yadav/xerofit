@@ -1,4 +1,5 @@
 class Workout < ActiveRecord::Base
+	obfuscate_id :spin => 12548694
 
 	has_attached_file :pic, :styles => { :medium => "150x150>", :thumb => "150x150>" ,:square => "40x40>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
@@ -24,11 +25,11 @@ class Workout < ActiveRecord::Base
 
 	def save_blocks_and_libs(block_hash)
 		block_hash.each do|key, value|
-			block = Block.find(key)
+			block = Block.find_by_id(key)
 			block.workout_id = self.id
 			block.save!
 			value.each do|k, v|
-				lib = Library.find(k)
+				lib = Library.find_by_id(k)
 				lib_block = LibraryBlock.where(:library_id=>lib.id, :block_id=>block.id).last
 				if !lib_block.present?
 					lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)

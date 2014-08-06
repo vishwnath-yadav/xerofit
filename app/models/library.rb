@@ -1,4 +1,6 @@
 class Library < ActiveRecord::Base
+	obfuscate_id :spin => 79678343
+
 	belongs_to :user
 	has_many :target_muscle_groups
 	has_one :library_video
@@ -52,6 +54,7 @@ class Library < ActiveRecord::Base
 			@list << Library.by_name(name).by_status(status).where(:user_id => user)
 		end
 		 # Kaminari.paginate_array(@list.flatten).page(0).per(16)
+		 @list.flatten
 	end
 
 	def update_target_muscle(target_muscles)

@@ -69,6 +69,7 @@ gem 'devise'
  # gem 'will_paginate'
  gem "paperclip", "~> 4.1"
  gem 'rails4-autocomplete'
+ gem 'obfuscate_id', :git => 'https://github.com/namick/obfuscate_id.git'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

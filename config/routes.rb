@@ -14,7 +14,7 @@ Xerofit::Application.routes.draw do
    post "/users_sign_up_create" => "registrations#users_sign_up_create"
  end 
 
- match 'auth/:provider/callback', to: 'home#create', via: [:get, :post]
+ match 'auth/:provider/callback', to: 'dashboard#create', via: [:get, :post]
   # match 'signout', to: 'welcome#destroy', as: 'signout', via: [:get, :post]
  match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
@@ -23,12 +23,12 @@ Xerofit::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :home do
-    collection do
-      get 'confirmation'
-      get 'test'
-    end
-  end
+  # resources :home do
+  #   collection do
+  #     get 'confirmation'
+  #     get 'test'
+  #   end
+  # end
 
   # namespace :admin do
   #   get '/', to: 'dashboard#index', as: :dashboard
@@ -52,15 +52,19 @@ Xerofit::Application.routes.draw do
     get :library
   end
  
-  resources :dashboard do
+  resources :dashboard, path: :home do
     collection do 
-      get 'trainer'
+      # get 'trainer'
+      get '/', to: 'dashboard#trainer', as: :trainer
+      get 'confirmation'
     end
   end
   # get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   
   resources :videos, only: [:create,:update,:destroy]
-  resources :libraries do 
+  
+  get '/library/new', to: 'libraries#new'
+  resources :libraries, except: [:edit, :show], path: :library do 
     collection do
       get 'sort_video'
       get 'see_more_thumbnail'
@@ -68,9 +72,13 @@ Xerofit::Application.routes.draw do
       get 'autocomplete_library_title'
       post 'filter'
     end
+    member do
+      get '/', to: 'libraries#edit', as: :edit
+    end
   end
   
-  resources :workouts do
+  get '/builder/new', to: 'workouts#new'
+  resources :workouts, except: [:edit, :show], path: :builder do
     collection do
       get 'get_workout_sub_block'
       post 'save_blocks'
@@ -81,7 +89,9 @@ Xerofit::Application.routes.draw do
       get 'remove_library_from_block'
     end
     member do
-        get 'workout_details'
+      # get 'workout_details'
+      get '/', to: 'workouts#workout_details', as: :workout_details
+      get '/edit', to: 'workouts#edit', as: :edit
     end
   end
   
