@@ -74,4 +74,8 @@ class Library < ActiveRecord::Base
 			TargetMuscleGroup.create(library_id: self.id)
 		end
 	end
+
+	# def video_title
+	# 	self.library_video.panda_video.original_filename
+	# end
 end

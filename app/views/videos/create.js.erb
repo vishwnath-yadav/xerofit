@@ -6,7 +6,7 @@
 		if(prg.parent().find('h2').text())
 		{
 			$(".video_id").val("<%=@video.id%>");
-			$('#library_title').val(prg.parent().find('h2').text());
+			// $('#library_title').val(prg.parent().find('h2').text());
 		}
 		$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
 		prg.parent().find('p').text('successfully uploaded');

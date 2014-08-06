@@ -41,6 +41,9 @@ class LibrariesController < ApplicationController
 	
 	def create
 	  @library = Library.new(library_params)
+	  unless params[:title].present?
+	  	params[:title] = ''
+	  end 	
 	  @library.user_id = current_user.id
 	  @video_id = params[:video]
 	  if @library.save
