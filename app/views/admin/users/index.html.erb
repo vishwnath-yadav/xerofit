@@ -1,0 +1,63 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Users List
+      </strong>
+    </a> 
+  </div> 
+  <div class="col-md-3">
+    <%=link_to new_admin_user_path do%>
+      <strong>
+        <i class="glyphicon glyphicon-plus"></i>
+         New User
+      </strong>
+    <%end%> 
+  </div>
+</div>
+<hr>
+<div class="col-md-9">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Fullname</th>
+        <th>Role</th>
+        <th>Date Registered</th>
+        <th>Action</th>
+      </tr>
+      <% @users.each_with_index do |user, ind| %>
+        <%ind += 1%>
+        <tr>
+          <td><%=ind%></td>
+          <td><%=user.email%></td>
+          <td><%=user.fullname%></td>
+          <td><%=user.role%></td>
+          <td><%=user.created_at%></td>
+          <td>
+            <%=link_to "Edit", edit_admin_user_path(user)%> | <%=link_to "Delete", admin_user_path(user), :confirm => "Are you sure?"%>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+</div>
+<div class="col-md-3">
+  <table class="table table-bordered table-striped">
+      <tr>
+        <th colspan="2">Filters</th>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>Username</td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td>Date Registered</td>
+      </tr>
+    </table>
+</div>
+
+<script>
+  $('.admin_li').removeClass('active')
+  $('.admin_li.users').addClass('active');
+</script>

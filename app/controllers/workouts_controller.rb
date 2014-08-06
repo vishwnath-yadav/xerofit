@@ -1,6 +1,7 @@
 class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
+	layout :resolve_layout
 	def new
 		@workout = Workout.new
 		@libraries = Library.where(user_id: current_user.id)
@@ -25,7 +26,7 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
-		if params[:status_change] == Library::STATUS[1]
+		if params[:status] == Library::STATUS[1]
 			@workout.status = Library::STATUS[1]	
 		end
 		@workout.update_attributes(workout_params)

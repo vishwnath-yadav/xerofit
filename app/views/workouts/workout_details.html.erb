@@ -1,7 +1,9 @@
+<%show_if_admin = current_user.admin?%>
+<%hide_if_admin = !current_user.admin?%>
 <div class="create_heading">
   <div class="prev_lib_col">
     <%= link_to("< Fitness Library", libraries_path) %>
-    <%= link_to("Workout Builder >", edit_workout_path(@workouts), :class => 'fr') %>
+    <%= link_to("Workout Builder >", edit_workout_path(@workouts), :class => 'fr') if hide_if_admin%>
   </div>
     <div class="wrk_image_box">
       <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_2.jpg' %>" />
@@ -24,7 +26,9 @@
     </span>
     <div class="rght_btns">
       <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+      <%if hide_if_admin%>
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+      <%end%>
     </div>
   </div>
 
@@ -42,8 +46,12 @@
           </ul>
         <% end %>
       </div>
-      <%= hidden_field_tag :status_change, "", class: "workout_status" %>
       <div class="lib_des_lft">
+        <%if show_if_admin%>
+          <%=render "common_templates/change_status", f: lib%>
+        <%else%>
+            <%= hidden_field_tag :status, "", class: "workout_status" %>
+        <%end%>
         <div class="exr_field_col">
           <label>Title</label>
           <%= lib.text_field :title, class: "for_work_change" %>
@@ -65,30 +73,35 @@
       </div>
     </div>
     <hr>
-    <div class="exer_lft_col">
-      <h4>Workout Media</h4>
-      <div class="big_video_col">
-         <h5>Cover Image</h5>
-         <p>For best results, your image should be square and atleast 500px by 500px</p>
-         <div class="upload_gry_box">
-            <p>Upload your image</p>
-            <%#= lib.file_field :pic %>
-            <div class="custom-upload">
-                  <%= lib.file_field :pic %>
-                  <div class="fake-file">
-                      <span class="choose_btn wrk_chos">Browse</span>
-                      <input disabled="disabled">
-                  </div>
-              </div>
-          </div>
+    <%if hide_if_admin%>
+      <div class="exer_lft_col">
+        <h4>Workout Media</h4>
+        <div class="big_video_col">
+           <h5>Cover Image</h5>
+           <p>For best results, your image should be square and atleast 500px by 500px</p>
+           <div class="upload_gry_box">
+              <p>Upload your image</p>
+              <%#= lib.file_field :pic %>
+              <div class="custom-upload">
+                    <%= lib.file_field :pic %>
+                    <div class="fake-file">
+                        <span class="choose_btn wrk_chos">Browse</span>
+                        <input disabled="disabled">
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
+    <%end%>
   <% end %>
 </div>
-<div class="lib_edit_botom">
-  <h5>Remove Workout</h5>
-  <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
-  <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
-</div>
+<%if hide_if_admin%>
+  <div class="lib_edit_botom">
+    <h5>Remove Workout</h5>
+    <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
+    <%=link_to "Remove this Workout", workout_path(@workouts), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+  </div>
+<%end%>
 </div>
 
 <script>
@@ -99,6 +112,8 @@
       $('.wrk_rvw').removeClass('dis_link')
     }
   });
+  $('.admin_li').removeClass('active')
+  $('.admin_li.workout').addClass('active');
 </script>
 
   

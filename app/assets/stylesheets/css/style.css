@@ -299,7 +299,7 @@ margin-top: 20px;}
 .exer_lft_col h4{color: #000;
 font-size: 16px;
 margin-bottom: 10px;}
-.exer_lft_col .thumbnail_col{width:48%; float:right; margin-top:20px;}
+.exer_lft_col .thumbnail_col{width:51%; float:right; margin-top:20px;}
 .exer_lft_col .thumbnail_col h5{ color:#2f302d; font-size: 13px; margin-bottom:10px;}
 .exer_lft_col .thumbnail_col p a{ color:#999b99; font-size:13px; font-style:normal;}
 .exer_lft_col .thumbnail_col p a:hover{color:#000}
@@ -333,7 +333,7 @@ margin-bottom: 10px;
 P.load_less{float: left;
 width: 100%; text-align: right; display: none;}
 
-.exer_lft_col .thumbnail_col ul li.margn45{margin:0px 42px;}
+.exer_lft_col .thumbnail_col ul li.margn45{margin:0px 16px;}
 .exer_lft_col .thumbnail_col ul li img{width:100%; height:auto;}
 .exer_rht_col{width:100%; float:right;}
 .exr_field_col{width:100%; float:left; margin-bottom:20px;}
