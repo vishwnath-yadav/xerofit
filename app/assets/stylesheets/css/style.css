@@ -342,9 +342,7 @@ width: 100%; text-align: right; display: none;}
 .exer_rht_col{width:100%; float:right;}
 .exr_field_col{width:100%; float:left; margin-bottom:20px;}
 .targets_sel .exr_field_col{width:40%; margin-right:35px;}
-/*#workout_category{border-radius: 5px;
-padding: 5px;
-border: 1px solid #e1e0dd;}*/
+
 .exr_field_col label{color:#2a2c28; font-size: 14px;
 margin-bottom: 6px; float:left; width:100%;}
 .exr_field_col h4{color: #a5afbb; padding-bottom: 5px;}
