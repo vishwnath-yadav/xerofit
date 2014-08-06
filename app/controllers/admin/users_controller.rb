@@ -35,6 +35,9 @@ class Admin::UsersController < Admin::AdminController
 	    end
 	end
 
+	def filter_user
+	end
+
 	private
 
 	def permitted_user

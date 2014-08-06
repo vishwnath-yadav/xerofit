@@ -79,5 +79,16 @@ class User < ActiveRecord::Base
     end
     return @user
   end
+  
+  def self.admin_count
+    self.all.where(role: 'admin').count
+  end
 
+  def self.trainer_count
+    self.all.where(role: 'trainer').count
+  end
+
+  def self.user_count
+    self.all.where(role: 'normaluser').count
+  end
 end

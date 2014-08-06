@@ -15,4 +15,8 @@ class LibraryVideo < ActiveRecord::Base
     self.panda_video.encodings['h264']
   end
 
+  def video_title
+	self.panda_video.original_filename rescue ''
+  end
+
 end

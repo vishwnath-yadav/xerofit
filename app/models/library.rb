@@ -75,7 +75,7 @@ class Library < ActiveRecord::Base
 		end
 	end
 
-	# def video_title
-	# 	self.library_video.panda_video.original_filename
-	# end
+	def self.library_count
+		self.all.count
+	end
 end

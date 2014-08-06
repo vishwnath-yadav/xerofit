@@ -33,6 +33,9 @@ Xerofit::Application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do
+      collection do
+        get :filter_user
+      end
       member do
         patch :enable
         patch :disable

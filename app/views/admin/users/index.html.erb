@@ -43,21 +43,26 @@
 </div>
 <div class="col-md-3">
   <table class="table table-bordered table-striped">
+    <%= form_tag(filter_user_admin_users_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
       <tr>
         <th colspan="2">Filters</th>
       </tr>
       <tr>
         <th>Email</th>
-        <td>Username</td>
+        <td><%= text_field_tag :email %></td>
       </tr>
       <tr>
         <th>Role</th>
-        <td>Date Registered</td>
+        <td><%= select_tag :role, options_for_select(User::ROLES) %></td>
       </tr>
-    </table>
+      <tr>
+        <%= submit_tag "Search" %>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <script>
-  $('.admin_li').removeClass('active')
+  $('.admin_li').removeClass('active');
   $('.admin_li.users').addClass('active');
 </script>
