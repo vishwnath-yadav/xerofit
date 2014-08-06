@@ -29,7 +29,6 @@ module LibrariesHelper
 	end
 
 	def trg_count(library,i, count)
-		binding.pry
 		if (i==2)&&(count == 5)
 			'active'
 		else
