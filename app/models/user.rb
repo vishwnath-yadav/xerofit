@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin trainer normaluser]
   ROLESFORADMIN = %w[trainer normaluser]
 
-   validates :role, presence: true
+  validates :role, presence: true
 
   User::ROLES.each do |role|
     # define methods such as student?, admin? etc.

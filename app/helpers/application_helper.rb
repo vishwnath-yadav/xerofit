@@ -16,4 +16,5 @@ module ApplicationHelper
 			controller_name = "Home"
 		end
 	end
+	
 end
