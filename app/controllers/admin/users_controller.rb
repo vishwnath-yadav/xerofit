@@ -30,12 +30,15 @@ class Admin::UsersController < Admin::AdminController
 	    if @user.update_attributes(permitted_user)
 	      redirect_to admin_users_path
 	    else
-	      logger.debug(@user.errors.full_messages)
 	      render "edit"
 	    end
 	end
 
 	def filter_user
+		@users = User.by_email(params[:email]).by_role(params[:role]).all
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	private
