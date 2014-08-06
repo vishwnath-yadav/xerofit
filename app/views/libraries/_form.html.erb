@@ -15,7 +15,7 @@
         </ul>
       <% end %>
     </div>
-    <%= hidden_field_tag :is_full_workout, "", class: "full_workout" %>
+    <%= lib.hidden_field :is_full_workout, value: false, class: "full_workout" %>
     <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="exr_field_col">

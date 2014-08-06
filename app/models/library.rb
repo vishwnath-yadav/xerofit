@@ -29,7 +29,6 @@ class Library < ActiveRecord::Base
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
-  
 
 	def save_status
 		self.status = STATUS[0]
