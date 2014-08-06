@@ -74,4 +74,8 @@ class Library < ActiveRecord::Base
 			TargetMuscleGroup.create(library_id: self.id)
 		end
 	end
+
+	def self.library_count
+		self.all.count
+	end
 end

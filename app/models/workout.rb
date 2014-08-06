@@ -70,5 +70,9 @@ class Workout < ActiveRecord::Base
 	def next_post
 	  self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	end
+
+	def self.workout_count
+		self.all.count
+	end
 	
 end

@@ -42,11 +42,14 @@ class LibrariesController < ApplicationController
 	end
 	
 	def create
+	  @video_id = params[:video]
+	  video = LibraryVideo.find(@video_id)
+	  if params[:library][:title].blank?
+	  	params[:library][:title] = video.video_title
+	  end 	
 	  @library = Library.new(library_params)
 	  @library.user_id = current_user.id
-	  @video_id = params[:video]
 	  if @library.save
-	  	video = LibraryVideo.find(@video_id)
 	  	video.library = @library
 	  	video.save
 	    redirect_to libraries_path, :notice => "Thank you for uploading video!"
