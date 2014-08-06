@@ -1,15 +1,25 @@
 <%if !@video.errors.present?%>
 	if($('#dragandrophandler').is(':visible')){
-		$("#video_library_info").submit();
+		//$("#video_library_info").submit();
 	}
 	if($("#progressbar").length || $("#progressbar1").length){
+		alert("<%@video.id%>")
 		if(prg.parent().find('h2').text())
 		{
+			alert("inside if")
 			$(".video_id").val("<%=@video.id%>");
 			$('#library_title').val(prg.parent().find('h2').text());
 		}
 		$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
 		prg.parent().find('p').text('successfully uploaded');
+		alert(prg.attr('id'));
+		if(prg.attr('id') == "progressbar1"){
+			alert("iffffff");
+			$(".full_workout").val('true');
+		}
+		else{
+			$(".full_workout").val('');
+		}
 	}
 	else{
 		$("#edit_video_info").submit();	
