@@ -6,7 +6,7 @@ module ApplicationHelper
 	end
 
 	def change_menu_title(controller_name)
-		if controller_name == "libraries"
+		if controller_name == "libraries" || (controller_name == "workouts" && action_name == "workout_details")
 			controller_name = "Fitness Library"
 		elsif controller_name == "workouts"
 			controller_name = "Workout Builder"

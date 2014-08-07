@@ -67,6 +67,8 @@ Xerofit::Application.routes.draw do
   resources :videos, only: [:create,:update,:destroy]
   
   get '/library/new', to: 'libraries#new'
+  get '/library/move/:id', to: 'libraries#edit', as: :edit
+  get '/library/user/:id', to: 'libraries#index'
   resources :libraries, except: [:edit, :show], path: :library do 
     collection do
       get 'sort_video'
@@ -76,11 +78,12 @@ Xerofit::Application.routes.draw do
       post 'filter'
     end
     member do
-      get '/', to: 'libraries#edit', as: :edit
+      
     end
   end
   
   get '/builder/new', to: 'workouts#new'
+  get '/library/workout/:id', to: 'workouts#workout_details', as: :workout_details
   resources :workouts, except: [:edit, :show], path: :builder do
     collection do
       get 'get_workout_sub_block'
@@ -93,7 +96,6 @@ Xerofit::Application.routes.draw do
     end
     member do
       # get 'workout_details'
-      get '/', to: 'workouts#workout_details', as: :workout_details
       get '/edit', to: 'workouts#edit', as: :edit
     end
   end

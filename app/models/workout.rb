@@ -16,6 +16,8 @@ class Workout < ActiveRecord::Base
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
+	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
+
   
 	Workout::STATES.each do |state|
 	    define_method "#{state}?" do

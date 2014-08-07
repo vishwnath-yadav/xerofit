@@ -7,6 +7,7 @@ class VideosController < ApplicationController
 			@video = LibraryVideo.new(video_params)
 	    else
 	    	@video = LibraryVideo.find(params[:video_old_id])
+	    	@video.image = ''
 	    end
 	    respond_to do |format|
 	      if @video.save

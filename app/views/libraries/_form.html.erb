@@ -20,12 +20,14 @@
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="exr_field_col">
       <label>Title</label>
-      <%= lib.text_field :title %>
+      <%= lib.text_field :title, maxlength: "80" %>
+      <span class="detail_char" data-size="80">80</span>
     </div>
         
     <div class="exr_field_col">
       <label>Directions</label>
-      <%= lib.text_area :directions %>
+      <%= lib.text_area :directions, maxlength: "450" %>
+      <span class="detail_char" data-size="450">450</span>
     </div>
       
     <div class="exr_field_col">

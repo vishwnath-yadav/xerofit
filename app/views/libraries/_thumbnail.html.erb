@@ -4,7 +4,7 @@
   <% @size.each_with_index do |library, index| %>
     <% if(temp == 0) %>
       <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
-        <div class="video_title <%= (index == 0 && @image.present?)? 'select_thumb' : '' %>">Selected</div>
+        <div class="video_title <%= (index == 0 && @library.library_video.image.present?)? 'select_thumb' : '' %>">Selected</div>
       </li>
       <% temp = temp+1 %>
     <% elsif(temp<2) %>
