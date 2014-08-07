@@ -4,13 +4,14 @@ Xerofit::Application.routes.draw do
 #   ActiveAdmin.routes(self)
   root 'website#home'
   
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  # devise_for :users, :controllers => {:sessions => "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"}
+  # devise_for :users, :controllers => {:passwords => "passwords"}
   # get '/auth/:provider/callback', to: 'sessions#create'
 
   devise_scope :user do
    get "/combo_signup" => "registrations#combo_signup"
    get "/users_sign_up_new" => "registrations#users_sign_up_new"
+   get "/reset_password" => "passwords#reset"
    post "/users_sign_up_create" => "registrations#users_sign_up_create"
  end 
 

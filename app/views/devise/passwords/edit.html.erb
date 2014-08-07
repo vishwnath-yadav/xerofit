@@ -2,6 +2,7 @@
   <div class="popup_wrapper">
     <div class="popup_header">
       <h2>Change your password</h2>
+      <p>Please enter a new login password below.</p>
     </div>
     <div class="popp_middle">
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
@@ -9,10 +10,12 @@
         <%= f.input :reset_password_token, as: :hidden %>
         <%= f.full_error :reset_password_token %>
         <div class="login_field">
-          <%= f.input :password, label: "New password", required: true, autofocus: true %>
-          <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+          <label>New Password:</label>
+          <%= f.input :password, label: false, required: true, autofocus: true %>
+          <label>Reset Password:</label>
+          <%= f.input :password_confirmation, label: false, required: true %>
         </div>
-        <%= f.button :submit, "Change my password", {:class=>"signin_btn request_bt"} %>
+        <%= f.button :submit, "Save New Password", {:class=>"signin_btn request_bt"} %>
       <% end %>
     </div>
   <%#= render "devise/shared/links" %>
