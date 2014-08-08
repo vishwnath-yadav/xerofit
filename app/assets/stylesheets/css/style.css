@@ -389,7 +389,7 @@ width: 48%;}
 float: right;}
 .exr_field_col.number_mus{width: 90%;}
 .exr_field_col textarea{height:121px}
-.fancy_select{width:100%; float:left; border-radius:5px; padding:5px 0 5px 5px; border:1px solid #e1e0dd; 
+.fancy_select{overflow:hidden;width:100%; float:left; border-radius:5px; padding:5px 0 5px 5px; border:1px solid #e1e0dd; 
 background:url(/assets/select_arrow.png) no-repeat right #fdfcfb;  font-size: 12px; }
 .fancy_select.dob_select{width:31%;}
 .fancy_select.dob_select select{width:120%}
