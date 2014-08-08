@@ -2241,3 +2241,7 @@ z-index: 9;}
 	top: 115px;
 	right: 10px;
 }
+
+.user_password.field_with_errors .error{
+	display: none;
+}

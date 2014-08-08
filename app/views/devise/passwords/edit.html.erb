@@ -5,7 +5,7 @@
       <p>Please enter a new login password below.</p>
     </div>
     <div class="popp_middle">
-      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), :defaults => {:required => false}, html: { method: :put }) do |f| %>
         <%= f.error_notification %>
         <%= f.input :reset_password_token, as: :hidden %>
         <span class="error_color">
@@ -17,12 +17,12 @@
         <div class="login_field usr_lgn_pas">
           
           <label>New Password:</label>
-          <%= f.input :password, label: false, required: true, autofocus: true %>
+          <%= f.input :password, label: false, autofocus: true %>
           <input type="text" id="txthdnPassword" />
           <span class="spn_pass" >Show</span>
           
           <label>Reset Password:</label>
-          <%= f.input :password_confirmation, label: false, required: true %>
+          <%= f.input :password_confirmation, label: false %>
           <input type="text" id="txthdnPassword1" />
           <span class="spn_pass1" >Show</span>
 
@@ -37,9 +37,7 @@
 <script>
   $(document).ready(function() {
       $('#txthdnPassword').hide();
-      $('#txthdnPassword').attr('readonly','readonly');
       $('#txthdnPassword1').hide();
-      $('#txthdnPassword1').attr('readonly','readonly');
       
       $('#user_password').blur(function() {
           $('#txthdnPassword').val($(this).val());
@@ -55,11 +53,13 @@
               $('#user_password_confirmation').hide();
               $('#txthdnPassword1').show();
               $('.spn_pass1').text("Hide");
+              $('#txthdnPassword1').val($('#user_password_confirmation').val());
           }
           else {
               $('#user_password_confirmation').show();
               $('#txthdnPassword1').hide();
               $('.spn_pass1').text("Show");
+              $('#user_password_confirmation').val($('#txthdnPassword1').val());
           }
       });
 
@@ -69,11 +69,13 @@
               $('#user_password').hide();
               $('#txthdnPassword').show();
               $('.spn_pass').text("Hide");
+              $('#txthdnPassword').val($('#user_password').val());
           }
           else {
               $('#user_password').show();
               $('#txthdnPassword').hide();
               $('.spn_pass').text("Show");
+              $('#user_password').val($('#txthdnPassword').val());
           }
       });
   })

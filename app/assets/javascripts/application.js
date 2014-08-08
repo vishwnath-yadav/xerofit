@@ -20,6 +20,10 @@
 
 $( document ).ready(function() {
 
+    $(function () {
+      $('.default').dropkick();
+    });
+
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
       scroll = $(window).scrollTop();
@@ -127,7 +131,20 @@ $( document ).ready(function() {
     select_wrapper.load(url)
   });
 
+  setTimeout(load_dropKick_js, 5000);
   
   
 });
+
+function load_dropKick_js() {
+  $('.status_select ul li').click(function(){
+    $('#status').val($(this).text());
+    $('#search_grid_list_form').submit();
+  });
+
+  $('.type_select ul li').click(function(){
+    $('#type').val($(this).text());
+    $('#search_grid_list_form').submit();
+  });
+}
 

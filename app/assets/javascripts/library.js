@@ -74,23 +74,11 @@ $( document ).ready(function() {
       }
   });
 
-   $(function () {
-      $('.default').dropkick();
-    });
-
+  
    
 });
-load_select_click = function() {
-  $('.status_select ul li').click(function(){
-    $('#status').val($(this).text());
-    $('#search_grid_list_form').submit();
-  });
 
-  $('.type_select ul li').click(function(){
-    $('#type').val($(this).text());
-    $('#search_grid_list_form').submit();
-  });
-}
+
 
 function check_require_field(){
   var flag= 1;
