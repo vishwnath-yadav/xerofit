@@ -1,5 +1,10 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
+      <span class="error_color">
+          <% resource.errors.full_messages.each do |object| %>
+            <%= object %></br>
+          <% end %>
+      </span>
   <div class="login_field">
          <%= f.input :fullname, required: true %>
     </div>

@@ -7,14 +7,23 @@
     </div>
     <div class="popp_middle">
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+          <span class="error_color">
+              <% resource.errors.full_messages.each do |object| %>
+                <%= object %></br>
+              <% end %>
+          </span>
+          
           <div class="login_field">
             <label>Email:</label>
             <%= f.input :email, label: false, required: false, autofocus: true %>
           </div>
 
-          <div class="login_field">
+          <div class="login_field usr_lgn_pas">
             <label>Password:</label>
             <%= f.input :password, label: false, required: false %>
+            <input type="text" id="txthdnPassword" />
+            <span class="spn_pass" >Show</span>
 
           </div>
           <%= f.button :submit, "Login", :class=>"signin_btn" %>
@@ -28,22 +37,25 @@
   </div>
 </div>
 <script>
-// $(document).ready(function(){
-  // signin_dis classfor disable
-//   if(($('#user_email').val()!="")&&($('#user_password').val()!="")){
-//     $('.signin_btn').removeClass('signin_dis');
-//    } 
-//    else{
-//     $('.signin_dis').addClass('signin_dis');
-//    }
-
-//   $('.login_field').keyup(function(){
-//    if(($('#user_email').val()!="")&&($('#user_password').val()!="")){
-//     $('.signin_btn').removeClass('signin_dis');
-//    }
-//    else{
-//     $('.signin_dis').addClass('signin_dis');
-//    }
-//   });
-// });
+  $(document).ready(function() {
+      $('#txthdnPassword').hide();
+      $('#txthdnPassword').attr('readonly','readonly');
+      $('#user_password').blur(function() {
+          $('#txthdnPassword').val($(this).val());
+      });
+   
+      $('.spn_pass').click(function() {
+          var isChecked = $(this).text();
+          if(isChecked == "Show") {
+              $('#user_password').hide();
+              $('#txthdnPassword').show();
+              $('.spn_pass').text("Hide");
+          }
+          else {
+              $('#user_password').show();
+              $('#txthdnPassword').hide();
+              $('.spn_pass').text("Show");
+          }
+      });
+  })
 </script>

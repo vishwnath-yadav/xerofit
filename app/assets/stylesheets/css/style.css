@@ -2205,3 +2205,35 @@ z-index: 9;}
 {
 	width: 100% !important;
 }
+
+.error_color{
+	color:red;
+}
+
+.reset_img{
+	margin-left: 120px;
+	margin-bottom: 31px;
+}
+
+.reset_text{
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.usr_lgn_pas{
+	position: relative;
+}
+
+.spn_pass{
+	position: absolute;
+	color: #000;
+	top: 43px;
+	right: 10px;
+}
+
+.spn_pass1{
+	position: absolute;
+	color: #000;
+	top: 115px;
+	right: 10px;
+}

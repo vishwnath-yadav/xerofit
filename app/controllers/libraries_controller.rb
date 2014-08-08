@@ -23,9 +23,8 @@ class LibrariesController < ApplicationController
 	def edit
 		@library = Library.find(params[:id])
 		@size = @library.get_thumbnail()
-		Rails.logger.debug @size
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
-		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
+		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @count!=5)
 	end
 	
 	def create
