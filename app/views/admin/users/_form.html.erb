@@ -2,7 +2,6 @@
 	<%= simple_nested_form_for(@user, url: (@user.new_record? ? admin_users_path : admin_user_path(@user)), html: {id: 'admin_create_user', class: "form-horizontal"}) do |lib| %>
 	<fieldset>
 
-	<!-- Form Name -->
 	<legend><%=@user.new_record? ? "New User" : "Edit User"%></legend>
     <% if @user.errors.full_messages.any? %>
     	<div class="alert alert-danger">

@@ -113,6 +113,12 @@ class LibrariesController < ApplicationController
 		redirect_to libraries_path
 	end
 
+	def full_workout_content
+		respond_to do |format|
+		    format.js
+	    end
+	end
+
 	private
 	  def library_params
 	    params.require(:library).permit!

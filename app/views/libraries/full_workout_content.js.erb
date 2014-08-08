@@ -1,0 +1,7 @@
+<%popup = params[:popup].present? ? 'true' : ''%>
+$('#video_cont').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => popup})) %>");
+<%if params[:popup].present?%>
+	$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
+<%else%>
+	$('#upload_content').html('<img src="/assets/ajax-loader.gif" style="margin: 20% 47% 30%;" />');
+<%end%>
