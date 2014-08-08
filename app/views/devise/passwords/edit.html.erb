@@ -1,22 +1,80 @@
 <div class="middle_wrapper">
   <div class="popup_wrapper">
     <div class="popup_header">
-      <h2>Change your password</h2>
+      <h2>Create New Password</h2>
+      <p>Please enter a new login password below.</p>
     </div>
     <div class="popp_middle">
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
         <%= f.input :reset_password_token, as: :hidden %>
-        <%= f.full_error :reset_password_token %>
-        <div class="login_field">
-          <%= f.input :password, label: "New password", required: true, autofocus: true %>
-          <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+        <span class="error_color">
+          <%#= f.full_error :reset_password_token %>
+            <% resource.errors.full_messages.each do |object| %>
+              <%= object %></br>
+            <% end %>
+        </span>
+        <div class="login_field usr_lgn_pas">
+          
+          <label>New Password:</label>
+          <%= f.input :password, label: false, required: true, autofocus: true %>
+          <input type="text" id="txthdnPassword" />
+          <span class="spn_pass" >Show</span>
+          
+          <label>Reset Password:</label>
+          <%= f.input :password_confirmation, label: false, required: true %>
+          <input type="text" id="txthdnPassword1" />
+          <span class="spn_pass1" >Show</span>
+
         </div>
-        <%= f.button :submit, "Change my password", {:class=>"signin_btn request_bt"} %>
+        <%= f.button :submit, "Save New Password", {:class=>"signin_btn request_bt"} %>
       <% end %>
     </div>
   <%#= render "devise/shared/links" %>
   </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+      $('#txthdnPassword').hide();
+      $('#txthdnPassword').attr('readonly','readonly');
+      $('#txthdnPassword1').hide();
+      $('#txthdnPassword1').attr('readonly','readonly');
+      
+      $('#user_password').blur(function() {
+          $('#txthdnPassword').val($(this).val());
+      });
+      $('#user_password_confirmation').blur(function() {
+          $('#txthdnPassword1').val($(this).val());
+      });
 
+   
+      $('.spn_pass1').click(function() {
+          var isChecked = $(this).text();
+          if(isChecked == "Show") {
+              $('#user_password_confirmation').hide();
+              $('#txthdnPassword1').show();
+              $('.spn_pass1').text("Hide");
+          }
+          else {
+              $('#user_password_confirmation').show();
+              $('#txthdnPassword1').hide();
+              $('.spn_pass1').text("Show");
+          }
+      });
+
+      $('.spn_pass').click(function() {
+          var isChecked = $(this).text();
+          if(isChecked == "Show") {
+              $('#user_password').hide();
+              $('#txthdnPassword').show();
+              $('.spn_pass').text("Hide");
+          }
+          else {
+              $('#user_password').show();
+              $('#txthdnPassword').hide();
+              $('.spn_pass').text("Show");
+          }
+      });
+  })
+  </script>

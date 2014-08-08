@@ -125,7 +125,7 @@
   
   <% if @library.library_video.present? %>
    <span class="upload_edit"><%= render "upload_edit" %></span>
-   <%if hide_if_admin%>
+   <%#if hide_if_admin%>
       <div class="lib_edit_botom">
         <h5>Replace Video</h5>
         <p>Upload a new video file for this move to replace the old one.</p>
@@ -136,7 +136,7 @@
         <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
         <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
       </div>
-    <% end %>
+    <%# end %>
   <% end %>
 </div>
 </div>

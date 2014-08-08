@@ -27,6 +27,7 @@ class Admin::UsersController < Admin::AdminController
 
 	def update
 		@user = User.find(params[:id])
+		@user.skip_confirmation!
 	    if @user.update_attributes(permitted_user)
 	      redirect_to admin_users_path
 	    else

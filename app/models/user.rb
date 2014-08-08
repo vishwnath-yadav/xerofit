@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
   has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  
+    
+
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :libraries 
@@ -11,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   accepts_nested_attributes_for :addresses, :subscriptions
   has_many :workouts
+  
+  before_create :generate_token
+
   ROLES = %w[admin trainer normaluser]
   ROLESFORADMIN = %w[trainer normaluser]
 
@@ -94,4 +99,13 @@ class User < ActiveRecord::Base
   def self.user_count
     self.all.where(role: 'normaluser').count
   end
+  
+
+  protected
+
+  def generate_token
+    token = SecureRandom.urlsafe_base64(self.id, false)
+    self.token = token[0, 8]
+  end
+
 end

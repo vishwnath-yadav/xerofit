@@ -45,7 +45,7 @@ class WorkoutsController < ApplicationController
 
 
 	def index
-		@workouts = Workout.where(:state=>"completed")
+		redirect_to libraries_path
 	end
 
 	def show

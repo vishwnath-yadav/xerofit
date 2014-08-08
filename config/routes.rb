@@ -4,13 +4,14 @@ Xerofit::Application.routes.draw do
 #   ActiveAdmin.routes(self)
   root 'website#home'
   
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  # devise_for :users, :controllers => {:sessions => "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"}
+  # devise_for :users, :controllers => {:passwords => "passwords"}
   # get '/auth/:provider/callback', to: 'sessions#create'
 
   devise_scope :user do
    get "/combo_signup" => "registrations#combo_signup"
    get "/users_sign_up_new" => "registrations#users_sign_up_new"
+   get "/reset_password" => "passwords#reset"
    post "/users_sign_up_create" => "registrations#users_sign_up_create"
  end 
 
@@ -71,6 +72,8 @@ Xerofit::Application.routes.draw do
   end
   
   get '/library/new', to: 'libraries#new'
+  get '/library/move/:id', to: 'libraries#edit', as: :edit
+  get '/library/user/:id', to: 'libraries#index'
   resources :libraries, except: [:edit, :show], path: :library do 
     collection do
       get 'sort_video'
@@ -78,16 +81,15 @@ Xerofit::Application.routes.draw do
       get 'library_search_by_name'
       get 'autocomplete_library_title'
       post 'filter'
-      get 'test_upload'
-      post 'save_upload'
       get 'full_workout_content'
     end
     member do
-      get '/', to: 'libraries#edit', as: :edit
+      
     end
   end
   
   get '/builder/new', to: 'workouts#new'
+  get '/library/workout/:id', to: 'workouts#workout_details', as: :workout_details
   resources :workouts, except: [:edit, :show], path: :builder do
     collection do
       get 'get_workout_sub_block'
@@ -100,7 +102,6 @@ Xerofit::Application.routes.draw do
     end
     member do
       # get 'workout_details'
-      get '/', to: 'workouts#workout_details', as: :workout_details
       get '/edit', to: 'workouts#edit', as: :edit
     end
   end

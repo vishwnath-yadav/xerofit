@@ -20,6 +20,7 @@
     <%end%>
 
     <div class="select_bar_col">
+         <%= hidden_field_tag :id, params[:id]%>
          <%= hidden_field_tag :type%>
          <%= hidden_field_tag :status%>
          <%= hidden_field_tag :view_type, "grid"%>
@@ -27,7 +28,7 @@
           <span class="custom_select type_select">
             <select class="default">
               <option>All Types</option>
-              <option>Excercises</option>
+              <option>Moves</option>
               <option>Workouts</option>
             </select>
           </span>

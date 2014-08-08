@@ -5,10 +5,8 @@ class LibrariesController < ApplicationController
 
 	def index
 		@view = params[:view_type]
-		status = params[:status]
-		name = params[:title]
-		type = params[:type]
-		@list1 = Library.list_view(status,name,type,current_user, params[:page])
+		user = User.where(token: params[:id]).last
+		@list1 = Library.get_library_list(params[:status],params[:title],params[:type],current_user,user)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.html
@@ -24,22 +22,9 @@ class LibrariesController < ApplicationController
 	
 	def edit
 		@library = Library.find(params[:id])
-		@size = []
-		if @library.library_video.present? && @library.library_video.panda_video.present? 
-			size = @library.library_video.panda_mp4.screenshots
-			@image = @library.library_video.image
-			if size.include?(@image)
-				index = size.index(@image)
-				temp = size[index]
-				size[index] = size[0]
-				size[0] = temp
-			end
-			@size = size	
-		end
-		@size.size > 6 ? @size.pop() : @size
+		@size = @library.get_thumbnail()
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
-		Rails.logger.debug @count
-		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @library.target_muscle_groups.present?)
+		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @count!=5)
 	end
 	
 	def create
@@ -75,7 +60,7 @@ class LibrariesController < ApplicationController
 		end
 		respond_to do |format|
 		    if @library.update_attributes(library_params)
-		        format.html { redirect_to edit_library_path(@library), notice: 'successfully updated Library.' }
+		        format.html { redirect_to edit_path(@library), notice: 'successfully updated Library.' }
 		    else
 		        format.html { render action: "edit" }
 		    end
@@ -128,16 +113,10 @@ class LibrariesController < ApplicationController
 		redirect_to libraries_path
 	end
 
-	def test_upload
-	end
-
-	def save_upload
-	end
-
 	def full_workout_content
 		respond_to do |format|
-	    format.js
-    end
+		    format.js
+	    end
 	end
 
 	private

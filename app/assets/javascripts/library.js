@@ -20,7 +20,7 @@ $( document ).ready(function() {
     check_require_field();
   });
 
-  $(document).on("change",".for_on_changed",function(){
+  $(document).on("change keyup",".for_on_changed",function(){
     $('.chg_save').removeClass('dis_link');
   });
   
