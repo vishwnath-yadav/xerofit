@@ -1811,11 +1811,14 @@ background: #fff;
 text-align: center;
 vertical-align: middle;
 padding-top: 23px;}
-.video_uplod_txt{ width: 63%;
+.video_uplod_txt{ width: 55%;
 float: left;
 margin-left: 14px;}
 .video_uplod_txt .loader_pipe{ width:100%; float:left; margin:10px 0px;}
-.video_uplod_txt h2{font-size:15px;margin-bottom: 20px;}
+.video_uplod_txt h2{font-size: 17px;
+margin-bottom: 20px;
+text-align: center;
+line-height: 26px;}
 .video_uplod_txt p{
 	color: #919191;
 	font-style: normal;

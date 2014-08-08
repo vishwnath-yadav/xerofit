@@ -1,0 +1,10 @@
+<%#= simple_form_for(LibraryVideo.new, url: videos_path, remote: true, html: {class: "", id: 'video_upload_form1'}) do |video| %>
+    <!-- <div class="form-inputs" style="display:none">
+      <%#= hidden_field_tag :lib_id, (@library.id ? @library.id : "") %>
+      <%#= hidden_field_tag :video_old_id, (@library.library_video ? @library.library_video.id : "") %>
+      <input name="file" type="file" multiple />
+    </div> -->
+<%# end %>
+<div class="dropzone">
+  <input name="file" type="file" multiple />
+</div>

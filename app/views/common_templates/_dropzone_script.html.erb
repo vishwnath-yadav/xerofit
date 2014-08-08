@@ -1,0 +1,43 @@
+<script>
+    $( document ).ready(function() {
+      prg = $("#progressbar");
+      upload_video('dropzone');
+    });
+    function upload_video(id){
+      size = 0;
+      var myDropzone = new Dropzone("#"+id,
+        {
+        url: "/videos/create",
+        clickable: true,
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 250, // MB
+        });
+
+      myDropzone.on("addedfile", function(file) {
+        size = (file.size/1024/1024).toFixed(2);
+        if(size > 250){
+          myDropzone.removeFile(file);
+        }
+        else{
+          prg.parent().find('h2').text(file.name);
+        }
+      });
+
+      myDropzone.on("uploadprogress", function(a, progress, size_ulpload) {
+        upl = (size_ulpload/1024/1024).toFixed(2);
+        prg.parent().find('p').text('uploading.. '+upl+' MB of '+size+' MB');
+        prg.progressbar({
+        value: progress
+      });
+      });
+
+      myDropzone.on("success", function(a, response) {
+        html_setups(response);
+      });
+
+      myDropzone.on("error", function(a, response) {
+        alert("Sorry maximum file size allowed is 250 MB")
+      });
+    }
+    
+  </script>

@@ -64,7 +64,11 @@ Xerofit::Application.routes.draw do
   end
   # get 'dashboard', to: 'dashboard#trainer_index', as: :dashboard
   
-  resources :videos, only: [:create,:update,:destroy]
+  resources :videos, only: [:update,:destroy] do 
+    collection do 
+      post 'create'
+    end
+  end
   
   get '/library/new', to: 'libraries#new'
   resources :libraries, except: [:edit, :show], path: :library do 
@@ -74,6 +78,9 @@ Xerofit::Application.routes.draw do
       get 'library_search_by_name'
       get 'autocomplete_library_title'
       post 'filter'
+      get 'test_upload'
+      post 'save_upload'
+      get 'full_workout_content'
     end
     member do
       get '/', to: 'libraries#edit', as: :edit

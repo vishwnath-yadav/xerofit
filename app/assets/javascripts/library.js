@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  prg = $("#progressbar");
+  
   // $(document).on("click", ".replace_video_btn", function() {
   //    // $('.upload_edit').css('display','none');
   //    // $('.replace_video').css('display','block');
@@ -43,31 +43,7 @@ $( document ).ready(function() {
     $('.target_muscle_submenu_'+id).val(sub_cat);
     $('.target_'+id).text(sub_menu);
   });
-  
 
-  $(document).on("click",".upload_video", function(){
-    $("#library_video_video").click();
-  });
-
-  $('#library_video_video').on('change', function(e) {
-    var file = e.target.files[0];
-    size = (file.size/1024/1024).toFixed(2);
-    if(size > 1024 && $('#dragandrophandler').is(':visible')){
-      alert("size cannot be greater than 1 GB");
-    }
-    else if(size > 250){
-      alert("size cannot be greater than 250 MB");
-    }
-  else{
-      upl = size/100;
-      if($("#progressbar").length || $("#progressbar1").length){
-        prg.parent().find('p').text(upl+' MB of '+size+' MB');
-        prg.parent().find('h2').text(file.name);
-      }
-      $("#video_upload_form").submit();
-  }
- });
- 
   $('.type_select ul li').click(function(){
     $('#select_option').val("type");
     $('#select_option_val').val($(this).text());
@@ -102,13 +78,7 @@ $( document ).ready(function() {
       $('.default').dropkick();
     });
 
-   $(".full_workout").click(function(){
-      $.fancybox.open({
-            href: '#dragandrophandler',
-            type: 'inline'
-        });
-      prg = $("#progressbar1");
-    });
+   
 });
 load_select_click = function() {
   $('.status_select ul li').click(function(){
