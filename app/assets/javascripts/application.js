@@ -131,7 +131,7 @@ $( document ).ready(function() {
     select_wrapper.load(url)
   });
 
-  setTimeout(load_dropKick_js, 5000);
+  
   
   
 });
