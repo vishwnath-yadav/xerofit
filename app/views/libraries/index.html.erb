@@ -1,7 +1,9 @@
+
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
 <div class="create_heading">
   <%if hide_if_admin%>
+
     <div class="plus_icon">
       <a href="<%= new_library_path %>">
         <img src="/assets/plus_icon.png"/>
