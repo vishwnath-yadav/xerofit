@@ -13,7 +13,7 @@
               </a>
             <%else%>
               <a href="<%= edit_path(ls) %>">
-                <% if ls.library_video.image.present? %>
+                <% if ls.library_video.present? && ls.library_video.image.present? %>
                   <img src="<%= ls.library_video.image %>" alt="cn_1" />
                 <% else %>
                     <img src="/assets/ex_2.png" alt="cn_1" />
