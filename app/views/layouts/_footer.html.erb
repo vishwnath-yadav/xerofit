@@ -1,34 +1,14 @@
-<%if action_name == "trainers" || action_name == "home"%>
-    <footer class="web-footer">
-        <section class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 foot-left">
-                    <span>© 2014 Xerofit, LLC.</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 foot-mid">
-                    <%= link_to image_tag('website/icons/facebook_icon@2x.png', :alt => 'Xerofit Facebook', :height => 24, :class => 'social-foot-link'), 'http://facebook.com/xerofitness' %>
-                    <%= link_to image_tag('website/icons/twitter_icon@2x.png', :alt => 'Xerofit Twitter', :height => 24, :class => 'social-foot-link'), 'http://twitter.com/xerofitness' %>
-                </div>
-                <div class="hidden-xs zcol-xs-12 col-sm-4 foot-right">
-                    <span>Made in Seattle <%= link_to('Terms',  terms_website_index_path) %> • <%= link_to('Privacy',  privacy_website_index_path) %></span>
-                </div>
-            </div>
-        </section>
-    </footer>
-<%else%>
-    <footer class="main-footer">
-        <div class="container-fluid">
-            <div class="col-xs-6 footer_lft_col">
-                <ul>
-                    <li><a href="#">Become a Trainer</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li class="no-pipe"><a href="#">Privacy</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-6 footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
+<footer class="main-footer">
+    <div class="container-fluid">
+        <div class="col-xs-6 footer_lft_col">
+            <ul>
+                <li><a href="#">Become a Trainer</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><%= link_to('Terms',  terms_website_index_path) %></li>
+                <li class="no-pipe"><%= link_to('Privacy',  privacy_website_index_path) %></li>
+            </ul>
         </div>
-        </div>
-    </footer>
-<%end%>
+        <div class="col-xs-6 footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
+    </div>
+</footer>
