@@ -106,7 +106,6 @@ class Library < ActiveRecord::Base
 			end
 			size1 = size	
 		end
-		
 		size1.size > 6 ? size1.pop() : size1
 		return size1
 	end
