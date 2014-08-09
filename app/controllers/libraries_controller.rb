@@ -9,8 +9,8 @@ class LibrariesController < ApplicationController
 		@list1 = Library.get_library_list(params[:status],params[:title],params[:type],current_user,user)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
-			format.html
-			format.js
+				format.js
+				format.html
 		end
 	end
 	

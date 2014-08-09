@@ -73,7 +73,6 @@ Xerofit::Application.routes.draw do
   
   get '/library/new', to: 'libraries#new'
   get '/library/move/:id', to: 'libraries#edit', as: :edit
-  get '/library/user/:id', to: 'libraries#index'
   resources :libraries, except: [:edit, :show], path: :library do 
     collection do
       get 'sort_video'
@@ -87,6 +86,7 @@ Xerofit::Application.routes.draw do
       
     end
   end
+  # get '/library/user/:id', to: 'libraries#index'
   
   get '/builder/new', to: 'workouts#new'
   get '/library/workout/:id', to: 'workouts#workout_details', as: :workout_details

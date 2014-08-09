@@ -24,6 +24,7 @@
     <div class="select_bar_col">
          <%= hidden_field_tag :id, params[:id]%>
          <%= hidden_field_tag :type%>
+         <%= hidden_field_tag :page, params[:page].present? ? params[:page] : 1%>
          <%= hidden_field_tag :status%>
          <%= hidden_field_tag :view_type, "grid"%>
          <div class="custom_select_wrap">
@@ -74,6 +75,10 @@
   </div>
 </div>
 <script>
+  $(function () {
+      $('.default').dropkick();
+      setTimeout(load_dropKick_js);
+  });
   $('.admin_li').removeClass('active')
   $('.admin_li.library').addClass('active');
 </script>

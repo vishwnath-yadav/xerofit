@@ -32,4 +32,4 @@
   <span> No Record Found...</span>
 <% end %> 
 
-<%= paginate @list %>
+<%= paginate @list, remote: true,:params => { :controller => 'libraries', :action => 'index'} %>

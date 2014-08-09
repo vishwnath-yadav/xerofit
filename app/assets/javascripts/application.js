@@ -20,10 +20,6 @@
 
 $( document ).ready(function() {
 
-    $(function () {
-      $('.default').dropkick();
-    });
-
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
       scroll = $(window).scrollTop();
@@ -130,9 +126,6 @@ $( document ).ready(function() {
     url = "/subregion_options?parent_region=" +country_code
     select_wrapper.load(url)
   });
-
-  
-  
   
 });
 
