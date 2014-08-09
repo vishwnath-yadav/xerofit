@@ -3,6 +3,12 @@ class Workout < ActiveRecord::Base
 
 	has_attached_file :pic, :styles => { :medium => "150x150>", :thumb => "150x150>" ,:square => "40x40>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
+
+	# has_attached_file :pic, :styles => { :medium => "150x150#", :thumb => "150x150#" ,:square => "40x40#", :p_square => "55x55#", :w_square => "130x130#", :large => "500x500>"}, :processors => [:cropper], :default_url => "/images/:style/missing.png"
+ #  	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
+
+  # attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  # after_update :reprocess_avatar, :if => :cropping? 
 	
 	has_many :blocks
 	has_one :statastic
@@ -24,6 +30,10 @@ class Workout < ActiveRecord::Base
 	      self.state.try(&:to_sym) == state
 	    end
 	end
+
+	# def cropping?  
+ #    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?  
+ #  end
 
 	def save_blocks_and_libs(block_hash)
 		block_hash.each do|key, value|
@@ -76,5 +86,10 @@ class Workout < ActiveRecord::Base
 	def self.workout_count
 		self.all.count
 	end
+
+	# private
+	# def reprocess_avatar  
+ #    pic.reprocess!  
+ #  end
 	
 end

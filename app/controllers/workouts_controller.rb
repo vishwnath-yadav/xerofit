@@ -132,8 +132,8 @@ class WorkoutsController < ApplicationController
 	end
 
 	def workout_details
-		@workouts = Workout.find(params[:id])
-		@work = (@workouts.title.present? && @workouts.subtitle.present? && @workouts.description.present? && @workouts.category.present?)
+		@workout = Workout.find(params[:id])
+		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
 	end
 
 	private
