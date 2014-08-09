@@ -1,3 +1,4 @@
+//= require jquery
 //= require plugins/bootstrap.min.js
 //= require plugins/parsley.min.js
 //= require plugins/matchHeight.min.js
