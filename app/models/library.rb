@@ -89,7 +89,8 @@ class Library < ActiveRecord::Base
 	end
 
 	def get_thumbnail
-		if self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
+		binding.pry
+		if self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
 			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
 			self.library_video.save
 		end

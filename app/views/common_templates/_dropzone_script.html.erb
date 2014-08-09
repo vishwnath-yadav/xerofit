@@ -1,5 +1,7 @@
+<%=hidden_field_tag :video_max_size, @max_size_allowed%>
 <script>
     $( document ).ready(function() {
+      max_size = parseInt($("#video_max_size").val());
       prg = $("#progressbar");
       upload_video('dropzone');
     });
@@ -10,12 +12,12 @@
         url: "/videos/create",
         clickable: true,
         paramName: "file", // The name that will be used to transfer the file
-        maxFilesize: 250, // MB
+        maxFilesize: max_size, // MB
         });
 
       myDropzone.on("addedfile", function(file) {
         size = (file.size/1024/1024).toFixed(2);
-        if(size > 250){
+        if(size > max_size){
           myDropzone.removeFile(file);
         }
         else{
@@ -36,7 +38,7 @@
       });
 
       myDropzone.on("error", function(a, response) {
-        alert("Sorry maximum file size allowed is 250 MB")
+        alert("Sorry maximum file size allowed is "+max_size+" MB")
       });
     }
     

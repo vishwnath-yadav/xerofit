@@ -15,13 +15,16 @@ class LibrariesController < ApplicationController
 	end
 	
 	def new
+		session[:video_id] = ''
 		@library = Library.new
 		@libvideo = LibraryVideo.new
+		@max_size_allowed = 250
 		5.times { @library.target_muscle_groups.build }
 	end
 	
 	def edit
 		@library = Library.find(params[:id])
+		@max_size_allowed = @library.is_full_workout ? 1024 : 250
 		@size = @library.get_thumbnail()
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @count!=5)
@@ -114,6 +117,15 @@ class LibrariesController < ApplicationController
 	end
 
 	def full_workout_content
+		session[:video_id] = !params[:video_id].blank? ? params[:video_id] : ''
+		if params[:popup].blank?
+			@max_size_allowed = 250
+		elsif !session[:video_id].blank?
+			video = LibraryVideo.find_by_id(session[:video_id])
+			@max_size_allowed = video.library.is_full_workout ? 1024 : 250
+		else
+			@max_size_allowed = 1024
+		end
 		respond_to do |format|
 		    format.js
 	    end

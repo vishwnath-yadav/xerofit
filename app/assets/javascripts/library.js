@@ -1,12 +1,10 @@
 $( document ).ready(function() {
   
   // $(document).on("click", ".replace_video_btn", function() {
-  //    // $('.upload_edit').css('display','none');
-  //    // $('.replace_video').css('display','block');
-  //    // $('.lib_edit_botom').css('display','none');
-  //    $("#library_video_video").click();
+  //    $('.upload_edit').css('display','none');
+  //    $('.replace_video').css('display','block');
+  //    $('.lib_edit_botom').css('display','none');
   // });
-  // $("input[type=text], textarea")
   $(document).on('keyup',"input[type=text], textarea", function(){
     var obj = $(this).closest('.exr_field_col').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));

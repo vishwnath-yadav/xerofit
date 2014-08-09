@@ -1,5 +1,6 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
+<%session[:video_id] = ''%>
 <div class="create_heading">
     <div class="prev_lib_col" id="<%= @library.id%>">
       <%= link_to("< Fitness Library", libraries_path) %>
@@ -124,15 +125,17 @@
   <% end %>
   
   <% if @library.library_video.present? %>
-   <span class="upload_edit"><%= render "upload_edit" %></span>
+   <span class="upload_edit">
+    <%= render "upload_edit" %>
+   </span>
    <%#if hide_if_admin%>
       <div class="lib_edit_botom">
         <h5>Replace Video</h5>
         <p>Upload a new video file for this move to replace the old one.</p>
-        <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn upload_video"%>
+        <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @library.library_video.id%>
       </div>
       <div class="lib_edit_botom">
-        <h5>Remove Video</h5>
+        <h5>Remove Excercise</h5>
         <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
         <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
       </div>
@@ -141,14 +144,7 @@
 </div>
 </div>
 
-<%= simple_form_for(LibraryVideo.new, url: videos_path, remote: true, html: {id: 'video_upload_form'}) do |video| %>
-    <div class="form-inputs" style="display:none">
-      <%= hidden_field_tag :lib_id, (@library.id ? @library.id : "") %>
-      <%= hidden_field_tag :video_old_id, (@library.library_video ? @library.library_video.id : "") %>
-      <%= video.file_field :video %>
-    </div>
-  <% end %>
-
+<%= render "common_templates/full_workout_upload" %>
 
 
 

@@ -3,16 +3,17 @@ class VideosController < ApplicationController
 	
 	respond_to :json, :js
 	def create
-	  	if !params[:video_old_id].present?
-				@video = LibraryVideo.new(video: params[:file]) 
+		binding.pry
+	  	if session[:video_id].blank?
+			@video = LibraryVideo.new(video: params[:file]) 
 	    else
-	    	@video = LibraryVideo.find(params[:video_old_id])
+	    	@video = LibraryVideo.find(session[:video_id])
 	    	@video.image = ''
 	    end
 	    if @video.save
 	  		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
 	  		@video.panda_video_id = p_video.id
-	  		if params[:lib_id].present?
+	  		if @video.library_id.present?
 	  			@video.library_id = params[:lib_id]
 	  		end
 	  		@video.save

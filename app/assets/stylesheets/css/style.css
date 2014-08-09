@@ -1780,28 +1780,6 @@ transition: width 0.6s ease 0s;
 	border-radius: 1px !important;
 }
 
-#progressbar1 .ui-widget-header{
-background-color: #31C7D6 !important;
-background-image: linear-gradient(to bottom, #31C7D6, #31C7D6) !important;
-background-repeat: repeat-x !important;
-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset!important;
-box-sizing: border-box!important;
-color: #ffffff!important;
-float: left!important;
-font-size: 12px!important;
-height: 100%!important;
-text-align: center!important;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)!important;
-transition: width 0.6s ease 0s;
-}
-
-#progressbar1.ui-widget-content{
-	border: none !important;
-}
-
-#progressbar1.ui-corner-all{
-	border-radius: 1px !important;
-}
 .replace_video .video_uplod{width: 85%;}
 .video_uplod{width:100%; position: relative; background:#f2f2f2; padding:125px 65px; min-height:330px; float:left;}
 .video_uplod.video_lgtbox{padding: 84px 31px 0 68px;
