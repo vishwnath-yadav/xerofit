@@ -6,6 +6,11 @@
   &:after { clear: both; }
 }
 
+@mixin hover-color() {
+  background-color: #D4EBFE; // Fallback for silly IE8
+  background-color: rgba(40, 156, 249, 0.15)
+}
+
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
     -moz-border-radius: $radius;
