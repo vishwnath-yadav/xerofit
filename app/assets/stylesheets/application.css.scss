@@ -5,7 +5,6 @@
 //
 
 
-
 @import 'helpers/variables';
 @import 'helpers/mixins';
 @import 'vendor/normalize';
@@ -13,15 +12,24 @@
 
 //
 // ==================================================================
-// Bootstrap
+// Plugins & Vendor Styles
 // ==================================================================
 //
 
 
-// Core variables and mixins
 @import "vendor/bootstrap";
 @import 'helpers/dropdowns';
 @import "css/style";
 @import "css/style_extracted";
 @import "css/drop_new";
 @import "css/dropzone";
+
+
+//
+// ==================================================================
+// Page Styles
+// ==================================================================
+//
+
+
+@import "pages/dashboard";
