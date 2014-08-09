@@ -1,70 +1,64 @@
-<%if action_name == "home"%>
-	<header id="hero-img-home" class="hero-bg-flex">
-        <%= render :partial => 'layouts/anon_hero_header' %>
-        <%= render :partial => 'common_templates/home_section'%>
-    </header>
-    <%=yield%>
-<%elsif action_name == "trainers"%>
-    <header id="hero-img-trainers" class="hero-bg-flex ">
-        <%= render :partial => 'layouts/anon_hero_header' %>
-        <%=render "layouts/trainers_head"%>
-    </header>
-    <%=yield%>
-<%elsif !current_user.present?%>
-    <header id="hero-img-home" class="hero-bg-flex ">
-        <%= render :partial => 'layouts/anon_hero_header' %>
-        <%=yield%>
-    </header>
-<%else%>
-    <div class="header_wrapper">
-        <div class="home_nav">
-            <a href="javascript:void(0)" class="home_toggle"><%= change_menu_title(controller_name)%></a>
-            <div class="home_nav_toggle">
-                <ul>
+<header class="topbar">
+    <div class="container-fluid topbar_wrap zheader_wrapper">
+        <div class="global_nav">
+            <div class="dropdown">
+                <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
+                <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
+                    <li class="left_app">
+                        <a href="<%= trainer_dashboard_index_path %>" class="dropdown_app_icon home_app">
+                            <span>Home</span>
+                        </a>
+                    </li>
                     <li>
-                    <a href="<%= trainer_dashboard_index_path %>"><img src="/assets/home_icon.png" alt="Home" />
-                    Home</a> </li>
-                    
+                        <a href="<%= libraries_path%>" class="dropdown_app_icon fitness_library_app">
+                            <span>Fitness Library</span>
+                        </a>
+                    </li>
                     <li>
-                    <a href="<%= libraries_path%>"><img src="/assets/fitness_icon.png" alt="Home" />
-                    Fitness Library</a> </li>
-                    
-                    <li>
-                    <a href="<%= new_workout_path %>"><img src="/assets/workout_icon.png" alt="Home" />
-                    Workout Builder</a> </li>
-                    <div class="clear"></div>
-                    <li>
-                    <a href="javascript:void(0)"><img src="/assets/support_icon.png" alt="Home" />
-                    Support</a> </li>
-                    
-                    <li>
-                    <a href="javascript:void(0)"><img src="/assets/performance_icon.png" alt="Home" />
-                    Performance</a> </li>
+                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app">
+                            <span>Workout Builder</span>
+                        </a>
+                    </li>
+                    <li class="right_app">
+                        <a href="javascript:void(0)" class="dropdown_app_icon support_app">
+                            <span>Support</span>
+                        </a>
+                    </li>
+                    <li class="left_app btm_app">
+                        <a href="javascript:void(0)" class="dropdown_app_icon performance_app">
+                            <span>Performance</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="xerofit_logo">
-            <a href="/dashboard/trainer"><img src="/assets/xerofit_logo.png" width="128" height="21" alt="Xerofit" /></a>
+
+        <div class="topbar_logo">
+            <a id="xerofit_logo" href="/home"></a>
         </div>
-        <div class="user_detail">
-            <span class="notification_img">
-                <img src="/assets/notification_icon.png" alt="notification" />
-            </span>
-            <span class="user_img">
-                <%if current_user.pic.present?%>
-                    <%= image_tag current_user.pic.url(:medium) %>
-                <%else%>
-                    <img src="/assets/user_img.png" alt="user" />
-                <%end%>
-            </span>
-            <span class="user_name"><%= current_user.fullname %></span>
-            <div class="signout_col">
-                <ul>
+
+        <div class="utility_menu">
+            <div class="notification_dropdown dropdown">
+                <a href="#" class="notification_menu_toggle" data-toggle="dropdown"></a>
+                <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
+                    <li><a href="#">No new notifications</a></li>
+                </ul>
+            </div>
+
+            <div class="utility_dropdown dropdown">
+                <a href="#" class="utility_menu_toggle" data-toggle="dropdown">
+                    <%if current_user.pic.present?%>
+                        <%= image_tag current_user.pic.url(:medium) %>
+                    <%else%>
+                        <img src="/assets/user_img.png" alt="user" />
+                    <%end%>
+                    <span class="user_name"><%= current_user.fullname %></span>
+                </a>
+                <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
                     <li><a href="/settings">Settings</a></li>
                     <li><%=link_to "Signout", destroy_user_session_path, :method => :delete %></li>
                 </ul>
             </div>
         </div>
-  </div>
-    <%=yield%>
-<%end%>
+    </div>
+</header>

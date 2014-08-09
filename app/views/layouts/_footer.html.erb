@@ -1,5 +1,5 @@
 <%if action_name == "trainers" || action_name == "home"%>
-    <!-- <footer class="main-footer">
+    <footer class="web-footer">
         <section class="container">
             <div class="row">
                 <div class="col-xs-6 col-sm-4 foot-left">
@@ -14,56 +14,21 @@
                 </div>
             </div>
         </section>
-    </footer> -->
-     <div class="fotter_wrapper">
-        <div class="footer_lft_col">
-            <ul>
-                <li><a href="#">Become a Trainer</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy</a></li>
-        
-            </ul>
-        </div>
-        <div class="footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
-    </div>
+    </footer>
 <%else%>
-    <!-- <div class="footer_wrapper">
-        <div class="fot_lft">
-            © 2014 Xeropoint Fitness, Inc.
-        </div>
-        <div class="fot_cent">
-            <% if !current_user.present? %> 
-             <a href="/auth/facebook"><img src="/assets/facebook_icon.png" alt="Facebook" width="25" height="24" border="0" /></a>
-                <a href="#"><img src="/assets/twiiter_icon.png" alt="Twiiter" width="25" height="24" border="0" /></a>
-                <a href="/auth/google_oauth2"><img src="/assets/google_icon.png" alt="Goolge+" width="25" height="24" border="0" /></a>
-            <% end %>    
+    <footer class="main-footer">
+        <div class="container-fluid">
+            <div class="col-xs-6 footer_lft_col">
+                <ul>
+                    <li><a href="#">Become a Trainer</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li class="no-pipe"><a href="#">Privacy</a></li>
+                </ul>
             </div>
-        <div class="fot_rht">
-            <ul>
-             <li>Made in Seattle  </li>
-                <li><a href="#">Terms</a></li>
-                 <li>• <a href="#">Privacy</a></li>
-            </ul>
+            <div class="col-xs-6 footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
         </div>
-    </div> -->
-    <div class="bottom_box">
-         <div class="create_heading pad20"></div>
-
-    <div class="fotter_wrapper">
-
-        <div class="footer_lft_col">
-            <ul>
-                <li><a href="#">Become a Trainer</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy</a></li>
-        
-            </ul>
         </div>
-        <div class="footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
-    </div>
-    </div>
+    </footer>
 <%end%>

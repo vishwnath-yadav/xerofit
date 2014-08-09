@@ -38,13 +38,10 @@ $( document ).ready(function() {
      }
     });
 
-    $(".home_toggle").click(function(){
-      $(".home_nav_toggle").slideToggle();
-    })  
+    $('.global_nav_toggle').dropdown();
+    $('.notification_menu_toggle').dropdown();
+    $('.utility_menu_toggle').dropdown();
 
-    $(".user_name").click(function(){
-      $(".signout_col").slideToggle();
-    }) 
 
   // $(document).on("click", ".fancy_input", function() {
   //   $('.mus_select').remove();
@@ -96,7 +93,7 @@ $( document ).ready(function() {
     $('#status').val(status);
     $('#edit_video_info').submit();
   });
-  
+
   $('#panda_video_enable').click(function(){
     $('#video_library_info').submit();
   });
@@ -132,8 +129,7 @@ $( document ).ready(function() {
   });
 
   setTimeout(load_dropKick_js, 5000);
-  
-  
+
 });
 
 function load_dropKick_js() {
