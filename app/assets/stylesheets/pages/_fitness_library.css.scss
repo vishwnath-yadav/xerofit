@@ -1,0 +1,255 @@
+.create_heading {
+    width: 100%;
+    position: relative;
+
+    p img {
+        margin-right: 4px;
+        position: relative;
+        top: -1px;
+    }
+}
+
+.create_heading.heading_hide .lib_image_box{width: 54px;}
+.create_heading.heading_hide .create_heading h4{font-size: 21px;}
+.create_heading.heading_hide .create_heading p{display: none}
+
+
+.control_bar {}
+
+
+.control_bar_wrap {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+    padding: 21px 20px;
+}
+
+
+#add_to_library {
+    display: block;
+    height: 28px;
+    background: url(/assets/icons/plus_icon_blue.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+}
+
+div.create_new {
+    float: left;
+    width: 28px;
+    position: relative;
+}
+
+
+// Search Bar
+.search_bar_col {
+    width: 210px;
+    position: absolute;
+    left: 50%;
+    margin-left: -105px;
+    text-align: center;
+}
+
+input.search_bar {
+    font-size: 12px;
+    line-height: 14px;
+    width: 100%;
+    position: relative;
+    border: 1px solid $dropdown-borders;
+    padding: 6px 12px;
+    padding-left: 30px;
+    background: #FFF;
+    @include border-radius(3px);
+
+    &:focus {
+        outline: none;
+        outline: 2px auto $xero-blue;
+    }
+}
+
+#lib_name_for_search {
+    height: 14px;
+    width: 14px;
+    background: url(/assets/icons/search_icon_small.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    border: 0;
+
+    &:focus {
+        outline: none;
+        outline: 0px auto -webkit-focus-ring-color;
+    }
+}
+
+
+// Control Bar Filters
+.select_bar_col {
+    width: auto;
+    float: right;
+    position: relative;
+
+    input {display: inline-block;}
+
+    select {
+        //padding: 5px;
+        left: 0;
+        //width: 250px;
+        //margin-right: 5px;
+    }
+}
+
+.filter_control_wrap {
+    float: left;
+    margin-right: 28px;
+    line-height: 14px;
+}
+
+.type_select {
+    min-width: 100px;
+    float: left;
+    background: #fff;
+}
+
+.status_select .dk_options_inner {
+    width: 220px;
+    left: 50%;
+    margin-left: -110px;
+
+    li:nth-child(2) a:before {
+        background: url(/assets/icons/status_icon_gray.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(3) a:before {
+        background: url(/assets/icons/status_icon_yellow.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(4) a:before {
+        background: url(/assets/icons/status_icon_green.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(5) a:before {
+        background:url(/assets/icons/status_icon_red.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+}
+
+// Grid and List View Toggles
+.library_view_toggles {
+    float: left;
+    position: relative;
+    @include clearfix();
+
+    .list_icon {
+        margin-right: 4px;
+        float: left;
+        background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/list_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .list_icon.list_icon_active {
+        background: url(/assets/icons/list_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon {
+        float: left;
+        //background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/grid_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon.grid_icon_active {
+        background: url(/assets/icons/grid_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    //.grid_icon.grid_icon_active,
+    //.list_icon.list_icon_active { background-color: $xero-blue };
+}
+
+//#grid_view:before { background: url(/assets/icons/grid_view_blue.png); }
+//.grid_icon.grid_icon_active{background:url(/assets/grid_icon_active.png) no-repeat center center; }
+
+.zlist_icon {
+    background: url(/assets/list_icon.png) no-repeat center center;
+    //text-indent: -9999px;
+    width: 28px;
+    height: 33px;
+    margin-right: 3px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+
+
+.dis_cls {
+    pointer-events: none;
+    cursor: default;
+}
+.grid_pointer { cursor: pointer; }
+
+.uplod_work {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 73%;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}

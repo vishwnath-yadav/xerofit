@@ -74,11 +74,11 @@ $( document ).ready(function() {
       }
   });
 
-  
-   
+  // Bootstrap Tooltips
+  $('.control_bar_tooltip').tooltip({
+    placement: 'bottom'
+  });
 });
-
-
 
 function check_require_field(){
   var flag= 1;
@@ -92,7 +92,7 @@ function check_require_field(){
 
   var target = $('.for_target_change').val();
   var len = $(".select_thumb").length;
-  
+
   if((len <= 0)||(target == null)||(target == '')){
     flag = 0;
   }

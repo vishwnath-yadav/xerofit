@@ -71,7 +71,7 @@
   flex:  $values;
 }
 
-
+// This should be deleted, but i know it's being used
 @mixin bgcover() {
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -79,6 +79,13 @@
   background-size: cover;
 }
 
+
+@mixin background-size($value) {
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  background-size: $value;
+}
 
 // Drop shadows
 //

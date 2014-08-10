@@ -102,7 +102,7 @@ a.global_nav_toggle {
 
     &:after {
         content: '';
-        background: url(/assets/chevron_down.png);
+        background: url(/assets/icons/chevron_down.png);
         display: block;
         position: absolute;
         right: 0;
@@ -110,7 +110,7 @@ a.global_nav_toggle {
         width: 12px;
         height: 28px;
         background-repeat: no-repeat;
-        background-size: contain;
+        @include background-size(contain);
         background-position: center;
     }
 
@@ -155,7 +155,7 @@ ul.global_nav_dropdown.dropdown-menu {
     height: 125px;
     width: 120px;
     background-repeat: no-repeat;
-    background-size: 100px 100px;
+    @include background-size(100px);
     background-position: center top;
     position: relative;
 
@@ -182,7 +182,7 @@ ul.global_nav_dropdown.dropdown-menu {
     display: block;
     height: 21px;
     background-repeat: no-repeat;
-    background-size: contain;
+    @include background-size(contain);
     background-position: center center;
     background-image: url("logo/xerofit_logo_main_nav@2x.png");
 
@@ -214,7 +214,7 @@ ul.global_nav_dropdown.dropdown-menu {
 
         &:after {
             content: '';
-            background: url(/assets/chevron_down.png);
+            background: url(/assets/icons/chevron_down.png);
             display: block;
             position: absolute;
             right: 0;
@@ -222,7 +222,7 @@ ul.global_nav_dropdown.dropdown-menu {
             width: 10px;
             height: 28px;
             background-repeat: no-repeat;
-            background-size: contain;
+            @include background-size(contain);
             background-position: center;
         }
 
@@ -249,9 +249,9 @@ ul.global_nav_dropdown.dropdown-menu {
         display: block;
         height: 28px;
         width: 28px;
-        background: url(/assets/notifications_icon.png);
+        background: url(/assets/icons/notifications_icon.png);
         background-repeat: no-repeat;
-        background-size: 24px;
+        @include background-size(24px);
         background-position: center;
     }
 
@@ -261,6 +261,7 @@ ul.global_nav_dropdown.dropdown-menu {
         margin-left: -110px;
     }
 }
+
 
 .middle_wrapper {
     width: 100%;
