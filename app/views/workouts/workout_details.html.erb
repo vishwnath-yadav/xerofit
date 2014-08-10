@@ -1,18 +1,25 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
-<div class="create_heading">
-  <div class="prev_lib_col">
-    <%= link_to("< Fitness Library", libraries_path) %>
-    <%= link_to("Workout Builder >", edit_workout_path(@workouts), :class => 'fr') if hide_if_admin%>
+
+<div class="zcreate_heading control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap content_details">
+      <div class="prev_lib_col control_bar_links">
+        <%= link_to("Fitness Library", libraries_path, :class=> 'cb_breadcrumb') %>
+        <%= link_to("Workout Builder", edit_workout_path(@workouts), :class => 'fr cb_nav_link') if hide_if_admin%>
+      </div>
+
+      <div class="wrk_image_box">
+        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_1.png' %>" />
+      </div>
+      <div class="lib_text_box">
+        <h4><%= @workouts.title.titleize%></h4>
+        <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
+      </div>
+    </div>
   </div>
-    <div class="wrk_image_box">
-      <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_1.png' %>" />
-    </div>
-    <div class="lib_text_box">
-      <h4><%= @workouts.title.titleize%></h4>
-      <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
-    </div>
 </div>
+
 <div class="middle_wrapper">
 <div class="libray_detail">
   <div class="lib_img_coll">

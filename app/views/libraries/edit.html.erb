@@ -1,15 +1,20 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
-<div class="create_heading">
-    <div class="prev_lib_col" id="<%= @library.id%>">
-      <%= link_to("< Fitness Library", libraries_path) %>
+
+<div class="zcreate_heading control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap content_details">
+      <div class="prev_lib_col control_bar_links" id="<%= @library.id%>">
+        <%= link_to("Fitness Library", libraries_path, :class=>'cb_breadcrumb') %>
+      </div>
+      <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
+      </div>
+      <div class="lib_text_box">
+        <h4><%= @library.title.titleize%></h4>
+        <p><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
+      </div>
     </div>
-    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
-    </div>
-    <div class="lib_text_box">
-      <h4><%= @library.title.titleize%></h4>
-      <p><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
-    </div>
+  </div>
 </div>
 
 <div class="libray_detail wht_bg">
