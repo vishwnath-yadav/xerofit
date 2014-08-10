@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= javascript_include_tag "application", "/dropkick/jquery.dropkick-min", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "https://js.stripe.com/v1/" %>
-  <%= render :partial => 'website/headscripts/google_analytics' %>
-  <%= render :partial => 'website/headscripts/visual_web_optimizer' %>
-  <%= render :partial => 'website/headscripts/facebook_ads' %>
+  <%#= render :partial => 'website/headscripts/google_analytics' %>
+  <%#= render :partial => 'website/headscripts/visual_web_optimizer' %>
+  <%#= render :partial => 'website/headscripts/facebook_ads' %>
 
   <link rel="stylesheet" type="text/css" href="//cloud.typography.com/636428/615064/css/fonts.css" />
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!--link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"-->
   <!--script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script-->
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
@@ -19,33 +20,12 @@
 </head>
 	<body>
     <div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
-      <% if action_name == "home" %>
-        <header id="hero-img-home" class="hero-bg-flex">
-              <%= render :partial => 'layouts/anon_hero_header' %>
-              <%= render :partial => 'common_templates/home_section'%>
-          </header>
-          <%= yield %>
-      <% elsif action_name == "trainers" %>
-          <header id="hero-img-trainers" class="hero-bg-flex ">
-              <%= render :partial => 'layouts/anon_hero_header' %>
-              <%= render "layouts/trainers_head"%>
-          </header>
-          <%= yield %>
-      <% elsif !current_user.present? %>
-          <header id="hero-img-home" class="hero-bg-flex ">
-              <%= render :partial => 'layouts/anon_hero_header' %>
-              <%= yield %>
-          </header>
-      <% else %>
         <%=render "layouts/header"%>
         <div class="content">
           <%= yield %>
         </div>
-      <%end%>
-      <%=render "layouts/footer"%>
+        <%=render "layouts/footer"%>
 		</div>
 	</body>
 </html>
-
-
 
