@@ -229,3 +229,36 @@ span.lost_pass_txt a{color:#b2b2b2;}
 span.lost_pass_txt a:hover{
     color:#00a1ff;
 }
+
+
+.reset_img{
+    margin-left: 120px;
+    margin-bottom: 31px;
+}
+
+.reset_text{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.usr_lgn_pas{
+    position: relative;
+}
+
+.spn_pass{
+    position: absolute;
+    color: #000;
+    top: 43px;
+    right: 10px;
+}
+
+.spn_pass1{
+    position: absolute;
+    color: #000;
+    top: 115px;
+    right: 10px;
+}
+
+.user_password.field_with_errors .error{
+    display: none;
+}
