@@ -217,24 +217,10 @@ input.search_bar {
         background-position: center;
         @include background-size(contain);
     }
-
-    //.grid_icon.grid_icon_active,
-    //.list_icon.list_icon_active { background-color: $xero-blue };
 }
 
-//#grid_view:before { background: url(/assets/icons/grid_view_blue.png); }
-//.grid_icon.grid_icon_active{background:url(/assets/grid_icon_active.png) no-repeat center center; }
+.grid_pointer { cursor: pointer; }
 
-.zlist_icon {
-    background: url(/assets/list_icon.png) no-repeat center center;
-    //text-indent: -9999px;
-    width: 28px;
-    height: 33px;
-    margin-right: 3px;
-    display: inline-block;
-    position: relative;
-    top: 2px;
-}
 
 
 
@@ -242,7 +228,6 @@ input.search_bar {
     pointer-events: none;
     cursor: default;
 }
-.grid_pointer { cursor: pointer; }
 
 .uplod_work {
     position: absolute;
