@@ -20,10 +20,6 @@
 
 $( document ).ready(function() {
 
-    $(function () {
-      $('.default').dropkick();
-    });
-
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
       scroll = $(window).scrollTop();
