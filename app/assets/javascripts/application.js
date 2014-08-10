@@ -15,7 +15,19 @@
 //= require jquery.remotipart
 //= require autocomplete-rails
 //= require turbolinks
-//= require_tree .
+
+
+//= require plugins/bootstrap.min
+//= require plugins/bootstrap-progressbar.min
+//= require plugins/dropzone.min
+//= require plugins/jquery.fancybox.js
+//= require plugins/jquery_form.js
+
+//= require helpers/resource_constants.js
+//= require helpers/video_upload.js
+
+//= require pages/library.js
+//= require pages/workout.js
 
 
 $( document ).ready(function() {
