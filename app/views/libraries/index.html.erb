@@ -67,7 +67,12 @@
 
   </div>
 </div>
+
 <script>
+  $(function () {
+      $('.default').dropkick();
+      setTimeout(load_dropKick_js);
+  });
 
   $('.admin_li').removeClass('active')
   $('.admin_li.library').addClass('active');
