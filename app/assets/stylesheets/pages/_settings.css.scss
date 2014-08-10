@@ -1,3 +1,187 @@
-// Place all the styles related to the settings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Settings Page ===================================================================================== /
+
+.setting_col{
+    width:100%;
+    float:left;
+}
+.setting_col h5{
+    font-size:14px;
+    color:#c6c7c8;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    margin-left:12px;
+}
+.setting_col ul{
+    margin:0px;
+    padding:0px;
+}
+.setting_col ul li{
+    list-style:none;
+    float:left;
+    color:#7c7c7d;
+    font-size:14px;
+    width:100%;
+    margin-bottom:5px;
+}
+.setting_col ul li a{
+    text-decoration:none;
+    padding:3px 12px;
+    display:block;
+    color:#7c7c7d;
+}
+.setting_col ul li a:hover, .setting_col ul li a.active{
+    background:#f2f2f2;
+}
+.setting_edit{
+    width:80%;
+    float:left;
+    border-left:1px solid #eee;
+    padding-left:53px;
+}
+.setting_edit h2{
+    font-size:32px;
+    color:#000;
+    border-bottom: 1px solid #e4e6e8;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    font-family: 'gotham_extralightregular';
+}
+.setting_edit h5{
+    font-size:20px;
+    color:#000;
+margin-bottom:20px;
+}
+.setting_form{
+    width:70%;
+    float:left;
+}
+.setting_form_field{
+    width:47.4%;
+    float:left;
+    margin-bottom:20px;
+}
+.setting_form_field.wdt_100{
+    width:100%;
+}
+.setting_form_field.wdt_30{
+    width:30%;
+}
+.setting_form_field.fr{
+    float:right;
+}
+.setting_form label{
+    font-size:12px;
+    color:#4f4341;
+    float:left;
+    margin-bottom:5px;
+    width:100%;
+}
+.setting_form label.label1{
+    width:auto;
+    color:#cfcdcd;
+    font-style:italic;
+    margin:0px;
+    line-height:20px;
+}
+
+.setting_form .radio label{
+    width:auto;
+    color:#cfcdcd;
+    font-style:italic;
+    margin:0px;
+    line-height:20px;
+}
+
+.setting_form .setting_input{
+    width:100%;
+    float:left;
+    border:1px solid #e0e0e0;
+    border-radius:3px;
+    padding:6px;
+    color:#cfcdcd;
+    font-style:italic;
+    margin:0px;
+}
+
+
+
+.setting_form .setting_input.exp{
+    width:44%;
+}
+.setting_form .setting_select.wdt_33{
+    width:29.9%;
+}
+.ml_27{
+    margin-left:27px;
+}
+.radio_col{
+    width:auto;
+    float:left;
+    margin-right:30px;
+}
+.radio_btn{
+    float:left;
+    margin-right:3px;
+}
+
+.user_gender .radio{
+    display: block;
+    float: left;
+    margin: 0 20px 10px 0;
+    margin-bottom: 10px;
+    margin-left: 19px;
+    margin-top: 0px;
+    min-height: 20px;
+    padding-left: 20px;
+    width: auto;
+}
+
+.profile_col{
+    width:80%;
+    float:left;
+    margin-bottom:40px;
+}
+.profile_col_left{
+    width:25.8%;
+    float:left;
+    margin-right:25px;
+}
+.profile_col_left h5{
+    font-size:12px;
+    color:#4f4341;
+    float:left;
+    margin-bottom:15px;
+    width:100%;
+}
+.profile_col_left img{
+    width:100%;
+    height:auto;
+    float:left;
+}
+.profile_col h6{
+    font-size:12px;
+    color:#4f4341;
+    margin-bottom:6px;
+    margin-top:45px;
+}
+.profile_col p{
+    font-size:12px;
+    color:#9c98a6;
+    margin-bottom:10px;
+    font-style:normal;
+    margin:0px 0px 20px 0px;
+}
+.choose_btn{
+    border:1px solid #9c9e9f;
+    border-radius:3px;
+    padding:7px 20px;
+    color:#9c9e9f;
+    font-size:9px;
+    background:#fff;
+    margin-top: 10px;
+}
+.choose_btn:hover{
+    background:#9c9e9f;
+    cursor:pointer;
+    color:#fff;
+}

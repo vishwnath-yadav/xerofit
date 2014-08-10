@@ -124,8 +124,6 @@ margin-right: 20px;}
 
 
 
-
-
 /*=======DASHBOARD-PAGES==========*/
 
 .mid_container{max-width:1026px; margin:0px auto;}
@@ -342,82 +340,7 @@ line-height:28px;
 	margin-bottom:20px;
 	font-family: 'gotham_extralightregular';
 }
-.dash_left{
-	width:19.6%;
-	float:left;
-}
-.dorian_col{
-	width:100%;
-	float:left;
-	margin-bottom:50px;
-}
-.dorian_col img{
-	width:100%;
-	float:left;
-	height:auto;
-	margin-bottom:20px;
-}
-.dorian_col h5{
-	font-size:16px;
-	color:#55483d;
-	font-weight:bold;
-	margin-bottom:5px;
-}
-.dorian_col h6{
-	font-size:14px;
-	color:#585057;
-}
-.profile_col{
-	width:100%;
-	float:left;
-	margin-bottom:50px;
-}
-.profile_col ul{
-	margin:0px;
-	padding:0px;
-}
-.profile_col ul li{
-	list-style:none;
-	float:left;
-	color:#454242;
-	font-size:12px;
-	font-family: 'gotham_extralightregular';
-	width:100%;
-	margin-bottom:10px;
-}
-.profile_col ul li a{
-	color:#454242;
-	text-decoration:none;
-	display:block;
-	line-height:21px;
-}
-.profile_col ul li a:hover{
-	color:#000;
-}
-.profile_col ul li span{
-	width:21px;
-	height:21px;
-	float:left;
-	margin-right:5px;
-}
 
-.no_tick{
-	background:url(/assets/tick_img.png) no-repeat 0px 0px;
-}
-.no_2{
-	background:url(/assets/2_no.png) no-repeat 0px 0px;
-}
-.no_3{
-	background:url(/assets/3_no.png) no-repeat 0px 0px;
-}
-.no_4{
-	background:url(/assets/4_no.png) no-repeat 0px 0px;
-}
-
-.dash_rght{
-	width:77%;
-	float:right;
-}
 .gray_bg{
 	width:100%;
 	float:left;
@@ -1149,9 +1072,9 @@ height: 12px !important;
 	font-size:32px;
 	color:#000;
 	border-bottom: 1px solid #e4e6e8;
-padding-bottom: 10px;
-margin-bottom: 40px;
-font-family: 'gotham_extralightregular';
+	padding-bottom: 10px;
+	margin-bottom: 40px;
+	font-family: 'gotham_extralightregular';
 }
 .setting_edit h5{
 	font-size:20px;
@@ -1182,7 +1105,6 @@ margin-bottom:20px;
 	float:left;
 	margin-bottom:5px;
 	width:100%;
-	
 }
 .setting_form label.label1{
 	width:auto;
@@ -1369,13 +1291,13 @@ width: 45%;
 	color:#000;
 }
 .browse_btn {
-border: 1px solid #9c9e9f;
-border-radius: 3px;
-cursor:pointer;
-padding: 7px 30px;
-color: #9c9e9f;
-font-size: 13px;
-background: #fff;
+	border: 1px solid #9c9e9f;
+	border-radius: 3px;
+	cursor:pointer;
+	padding: 7px 30px;
+	color: #9c9e9f;
+	font-size: 13px;
+	background: #fff;
 }
 .browse_btn:hover{border:1px solid #000}
 
@@ -1447,30 +1369,40 @@ background: #fff;
 	margin: 0 auto;
 	float: none;
 }
-.m50{
-	margin: 50% 40% 100% 47%;
-	}
+.m50 { margin: 50% 40% 100% 47%; }
 
-.custom-upload{ 
+.custom-upload {
 	background: none repeat scroll 0 0 #fff;
     border-radius: 5px;
     float: left;
     height: 28px;
     margin-bottom: 6px;
     position: relative;
-    width: 20%;}
-.custom-upload input[type=file]{
-	cursor: pointer;
-    height: 100%;
-    opacity: 0;
-    outline: medium none;
-    position: relative;
-    text-align: right;
-    width: 76px;
-    z-index: 2;}
+    width: 20%;
+	input[type=file]{
+		cursor: pointer;
+	    height: 100%;
+	    opacity: 0;
+	    outline: medium none;
+	    position: relative;
+	    text-align: right;
+	    width: 76px;
+	    z-index: 2;
+	}
+}
+
 .custom-upload .browse{
-	background:#a1a1a1;color:#fff;font-size:18px;text-align:center;display:block;float:right;line-height:34px;padding:0 10px;}
-.custom-upload .fake-file{
+	background:#a1a1a1;
+	color:#fff;
+	font-size:18px;
+	text-align:center;
+	display:block;
+	float:right;
+	line-height:34px;
+	padding:0 10px;
+}
+
+.custom-upload .fake-file {
 	left: 0;
     line-height: 100%;
     margin: 0;
@@ -1517,7 +1449,6 @@ background: #fff;
 	margin: 0px;
 }
 
-	
 .fetured_li{
 	width: 100%;
 	float: left;
@@ -1546,18 +1477,18 @@ background: #fff;
 .flex-wrap .flex p{color: #111}
 
 #progressbar .ui-widget-header{
-background-color: #31C7D6 !important;
-background-image: linear-gradient(to bottom, #31C7D6, #31C7D6) !important;
-background-repeat: repeat-x !important;
-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset!important;
-box-sizing: border-box!important;
-color: #ffffff!important;
-float: left!important;
-font-size: 12px!important;
-height: 100%!important;
-text-align: center!important;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)!important;
-transition: width 0.6s ease 0s;
+	background-color: #31C7D6 !important;
+	background-image: linear-gradient(to bottom, #31C7D6, #31C7D6) !important;
+	background-repeat: repeat-x !important;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset!important;
+	box-sizing: border-box!important;
+	color: #ffffff!important;
+	float: left!important;
+	font-size: 12px!important;
+	height: 100%!important;
+	text-align: center!important;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)!important;
+	transition: width 0.6s ease 0s;
 }
 
 .ui-progressbar{
@@ -1751,7 +1682,7 @@ top: 1px;
 margin-right: 6px;}
 
 
-
+.dashbaord_container { max-width:910px; margin:0px auto; }
 
 
 .middle_container{ max-width:960px; margin:0px auto;}

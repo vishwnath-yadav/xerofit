@@ -1,0 +1,79 @@
+// Archive CSS ===================================================================================== /
+
+.dash_left{
+    width:19.6%;
+    float:left;
+}
+.dorian_col{
+    width:100%;
+    float:left;
+    margin-bottom:50px;
+}
+.dorian_col img{
+    width:100%;
+    float:left;
+    height:auto;
+    margin-bottom:20px;
+}
+.dorian_col h5{
+    font-size:16px;
+    color:#55483d;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+.dorian_col h6{
+    font-size:14px;
+    color:#585057;
+}
+.profile_col{
+    width:100%;
+    float:left;
+    margin-bottom:50px;
+}
+.profile_col ul{
+    margin:0px;
+    padding:0px;
+}
+.profile_col ul li{
+    list-style:none;
+    float:left;
+    color:#454242;
+    font-size:12px;
+    font-family: 'gotham_extralightregular';
+    width:100%;
+    margin-bottom:10px;
+}
+.profile_col ul li a{
+    color:#454242;
+    text-decoration:none;
+    display:block;
+    line-height:21px;
+}
+.profile_col ul li a:hover{
+    color:#000;
+}
+.profile_col ul li span{
+    width:21px;
+    height:21px;
+    float:left;
+    margin-right:5px;
+}
+
+.no_tick{
+    background:url(/assets/tick_img.png) no-repeat 0px 0px;
+}
+.no_2{
+    background:url(/assets/2_no.png) no-repeat 0px 0px;
+}
+.no_3{
+    background:url(/assets/3_no.png) no-repeat 0px 0px;
+}
+.no_4{
+    background:url(/assets/4_no.png) no-repeat 0px 0px;
+}
+
+.dash_rght{
+    width:77%;
+    float:right;
+}
+
