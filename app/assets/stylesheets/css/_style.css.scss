@@ -311,6 +311,10 @@ font-size: 12px;}
 }
 /*=======DASHBOARD-PAGES END==========*/
 
+.dash_left{
+    width:19.6%;
+    float:left;
+}
 
 
 .dash_hdr_rght{
@@ -1445,16 +1449,12 @@ ul.exer_list_view li span.thumb_text img{width: 100%; height: auto;}
 }
 
 .library_col ul li img.list_view_circle {
-	width: auto !important;
-	height: auto !important;
+	width: 12px !important;
+	height: 12px !important;
 	position: relative;
 	top: 1px;
 	margin-right: 6px;
 }
-
-
-
-
 
 .middle_container{ max-width:960px; margin:0px auto; }
 
