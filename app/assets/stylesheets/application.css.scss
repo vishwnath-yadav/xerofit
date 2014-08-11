@@ -20,19 +20,20 @@
 @import "vendor/bootstrap";
 @import 'helpers/dropdowns';
 @import 'helpers/tooltips';
-@import "css/style";
-@import "css/style_extracted";
 @import "css/drop_new";
 @import "css/dropzone";
+@import "css/jquery.fancybox";
 
 
 //
 // ==================================================================
-// Page Styles
+// Structure & Page Styles
 // ==================================================================
 //
 
 
+@import "base/layout";
+@import "css/style";
 @import "pages/dashboard";
 @import "pages/fitness_library";
 @import "pages/settings";
