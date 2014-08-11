@@ -1,4 +1,6 @@
 class WebsiteController < ApplicationController
+  layout 'website'
+
   def home
   end
 

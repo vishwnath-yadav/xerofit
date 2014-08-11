@@ -1,40 +1,52 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
+
 <%session[:video_id] = ''%>
-<div class="create_heading">
-    <div class="prev_lib_col" id="<%= @library.id%>">
-      <%= link_to("< Fitness Library", libraries_path) %>
-    </div>
-    <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
-    </div>
-    <div class="lib_text_box">
-      <h4><%= @library.title.titleize%></h4>
-      <p><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
-    </div>
-</div>
 
-<div class="libray_detail wht_bg">
-  <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
-    <div class="lib_img_coll">
-      <span class="show_img_on_scol">
-          <div class="lib_image_box">
-            <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
-          </div>
-          <div class="lib_text_box">
-            <h4><%= @library.title.titleize%></h4>
-          </div>
-        </span>
-
-        <div class="rght_btns">
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="save">Save</a>
-          <%if hide_if_admin%>
-            <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
-          <%end%>
+<div class="control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap content_details">
+      <div class="prev_lib_col control_bar_links" id="<%= @library.id%>">
+        <%= link_to("Fitness Library", libraries_path, :class=>'cb_breadcrumb') %>
+      </div>
+      <div class="control_bar_context">
+        <div class="lib_image_box">
+          <img src="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @library.title.titleize%></h4>
+          <p class="library_item_status"><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
         </div>
       </div>
+    </div>
   </div>
-  
+</div>
+
+<div class="details_page_header">
+  <div class="container-fluid">
+    <div class="lib_img_coll">
+      <span class="show_img_on_scol">
+        <div class="lib_image_box">
+          <img src="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @library.title.titleize%></h4>
+        </div>
+      </span>
+
+      <div class="rght_btns">
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="save">Save</a>
+        <%if hide_if_admin%>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin btn_right" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="middle_wrapper">
+<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
   <div class="exer_rht_col pd30">
     <div class= "lib_move_title">
       Basic Move Information
@@ -66,7 +78,7 @@
             <%= lib.text_area :help, class: "for_on_changed", maxlength: "150" %>
             <span class="detail_char" data-size="150">150</span>
           </div>
-          
+    
           <div class="exr_field_col cate_wd48">
             <label>Category</label>
             <div class="fancy_select">
@@ -111,8 +123,7 @@
             <%= lib.text_area :work, class: "for_on_changed", maxlength: "150" %>
             <span class="detail_char" data-size="150">150</span>
           </div>
-            
-          
+
           <div class="exr_field_col ">
             <label>Equipment</label>
             <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>

@@ -1,0 +1,264 @@
+//
+// ==================================================================
+// Layout Structure
+// ==================================================================
+//
+
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height:100%;
+    font-family: 'gotham-bookgotham-book';
+}
+
+body { background: #f7f7f7; }
+
+@font-face {
+    font-family: 'gotham_extralightregular';
+    src: url('/assets/ufonts.com_gotham_extralight-webfont.eot');
+    src: url('/assets/ufonts.com_gotham_extralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/ufonts.com_gotham_extralight-webfont.woff') format('woff'),
+         url('/assets/ufonts.com_gotham_extralight-webfont.ttf') format('truetype'),
+         url('/assets/ufonts.com_gotham_extralight-webfont.svg#gotham_extralightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gotham-bookgotham-book';
+    src: url('/assets/gothmbok-webfont.eot');
+    src: url('/assets/gothmbok-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/gothmbok-webfont.woff') format('woff'),
+         url('/assets/gothmbok-webfont.ttf') format('truetype'),
+         url('/assets/gothmbok-webfont.svg#gotham-bookgotham-book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.topbar {
+    width: 100%;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.content {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 112px;
+    @include clearfix;
+}
+
+.main-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    height: 42px;
+    line-height: 42px;
+    border-top: 1px solid #e3e3e3;
+    font-size: 10px;
+    color: $silver51;
+    @include clearfix();
+
+    ul {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+    }
+
+    li {
+        display: inline;
+        &:after {
+            content: "\007C";
+            padding: 0px 4px;
+        }
+    }
+
+    li.no-pipe:after { content: ""; }
+
+    a {
+        color: $silver51;
+        text-decoration: none;
+
+        &:hover {
+            color: darken( $silver51, 20% );
+            border-bottom: 1px solid darken( $silver51, 20% );
+        };
+    }
+}
+
+.footer_rht_col { text-align: right; }
+
+.topbar_wrap {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+}
+
+.topbar_logo {
+    position: absolute;
+    left: 50%;
+    margin-left: -64px;
+    width: 128px;
+    padding: 0;
+    padding: 17px 0;
+}
+
+#xerofit_logo {
+    display: block;
+    height: 21px;
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    background-position: center center;
+    background-image: url("logo/xerofit_logo_main_nav@2x.png");
+
+    &:hover {
+        @include opacity(0.85);
+    }
+}
+
+
+.middle_wrapper {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+//
+// ==================================================================
+// Login Page
+// ==================================================================
+//
+
+
+.popup_wrapper{max-width:470px; overflow:hidden; position:relative; background:#fff; margin:3% auto 0; border-radius:6px;}
+.popup_wrapper.wdt380{width:380px;}
+.popup_wrapper.wdt901{max-width:901px;}
+.left_pop{
+    width:450px;
+    float:left;
+    background:url(/assets/left_bg.png) no-repeat right 60%;
+    padding:2px 35px 20px 20px;
+}
+.left_pop.rght_pop{
+    background:none;
+}
+.close_icon{ width:20px; height:20px; position:absolute; right: 12px;
+top: 13px;}
+.close_icon img:hover{opacity:.6}
+.popup_wrapper .popup_header{width:100%; float:left; border-bottom:1px solid #f4f4f5;  padding:32px 50px 16px;}
+.popup_wrapper .popup_header h2{ color:#4a4a4a; font-size:24px;}
+.popup_wrapper .popup_header p{color: #999999;
+font-size: 12px;
+line-height: 19px;
+margin-top: 8px;}
+.popup_wrapper .popup_header p.left_p{
+    margin-top:34px;
+}
+.popup_wrapper .popup_header.border_none{border-bottom: 0; padding-top: 65px;
+padding-bottom: 0;}
+.popup_wrapper .popup_header.pb43 {
+
+padding-top: 43px;
+}
+.popup_wrapper .popup_header.border_none.txt_cent{text-align: center;
+padding-top: 56px;
+padding-bottom: 21px;
+}
+.popup_wrapper .popup_header.border_none.txt_cent img{margin-bottom:30px;}
+.popup_wrapper .popup_header p a {color:#00a1ff; text-decoration:underline;}
+.popup_wrapper .popup_header p a:hover{color:#000;}
+.popup_wrapper .popp_middle{width:100%; float:left; padding:32px 50px;}
+.login_field{width:100%; float:left; margin-bottom:12px;}
+.login_field label{color:#4a4a4a; font-size:16px; margin-bottom:15px; float:left; width:100%;}
+.login_field input{ border-radius:5px; outline: none; padding:6px; border:1px solid #d9d9d9; width:100%; float:left; color:#999999; font-family: 'gotham_extralightregular'; font-style:italic; font-size:14px;}
+.signin_btn{
+    background: #00a1ff;
+    font-size: 16px;
+    width: 100%;
+    padding: 14px 10px;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color:#fff;
+    margin-bottom:15px;
+    cursor:pointer;
+}
+/*.signin_btn:hover{
+    background:#666;
+    background: #00a1ff;
+}*/
+
+.signin_dis{
+    opacity: .4;
+    pointer-events: none;
+    cursor: default;
+}
+.signin_btn.request_btn{
+    background:#fff;
+    border:1px solid #666;
+    color:#666;
+}
+.signin_btn.request_btn:hover{
+    background:#666;
+    color:#fff;
+}
+.signin_btn.mar_bot_zero{margin-bottom: 00;
+margin-top: 17px;}
+span.lost_pass_txt{font-size: 12px;
+color: #b2b2b2;
+
+width: 100%;
+text-align: center;
+float: left;}
+span.lost_pass_txt a{color:#b2b2b2;}
+span.lost_pass_txt a:hover{
+    color:#00a1ff;
+}
+
+
+.reset_img{
+    margin-left: 120px;
+    margin-bottom: 31px;
+}
+
+.reset_text{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.usr_lgn_pas{
+    position: relative;
+}
+
+.spn_pass{
+    position: absolute;
+    color: #000;
+    top: 43px;
+    right: 10px;
+}
+
+.spn_pass1{
+    position: absolute;
+    color: #000;
+    top: 115px;
+    right: 10px;
+}
+
+.user_password.field_with_errors .error{
+    display: none;
+}

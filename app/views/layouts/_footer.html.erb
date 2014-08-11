@@ -1,69 +1,14 @@
-<%if action_name == "trainers" || action_name == "home"%>
-    <!-- <footer class="main-footer">
-        <section class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 foot-left">
-                    <span>© 2014 Xerofit, LLC.</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 foot-mid">
-                    <%= link_to image_tag('website/icons/facebook_icon@2x.png', :alt => 'Xerofit Facebook', :height => 24, :class => 'social-foot-link'), 'http://facebook.com/xerofitness' %>
-                    <%= link_to image_tag('website/icons/twitter_icon@2x.png', :alt => 'Xerofit Twitter', :height => 24, :class => 'social-foot-link'), 'http://twitter.com/xerofitness' %>
-                </div>
-                <div class="hidden-xs zcol-xs-12 col-sm-4 foot-right">
-                    <span>Made in Seattle <%= link_to('Terms',  terms_website_index_path) %> • <%= link_to('Privacy',  privacy_website_index_path) %></span>
-                </div>
-            </div>
-        </section>
-    </footer> -->
-     <div class="fotter_wrapper">
-        <div class="footer_lft_col">
+<footer class="main-footer">
+    <div class="container-fluid">
+        <div class="col-xs-6 footer_lft_col">
             <ul>
                 <li><a href="#">Become a Trainer</a></li>
                 <li><a href="#">Support</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy</a></li>
-        
+                <li><%= link_to('Terms',  terms_website_index_path) %></li>
+                <li class="no-pipe"><%= link_to('Privacy',  privacy_website_index_path) %></li>
             </ul>
         </div>
-        <div class="footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
+        <div class="col-xs-6 footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
     </div>
-<%else%>
-    <!-- <div class="footer_wrapper">
-        <div class="fot_lft">
-            © 2014 Xeropoint Fitness, Inc.
-        </div>
-        <div class="fot_cent">
-            <% if !current_user.present? %> 
-             <a href="/auth/facebook"><img src="/assets/facebook_icon.png" alt="Facebook" width="25" height="24" border="0" /></a>
-                <a href="#"><img src="/assets/twiiter_icon.png" alt="Twiiter" width="25" height="24" border="0" /></a>
-                <a href="/auth/google_oauth2"><img src="/assets/google_icon.png" alt="Goolge+" width="25" height="24" border="0" /></a>
-            <% end %>    
-            </div>
-        <div class="fot_rht">
-            <ul>
-             <li>Made in Seattle  </li>
-                <li><a href="#">Terms</a></li>
-                 <li>• <a href="#">Privacy</a></li>
-            </ul>
-        </div>
-    </div> -->
-    <div class="bottom_box">
-         <div class="create_heading pad20"></div>
-
-    <div class="fotter_wrapper">
-
-        <div class="footer_lft_col">
-            <ul>
-                <li><a href="#">Become a Trainer</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy</a></li>
-        
-            </ul>
-        </div>
-        <div class="footer_rht_col">© 2014 Xeroﬁt, LLC.</div>
-    </div>
-    </div>
-<%end%>
+</footer>

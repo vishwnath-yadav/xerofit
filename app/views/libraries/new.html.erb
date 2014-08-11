@@ -1,19 +1,30 @@
-<div class="create_heading">
-	Create New Move 
+<div class="control_bar">
+	<div class="container-fluid">
+		<div class="control_bar_wrap">
+			<h4>Create New Move</h4>
+		</div>
+	</div>
+</div>
+
+<div class="details_page_header">
+	<div class="container-fluid">
+		<div class="btn_header_wrap">
+			<div class="rght_btns">
+				<a href="<%= libraries_path %>" class="cancel_btn rht_active">Cancel</a>
+				<% if @video_id.present? %>
+					<a href="javascript:void(0)" class="cancel_btn rht_active btn_right" id="panda_video_enable">Create</a>
+				<% else %>
+					<a href="javascript:void(0)" class="cancel_btn dis_cls btn_right" id="panda_video_enable">Create</a>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="middle_wrapper">
-	<div class="rght_btns">
-		<a href="<%= libraries_path %>" class="cancel_btn rht_active">Cancel</a>
-		<% if @video_id.present? %>
-			<a href="javascript:void(0)" class="cancel_btn rht_active" id="panda_video_enable">Create</a>
-		<% else %>
-			<a href="javascript:void(0)" class="cancel_btn dis_cls" id="panda_video_enable">Create</a>
-		<% end %>	
-	</div>
 	<div class="dashboard_mid">
-    <%= render "form" %>              
-  </div>
+    	<%= render "form" %>
+  	</div>
 </div>
 
 <%= render "common_templates/full_workout_upload" %>

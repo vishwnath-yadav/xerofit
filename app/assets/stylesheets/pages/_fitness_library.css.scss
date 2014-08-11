@@ -1,0 +1,400 @@
+// Fitness Library ===================================================================================== /
+
+
+.middle_wrapper {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+.control_bar_wrap {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+    padding: 21px 20px;
+
+    h4 {
+        font-size: 23px;
+        line-height: 28px;
+        margin: 0;
+    }
+}
+
+#add_to_library {
+    display: block;
+    height: 28px;
+    background: url(/assets/icons/plus_icon_blue.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+}
+
+div.create_new {
+    float: left;
+    width: 28px;
+    position: relative;
+}
+
+// Search Bar
+.search_bar_col {
+    width: 210px;
+    position: absolute;
+    left: 50%;
+    margin-left: -105px;
+    text-align: center;
+}
+
+input.search_bar {
+    font-size: 12px;
+    line-height: 14px;
+    width: 100%;
+    position: relative;
+    border: 1px solid $dropdown-borders;
+    padding: 6px 12px;
+    padding-left: 30px;
+    background: #FFF;
+    @include border-radius(3px);
+
+    &:focus {
+        outline: none;
+        outline: 2px auto $xero-blue;
+    }
+}
+
+#lib_name_for_search {
+    height: 14px;
+    width: 14px;
+    background: url(/assets/icons/search_icon_small.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    border: 0;
+
+    &:focus {
+        outline: none;
+        outline: 0px auto -webkit-focus-ring-color;
+    }
+}
+
+
+// Control Bar Filters
+.select_bar_col {
+    width: auto;
+    float: right;
+    position: relative;
+
+    input {display: inline-block;}
+
+    select {
+        //padding: 5px;
+        left: 0;
+        //width: 250px;
+        //margin-right: 5px;
+    }
+}
+
+.filter_control_wrap {
+    float: left;
+    margin-right: 28px;
+    line-height: 14px;
+}
+
+.type_select {
+    min-width: 100px;
+    float: left;
+    background: #fff;
+}
+
+.status_select .dk_options_inner {
+    width: 220px;
+    left: 50%;
+    margin-left: -110px;
+
+    li:nth-child(2) a:before {
+        background: url(/assets/icons/status_icon_gray.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(3) a:before {
+        background: url(/assets/icons/status_icon_yellow.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(4) a:before {
+        background: url(/assets/icons/status_icon_green.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(5) a:before {
+        background:url(/assets/icons/status_icon_red.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+}
+
+// Grid and List View Toggles
+.library_view_toggles {
+    float: left;
+    position: relative;
+    @include clearfix();
+
+    .list_icon {
+        margin-right: 4px;
+        float: left;
+        background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/list_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .list_icon.list_icon_active {
+        background: url(/assets/icons/list_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon {
+        float: left;
+        //background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/grid_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon.grid_icon_active {
+        background: url(/assets/icons/grid_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+}
+
+.grid_pointer { cursor: pointer; }
+
+
+//
+// ==================================================================
+// Control Bar Styles for Details Pages
+// ==================================================================
+//
+
+
+.control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; }
+
+// Control Bar top section
+.control_bar_links {
+    position: relative;
+    width: 100%;
+    @include clearfix();
+    margin-bottom: 14px;
+
+    a {
+        color: $xero-blue;
+        font-size: 12px;
+        line-height: 14px;
+        text-decoration: none;
+    }
+
+    // Control Bar Breadcrumbs on left
+    .cb_breadcrumb {
+        float: left;
+
+        &:before {
+            content: '';
+            background: url(/assets/icons/angle_left_blue.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+            display: block;
+            width: 7px;
+            height: 14px;
+            float: left;
+            margin-right: 7px;
+        }
+    }
+
+    // Control Bar Nav links on right
+    .cb_nav_link { float:right; }
+}
+
+// Control Bar main section
+.control_bar_context {
+    width: 100%;
+    position: relative;
+    padding: 7px 0px;
+    @include clearfix();
+
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
+
+        img {
+            width: auto;
+            height: 56px;
+        }
+    }
+
+    .lib_text_box {
+        width: auto;
+        float: left;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+}
+
+.details_page_header {
+    background: #fff;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #F2F2F2;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.details_page_header .btn_header_wrap {
+    width: 100%;
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    @include clearfix();
+}
+
+// Scrolling Header
+.lib_img_coll {
+    background: #fff;
+    //border-bottom: 1px solid #D8D8D8;
+    //float: left;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    @include clearfix();
+
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
+
+        img {
+            width: auto;
+            height: 28px;
+        }
+    }
+
+    .lib_text_box {
+        width: auto;
+        float: left;
+
+        h4 {
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+        }
+    }
+}
+
+// Buttons on the right of fixed header
+.rght_btns {
+    width: auto;
+    float: right;
+    text-align: right;
+    //margin: 10px 0px 0px;
+
+    @include clearfix();
+
+    a {
+        font-size: 11px;
+        line-height: 14px;
+        border-radius: 4px;
+        padding: 7px 14px;
+        text-decoration: none;
+        float: left;
+    }
+
+    a.cancel_btn {
+        border: 1px solid #ccc;
+        color: #ccc;
+    }
+
+    a.cancel_btn.rht_active {
+        border: 1px solid $xero-blue;
+        color: $xero-blue;
+    }
+
+    a.btn_right { margin-left: 14px; }
+}
+
+
+p.library_item_status {
+    font-size: 12px;
+    line-height: 14px;
+    color: $silver31;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 6px;
+
+    > img {
+        float: left;
+        margin-right: 6px;
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.dis_cls {
+    pointer-events: none;
+    cursor: default;
+}
+
+.uplod_work {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 73%;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}

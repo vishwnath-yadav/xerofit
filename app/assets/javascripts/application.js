@@ -15,7 +15,21 @@
 //= require jquery.remotipart
 //= require autocomplete-rails
 //= require turbolinks
-//= require_tree .
+
+
+//= require plugins/bootstrap.min
+//= require plugins/bootstrap-progressbar.min
+//= require plugins/dropzone.min
+//= require plugins/jquery.fancybox.js
+//= require plugins/jquery_form.js
+//= require plugins/jquery.jcarousel.min
+//= require plugins/jcarousel.responsive.js
+
+//= require helpers/resource_constants.js
+//= require helpers/video_upload.js
+
+//= require pages/library.js
+//= require pages/workout.js
 
 
 $( document ).ready(function() {
@@ -27,36 +41,20 @@ $( document ).ready(function() {
       if(scroll >= 100){
         sticky.addClass('fixed');
         $('.show_img_on_scol').css('display','block');
+        $('.lib_img_coll .rght_btns').css('margin-right','30px');
+        $('.lib_img_coll').css('border-bottom','1px solid #D8D8D8');
       }
       else{
-       sticky.removeClass('fixed');
-       $('.show_img_on_scol').css('display','none');
-     }
+        sticky.removeClass('fixed');
+        $('.show_img_on_scol').css('display','none');
+        $('.lib_img_coll .rght_btns').css('margin-right','0px');
+        $('.lib_img_coll').css('border-bottom','0px');
+      }
     });
 
-    $(".home_toggle").click(function(){
-      $(".home_nav_toggle").slideToggle();
-    })  
-
-    $(".user_name").click(function(){
-      $(".signout_col").slideToggle();
-    }) 
-
-  // $(document).on("click", ".fancy_input", function() {
-  //   $('.mus_select').remove();
-  //   var number_of_select = $(this).val();
-  //   $('.active').removeClass('active');
-  //   $(this).addClass('active');
-  //   var i=0;
-  //   var target = ['Primary Target', 'Second Target', 'Thired Target', 'Fouth Target', 'Fifth Target']
-  //   var option = ['body', 'sholder', 'arms']
-  //   for(i=0; i<number_of_select; i++)
-  //   {
-  //   var select = "<select name='library[target_muscle_groups_attributes]["+i+"][target_muscle_group]'><option value='body'>Body</option> <option value='sholder'>Sholder</option> <option value='arms'>Arms</option></select>";
-  //   var form_create = "<div class='exr_field_col mus_select'><label>"+target[i]+"</label><div class='fancy_select'>"+select+"</div></div>";
-  //   $('.mus_count').after(form_create);
-  //   }
-  // });
+    $('.global_nav_toggle').dropdown();
+    $('.notification_menu_toggle').dropdown();
+    $('.utility_menu_toggle').dropdown();
 
   $(document).on("click", ".fancy_input", function() {
      var select_count = $(this).val();
@@ -64,7 +62,7 @@ $( document ).ready(function() {
      $('.active').removeClass('active');
      lib_id = $('#lib_id').attr('id');
      $(this).addClass('active');
-     
+
      if((len<select_count)||(len>select_count)){
       $('.chg_save').removeClass('dis_link');
      }
@@ -92,7 +90,7 @@ $( document ).ready(function() {
     $('#status').val(status);
     $('#edit_video_info').submit();
   });
-  
+
   $('#panda_video_enable').click(function(){
     $('#video_library_info').submit();
   });
@@ -126,7 +124,8 @@ $( document ).ready(function() {
     url = "/subregion_options?parent_region=" +country_code
     select_wrapper.load(url)
   });
-  
+
+  setTimeout(load_dropKick_js, 5000);
 });
 
 function load_dropKick_js() {

@@ -2,7 +2,7 @@
     <h4>Video Details</h4>
     <div class="big_video_col">
        <h5>Video File</h5>
-    <%if @library.library_video.panda_video.present?%>
+    <%if @library.library_video.present? && @library.library_video.panda_video.present?%>
       <video width="586" height="330" controls>
         <source src="<%= @library.library_video.panda_mp4.url %>" type="video/mp4">
       </video> 

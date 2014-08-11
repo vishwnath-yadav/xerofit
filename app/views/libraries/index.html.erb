@@ -1,42 +1,40 @@
 
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
-<div class="create_heading">
-  <%if hide_if_admin%>
 
-    <div class="plus_icon">
-      <a href="<%= new_library_path %>">
-        <img src="/assets/plus_icon.png"/>
-      </a>
-      <div class="hover_box">
-      <a href="<%= new_library_path %>">Add New</a> 
-    </div>
-    </div>
-  <%end%>
-   <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%> 
-    <%if hide_if_admin%>
-      <div class="search_bar_col">
-        <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon", :placeholder=>"Search", :id => "search_lib_by_name" %>
-        <input type="button" class="search_btn" id="lib_name_for_search">
-      </div>
-    <%end%>
-
-    <div class="select_bar_col">
-         <%= hidden_field_tag :id, params[:id]%>
-         <%= hidden_field_tag :type%>
-         <%= hidden_field_tag :page, params[:page].present? ? params[:page] : 1%>
-         <%= hidden_field_tag :status%>
-         <%= hidden_field_tag :view_type, "grid"%>
-         <div class="custom_select_wrap">
-          <span class="custom_select type_select">
-            <select class="default">
-              <option>All Types</option>
-              <option>Moves</option>
-              <option>Workouts</option>
-            </select>
-          </span>
+<div class="zcreate_heading control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap">
+      <%if hide_if_admin%>
+        <div class="create_new control_bar_tooltip" data-toggle="tooltip" data-placement="bottom" title="Add New">
+          <a href="<%= new_library_path %>" id="add_to_library"></a>
         </div>
-        <div class="custom_select_wrap">
+      <%end%>
+
+      <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%>
+        <%if hide_if_admin%>
+          <div class="search_bar_col">
+            <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_lib_by_name" %>
+            <input type="button" id="lib_name_for_search">
+          </div>
+        <%end%>
+
+        <div class="select_bar_col">
+          <%= hidden_field_tag :id, params[:id]%>
+          <%= hidden_field_tag :type%>
+          <%= hidden_field_tag :status%>
+          <%= hidden_field_tag :view_type, "grid"%>
+
+          <div class="filter_control_wrap">
+            <span class="custom_select type_select">
+              <select class="default">
+                <option>All Types</option>
+                <option>Moves</option>
+                <option>Workouts</option>
+              </select>
+            </span>
+          </div>
+          <div class="filter_control_wrap">
             <span class="custom_select status_select">
               <select class="default">
                 <option class="green_icon">All Statuses</option>
@@ -45,40 +43,38 @@
                 <%end%>
               </select>
             </span>
-        </div>
-        <div class="tool_tip_col">
-          <span class="list_icon view_type grid_pointer"  data-name="list" id="list_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <div class="hover_box">
-            <a href="javascript:void(0)">List View</a> 
+          </div>
+
+          <div class="library_view_toggles">
+            <div class="list_icon view_type grid_pointer control_bar_tooltip" data-name="list" id="list_view" data-toggle="tooltip" data-placement="bottom" title="List"></div>
+
+            <div class="grid_icon grid_icon_active grid_pointer view_type control_bar_tooltip" data-name="grid" id="grid_view" data-toggle="tooltip" data-placement="bottom" title="Grid"></div>
           </div>
         </div>
-        <div class="tool_tip_col">
-          <span class="grid_icon grid_icon_active grid_pointer view_type" data-name="grid" id="grid_view">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <div class="hover_box">
-            <a href="javascript:void(0)">Grid View</a> 
-          </div>
-        </div>
-      </div>
-    <%end%>
+      <%end%>
+    </div>
+  </div>
 </div>
+
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
     <div class="library_col  library_view">
       <%= render "grid" %>
     </div>
-      
-      
+
       <%#= will_paginate @libraries, :remote=>true, :next_label => 'Next', :previous_label => 'Previous', :inner_window=>0, :outer_windows=>0 %>
     <!-- <div class="pagination">
      </div>-->
 
   </div>
 </div>
+
 <script>
   $(function () {
       $('.default').dropkick();
       setTimeout(load_dropKick_js);
   });
+
   $('.admin_li').removeClass('active')
   $('.admin_li.library').addClass('active');
 </script>
