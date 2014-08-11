@@ -22,6 +22,9 @@
 //= require plugins/dropzone.min
 //= require plugins/jquery.fancybox.js
 //= require plugins/jquery_form.js
+//= require plugins/jquery.jcarousel.min
+//= require plugins/jcarousel.responsive.js
+
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -77,7 +80,7 @@ $( document ).ready(function() {
      $('.active').removeClass('active');
      lib_id = $('#lib_id').attr('id');
      $(this).addClass('active');
-     
+
      if((len<select_count)||(len>select_count)){
       $('.chg_save').removeClass('dis_link');
      }

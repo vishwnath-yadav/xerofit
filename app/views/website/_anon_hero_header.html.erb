@@ -27,7 +27,13 @@
             </div>
 
             <div class="util-nav">
-                <a href="#" class="btn btn-white small-btn" data-toggle="modal" data-target="#trainer-signup-pop">Join</a>
+                <%if current_user %>
+                    <%=link_to "Logout", destroy_user_session_path, :method => :delete, :class=>"btn btn-white small-btn"%>
+                <%else%>
+                    <%=link_to "Login", new_user_session_path, :class=>"btn btn-white small-btn"%>
+                    or
+                    <%=link_to "Join",  combo_signup_path, :class=>"btn btn-white small-btn", "data-toggle" => "modal", 'data-target' => '#trainer-signup-pop' %>
+                <%end%>
             </div>
         </div>
     </div>

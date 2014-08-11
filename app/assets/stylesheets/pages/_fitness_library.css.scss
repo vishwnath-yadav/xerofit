@@ -1,21 +1,5 @@
 // Fitness Library ===================================================================================== /
 
-.create_heading {
-    width: 100%;
-    position: relative;
-
-    p img {
-        margin-right: 4px;
-        position: relative;
-        top: -1px;
-    }
-}
-
-.create_heading.heading_hide .lib_image_box{width: 54px;}
-.create_heading.heading_hide .create_heading h4{font-size: 21px;}
-.create_heading.heading_hide .create_heading p{display: none}
-
-
 
 .middle_wrapper {
     width: 100%;
@@ -401,7 +385,6 @@ p.library_item_status {
         width: 12px;
     }
 }
-
 
 .dis_cls {
     pointer-events: none;
