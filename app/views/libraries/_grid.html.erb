@@ -1,5 +1,4 @@
-
-  <% if @list.present? %>
+<% if @list.present? %>
     <ul>
     <% @list.each_with_index do |ls, index| %>
       <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
@@ -21,8 +20,8 @@
               </a>
             <%end%>
           <h6 title="<%= ls.title %>"><%= ls.title.length>23 ? ls.title[0..22]+"....." : ls.title %></h6>
-          <p>
-            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
+          <p class="library_item_status">
+            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
             <%= ls.status %>
           </p>
       </li>

@@ -1,13 +1,13 @@
 module LibrariesHelper
 	def status_icon(status)
 		if status == Library::STATUS[0]
-			status = "/assets/grey_circle.png"
+			status = "/assets/icons/status_icon_gray.png"
 		elsif status == Library::STATUS[1]
-			status = "/assets/yellow_circle.png"
+			status = "/assets/icons/status_icon_yellow.png"
 		elsif status == Library::STATUS[2]
-			status = "/assets/green_circle.png"
+			status = "/assets/icons/status_icon_green.png"
 		elsif status == Library::STATUS[3]
-			status = "/assets/red_circle.png"
+			status = "/assets/icons/status_icon_red.png"
 		end
 	end
 

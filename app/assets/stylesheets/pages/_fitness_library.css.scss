@@ -17,14 +17,26 @@
 
 
 
+.middle_wrapper {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
 .control_bar_wrap {
     width: 100%;
     position: relative;
     @include clearfix();
     padding: 21px 20px;
+
+    h4 {
+        font-size: 23px;
+        line-height: 28px;
+        margin: 0;
+    }
+
 }
-
-
 
 #add_to_library {
     display: block;
@@ -223,16 +235,16 @@ input.search_bar {
 .grid_pointer { cursor: pointer; }
 
 
-
 //
 // ==================================================================
-// Single Move Details Page
+// Control Bar Styles for Details Pages
 // ==================================================================
 //
 
 
-.control_bar_wrap.content_details { padding-top: 14px; }
+.control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; }
 
+// Control Bar top section
 .control_bar_links {
     position: relative;
     width: 100%;
@@ -268,21 +280,79 @@ input.search_bar {
     .cb_nav_link { float:right; }
 }
 
+// Control Bar main section
+.control_bar_context {
+    width: 100%;
+    position: relative;
+    padding: 7px 0px;
+    @include clearfix();
 
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
 
+        img {
+            width: auto;
+            height: 56px;
+        }
+    }
 
-.prev_lib_col {
-    //width: 100%;
-    //float: left;
-    //margin-bottom: 11px;
+    .lib_text_box {
+        width: auto;
+        float: left;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
 }
 
 
+// Scrolling Header
+.lib_img_coll {
+    background: #fff;
+    border-bottom: 1px solid #D8D8D8;
+    float: left;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 13px;
 
-.prev_lib_col a.fr{float: right;}
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
+
+        img {
+            width: auto;
+            height: 28px;
+        }
+    }
+
+    .lib_text_box {
+        width: auto;
+        float: left;
+
+        h4 {
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+        }
+    }
+}
 
 
+p.library_item_status {
+    font-size: 12px;
+    line-height: 14px;
+    color: $silver31;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 6px;
 
+    > img {
+        float: left;
+        margin-right: 6px;
+        height: 12px;
+        width: 12px;
+    }
+}
 
 
 .dis_cls {

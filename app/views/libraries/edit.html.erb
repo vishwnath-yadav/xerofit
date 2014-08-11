@@ -7,37 +7,41 @@
       <div class="prev_lib_col control_bar_links" id="<%= @library.id%>">
         <%= link_to("Fitness Library", libraries_path, :class=>'cb_breadcrumb') %>
       </div>
-      <div class="lib_image_box"><img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
-      </div>
-      <div class="lib_text_box">
-        <h4><%= @library.title.titleize%></h4>
-        <p><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
+      <div class="control_bar_context">
+        <div class="lib_image_box">
+          <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @library.title.titleize%></h4>
+          <p class="library_item_status"><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
 <div class="libray_detail wht_bg">
   <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
-          <div class="lib_image_box">
-            <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
-          </div>
-          <div class="lib_text_box">
-            <h4><%= @library.title.titleize%></h4>
-          </div>
-        </span>
-
-        <div class="rght_btns">
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="save">Save</a>
-          <%if hide_if_admin%>
-            <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
-          <%end%>
+        <div class="lib_image_box">
+          <img src="<%= @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
         </div>
+        <div class="lib_text_box">
+          <h4><%= @library.title.titleize%></h4>
+        </div>
+      </span>
+
+      <div class="rght_btns">
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="save">Save</a>
+        <%if hide_if_admin%>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_lin" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+        <%end%>
       </div>
+    </div>
   </div>
-  
+
 <div class="middle_wrapper">
   <div class="exer_rht_col pd30">
     <div class= "lib_move_title">

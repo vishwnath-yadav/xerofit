@@ -1,43 +1,46 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
 
-<div class="zcreate_heading control_bar">
+<div class="control_bar">
   <div class="container-fluid">
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links">
         <%= link_to("Fitness Library", libraries_path, :class=> 'cb_breadcrumb') %>
-        <%= link_to("Workout Builder", edit_workout_path(@workouts), :class => 'fr cb_nav_link') if hide_if_admin%>
+        <%= link_to("Workout Builder", edit_workout_path(@workouts), :class => 'cb_nav_link') if hide_if_admin%>
       </div>
-
-      <div class="wrk_image_box">
-        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_1.png' %>" />
-      </div>
-      <div class="lib_text_box">
-        <h4><%= @workouts.title.titleize%></h4>
-        <p><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
+      <div class="control_bar_context">
+        <div class="zwrk_image_box lib_image_box">
+          <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_1.png' %>" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @workouts.title.titleize%></h4>
+          <p class="library_item_status"><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
 <div class="middle_wrapper">
-<div class="libray_detail">
-  <div class="lib_img_coll">
-    <span class="show_img_on_scol">
-      <div class="wrk_image_box_sm">
-        <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_1.png' %>" />
+  <div class="libray_detail">
+
+    <div class="lib_img_coll">
+      <span class="show_img_on_scol zcontrol_bar_context">
+        <div class="zwrk_image_box_sm lib_image_box">
+          <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_1.png' %>" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @workouts.title.titleize%></h4>
+        </div>
+      </span>
+      <div class="rght_btns">
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
+        <%if hide_if_admin%>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+        <%end%>
       </div>
-      <div class="lib_text_box">
-        <h4><%= @workouts.title.titleize%></h4>
-      </div>
-    </span>
-    <div class="rght_btns">
-      <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
-      <%if hide_if_admin%>
-        <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
-      <%end%>
     </div>
-  </div>
 
   <%= simple_nested_form_for(@workouts, url: (workout_path(@workouts)), html: {id: 'edit_workout_info'}) do |lib| %>
     <div class="exer_rht_col">
