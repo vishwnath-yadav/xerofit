@@ -2,24 +2,24 @@
     <ul>
     <% @list.each_with_index do |ls, index| %>
       <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
-          <% if ls.move_type == "workouts" %>
-            <a href="<%= workout_details_path(ls) %>">
-              <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
-                <% else %>
-                  <img src="/assets/ex_1.png" alt="cn_1" />
-                <%end%>
-              </a>
-            <%else%>
-              <a href="<%= edit_path(ls) %>">
-                <% if ls.library_video.image.present? %>
-                  <img src="<%= ls.library_video.image %>" alt="cn_1" />
-                <% else %>
-                    <img src="/assets/ex_2.png" alt="cn_1" />
-                <%end%>
-              </a>
+        <% if ls.move_type == "workouts" %>
+          <a href="<%= workout_details_path(ls) %>">
+            <% if ls.pic.present? %>
+              <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
+            <% else %>
+              <img src="/assets/ex_1.png" alt="cn_1" />
             <%end%>
-          <h6 title="<%= ls.title %>"><%= ls.title.length>23 ? ls.title[0..22]+"....." : ls.title %></h6>
+          </a>
+        <%else%>
+          <a href="<%= edit_path(ls) %>">
+            <% if ls.library_video.image.present? %>
+              <img src="<%= ls.library_video.image %>" alt="cn_1" />
+            <% else %>
+              <img src="/assets/ex_2.png" alt="cn_1" />
+            <%end%>
+          </a>
+        <%end%>
+          <h6 title="<%= ls.title %>"><%= truncate(ls.title, :length => 30, :seperator => ' ...') %></h6>
           <p class="library_item_status">
             <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
             <%= ls.status %>
@@ -29,6 +29,6 @@
 </ul>
 <% else %>
   <span> No Record Found...</span>
-<% end %> 
+<% end %>
 
 <%= paginate @list %>

@@ -305,15 +305,32 @@ input.search_bar {
     }
 }
 
+.details_page_header {
+    background: #fff;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #F2F2F2;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.details_page_header .btn_header_wrap {
+    width: 100%;
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    @include clearfix();
+}
 
 // Scrolling Header
 .lib_img_coll {
     background: #fff;
-    border-bottom: 1px solid #D8D8D8;
-    float: left;
+    //border-bottom: 1px solid #D8D8D8;
+    //float: left;
     width: 100%;
     padding-top: 14px;
     padding-bottom: 13px;
+    @include clearfix();
 
     .lib_image_box {
         float: left;
@@ -335,6 +352,37 @@ input.search_bar {
             margin: 0;
         }
     }
+}
+
+// Buttons on the right of fixed header
+.rght_btns {
+    width: auto;
+    float: right;
+    text-align: right;
+    //margin: 10px 0px 0px;
+
+    @include clearfix();
+
+    a {
+        font-size: 11px;
+        line-height: 14px;
+        border-radius: 4px;
+        padding: 7px 14px;
+        text-decoration: none;
+        float: left;
+    }
+
+    a.cancel_btn {
+        border: 1px solid #ccc;
+        color: #ccc;
+    }
+
+    a.cancel_btn.rht_active {
+        border: 1px solid $xero-blue;
+        color: $xero-blue;
+    }
+
+    a.btn_right { margin-left: 14px; }
 }
 
 
