@@ -215,36 +215,41 @@ width: 48%;}
 float: right;}
 .exr_field_col.number_mus{width: 90%;}
 .exr_field_col textarea{height:121px}
+
+
+// Fancy Select Styles
 .fancy_select{overflow:hidden;width:100%; float:left; border-radius:5px; padding:5px 0 5px 5px; border:1px solid #e1e0dd; 
 background:url(/assets/select_arrow.png) no-repeat right #fdfcfb;  font-size: 12px; }
 .fancy_select.dob_select{width:31%;}
 .fancy_select.dob_select select{width:120%}
 .fancy_select.dob_select.m27{ margin:0px 17px;}
 .fancy_select select {
-background: transparent;
-width: 108%;
-outline: none;
-font-size: 16px;
-
-border: 0;
-color: #444;
-cursor: pointer;
-font-size: 12px;
-text-indent: 4px;
-border-radius: 0;
-height: 21px;
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+	background: transparent;
+	width: 108%;
+	outline: none;
+	font-size: 16px;
+	border: 0;
+	color: #444;
+	cursor: pointer;
+	font-size: 12px;
+	text-indent: 4px;
+	border-radius: 0;
+	height: 21px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
+
 .fancy_select ul{ margin: 0px; padding: 0px;}
-.fancy_select ul li{width: 100%;
-float: left;
-list-style: none;
-padding:5px 1px 5px 11px;
-color: #111;
-display: block;
-position: relative;}
+.fancy_select ul li{
+	width: 100%;
+	float: left;
+	list-style: none;
+	padding:5px 1px 5px 11px;
+	color: #111;
+	display: block;
+	position: relative;
+}
 .fancy_select ul li:hover{background-color: #ccc}
 .fancy_select ul li ul{display: none}
 .fancy_select ul li:hover{background: #ccc;}
@@ -304,14 +309,14 @@ font-size: 12px;}
 .dash_hdr_rght{
 	width:10%;
 	float:right;
-font-size: 14px;
-font-weight: normal;
-color: #fff;
-text-decoration: none;
-font-family: 'gotham_extralightregular';
-background:url(/assets/chase_img.png) no-repeat right;
-padding-right:30px;
-line-height:28px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #fff;
+	text-decoration: none;
+	font-family: 'gotham_extralightregular';
+	background:url(/assets/chase_img.png) no-repeat right;
+	padding-right:30px;
+	line-height:28px;
 }
 .dash_hdr_rght a{
 	color: #fff;
@@ -404,7 +409,7 @@ line-height:28px;
 	font-style:italic;
 	margin-bottom:10px;
 }
-p{
+p {
 	font-size:12px;
 	color:#e4e3df;
 	//font-style:italic;
@@ -1475,16 +1480,12 @@ ul.exer_list_view li span.thumb_text img{width: 100%; height: auto;}
 	display: none;
 }
 
-
-
-
 .upload_gry_box {
 	background: #efefef;
 	padding: 35px 0 75px 54px;
 	width: 33%;
 	margin-bottom: 20px;
 }
-
 
 .upload_gry_box .custom-upload .fake-file input{
 	background: none repeat scroll 0 0 #eee;
@@ -1595,4 +1596,3 @@ z-index: 9;}
 .error_color{
 	color:red;
 }
-
