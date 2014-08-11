@@ -6,15 +6,15 @@
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links">
         <%= link_to("Fitness Library", libraries_path, :class=> 'cb_breadcrumb') %>
-        <%= link_to("Workout Builder", edit_workout_path(@workouts), :class => 'cb_nav_link') if hide_if_admin%>
+        <%= link_to("Workout Builder", edit_workout_path(@workout), :class => 'cb_nav_link') if hide_if_admin%>
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">
-          <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:p_square) : '/assets/ex_1.png' %>" />
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:p_square) : '/assets/ex_1.png' %>" />
         </div>
         <div class="lib_text_box">
-          <h4><%= @workouts.title.titleize%></h4>
-          <p class="library_item_status"><img src="<%= status_icon(@workouts.status)%>" /><%= @workouts.status %></p>
+          <h4><%= @workout.title.titleize%></h4>
+          <p class="library_item_status"><img src="<%= status_icon(@workout.status)%>" /><%= @workout.status %></p>
         </div>
       </div>
     </div>
@@ -25,10 +25,10 @@
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
         <div class="lib_image_box">
-          <img src="<%= @workouts.pic.present? ? @workouts.pic.url(:square) : '/assets/ex_1.png' %>" />
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:square) : '/assets/ex_1.png' %>" />
         </div>
         <div class="lib_text_box">
-          <h4><%= @workouts.title.titleize%></h4>
+          <h4><%= @workout.title.titleize%></h4>
         </div>
       </span>
       <div class="rght_btns">
@@ -43,7 +43,7 @@
 
 <div class="middle_wrapper">
   <div class="libray_detail">
-  <%= simple_nested_form_for(@workouts, url: (workout_path(@workouts)), html: {id: 'edit_workout_info'}) do |lib| %>
+  <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>
     <div class="exer_rht_col">
       <div class= "lib_move_title">
         Basic Workout Information
