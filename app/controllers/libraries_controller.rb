@@ -1,3 +1,5 @@
+require 'RMagick'
+include Magick
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :library, :title, :full => true
@@ -128,6 +130,23 @@ class LibrariesController < ApplicationController
 		end
 		respond_to do |format|
 		    format.js
+	    end
+	end
+	def image_test
+		
+	end
+
+	def image_test_save
+		binding.pry
+	    if params[:id].present?
+	      @photo = User.find_by_id(params[:id])
+	      contents = Magick::Image.read(params[:url]).first
+	      file = Tempfile.new(["Edited_Photo", ".jpg"])
+	      contents.write(file.path)
+	      @photo.update_attributes(:pic=>file)
+	    end
+	    respond_to do |format|
+	      format.js
 	    end
 	end
 

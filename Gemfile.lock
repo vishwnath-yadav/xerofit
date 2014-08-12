@@ -235,6 +235,7 @@ GEM
       railties (>= 3.2, < 5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.3)
     ruby-hmac (0.4.0)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -328,6 +329,7 @@ DEPENDENCIES
   rails4-autocomplete
   rails_12factor
   remotipart
+  rmagick
   sass-rails (~> 4.0.0)
   sdoc
   settingslogic

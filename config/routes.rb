@@ -81,6 +81,8 @@ Xerofit::Application.routes.draw do
       get 'autocomplete_library_title'
       post 'filter'
       get 'full_workout_content'
+      get 'image_test'
+      post 'image_test_save'
     end
     member do
       
