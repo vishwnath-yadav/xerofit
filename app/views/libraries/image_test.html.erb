@@ -1,0 +1,45 @@
+
+
+
+<script type='text/javascript'>
+function launchEditor(id) {
+	$.fancybox.close();
+    featherEditor.launch({
+        image: id
+    });
+    return false
+}
+
+</script>
+
+<a href="javascript:void(0)" id="testing" onclick="return launchEditor('4');">Edit!</a>
+
+<!-- original line of HTML here: -->
+<img id="4" src="<%=current_user.pic.url(:medium)%>"/>
+
+<div id="editor_wrapper" style="height:400px;width:500px;"></div>
+
+<script>
+	var featherEditor = new Aviary.Feather({
+	apiKey: 'e0a1cfea3a2b85e8',
+	apiVersion: 3,
+	tools: 'crop,orientation',
+	appendTo: 'editor_wrapper',
+	onSave: function(imageID, newURL) {
+		$("#custom_overlay").show();
+		var img = document.getElementById(imageID);
+		img.src = newURL;
+		$.ajax({
+			type: "POST",
+			url: "/library/image_test_save",
+			data: {id: imageID, url: newURL},
+			success: function(data) {
+				if (data){
+				}
+			}
+		});
+	}
+});
+ 
+launchEditor('4');
+</script>

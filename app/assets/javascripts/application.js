@@ -105,6 +105,15 @@ $( document ).ready(function() {
      $("#user_pic").click();
   });
 
+  $("#user_pic").change(function(){
+    $("#image_div").html('');
+    $.fancybox.open({
+      href: '#image_loading',
+      type: 'inline'
+    });
+    $("#user_logo").submit();
+  });
+
   $(".wrk_chos").click(function(){
      $(this).css('background', '#72c9b8');
      $("#workout_pic").click();

@@ -115,6 +115,7 @@ Xerofit::Application.routes.draw do
       put 'update_password'
       post 'save_payment_billing'
       get 'marketplace'
+      post 'save_user_pic'
     end
   end
   get '/subregion_options' => 'settings#subregion_options'

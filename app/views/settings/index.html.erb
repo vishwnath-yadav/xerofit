@@ -1,1 +1,31 @@
+<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+<script type='text/javascript'>
+var featherEditor = new Aviary.Feather({
+	apiKey: 'e0a1cfea3a2b85e8',
+	apiVersion: 3,
+	tools: 'crop,orientation',
+	appendTo: 'editor_wrapper',
+	onSave: function(imageID, newURL) {
+		$("#custom_overlay").show();
+		var img = document.getElementById(imageID);
+		img.src = newURL;
+		$.ajax({
+			type: "POST",
+			url: "/library/image_test_save",
+			data: {id: imageID, url: newURL},
+			success: function(data) {
+				if (data){
+				}
+			}
+		});
+	}
+});
+function launchEditor(id) {
+    featherEditor.launch({
+        image: id
+    });
+    return false
+}
+
+</script>
 <%=render "edit_profile"%>

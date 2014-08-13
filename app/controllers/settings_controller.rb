@@ -22,6 +22,17 @@ class SettingsController < ApplicationController
 	    redirect_to :back
 	end
 
+	def save_user_pic
+		@user = User.find(params[:id])
+		if @user.present?
+			@user.pic = params[:user][:pic]
+			@user.save!
+		end
+		respond_to do |format|
+			format.js
+		end
+	end
+
 	def change_password
 		@user = User.find(current_user.id)
 	end

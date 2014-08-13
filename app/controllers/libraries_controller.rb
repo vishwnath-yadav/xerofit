@@ -133,11 +133,11 @@ class LibrariesController < ApplicationController
 	    end
 	end
 	def image_test
-		
+
 	end
 
+	respond_to :json, :js
 	def image_test_save
-		binding.pry
 	    if params[:id].present?
 	      @photo = User.find_by_id(params[:id])
 	      contents = Magick::Image.read(params[:url]).first
@@ -145,9 +145,7 @@ class LibrariesController < ApplicationController
 	      contents.write(file.path)
 	      @photo.update_attributes(:pic=>file)
 	    end
-	    respond_to do |format|
-	      format.js
-	    end
+	    render text: "sucess"
 	end
 
 	private
