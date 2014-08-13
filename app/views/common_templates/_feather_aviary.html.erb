@@ -1,0 +1,37 @@
+<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+<script type='text/javascript'>
+    var featherEditor = new Aviary.Feather({
+      apiKey: 'e0a1cfea3a2b85e8',
+      apiVersion: 3,
+      tools: 'crop,orientation',
+      appendTo: 'editor_wrapper',
+      onSave: function(imageID, newURL) {
+        $("#custom_overlay").show();
+        var img = document.getElementById(imageID);
+        img.src = newURL;
+        $.ajax({
+          type: "POST",
+          url: "/library/image_test_save",
+          data: {id: imageID, c_type: $("#type").val(), url: newURL},
+          success: function(data) {
+            if (data){
+              if(data.type == "workout"){
+                $('.workout_edit_pic').attr('src', data.url1);
+                $('.workout_edit_pic1').attr('src', data.url2);
+              }else{
+                $('.profile_image').attr('src', data.url1);
+              }
+            }
+          }
+        });
+      }
+    });
+    
+    function launchEditor(id) {
+      featherEditor.launch({
+          image: id
+      });
+      return false
+    }
+
+    </script>

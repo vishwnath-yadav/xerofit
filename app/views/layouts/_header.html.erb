@@ -48,7 +48,7 @@
             <div class="utility_dropdown dropdown">
                 <a href="#" class="utility_menu_toggle" data-toggle="dropdown">
                     <%if current_user.pic.present?%>
-                        <%= image_tag current_user.pic.url(:medium) %>
+                        <%= image_tag current_user.pic.url(:medium), class: "profile_image" %>
                     <%else%>
                         <img src="/assets/user_img.png" alt="user" />
                     <%end%>

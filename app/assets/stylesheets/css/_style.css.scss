@@ -1159,6 +1159,7 @@ width: 45%;
 */
 .ml{
 	margin-left: 50%;
+	margin-top:50%;
 }
 
 .wd50{width: 50%}
@@ -1529,7 +1530,9 @@ ul.exer_list_view li span.thumb_text img{width: 100%; height: auto;}
 .toggle_rel{position: relative; float: left; width: 100%;}
 .toggle_abs{position: absolute;
 top: 29px;background: #fff;
-z-index: 9;}
+z-index: 9;
+overflow: visible;
+}
 
 .dis_link{
 	border: 1px solid #CCCCCC !important;
@@ -1581,3 +1584,14 @@ z-index: 9;}
 .error_color{
 	color:red;
 }
+
+.avpw_is_embed #avpw_controls {
+top: 12% !important;
+left: 22% !important;
+right: 22% !important;
+bottom: 40% !important;}
+
+#avpw_controls {
+min-height: 400px !important;
+min-width: 500px !important;}
+

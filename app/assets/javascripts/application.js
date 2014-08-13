@@ -24,7 +24,6 @@
 //= require plugins/jquery_form.js
 //= require plugins/jquery.jcarousel.min
 //= require plugins/jcarousel.responsive.js
-//= require plugins/jquery.jcrop.min.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -104,6 +103,24 @@ $( document ).ready(function() {
   $(".choose_btn").click(function(){
      $(this).css('background', '#72c9b8');
      $("#user_pic").click();
+  });
+
+  $("#user_pic").change(function(){
+    $("#image_div").html('');
+    $.fancybox.open({
+      href: '#image_loading',
+      type: 'inline'
+    });
+    $("#user_logo").submit();
+  });
+
+  $("#workout_pic").change(function(){
+    $("#image_div").html('');
+    $.fancybox.open({
+      href: '#image_loading',
+      type: 'inline'
+    });
+    $("#workout_logo").submit();
   });
 
   $(".wrk_chos").click(function(){

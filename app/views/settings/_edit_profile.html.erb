@@ -1,3 +1,4 @@
+
 <div class="middle_wrapper">
 	<div class="dashboard_mid">
 		<%=  render "setting_left_menu" %>
@@ -36,26 +37,36 @@
 												<div class="profile_col_left">
 														<h5>Profile Photo</h5>
 														<%if @user.pic.present?%>
-															<%= image_tag @user.pic.url(:medium) %>
+															<%= image_tag @user.pic.url(:medium), class: "profile_image" %>
 														<%else%>
 																<img src="/assets/profile_img.jpg" width="111" height="111" alt="profile_img" />
 														<%end%>
 											</div>
 											<h6>Upload your photo...</h6>
 											<p>Image should be at least 300px by 300px.</p>
-      	<div class="custom-upload">
-            <input type="file" class="hidden" id="user_pic" name=user[pic]>
-            <div class="fake-file">
-                <span class="choose_btn">Browse</span>
-                <input disabled="disabled">
-            </div>
-        </div>
-										</div>
+			      	<div class="custom-upload">
+			            <div class="fake-file">
+			                <span class="choose_btn">Browse</span>
+			                <input disabled="disabled">
+			            </div>
+			        </div>
+					</div>
 				</div>
 				<div class="save_col save_col1">
 						<%= user.button :button, "Save changes", :class=>"save_btn save_btn1" %>
 				</div>
 			</div>
 		<%end%>
+		<%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
+			  <%=hidden_field_tag :company, "true"%>
+			  <%=hidden_field_tag :id, current_user.id%>
+			  <%= form.file_field :pic, :style =>"display:none" %>
+		<% end %>
+		<div id="editor_wrapper" style="height:300px;width:500px;"></div>
+		<div id="image_div">
+		</div>
 	</div>
 </div>
+
+
+<%=render "common_templates/image_loading"%>

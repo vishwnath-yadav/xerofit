@@ -2,7 +2,7 @@
   <div class="workout_col_left autoheight">
     <%= simple_form_for(Library.new, url: filter_libraries_path, remote: true, html: {id: 'filter_search_form'}) do |lib| %>
     <div class="search_col">
-        <input name="" type="button" class="search_btn workout_search_btn" />
+        <input name="" type="button" class="search_icon workout_search_btn" />
         <%= autocomplete_field_tag 'title', '', autocomplete_library_title_workouts_path, :class => "search_icon", :placeholder=>"Search within library..." %>
     </div>
     <%= hidden_field_tag :filter, "asc", class: "filter_desc" %>

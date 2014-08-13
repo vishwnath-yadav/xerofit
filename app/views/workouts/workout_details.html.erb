@@ -10,7 +10,7 @@
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">
-          <img src="<%= @workout.pic.present? ? @workout.pic.url(:p_square) : '/assets/ex_1.png' %>" />
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:p_square) : '/assets/ex_1.png' %>" class="workout_edit_pic"/>
         </div>
         <div class="lib_text_box">
           <h4><%= @workout.title.titleize%></h4>
@@ -25,7 +25,7 @@
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
         <div class="lib_image_box">
-          <img src="<%= @workout.pic.present? ? @workout.pic.url(:square) : '/assets/ex_1.png' %>" />
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:square) : '/assets/ex_1.png' %>"  class="workout_edit_pic1" />
         </div>
         <div class="lib_text_box">
           <h4><%= @workout.title.titleize%></h4>
@@ -98,7 +98,7 @@
               <p>Upload your image</p>
               <%#= lib.file_field :pic %>
               <div class="custom-upload">
-                    <%= lib.file_field :pic %>
+                    <%#= lib.file_field :pic %>
                     <div class="fake-file">
                         <span class="choose_btn wrk_chos">Browse</span>
                         <input disabled="disabled">
@@ -116,6 +116,14 @@
         </div>
       </div>
   <% end %>
+  <%= form_for :workout, :url => '/builder/save_workout_pic' ,remote: true, :html => { :id => "workout_logo" } do |form| %>
+        <%=hidden_field_tag :company, "true"%>
+        <%=hidden_field_tag :id, @workout.id%>
+        <%= form.file_field :pic, :style =>"display:none" %>
+    <% end %>
+    <div id="editor_wrapper" style="height:300px;width:500px;"></div>
+    <div id="image_div">
+    </div>
    <div class="lib_edit_botom">
     <h5>Remove Workout</h5>
     <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
@@ -124,7 +132,7 @@
 </div>
 
 </div>
-
+<%=render "common_templates/image_loading"%>
 <script>
   $(document).ready(function(){
     var v = $('.wrk_rvw').attr('work-attr');

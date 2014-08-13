@@ -81,6 +81,8 @@ Xerofit::Application.routes.draw do
       get 'autocomplete_library_title'
       post 'filter'
       get 'full_workout_content'
+      get 'image_test'
+      post 'image_test_save'
     end
     member do
       
@@ -99,6 +101,7 @@ Xerofit::Application.routes.draw do
       get 'search_lib'
       get 'autocomplete_library_title'
       get 'remove_library_from_block'
+      post 'save_workout_pic'
     end
     member do
       # get 'workout_details'
@@ -113,6 +116,7 @@ Xerofit::Application.routes.draw do
       put 'update_password'
       post 'save_payment_billing'
       get 'marketplace'
+      post 'save_user_pic'
     end
   end
   get '/subregion_options' => 'settings#subregion_options'
