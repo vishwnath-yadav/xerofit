@@ -34,13 +34,14 @@ class SettingsController < ApplicationController
 	    else
         	redirect_to change_password_settings_path
  		end
+
 	end
 
 	def update
 		@user = User.find(params[:id])
         if @user.update_attributes(user_params)
-		  @user.dob(params[:date][:day],params[:date][:month],params[:date][:year])
-	      redirect_to settings_path
+		   @user.dob(params[:date][:day],params[:date][:month],params[:date][:year])
+   	       redirect_to settings_path
 	    end
 	end
 

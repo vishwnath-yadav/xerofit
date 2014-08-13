@@ -24,6 +24,7 @@
 //= require plugins/jquery_form.js
 //= require plugins/jquery.jcarousel.min
 //= require plugins/jcarousel.responsive.js
+//= require plugins/jquery.jcrop.min.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js

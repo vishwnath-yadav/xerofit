@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :pic
   validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  
     
 
   devise :confirmable, :database_authenticatable, :registerable,
@@ -99,7 +100,6 @@ class User < ActiveRecord::Base
   def self.user_count
     self.all.where(role: 'normaluser').count
   end
-  
 
   protected
 
