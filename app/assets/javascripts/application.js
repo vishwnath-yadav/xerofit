@@ -123,7 +123,7 @@ $( document ).ready(function() {
     $("#workout_logo").submit();
   });
 
-  $(".wrk_chos").click(function(){
+  $(document).on("click",".wrk_chos",function(){
      $(this).css('background', '#72c9b8');
      $("#workout_pic").click();
   });
