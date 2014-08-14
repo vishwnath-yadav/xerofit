@@ -224,7 +224,7 @@ input.search_bar {
 //
 
 
-.control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; }
+.control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; background-color: #eee;}
 
 // Control Bar top section
 .control_bar_links {
@@ -266,7 +266,7 @@ input.search_bar {
 .control_bar_context {
     width: 100%;
     position: relative;
-    padding: 7px 0px;
+    padding: 0px 0px;
     @include clearfix();
 
     .lib_image_box {
