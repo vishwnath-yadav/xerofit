@@ -6,7 +6,11 @@ class LibrariesController < ApplicationController
 	layout :resolve_layout    
 
 	def index
-		@view = params[:view_type]
+		if params[:view_type].present?
+			@view = params[:view_type]
+		else
+			@view = 'grid'
+		end
 		user = User.where(token: params[:id]).last
 		@list1 = Library.get_library_list(params[:status],params[:title],params[:type],current_user,user)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
