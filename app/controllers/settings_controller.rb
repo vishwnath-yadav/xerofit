@@ -23,12 +23,22 @@ class SettingsController < ApplicationController
 	end
 
 	def save_user_pic
-		@user = User.find(params[:id])
+		@type = params[:type]
+		if params[:type] == "profile"
+			@user = User.find(params[:id])
+		else
+			@user = Workout.find_by_id(params[:id])
+		end
 		if @user.present?
 			@user.pic = params[:user][:pic]
-			@user.save!
+			if @user.save
+				@success = true
+			else
+				@success = false
+			end
 		end
 		@id = @user.id
+			
 		respond_to do |format|
 			format.js
 		end

@@ -136,18 +136,6 @@ class WorkoutsController < ApplicationController
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
 	end
 
-	def save_workout_pic
-		@workout = Workout.find_by_id(params[:id])
-		if @workout.present?
-			@workout.pic = params[:workout][:pic]
-			@workout.save!
-		end
-		@id = @workout.id
-		respond_to do |format|
-			format.js
-		end
-	end
-
 	private
 	  def workout_params
 	    params.require(:workout).permit!

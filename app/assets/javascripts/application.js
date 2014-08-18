@@ -114,15 +114,6 @@ $( document ).ready(function() {
     $("#user_logo").submit();
   });
 
-  $(document).on("change","#workout_pic", function(){
-    $("#image_div").html('');
-    $.fancybox.open({
-      href: '#image_loading',
-      type: 'inline'
-    });
-    $("#workout_logo").submit();
-  });
-
   $(document).on("click",".wrk_chos",function(){
      $(this).css('background', '#72c9b8');
      $("#workout_pic").click();

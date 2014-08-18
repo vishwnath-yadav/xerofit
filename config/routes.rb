@@ -88,7 +88,6 @@ Xerofit::Application.routes.draw do
       
     end
   end
-  # get '/library/user/:id', to: 'libraries#index'
   
   get '/builder/new', to: 'workouts#new'
   get '/library/workout/:id', to: 'workouts#workout_details', as: :workout_details
@@ -101,10 +100,8 @@ Xerofit::Application.routes.draw do
       get 'search_lib'
       get 'autocomplete_library_title'
       get 'remove_library_from_block'
-      post 'save_workout_pic'
     end
     member do
-      # get 'workout_details'
       get '/edit', to: 'workouts#edit', as: :edit
     end
   end

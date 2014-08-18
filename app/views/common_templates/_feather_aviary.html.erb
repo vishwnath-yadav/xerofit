@@ -6,7 +6,7 @@
       tools: 'crop,orientation',
       appendTo: 'editor_wrapper',
       onSave: function(imageID, newURL) {
-        $("#custom_overlay").show();
+        $("#loader").show();
         var img = document.getElementById(imageID);
         img.src = newURL;
         $.ajax({
@@ -15,14 +15,20 @@
           data: {id: imageID, c_type: $("#type").val(), url: newURL},
           success: function(data) {
             if (data){
-              if(data.type == "workout"){
-                $('.workout_edit_pic').attr('src', data.url1);
-                $('.workout_edit_pic1').attr('src', data.url2);
-              }else{
-                $('.profile_image').attr('src', data.url1);
+              if(data.success == true){
+                if(data.type == "workout"){
+                  $('.workout_edit_pic').attr('src', data.url1);
+                  $('.workout_edit_pic1').attr('src', data.url2);
+                }
+                else{
+                  $('.profile_image').attr('src', data.url1);
+                }
               }
-              // $('#editor_wrapper').css('display','none');
+              else{
+                alert("Image should be at least 300px by 300px.");
+              }
               $(".avpw_close_inner").click();
+              $("#loader").hide();
             }
           }
         });

@@ -142,7 +142,7 @@ class LibrariesController < ApplicationController
 
 	respond_to :json, :js
 	def image_test_save
-		if params[:c_type].blank?
+		if params[:c_type]=="profile"
 		      @photo = User.where(id: params[:id]).last
 		else
 		      @photo = Workout.where(id: params[:id]).last
@@ -153,13 +153,17 @@ class LibrariesController < ApplicationController
 	      contents = Magick::Image.read(params[:url]).first
 	      file = Tempfile.new(["Edited_Photo", ".jpg"])
 	      contents.write(file.path)
-	      @photo.update_attributes(:pic=>file)
+	      if @photo.update_attributes(:pic=>file)
+	      	@success = true
+	      else
+	      	@success = false
+	      end
 		end
 
-		if params[:c_type].blank?
-	    	render json: {url1: @photo.pic.url(:medium), type: type}
+		if params[:c_type]=="profile"
+	    	render json: {url1: @photo.pic.url(:medium), type: type, success: @success}
 	    else
-	    	render json: {url1: @photo.pic.url(:square), url2: @photo.pic.url(:p_square), type: type}
+	    	render json: {url1: @photo.pic.url(:square), url2: @photo.pic.url(:p_square), type: type, success: @success}
 	    end
 	end
 

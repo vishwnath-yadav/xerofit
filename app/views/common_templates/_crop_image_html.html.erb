@@ -4,7 +4,6 @@
 <a href="javascript:void(0)" id="testing" onclick="return launchEditor('<%= id %>');">Edit!</a>
 <%=hidden_field_tag :type, type%>
 <!-- original line of HTML here: -->
-<% c_name = controller_name %>
-<img id="<%= id %>" src="<%= c_name=="workouts" ? Workout.find_by_id(id).pic.url(:medium) : User.find(id).pic.url(:medium)%>"/>
+<img id="<%= id %>" src="<%= type=="workout" ? Workout.find_by_id(id).pic.url(:original) : User.find(id).pic.url(:original)%>"/>
 </span>
 

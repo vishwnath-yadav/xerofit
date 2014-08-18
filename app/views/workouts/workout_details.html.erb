@@ -116,9 +116,10 @@
         </div>
       </div>
   <% end %>
-  <%= form_for :workout, :url => '/builder/save_workout_pic' ,remote: true, :html => { :id => "workout_logo" } do |form| %>
+  <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
         <%=hidden_field_tag :company, "true"%>
         <%=hidden_field_tag :id, @workout.id%>
+        <%=hidden_field_tag :type, "workout" %>
         <%= form.file_field :pic, :style =>"display:none" %>
     <% end %>
     <div id="editor_wrapper" style="height:300px;width:500px;"></div>
@@ -132,6 +133,9 @@
 </div>
 
 </div>
+<div id="loader" class="loader" style="display:none;">
+  <img src="/assets/ajax-loader.gif" class="loader_img">
+</div>
 <%=render "common_templates/image_loading"%>
 <script>
   $(document).ready(function(){
@@ -141,21 +145,9 @@
       $('.wrk_rvw').removeClass('dis_link')
     }
     show_text_actual_size();
-    // $('#cropbox').Jcrop({  
-    //   onChange: update_crop,  
-    //   onSelect: update_crop,  
-    //   setSelect: [0, 0, 500, 500],  
-    //   aspectRatio: 1  
-    // });  
   });
   $('.admin_li').removeClass('active')
   $('.admin_li.workout').addClass('active');
-  // function update_crop(coords) {  
-  //   $('#crop_x').val(coords.x);  
-  //   $('#crop_y').val(coords.y);  
-  //   $('#crop_w').val(coords.w);  
-  //   $('#crop_h').val(coords.h);    
-  // }
 </script>
 
   
