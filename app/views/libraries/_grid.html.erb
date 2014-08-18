@@ -5,17 +5,17 @@
           <% if ls.move_type == "workouts" %>
             <a href="<%= workout_details_path(ls) %>">
               <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
+                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" data-no-turbolink='true'/>
                 <% else %>
-                  <img src="/assets/ex_1.png" alt="cn_1" />
+                  <img src="/assets/ex_1.png" alt="cn_1" data-no-turbolink='true'/>
                 <%end%>
               </a>
             <%else%>
               <a href="<%= edit_path(ls) %>">
                 <% if ls.library_video.present? && ls.library_video.image.present? %>
-                  <img src="<%= ls.library_video.image %>" alt="cn_1" />
+                  <img src="<%= ls.library_video.image %>" alt="cn_1" data-no-turbolink='true'/>
                 <% else %>
-                    <img src="/assets/ex_2.png" alt="cn_1" />
+                    <img src="/assets/ex_2.png" alt="cn_1" data-no-turbolink='true'/>
                 <%end%>
               </a>
             <%end%>
