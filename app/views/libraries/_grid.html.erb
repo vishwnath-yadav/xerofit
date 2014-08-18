@@ -3,19 +3,19 @@
     <% @list.each_with_index do |ls, index| %>
       <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
           <% if ls.move_type == "workouts" %>
-            <a href="<%= workout_details_path(ls) %>">
+            <a href="<%= workout_details_path(ls) %>" data-no-turbolink='true'>
               <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" data-no-turbolink='true'/>
+                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
                 <% else %>
-                  <img src="/assets/ex_1.png" alt="cn_1" data-no-turbolink='true'/>
+                  <img src="/assets/ex_1.png" alt="cn_1" />
                 <%end%>
               </a>
             <%else%>
-              <a href="<%= edit_path(ls) %>">
+              <a href="<%= edit_path(ls) %>" data-no-turbolink='true'>
                 <% if ls.library_video.present? && ls.library_video.image.present? %>
-                  <img src="<%= ls.library_video.image %>" alt="cn_1" data-no-turbolink='true'/>
+                  <img src="<%= ls.library_video.image %>" alt="cn_1" />
                 <% else %>
-                    <img src="/assets/ex_2.png" alt="cn_1" data-no-turbolink='true'/>
+                    <img src="/assets/ex_2.png" alt="cn_1" />
                 <%end%>
               </a>
             <%end%>
