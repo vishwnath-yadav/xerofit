@@ -43,7 +43,7 @@ module Xerofit
         :address              => "smtp.gmail.com",
         :port                 => 587,
         :user_name            => 'vishuatongraph@gmail.com',
-        :password             => 'vishu123',
+        :password             => 'suraj@123',
         :authentication       => 'login',
         :enable_starttls_auto => true  }
     end
