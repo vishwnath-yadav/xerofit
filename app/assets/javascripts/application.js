@@ -100,12 +100,12 @@ $( document ).ready(function() {
     $(this).addClass('active');
   });
 
-  $(".choose_btn").click(function(){
+  $(document).on("click",".choose_btn", function(){
      $(this).css('background', '#72c9b8');
      $("#user_pic").click();
   });
 
-  $("#user_pic").change(function(){
+  $(document).on("change","#user_pic", function(){
     $("#image_div").html('');
     $.fancybox.open({
       href: '#image_loading',
@@ -114,7 +114,7 @@ $( document ).ready(function() {
     $("#user_logo").submit();
   });
 
-  $("#workout_pic").change(function(){
+  $(document).on("change","#workout_pic", function(){
     $("#image_div").html('');
     $.fancybox.open({
       href: '#image_loading',
