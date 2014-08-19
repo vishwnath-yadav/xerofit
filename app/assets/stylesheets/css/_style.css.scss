@@ -1626,3 +1626,32 @@ min-width: 500px !important;}
 	margin-left: -16px;
 	margin-top: -16px;
 }
+
+.center_btns{
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+
+    a {
+        font-size: 11px;
+        line-height: 14px;
+        border-radius: 4px;
+        padding: 7px 14px;
+        text-decoration: none;
+        float: left;
+    }
+
+    a.cancel_btn {
+        border: 1px solid #ccc;
+        color: #ccc;
+    }
+
+    a.cancel_btn.rht_active {
+        border: 1px solid #289cf9;
+		color: #289cf9;
+		display: inline-block;
+		float: none;
+		margin-right: 5px;
+    }
+}

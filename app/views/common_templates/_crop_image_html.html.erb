@@ -1,9 +1,17 @@
 
 <span>
-<%=hidden_field_tag :type, type%>
-<!-- original line of HTML here: -->
-<img id="<%= id %>" src="<%= type=="workout" ? Workout.find_by_id(id).pic.url(:original) : User.find(id).pic.url(:original)%>" style="height:340px;width:500px"/>
-<a href="javascript:void(0)" id="testing" onclick="return launchEditor('<%= id %>');">Edit!</a>
+	<%=hidden_field_tag :type, type%>
+	<!-- original line of HTML here: -->
+	<img id="<%= id %>" src="<%= type=="workout" ? Workout.find_by_id(id).pic.url(:original) : User.find(id).pic.url(:original)%>" style="height:340px;width:500px"/>
+	<div class="center_btns">
+		<a href="javascript:void(0)" id="testing" class="cancel_btn rht_active" onclick="return launchEditor('<%= id %>');">Crop!</a>
+		<a href="javascript:void(0)" class="cancel_btn rht_active cancel_pop">Cancel!</a>
+	</div>
 </span>
 
-
+<script >
+$(document).on('click','.cancel_pop', function(){
+	$.fancybox.close();
+});
+</script>
+<!-- fancybox-overlay-fixed -->
