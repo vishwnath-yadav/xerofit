@@ -1162,6 +1162,10 @@ width: 45%;
 	margin-top: 150%;
 }
 
+.load_m{
+	margin: 30% 0 0 50%;
+}
+
 .wd50{width: 50%}
 
 .green_txt{
@@ -1210,6 +1214,7 @@ width: 45%;
     float: left;
     height: 28px;
     margin-bottom: 6px;
+    margin-top: 10px;
     position: relative;
     width: 20%;
 	input[type=file]{
@@ -1616,7 +1621,7 @@ min-width: 500px !important;}
 
 .loader_img{
 	left: 50%;
-	top: 50%;
+	top: 30%;
 	position: absolute;
 	margin-left: -16px;
 	margin-top: -16px;

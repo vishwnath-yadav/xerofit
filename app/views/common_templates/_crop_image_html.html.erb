@@ -1,9 +1,9 @@
 
-
-<span style="opacity:0;">
-<a href="javascript:void(0)" id="testing" onclick="return launchEditor('<%= id %>');">Edit!</a>
+<span>
 <%=hidden_field_tag :type, type%>
 <!-- original line of HTML here: -->
-<img id="<%= id %>" src="<%= type=="workout" ? Workout.find_by_id(id).pic.url(:original) : User.find(id).pic.url(:original)%>"/>
+<img id="<%= id %>" src="<%= type=="workout" ? Workout.find_by_id(id).pic.url(:original) : User.find(id).pic.url(:original)%>" style="height:340px;width:500px"/>
+<a href="javascript:void(0)" id="testing" onclick="return launchEditor('<%= id %>');">Edit!</a>
 </span>
+
 
