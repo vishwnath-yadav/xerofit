@@ -1,7 +1,7 @@
 class Workout < ActiveRecord::Base
 	obfuscate_id :spin => 12548694
 
-	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "40x40>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
+	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
   	validates :pic, :dimensions => { :width => 300, :height => 300 }
 	has_many :blocks

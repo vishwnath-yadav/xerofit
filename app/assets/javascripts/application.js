@@ -108,7 +108,7 @@ $( document ).ready(function() {
   });
 
   $(document).on("change","#user_pic", function(){
-    $("#image_div").html('');
+    $("#image_loading").html('<img src="/assets/ajax-loader.gif" class="load_m">');
     $.fancybox.open({
       href: '#image_loading',
       type: 'inline'
