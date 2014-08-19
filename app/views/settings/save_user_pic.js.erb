@@ -1,6 +1,5 @@
 <%if @success == true%>
 	$('#image_loading').html("<%= escape_javascript(render(:partial => '/common_templates/crop_image_html', locals: {id: @id, type: @type})) %>");
-	
 <%else%>
   $.fancybox.close();
   alert('Image should be at least 300px by 300px.');

@@ -1399,6 +1399,13 @@ button[disabled], html input[disabled] {
 	background: #ccc;
 }
 
+.avpw_is_embed #avpw_controls {
+	top: 12% !important;
+	left: 22% !important;
+	right: 22% !important;
+	bottom: 45% !important;
+}
+
 
 ul.exer_list_view{width: 100%; float:left }
 
@@ -1590,12 +1597,7 @@ overflow: visible;
 	color:red;
 }
 
-.avpw_is_embed #avpw_controls {
-top: 12% !important;
-left: 22% !important;
-right: 22% !important;
-bottom: 45% !important;
-}
+
 
 #avpw_controls {
 min-height: 400px !important;

@@ -111,7 +111,10 @@ $( document ).ready(function() {
     $("#image_loading").html('<img src="/assets/ajax-loader.gif" class="load_m">');
     $.fancybox.open({
       href: '#image_loading',
-      type: 'inline'
+      type: 'inline',
+      'onClosed' : function() {
+        alert("ddddd");
+      }
     });
     $("#user_logo").submit();
   });
@@ -119,6 +122,10 @@ $( document ).ready(function() {
   $(document).on("click",".wrk_chos",function(){
      $(this).css('background', '#72c9b8');
      $("#workout_pic").click();
+  });
+
+  $(document).on('click','.cancel_pop', function(){
+    $.fancybox.close();
   });
 
   $('.custom-upload input[type=file]').change(function(e){

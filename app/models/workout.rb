@@ -3,7 +3,7 @@ class Workout < ActiveRecord::Base
 
 	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
-  	validates :pic, :dimensions => { :width => 300, :height => 300 }
+  	validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create
 	has_many :blocks
 	has_one :statastic
 	belongs_to :user
