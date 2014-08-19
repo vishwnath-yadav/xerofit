@@ -7,7 +7,7 @@
     <div class="control_bar_wrap">
       <%if hide_if_admin%>
         <div class="create_new control_bar_tooltip" data-toggle="tooltip" data-placement="bottom" title="Add New">
-          <a href="<%= new_library_path %>" id="add_to_library"></a>
+          <a href="<%= new_library_path %>" id="add_to_library" data-no-turbolink='true'></a>
         </div>
       <%end%>
 
