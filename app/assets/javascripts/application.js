@@ -95,6 +95,8 @@ $( document ).ready(function() {
     $('#video_library_info').submit();
   });
 
+
+
   $('.li_active').click(function() {
     $('.li_active').removeClass('active');
     $(this).addClass('active');
