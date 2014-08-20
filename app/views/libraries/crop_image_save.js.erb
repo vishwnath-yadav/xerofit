@@ -1,0 +1,7 @@
+<%if params[:type] == "workout"%>
+	$(".workout_edit_pic").attr('src', "<%=@obj.pic.url(:p_square)%>");
+	$(".workout_edit_pic1").attr('src', "<%=@obj.pic.url(:square)%>");
+<%else%>
+	$(".profile_image").attr('src', "<%=@obj.pic.url(:medium)%>");
+<%end%>
+$('.modal').modal('toggle');
