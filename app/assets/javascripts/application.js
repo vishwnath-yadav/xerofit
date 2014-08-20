@@ -24,6 +24,7 @@
 //= require plugins/jquery_form.js
 //= require plugins/jquery.jcarousel.min
 //= require plugins/jcarousel.responsive.js
+//= require plugins/cropper.min.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -108,16 +109,27 @@ $( document ).ready(function() {
   });
 
   $(document).on("change","#user_pic", function(){
-    $("#image_loading").html('<img src="/assets/ajax-loader.gif" class="load_m">');
-    $.fancybox.open({
-      href: '#image_loading',
-      type: 'inline',
-      'onClosed' : function() {
-        alert("ddddd");
-      }
-    });
+    var $modal = $("#bootstrap-modal"),
+        $image = $modal.find(".bootstrap-modal-cropper img"),
+        originalData = {};
+  
+      $modal.on("shown.bs.modal", function() {
+        
+      }).on("hidden.bs.modal", function() {
+        originalData = $image.cropper("getData");
+        $image.cropper("destroy");
+        $(".modal-footer").addClass('hide');
+        $(".bootstrap-modal-cropper").html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
+      });
+    
+    $(".load_modal").click();
     $("#user_logo").submit();
   });
+
+  $(document).on("click",".save_crop_image",function(){
+     $("#crop_image_form").submit();
+  });
+
 
   $(document).on("click",".wrk_chos",function(){
      $(this).css('background', '#72c9b8');

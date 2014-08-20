@@ -24,21 +24,19 @@ class SettingsController < ApplicationController
 
 	def save_user_pic
 		@type = params[:type]
-		if params[:type] == "profile"
-			@user = User.find(params[:id])
+		if @type == "profile"
+			@obj = User.find(params[:id])
 		else
-			@user = Workout.find_by_id(params[:id])
+			@obj = Workout.find_by_id(params[:id])
 		end
-		if @user.present?
-			@user.pic = params[:user][:pic]
-			if @user.save
+		if @obj.present?
+			@obj.pic = params[:user][:pic]
+			if @obj.save
 				@success = true
 			else
 				@success = false
 			end
 		end
-		@id = @user.id
-			
 		respond_to do |format|
 			format.js
 		end
@@ -70,6 +68,7 @@ class SettingsController < ApplicationController
 	def marketplace
 	end
 
+	
 	private
 	  def user_params
 	    params.require(:user).permit!

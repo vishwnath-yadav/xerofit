@@ -128,14 +128,10 @@
     <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
     <%=link_to "Remove this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
   </div>
-  <div id="editor_wrapper" style="height:300px;width:500px;float:left"></div>
 </div>
 
 </div>
-<div id="loader" class="loader" style="display:none;">
-  <img src="/assets/ajax-loader1.gif" class="loader_img">
-</div>
-<%=render "common_templates/image_loading"%>
+
 <script>
   $(document).ready(function(){
     var v = $('.wrk_rvw').attr('work-attr');
@@ -148,5 +144,6 @@
   $('.admin_li').removeClass('active')
   $('.admin_li.workout').addClass('active');
 </script>
+<%=render "common_templates/modal_for_crop_image"%>
 
   

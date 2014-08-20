@@ -1,7 +1,16 @@
 class Workout < ActiveRecord::Base
 	obfuscate_id :spin => 12548694
 
-	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
+	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
+  	
+	attr_accessor :x, :y, :width, :height, :cropper_id
+
+  	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"},:whiny_thumbnails => true, :path => 
+                          ":rails_root/public/system/:attachment/:id/:style/:style.:extension", 
+                          :url => "/system/:attachment/:id/:style/:style.:extension"
+
+
   	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
   	validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create
 	has_many :blocks
@@ -76,5 +85,17 @@ class Workout < ActiveRecord::Base
 	def self.workout_count
 		self.all.count
 	end
+
+	def update_photo_attributes(att)
+    scaled_img = Magick::ImageList.new(self.pic.path)
+    orig_img = Magick::ImageList.new(self.pic.path(:original))
+    scale = orig_img.columns.to_f / scaled_img.columns
+    args = [ att[:x1], att[:y1], att[:width], att[:height] ]
+    args = args.collect { |a| a.to_i * scale }
+    orig_img.crop!(*args)
+    orig_img.write(self.pic.path(:original))
+    self.pic.reprocess!
+    self.save
+  end
 
 end

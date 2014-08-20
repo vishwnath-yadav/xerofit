@@ -136,34 +136,17 @@ class LibrariesController < ApplicationController
 		    format.js
 	    end
 	end
-	def image_test
-
-	end
 
 	respond_to :json, :js
-	def image_test_save
-		if params[:c_type]=="profile"
-		      @photo = User.where(id: params[:id]).last
+	def crop_image_save
+		if params[:type] == "workout"
+			@obj = Workout.find_by_id(params[:id])
 		else
-		      @photo = Workout.where(id: params[:id]).last
-		      type = params[:c_type]
+			@obj = User.find_by_id(params[:id])
 		end
-
-		if @photo.present?
-	      contents = Magick::Image.read(params[:url]).first
-	      file = Tempfile.new(["Edited_Photo", ".jpg"])
-	      contents.write(file.path)
-	      if @photo.update_attributes(:pic=>file)
-	      	@success = true
-	      else
-	      	@success = false
-	      end
-		end
-
-		if params[:c_type]=="profile"
-	    	render json: {url1: @photo.pic.url(:medium), type: type, success: @success}
-	    else
-	    	render json: {url1: @photo.pic.url(:square), url2: @photo.pic.url(:p_square), type: type, success: @success}
+		@obj.update_photo_attributes(params)
+    	respond_to do |format|
+		    format.js
 	    end
 	end
 

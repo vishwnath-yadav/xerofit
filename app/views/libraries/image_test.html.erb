@@ -1,45 +1,35 @@
-
-
-
-<script type='text/javascript'>
-function launchEditor(id) {
-	$.fancybox.close();
-    featherEditor.launch({
-        image: id
-    });
-    return false
-}
-
-</script>
-
-<a href="javascript:void(0)" id="testing" onclick="return launchEditor('4');">Edit!</a>
-
-<!-- original line of HTML here: -->
-<img id="4" src="<%=current_user.pic.url(:medium)%>"/>
-
-<div id="editor_wrapper" style="height:400px;width:500px;"></div>
+<%= form_tag('/library/crop_image_save', remote: true, id: 'crop_image_form') do |crop| %>
+    <img src="<%=current_user.pic.url(:display)%>" class="cropper">
+  <%["x", "y", "width", "height"].each do |att|%>
+    <%=hidden_field_tag "#{att}"%>
+  <%end%>
+  <%=hidden_field_tag "type", params[:type]%>
+  <%=hidden_field_tag "id", params[:id]%>
+  <%=button_tag :button%>
+<%end%>
 
 <script>
-	var featherEditor = new Aviary.Feather({
-	apiKey: 'e0a1cfea3a2b85e8',
-	apiVersion: 3,
-	tools: 'crop,orientation',
-	appendTo: 'editor_wrapper',
-	onSave: function(imageID, newURL) {
-		$("#custom_overlay").show();
-		var img = document.getElementById(imageID);
-		img.src = newURL;
-		$.ajax({
-			type: "POST",
-			url: "/library/image_test_save",
-			data: {id: imageID, url: newURL},
-			success: function(data) {
-				if (data){
-				}
-			}
-		});
-	}
-});
- 
-launchEditor('4');
+
+var $image = $('.cropper'),
+    $dataX = $("#x"),
+    $dataY = $("#y"),
+    $dataHeight = $("#height"),
+    $dataWidth = $("#width");
+
+$image.cropper({
+  aspectRatio: "auto",
+  multiple: true,
+  data: {
+    x: 200,
+    y: 200,
+    width: 400,
+    height: 200
+  },
+  done: function(data) {
+    $dataX.val(data.x);
+    $dataY.val(data.y);
+    $dataHeight.val(data.height);
+    $dataWidth.val(data.width);
+  }
+})
 </script>

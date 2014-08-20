@@ -82,7 +82,7 @@ Xerofit::Application.routes.draw do
       post 'filter'
       get 'full_workout_content'
       get 'image_test'
-      post 'image_test_save'
+      post 'crop_image_save'
     end
     member do
       
