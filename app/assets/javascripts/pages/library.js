@@ -39,7 +39,8 @@ $( document ).ready(function() {
     var id = $parent.attr('data-id');
     $('.target_muscle_menu_'+id).val(menu);
     $('.target_muscle_submenu_'+id).val(sub_cat);
-    $('.target_'+id).text(sub_menu);
+    $('.target_'+id).text(sub_menu).css('border', '1px solid #e1e0dd');
+    $(".lib_error").removeClass('lib_error').text("");
   });
 
   $('.type_select ul li').click(function(){

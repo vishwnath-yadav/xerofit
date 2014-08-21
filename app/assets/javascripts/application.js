@@ -174,14 +174,16 @@ function load_dropKick_js() {
 }
 
 function is_target_muscle_group_empty(){
-  is_filled = true
+  var is_filled = true
   for(i=0;i<=4;i++){
    if($(".edit_tmg:eq("+i+")").is(':visible') && $(".taget_val:eq("+i+")").val() == ""){
       $(".edit_tmg:eq("+i+")").find('.drop_toggle').css("border", "1px solid red");
-      is_filled = false
+      is_filled = false;
+      $(".error_span").addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
+      return false;
    }
   }
-  return is_filled
+  return is_filled;
 }
 
 function remove_success_msg(){

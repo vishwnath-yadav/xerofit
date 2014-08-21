@@ -48,6 +48,7 @@
 <div class="middle_wrapper">
 <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
   <div class="exer_rht_col pd30">
+    <span class="error_span"></span>
     <div class= "lib_move_title">
       Basic Move Information
     </div>
