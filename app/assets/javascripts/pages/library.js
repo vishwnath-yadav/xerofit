@@ -43,6 +43,7 @@ $( document ).ready(function() {
     $(".lib_error").removeClass('lib_error').text("");
   });
 
+
   $('.type_select ul li').click(function(){
     $('#select_option').val("type");
     $('#select_option_val').val($(this).text());
