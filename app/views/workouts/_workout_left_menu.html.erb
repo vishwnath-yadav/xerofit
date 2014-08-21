@@ -1,5 +1,9 @@
 <% libraries.each do |lib|%>
+  <%if lib.has_full_detail%>
     <div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=lib.id%>">
+  <%else%>
+    <div class="white_list gray_bg">
+  <%end%>
         <div class="white_list_left">
             <h6><%= lib.title %></h6>
               <p><%= lib.category %></p>

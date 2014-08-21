@@ -12,11 +12,11 @@ class LibrariesController < ApplicationController
 			@view = 'grid'
 		end
 		user = User.where(token: params[:id]).last
-		@list1 = Library.get_library_list(params[:status],params[:title],params[:type],current_user,user)
+		@list1 = Library.get_library_list(params,current_user,user)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
-				format.js
-				format.html
+			format.js
+			format.html
 		end
 	end
 	
@@ -109,8 +109,8 @@ class LibrariesController < ApplicationController
 		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
 		end
 		respond_to do |format|
-	        format.js
-        end
+      format.js
+    end
 	end
 
 	def see_more_thumbnail

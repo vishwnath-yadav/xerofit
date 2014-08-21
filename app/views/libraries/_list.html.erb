@@ -1,10 +1,22 @@
 <% if @list.present? %>
   <ul class="exer_list_view">
     <li>
-      <span class="thumb_text">Name</span>
+      <span class="thumb_text">
+        <span class="name_sort">Name</span>
+          <span class="sort_icon">
+            <i class="icon-sort column_sort" data-sort="title" data-order="ASC"></i>
+            <i class="icon-sort_down column_sort" data-sort="title" data-order="DESC"></i>
+          </span>
+        </span>
       <span>Type</span>
       <span>Status</span>
-      <span class="tx_rht">Last Modified</span>
+      <span class="tx_rht heading_txt">
+        <span class="name_sort">Last Modified</span>
+        <span class="sort_icon">
+            <i class="icon-sort column_sort" data-sort="updated_at" data-order="ASC"></i>
+            <i class="icon-sort_down column_sort" data-sort="updated_at" data-order="DESC"></i>
+        </span>
+      </span>
     </li>
     <% @list.each_with_index do |ls, index| %>
       <li>

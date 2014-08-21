@@ -89,7 +89,9 @@ $( document ).ready(function() {
   $('.edit_lib').click(function(){
     var status = $(this).attr('lib-status');
     $('#status').val(status);
-    $('#edit_video_info').submit();
+    if(is_target_muscle_group_empty()){
+      $('#edit_video_info').submit();
+    }
   });
 
   $('#panda_video_enable').click(function(){
@@ -156,6 +158,7 @@ $( document ).ready(function() {
   });
 
   setTimeout(load_dropKick_js, 5000);
+  setTimeout(remove_success_msg, 5000);
 });
 
 function load_dropKick_js() {
@@ -168,5 +171,20 @@ function load_dropKick_js() {
     $('#type').val($(this).text());
     $('#search_grid_list_form').submit();
   });
+}
+
+function is_target_muscle_group_empty(){
+  is_filled = true
+  for(i=0;i<=4;i++){
+   if($(".edit_tmg:eq("+i+")").is(':visible') && $(".taget_val:eq("+i+")").val() == ""){
+      $(".edit_tmg:eq("+i+")").find('.drop_toggle').css("border", "1px solid red");
+      is_filled = false
+   }
+  }
+  return is_filled
+}
+
+function remove_success_msg(){
+  $('.success').removeClass('move_detail').html('');
 }
 

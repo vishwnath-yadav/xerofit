@@ -1,5 +1,7 @@
 class Library < ActiveRecord::Base
 	obfuscate_id :spin => 79678343
+	
+	# default_scope order('updated_at DESC')
 
 	belongs_to :user
 	has_many :target_muscle_groups
@@ -36,35 +38,42 @@ class Library < ActiveRecord::Base
 		self.save
 	end
 
-	def previous_post
-	  self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
-	end
+	# def previous_post
+	#   self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
+	# end
 
-	def next_post
-	  self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
-	end
+	# def next_post
+	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
+	# end
 
-	def self.get_library_list(status,name,type,cur_user,param_user_id)
+	def self.get_library_list(params,cur_user,param_user_id)
 		if cur_user.admin? && param_user_id.present?
-			list = list_view(status,name,type,param_user_id)
+			list = list_view(params[:status],params[:title],params[:type],param_user_id)
 		elsif cur_user.admin?
-			list = list_view(status,name,type,'')
+			list = list_view(params[:status],params[:title],params[:type],'')
 		else	
-			list = list_view(status,name,type,cur_user)
+			list = list_view(params,cur_user)
 		end
 		return list
 	end
 
-	def self.list_view(status,name,type,user)
-		if type == "Workouts" 
-			list = Workout.by_name(name).by_status(status).by_user(user).where(state: :completed)
-		elsif type == "Moves"
-			list = Library.by_name(name).by_status(status).by_user(user).all
+	def self.list_view(params,user)
+		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
+		order = params[:order].blank? ? "DESC" : params[:order]
+		if params[:type] == "Workouts" 
+			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed).order("#{sort} #{order}")
+		elsif params[:type] == "Moves"
+			list = Library.by_name(params[:title]).by_status(params[:status]).by_user(user).order("#{sort} #{order}")
 		else
-			list = Workout.by_name(name).by_status(status).by_user(user).where(state: :completed)
-			list << Library.by_name(name).by_status(status).by_user(user).all
+			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
+			list << Library.by_name(params[:title]).by_status(params[:status]).by_user(user).all
+			list = list.flatten
+			if sort == "updated_at"
+				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
+			else
+				list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
+			end
 		end
-		list.flatten
 	end
 
 	def update_target_muscle(target_muscles)
@@ -109,4 +118,20 @@ class Library < ActiveRecord::Base
 		size1.size > 6 ? size1.pop() : size1
 		return size1
 	end
+
+	def has_full_detail
+		target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
+		attributes = [self.title, self.directions, self.category, self.difficulty, self.status, self.equipment.join(",")]
+		req = attributes & [nil, ""]
+		req.size == 0 && target_muscles.size > 0 && self.is_thumbnail_created
+	end
+
+	def is_thumbnail_created
+		 self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present?
+	end
+
+	def target_muscles
+		self.target_muscle_groups
+	end
+
 end

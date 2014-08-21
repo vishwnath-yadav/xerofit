@@ -1,18 +1,20 @@
 class Workout < ActiveRecord::Base
 	obfuscate_id :spin => 12548694
 
+	# default_scope order('updated_at DESC')
+
 	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	
 	attr_accessor :x, :y, :width, :height, :cropper_id
 
-  	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"},:whiny_thumbnails => true, :path => 
                           ":rails_root/public/system/:attachment/:id/:style/:style.:extension", 
                           :url => "/system/:attachment/:id/:style/:style.:extension"
 
 
-  	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
-  	validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create
+	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
+	validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
+	
 	has_many :blocks
 	has_one :statastic
 	belongs_to :user
@@ -74,13 +76,13 @@ class Workout < ActiveRecord::Base
 	end
 
 
-	def previous_post
-	  self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
-	end
+	# def previous_post
+	#   self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
+	# end
 
-	def next_post
-	  self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
-	end
+	# def next_post
+	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
+	# end
 
 	def self.workout_count
 		self.all.count

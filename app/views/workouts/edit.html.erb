@@ -12,6 +12,7 @@
             <%@workout.blocks.each do |block|%>
               <%=render "sub_blocks_edit", block: block%>
             <%end%>
+            <%=render "sub_blocks", block: @block%>
           </div>
           <div class="hidden_field_workout">
           </div>

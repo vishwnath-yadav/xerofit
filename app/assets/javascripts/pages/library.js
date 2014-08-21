@@ -62,11 +62,24 @@ $( document ).ready(function() {
      $('#search_grid_list_form').submit();
   });
 
+  $(document).on("click",".column_sort",function(){
+    $("#sorted_by").val($(this).attr('data-sort'));
+    $("#order").val($(this).attr('data-order'));
+    $('#search_grid_list_form').submit();
+  });
+
   $(document).on("click","#lib_name_for_search",function(){
   	$('#search_grid_list_form').submit();
   });
 
-  $('#search_lib_by_name').keypress(function(e){
+  $(document).on("click",".search_span",function(){
+    $("#search_lib_by_name").val('');
+    $(".search_span").addClass('hide');
+    $('#search_grid_list_form').submit();
+  });
+
+  $(document).on("keypress, click", '#search_lib_by_name', function(e){
+      $(".search_span").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
       }
@@ -75,6 +88,10 @@ $( document ).ready(function() {
   // Bootstrap Tooltips
   $('.control_bar_tooltip').tooltip({
     placement: 'bottom'
+  });
+
+  $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
+      $('#search_grid_list_form').submit();
   });
 });
 

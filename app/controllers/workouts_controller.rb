@@ -22,6 +22,9 @@ class WorkoutsController < ApplicationController
 
 	def edit
 		@workout = Workout.find(params[:id])
+		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
+		@block.save
+		@display = "block_hide"
 	end
 
 	def update
@@ -71,7 +74,8 @@ class WorkoutsController < ApplicationController
 			@workout.state = "completed"
 			@workout.save
 		end
-		redirect_to :back
+		flash[:notice] = "Workout Saved Successfully!"
+		redirect_to libraries_path
 	end
 
 	def remove_library_from_block

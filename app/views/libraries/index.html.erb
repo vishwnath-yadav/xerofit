@@ -16,12 +16,17 @@
           <div class="search_bar_col">
             <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_lib_by_name" %>
             <input type="button" id="lib_name_for_search">
+            <span class="search_span hide">
+              <img src="/assets/search_bar_clear_icon.png">
+            </span>
           </div>
         <%end%>
 
         <div class="select_bar_col">
           <%= hidden_field_tag :id, params[:id]%>
           <%= hidden_field_tag :type%>
+          <%= hidden_field_tag :sorted_by, "updated_at"%>
+          <%= hidden_field_tag :order, "DESC"%>
           <%= hidden_field_tag :status%>
           <%= hidden_field_tag :view_type, "grid"%>
 
@@ -57,6 +62,11 @@
 </div>
 
 <div class="middle_wrapper">
+  <%if flash[:notice].present?%>
+    <div class="wrk_success success">
+      <%= flash[:notice] %>
+    </div>
+  <%end%>
 	<div class="dashboard_mid">
     <div class="library_col  library_view">
       <%= render "grid" %>
