@@ -1,4 +1,4 @@
-ready = function(){
+$(document).ready(function(){
   
   // $(document).on("click", ".replace_video_btn", function() {
   //    $('.upload_edit').css('display','none');
@@ -18,7 +18,7 @@ ready = function(){
     check_require_field();
   });
 
-  $(document).on("change keyup",".for_on_changed",function(){
+  $(document).on("change keyup click dblclick",".for_on_changed",function(){
     $('.chg_save').removeClass('dis_link');
   });
   
@@ -44,7 +44,7 @@ ready = function(){
   });
 
 
-  $('.type_select ul li').click(function(){
+  $(document).on('click','.type_select ul li', function(){
     $('#select_option').val("type");
     $('#select_option_val').val($(this).text());
     $('#search_grid_list_form').submit();
@@ -95,9 +95,8 @@ ready = function(){
   $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
       $('#search_grid_list_form').submit();
   });
-};
+});
 
-$(document).on('page:load', ready);
 function check_require_field(){
   var flag= 1;
   $(".for_on_change").each(function() {

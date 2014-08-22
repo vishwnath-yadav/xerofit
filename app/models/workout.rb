@@ -1,13 +1,13 @@
 class Workout < ActiveRecord::Base
+	require 'RMagick'
 	obfuscate_id :spin => 12548694
-
 	# default_scope order('updated_at DESC')
 
 	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
   	
 	attr_accessor :x, :y, :width, :height, :cropper_id
 
-	has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"},:whiny_thumbnails => true, :path => 
+	has_attached_file :pic, :styles => { :display => '300x200', :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"},:whiny_thumbnails => true, :path => 
                           ":rails_root/public/system/:attachment/:id/:style/:style.:extension", 
                           :url => "/system/:attachment/:id/:style/:style.:extension"
 

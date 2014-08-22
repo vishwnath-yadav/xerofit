@@ -1,4 +1,4 @@
-ready = function() {
+$(document).ready(function() {
 
   $(document).on("change keyup",".for_work_change",function(){
     $('.wrk_sve').removeClass('dis_link');
@@ -35,31 +35,32 @@ ready = function() {
     $('#filter_search_form').submit();
   });
 
-  $(".workout_search_btn").click( function(){
+  $(document).on("click",".workout_search_btn", function(){
     var search_txt = $(".search_icon").val();
     var type = $("#filter_change").hasClass("asc") ? 'asc' : 'desc';
     $('.filter_desc').val(type);
     $('#filter_search_form').submit();
   });
-  $('.search_icon').keypress(function(e){
+
+  $(document).on('keypress','.search_icon', function(e){
       if(e.which == 13){//Enter key pressed
         $('.workout_search_btn').click();//Trigger search button click event
       }
   });
 
 
-  $(".wrk_add_opt").click(function(){
+  $(document).on("click",".wrk_add_opt", function(){
     $.fancybox.open({
       href: '#wrk_add_option',
       type: 'inline'
     });
   });
 
-  $(".close_icon").click(function(){
+  $(document).on("click",".close_icon", function(){
     $.fancybox.close();
   });
 
-  $('#publish').click(function(){
+  $(document).on('click','#publish', function(){
     var verify = true;
     if(!$('#workid').length){
       verify = false;
@@ -147,7 +148,7 @@ ready = function() {
     }
   });
 
-  $('.edit_work').click(function(){
+  $(document).on('click','.edit_work', function(){
     var status = $(this).attr('lib-status');
     $('.workout_status').val(status);
     $('#edit_workout_info').submit();
@@ -169,7 +170,7 @@ ready = function() {
     }
   });
 
-  $('.fetured_li ul li').mouseover(function(){
+  $(document).on('mouseover','.fetured_li ul li', function(){
     $('.active_tab').removeClass('active_tab');
     $(this).addClass('active_tab');
   });
@@ -181,7 +182,7 @@ ready = function() {
     obj.text(size+'/'+max_size+' Character');
   });
 
-  $(".block_type_submit").click(function(){
+  $(document).on('click',".block_type_submit", function(){
      create_sub_block();
   });
 
@@ -191,9 +192,9 @@ ready = function() {
       return false;
     }
   });
-};
+});
 
-$(document).on('page:load', ready);
+// $(document).on('page:load', ready);
 
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';

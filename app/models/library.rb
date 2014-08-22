@@ -48,9 +48,9 @@ class Library < ActiveRecord::Base
 
 	def self.get_library_list(params,cur_user,param_user_id)
 		if cur_user.admin? && param_user_id.present?
-			list = list_view(params[:status],params[:title],params[:type],param_user_id)
+			list = list_view(params,param_user_id)
 		elsif cur_user.admin?
-			list = list_view(params[:status],params[:title],params[:type],'')
+			list = list_view(params,'')
 		else	
 			list = list_view(params,cur_user)
 		end
