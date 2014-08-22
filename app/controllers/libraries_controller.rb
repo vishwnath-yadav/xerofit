@@ -16,6 +16,7 @@ class LibrariesController < ApplicationController
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js
+			formt.html
 		end
 	end
 	
