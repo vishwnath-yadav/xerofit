@@ -40,7 +40,7 @@ class LibrariesController < ApplicationController
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
 	  if params[:library][:title].blank?
-	  	params[:library][:title] = video.video_title
+	  	params[:library][:title] = video.video_title.split(".")[0]
 	  end 	
 	  @library = Library.new(library_params)
 	  @library.user_id = current_user.id

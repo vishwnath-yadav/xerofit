@@ -128,8 +128,62 @@
           <div class="exr_field_col ">
             <label>Equipment</label>
             <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
-            <div>
-              <%= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "equ_cls for_on_changed" } %>
+            <div class="dblclk_add">
+              <%#= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "equ_cls for_on_changed" } %>
+               <ul class="surja_jai">
+                <% Library::EQUIPMENT_LIST.each do |list|%>
+                  <li class="for_on_changed"><%= list %></li>
+                <% end %>
+                <!-- <li>Adjustable Ab Board</li>
+                <li>Ankle Weights</li>
+                <li>Balance Beam</li>
+                <li>Balance Block</li>
+                <li>Balance Disc</li>
+                <li>Balance Dome (Bosu Ball)</li>
+                <li>Balance Pad</li>
+                <li>Barbell</li>
+                <li>Decline Bench</li>
+                <li>Dual Grip Medicine Ball</li>
+                <li>Dumbbells</li>
+                <li>Elliptical Machine</li>
+                <li>Exercise Ball (Swiss Ball)</li>
+                <li>Exercise Bike</li>
+                <li>Fit Chair</li>
+                <li>Fitness Tubes</li>
+                <li>Flat Band</li>
+                <li>Flat Bench</li>
+                <li>Foam Roller</li>
+                <li>Folding Mat</li>
+                <li>Incline Bench</li>
+                <li>Inflatable Pilates Ball Roller</li>
+                <li>Kettlebell</li>
+                <li>Medicine Ball</li>
+                <li>Mini Medicine Ball</li>
+                <li>Non-Bouncing Physical Therapy (P.T.) Ball</li>
+                <li>Pull Up Bar</li>
+                <li>Punching Bag</li>
+                <li>Resistance Band</li>
+                <li>Semi-Recumbent Ab Bench</li>
+                <li>Spin Style Bike</li>
+                <li>Stationary Bike</li>
+                <li>Suspension Trainer (TRX)</li>
+                <li>Treadmill</li>
+                <li>Upright Bike</li>
+                <li>Weighted Gloves</li>
+                <li>Weighted Vest</li>
+                <li>Wobble Board</li>
+                <li>Wrist Weights</li>
+                <li>Yoga Block</li> -->
+              </ul>
+            </div>
+            <div class="add_plce">
+              <% if @library.equipment.present? %>
+                <% @library.equipment.each_with_index do |equip, index|%>
+                  <div class="close_equip for_on_changed" id="<%= index+1 %>">
+                    <input type="hidden" name="library[equipment][]" value="<%=equip %>"><span class="fl_text"><%= equip %></span> <span><a href="javascript:void(0)" class="close_icon" data-attr="<%= index+1 %>">X</a></span>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
           </div>
       </div>
