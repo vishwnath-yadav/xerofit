@@ -10,8 +10,6 @@ $(document).ready(function() {
   
 });
 
-
-
 function upload_video_fancybox(obj){
   var is_edit_video = obj.attr('data-edit');
   $.fancybox.open({
