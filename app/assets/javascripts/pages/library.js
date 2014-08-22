@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+ready = function(){
   
   // $(document).on("click", ".replace_video_btn", function() {
   //    $('.upload_edit').css('display','none');
@@ -95,8 +95,9 @@ $( document ).ready(function() {
   $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
       $('#search_grid_list_form').submit();
   });
-});
+};
 
+$(document).on('page:load', ready);
 function check_require_field(){
   var flag= 1;
   $(".for_on_change").each(function() {

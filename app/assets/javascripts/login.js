@@ -1,6 +1,6 @@
 //= require jquery
 
-$(document).ready(function() {
+ready = function() {
   $('#txthdnPassword').hide();
   $('.spn_pass').click(function() {
       var isChecked = $(this).text();
@@ -17,4 +17,6 @@ $(document).ready(function() {
           $('#user_password').val($('#txthdnPassword').val());
       }
   });
-})
+};
+
+$(document).on('page:load', ready);

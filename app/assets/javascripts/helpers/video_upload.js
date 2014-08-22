@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+ready = function() {
   full_workout = false;
   $(document).bind('drop dragover', function (e) {
     e.preventDefault();
@@ -8,7 +8,9 @@ $( document ).ready(function() {
     upload_video_fancybox($(this))
   });
   
-});
+};
+
+$(document).on('page:load', ready);
 
 function upload_video_fancybox(obj){
   var is_edit_video = obj.attr('data-edit');

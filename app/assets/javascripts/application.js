@@ -33,7 +33,7 @@
 //= require pages/workout.js
 
 
-$( document ).ready(function() {
+ready = function() {
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
@@ -159,7 +159,9 @@ $( document ).ready(function() {
 
   setTimeout(load_dropKick_js, 5000);
   setTimeout(remove_success_msg, 5000);
-});
+};
+
+$(document).on('page:load', ready);
 
 function load_dropKick_js() {
   $('.status_select ul li').click(function(){

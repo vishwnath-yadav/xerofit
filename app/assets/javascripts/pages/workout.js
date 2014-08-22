@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+ready = function() {
 
   $(document).on("change keyup",".for_work_change",function(){
     $('.wrk_sve').removeClass('dis_link');
@@ -191,7 +191,9 @@ $( document ).ready(function() {
       return false;
     }
   });
-});
+};
+
+$(document).on('page:load', ready);
 
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';
