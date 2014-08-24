@@ -96,6 +96,17 @@ input.search_bar {
     }
 }
 
+.search_span{
+    position: absolute;
+    right: 7px;
+    top: 3px;
+    cursor: pointer;
+}
+.search_span img{
+    height: 15px;
+    width: 15px;
+}
+
 
 // Control Bar Filters
 .select_bar_col {
@@ -329,6 +340,40 @@ input.search_bar {
 // Fitness Library Home - List View
 // ==================================================================
 //
+
+
+//sort columns filters
+
+.icon-sort{
+    background-image: url('/assets/tip_icon.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.icon-sort_down{
+    background-image: url('/assets/tip_icon_down.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+ul.exer_list_view li span.name_sort{
+    width: auto;
+    padding-right: 5px;
+}
+
+ul.exer_list_view li span.sort_icon{
+    width: 12px;
+    float: left;
+    margin-top: 4px;
+}
+ul.exer_list_view li span.tx_rht.heading_txt{float: right;
+max-width: 153px}
 
 
 .library_col ul.library_list_view {
