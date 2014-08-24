@@ -1,32 +1,38 @@
 <% if action_name == 'edit' && controller_name == 'libraries' %>
-  <% temp = 0 %>
-  <ul id="see_more">
-  <% @size.each_with_index do |library, index| %>
-    <% if(temp == 0) %>
-      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
-        <div class="video_title <%= (index == 0 && @library.library_video.image.present?)? 'select_thumb' : '' %>">Selected</div>
-      </li>
-      <% temp = temp+1 %>
-    <% elsif(temp<2) %>
-      <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
-        <div class="video_title">Selected</div>
-      </li>
-      <% temp = temp+1 %>
-    <% else %>
-      <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: "for_on_change1") %>
-        <div class="video_title">Selected</div>
-      </li>
-      <% temp = 0 %>
+  <% if @size.present? %>
+  
+    <% temp = 0 %>
+
+    <ul id="see_more">
+    <% @size.each_with_index do |library, index| %>
+      <% if(temp == 0) %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+          <div class="video_title <%= (index == 0 && @library.library_video.image.present?)? 'select_thumb' : '' %>">Selected</div>
+        </li>
+        <% temp = temp+1 %>
+      <% elsif(temp<2) %>
+        <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+          <div class="video_title">Selected</div>
+        </li>
+        <% temp = temp+1 %>
+      <% else %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: "for_on_change1") %>
+          <div class="video_title">Selected</div>
+        </li>
+        <% temp = 0 %>
+      <% end %>
     <% end %>
+    </ul>
+    <p class="load_more"><a href='javascript:void(0)'>Show all...</a></p>
+    <p class="load_less"><a href='javascript:void(0)'>Show less...</a></p>
+  <% else %>
+    <p style="color:red;">Thumbnail selections will appear when the video has finished processing.</p>
   <% end %>
-  </ul>
 <% end %>
-<p class="load_more"><a href='javascript:void(0)'>Show all...</a></p>
-<p class="load_less"><a href='javascript:void(0)'>Show less...</a></p>
 
 <script>
 $(document).ready(function(){
-  $('.li_class').click(function(){
+  $(document).on('click','.li_class', function(){
     // $('.li_change').removeClass('li_change');
     // $(this).addClass('li_change');
     var s = $(this).find('img').prop('src');
@@ -35,7 +41,7 @@ $(document).ready(function(){
     $(this).find('.video_title').addClass('select_thumb');
   });
 
-  $('.load_more').click(function(){
+  $(document).on('click','.load_more', function(){
     $('.image_hide').each(function( index ) {
       $(this).addClass('image_show');
       $(this).removeClass('image_hide');
@@ -47,7 +53,7 @@ $(document).ready(function(){
     });
   });
 
-  $('.load_less').click(function(){
+  $(document).on('click','.load_less', function(){
     $('.image_show').each(function( index ) {
       $(this).addClass('image_hide');
       $(this).removeClass('image_show');

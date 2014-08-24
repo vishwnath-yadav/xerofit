@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
   full_workout = false;
   $(document).bind('drop dragover', function (e) {
     e.preventDefault();

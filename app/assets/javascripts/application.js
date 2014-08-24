@@ -33,7 +33,7 @@
 //= require pages/workout.js
 
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
@@ -86,7 +86,7 @@ $( document ).ready(function() {
   });
 
 
-  $('.edit_lib').click(function(){
+  $(document).on('click','.edit_lib',function(){
     var status = $(this).attr('lib-status');
     $('#status').val(status);
     if(is_target_muscle_group_empty()){
@@ -94,13 +94,13 @@ $( document ).ready(function() {
     }
   });
 
-  $('#panda_video_enable').click(function(){
+  $(document).on('click','#panda_video_enable', function(){
     $('#video_library_info').submit();
   });
 
 
 
-  $('.li_active').click(function() {
+  $(document).on('click','.li_active', function() {
     $('.li_active').removeClass('active');
     $(this).addClass('active');
   });
@@ -148,7 +148,7 @@ $( document ).ready(function() {
     $(this).next().find('input').val(file);
   });
 
-  $('#country_select').on("change", function() {
+  $(document).on('change','#country_select', function() {
     select_wrapper = $('#order_state_code_wrapper')
 
     $('select', select_wrapper).attr('disabled', true)
@@ -157,9 +157,26 @@ $( document ).ready(function() {
     select_wrapper.load(url)
   });
 
+  $(document).on('dblclick','.dblclk_add ul li',function(){
+    var value = $(this).text();
+    var index_value = $('.close_equip:last').attr('id');
+    index_value = index_value ? parseInt(index_value) + 1 : 1
+    if($('.close_equip').size() < 5){
+      $('.add_plce').append('<div class="close_equip" id="'+index_value+'"><input type="hidden" name="library[equipment][]" value="'+value+'"><span class="fl_text">'+value+'</span> <span><a href="javascript:void(0)" class="close_icon" data-attr="'+index_value+'">X</a></span></div>');
+    }else{
+       alert("More then 5 not allow to add equipment");
+    }
+  });
+
+  $(document).on('click','.close_icon',function(){
+    var id = $(this).attr('data-attr');
+    $("#"+id).remove();
+  });
+
   setTimeout(load_dropKick_js, 5000);
   setTimeout(remove_success_msg, 5000);
 });
+
 
 function load_dropKick_js() {
   $('.status_select ul li').click(function(){

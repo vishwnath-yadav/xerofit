@@ -128,8 +128,21 @@
           <div class="exr_field_col ">
             <label>Equipment</label>
             <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
-            <div>
-              <%= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "equ_cls for_on_changed" } %>
+            <div class="dblclk_add">
+                <ul class="surja_jai">
+                <% Library::EQUIPMENT_LIST.each do |list|%>
+                  <li class="for_on_changed"><%= list %></li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="add_plce">
+              <% if @library.equipment.present? %>
+                <% @library.equipment.each_with_index do |equip, index|%>
+                  <div class="close_equip for_on_changed" id="<%= index+1 %>">
+                    <input type="hidden" name="library[equipment][]" value="<%=equip %>"><span class="fl_text"><%= equip %></span> <span><a href="javascript:void(0)" class="close_icon" data-attr="<%= index+1 %>">X</a></span>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
           </div>
       </div>

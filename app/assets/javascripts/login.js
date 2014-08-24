@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   $('#txthdnPassword').hide();
-  $('.spn_pass').click(function() {
+  $(document).on('click','.spn_pass', function() {
       var isChecked = $(this).text();
       if(isChecked == "Show") {
           $('#user_password').hide();
@@ -17,4 +17,5 @@ $(document).ready(function() {
           $('#user_password').val($('#txthdnPassword').val());
       }
   });
-})
+});
+
