@@ -14,7 +14,7 @@
           <img src="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
         </div>
         <div class="lib_text_box">
-          <h4><%= @library.title.titleize%></h4>
+          <h4><%= @library.title%></h4>
           <p class="library_item_status"><img src="<%= status_icon(@library.status)%>" /><%= @library.status %></p>
         </div>
       </div>
@@ -24,13 +24,14 @@
 
 <div class="details_page_header">
   <div class="container-fluid">
+  <%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
     <div class="lib_img_coll">
       <span class="show_img_on_scol">
         <div class="lib_image_box">
           <img src="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>" />
         </div>
         <div class="lib_text_box">
-          <h4><%= @library.title.titleize%></h4>
+          <h4><%= @library.title%></h4>
         </div>
       </span>
 
@@ -44,130 +45,156 @@
   </div>
 </div>
 
-
-<div class="middle_wrapper">
-<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'edit_video_info'}) do |lib| %>
-  <div class="exer_rht_col pd30">
-    <span class="error_span"></span>
-    <div class= "lib_move_title">
-      Basic Move Information
-    </div>
-    <div style="color:red;">
-      <% if @library.errors.full_messages.any? %>
-        <ul>
-          <% @library.errors.full_messages.each do |error_message| %>
-            <li><%= error_message %></li>
-          <% end %>
-        </ul>
-      <%end%>
-      <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
-      <%= hidden_field_tag :image, "", class: "image_url" %>
-      <div class="lib_des_lft">
+<div class="page_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div style="color:red;">
+          <% if @library.errors.full_messages.any? %>
+            <ul>
+              <% @library.errors.full_messages.each do |error_message| %>
+                <li><%= error_message %></li>
+              <% end %>
+            </ul>
+          <%end%>
+        </div>
+        <h3 class="lib_section_title first_section">Basic Move Information</h3>
+      </div>
+      <div class="col-sm-6">
+        <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
+        <%= hidden_field_tag :image, "", class: "image_url" %>
           <%if show_if_admin%>
             <%=render "common_templates/change_status", f: lib%>
           <%else%>
             <%= hidden_field_tag :status%>
           <%end%>
-          <div class="exr_field_col">
+          <div class="input_field_wrap">
             <label>Title</label>
             <%= lib.text_field :title, class: "for_on_change", maxlength: "80" %>
             <span class="detail_char" data-size="80">80</span>
           </div>
-
-          <div class="exr_field_col">
+          <div class="input_field_wrap">
             <label>Helpful Tips and Tricks (optional) </label>
-            <%= lib.text_area :help, class: "for_on_changed", maxlength: "150" %>
+            <%= lib.text_area :help, maxlength: "150", :class => "text_area_sm for_on_changed" %>
             <span class="detail_char" data-size="150">150</span>
           </div>
-    
-          <div class="exr_field_col cate_wd48">
-            <label>Category</label>
-            <div class="fancy_select">
-              <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input_field_wrap">
+                <label>Category</label>
+                <div class="fancy_select">
+                  <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="exr_field_col level_wd48">
-            <label>Level of Difficulty</label>
-            <div class="fancy_select">
-              <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+            <div class="col-sm-6">
+              <div class="input_field_wrap">
+                <label>Level of Difficulty</label>
+                <div class="fancy_select">
+                  <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="exr_field_col number_mus mus_count">
-            <h4>Additional Details</h4>
-          	<label>Target Muscle Groups</label>
-            <%(1..5).each do |no|%>
-              <input name="" type="button" class="fancy_input wd16 <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
-            <%end%>
-          </div>
-          <div class="exr_field_col number_mus mus_select targets_sel">
-            <% i = 0 %>
-            <%= lib.fields_for :target_muscle_groups do |builder| %>
-              <span class="edit_tmg <%= trg_hide(@library,i,@count)%>">
-                <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
-                <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
-                <%i += 1%>
-              </span>
-            <%end%>
           </div>
       </div>
-      <div class="lib_des_rht ">
-          <div class="exr_field_col">
-            <label>Directions</label>
-            <%= lib.text_area :directions, class: "for_on_change", maxlength: "450" %>
-            <span class="detail_char" data-size="450">450</span>
-          </div>
+      <div class="col-sm-6">
+        <div class="input_field_wrap">
+          <label>Directions</label>
+          <%= lib.text_area :directions, maxlength: "450", :class => "text_area_lg for_on_change" %>
+          <span class="detail_char" data-size="450">450</span>
+        </div>
 
-          <div class="exr_field_col">
-            <label>Why it Works (optional)</label>
-            <%= lib.text_area :work, class: "for_on_changed", maxlength: "150" %>
-            <span class="detail_char" data-size="150">150</span>
-          </div>
-
-          <div class="exr_field_col ">
-            <label>Equipment</label>
-            <h5 class="equ_h5">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</h5>
-            <div class="dblclk_add">
-                <ul class="surja_jai">
-                <% Library::EQUIPMENT_LIST.each do |list|%>
-                  <li class="for_on_changed"><%= list %></li>
-                <% end %>
-              </ul>
-            </div>
-            <div class="add_plce">
-              <% if @library.equipment.present? %>
-                <% @library.equipment.each_with_index do |equip, index|%>
-                  <div class="close_equip for_on_changed" id="<%= index+1 %>">
-                    <input type="hidden" name="library[equipment][]" value="<%=equip %>"><span class="fl_text"><%= equip %></span> <span><a href="javascript:void(0)" class="close_icon" data-attr="<%= index+1 %>">X</a></span>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+        <div class="input_field_wrap">
+          <label>Why it Works (optional)</label>
+          <%= lib.text_area :work, maxlength: "150", :class => "text_area_sm for_on_changed" %>
+          <span class="detail_char" data-size="150">150</span>
+        </div>
       </div>
     </div>
-  <% end %>
-  
-  <% if @library.library_video.present? %>
-   <span class="upload_edit">
-    <%= render "upload_edit" %>
-   </span>
-   <%#if hide_if_admin%>
-      <div class="lib_edit_botom">
-        <h5>Replace Video</h5>
-        <p>Upload a new video file for this move to replace the old one.</p>
-        <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @library.library_video.id%>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="lib_section_title">Additional Details</h3>
       </div>
-      <div class="lib_edit_botom">
-        <h5>Remove Excercise</h5>
-        <p>Parmanently remove this video from Xerofit. Proceed with caution, this action cannot be undone.</p>
-        <%=link_to "Remove this Excercise", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input_field_wrap number_mus mus_count">
+              <label>Target Muscle Groups</label>
+              <%(1..5).each do |no|%>
+                <input name="" type="button" class="fancy_input <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="input_field_wrap trgt_muscle_groups">
+              <% i = 0 %>
+              <%= lib.fields_for :target_muscle_groups do |builder| %>
+                <span class="edit_tmg <%= trg_hide(@library,i,@count)%>">
+                  <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
+                  <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
+                  <%i += 1%>
+                </span>
+              <%end%>
+            </div>
+        </div>
       </div>
-    <%# end %>
-  <% end %>
+      <div class="col-sm-6">
+        <div class="input_field_wrap">
+          <label class="input_label">Equipment</label>
+          <p class="equ_h5 input_sub_text">Add any equipment that is needed to perform this move. No more than 5 pieces of equipment can be added to a single move.</p>
+          <div>
+            <%= lib.select :equipment, options_for_select(Library::EQUIPMENT_LIST,:selected => @library.equipment),{},{ :multiple => true, :size =>3, class: "equ_cls for_on_changed" } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div style="color:red;">
+        <% if @library.errors.full_messages.any? %>
+          <ul>
+            <% @library.errors.full_messages.each do |error_message| %>
+              <li><%= error_message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+
+      <div class="row">
+        <% if @library.library_video.present? %>
+          <span class="upload_edit">
+            <%= render "upload_edit" %>
+          </span>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="lib_edit_botom replace_video_section">
+            <h5 class="input_label">Replace Video</h5>
+            <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
+            <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @library.library_video.id%>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="lib_section_title">Other</h3>
+        </div>
+        <div class="col-sm-6">
+          <div class="lib_edit_botom">
+            <h5 class="input_label">Delete Move</h5>
+            <p class="input_sub_text">Permanently remove this move and video from Xerofit. Proceed with caution, this action cannot be undone!</p>
+            <%=link_to "Delete this move", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-</div>
+
 
 <%= render "common_templates/full_workout_upload" %>
 
