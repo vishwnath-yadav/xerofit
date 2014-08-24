@@ -16,7 +16,7 @@ $(document).ready(function() {
     $('.wrk_rvw').removeClass('dis_link');
     }
     else{
-      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw btn_right');
+      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw');
     }
     console.log(flag);
     console.log($('#workout_category').val());
