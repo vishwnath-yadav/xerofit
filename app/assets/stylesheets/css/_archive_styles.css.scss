@@ -76,4 +76,73 @@
     width:77%;
     float:right;
 }
+.listno_1{
+    background:url(/assets/list_1.png) no-repeat 0px 20px;
+}
+.listno_2{
+    background:url(/assets/list_2.png) no-repeat 0px 20px;
+}
+.listno_3{
+    background:url(/assets/list_3.png) no-repeat 0px 20px;
+}
+.listno_4{
+    background:url(/assets/list_4.png) no-repeat 0px 20px;
+}
+.listno_5{
+    background:url(/assets/list_5.png) no-repeat 0px 20px;
+}
+.listno_6{
+    background:url(/assets/list_6.png) no-repeat 0px 20px;
+}
+.listno_7{
+    background:url(/assets/list_7.png) no-repeat 0px 20px;
+}
+.listno_8{
+    background:url(/assets/list_8.png) no-repeat 0px 20px;
+}
+.listno_9{
+    background:url(/assets/list_9.png) no-repeat 0px 20px;
+}
 
+
+.zlibrary_col ul {
+
+
+    li {
+        float: left;
+        text-align: left;
+        width: 21.6%;
+        margin-bottom: 12px;
+        margin-right: 34px;
+        min-height: 192px;
+
+        img {
+            width: 231px !important;
+            height: 130px !important;
+            float: left;
+            //margin-bottom: 5px;
+            height: auto;
+        }
+    }
+
+    // Workout Images
+    li.wrk {
+        //list-style: none;
+        //float: left;
+        //text-align: left;
+        //width: 17.6%;
+        //margin-bottom: 12px;
+        //margin-right: 0px;
+        //min-height: 192px;
+
+        img {
+            //width: 150px !important;
+            //height: 150px !important;
+            //float: left;
+            //margin-bottom: 5px;
+            //height: auto;
+        }
+    }
+
+
+}

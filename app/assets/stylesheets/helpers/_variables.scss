@@ -22,10 +22,15 @@ $silver51: #7E8082;
 // Other Colors
 $xero-brand: #24c4d4;
 $xero-blue: #289CF9;
+$xero-red: #FC2F6A;
 
-$dropdown-borders: #E5E5E5; // 90
-$textbox-borders: #D7D6D1; // 84
-$placeholder-text: lighten( #4C4D4E, 30% );
+
+$hover-color: #D4EBFE; // 15% Blue
+$active-color: #AEDAFD; // 30% Blue
+$disabled-color: #CCCCCC; // 20% Black
+$dropdown-borders: #E5E5E5; // 90 Black
+$textbox-borders: #D7D6D1; // 84 Black
+$placeholder-text: $disabled-color;
 
 
 // Typography variables
