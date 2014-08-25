@@ -20,6 +20,7 @@
     </div>
   </div>
 </div>
+
 <div class="details_page_header">
   <div class="container-fluid">
     <div class="lib_img_coll">
@@ -34,102 +35,112 @@
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
         <%if hide_if_admin%>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw btn_right" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[1] %>">Submit for review</a>
         <%end%>
       </div>
     </div>
   </div>
 </div>
 
-<div class="middle_wrapper">
-  <div class="libray_detail">
-  <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>
-    <div class="exer_rht_col">
-      <div class= "lib_move_title">
-        Basic Workout Information
-      </div>
-      <div style="color:red;">
-        <% if @workout.errors.full_messages.any? %>
-          <ul>
-            <% @workout.errors.full_messages.each do |error_message| %>
-              <li><%= error_message %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-      <div class="lib_des_lft">
-        <%if show_if_admin%>
-          <%=render "common_templates/change_status", f: lib%>
-        <%else%>
-            <%= hidden_field_tag :status, "", class: "workout_status" %>
-        <%end%>
-        <div class="exr_field_col">
-          <label>Title</label>
-          <%= lib.text_field :title, class: "for_work_change", maxlength: "80" %>
-          <span class="detail_char" data-size="80">80</span>
+<div class="page_content">
+  <div class="container">
+    <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>
+      <div class="row">
+        <div style="color:red;">
+          <% if @workout.errors.full_messages.any? %>
+            <ul>
+              <% @workout.errors.full_messages.each do |error_message| %>
+                <li><%= error_message %></li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
-        <div class="exr_field_col">
-          <label>Subtitle</label>
-          <%= lib.text_field :subtitle, class: "for_work_change", maxlength: "150" %>
-          <span class="detail_char" data-size="150">150</span>
+
+        <div class="col-sm-12">
+          <h3 class="lib_section_title first_section">Basic Workout Information</h3>
         </div>
-        <div class="exr_field_col">
-          <label>Category</label>
-          <div class="fancy_select">
-            <%= lib.select :category, Library::CATEGORIES, {prompt: "choose one"}, {class: "for_work_change workout_category"}%>
+
+        <div class="col-sm-6">
+          <%if show_if_admin%>
+            <%=render "common_templates/change_status", f: lib%>
+          <%else%>
+              <%= hidden_field_tag :status, "", class: "workout_status" %>
+          <%end%>
+          <div class="input_field_wrap">
+            <label>Title</label>
+            <%= lib.text_field :title, class: "for_work_change", maxlength: "80" %>
+            <span class="detail_char" data-size="80">80</span>
           </div>
-        </div>
-      </div>
-      <div class="lib_des_rht">
-          <div class="exr_field_col">
-            <label>Description</label>
-            <%= lib.text_area :description, class: "for_work_change", maxlength: "450" %>
-            <span class="detail_char" data-size="450">450</span>
+          <div class="input_field_wrap">
+            <label>Subtitle</label>
+            <%= lib.text_area :subtitle, maxlength: "120", :class => "text_area_sm for_work_change" %>
+            <span class="detail_char" data-size="120">120</span>
           </div>
-      </div>
-    </div>
-    <hr>
-      <div class="exer_lft_col">
-        <h4>Workout Media</h4>
-        <div class="big_video_col">
-           <h5>Cover Image</h5>
-           <p>For best results, your image should be square and atleast 500px by 500px</p>
-           <div class="upload_gry_box">
-              <p>Upload your image</p>
-              <%#= lib.file_field :pic %>
-              <div class="custom-upload">
-                    <%#= lib.file_field :pic %>
-                    <div class="fake-file">
-                        <span class="choose_btn wrk_chos">Browse</span>
-                        <input disabled="disabled">
-                    </div>
-                </div>
+          <div class="input_field_wrap workout_category_select">
+            <label>Category</label>
+            <div class="fancy_select">
+              <%= lib.select :category, Library::CATEGORIES, {prompt: "choose one"}, {class: "for_work_change workout_category"}%>
             </div>
-            <%#= image_tag @workout.pic.url(:w_square) %>
-            <%#= image_tag @workout.pic.url(:large), :id => "cropbox" %>
-            
-              <%# for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>  
-              <%#= lib.text_field attribute, :id => attribute %>  
-            <%# end %>
-
-
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input_field_wrap">
+              <label>Description</label>
+              <%= lib.text_area :description, maxlength: "450", :class => "text_area_lg for_work_change" %>
+              <span class="detail_char" data-size="450">450</span>
+            </div>
         </div>
       </div>
-  <% end %>
-  <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
-        <%=hidden_field_tag :company, "true"%>
-        <%=hidden_field_tag :id, @workout.id%>
-        <%=hidden_field_tag :type, "workout" %>
-        <%= form.file_field :pic, :style =>"display:none" %>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="lib_section_title">Workout Media</h3>
+        </div>
+        <div class="col-sm-6">
+          <div class="big_video_col">
+            <h5 class="input_label">Cover Image</h5>
+            <p class="input_sub_text">For best results, your image should be square and atleast 500px by 500px</p>
+            <div class="upload_content_frame_sm workout_cover_art upload_gry_box">
+              <div class="upload_wrapper">
+                <p>Upload your image</p>
+                <%#= lib.file_field :pic %>
+                <div class="custom-upload">
+                  <%= lib.file_field :pic %>
+                  <div class="fake-file">
+                      <span class="choose_btn wrk_chos">Choose File</span>
+                      <input disabled="disabled">
+                  </div>
+                  <%#= image_tag @workout.pic.url(:w_square) %>
+                  <%#= image_tag @workout.pic.url(:large), :id => "cropbox" %>
+                    <%# for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+                    <%#= lib.text_field attribute, :id => attribute %>
+                  <%# end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  
-   <div class="lib_edit_botom">
-    <h5>Remove Workout</h5>
-    <p>Permanently remove this workout from Xerofit. Proceed with caution, this action cannot be undone!</p>
-    <%=link_to "Remove this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
-  </div>
-</div>
+    <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
+          <%=hidden_field_tag :company, "true"%>
+          <%=hidden_field_tag :id, @workout.id%>
+          <%=hidden_field_tag :type, "workout" %>
+          <%= form.file_field :pic, :style =>"display:none" %>
+    <% end %>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="lib_section_title">Other</h3>
+      </div>
+      <div class="col-sm-6">
+        <div class="lib_edit_botom">
+          <h5 class="input_label">Delete Workout</h5>
+          <p class="input_sub_text">Permanently remove this workout from Xerofit. This action will only delete the workout, not any of the moves associated with it. Proceed with caution, this action cannot be undone!</p>
+          <%=link_to "Delete this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -144,6 +155,5 @@
   $('.admin_li').removeClass('active')
   $('.admin_li.workout').addClass('active');
 </script>
-<%=render "common_templates/modal_for_crop_image"%>
 
-  
+<%=render "common_templates/modal_for_crop_image"%>

@@ -1,15 +1,15 @@
 $(document).ready(function(){
-  
+
   // $(document).on("click", ".replace_video_btn", function() {
   //    $('.upload_edit').css('display','none');
   //    $('.replace_video').css('display','block');
   //    $('.lib_edit_botom').css('display','none');
   // });
   $(document).on('keyup',"input[type=text], textarea", function(){
-    var obj = $(this).closest('.exr_field_col').find('span.detail_char');
+    var obj = $(this).closest('.input_field_wrap').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
     var size = $(this).val().length;
-    var actual = max_size - size 
+    var actual = max_size - size
     obj.text(actual);
   });
 
@@ -21,7 +21,7 @@ $(document).ready(function(){
   $(document).on("change keyup click dblclick",".for_on_changed",function(){
     $('.chg_save').removeClass('dis_link');
   });
-  
+
   $(document).on("click",".for_on_change1",function(){
     $('.chg_save').removeClass('dis_link');
     check_require_field();
@@ -80,16 +80,11 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on("keypress, click", '#search_lib_by_name', function(e){
+  $(document).on("keypress, change", '#search_lib_by_name', function(e){
       $(".search_span").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
       }
-  });
-
-  // Bootstrap Tooltips
-  $('.control_bar_tooltip').tooltip({
-    placement: 'bottom'
   });
 
   $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
@@ -125,10 +120,20 @@ function check_require_field(){
 function show_text_actual_size(){
   $('.detail_char').each(function(){
     var size = $(this).attr('data-size');
-    
-    var input_len = $(this).closest('.exr_field_col').find('input, textarea').val().length;
-     var actual = size - input_len; 
+
+    var input_len = $(this).closest('.input_field_wrap').find('input, textarea').val().length;
+     var actual = size - input_len;
       $(this).text(actual);
   })
 }
 
+$(document).mouseup(function (e)
+{
+    var container = $(".fancy_select.target_muscle_select");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
+});

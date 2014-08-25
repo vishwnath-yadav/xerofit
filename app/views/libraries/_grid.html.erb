@@ -1,32 +1,38 @@
 <% if @list.present? %>
-    <ul>
+  <ul>
     <% @list.each_with_index do |ls, index| %>
-      <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("", "", "", "border_none")%>">
-          <% if ls.move_type == "workouts" %>
-            <a href="<%= workout_details_path(ls) %>" data-no-turbolink='true'>
-              <% if ls.pic.present? %>
-                <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
-                <% else %>
-                  <img src="/assets/ex_1.png" alt="cn_1" />
-                <%end%>
-              </a>
-            <%else%>
-              <a href="<%= edit_path(ls) %>" data-no-turbolink='true'>
-                <% if ls.library_video.present? && ls.library_video.image.present? %>
-                  <img src="<%= ls.library_video.image %>" alt="cn_1" />
-                <% else %>
-                    <img src="/assets/ex_2.png" alt="cn_1" />
-                <%end%>
-              </a>
+      <li class="<%= (ls.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("first_row border_left", "first_row", "first_row", "first_row border_right", "border_left", "", "", "border_right", "last_row border_left", "last_row", "last_row", "last_row border_right" )%>">
+        <% if ls.move_type == "workouts" %>
+          <a href="<%= workout_details_path(ls) %>" data-no-turbolink="true" class="grid_block workout">
+            <% if ls.pic.present? %>
+              <img src="<%= ls.pic.url(:w_square) %>" alt="cn_1" />
+            <% else %>
+              <img src="/assets/ex_1.png" alt="cn_1" />
             <%end%>
-          <h6 title="<%= ls.title %>"><%= truncate(ls.title, :length => 30, :seperator => ' ...') %></h6>
-          <p class="library_item_status">
-            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
-            <%= ls.status %>
-          </p>
+            <h6 title="<%= ls.title %>"><%= truncate(ls.title, :length => 24, :seperator => ' ...') %></h6>
+            <p class="block_status">
+              <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
+              <%= ls.status %>
+            </p>
+          </a>
+        <%else%>
+          <a href="<%= edit_path(ls) %>" data-no-turbolink="true" class="grid_block move">
+            <% if ls.library_video.present? && ls.library_video.image.present? %>
+              <img src="<%= ls.library_video.image %>" alt="cn_1" />
+            <% else %>
+              <img src="/assets/ex_2.png" alt="cn_1" />
+            <%end%>
+            <h6 title="<%= ls.title %>"><%= truncate(ls.title, :length => 24, :seperator => ' ...') %></h6>
+            <p class="block_status">
+              <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
+              <%= ls.status %>
+            </p>
+          </a>
+        <%end%>
       </li>
     <% end %>
-</ul>
+  </ul>
+
 <% else %>
   <span> No Record Found...</span>
 <% end %>

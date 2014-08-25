@@ -1,5 +1,52 @@
 // Mixins ===================================================================================== /
 
+@mixin gotham200() {
+  font-family: 'Gotham SSm 2r', 'Gotham SSm A', 'Gotham SSm B';
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin gotham300() {
+  font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin gotham400() {
+  font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B';
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin gotham500() {
+  font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B';
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin gotham700() {
+  font-family: 'Gotham SSm 7r', 'Gotham SSm A', 'Gotham SSm B';
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin button($value) {
+    color: $value;
+    border: 1px solid $value;
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: none;
+    //@include gotham500();
+
+    &:hover {
+      cursor: pointer;
+      color: darken( $value, 10% );
+      border: 1px solid darken( $value, 10% );
+    }
+}
+
 @mixin clearfix() {
   zoom: 1;
   &:before, &:after { content: ""; display: table; }
@@ -8,7 +55,7 @@
 
 @mixin hover-color() {
   background-color: #D4EBFE; // Fallback for silly IE8
-  background-color: rgba(40, 156, 249, 0.15)
+  background-color: rgba(40, 156, 249, 0.15);
 }
 
 @mixin border-radius($radius) {
