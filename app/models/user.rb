@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                           :url => "/system/:attachment/:id/:style/:style.:extension"
 
   validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create
+  validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
     
 
   devise :confirmable, :database_authenticatable, :registerable,
