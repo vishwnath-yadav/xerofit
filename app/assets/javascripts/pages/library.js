@@ -80,7 +80,7 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on("keypress, click", '#search_lib_by_name', function(e){
+  $(document).on("keypress, change", '#search_lib_by_name', function(e){
       $(".search_span").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
