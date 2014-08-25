@@ -112,9 +112,8 @@ function check_require_field(){
     $('.chg_lin').removeClass('dis_link');
   }
   else{
-    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin btn_right ');
+    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin');
   }
-  console.log(flag);
 }
 
 function show_text_actual_size(){

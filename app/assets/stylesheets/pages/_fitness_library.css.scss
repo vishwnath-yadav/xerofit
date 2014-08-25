@@ -857,7 +857,7 @@ a.cancel_btn {
     color: $silver51;
     line-height: 25px;
     padding-top: 28px;
-    margin-top: 42px;
+    margin-top: 56px;
     margin-bottom: 28px;
     border-top: 1px solid #F2F2F2;
 }
@@ -1095,39 +1095,85 @@ p.library_item_status {
     height: 330px;
     color: red;
 }
-.add_plce{ float:left}
 
-.close_equip{
-float: left;
-background: #e1e0dd;
-padding: 4px;
-font-size: 12px;
-border-radius: 4px;
-color: #111;
-margin-left: 10px;
-clear: both;
-margin-bottom: 7px;
+
+// Required Equipment Section
+
+ul#equipment_list {
+    width: 100%;
+    float: left;
+    list-style: none;
+    margin: 0px;
+    padding: 3px 0px;
+    border: 1px solid $textbox-borders;
+    @include border-radius(4px);
+    overflow-y: scroll;
+    height: 98px;
+
+    li {
+        width: 100%;
+        float: left;
+        color: $silver16;
+        padding: 2px 5px;
+        margin-bottom: 1px;
+        font-size: 11px;
+        line-height: 14px;
+        @include gotham400();
+        @include user-select(none);
+        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $hover-color;
+        }
+    }
+
+    li.selected_equipment {
+        background-color: $active-color-dark;
+    }
 }
-.fl_text{float: left;}
-a.close_icon{width: 10px;
-float: left;
-color: #000;
-text-decortation: none;
-margin-left: 8px;}
 
-ul.surja_jai{width: 310px;
-float: left;
-margin: 0px;
-padding: 5px;
-box-shadow: 0 0 3px #ccc;
-overflow-y: scroll;
-height: 180px;}
-ul.surja_jai li{width: 100%;
-float: left;
-color: #111;
-padding:5px;
-margin-bottom: 2px;
-list-style: none;
-font-size: 12px;}
-ul.surja_jai li:hover{ color:red }
-::selection{background:#fff}
+p.equ_h5.input_sub_text { margin-bottom: 0px; }
+
+.equipment_pill {
+    float: left;
+    position: relative;
+    background: #F2F2F2;
+    padding: 7px 10px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    font-size: 11px;
+    line-height: 14px;
+    @include clearfix();
+    @include border-radius(4px);
+    @include gotham400();
+    @include user-select(none);
+
+    > span {
+        display: block;
+        float: left;
+        cursor: default
+    }
+}
+
+div.equipment_pill#1 {margin-right: 14px;}
+
+.equipment_pill > a.close_icon {
+    float: left;
+    text-decortation: none;
+    margin-left: 8px;
+    margin-top: -1px;
+    font-size: 14px;
+    color: #CCCCCC;
+
+    &:before {
+        content: '\0078';
+        @include gotham300();
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $silver51;
+        text-decoration: none;
+    }
+}
