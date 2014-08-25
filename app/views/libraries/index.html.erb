@@ -2,7 +2,7 @@
 <%show_if_admin = current_user.admin?%>
 <%hide_if_admin = !current_user.admin?%>
 
-<div class="create_heading control_bar" style="background-color: #eee;">
+<div class="control_bar">
   <div class="container-fluid">
     <div class="control_bar_wrap">
       <%if hide_if_admin%>
@@ -62,20 +62,20 @@
 </div>
 
 <div class="middle_wrapper">
-  <%if flash[:notice].present?%>
-    <div class="wrk_success success">
-      <%= flash[:notice] %>
-    </div>
-  <%end%>
-	<div class="dashboard_mid">
-    <div class="library_col  library_view">
-      <%= render "grid" %>
-    </div>
+  <div class="page_content">
 
-      <%#= will_paginate @libraries, :remote=>true, :next_label => 'Next', :previous_label => 'Previous', :inner_window=>0, :outer_windows=>0 %>
-    <!-- <div class="pagination">
-     </div>-->
-
+    <%if flash[:notice].present?%>
+      <div class="wrk_success success">
+        <%= flash[:notice] %>
+      </div>
+    <%end%>
+    <div class="container">
+      <div class="row">
+        <div class="library_col library_view">
+          <%= render "grid" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -83,6 +83,10 @@
   $(function () {
       $('.default').dropkick();
       setTimeout(load_dropKick_js);
+  });
+
+  $('.control_bar_tooltip').tooltip({
+    placement: 'bottom'
   });
 
   $('.admin_li').removeClass('active')

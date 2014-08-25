@@ -19,6 +19,7 @@
 
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
+//= require plugins/jquery-ui-custom.min
 //= require plugins/dropzone.min
 //= require plugins/jquery.fancybox.js
 //= require plugins/jquery_form.js
@@ -39,10 +40,10 @@ $(document).ready(function() {
       var sticky = $('.lib_img_coll'),
       scroll = $(window).scrollTop();
 
-      if(scroll >= 100){
+      if(scroll >= 126){
         sticky.addClass('fixed');
         $('.show_img_on_scol').css('display','block');
-        $('.lib_img_coll .rght_btns').css('margin-right','30px');
+        $('.lib_img_coll .rght_btns').css('margin-right','40px');
         $('.lib_img_coll').css('border-bottom','1px solid #D8D8D8');
       }
       else{

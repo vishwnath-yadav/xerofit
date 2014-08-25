@@ -1,58 +1,64 @@
 <% if @list.present? %>
-  <ul class="exer_list_view">
-    <li>
-      <span class="thumb_text">
-        <span class="name_sort">Name</span>
+  <div class="col-sm-12">
+    <ul class="library_list_view">
+      <li class="table_header">
+        <span class="title_col">
+          <span class="name_sort">Name</span>
           <span class="sort_icon">
             <i class="icon-sort column_sort" data-sort="title" data-order="ASC"></i>
             <i class="icon-sort_down column_sort" data-sort="title" data-order="DESC"></i>
           </span>
         </span>
-      <span>Type</span>
-      <span>Status</span>
-      <span class="tx_rht heading_txt">
-        <span class="name_sort">Last Modified</span>
-        <span class="sort_icon">
-            <i class="icon-sort column_sort" data-sort="updated_at" data-order="ASC"></i>
-            <i class="icon-sort_down column_sort" data-sort="updated_at" data-order="DESC"></i>
-        </span>
-      </span>
-    </li>
-    <% @list.each_with_index do |ls, index| %>
-      <li>
-        <span class="thumb_text">
-          <% if ls.move_type == "workouts" %>
-              <a href="<%= workout_details_path(ls) %>" title="<%= ls.title %>" data-no-turbolink='true'>
-                <% if ls.pic.present? %> 
-                  <img src="<%= ls.pic.url(:thumb) %>" class='list_view_img wrk' />
-                <% else %>
-                  <img src="/assets/ex_1.png" class="list_view_img wrk" />
-                <% end %>
-                <%#= ls.title %>
-                <%= ls.title.length>23 ? ls.title[0..22]+"....." : ls.title %>
-              </a>
-          <% else %>
-            <a href="<%= edit_path(ls) %>" title="<%= ls.title %>" data-no-turbolink='true'>
-              <% if ls.library_video.present? && ls.library_video.image.present? %> 
-                <img src="<%= ls.library_video.image %>" class="list_view_img" 
-                />
-              <% else %>
-                <img src="/assets/ex_2.png" class="list_view_img" />
-              <% end %>
-              <%#= ls.title %>
-              <%= ls.title.length>23 ? ls.title[0..22]+"....." : ls.title %>
-            </a>
-          <% end %>
-        </span>
-         <span><%=ls.move_type%></span>
-          <span>
-            <img src="<%= status_icon(ls.status)%>" class="list_view_circle" /> 
-            <%= ls.status %>
+        <span class="type_col">Type</span>
+        <span class="status_col">Status</span>
+
+        <span class="date_col">
+          <span class="name_sort">Last Modified</span>
+          <span class="sort_icon">
+              <i class="icon-sort column_sort" data-sort="updated_at" data-order="ASC"></i>
+              <i class="icon-sort_down column_sort" data-sort="updated_at" data-order="DESC"></i>
           </span>
-          <span class="tx_rht"><%= ls.updated_at.strftime("%B %d,%Y") %></span>
+        </span>
       </li>
-    <%end%>
-  </ul>
+
+      <% @list.each_with_index do |ls, index| %>
+        <li>
+          <% if ls.move_type == "workouts" %>
+            <a href="<%= workout_details_path(ls) %>" title="<%= ls.title %>" data-no-turbolink="true">
+              <span class="title_col">
+                <div>
+                  <% if ls.pic.present? %>
+                    <img src="<%= ls.pic.url(:thumb) %>" class='list_view_img wrk' />
+                  <% else %>
+                    <img src="/assets/ex_1.png" class="list_view_img wrk" />
+                  <% end %>
+                </div>
+                <span><%= truncate(ls.title, :length => 35, :seperator => ' ...') %></span>
+              </span>
+          <% else %>
+            <a href="<%= edit_path(ls) %>" title="<%= ls.title %>" data-no-turbolink="true">
+              <span class="title_col">
+                <div>
+                  <% if ls.library_video.image.present? %>
+                    <img src="<%= ls.library_video.image %>" class="list_view_img move" />
+                  <% else %>
+                    <img src="/assets/ex_2.png" class="list_view_img move" />
+                  <% end %>
+                </div>
+                <span><%= truncate(ls.title, :length => 35, :seperator => ' ...') %></span>
+              </span>
+          <% end %>
+            <span class="type_col"><%= ls.move_type.titleize.singularize %></span>
+            <span class="status_col">
+              <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
+              <span><%= ls.status %></span>
+            </span>
+            <span class="date_col"><%= ls.updated_at.strftime("%B %d, %Y") %></span>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% else %>
   <span> No Record Found...</span>
 <% end %>
