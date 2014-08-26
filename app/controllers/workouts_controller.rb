@@ -29,8 +29,8 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
-		if params[:status] == Library::STATUS[1]
-			@workout.status = Library::STATUS[1]	
+		if params[:status] == Library::STATUS[2]
+			@workout.status = Library::STATUS[2]	
 		end
 		@workout.update_attributes(workout_params)
 		respond_to do |format|

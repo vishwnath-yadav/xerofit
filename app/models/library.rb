@@ -25,7 +25,7 @@ class Library < ActiveRecord::Base
 	
 	EQUIPMENT_LIST = ["Ab Board","Adjustable Ab Board","Ankle Weights","Balance Beam","Balance Block","Balance Disc","Balance Dome (Bosu Ball)","Balance Pad","Barbell","Decline Bench","Dual Grip Medicine Ball","Dumbbells","Elliptical Machine","Exercise Ball (Swiss Ball)","Exercise Bike","Fit Chair","Fitness Tubes","Flat Band","Flat Bench","Foam Roller","Folding Mat","Incline Bench","Inflatable Pilates Ball Roller","Kettlebell","Medicine Ball","Mini Medicine Ball","Non-Bouncing Physical Therapy (P.T.) Ball","Pull Up Bar","Punching Bag","Resistance Band","Resistance Band","Semi-Recumbent Ab Bench","Spin Style Bike","Stationary Bike","Suspension Trainer (TRX)","Treadmill","Upright Bike","Weighted Gloves","Weighted Vest","Wobble Board","Wrist Weights","Yoga Block"]
 
-	STATUS = ["Saved as Draft", "Waiting for Approval", "Approved and Active", "Needs Attention"]
+	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
 	TYPE = ["Exercises", "Workouts"]
 
@@ -34,7 +34,7 @@ class Library < ActiveRecord::Base
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 
 	def save_status
-		self.status = STATUS[0]
+		self.status = STATUS[4]
 		self.save
 	end
 
@@ -120,10 +120,14 @@ class Library < ActiveRecord::Base
 	end
 
 	def has_full_detail
-		target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
-		attributes = [self.title, self.directions, self.category, self.difficulty, self.status, self.equipment.join(",")]
-		req = attributes & [nil, ""]
-		req.size == 0 && target_muscles.size > 0 && self.is_thumbnail_created
+		if self.status == STATUS[3]
+			return true
+		else
+			target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
+			attributes = [self.title, self.directions, self.category, self.difficulty, self.status, self.equipment.join(",")]
+			req = attributes & [nil, ""]
+			req.size == 0 && target_muscles.size > 0 && self.is_thumbnail_created
+		end
 	end
 
 	def is_thumbnail_created

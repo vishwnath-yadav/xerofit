@@ -8,7 +8,6 @@
             <div class="fancy_select target_muscle_select" style="display:none;" >
                 <%= lib.hidden_field  :target_muscle_group, class: "target_muscle_menu_#{i} for_target_change taget_val" %>
                 <%= lib.hidden_field  :sub_target_muscle_group, class: "target_muscle_submenu_#{i} taget_sub_val" %>
-
             	<ul>
             		<%TargetMuscleGroup::MUSCLES_TYPE[i][1].each do |key, value|%>
             			<li class="sub_arw"><%=key%>
@@ -21,6 +20,7 @@
             		<%end%>
             	</ul>
             </div>
+            <span class="error_msg_<%=i%>"></span>
 	    </div>
     </div>
 </div>

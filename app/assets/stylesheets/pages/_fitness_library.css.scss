@@ -142,7 +142,7 @@ input.search_bar {
     margin-left: -110px;
 
     li:nth-child(2) a:before {
-        background: url(/assets/icons/status_icon_gray.png);
+        background: url(/assets/icons/status_icon_green.png);
         background-repeat: no-repeat;
         @include background-size(contain);
         content: '';
@@ -155,7 +155,7 @@ input.search_bar {
     }
 
     li:nth-child(3) a:before {
-        background: url(/assets/icons/status_icon_yellow.png);
+        background: url(/assets/icons/status_icon_red.png);
         background-repeat: no-repeat;
         @include background-size(contain);
         background-position: center;
@@ -169,7 +169,7 @@ input.search_bar {
     }
 
     li:nth-child(4) a:before {
-        background: url(/assets/icons/status_icon_green.png);
+        background: url(/assets/icons/status_icon_yellow.png);
         background-repeat: no-repeat;
         @include background-size(contain);
         background-position: center;
@@ -183,7 +183,21 @@ input.search_bar {
     }
 
     li:nth-child(5) a:before {
-        background:url(/assets/icons/status_icon_red.png);
+        background:url(/assets/icons/status_icon_purple.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(6) a:before {
+        background:url(/assets/icons/status_icon_gray.png);
         background-repeat: no-repeat;
         @include background-size(contain);
         background-position: center;
@@ -371,9 +385,14 @@ ul.exer_list_view li span.sort_icon{
     width: 12px;
     float: left;
     margin-top: 4px;
+    margin-left: 3px;
+    width:20px;
 }
-ul.exer_list_view li span.tx_rht.heading_txt{float: right;
-max-width: 153px}
+
+ul.exer_list_view li span.tx_rht.heading_txt{
+    float: right;
+    max-width: 153px
+}
 
 
 .library_col ul.library_list_view {
@@ -760,7 +779,7 @@ a.cancel_btn {
     @include clearfix();
 
     &.first_row,
-    &.second_row { margin-bottom: 28px; }
+    &.second_row { margin-bottom: 14px; }
 }
 
 

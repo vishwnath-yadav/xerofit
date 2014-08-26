@@ -71,14 +71,16 @@ $(document).ready(function() {
 
      if(len<=select_count){
        for(i=0;i<select_count;i++){
-         $(".edit_tmg:eq("+i+")").css('display','block');
+         $(".edit_tmg:eq("+i+")").addClass('dis_blk').removeClass('dis_non')
        }
      }
      else
      {
         for(i=4;i>=select_count;i--){
-         $(".edit_tmg:eq("+i+")").css('display','none');
+         $(".edit_tmg:eq("+i+")").addClass('dis_non').removeClass('dis_blk')
          $(".drop_toggle:eq("+i+")").text("Choose "+MUSCLES_TYPE[i]);
+         $(".error_msg_"+i).removeClass('lib_error').text("");
+         $('.target_'+i).css('border', '1px solid #e1e0dd');
          $(".taget_val:eq("+i+")").val("");
          $(".taget_sub_val:eq("+i+")").val("");
         }
@@ -90,7 +92,7 @@ $(document).ready(function() {
   $(document).on('click','.edit_lib',function(){
     var status = $(this).attr('lib-status');
     $('#status').val(status);
-    if(is_target_muscle_group_empty()){
+    if(validate_target_muscle_group()){
       $('#edit_video_info').submit();
     }
   });
@@ -191,15 +193,29 @@ function load_dropKick_js() {
   });
 }
 
-function is_target_muscle_group_empty(){
+function validate_target_muscle_group(){
   var is_filled = true
-  for(i=0;i<=4;i++){
-   if($(".edit_tmg:eq("+i+")").is(':visible') && $(".taget_val:eq("+i+")").val() == ""){
-      $(".edit_tmg:eq("+i+")").find('.drop_toggle').css("border", "1px solid red");
+  var visible_blocks = $('.dis_blk').length;
+  var selected_values = "";
+  for(i=0;i<=visible_blocks;i++){
+    var current_obj = i;
+    var next_obj = i + 1;
+    var $trg = $(".taget_val:eq("+current_obj+")");
+    var $trg_nxt = $(".taget_val:eq("+next_obj+")");
+    var target_val = $.trim($(".target_"+current_obj).text());
+    if($trg.val() == "" && $trg_nxt.length && $trg_nxt.val() != ""){
+      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
       is_filled = false;
-      $(".error_span").addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
+      $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
       return false;
-   }
+    }
+    else if(selected_values.indexOf(target_val) > -1){
+      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
+      is_filled = false;
+      $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
+      return false;
+    }
+    selected_values += " "+target_val;
   }
   return is_filled;
 }

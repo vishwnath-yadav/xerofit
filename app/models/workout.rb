@@ -71,7 +71,7 @@ class Workout < ActiveRecord::Base
 	end
 
 	def save_status
-		self.status = Library::STATUS[0]
+		self.status = Library::STATUS[4]
 		self.save
 	end
 

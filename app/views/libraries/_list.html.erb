@@ -39,7 +39,7 @@
             <a href="<%= edit_path(ls) %>" title="<%= ls.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
-                  <% if ls.library_video.image.present? %>
+                  <% if ls.library_video.present? && ls.library_video.image.present? %>
                     <img src="<%= ls.library_video.image %>" class="list_view_img move" />
                   <% else %>
                     <img src="/assets/ex_2.png" class="list_view_img move" />

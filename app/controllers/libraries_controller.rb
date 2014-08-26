@@ -64,8 +64,8 @@ class LibrariesController < ApplicationController
 			@video = @library.library_video.update_attributes(:image => params[:image])
 		end
 		@library.update_target_muscle(params[:library][:target_muscle_groups_attributes])
-		if params[:status] == Library::STATUS[1]
-			@library.status = Library::STATUS[1]	
+		if params[:status] == Library::STATUS[2]
+			@library.status = Library::STATUS[2]	
 		end
 		respond_to do |format|
 		    if @library.update_attributes(library_params)

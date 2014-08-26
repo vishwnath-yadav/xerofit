@@ -40,7 +40,7 @@ $(document).ready(function(){
     $('.target_muscle_menu_'+id).val(menu);
     $('.target_muscle_submenu_'+id).val(sub_cat);
     $('.target_'+id).text(sub_menu).css('border', '1px solid #e1e0dd');
-    $(".lib_error").removeClass('lib_error').text("");
+    $(".error_msg_"+id).removeClass('lib_error').text("");
   });
 
 
@@ -80,7 +80,7 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on("keypress, change", '#search_lib_by_name', function(e){
+  $(document).on("keyup, mouseup", '#search_lib_by_name', function(e){
       $(".search_span").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
