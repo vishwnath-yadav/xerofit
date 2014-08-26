@@ -87,8 +87,21 @@ $(document).ready(function(){
       }
   });
 
-  $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
-      $('#search_grid_list_form').submit();
+  // var companyList = $("input[data-autocomplete]").autocomplete({ 
+  //     change: function() {
+  //         alert('changed');
+  //         $('#search_grid_list_form').submit();
+  //     }
+  //  });
+  //  companyList.autocomplete('option','change').call(companyList);
+
+  // $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
+  //     alert("Dfdsdfs");
+  //     $('#search_grid_list_form').submit();
+  // });
+  $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
+    /* Do something here */
+    $('#search_grid_list_form').submit();
   });
 });
 
