@@ -78,5 +78,6 @@ gem 'pry', group: [:development, :test]
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-gem 'rmagick'
+gem 'rmagick', require: false
+
 
