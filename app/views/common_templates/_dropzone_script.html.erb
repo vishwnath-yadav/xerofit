@@ -38,7 +38,12 @@
       });
 
       myDropzone.on("error", function(a, response) {
-        alert("Sorry maximum file size allowed is "+max_size+" MB")
+        if(size > max_size){
+          alert("Sorry maximum file size allowed is "+max_size+" MB")
+        }
+        else{
+          alert("Something Bad happened. Please try again later.")
+        }
       });
     }
     

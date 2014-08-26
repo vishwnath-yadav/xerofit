@@ -5,7 +5,7 @@ $(document).ready(function(){
   //    $('.replace_video').css('display','block');
   //    $('.lib_edit_botom').css('display','none');
   // });
-  $(document).on('keyup',"input[type=text], textarea", function(){
+  $(document).on('keyup blur',"input[type=text], textarea", function(){
     var obj = $(this).closest('.input_field_wrap').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
     var size = $(this).val().length;
@@ -112,9 +112,8 @@ function check_require_field(){
     $('.chg_lin').removeClass('dis_link');
   }
   else{
-    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin btn_right ');
+    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin');
   }
-  console.log(flag);
 }
 
 function show_text_actual_size(){

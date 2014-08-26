@@ -1,6 +1,5 @@
 module LibrariesHelper
 	def status_icon(status)
-		binding.pry
 		if status == Library::STATUS[0]
 			status = "/assets/icons/status_icon_green.png"
 		elsif status == Library::STATUS[1]

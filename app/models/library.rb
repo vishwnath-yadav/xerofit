@@ -32,6 +32,7 @@ class Library < ActiveRecord::Base
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
+	scope :is_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
 	def save_status
 		self.status = STATUS[4]
@@ -63,10 +64,10 @@ class Library < ActiveRecord::Base
 		if params[:type] == "Workouts" 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed).order("#{sort} #{order}")
 		elsif params[:type] == "Moves"
-			list = Library.by_name(params[:title]).by_status(params[:status]).by_user(user).order("#{sort} #{order}")
+			list = Library.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).order("#{sort} #{order}")
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
-			list << Library.by_name(params[:title]).by_status(params[:status]).by_user(user).all
+			list << Library.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).all
 			list = list.flatten
 			if sort == "updated_at"
 				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
