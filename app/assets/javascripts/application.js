@@ -214,7 +214,7 @@ function validate_target_muscle_group(){
       $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
       return false;
     }
-    else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") > -1){
+    else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") < 0){
       $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
       is_filled = false;
       $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
