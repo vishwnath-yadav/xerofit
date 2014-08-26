@@ -1098,6 +1098,7 @@ p.library_item_status {
 
 
 // Required Equipment Section
+p.equ_h5.input_sub_text { margin-bottom: 0px; }
 
 ul#equipment_list {
     width: 100%;
@@ -1132,8 +1133,6 @@ ul#equipment_list {
         background-color: $active-color-dark;
     }
 }
-
-p.equ_h5.input_sub_text { margin-bottom: 0px; }
 
 .equipment_pill {
     float: left;
