@@ -16,9 +16,7 @@
           <div class="search_bar_col">
             <%= autocomplete_field_tag 'title', '', autocomplete_library_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_lib_by_name" %>
             <input type="button" id="lib_name_for_search">
-            <span class="search_span hide">
-              <img src="/assets/search_bar_clear_icon.png">
-            </span>
+            <div class="search_bar_clear hide"></div>
           </div>
         <%end%>
 

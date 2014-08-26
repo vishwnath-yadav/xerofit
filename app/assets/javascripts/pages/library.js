@@ -50,6 +50,7 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
+  // Switch between Grid View and List View on Library Home
   $(document).on("click", ".view_type", function(){
      var name = $(this).attr('data-name');
      if(name == "grid"){
@@ -64,24 +65,19 @@ $(document).ready(function(){
      $('#search_grid_list_form').submit();
   });
 
-  $(document).on("click",".column_sort",function(){
-    $("#sorted_by").val($(this).attr('data-sort'));
-    $("#order").val($(this).attr('data-order'));
-    $('#search_grid_list_form').submit();
-  });
-
+  // Search functionality on Library Index
   $(document).on("click","#lib_name_for_search",function(){
   	$('#search_grid_list_form').submit();
   });
 
-  $(document).on("click",".search_span",function(){
+  $(document).on("click",".search_bar_clear",function(){
     $("#search_lib_by_name").val('');
-    $(".search_span").addClass('hide');
+    $(".search_bar_clear").addClass('hide');
     $('#search_grid_list_form').submit();
   });
 
   $(document).on("keyup, mouseup", '#search_lib_by_name', function(e){
-      $(".search_span").removeClass('hide');
+      $(".search_bar_clear").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
       }
@@ -103,6 +99,15 @@ $(document).ready(function(){
     /* Do something here */
     $('#search_grid_list_form').submit();
   });
+
+
+  // Sorting functionality in Library List View
+  $(document).on("click",".column_sort",function(){
+    $("#sorted_by").val($(this).attr('data-sort'));
+    $("#order").val($(this).attr('data-order'));
+    $('#search_grid_list_form').submit();
+  });
+
 });
 
 function check_require_field(){
