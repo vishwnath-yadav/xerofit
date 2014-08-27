@@ -33,9 +33,9 @@
         </div>
       </span>
       <div class="rght_btns">
-        <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="save">Save</a>
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="<%=@workout.status%>">Save</a>
         <%if hide_if_admin%>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[2] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[3] %>">Submit for review</a>
         <%end%>
       </div>
     </div>
@@ -64,7 +64,7 @@
           <%if show_if_admin%>
             <%=render "common_templates/change_status", f: lib%>
           <%else%>
-              <%= hidden_field_tag :status, "", class: "workout_status" %>
+              <%= lib.hidden_field :status, class: "workout_status" %>
           <%end%>
           <div class="input_field_wrap">
             <label>Title</label>

@@ -64,16 +64,13 @@ class LibrariesController < ApplicationController
 			@video = @library.library_video.update_attributes(:image => params[:image])
 		end
 		@library.update_target_muscle(params[:library][:target_muscle_groups_attributes])
-		if params[:status] == Library::STATUS[2]
-			@library.status = Library::STATUS[2]	
-		end
 		respond_to do |format|
-		    if @library.update_attributes(library_params)
-		        format.html { redirect_to edit_path(@library), notice: 'successfully updated Library.' }
-		    else
-		        format.html { render action: "edit" }
-		    end
+	    if @library.update_attributes(library_params)
+	        format.html { redirect_to edit_path(@library), notice: 'successfully updated Library.' }
+	    else
+	        format.html { render action: "edit" }
 	    end
+    end
 	end
 
 
