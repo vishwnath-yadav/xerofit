@@ -1,23 +1,23 @@
 <% if @list.present? %>
   <div class="col-sm-12">
-    <ul class="library_list_view">
+    <ul class="library_list_view sortable_list">
       <li class="table_header">
-        <span class="title_col">
-          <span class="name_sort">Name</span>
+        <span class="title_col column_sort" data-sort="title" data-order="DESC"><span>Name</span><div></div></span>
+          <!--span class="name_sort column_sort descending" data-sort="title" data-order="DESC">Name</span>
           <span class="sort_icon">
-            <i class="icon-sort column_sort" data-sort="title" data-order="ASC"></i>
-            <i class="icon-sort_down column_sort" data-sort="title" data-order="DESC"></i>
+            <i class="icon-sort zcolumn_sort" data-sort="title" data-order="ASC"></i>
+            <i class="icon-sort_down zcolumn_sort" data-sort="title" data-order="DESC"></i>
           </span>
-        </span>
+        </span-->
         <span class="type_col">Type</span>
         <span class="status_col">Status</span>
 
-        <span class="date_col">
-          <span class="name_sort">Last Modified</span>
+        <span class="date_col column_sort descending" data-sort="updated_at" data-order="DESC">Last Modified<div></div></span>
+          <!--span class=" name_sort">Last Modified</span>
           <span class="sort_icon">
               <i class="icon-sort column_sort" data-sort="updated_at" data-order="ASC"></i>
               <i class="icon-sort_down column_sort" data-sort="updated_at" data-order="DESC"></i>
-          </span>
+          </span-->
         </span>
       </li>
 
@@ -62,5 +62,13 @@
 <% else %>
   <span> No Record Found...</span>
 <% end %>
+
+<script>
+$(document).ready(function(){
+  //sort_table_list();
+
+
+});
+</script>
 
 <%= paginate @list, :remote => true %>

@@ -363,6 +363,8 @@ input.search_bar {
 
 //sort columns filters
 
+
+
 .icon-sort{
     background-image: url('/assets/tip_icon.png');
     width: 11px;
@@ -399,7 +401,6 @@ ul.exer_list_view li span.tx_rht.heading_txt{
     max-width: 153px
 }
 
-
 .library_col ul.library_list_view {
 
     li.table_header {
@@ -409,6 +410,50 @@ ul.exer_list_view li span.tx_rht.heading_txt{
         line-height: 1;
         color: $silver16;
         @include gotham500();
+
+        span.column_sort {
+            cursor: pointer;
+        }
+
+        span.column_sort.descending > div,
+        span.column_sort.ascending > div {
+            display: block;
+            float: left;
+            width: 12px;
+            height: 7px;
+            margin-top: 3px;
+            margin-left: 8px;
+        }
+
+        span.column_sort > div {
+            background: none;
+        }
+
+        span.column_sort > span {
+            display: block;
+            float: left;
+        }
+
+        span.column_sort.descending > div {
+            content: '';
+            background: url(/assets/icons/angle_down.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+        }
+
+        span.column_sort.ascending div {
+            content: '';
+            background: url(/assets/icons/angle_up.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+        }
+    }
+
+    li.table_header > span.date_col.column_sort.descending div,
+    li.table_header > span.date_col.column_sort.ascending div {
+        float: right;
     }
 
     li {

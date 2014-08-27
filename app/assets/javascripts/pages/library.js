@@ -83,6 +83,36 @@ $(document).ready(function(){
       }
   });
 
+  // Sorting functionality in Library List View
+  //$(document).on("click",".column_sort",function(){
+    //$("#sorted_by").val($(this).attr('data-sort'));
+    //$("#order").val($(this).attr('data-order'));
+  //});
+
+
+  $(document).on("click",".table_header > .column_sort",function(){
+    var $header = $(this);                    // Get the header
+    var order = $header.attr('data-sort');    // Get value of data-sort attribute
+    var sort = $header.attr('data-order');    // Get value of data-order attribute
+    var column = $header.html();
+
+    $header.attr('data-order', $header.attr('data-order') == 'DESC' ? 'ASC' : 'DESC');
+
+    if ($header.is('.ascending') || $header.is('.descending')) {
+      $header.toggleClass('ascending descending');
+
+    } else {
+      $header.addClass('ascending');
+      $header.siblings().removeClass('ascending descending');
+
+    }
+
+    console.log(column);
+    console.log(sort);
+    console.log(order);
+
+  });
+
   // var companyList = $("input[data-autocomplete]").autocomplete({ 
   //     change: function() {
   //         alert('changed');
@@ -100,13 +130,12 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-
-  // Sorting functionality in Library List View
-  $(document).on("click",".column_sort",function(){
-    $("#sorted_by").val($(this).attr('data-sort'));
-    $("#order").val($(this).attr('data-order'));
+  $(document).on("click","#lib_name_for_search",function(){
     $('#search_grid_list_form').submit();
   });
+
+
+
 
 });
 
