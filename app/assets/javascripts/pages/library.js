@@ -93,38 +93,20 @@ $(document).ready(function(){
   $(document).on("click",".table_header > .column_sort",function(){
     var $header = $(this);                    // Get the header
     var order = $header.attr('data-sort');    // Get value of data-sort attribute
-    var sort = $header.attr('data-order');    // Get value of data-order attribute
     var column = $header.html();
-
     $header.attr('data-order', $header.attr('data-order') == 'DESC' ? 'ASC' : 'DESC');
-
     if ($header.is('.ascending') || $header.is('.descending')) {
       $header.toggleClass('ascending descending');
-
-    } else {
-      $header.addClass('ascending');
+    }else{
+      $header.addClass('descending');
       $header.siblings().removeClass('ascending descending');
-
     }
-
-    console.log(column);
-    console.log(sort);
-    console.log(order);
-
+    $("#order").val($header.hasClass('ascending') ? 'ASC' : 'DESC');
+    $("#sort_arrow").val($header.hasClass('ascending') ? 'ascending' : 'descending')
+    $("#sorted_by").val(order);
+    $('#search_grid_list_form').submit();
   });
-
-  // var companyList = $("input[data-autocomplete]").autocomplete({ 
-  //     change: function() {
-  //         alert('changed');
-  //         $('#search_grid_list_form').submit();
-  //     }
-  //  });
-  //  companyList.autocomplete('option','change').call(companyList);
-
-  // $('input[data-autocomplete]').bind('railsAutocomplete.select', function(event, ui) {
-  //     alert("Dfdsdfs");
-  //     $('#search_grid_list_form').submit();
-  // });
+  
   $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
     /* Do something here */
     $('#search_grid_list_form').submit();
@@ -133,10 +115,6 @@ $(document).ready(function(){
   $(document).on("click","#lib_name_for_search",function(){
     $('#search_grid_list_form').submit();
   });
-
-
-
-
 });
 
 function check_require_field(){

@@ -37,4 +37,19 @@ module LibrariesHelper
 			i == (5 - count) ? ' active' : ''
 		end
 	end
+
+	def get_order_hash(param)
+		if params[:sorted_by] == 'title'
+			title_order = param[:order].blank? || param[:order] == 'ASC' ? 'DESC' : 'ASC'
+		  title_arrow = param[:order].blank? || param[:order] == 'ASC' ? 'ascending' : 'descending'
+			date_order = ''
+			date_arrow = ''
+		else
+			date_order = param[:order].blank? || param[:order] == 'ASC' ? 'DESC' : 'ASC'
+		  date_arrow = param[:order].blank? || param[:order] == 'ASC' ? 'ascending' : 'descending'
+		  title_order = ''
+		  title_arrow = ''
+		end
+		return{'title_arrow' => title_arrow, 'title_order' => title_order, 'date_arrow' => date_arrow, 'date_order' => date_order}
+	end
 end

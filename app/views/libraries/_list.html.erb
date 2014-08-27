@@ -2,23 +2,19 @@
   <div class="col-sm-12">
     <ul class="library_list_view sortable_list">
       <li class="table_header">
-        <span class="title_col column_sort" data-sort="title" data-order="DESC"><span>Name</span><div></div></span>
-          <!--span class="name_sort column_sort descending" data-sort="title" data-order="DESC">Name</span>
-          <span class="sort_icon">
-            <i class="icon-sort zcolumn_sort" data-sort="title" data-order="ASC"></i>
-            <i class="icon-sort_down zcolumn_sort" data-sort="title" data-order="DESC"></i>
+        <%if params[:sorted_by].blank? || params[:sorted_by] == "updated_at"%>
+          <span class="title_col column_sort" data-sort="title" data-order="<%=@order%>"><span>Name</span><div></div></span>
+          <span class="type_col">Type</span>
+          <span class="status_col">Status</span>
+          <span class="date_col column_sort <%=@sort_arrow%>" data-sort="updated_at" data-order="<%=@order%>">Last Modified<div></div>
           </span>
-        </span-->
-        <span class="type_col">Type</span>
-        <span class="status_col">Status</span>
-
-        <span class="date_col column_sort descending" data-sort="updated_at" data-order="DESC">Last Modified<div></div></span>
-          <!--span class=" name_sort">Last Modified</span>
-          <span class="sort_icon">
-              <i class="icon-sort column_sort" data-sort="updated_at" data-order="ASC"></i>
-              <i class="icon-sort_down column_sort" data-sort="updated_at" data-order="DESC"></i>
-          </span-->
-        </span>
+        <%else%>
+          <span class="title_col column_sort <%=@sort_arrow%>" data-sort="title" data-order="<%=@order%>"><span>Name</span><div></div></span>
+          <span class="type_col">Type</span>
+          <span class="status_col">Status</span>
+          <span class="date_col column_sort" data-sort="updated_at" data-order="<%=@order%>">Last Modified<div></div>
+          </span>
+        <%end%>
       </li>
 
       <% @list.each_with_index do |ls, index| %>
