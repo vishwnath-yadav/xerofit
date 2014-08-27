@@ -76,7 +76,7 @@ gem 'devise'
 # Use Pry
 gem 'pry', group: [:development, :test]
 
-# gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'rmagick', require: false
 

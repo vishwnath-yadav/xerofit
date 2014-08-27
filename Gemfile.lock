@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 83059dc2894b7d887cb1a6061fbde741bd4d1854
+  revision: 41d5176f3682abef2c09c169083f82df87ed54f1
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -53,7 +53,9 @@ GEM
     arbre (1.0.2)
       activesupport (>= 3.0.0)
     arel (4.0.2)
-    aws-sdk (1.51.0)
+    aws-sdk (1.52.0)
+      aws-sdk-v1 (= 1.52.0)
+    aws-sdk-v1 (1.52.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
@@ -117,7 +119,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    hashie (3.3.0)
+    hashie (3.3.1)
     hike (1.2.3)
     i18n (0.6.11)
     inherited_resources (1.4.1)
