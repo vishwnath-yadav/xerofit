@@ -83,13 +83,6 @@ $(document).ready(function(){
       }
   });
 
-  // Sorting functionality in Library List View
-  //$(document).on("click",".column_sort",function(){
-    //$("#sorted_by").val($(this).attr('data-sort'));
-    //$("#order").val($(this).attr('data-order'));
-  //});
-
-
   $(document).on("click",".table_header > .column_sort",function(){
     var $header = $(this);                    // Get the header
     var order = $header.attr('data-sort');    // Get value of data-sort attribute
@@ -106,7 +99,7 @@ $(document).ready(function(){
     $("#sorted_by").val(order);
     $('#search_grid_list_form').submit();
   });
-  
+
   $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
     /* Do something here */
     $('#search_grid_list_form').submit();
@@ -144,7 +137,6 @@ function check_require_field(){
 function show_text_actual_size(){
   $('.detail_char').each(function(){
     var size = $(this).attr('data-size');
-
     var input_len = $(this).closest('.input_field_wrap').find('input, textarea').val().length;
      var actual = size - input_len;
       $(this).text(actual);
