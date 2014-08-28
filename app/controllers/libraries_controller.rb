@@ -28,7 +28,7 @@ class LibrariesController < ApplicationController
 	
 	def edit
 		@library = Library.find(params[:id])
-		@disabled = ([@workout.status] & [Library::STATUS[0],Library::STATUS[2]]).present?
+		@disabled = ([@library.status] & [Library::STATUS[0],Library::STATUS[2]]).present?
 		@max_size_allowed = @library.is_full_workout ? 1024 : 250
 		@size = @library.get_thumbnail()
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
