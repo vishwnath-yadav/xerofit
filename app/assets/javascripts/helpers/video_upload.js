@@ -7,7 +7,6 @@ $(document).ready(function() {
   $(document).on("click", ".full_workout", function(){
     upload_video_fancybox($(this))
   });
-  
 });
 
 function upload_video_fancybox(obj){
@@ -36,7 +35,7 @@ function upload_video_fancybox(obj){
 }
 
 function html_setups(response){
-  prg.parent().find('p').text('Successfully uploaded');
+  prg.parent().find('p').text('Upload Completed!');
   $(".video_id").val(response);
   $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
   $(".full_workout").val(full_workout);

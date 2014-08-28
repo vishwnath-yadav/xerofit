@@ -5,18 +5,36 @@
       prg = $("#progressbar");
       upload_video('dropzone');
     });
+
     function upload_video(id){
       size = 0;
       var myDropzone = new Dropzone("#"+id,
         {
         url: "/videos/create",
-        clickable: true,
+        clickable: '.upload_new_video',
         paramName: "file", // The name that will be used to transfer the file
         maxFilesize: max_size, // MB
         });
 
       myDropzone.on("addedfile", function(file) {
-        size = (file.size/1024/1024).toFixed(2);
+        $('#upload_btn_wrap').remove();
+        $('.video_uplod_txt h2').css('text-align', 'left');
+        $('.video_uplod_icon').addClass('uploading');
+
+        $('.video_uplod_icon').stop(true,true).delay( 150 ).animate({
+          left: '-=100px',
+          marginLeft: '0',
+          marginBottom: '0',
+          top: '+=61px',
+        }, 600 );
+
+        $('.video_uplod_txt').stop().animate({
+          left: '+=58px',
+          top: '-=21px',
+          marginLeft: '24px',
+        }, 600 );
+
+        size = (file.size/1024/1024).toFixed(1);
         if(size > max_size){
           myDropzone.removeFile(file);
         }
@@ -26,8 +44,8 @@
       });
 
       myDropzone.on("uploadprogress", function(a, progress, size_ulpload) {
-        upl = (size_ulpload/1024/1024).toFixed(2);
-        prg.parent().find('p').text('uploading.. '+upl+' MB of '+size+' MB');
+        upl = (size_ulpload/1024/1024).toFixed(1);
+        prg.parent().find('p').text('Uploaded '+upl+' MB of '+size+' MB');
         prg.progressbar({
         value: progress
       });
@@ -39,12 +57,11 @@
 
       myDropzone.on("error", function(a, response) {
         if(size > max_size){
-          alert("Sorry maximum file size allowed is "+max_size+" MB")
+          alert("Sorry the maximum file size allowed is "+max_size+" MBs")
         }
         else{
-          alert("Something Bad happened. Please try again later.")
+          alert("Something bad happened. Please refresh the page and try again.")
         }
       });
     }
-    
   </script>

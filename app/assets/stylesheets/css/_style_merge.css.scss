@@ -960,30 +960,7 @@ width: 45%;
 }
 
 
-.video_uplod_txt {
-    width: 55%;
-    float: left;
-    margin-left: 28px;
-}
 
-.video_uplod_txt .loader_pipe {
-    width:100%;
-    float:left;
-    margin:10px 0px;
-}
-
-.video_uplod_txt h2 {
-    font-size: 17px;
-    margin-bottom: 20px;
-    text-align: left;
-    line-height: 26px;
-}
-
-.video_uplod_txt p {
-    color: $silver51;
-    @include gotham300();
-    //margin: 5px 0 10px !important;
-}
 
 input:focus::-webkit-input-placeholder {
     opacity: 0;
