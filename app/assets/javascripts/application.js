@@ -114,6 +114,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change","#user_pic", function(){
+    alert("dfdfsdfdsfs");
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};
