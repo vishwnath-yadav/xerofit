@@ -1,22 +1,23 @@
-<% if action_name == 'edit' && controller_name == 'libraries' %>
+  <%change_cls = disabled ? '' : 'for_on_change1'%>
   <% if @size.present? %>
-  
     <% temp = 0 %>
-
     <ul id="see_more">
     <% @size.each_with_index do |library, index| %>
       <% if(temp == 0) %>
-        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" >
+          <%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: change_cls) %>
           <div class="video_title <%= (index == 0 && @library.library_video.image.present?)? 'select_thumb' : '' %>">Selected</div>
         </li>
         <% temp = temp+1 %>
       <% elsif(temp<2) %>
-        <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+        <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" >
+          <%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: change_cls) %>
           <div class="video_title">Selected</div>
         </li>
         <% temp = temp+1 %>
       <% else %>
-        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: "for_on_change1") %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>">
+          <%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: change_cls) %>
           <div class="video_title">Selected</div>
         </li>
         <% temp = 0 %>
@@ -28,42 +29,42 @@
   <% else %>
     <p class="input_sub_text">Thumbnail selections will appear when the video has finished processing.</p>
   <% end %>
-<% end %>
-
-<script>
-$(document).ready(function(){
-  $(document).on('click','.li_class', function(){
-    // $('.li_change').removeClass('li_change');
-    // $(this).addClass('li_change');
-    var s = $(this).find('img').prop('src');
-    $('.image_url').val(s);
-    $('.select_thumb').removeClass('select_thumb');
-    $(this).find('.video_title').addClass('select_thumb');
-  });
-
-  $(document).on('click','.load_more', function(){
-    $('.image_hide').each(function( index ) {
-      $(this).addClass('image_show');
-      $(this).removeClass('image_hide');
-      if($('.image_hide').size() == 0)
-      {
-        $('.load_more').hide();
-        $('.load_less').show();
-      }
+<%if disabled == false%>
+  <script>
+  $(document).ready(function(){
+    $(document).on('click','.li_class', function(){
+      // $('.li_change').removeClass('li_change');
+      // $(this).addClass('li_change');
+      var s = $(this).find('img').prop('src');
+      $('.image_url').val(s);
+      $('.select_thumb').removeClass('select_thumb');
+      $(this).find('.video_title').addClass('select_thumb');
     });
-  });
 
-  $(document).on('click','.load_less', function(){
-    $('.image_show').each(function( index ) {
-      $(this).addClass('image_hide');
-      $(this).removeClass('image_show');
-      if($('.image_show').size() == 0)
-      {
-        $('.load_less').hide();
-        $('.load_more').show();
-      }
+    $(document).on('click','.load_more', function(){
+      $('.image_hide').each(function( index ) {
+        $(this).addClass('image_show');
+        $(this).removeClass('image_hide');
+        if($('.image_hide').size() == 0)
+        {
+          $('.load_more').hide();
+          $('.load_less').show();
+        }
+      });
     });
-  });
-})
-</script>
+
+    $(document).on('click','.load_less', function(){
+      $('.image_show').each(function( index ) {
+        $(this).addClass('image_hide');
+        $(this).removeClass('image_show');
+        if($('.image_show').size() == 0)
+        {
+          $('.load_less').hide();
+          $('.load_more').show();
+        }
+      });
+    });
+  })
+  </script>
+<%end%>
 

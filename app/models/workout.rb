@@ -13,7 +13,7 @@ class Workout < ActiveRecord::Base
 
 
 	validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
-	validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
+	#validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
 	
 	has_many :blocks
 	has_one :statastic

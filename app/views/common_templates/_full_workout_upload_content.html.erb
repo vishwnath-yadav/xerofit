@@ -1,0 +1,9 @@
+<div class="video_uplod" id="dropzone">
+    <div class="video_uplod_txt">
+        <h2>Drop Video Files to Upload</br> (OR Click)</h2>
+        <div id="<%=popup.blank? ? 'progressbar' : ''%>"></div>
+        <p></p>
+        <input name="file" type="file" id="library_video_video" style="opacity:0;"/>
+      </div>
+</div>
+<%=render "common_templates/dropzone_script"%>

@@ -71,7 +71,7 @@ $(document).ready(function(){
   	$('#search_grid_list_form').submit();
   });
 
-  $(document).on("click",".search_bar_clear",function(){
+  $(document).on("click",".search_bar_clear",function(e){
     $("#search_lib_by_name").val('');
     $(".search_bar_clear").addClass('hide');
     $('.search_bar_icon').removeClass('hide');
@@ -135,7 +135,7 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on('dblclick','.dblclk_add ul li',function(){
+  $(document).on('dblclick','.dblclk_add ul li.for_on_changed',function(){
     $(this).addClass('selected_equipment');
     var value = $(this).text();
     $('.equip_hid').each(function(){

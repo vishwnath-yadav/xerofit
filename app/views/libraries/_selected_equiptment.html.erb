@@ -1,0 +1,17 @@
+<%if disabled%>
+	<div class="close_equip <%=equip.blank? ? 'hide' : ''%>" id="equip_div_<%= index %>">
+	  <span class="fl_text"><%= equip %></span>
+	   <span>
+	    <a href="javascript:void(0)">X
+	    </a>
+	  </span>
+	</div>
+<%else%>
+	<div class="close_equip for_on_changed <%=equip.blank? ? 'hide' : ''%>" id="equip_div_<%= index %>">
+	  <span class="fl_text"><%= equip %></span>
+	   <span>
+	    <a href="javascript:void(0)" class="equip_close_icon" data-id="<%= index %>">X
+	    </a>
+	  </span>
+	</div>
+<%end%>
