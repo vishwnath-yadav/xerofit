@@ -1,19 +1,20 @@
+  <%change_cls = disabled ? '' : 'for_on_change1'%>
   <% if @size.present? %>
     <% temp = 0 %>
     <ul id="see_more">
     <% @size.each_with_index do |library, index| %>
       <% if(temp == 0) %>
-        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "<%=change_cls%>") %>
           <div class="video_title <%= (index == 0 && @library.library_video.image.present?)? 'select_thumb' : '' %>">Selected</div>
         </li>
         <% temp = temp+1 %>
       <% elsif(temp<2) %>
-        <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "for_on_change1") %>
+        <li class="margn45 li_class <%= (index>2)? 'image_hide' : '' %>" ><%= image_tag(@size[index], width: "167", alt: "upload_thumb", class: "<%=change_cls%>") %>
           <div class="video_title">Selected</div>
         </li>
         <% temp = temp+1 %>
       <% else %>
-        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: "for_on_change1") %>
+        <li class= "li_class <%= (index>2)? 'image_hide' : '' %>"><%= image_tag(@size[index], width: "167",  alt: "upload_thumb", class: "<%=change_cls%>") %>
           <div class="video_title">Selected</div>
         </li>
         <% temp = 0 %>

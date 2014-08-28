@@ -169,11 +169,9 @@
           </div>
           <div class="col-sm-6">
             <div class="selected_equip">
-              <% if @library.equipment.present? %>
                 <% [0,1,2,3,4].each do |index|%>
                   <input type="hidden" name="library[equipment][]" value="<%=@library.equipment[index] %>" class="equip_hid" id="equip_hid_<%=index%>">
                     <%=render "selected_equiptment", equip: @library.equipment[index], index: index, disabled: @disabled %>
-                <% end %>
               <% end %>
             </div>
           </div>
