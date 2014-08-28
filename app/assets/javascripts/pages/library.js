@@ -70,7 +70,7 @@ $(document).ready(function(){
   	$('#search_grid_list_form').submit();
   });
 
-  $(document).on("click",".search_bar_clear",function(){
+  $(document).on("click",".search_bar_clear",function(e){
     $("#search_lib_by_name").val('');
     $(".search_bar_clear").addClass('hide');
     $('#search_grid_list_form').submit();
@@ -87,13 +87,11 @@ $(document).ready(function(){
   //   $(".search_bar_clear").addClass('hide');
   // })
 
-  $(document).on("blur", '#search_lib_by_name', function(e){
-    console.log(e.target.id);
-      if (e.target.id == 'search_lib_by_name'){
-        console.log("dfdd")
-        return
-      }
-      else{
+  $(document).click(function(e){
+      console.log($(e.target).attr('class'));
+      if($(e.target).is('.search_bar_clear, .ui-autocomplete-input, .ui-menu-item')){
+        return false;
+      }else{ 
         $(".search_bar_clear").addClass('hide');
       }
   });
