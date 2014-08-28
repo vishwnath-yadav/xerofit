@@ -112,7 +112,7 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on('dblclick','.dblclk_add ul li',function(){
+  $(document).on('dblclick','.dblclk_add ul li.for_on_changed',function(){
     $(this).addClass('selected_equipment');
     var value = $(this).text();
     $('.equip_hid').each(function(){
