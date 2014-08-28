@@ -11,15 +11,20 @@ $(document).ready(function() {
       }
     });
 
-    if(flag == 1)
-    {
-    $('.wrk_rvw').removeClass('dis_link');
+    if(flag == 1){
+      $('.wrk_rvw').removeClass('dis_link');
+      $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+      $('.wrk_sve').attr('lib-status', STATUS[3]);
     }
     else{
+      var status_icon = $('.library_item_status').attr('data-status-icon');
+      var status = $('.library_item_status').attr('data-status');
+      status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
+      status = status == STATUS[3] ? STATUS[4] : status
+      $('.wrk_sve').attr('lib-status', status);
+      $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
       $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw');
     }
-    console.log(flag);
-    console.log($('#workout_category').val());
   });
 
   $(document).on("click", ".wrk_out_form", function(){

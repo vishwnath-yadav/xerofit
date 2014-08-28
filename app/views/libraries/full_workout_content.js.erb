@@ -1,11 +1,7 @@
-<%if session[:video_id].blank?%>
-	<%popup = params[:popup].present? ? 'true' : ''%>
-	$('#video_cont').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => popup})) %>");
-	<%if params[:popup].present?%>
-		$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
-	<%else%>
-		$('#upload_content').html('<img src="/assets/ajax-loader.gif" style="margin: 20% 47% 30%;" />');
-	<%end%>
+<%if params[:popup].present?%>
+	$('#video_cont').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => 'true'})) %>");
+	$('.full_upload_popup').html("<%= escape_javascript(render(:partial => '/common_templates/full_workout_upload_content',  locals: {:popup => ''})) %>");
 <%else%>
-	$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
+	$('#video_cont').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
+	$('.full_upload_popup').html('<img src="/assets/ajax-loader.gif" style="margin: 20% 47% 30%;" />');
 <%end%>
