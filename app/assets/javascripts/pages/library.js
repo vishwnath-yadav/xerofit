@@ -65,6 +65,7 @@ $(document).ready(function(){
      $('#search_grid_list_form').submit();
   });
 
+
   // Search functionality on Library Index
   $(document).on("click","#lib_name_for_search",function(){
   	$('#search_grid_list_form').submit();
@@ -73,23 +74,45 @@ $(document).ready(function(){
   $(document).on("click",".search_bar_clear",function(){
     $("#search_lib_by_name").val('');
     $(".search_bar_clear").addClass('hide');
+    $('.search_bar_icon').removeClass('hide');
+    $('#search_lib_by_name').css({
+      'padding-left': '30px',
+      'text-align': 'center'
+    });
     $('#search_grid_list_form').submit();
   });
 
   $(document).on("keyup, mouseup", '#search_lib_by_name', function(e){
-      $(".search_bar_clear").removeClass('hide');
       if(e.which == 13){//Enter key pressed
         $('#search_grid_list_form').submit();
       }
   });
 
-  $(document).on("blur", '#search_lib_by_name', function(e){
+  $(document).on("focus", '#search_lib_by_name', function(){
+    $(this).css('text-align', 'left');
+    $(".search_bar_clear").removeClass('hide');
+    $('.search_bar_icon ').addClass('hide');
+    $(this).css('padding-left', '12px');
+  });
+
+  $(document).on("blur", '#search_lib_by_name', function(){
+    var inputText = $.trim($(this).val());
+
+    if(inputText.length>0)
+    {
+      return false;
+    } else {
+      $(this).css('text-align', 'center');
       $(".search_bar_clear").addClass('hide');
+      $('.search_bar_icon').removeClass('hide');
+      $(this).css('padding-left', '30px');
+    }
   });
 
   $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
     $('#search_grid_list_form').submit();
   });
+
 
   $(document).on("click",".table_header > .column_sort",function(){
     var $header = $(this);                    // Get the header

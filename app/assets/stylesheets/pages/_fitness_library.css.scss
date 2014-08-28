@@ -72,23 +72,36 @@ input.search_bar {
     padding-left: 30px;
     background: #FFF;
     @include border-radius(4px);
+    text-align: center;
 
     &:focus {
         outline: none;
         border: 1px solid $xero-blue;
     }
 }
-
-#lib_name_for_search {
-    height: 14px;
-    width: 14px;
-    background: url(/assets/icons/search_icon_small.png);
-    background-repeat: no-repeat;
-    @include background-size(contain);
+.search_bar_icon {
     position: absolute;
-    left: 8px;
-    top: 7px;
+    left: 50%;
+    top: 6px;
+    margin-left: -34px;
+
+    &:before {
+        display: block;
+        content: '';
+        height: 14px;
+        width: 14px;
+        background: url(/assets/icons/search_icon_small.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        float: left;
+        position: relative;
+
+    }
+}
+#lib_name_for_search {
     border: 0;
+    background: none;
+    padding: 0;
 
     &:focus {
         outline: none;
