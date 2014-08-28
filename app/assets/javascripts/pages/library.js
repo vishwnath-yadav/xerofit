@@ -77,7 +77,8 @@ $(document).ready(function(){
     $('.search_bar_icon').removeClass('hide');
     $('#search_lib_by_name').css({
       'padding-left': '30px',
-      'text-align': 'center'
+      'text-align': 'center',
+      'color': '#CCCCCC'
     });
     $('#search_grid_list_form').submit();
   });
@@ -92,7 +93,10 @@ $(document).ready(function(){
     $(this).css('text-align', 'left');
     $(".search_bar_clear").removeClass('hide');
     $('.search_bar_icon ').addClass('hide');
-    $(this).css('padding-left', '12px');
+    $(this).css({
+      'padding-left': '12px',
+      'color': '#4C4D4E',
+    });
   });
 
   $(document).on("blur", '#search_lib_by_name', function(){

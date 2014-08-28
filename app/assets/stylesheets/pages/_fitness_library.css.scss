@@ -949,7 +949,8 @@ a.cancel_btn {
         width: 98px;
         text-align: center;
         @include button($silver31);
-        cursor: pointer;
+
+        &:hover {cursor: pointer;}
     }
 }
 
@@ -962,8 +963,6 @@ a.cancel_btn {
 #progressbar .ui-widget-header,
 #progressbar1 .ui-widget-header {
     background-color: $xero-blue !important;
-    //background-image: linear-gradient(to bottom, $xero-blue, $xero-blue) !important;
-    //background-repeat: repeat-x !important;
     box-sizing: border-box!important;
     color: #ffffff!important;
     float: left!important;
@@ -973,7 +972,6 @@ a.cancel_btn {
     transition: width 0.6s ease 0s;
     border: none !important;
     @include border-radius(none);
-
 }
 
 .ui-progressbar{
@@ -1086,9 +1084,6 @@ a.remove_video_btn {
     border: 1px solid #E3E3E3;
     float: left;
     @include border-radius(6px);
-    //padding: 35px 0 75px 54px;
-    //width: 33%;
-    //margin-bottom: 20px;
 }
 
 .upload_gry_box .custom-upload .fake-file input {
