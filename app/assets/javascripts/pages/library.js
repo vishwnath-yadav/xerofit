@@ -83,8 +83,19 @@ $(document).ready(function(){
       }
   });
 
+  // $('#search_lib_by_name').not(".search_bar_clear").blur(function() {
+  //   $(".search_bar_clear").addClass('hide');
+  // })
+
   $(document).on("blur", '#search_lib_by_name', function(e){
-      $(".search_bar_clear").addClass('hide');
+    console.log(e.target.id);
+      if (e.target.id == 'search_lib_by_name'){
+        console.log("dfdd")
+        return
+      }
+      else{
+        $(".search_bar_clear").addClass('hide');
+      }
   });
 
   $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
