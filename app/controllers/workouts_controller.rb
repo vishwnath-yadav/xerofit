@@ -137,7 +137,7 @@ class WorkoutsController < ApplicationController
 
 	def workout_details
 		@workout = Workout.find(params[:id])
-		@disabled = [@workout.status] & [Library::STATUS[0],Library::STATUS[2]].present?
+		@disabled = ([@workout.status] & [Library::STATUS[0],Library::STATUS[2]]).present?
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
 	end
 
