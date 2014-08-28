@@ -143,7 +143,7 @@ $(document).ready(function(){
         if($(this).val() == ''){
           var id = $(this).attr('id').split("_")[2];
           $(this).val(value);
-          $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.fl_text').text(value);
+          $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.pill_text').text(value);
           return false;
         }
       }else{
@@ -155,10 +155,22 @@ $(document).ready(function(){
 
   $(document).on('click','.equip_close_icon',function(){
     var id = $(this).attr('data-id');
+    var pill_name = $(this).siblings('span.pill_text').text();
+    var equip_list_match = $('ul#equipment_list li:contains('+pill_name+')');
+
     $("#equip_hid_"+id).val('');
-    $("#equip_div_"+id).addClass('hide').find('span.fl_text').text('');
+    $("#equip_div_"+id).addClass('hide').find('span.pill_text').text('');
+    equip_list_match.removeClass('selected_equipment');
   });
 });
+
+// Not a Great solution (needs to be fixed)
+function check_selected_equipment(){
+  var pill_name = $('.equipment_pill span.pill_text').text();
+  var equip_list_match = $('ul#equipment_list li:contains('+pill_name+')');
+
+  equip_list_match.addClass('selected_equipment');
+}
 
 function check_require_field(){
   var flag= 1;
