@@ -863,6 +863,10 @@ a.cancel_btn {
     @include border-radius(6px);
 }
 
+#library_video_video{
+    display: inline;
+}
+
 .video_uploader {
     width: 100%;
     position: relative;
