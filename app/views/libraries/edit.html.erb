@@ -195,7 +195,7 @@
       <div class="row">
         <% if @library.library_video.present? %>
           <span class="upload_edit">
-            <%= render "upload_edit" %>
+            <%= render "upload_edit", disabled: @disabled %>
           </span>
       </div>
 
