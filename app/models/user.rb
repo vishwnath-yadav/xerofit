@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     super && self.enabled
   end
 
+  def moves
+    self.libraries.where(is_full_workout: false)
+  end
+
   def day
     self.date_of_birth.present? ? self.date_of_birth.day : 0
   end

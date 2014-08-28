@@ -121,7 +121,7 @@ class Library < ActiveRecord::Base
 	end
 
 	def has_full_detail
-		if self.status == STATUS[3]
+		if [self.status] & [STATUS[0],STATUS[2],STATUS[3]]
 			return true
 		else
 			target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
@@ -138,5 +138,7 @@ class Library < ActiveRecord::Base
 	def target_muscles
 		self.target_muscle_groups
 	end
+
+	
 
 end

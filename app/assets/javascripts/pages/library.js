@@ -83,6 +83,14 @@ $(document).ready(function(){
       }
   });
 
+  $(document).on("blur", '#search_lib_by_name', function(e){
+      $(".search_bar_clear").addClass('hide');
+  });
+
+  $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
+    $('#search_grid_list_form').submit();
+  });
+
   $(document).on("click",".table_header > .column_sort",function(){
     var $header = $(this);                    // Get the header
     var order = $header.attr('data-sort');    // Get value of data-sort attribute
@@ -100,13 +108,32 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $('#search_lib_by_name').bind('railsAutocomplete.select', function(event, data){
-    /* Do something here */
+  $(document).on("click","#lib_name_for_search",function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on("click","#lib_name_for_search",function(){
-    $('#search_grid_list_form').submit();
+  $(document).on('dblclick','.dblclk_add ul li',function(){
+    $(this).addClass('selected_equipment');
+    var value = $(this).text();
+    $('.equip_hid').each(function(){
+      if($('.close_equip:visible').size() < 5){
+        if($(this).val() == ''){
+          var id = $(this).attr('id').split("_")[2];
+          $(this).val(value);
+          $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.fl_text').text(value);
+          return false;
+        }
+      }else{
+        alert("You can only select up to 5 pieces of equipment");
+        return false;
+      }
+    });
+  });
+
+  $(document).on('click','.equip_close_icon',function(){
+    var id = $(this).attr('data-id');
+    $("#equip_hid_"+id).val('');
+    $("#equip_div_"+id).addClass('hide').find('span.fl_text').text('');
   });
 });
 
@@ -128,9 +155,17 @@ function check_require_field(){
   }
   if(flag == 1){
     $('.chg_lin').removeClass('dis_link');
+    $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+    $('.chg_save').attr('lib-status', STATUS[3]);
   }
   else{
     $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin btn_right');
+    var status_icon = $('.library_item_status').attr('data-status-icon');
+    var status = $('.library_item_status').attr('data-status');
+    status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
+    status = status == STATUS[3] ? STATUS[4] : status
+    $('.chg_save').attr('lib-status', status);
+    $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
   }
 }
 

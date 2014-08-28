@@ -160,26 +160,7 @@ $(document).ready(function() {
     select_wrapper.load(url)
   });
 
-  $(document).on('dblclick','.dblclk_add ul li',function(){
-    var value = $(this).text();
-    var index_value = $('.close_equip:last').attr('id');
-    index_value = index_value ? parseInt(index_value) + 1 : 1
-    if($('.close_equip').size() < 5){
-      $('.selected_equip').append('<div class="close_equip equipment_pill" id="'+index_value+'"><input type="hidden" name="library[equipment][]" value="'+value+'"><span>'+value+'</span><a href="javascript:void(0)" class="close_icon" data-attr="'+index_value+'"></a></div>');
-      $(this).addClass('selected_equipment');
-    }else{
-       alert("You can only select up to 5 pieces of equipment");
-    }
-  });
-
-  $(document).on('click','.close_icon',function(){
-    var id = $(this).attr('data-attr');
-    var pill_name = $(this).siblings("span").html();
-    var equip_list_match = $('ul#equipment_list li:contains('+pill_name+')');
-
-    $("#"+id).remove();
-    equip_list_match.removeClass('selected_equipment');
-  });
+  
 
   setTimeout(load_dropKick_js, 5000);
   setTimeout(remove_success_msg, 5000);

@@ -14,7 +14,10 @@
         </div>
         <div class="lib_text_box">
           <h4><%= @workout.title.titleize%></h4>
-          <p class="library_item_status"><img src="<%= status_icon(@workout.status)%>" /><%= @workout.status %></p>
+          <p class="library_item_status" data-status="<%=@workout.status%>" data-status-icon="<%= status_icon(@workout.status)%>">
+            <img src="<%= status_icon(@workout.status)%>" />
+            <%= @workout.status %>
+          </p>
         </div>
       </div>
     </div>
@@ -35,7 +38,7 @@
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_sve" lib-status="<%=@workout.status%>">Save</a>
         <%if hide_if_admin%>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw btn_right" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[3] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_work dis_link wrk_rvw btn_right" work-attr="<%= @work %>" lib-status="<%= Library::STATUS[2] %>">Submit for review</a>
         <%end%>
       </div>
     </div>
@@ -68,25 +71,25 @@
           <%end%>
           <div class="input_field_wrap">
             <label>Title</label>
-            <%= lib.text_field :title, class: "for_work_change", maxlength: "80" %>
+            <%= lib.text_field :title, class: "for_work_change", maxlength: "80", disabled: @disabled %>
             <span class="detail_char" data-size="80">80</span>
           </div>
           <div class="input_field_wrap">
             <label>Subtitle</label>
-            <%= lib.text_area :subtitle, maxlength: "120", :class => "text_area_sm for_work_change" %>
+            <%= lib.text_area :subtitle, maxlength: "120", :class => "text_area_sm for_work_change", disabled: @disabled %>
             <span class="detail_char" data-size="120">120</span>
           </div>
           <div class="input_field_wrap workout_category_select">
             <label>Category</label>
             <div class="fancy_select">
-              <%= lib.select :category, Library::CATEGORIES, {prompt: "choose one"}, {class: "for_work_change workout_category"}%>
+              <%= lib.select :category, Library::CATEGORIES, {prompt: "choose one"}, {class: "for_work_change workout_category", disabled: @disabled}%>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
             <div class="input_field_wrap">
               <label>Description</label>
-              <%= lib.text_area :description, maxlength: "450", :class => "text_area_lg for_work_change" %>
+              <%= lib.text_area :description, maxlength: "450", :class => "text_area_lg for_work_change", disabled: @disabled %>
               <span class="detail_char" data-size="450">450</span>
             </div>
         </div>
@@ -104,7 +107,7 @@
                 <p>Upload your image</p>
                 <%#= lib.file_field :pic %>
                 <div class="custom-upload">
-                  <%= lib.file_field :pic %>
+                  <%= lib.file_field :pic, disabled: @disabled %>
                   <div class="fake-file">
                       <span class="choose_btn wrk_chos">Choose File</span>
                       <input disabled="disabled">
@@ -125,7 +128,7 @@
           <%=hidden_field_tag :company, "true"%>
           <%=hidden_field_tag :id, @workout.id%>
           <%=hidden_field_tag :type, "workout" %>
-          <%= form.file_field :pic, :style =>"display:none" %>
+          <%= form.file_field :pic, :style =>"display:none", disabled: @disabled %>
     <% end %>
 
     <div class="row">
@@ -136,7 +139,11 @@
         <div class="lib_edit_botom">
           <h5 class="input_label">Delete Workout</h5>
           <p class="input_sub_text">Permanently remove this workout from Xerofit. This action will only delete the workout, not any of the moves associated with it. Proceed with caution, this action cannot be undone!</p>
-          <%=link_to "Delete this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+          <%if @disabled%>
+            <%=link_to "Delete this Workout", "javascript:void(0)", :class => "remove_video_btn"%>
+          <%else%>
+            <%=link_to "Delete this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn", disabled: @disabled%>
+          <%end%>
         </div>
       </div>
     </div>
