@@ -1156,13 +1156,25 @@ p.library_item_status {
     text-decoration: underline;
 }
 
-.no_video{
+.no_video {
     background-color: #F2F2F2;
     border: 1px solid #E3E3E3;
     border-radius: 4px;
-    width: 586px;
-    height: 330px;
-    color: red;
+    width: 100%;
+    height: 316px;
+    position: relative;
+
+    > span {
+        display: block;
+        color: $silver51;
+        position: absolute;
+        top: 50%;
+        margin-top: -7px;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        line-height: 14px;
+    }
 }
 
 

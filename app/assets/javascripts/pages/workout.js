@@ -23,7 +23,7 @@ $(document).ready(function() {
       status = status == STATUS[3] ? STATUS[4] : status
       $('.wrk_sve').attr('lib-status', status);
       $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
-      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw');
+      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw btn_right');
     }
   });
 
