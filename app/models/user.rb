@@ -2,18 +2,10 @@ class User < ActiveRecord::Base
   require 'RMagick'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  attr_accessor :x, :y, :width, :height, :cropper_id
-
-  #has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-  has_attached_file :pic, :styles => { :display => '300x200', :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, 
-                          :whiny_thumbnails => true, :path => 
-                          ":rails_root/public/system/:attachment/:id/:style/:style.:extension", 
-                          :url => "/system/:attachment/:id/:style/:style.:extension"
-
-  validates_attachment_content_type :pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  #validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
-    
-
+  has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, :processors => [:cropper]
+  validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :libraries 
@@ -23,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :workouts
   
   before_create :generate_token
+  # after_update :reprocess_pic, :if => :cropping? 
 
   ROLES = %w[admin trainer normaluser]
   ROLESFORADMIN = %w[trainer normaluser]
@@ -112,16 +105,17 @@ class User < ActiveRecord::Base
     self.all.where(role: 'normaluser').count
   end
 
-  def update_photo_attributes(att)
-    scaled_img = Magick::ImageList.new(self.pic.path)
-    orig_img = Magick::ImageList.new(self.pic.path(:original))
-    scale = orig_img.columns.to_f / scaled_img.columns
-    args = [ att[:x1], att[:y1], att[:width], att[:height] ]
-    args = args.collect { |a| a.to_i * scale }
-    orig_img.crop!(*args)
-    orig_img.write(self.pic.path(:original))
-    self.pic.reprocess!
-    self.save
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def pic_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(pic.path(style))
+  end
+  
+  def reprocess_pic
+    pic.reprocess!
   end
 
   protected
