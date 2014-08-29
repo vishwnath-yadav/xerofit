@@ -1,0 +1,42 @@
+<div class="col-sm-12">
+  <h3 class="lib_section_title">Video Details</h3>
+</div>
+
+<div class="col-sm-6">
+    <h5 class="input_label">Video File</h5>
+  <%if @library.library_video.present? && @library.library_video.panda_video.present?%>
+    <%if @library.library_video.panda_mp4.url.present? %>
+
+      <div id="video-container">
+        <!-- Video -->
+        <video id="video" width="560" height="316" controls poster="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>">
+          <source src="<%= @library.library_video.panda_mp4.url %>" type="video/mp4">
+        </video>
+        <!--div id="video-controls">
+          <div class="play-button">
+            <button type="button" id="play-pause" class="play">Play</button>
+          </div>
+          <div class="video-seek">
+            <input type="range" id="seek-bar" value="0">
+          </div>
+          <div class="">
+            <button type="button" id="mute">Mute</button>
+            <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+            <button type="button" id="full-screen">Full-Screen</button>
+          </div>
+        </div-->
+      </div>
+
+    <%else%>
+      <div class="no_video">
+        <span>Your video file is currently being processed.</span>
+      </div>
+    <%end%>
+  <%end%>
+</div>
+
+<div class="col-sm-6 thumbnail_col">
+  <h5 class="input_label">Video Thumbnail</h5>
+  <%= render 'thumbnail', disabled: disabled %>
+</div>
+

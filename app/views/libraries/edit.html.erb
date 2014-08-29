@@ -193,7 +193,7 @@
       <div class="row">
         <% if @library.library_video.present? %>
           <span class="upload_edit">
-            <%= render "upload_edit", disabled: @disabled %>
+            <%= render "video_details_section", disabled: @disabled %>
           </span>
       </div>
 
@@ -231,7 +231,8 @@
   </div>
 </div>
 
-<%= render "common_templates/full_workout_upload" %>
+<%= render "common_templates/video_controls" %>
+<%#= render "common_templates/full_workout_upload" %>
 
 <script>
 $(document).ready(function(){
@@ -241,7 +242,6 @@ $(document).ready(function(){
     $('.smt_reviw').removeClass('dis_link')
   }
   show_text_actual_size();
-  //check_selected_equipment();
 });
 $('.admin_li').removeClass('active')
 $('.admin_li.library').addClass('active');
