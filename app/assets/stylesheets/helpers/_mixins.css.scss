@@ -1,38 +1,38 @@
 // Mixins ===================================================================================== /
 
 @mixin gotham200() {
-  font-family: 'Gotham SSm 2r', 'Gotham SSm A', 'Gotham SSm B';
+  font-family: 'Gotham SSm 2r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 200;
   font-style: normal;
 }
 
 @mixin gotham300() {
-  font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';
+  font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
 @mixin gotham400() {
-  font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B';
+  font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 @mixin gotham500() {
-  font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B';
+  font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
 @mixin gotham700() {
-  font-family: 'Gotham SSm 7r', 'Gotham SSm A', 'Gotham SSm B';
+  font-family: 'Gotham SSm 7r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
-@mixin button($value) {
-    color: $value;
-    border: 1px solid $value;
+@mixin button($color) {
+    color: $color;
+    border: 1px solid $color;
     border-radius: 4px;
     padding: 7px 14px;
     font-size: 12px;
@@ -42,8 +42,8 @@
 
     &:hover {
       cursor: pointer;
-      color: darken( $value, 10% );
-      border: 1px solid darken( $value, 10% );
+      color: darken( $color, 10% );
+      border: 1px solid darken( $color, 10% );
     }
 }
 

@@ -72,23 +72,36 @@ input.search_bar {
     padding-left: 30px;
     background: #FFF;
     @include border-radius(4px);
+    text-align: center;
 
     &:focus {
         outline: none;
         border: 1px solid $xero-blue;
     }
 }
-
-#lib_name_for_search {
-    height: 14px;
-    width: 14px;
-    background: url(/assets/icons/search_icon_small.png);
-    background-repeat: no-repeat;
-    @include background-size(contain);
+.search_bar_icon {
     position: absolute;
-    left: 8px;
-    top: 7px;
+    left: 50%;
+    top: 6px;
+    margin-left: -34px;
+
+    &:before {
+        display: block;
+        content: '';
+        height: 14px;
+        width: 14px;
+        background: url(/assets/icons/search_icon_small.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        float: left;
+        position: relative;
+
+    }
+}
+#lib_name_for_search {
     border: 0;
+    background: none;
+    padding: 0;
 
     &:focus {
         outline: none;
@@ -846,8 +859,6 @@ a.cancel_btn {
     position: relative;
     background: #F2F2F2;
     border: 1px solid #E3E3E3;
-    padding: 125px 65px;
-    float: left;
     height: 406px;
     @include border-radius(6px);
 }
@@ -856,36 +867,100 @@ a.cancel_btn {
     width: 100%;
     position: relative;
     @include clearfix();
-
-    .video_uplod_txt p { margin: 0; }
 }
 
-.video_uplod_icon {
-    position: relative;
-    width: 160px;
-    height: 90px;
-    float: left;
-    background-color: #fff;
+.video_uplod .upload_wrap {
+    height: 212px;
+    width: 376px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -106px;
+    margin-left: -188px;
 
-    &:before {
-        content: '';
-        display: block;
-        height: 42px;
-        width: 50px;
-        position: absolute;
-        top: 24px;
-        left: 55px;
-        background: url(/assets/icons/video_icon_silver.png);
+
+    .video_uplod_icon {
+        position: relative;
+        margin-left: 108px;
+        margin-bottom: 28px;
+        width: 160px;
+        height: 90px;
+        background-color: #fff;
+
+        &:before {
+            content: '';
+            display: block;
+            height: 42px;
+            width: 50px;
+            position: absolute;
+            top: 24px;
+            left: 55px;
+            background: url(/assets/icons/video_icon_silver.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+        }
+    }
+
+    .video_uplod_icon.uploading:before {
+        background: url(/assets/icons/video_icon_blue.png);
         background-repeat: no-repeat;
         @include background-size(contain);
     }
+
+    .video_uplod_txt {
+        position: relative;
+        width: 376px;
+        cursor: default;
+
+        h2 {
+            text-align: center;
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 14px;
+            display: block;
+            width: 100%;
+            @include text-overflow();
+        }
+
+        p {
+            margin: 0;
+            color: $silver51;
+            @include gotham300();
+        }
+    }
 }
 
+.upload_btn_wrap {
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+    span {
+        color: #ccc;
+        font-size: 11px;
+        line-height: 14px;
+        display: block;
+        margin-bottom: 14px;
+        cursor: default;
+    }
+
+    > div {
+        float: left;
+        position: relative;
+        left: 50%;
+        margin-left: -49px;
+        width: 98px;
+        text-align: center;
+        @include button($silver31);
+
+        &:hover {cursor: pointer;}
+    }
+}
+
+// Progressbar Styles
 #progressbar .ui-widget-header,
 #progressbar1 .ui-widget-header {
     background-color: $xero-blue !important;
-    //background-image: linear-gradient(to bottom, $xero-blue, $xero-blue) !important;
-    //background-repeat: repeat-x !important;
     box-sizing: border-box!important;
     color: #ffffff!important;
     float: left!important;
@@ -893,6 +968,8 @@ a.cancel_btn {
     height: 100%!important;
     text-align: center!important;
     transition: width 0.6s ease 0s;
+    border: none !important;
+    @include border-radius(none);
 }
 
 .ui-progressbar{
@@ -903,13 +980,59 @@ a.cancel_btn {
 #progressbar.ui-widget-content,
 #progressbar1.ui-widget-content {
     border: none !important;
+    background: #E3E3E3;
 }
 
-#progressbar.ui-corner-all,
-#progressbar1.ui-corner-all {
-    border-radius: 1px !important;
+
+// Full Workout Upload Popup
+.full-workout-upload {
+    display: none;
+    width: 100%;
+    position: relative;
+
+    p.foot-note {
+        width: 360px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 14px;
+        margin-bottom: 0;
+        @include gotham400();
+    }
 }
 
+.full_upload_popup {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    h2 {
+        font-size: 23px;
+        line-height: 28px;
+        margin-bottom: 28px;
+    }
+
+    > .video_uplod {
+        height: 252px;
+    }
+    .video_uplod .upload_wrap {
+        height: 98px;
+        margin-top: -49px;
+    }
+}
+
+.video_uplod_txt .loader_pipe {
+    width: 100%;
+    float: left;
+    margin: 10px 0px;
+}
+
+input#library_video_video {
+    @include opacity(0.0);
+    display: inline;
+}
 
 
 
@@ -1009,9 +1132,6 @@ a.remove_video_btn {
     border: 1px solid #E3E3E3;
     float: left;
     @include border-radius(6px);
-    //padding: 35px 0 75px 54px;
-    //width: 33%;
-    //margin-bottom: 20px;
 }
 
 .upload_gry_box .custom-upload .fake-file input {
@@ -1068,19 +1188,8 @@ a.remove_video_btn {
         position: absolute;
         top: 0;
         left: 0;
-        // Why ever 230% width?
         width: 230%;
         z-index: 1;
-
-        // All these styles seem to be redundant
-        //input {
-            //background: none repeat scroll 0 0 transparent;
-            //border: medium none;
-            //border-radius: 3px;
-            //color: #9c9e9f;
-            //font-size: 9px;
-            //padding: 0;
-        //}
     }
 }
 

@@ -198,7 +198,30 @@
     top: 0;
     left: 0;
     cursor: default;
+    background: #fff;
+    width: 210px;
+    padding: 5px 0;
+    display: block;
+    border: 1px solid $gray10;
+    @include border-radius(4px);
+    @include box-shadow( 0 0px 8px rgba(0, 0, 0, .15) );
+
+    > li.ui-menu-item {
+        font-size: 12px;
+        line-height: 14px;
+        width: 100%;
+        display: block;
+        padding: 7px 14px;
+        @include text-overflow();
+
+        &:hover {
+            background: $hover-color;
+            border: none;
+        }
+    }
 }
+
+
 .ui-datepicker {
     width: 17em;
     padding: .2em .2em 0;
@@ -377,11 +400,11 @@
 .ui-menu .ui-menu-item {
     position: relative;
     margin: 0;
-    padding: 3px 1em 3px .4em;
+    //padding: 3px 1em 3px .4em;
     cursor: pointer;
     min-height: 0; // support: IE7
     // support: IE10, see #8844
-    list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+    //list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
 }
 .ui-menu .ui-menu-divider {
     margin: 5px 0;
@@ -392,7 +415,7 @@
 }
 .ui-menu .ui-state-focus,
 .ui-menu .ui-state-active {
-    margin: -1px;
+    //margin: -1px;
 }
 
 // icon support
@@ -551,47 +574,30 @@
 }
 
 // Component containers
-.ui-widget {
-    font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
-}
-.ui-widget .ui-widget {
-    font-size: 1em;
-}
-.ui-widget input,
-.ui-widget select,
-.ui-widget textarea,
-.ui-widget button {
-    font-family: Verdana,Arial,sans-serif;
-    font-size: 1em;
-}
+
 .ui-widget-content {
-    border: 1px solid #aaaaaa;
-    background: #ffffff;
-    color: #222222;
+    //border: 1px solid #aaaaaa;
+    //background: #ffffff;
+    //color: #222222;
 }
-.ui-widget-content a {
-    color: #222222;
-}
+
 .ui-widget-header {
-    border: 1px solid #aaaaaa;
-    background: #cccccc;
-    color: #222222;
-    font-weight: bold;
+    //border: 1px solid #aaaaaa;
+    //background: #cccccc;
+    //color: #222222;
+    //font-weight: bold;
 }
-.ui-widget-header a {
-    color: #222222;
-}
+
 
 // Interaction states
 
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-    border: 1px solid #d3d3d3;
-    background: #e6e6e6;
-    font-weight: normal;
-    color: #555555;
+    //border: 1px solid #d3d3d3;
+    //background: #e6e6e6;
+    //font-weight: normal;
+    //color: #555555;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -605,10 +611,10 @@
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-    border: 1px solid #999999;
-    background: #dadada;
-    font-weight: normal;
-    color: #212121;
+    //border: 1px solid #999999;
+    //background: #dadada;
+    //font-weight: normal;
+    //color: #212121;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -690,34 +696,6 @@
     filter:Alpha(Opacity=35); // support: IE8 - See #6059
 }
 
-
-// Misc visuals
-
-// Corner radius
-.ui-corner-all,
-.ui-corner-top,
-.ui-corner-left,
-.ui-corner-tl {
-    border-top-left-radius: 4px;
-}
-.ui-corner-all,
-.ui-corner-top,
-.ui-corner-right,
-.ui-corner-tr {
-    border-top-right-radius: 4px;
-}
-.ui-corner-all,
-.ui-corner-bottom,
-.ui-corner-left,
-.ui-corner-bl {
-    border-bottom-left-radius: 4px;
-}
-.ui-corner-all,
-.ui-corner-bottom,
-.ui-corner-right,
-.ui-corner-br {
-    border-bottom-right-radius: 4px;
-}
 
 // Overlays
 .ui-widget-overlay {

@@ -21,7 +21,8 @@
 //= require plugins/bootstrap-progressbar.min
 //= require plugins/jquery-ui-custom.min
 //= require plugins/dropzone.min
-//= require plugins/jquery.fancybox.js
+//= require plugins/jquery.fancybox.pack.js
+//= require plugins/jquery.fancybox-transitions.js
 //= require plugins/jquery_form.js
 //= require plugins/jquery.jcarousel.min
 //= require plugins/jcarousel.responsive.js
@@ -108,7 +109,7 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".choose_btn", function(){
-     $(this).css('background', '#72c9b8');
+     //$(this).css('background', '#72c9b8');
      $("#user_pic").click();
   });
 

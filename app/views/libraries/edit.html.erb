@@ -156,13 +156,13 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="dblclk_add">
-                <ul id="equipment_list">
+              <ul id="equipment_list">
                 <% Library::EQUIPMENT_LIST.each do |list|%>
-                  <%if @disabled%>
+                  <% if @disabled %>
                     <li><%= list %></li>
-                  <%else%>
+                  <% else %>
                     <li class="for_on_changed"><%= list %></li>
-                  <%end%>
+                  <% end %>
                 <% end %>
               </ul>
             </div>
@@ -241,6 +241,7 @@ $(document).ready(function(){
     $('.chg_lin').removeClass('dis_link')
   }
   show_text_actual_size();
+  //check_selected_equipment();
 });
 $('.admin_li').removeClass('active')
 $('.admin_li.library').addClass('active');

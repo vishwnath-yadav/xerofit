@@ -7,14 +7,21 @@ $(document).ready(function() {
   $(document).on("click", ".full_workout", function(){
     upload_video_fancybox($(this))
   });
-  
 });
 
 function upload_video_fancybox(obj){
   var is_edit_video = obj.attr('data-edit');
   $.fancybox.open({
       href: '#dragandrophandler',
-      type: 'inline',
+      openMethod: 'fadescaleIn',
+      closeMethod: 'fadescaleOut',
+      autoSize: false,
+      autoHeight: false,
+      height: 338,
+      minHeight: 338,
+      width: 560,
+      padding: [28, 40, 40, 40],
+
       beforeLoad: function () {
         full_workout = true;
         var url = '/library/full_workout_content';
@@ -36,7 +43,7 @@ function upload_video_fancybox(obj){
 }
 
 function html_setups(response){
-  prg.parent().find('p').text('Successfully uploaded');
+  prg.parent().find('p').text('Upload Completed!');
   $(".video_id").val(response);
   $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
   $(".full_workout").val(full_workout);
