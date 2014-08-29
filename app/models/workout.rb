@@ -14,7 +14,7 @@ class Workout < ActiveRecord::Base
 
 	# validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
 
-	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:square => "90x90>", :p_square => "55x55>" }, :processors => [:cropper]
+	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]
 	validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 	#validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
