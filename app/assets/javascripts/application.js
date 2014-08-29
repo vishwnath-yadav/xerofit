@@ -91,9 +91,17 @@ $(document).ready(function() {
 
   $(document).on('click','.edit_lib',function(){
     var status = $(this).attr('lib-status');
-    $('#library_status').val(status);
-    if(validate_target_muscle_group()){
-      $('#edit_video_info').submit();
+    if($('.thumbnail_col').length){
+      alert("sssssss");
+      $('#library_status').val(status);
+      if(validate_target_muscle_group()){
+        alert("ddddddddd");
+        $('#edit_video_info').submit();
+      }
+    }
+    else{
+      $('.workout_status').val(status);
+      $('#edit_workout_info').submit();
     }
   });
 
@@ -146,7 +154,7 @@ $(document).ready(function() {
   });
 
   $('.custom-upload input[type=file]').change(function(e){
-    $('.wrk_sve').removeClass('dis_link');
+    $('.chg_save').removeClass('dis_link');
     var file = e.target.files[0].name;
     $(this).next().find('input').val(file);
   });
