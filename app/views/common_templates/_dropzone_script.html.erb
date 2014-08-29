@@ -17,18 +17,18 @@
         });
 
       myDropzone.on("addedfile", function(file) {
-        $('#upload_btn_wrap').remove();
-        $('.video_uplod_txt h2').css('text-align', 'left');
-        $('.video_uplod_icon').addClass('uploading');
+        $('.upload_btn_wrap').remove();
+        $('.upload_wrap.active .video_uplod_txt h2').css('text-align', 'left');
+        $('.upload_wrap.active .video_uplod_icon').addClass('uploading');
 
-        $('.video_uplod_icon').stop(true,true).delay( 150 ).animate({
+        $('.upload_wrap.active  .video_uplod_icon').stop(true,true).delay( 150 ).animate({
           left: '-=100px',
           marginLeft: '0',
           marginBottom: '0',
           top: '+=61px',
         }, 600 );
 
-        $('.video_uplod_txt').stop().animate({
+        $('.upload_wrap.active  .video_uplod_txt').stop().animate({
           left: '+=58px',
           top: '-=21px',
           marginLeft: '24px',
