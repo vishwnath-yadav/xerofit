@@ -82,7 +82,7 @@ Xerofit::Application.routes.draw do
       post 'filter'
       get 'full_workout_content'
       get 'image_test'
-      post 'crop_image_save'
+      patch 'crop_image_save'
     end
     member do
       
@@ -114,6 +114,8 @@ Xerofit::Application.routes.draw do
       post 'save_payment_billing'
       get 'marketplace'
       post 'save_user_pic'
+      get 'crop_image_test'
+
     end
   end
   get '/subregion_options' => 'settings#subregion_options'

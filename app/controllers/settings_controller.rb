@@ -68,6 +68,9 @@ class SettingsController < ApplicationController
 	def marketplace
 	end
 
+	def crop_image_test
+		@user = current_user
+	end
 	
 	private
 	  def user_params

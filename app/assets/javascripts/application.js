@@ -21,11 +21,11 @@
 //= require plugins/bootstrap-progressbar.min
 //= require plugins/jquery-ui-custom.min
 //= require plugins/dropzone.min
-//= require plugins/jquery.fancybox.js
+//= require plugins/jquery.fancybox.pack.js
+//= require plugins/jquery.fancybox-transitions.js
 //= require plugins/jquery_form.js
 //= require plugins/jquery.jcarousel.min
 //= require plugins/jcarousel.responsive.js
-//= require plugins/cropper.min.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -115,12 +115,11 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".choose_btn", function(){
-     $(this).css('background', '#72c9b8');
+     //$(this).css('background', '#72c9b8');
      $("#user_pic").click();
   });
 
   $(document).on("change","#user_pic", function(){
-    alert("dfdfsdfdsfs");
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};
@@ -139,6 +138,8 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".save_crop_image",function(){
+    
+     $(this).html('<img src="/assets/ajax-loader.gif" alt="Picture 1">');
      $("#crop_image_form").submit();
   });
 

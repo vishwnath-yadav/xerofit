@@ -13,7 +13,15 @@ function upload_video_fancybox(obj){
   var is_edit_video = obj.attr('data-edit');
   $.fancybox.open({
       href: '#dragandrophandler',
-      type: 'inline',
+      openMethod: 'fadescaleIn',
+      closeMethod: 'fadescaleOut',
+      autoSize: false,
+      autoHeight: false,
+      height: 338,
+      minHeight: 338,
+      width: 560,
+      padding: [28, 40, 40, 40],
+
       beforeLoad: function () {
         full_workout = true;
         var url = '/library/full_workout_content';
