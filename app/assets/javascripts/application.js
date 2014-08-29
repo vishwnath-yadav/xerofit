@@ -58,7 +58,7 @@ $(document).ready(function() {
     $('.notification_menu_toggle').dropdown();
     $('.utility_menu_toggle').dropdown();
 
-  $(document).on("click", ".fancy_input", function() {
+  $(document).on("click", ".trg_num_edit", function() {
      var select_count = $(this).val();
      len = $('.edit_tmg:visible').length;
      $('.active').removeClass('active');
@@ -122,6 +122,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change","#user_pic", function(){
+    alert("dfdfsdfdsfs");
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};

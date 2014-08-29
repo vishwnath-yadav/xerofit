@@ -105,18 +105,11 @@
             <div class="upload_content_frame_sm workout_cover_art upload_gry_box">
               <div class="upload_wrapper">
                 <p>Upload your image</p>
-                <%#= lib.file_field :pic %>
                 <div class="custom-upload">
-                  <%= lib.file_field :pic, disabled: @disabled %>
                   <div class="fake-file">
                       <span class="choose_btn wrk_chos">Choose File</span>
                       <input disabled="disabled">
                   </div>
-                  <%#= image_tag @workout.pic.url(:w_square) %>
-                  <%#= image_tag @workout.pic.url(:large), :id => "cropbox" %>
-                    <%# for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-                    <%#= lib.text_field attribute, :id => attribute %>
-                  <%# end %>
                 </div>
               </div>
             </div>
@@ -128,7 +121,7 @@
           <%=hidden_field_tag :company, "true"%>
           <%=hidden_field_tag :id, @workout.id%>
           <%=hidden_field_tag :type, "workout" %>
-          <%= form.file_field :pic, :style =>"display:none", disabled: @disabled %>
+          <%= form.file_field :pic, :style =>"display:none" %>
     <% end %>
 
     <div class="row">

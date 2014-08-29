@@ -1,5 +1,5 @@
 <div id="dragandrophandler" style="display:none;width:650px;">
-  <h2>Upload Full Workout</h2>
+  <h2><%=session[:video_id].blank? ? 'Upload Full Workout' : 'Upload Video'%></h2>
   <span id="upload_content" class="full_upload_popup">
     <img src="/assets/ajax-loader.gif" style="margin: 20% 47% 30%;" />
   </span>

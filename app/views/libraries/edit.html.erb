@@ -73,12 +73,12 @@
           <%end%>
           <div class="input_field_wrap">
             <label>Title</label>
-            <%= lib.text_field :title, class: "for_on_change", maxlength: "80" %>
+            <%= lib.text_field :title, class: "for_on_change", maxlength: "80", disabled: @disabled %>
             <span class="detail_char" data-size="80">80</span>
           </div>
           <div class="input_field_wrap">
             <label>Helpful Tips and Tricks (optional) </label>
-            <%= lib.text_area :help, maxlength: "150", :class => "text_area_sm for_on_changed" %>
+            <%= lib.text_area :help, maxlength: "150", :class => "text_area_sm for_on_changed", disabled: @disabled %>
             <span class="detail_char" data-size="150">150</span>
           </div>
           <div class="row">
@@ -86,7 +86,7 @@
               <div class="input_field_wrap">
                 <label>Category</label>
                 <div class="fancy_select">
-                  <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+                  <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
               <div class="input_field_wrap">
                 <label>Level of Difficulty</label>
                 <div class="fancy_select">
-                  <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change"} %>
+                  <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
                 </div>
               </div>
             </div>
@@ -103,13 +103,13 @@
       <div class="col-sm-6">
         <div class="input_field_wrap">
           <label>Directions</label>
-          <%= lib.text_area :directions, maxlength: "450", :class => "text_area_lg for_on_change" %>
+          <%= lib.text_area :directions, maxlength: "450", :class => "text_area_lg for_on_change", disabled: @disabled %>
           <span class="detail_char" data-size="450">450</span>
         </div>
 
         <div class="input_field_wrap">
           <label>Why it Works (optional)</label>
-          <%= lib.text_area :work, maxlength: "150", :class => "text_area_sm for_on_changed" %>
+          <%= lib.text_area :work, maxlength: "150", :class => "text_area_sm for_on_changed", disabled: @disabled %>
           <span class="detail_char" data-size="150">150</span>
         </div>
       </div>
@@ -125,7 +125,11 @@
             <div class="input_field_wrap number_mus mus_count">
               <label>Target Muscle Groups</label>
               <%(1..5).each do |no|%>
-                <input name="" type="button" class="fancy_input <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
+                <%if @disabled%>
+                    <input name="" type="button" class="fancy_input <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
+                <%else%>
+                    <input name="" type="button" class="fancy_input trg_num_edit <%= trg_count(@library, no, @count)%>"  value="<%=no%>"/>
+                <%end%>
               <%end%>
             </div>
           </div>
@@ -136,7 +140,7 @@
               <%= lib.fields_for :target_muscle_groups do |builder| %>
                 <span class="edit_tmg <%= trg_hide(@library,i,@count)%>">
                   <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
-                  <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i} %>
+                  <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i, disabled: @disabled} %>
                   <%i += 1%>
                 </span>
               <%end%>
@@ -152,20 +156,22 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="dblclk_add">
-                <ul id="equipment_list">
+              <ul id="equipment_list">
                 <% Library::EQUIPMENT_LIST.each do |list|%>
-                  <li class="for_on_changed"><%= list %></li>
+                  <% if @disabled %>
+                    <li><%= list %></li>
+                  <% else %>
+                    <li class="for_on_changed"><%= list %></li>
+                  <% end %>
                 <% end %>
               </ul>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="selected_equip">
-              <% if @library.equipment.present? %>
                 <% [0,1,2,3,4].each do |index|%>
                   <input type="hidden" name="library[equipment][]" value="<%=@library.equipment[index] %>" class="equip_hid" id="equip_hid_<%=index%>">
-                    <%=render "selected_equiptment", equip: @library.equipment[index], index: index %>
-                <% end %>
+                    <%=render "selected_equiptment", equip: @library.equipment[index], index: index, disabled: @disabled %>
               <% end %>
             </div>
           </div>
@@ -187,7 +193,7 @@
       <div class="row">
         <% if @library.library_video.present? %>
           <span class="upload_edit">
-            <%= render "upload_edit" %>
+            <%= render "upload_edit", disabled: @disabled %>
           </span>
       </div>
 
@@ -196,7 +202,11 @@
           <div class="lib_edit_botom replace_video_section">
             <h5 class="input_label">Replace Video</h5>
             <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
-            <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @library.library_video.id%>
+            <%if @disabled%>
+              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn"%>
+            <%else%>
+              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @library.library_video.id%>
+            <%end%>
           </div>
         </div>
       </div>
@@ -209,7 +219,11 @@
           <div class="lib_edit_botom">
             <h5 class="input_label">Delete Move</h5>
             <p class="input_sub_text">Permanently remove this move and video from Xerofit. Proceed with caution, this action cannot be undone!</p>
-            <%=link_to "Delete this move", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+            <%if @disabled%>
+              <%=link_to "Delete this move", "javascript:void(0)", :class => "remove_video_btn"%>
+            <%else%>
+              <%=link_to "Delete this move", library_path(@library), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
+            <%end%>
           </div>
         </div>
       </div>
@@ -227,6 +241,7 @@ $(document).ready(function(){
     $('.smt_reviw').removeClass('dis_link')
   }
   show_text_actual_size();
+  //check_selected_equipment();
 });
 $('.admin_li').removeClass('active')
 $('.admin_li.library').addClass('active');

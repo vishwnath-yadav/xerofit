@@ -19,12 +19,11 @@ var $image = $('.bootstrap-modal-cropper').find('img'),
 
 $image.cropper({
   aspectRatio: 1,
-  multiple: true,
   data: {
-    x: 200,
-    y: 200,
-    width: 400,
-    height: 200
+    x: 50,
+    y: 50,
+    width: 50,
+    height: 50
   },
   done: function(data) {
     $dataX.val(data.x);
