@@ -1113,6 +1113,43 @@ p.load_less{
 .thumbnail_col ul li.margn45{margin:0px 16px;}
 .thumbnail_col ul li img{width:100%; height:auto;}
 
+
+// Make a play icon for the video
+.video-poster-play {
+    height: 84px;
+    width: 84px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -42px;
+    margin-left: -42px;
+    cursor: pointer;
+
+    > div.play-button {
+        width: 84px;
+        height: 84px;
+        position: absolute;
+        border: 2px solid #fff;
+        border-radius: 50%;
+
+        &:hover { background: rgba(255, 255, 255, 0.25) }
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            margin-top: -21px;
+            left: 50%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 21px solid transparent;
+            border-bottom: 21px solid transparent;
+            border-left: 28px solid #FFF;
+        }
+    }
+}
+
 .replace_video_section { margin-top: 42px; }
 
 a.replace_video_btn { @include button($xero-blue); }

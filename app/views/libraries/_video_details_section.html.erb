@@ -8,10 +8,12 @@
     <%if @library.library_video.panda_mp4.url.present? %>
 
       <div id="video-container">
-        <!-- Video -->
-        <video id="video" width="560" height="316" controls poster="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>">
+        <video id="move_video" width="560" height="316" controls poster="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>">
           <source src="<%= @library.library_video.panda_mp4.url %>" type="video/mp4">
         </video>
+        <div class="video-poster-play">
+          <div class="play-button"></div>
+        </div>
         <!--div id="video-controls">
           <div class="play-button">
             <button type="button" id="play-pause" class="play">Play</button>
@@ -39,4 +41,10 @@
   <h5 class="input_label">Video Thumbnail</h5>
   <%= render 'thumbnail', disabled: disabled %>
 </div>
+
+<script>
+  $(document).ready(function(){
+
+  });
+</script>
 
