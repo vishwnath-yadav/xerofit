@@ -140,21 +140,36 @@ $(document).ready(function(){
   });
 
   $(document).on('dblclick','.dblclk_add ul li.for_on_changed',function(){
-    $(this).addClass('selected_equipment');
     var value = $(this).text();
+    var flag = 0;
+    $this = $(this);
     $('.equip_hid').each(function(){
-      if($('.close_equip:visible').size() < 5){
-        if($(this).val() == ''){
-          var id = $(this).attr('id').split("_")[2];
-          $(this).val(value);
-          $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.pill_text').text(value);
-          return false;
-        }
-      }else{
-        alert("You can only select up to 5 pieces of equipment");
-        return false;
+      if($(this).val() == value)
+      {
+        flag = 1;
+        return false
       }
     });
+
+    if(flag == 0 ){
+      $('.equip_hid').each(function(){
+        if($('.close_equip:visible').size() < 5){
+          if($(this).val() == ''){
+            var id = $(this).attr('id').split("_")[2];
+            $(this).val(value);
+            $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.pill_text').text(value);
+            $this.addClass('selected_equipment');
+            return false;
+          }
+        }else{
+          alert("You can only select up to 5 pieces of equipment");
+          return false;
+        }
+      });
+    }else{
+      alert("Duplicate selected equipment not allowed!");
+      return false;
+    }
   });
 
   $(document).on('click','.equip_close_icon',function(){
@@ -185,20 +200,22 @@ function check_require_field(){
       flag=0;
     }
   });
+  if($('.thumbnail_col').length){             //for cheking thumbnail are present or not
+    var target = $('.for_target_change').val();
+    var len = $(".select_thumb").length;
 
-  var target = $('.for_target_change').val();
-  var len = $(".select_thumb").length;
-
-  if((len <= 0)||(target == null)||(target == '')){
-    flag = 0;
+    if((len <= 0)||(target == null)||(target == '')){
+      flag = 0;
+    }
   }
+
   if(flag == 1){
-    $('.chg_lin').removeClass('dis_link');
+    $('.smt_reviw').removeClass('dis_link');
     $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
     $('.chg_save').attr('lib-status', STATUS[3]);
   }
   else{
-    $('.chg_lin').attr('class','cancel_btn rht_active edit_lib dis_link chg_lin btn_right');
+    $('.smt_reviw').attr('class','cancel_btn rht_active edit_lib dis_link smt_reviw btn_right');
     var status_icon = $('.library_item_status').attr('data-status-icon');
     var status = $('.library_item_status').attr('data-status');
     status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon

@@ -1,31 +1,31 @@
 $(document).ready(function() {
 
-  $(document).on("change keyup",".for_work_change",function(){
-    $('.wrk_sve').removeClass('dis_link');
-    var flag= 1;
-    $(".for_work_change").each(function() {
-      key = $(this).val();
-      if((key == null)||(key == ''))
-      {
-        flag=0;
-      }
-    });
+  // $(document).on("change keyup",".for_work_change",function(){
+  //   $('.wrk_sve').removeClass('dis_link');
+  //   var flag= 1;
+  //   $(".for_work_change").each(function() {
+  //     key = $(this).val();
+  //     if((key == null)||(key == ''))
+  //     {
+  //       flag=0;
+  //     }
+  //   });
 
-    if(flag == 1){
-      $('.wrk_rvw').removeClass('dis_link');
-      $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
-      $('.wrk_sve').attr('lib-status', STATUS[3]);
-    }
-    else{
-      var status_icon = $('.library_item_status').attr('data-status-icon');
-      var status = $('.library_item_status').attr('data-status');
-      status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
-      status = status == STATUS[3] ? STATUS[4] : status
-      $('.wrk_sve').attr('lib-status', status);
-      $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
-      $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw btn_right');
-    }
-  });
+  //   if(flag == 1){
+  //     $('.wrk_rvw').removeClass('dis_link');
+  //     $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+  //     $('.wrk_sve').attr('lib-status', STATUS[3]);
+  //   }
+  //   else{
+  //     var status_icon = $('.library_item_status').attr('data-status-icon');
+  //     var status = $('.library_item_status').attr('data-status');
+  //     status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
+  //     status = status == STATUS[3] ? STATUS[4] : status
+  //     $('.wrk_sve').attr('lib-status', status);
+  //     $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
+  //     $('.wrk_rvw').attr('class','cancel_btn rht_active edit_work dis_link wrk_rvw btn_right');
+  //   }
+  // });
 
   $(document).on("click", ".wrk_out_form", function(){
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
@@ -153,11 +153,11 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click','.edit_work', function(){
-    var status = $(this).attr('lib-status');
-    $('.workout_status').val(status);
-    $('#edit_workout_info').submit();
-  });
+  // $(document).on('click','.edit_work', function(){
+  //   var status = $(this).attr('lib-status');
+  //   $('.workout_status').val(status);
+  //   $('#edit_workout_info').submit();
+  // });
 
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
