@@ -140,21 +140,36 @@ $(document).ready(function(){
   });
 
   $(document).on('dblclick','.dblclk_add ul li.for_on_changed',function(){
-    $(this).addClass('selected_equipment');
     var value = $(this).text();
+    var flag = 0;
+    $this = $(this);
     $('.equip_hid').each(function(){
-      if($('.close_equip:visible').size() < 5){
-        if($(this).val() == ''){
-          var id = $(this).attr('id').split("_")[2];
-          $(this).val(value);
-          $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.pill_text').text(value);
-          return false;
-        }
-      }else{
-        alert("You can only select up to 5 pieces of equipment");
-        return false;
+      if($(this).val() == value)
+      {
+        flag = 1;
+        return false
       }
     });
+
+    if(flag == 0 ){
+      $('.equip_hid').each(function(){
+        if($('.close_equip:visible').size() < 5){
+          if($(this).val() == ''){
+            var id = $(this).attr('id').split("_")[2];
+            $(this).val(value);
+            $('#equip_div_'+id).removeClass('hide').addClass('equipment_pill').find('span.pill_text').text(value);
+            $this.addClass('selected_equipment');
+            return false;
+          }
+        }else{
+          alert("You can only select up to 5 pieces of equipment");
+          return false;
+        }
+      });
+    }else{
+      alert("Duplicate selected equipment not allowed!");
+      return false;
+    }
   });
 
   $(document).on('click','.equip_close_icon',function(){

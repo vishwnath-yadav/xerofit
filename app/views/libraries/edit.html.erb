@@ -161,7 +161,7 @@
                   <% if @disabled %>
                     <li><%= list %></li>
                   <% else %>
-                    <li class="for_on_changed"><%= list %></li>
+                    <li class="for_on_changed <%= @library.equipment.include?(list) ? 'selected_equipment' : '' %> "><%= list %></li>
                   <% end %>
                 <% end %>
               </ul>

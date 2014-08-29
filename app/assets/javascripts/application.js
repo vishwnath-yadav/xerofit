@@ -92,10 +92,8 @@ $(document).ready(function() {
   $(document).on('click','.edit_lib',function(){
     var status = $(this).attr('lib-status');
     if($('.thumbnail_col').length){
-      alert("sssssss");
       $('#library_status').val(status);
       if(validate_target_muscle_group()){
-        alert("ddddddddd");
         $('#edit_video_info').submit();
       }
     }
