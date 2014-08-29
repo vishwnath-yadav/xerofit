@@ -4,4 +4,5 @@
 <%else%>
 	$(".profile_image").attr('src', "<%=@obj.pic.url(:medium)%>");
 <%end%>
+$('.save_crop_image').html('<button type="button" class="btn btn-primary ">Crop</button>');
 $('.modal').modal('toggle');

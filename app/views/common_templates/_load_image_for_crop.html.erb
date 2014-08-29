@@ -1,35 +1,46 @@
-<%= form_tag('/library/crop_image_save', remote: true, id: 'crop_image_form') do |crop| %>
-  <div class="bootstrap-modal-cropper">
-    <img src="<%=url%>">
-  </div>
-  <%["x", "y", "width", "height"].each do |att|%>
-    <%=hidden_field_tag "#{att}"%>
-  <%end%>
-  <%=hidden_field_tag "type", params[:type]%>
-  <%=hidden_field_tag "id", params[:id]%>
-<%end%>
+<%#= stylesheet_link_tag 'jquery.Jcrop' %><%#This has problem on undefined method `asset_url' in query.Jcrop.css.erb, Manually import query.Jcrop.css instead%>
+<%= javascript_include_tag 'plugins/jquery_jcrop' %>
 
-<script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#cropbox").Jcrop({
+      onChange: update_crop,
+      onSelect: update_crop,
+      setSelect: [0, 0, 100, 100],
+      aspectRatio: 1
+    });
+  });
 
-var $image = $('.bootstrap-modal-cropper').find('img'),
-    $dataX = $("#x"),
-    $dataY = $("#y"),
-    $dataHeight = $("#height"),
-    $dataWidth = $("#width");
-
-$image.cropper({
-  aspectRatio: 1,
-  data: {
-    x: 50,
-    y: 50,
-    width: 50,
-    height: 50
-  },
-  done: function(data) {
-    $dataX.val(data.x);
-    $dataY.val(data.y);
-    $dataHeight.val(data.height);
-    $dataWidth.val(data.width);
+  function update_crop(coords) {
+    var rx = 100/coords.w;
+    var ry = 100/coords.h;
+    // $("#preview").css({
+    //   width: Math.round(rx * <%= @obj.pic_geometry(:large).width %>) + 'px',
+    //   height: Math.round(ry * <%= @obj.pic_geometry(:large).height %>) + 'px',
+    //   marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    //   marginTop: '-' + Math.round(ry * coords.y) + 'px'
+    // });
+    var ratio = <%= @obj.pic_geometry(:original).width %> / <%= @obj.pic_geometry(:large).width %>;
+    $("#crop_x").val(Math.round(coords.x * ratio));
+    $("#crop_y").val(Math.round(coords.y * ratio));
+    $("#crop_w").val(Math.round(coords.w * ratio));
+    $("#crop_h").val(Math.round(coords.h * ratio));
   }
-})
 </script>
+<div style="width:800px;">
+  <%= image_tag @obj.pic.url(:large), :id => "cropbox" %>
+
+  <!-- <h4>Preview:</h4> -->
+
+  <!-- <div style="width:100px; height:100px; overflow:hidden">
+    <%#= image_tag @obj.pic.url(:large), :id => "preview" %>
+  </div> -->  
+</div>
+
+<%= form_for @obj, url: '/library/crop_image_save' ,remote: true, :html => { :multipart => true, id: 'crop_image_form' } do |f| %>
+    <%= hidden_field_tag :type, @type %>
+    <%= hidden_field_tag :id, @obj.id %>
+    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+      <%= f.hidden_field attribute, :id => "#{attribute}" %>
+    <% end %>
+<% end %>

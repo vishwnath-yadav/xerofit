@@ -135,20 +135,50 @@ class LibrariesController < ApplicationController
 
 	respond_to :json, :js
 	def crop_image_save
+		# binding.pry
 		if params[:type] == "workout"
+			param = params[:workout]
 			@obj = Workout.find_by_id(params[:id])
+			obj_param = workout_params
 		else
+			param = params[:user]
 			@obj = User.find_by_id(params[:id])
+			obj_param = user_params
 		end
-		@obj.update_photo_attributes(params)
+		if(param[:crop_x] && param[:crop_y] && param[:crop_w] && param[:crop_h])
+	        if(@obj.update_attributes(obj_param))
+	          @obj.reprocess_pic
+	        end
+    	end
     	respond_to do |format|
 		    format.js
 	    end
 	end
 
+	# def crop_image_save
+	#   @user = current_user
+ #    respond_to do |format|
+ #      if(params[:user][:crop_x] && params[:user][:crop_y] && params[:user][:crop_w] && params[:user][:crop_h])
+ #        if(@user.update_attributes(user_params))
+ #          @user.reprocess_pic
+ #        end
+ #    	end
+ #        format.html { redirect_to settings_crop_image_test_path }
+ #        format.json { render json: @user.errors, status: :unprocessable_entity }
+ #    end
+	# end
+
 	private
 	  def library_params
 	    params.require(:library).permit!
+	  end
+
+	  def user_params
+	    params.require(:user).permit!
+	  end
+
+	  def workout_params
+	    params.require(:workout).permit!
 	  end
 
   	
