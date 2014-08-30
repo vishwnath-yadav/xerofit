@@ -43,8 +43,16 @@
 </div>
 
 <script>
-  $(document).ready(function(){
+function toggleVideoControls() {
+  var video = document.getElementsByTagName("video")[0];
 
-  });
+  if (video.hasAttribute("controls")) {
+     video.removeAttribute("controls")
+  } else {
+     video.setAttribute("controls","controls")
+  }
+}
+
+toggleVideoControls();
 </script>
 

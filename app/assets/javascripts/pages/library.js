@@ -185,6 +185,8 @@ $(document).ready(function(){
   // Play video on video Poster click
   $(document).on('click','#video-container', '.video-poster-play',function(){
     $('.video-poster-play').remove();
+    $img.animate({opacity: 0}, 1000, 'linear', function() {
+    $('#move_video').get(0).setAttribute("controls","controls")
     $('#move_video').get(0).play();
     $('#video-container').unbind('click');
   });
