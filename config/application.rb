@@ -40,10 +40,10 @@ module Xerofit
 
       config.action_mailer.delivery_method = :smtp
         ActionMailer::Base.smtp_settings = {
-        :address              => "smtp.gmail.com",
+        :address              => 'smtp.gmail.com',
         :port                 => 587,
-        :user_name            => 'vishuatongraph@gmail.com',
-        :password             => 'suraj@123',
+        :user_name            => 'support@xerofit.com',
+        :password             => 'JMK8LBDkYindEpdsTyb4EHRH',
         :authentication       => 'login',
         :enable_starttls_auto => true  }
     end

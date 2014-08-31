@@ -1,5 +1,5 @@
 class Emailer < ActionMailer::Base
-  default from: "Admin@Xerofit.com"
+  #default from: "support@xerofit.com"
 
   def user_registration_mail(email)
   	@email = email
