@@ -5,6 +5,5 @@ class FixColumnName < ActiveRecord::Migration
   	rename_column :library_blocks, :library_id, :move_id
   	rename_column :users, :fullname, :first_name
   	add_column :users, :last_name, :string
-
   end
 end

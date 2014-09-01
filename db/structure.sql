@@ -511,11 +511,11 @@ CREATE TABLE users (
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
-    token character varying(255),
-    last_name character varying(255),
     pin_code character varying(255),
     date_of_birth date,
-    gender character varying(255)
+    gender character varying(255),
+    token character varying(255),
+    last_name character varying(255)
 );
 
 

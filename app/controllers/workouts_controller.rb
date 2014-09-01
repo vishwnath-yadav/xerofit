@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :move, :title, :full => true
-	layout :resolve_layout
+	# layout :resolve_layout
 	def new
 		@workout = Workout.new
 		@libraries = Move.where(user_id: current_user.id)

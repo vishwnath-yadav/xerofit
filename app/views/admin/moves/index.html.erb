@@ -1,3 +1,20 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Moves List
+      </strong>
+    </a> 
+  </div> 
+  <!-- <div class="col-md-3">
+    <%#=link_to new_admin_user_path do%>
+      <strong>
+        <i class="glyphicon glyphicon-plus"></i>
+      </strong>
+    <%#end%>
+  </div> -->
+</div>
+<hr>
 <div class="col-md-9 search_user">
     <table class="table table-bordered table-striped">
       <tr>
@@ -15,13 +32,35 @@
           <td><%=lib.created_at%></td>
           <td><%=lib.status%></td>
           <td><%=lib.user.email %></td>
-          <td><%=link_to "Edit", edit_admin_move_path(lib)%> | <%= link_to "Delete", admin_move_path(lib), method: :delete,:confirm => "Are you sure?"%></td>
+          <td>
+            <!-- <%#=link_to "Edit", edit_admin_move_path(lib)%> |  -->
+            <%= link_to "Delete", admin_move_path(lib), method: :delete, data: { confirm: 'Are you sure?' }%>
+          </td>
         </tr>
       <% end %>
     </table>
 </div>
-
+<div class="col-md-3">
+  <%= form_tag(filter_user_admin_users_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th colspan="2">Filters</th>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td><%= select_tag :role, options_for_select(User::ROLES), prompt: "Select Role", class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
+      </tr>
+    </table>
+  <% end %>
+</div>
 <script>
   $('.admin_li').removeClass('active');
-  $('.admin_li.users').addClass('active');
+  $('.admin_li.moves').addClass('active');
 </script>

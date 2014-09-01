@@ -3,7 +3,7 @@ include Magick
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
 	autocomplete :move, :title, :full => true
-	layout :resolve_layout    
+	# layout :resolve_layout    
 
 	def index
 		@order = params[:order].blank? || params[:order] == "DESC" ? "ASC" : "DESC"

@@ -69,7 +69,7 @@ class SettingsController < ApplicationController
 	end
 
 	def crop_image_test
-		@user = current_user
+		@video = LibraryVideo.last
 	end
 	
 	private

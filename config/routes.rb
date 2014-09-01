@@ -42,7 +42,13 @@ Xerofit::Application.routes.draw do
         patch :disable
       end
     end
-    resources :moves
+    get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
+    get '/approval_page', to: 'moves#approval_page', as: :approval_page
+    resources :moves do
+    end
+
+    resources :workouts do
+    end
   end
   
   resources :subscriptions do

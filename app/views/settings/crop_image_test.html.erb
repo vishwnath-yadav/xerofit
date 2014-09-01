@@ -1,44 +1,11 @@
-<%#= stylesheet_link_tag 'jquery.Jcrop' %><%#This has problem on undefined method `asset_url' in query.Jcrop.css.erb, Manually import query.Jcrop.css instead%>
-<%= javascript_include_tag 'plugins/jquery_jcrop' %>
+ <div id="video-container">
+  <video id="move_video" width="560" height="316" controls poster="/assets/ex_2.png">
+    <source src="<%= @video.video.to_s %>" type="video/mp4">
+    <source src="<%= @video.video.to_s %>" type="video/ogg">
+  </video>
+  <div class="video-poster-play">
+    <div class="play-button"></div>
+  </div>
+</div>
 
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    $("#cropbox").Jcrop({
-      onChange: update_crop,
-      onSelect: update_crop,
-      setSelect: [0, 0, 1000, 1000],
-      aspectRatio: 1
-    });
-  });
-
-  function update_crop(coords) {
-    var rx = 100/coords.w;
-    var ry = 100/coords.h;
-    $("#preview").css({
-      width: Math.round(rx * <%= @user.pic_geometry(:large).width %>) + 'px',
-      height: Math.round(ry * <%= @user.pic_geometry(:large).height %>) + 'px',
-      marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-      marginTop: '-' + Math.round(ry * coords.y) + 'px'
-    });
-    var ratio = <%= @user.pic_geometry(:original).width %> / <%= @user.pic_geometry(:large).width %>;
-    $("#crop_x").val(Math.round(coords.x * ratio));
-    $("#crop_y").val(Math.round(coords.y * ratio));
-    $("#crop_w").val(Math.round(coords.w * ratio));
-    $("#crop_h").val(Math.round(coords.h * ratio));
-  }
-</script>
-
-<%= image_tag @user.pic.url(:large), :id => "cropbox" %>
-
-<h4>Preview:</h4>
-
-<div style="width:100px; height:100px; overflow:hidden">
-  <%= image_tag @user.pic.url(:large), :id => "preview" %>
-</div>  
-
-<%= form_for @user, url: '/library/crop_image_save' ,:html => { :multipart => true } do |f| %>
-    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-      <%= f.text_field attribute, :id => "#{attribute}" %>
-    <% end %>
-  <p><%= f.submit "Crop" %></p>
-<% end %>
+<a href="<%= @video.video.to_s %>" rel="nofollow">Download Here</a>
