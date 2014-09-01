@@ -1,0 +1,12 @@
+<%if disabled%>
+	<div class="equipment_pill close_equip <%=equip.blank? ? 'hide' : ''%>" id="equip_div_<%= index %>">
+		<span class="pill_text"><%= equip %></span>
+	    <a href="javascript:void(0)" class="equip_close_icon">
+	    </a>
+	</div>
+<%else%>
+	<div class="equipment_pill close_equip for_on_changed <%=equip.blank? ? 'hide' : ''%>" id="equip_div_<%= index %>">
+		<span class="pill_text"><%= equip %></span>
+		<a href="javascript:void(0)" class="equip_close_icon" data-id="<%= index %>"></a>
+	</div>
+<%end%>

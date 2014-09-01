@@ -1,0 +1,66 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Workout List
+      </strong>
+    </a> 
+  </div> 
+  <!-- <div class="col-md-3">
+    <%#=link_to new_admin_user_path do%>
+      <strong>
+        <i class="glyphicon glyphicon-plus"></i>
+      </strong>
+    <%#end%>
+  </div> -->
+</div>
+<hr>
+<div class="col-md-9 search_user">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Date Added</th>
+        <th>Status</th>
+        <th>User Email</th>
+        <th>Actions</th>
+      </tr>
+      <% @workout.each do |work| %>
+        <tr>
+          <td><%=work.id%></td>
+          <td><%=work.title%></td>
+          <td><%=work.created_at%></td>
+          <td><%=work.status%></td>
+          <td><%=work.user.email %></td>
+          <td>
+            <!-- <%#=link_to "Edit", edit_admin_move_path(work)%> |  -->
+            <%= link_to "Delete", admin_workout_path(work), method: :delete, data: { confirm: 'Are you sure?' }%>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+</div>
+<div class="col-md-3">
+  <%= form_tag(filter_user_admin_users_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th colspan="2">Filters</th>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td><%= select_tag :role, options_for_select(User::ROLES), prompt: "Select Role", class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.workouts').addClass('active');
+</script>
