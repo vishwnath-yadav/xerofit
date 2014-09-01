@@ -42,6 +42,7 @@ Xerofit::Application.routes.draw do
         patch :disable
       end
     end
+    resources :moves
   end
   
   resources :subscriptions do

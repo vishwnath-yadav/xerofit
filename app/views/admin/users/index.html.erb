@@ -19,20 +19,20 @@
 <div class="col-md-9 search_user">
     <table class="table table-bordered table-striped">
       <tr>
-        <th>#</th>
+        <th>ID</th>
         <th>Email</th>
-        <th>Fullname</th>
-        <th>Role</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Date Registered</th>
         <th>Action</th>
       </tr>
       <% @users.each_with_index do |user, ind| %>
-        <%ind += 1%>
+        <%#ind += 1%>
         <tr>
-          <td><%=ind%></td>
+          <td><%=user.id%></td>
           <td><%=user.email%></td>
-          <td><%=user.fullname%></td>
-          <td><%=user.role%></td>
+          <td><%=user.first_name%></td>
+          <td><%=user.last_name%></td>
           <td><%=user.created_at%></td>
           <td>
             <%=link_to "View Libraries", libraries_path(id: user.token) %> 
