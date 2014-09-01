@@ -23,8 +23,16 @@ class Admin::MovesController < ApplicationController
 	end
 
 	def common_filter
-		@moves = Move.where(is_full_workout: true).by_title(params[:title]).by_status(params[:status])
-		@library = Move.where(is_full_workout: false).order('created_at desc')
-		
+		# binding.pry
+		if params[:type] == Move::TYPE[0]
+			@moves = Move.by_name(params[:title]).by_status(params[:status])
+		elsif params[:type] == Move::TYPE[1]
+			@moves = Workout.by_name(params[:title]).by_status(params[:status])
+		else
+			@moves = Move.where(is_full_workout: false, status: "Waiting for Approval").by_name(params[:title]).by_status(params[:status]).order('created_at desc')
+			@moves << Workout.where(status: "Waiting for Approval").by_name(params[:title]).by_status(params[:status]).order('created_at desc')
+		end
+		# binding.pry
+		@moves = @moves.flatten
 	end
 end

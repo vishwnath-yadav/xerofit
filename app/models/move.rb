@@ -27,13 +27,13 @@ class Move < ActiveRecord::Base
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
-	TYPE = ["Exercises", "Workouts"]
+	TYPE = ["Moves", "Workouts"]
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
-	scope :by_title, lambda { |title| where(title: title) unless title.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 	scope :is_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
+	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
 	def save_status
 		self.status = STATUS[4]

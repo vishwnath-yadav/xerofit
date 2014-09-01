@@ -1,5 +1,5 @@
 <%= form_tag(common_filter_admin_moves_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
-  <%= hidden_field_tag :is_full_workout, "#{action_name == 'approval_page'}"%>
+    <%= hidden_field_tag :action_name, action_name%>
     <table class="table table-bordered table-striped">
       <tr>
         <th colspan="2">Filters</th>
@@ -12,6 +12,10 @@
       <tr>
         <th>Status</th>
         <td><%= select_tag :status, options_for_select(Move::STATUS), prompt: "Select Status", class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th>type</th>
+        <td><%= select_tag :type, options_for_select(Move::TYPE), prompt: "Select Type", class: "form-control input-wid usr_flter" %></td>
       </tr>
       <tr>
         <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>

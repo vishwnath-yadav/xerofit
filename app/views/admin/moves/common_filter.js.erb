@@ -1,1 +1,5 @@
-$('.search_user').html("<%= escape_javascript(render(:partial => 'common_table')) %>");
+<%if params[:action_name] != "approval_page"%>
+	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_table')) %>");
+<%else%>
+	$('.search_user').html("<%= escape_javascript(render(:partial => 'approval_table')) %>");
+<%end%>
