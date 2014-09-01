@@ -2,7 +2,7 @@ require 'RMagick'
 include Magick
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
-	autocomplete :library, :title, :full => true
+	autocomplete :move, :title, :full => true
 	layout :resolve_layout    
 
 	def index
@@ -10,7 +10,7 @@ class LibrariesController < ApplicationController
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
 		user = User.where(token: params[:id]).last
-		@list1 = Library.get_library_list(params,current_user,user)
+		@list1 = Move.get_library_list(params,current_user,user)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js
@@ -20,15 +20,15 @@ class LibrariesController < ApplicationController
 	
 	def new
 		session[:video_id] = ''
-		@library = Library.new
+		@library = Move.new
 		@libvideo = LibraryVideo.new
 		@max_size_allowed = 250
 		5.times { @library.target_muscle_groups.build }
 	end
 	
 	def edit
-		@library = Library.find(params[:id])
-		@disabled = ([@library.status] & [Library::STATUS[0],Library::STATUS[2]]).present?
+		@library = Move.find(params[:id])
+		@disabled = ([@library.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = @library.is_full_workout ? 1024 : 250
 		@size = @library.get_thumbnail()
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
@@ -38,15 +38,19 @@ class LibrariesController < ApplicationController
 	def create
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
-	  if params[:library][:title].blank?
-	  	params[:library][:title] = video.video_title.split(".")[0]
+	  if params[:move][:title].blank?
+	  	params[:move][:title] = video.video_title.split(".")[0]
 	  end 	
-	  @library = Library.new(library_params)
+	  @library = Move.new(library_params)
 	  @library.user_id = current_user.id
 	  if @library.save
-	  	video.library = @library
+	  	video.move = @library
 	  	video.save
-	    redirect_to libraries_path, :notice => "Workout uploaded successfully. We'll let you know when it gets edited and added to your account"
+	  	if is_full_workout == true
+	    	redirect_to libraries_path, :notice => "Workout uploaded successfully. We'll let you know when it gets edited and added to your account"
+	    else
+	    	redirect_to libraries_path, :notice => "Thank you for uploading the video."
+	  	end
 	  else
 	  	@libvideo = LibraryVideo.new
 	    render :new
@@ -54,15 +58,15 @@ class LibrariesController < ApplicationController
 	end
 
 	def show
-		@library = Library.find(params[:id])
+		@library = Move.find(params[:id])
 	end
 
 	def update
-		@library = Library.find(params[:id])
+		@library = Move.find(params[:id])
 		if params[:image].present?
 			@video = @library.library_video.update_attributes(:image => params[:image])
 		end
-		@library.update_target_muscle(params[:library][:target_muscle_groups_attributes])
+		@library.update_target_muscle(params[:move][:target_muscle_groups_attributes])
 		respond_to do |format|
 	    if @library.update_attributes(library_params)
 	        format.html { redirect_to edit_path(@library), notice: 'successfully updated Library.' }
@@ -77,9 +81,9 @@ class LibrariesController < ApplicationController
 		filter_order = params[:filter]
 		title = params[:title]
 		if filter_order == 'asc'
-			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title asc')
+			@libraries = Move.by_name(title).where(user_id: current_user.id).order('title asc')
 		else
-			@libraries = Library.by_name(title).where(user_id: current_user.id).order('title DESC')
+			@libraries = Move.by_name(title).where(user_id: current_user.id).order('title DESC')
 		end
 		respond_to do |format|
 			format.js 
@@ -89,9 +93,9 @@ class LibrariesController < ApplicationController
 	def library_search_by_name
 		@view = params[:type]
 		if params[:name].present?
-			@libraries = Library.where(user_id: current_user, title: params[:name])
+			@libraries = Move.where(user_id: current_user, title: params[:name])
 		else
-			@libraries = Library.where(user_id: current_user)
+			@libraries = Move.where(user_id: current_user)
 		end
 		respond_to do |format|
 			format.js
@@ -100,9 +104,9 @@ class LibrariesController < ApplicationController
 
 	def sort_video
 		if params[:val] == 'Name'
-		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(16).order('title ASC')
+		  @libraries = Move.where(user_id: current_user.id).page(params[:page]).per(16).order('title ASC')
 		elsif params[:val] == 'Date'
-		  @libraries = Library.where(user_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
+		  @libraries = Move.where(user_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
 		end
 		respond_to do |format|
       format.js
@@ -113,7 +117,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def destroy
-		@library = Library.find(params[:id])
+		@library = Move.find(params[:id])
 		@library.destroy
 		redirect_to libraries_path
 	end
@@ -124,7 +128,7 @@ class LibrariesController < ApplicationController
 			@max_size_allowed = 250
 		elsif !session[:video_id].blank?
 			video = LibraryVideo.find_by_id(session[:video_id])
-			@max_size_allowed = video.library.is_full_workout ? 1024 : 250
+			@max_size_allowed = video.move.is_full_workout ? 1024 : 250
 		else
 			@max_size_allowed = 1024
 		end
@@ -170,7 +174,7 @@ class LibrariesController < ApplicationController
 
 	private
 	  def library_params
-	    params.require(:library).permit!
+	    params.require(:move).permit!
 	  end
 
 	  def user_params

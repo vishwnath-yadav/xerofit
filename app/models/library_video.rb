@@ -1,5 +1,5 @@
 class LibraryVideo < ActiveRecord::Base
-	belongs_to :library
+	belongs_to :move
 	mount_uploader :video, VideoUploader
 	# store_in_background :video
 

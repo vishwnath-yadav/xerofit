@@ -1,4 +1,4 @@
-class Library < ActiveRecord::Base
+class Move < ActiveRecord::Base
 	obfuscate_id :spin => 79678343
 	
 	# default_scope order('updated_at DESC')
@@ -64,10 +64,10 @@ class Library < ActiveRecord::Base
 		if params[:type] == "Workouts" 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed).order("#{sort} #{order}")
 		elsif params[:type] == "Moves"
-			list = Library.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).order("#{sort} #{order}")
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).order("#{sort} #{order}")
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
-			list << Library.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).all
+			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).all
 			list = list.flatten
 			if sort == "updated_at"
 				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
@@ -90,7 +90,7 @@ class Library < ActiveRecord::Base
 
 	def create_target_muscle_group
 		(1..5).each do |trg|
-			TargetMuscleGroup.create(library_id: self.id, target_muscle_group: "")
+			TargetMuscleGroup.create(move_id: self.id, target_muscle_group: "")
 		end
 	end
 

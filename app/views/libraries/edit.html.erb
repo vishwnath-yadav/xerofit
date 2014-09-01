@@ -41,7 +41,7 @@
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@library.status%>">Save</a>
         <%if hide_if_admin%>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr = "<%= @lib_attr %>" lib-status="<%= Library::STATUS[2] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr = "<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
         <%end%>
       </div>
     </div>
@@ -86,7 +86,7 @@
               <div class="input_field_wrap">
                 <label>Category</label>
                 <div class="fancy_select">
-                  <%= lib.select :category, Library::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
+                  <%= lib.select :category, Move::CATEGORIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
               <div class="input_field_wrap">
                 <label>Level of Difficulty</label>
                 <div class="fancy_select">
-                  <%= lib.select :difficulty, Library::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
+                  <%= lib.select :difficulty, Move::DIFFICULTIES, {prompt: "Choose one"}, {class: "for_on_change", disabled: @disabled} %>
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@
           <div class="col-sm-6">
             <div class="dblclk_add">
               <ul id="equipment_list">
-                <% Library::EQUIPMENT_LIST.each do |list|%>
+                <% Move::EQUIPMENT_LIST.each do |list|%>
                   <% if @disabled %>
                     <li><%= list %></li>
                   <% else %>
@@ -170,7 +170,7 @@
           <div class="col-sm-6">
             <div class="selected_equip">
                 <% [0,1,2,3,4].each do |index|%>
-                  <input type="hidden" name="library[equipment][]" value="<%=@library.equipment[index] %>" class="equip_hid" id="equip_hid_<%=index%>">
+                  <input type="hidden" name="move[equipment][]" value="<%=@library.equipment[index] %>" class="equip_hid" id="equip_hid_<%=index%>">
                     <%=render "selected_equiptment", equip: @library.equipment[index], index: index, disabled: @disabled %>
               <% end %>
             </div>

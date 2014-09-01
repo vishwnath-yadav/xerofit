@@ -1,7 +1,7 @@
 class Block < ActiveRecord::Base
 	belongs_to :workout
 	has_many :library_blocks
-	has_many :libraries, through: :library_blocks
+	has_many :moves, through: :library_blocks
 
 	BLOCK_TYPE = ["circuit","superset","individual"]
 
@@ -16,7 +16,7 @@ class Block < ActiveRecord::Base
 	end
 
 	def get_lib_detail(lib_id)
-		LibraryBlock.where(block_id: self.id , library_id: lib_id).last.library_detail.id
+		LibraryBlock.where(block_id: self.id , move_id: lib_id).last.library_detail.id
 	end
 	
 end

@@ -14,7 +14,7 @@
             <%=hidden_field_tag "block_id", block.id %>
             <%=hidden_field_tag "block_type_#{block.id}", block.block_type %>
             <ul class="sortable">
-                <%block.libraries.each_with_index do |lib, ind|%>
+                <%block.moves.each_with_index do |lib, ind|%>
                     <li id="<%=block.id%>_<%=lib.id%>" data-libdetail="<%=block.get_lib_detail(lib.id)%>">
                         <span class="rm" id="rm_<%=block.id%>_<%=lib.id%>">
                             X

@@ -4,7 +4,7 @@ class Admin::DashboardController < Admin::AdminController
 		 @admin_count = User.admin_count
 		 @trainer_count = User.trainer_count
 		 @normaluser_count = User.user_count
-		 @library_count = Library.library_count
+		 @library_count = Move.library_count
 		 @workout_count = Workout.workout_count
 	end
 end
