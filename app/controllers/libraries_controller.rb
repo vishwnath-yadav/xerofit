@@ -36,17 +36,20 @@ class LibrariesController < ApplicationController
 	end
 	
 	def create
+		binding.pry
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
-	  if params[:move][:title].blank?
+	  if params[:move][:title].blank? && params[:move][:is_full_workout].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
+	  elsif params[:move][:title].blank?
+	  	params[:move][:title] = video[:video].split(".")[0]
 	  end 	
 	  @library = Move.new(library_params)
 	  @library.user_id = current_user.id
 	  if @library.save
 	  	video.move = @library
 	  	video.save
-	  	if is_full_workout == true
+	  	if !params[:move][:is_full_workout].blank?
 	    	redirect_to libraries_path, :notice => "Workout uploaded successfully. We'll let you know when it gets edited and added to your account"
 	    else
 	    	redirect_to libraries_path, :notice => "Thank you for uploading the video."
