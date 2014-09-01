@@ -46,7 +46,7 @@ class LibrariesController < ApplicationController
 	  if @library.save
 	  	video.library = @library
 	  	video.save
-	    redirect_to libraries_path, :notice => "Thank you for uploading video!"
+	    redirect_to libraries_path, :notice => "Workout uploaded successfully. We'll let you know when it gets edited and added to your account"
 	  else
 	  	@libvideo = LibraryVideo.new
 	    render :new
