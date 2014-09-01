@@ -44,7 +44,11 @@ Xerofit::Application.routes.draw do
     end
     get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
+    
     resources :moves do
+      collection do
+        get :common_filter
+      end
     end
 
     resources :workouts do

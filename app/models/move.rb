@@ -30,6 +30,7 @@ class Move < ActiveRecord::Base
 	TYPE = ["Exercises", "Workouts"]
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
+	scope :by_title, lambda { |title| where(title: title) unless title.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 	scope :is_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }

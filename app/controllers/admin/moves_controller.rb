@@ -17,8 +17,14 @@ class Admin::MovesController < ApplicationController
 	end
 
 	def approval_page
-		@moves = Move.where(is_full_workout: false).order('created_at desc')
-		@moves << Workout.all.order('created_at desc')
+		@moves = Move.where(is_full_workout: false).where(status: "Waiting for Approval").order('created_at desc')
+		@moves << Workout.all.where(status: "Waiting for Approval").order('created_at desc')
 		@moves = @moves.flatten
+	end
+
+	def common_filter
+		@moves = Move.where(is_full_workout: true).by_title(params[:title]).by_status(params[:status])
+		@library = Move.where(is_full_workout: false).order('created_at desc')
+		
 	end
 end
