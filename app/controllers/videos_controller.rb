@@ -10,9 +10,11 @@ class VideosController < ApplicationController
 	    	@video.image = ''
 	    end
 	    if @video.save
-	  		p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
-	  		@video.panda_video_id = p_video.id
-	  		@video.save
+	    	if params[:full_workout].blank?
+	  			p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
+	  			@video.panda_video_id = p_video.id
+	  			@video.save
+	  		end
 	    end
     	render text: "#{@video.present? ? @video.id : ""}"
 	end
