@@ -36,7 +36,6 @@ class LibrariesController < ApplicationController
 	end
 	
 	def create
-		binding.pry
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
 	  if params[:move][:title].blank? && params[:move][:is_full_workout].blank?

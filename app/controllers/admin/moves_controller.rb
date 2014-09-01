@@ -1,4 +1,5 @@
-class Admin::MovesController < ApplicationController
+class Admin::MovesController < Admin::AdminController
+
 	def index
 		@library = Move.where(is_full_workout: false).order('created_at desc')
 	end 
