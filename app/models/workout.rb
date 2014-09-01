@@ -46,10 +46,10 @@ class Workout < ActiveRecord::Base
 			block.workout_id = self.id
 			block.save!
 			value.each do|k, v|
-				lib = Library.find_by_id(k)
-				lib_block = LibraryBlock.where(:library_id=>lib.id, :block_id=>block.id).last
+				lib = Move.find_by_id(k)
+				lib_block = LibraryBlock.where(:move_id=>lib.id, :block_id=>block.id).last
 				if !lib_block.present?
-					lib_block = LibraryBlock.new(:library_id=>lib.id, :block_id=>block.id)
+					lib_block = LibraryBlock.new(:move_id=>lib.id, :block_id=>block.id)
 					lib_block.save!
 				end
 				lib_detail = LibraryDetail.find(v)
@@ -75,7 +75,7 @@ class Workout < ActiveRecord::Base
 	end
 
 	def save_status
-		self.status = Library::STATUS[4]
+		self.status = Move::STATUS[4]
 		self.save
 	end
 

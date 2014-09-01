@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :libraries 
+  has_many :moves 
   has_many :addresses
   has_many :subscriptions
   accepts_nested_attributes_for :addresses, :subscriptions
@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
     super && self.enabled
   end
 
-  def moves
-    self.libraries.where(is_full_workout: false)
+  def single_moves
+    self.moves.where(is_full_workout: false)
   end
 
   def day

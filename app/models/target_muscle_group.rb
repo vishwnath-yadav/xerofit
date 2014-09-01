@@ -1,5 +1,5 @@
 class TargetMuscleGroup < ActiveRecord::Base
-	belongs_to :library
+	belongs_to :move
 
 	# MUSCLES_TYPE_OPT_1 = ["Arms", "Biceps", "Forearms", "Triceps"]
 	# MUSCLES_TYPE_OPT_2 = ["Back", "Upper", "Lower", "Lats", "Traps", "Neck"]

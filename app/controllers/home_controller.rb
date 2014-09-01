@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   
 
   def test
-    @library = Library.new
+    @library = Move.new
     @libvideo = LibraryVideo.new
   end
   

@@ -78,7 +78,7 @@ Xerofit::Application.routes.draw do
       get 'sort_video'
       get 'see_more_thumbnail'
       get 'library_search_by_name'
-      get 'autocomplete_library_title'
+      get 'autocomplete_move_title'
       post 'filter'
       get 'full_workout_content'
       get 'image_test'
@@ -98,7 +98,7 @@ Xerofit::Application.routes.draw do
       get 'load_lib_details'
       patch 'save_lib_details'
       get 'search_lib'
-      get 'autocomplete_library_title'
+      get 'autocomplete_move_title'
       get 'remove_library_from_block'
     end
     member do

@@ -181,6 +181,14 @@ $(document).ready(function(){
     $("#equip_div_"+id).addClass('hide').find('span.pill_text').text('');
     equip_list_match.removeClass('selected_equipment');
   });
+
+  // Play video on video Poster click
+  $(document).on('click','#video-container', '.video-poster-play',function(){
+    $('.video-poster-play').remove()
+    $('#move_video').get(0).setAttribute("controls","controls");
+    $('#move_video').get(0).play();
+    $('#video-container').unbind('click');
+  });
 });
 
 // Not a Great solution (needs to be fixed)
@@ -233,6 +241,8 @@ function show_text_actual_size(){
       $(this).text(actual);
   })
 }
+
+
 
 $(document).mouseup(function (e)
 {

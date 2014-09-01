@@ -1,10 +1,10 @@
 class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
-	autocomplete :library, :title, :full => true
+	autocomplete :move, :title, :full => true
 	layout :resolve_layout
 	def new
 		@workout = Workout.new
-		@libraries = Library.where(user_id: current_user.id)
+		@libraries = Move.where(user_id: current_user.id)
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
 		@display = "block_hide"
@@ -29,8 +29,8 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
-		if params[:status] == Library::STATUS[2]
-			@workout.status = Library::STATUS[2]	
+		if params[:status] == Move::STATUS[2]
+			@workout.status = Move::STATUS[2]	
 		end
 		@workout.update_attributes(workout_params)
 		respond_to do |format|
@@ -80,7 +80,7 @@ class WorkoutsController < ApplicationController
 
 	def remove_library_from_block
 		id = params[:lib_block].split("_")
-		lib_block = LibraryBlock.where(block_id: id[0], library_id: id[1]).last
+		lib_block = LibraryBlock.where(block_id: id[0], move_id: id[1]).last
 		lib_block.library_detail.destroy
 		lib_block.destroy
 		render text: true
@@ -95,12 +95,12 @@ class WorkoutsController < ApplicationController
 		filter_order = params[:order]
 		if !search_value.blank?
 			if filter_order == 'asc'
-				@libraries = Library.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
+				@libraries = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
 			else
-				@libraries = Library.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
+				@libraries = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
 			end
 		else
-			@libraries = Library.where("user_id = ?", current_user.id)
+			@libraries = Move.where("user_id = ?", current_user.id)
 		end
 
 		respond_to do |format|
@@ -137,7 +137,7 @@ class WorkoutsController < ApplicationController
 
 	def workout_details
 		@workout = Workout.find(params[:id])
-		@disabled = ([@workout.status] & [Library::STATUS[0],Library::STATUS[2]]).present?
+		@disabled = ([@workout.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
 	end
 

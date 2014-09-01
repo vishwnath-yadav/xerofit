@@ -115,7 +115,6 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".choose_btn", function(){
-     //$(this).css('background', '#72c9b8');
      $("#user_pic").click();
   });
 
@@ -145,7 +144,6 @@ $(document).ready(function() {
 
 
   $(document).on("click",".wrk_chos",function(){
-     $(this).css('background', '#72c9b8');
      $("#workout_pic").click();
   });
 
