@@ -8,9 +8,13 @@
 				<div class="setting_form">
 					<div class="setting_form_field">
 						<label>First Name</label>
-						<%= user.input :fullname, label: false, input_html: { class: "setting_input" } %>
+						<%= user.input :first_name, label: false, input_html: { class: "setting_input" } %>
 					</div>
 					<div class="setting_form_field ml_27">
+						<label>Last Name</label>
+						<%= user.input :last_name, label: false,input_html: { class: "setting_input" } %>
+					</div>
+					<div class="setting_form_field wdt_100">
 						<label>Zip/Postal Code</label>
 						<%= user.input :pin_code, label: false,input_html: { class: "setting_input" } %>
 					</div>

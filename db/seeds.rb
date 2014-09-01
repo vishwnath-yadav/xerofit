@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:fullname=>"Admin", :email=>"Admin@xerofit.com", :password=>"admin123", :role=>"admin",:enabled=>true)
-User.create(:fullname=>"Trainer User", :email=>"Trainer@xerofit.com", :password=>"trainer123", :role=>"trainer", :enabled=>true)
-User.create(:fullname=>"Normal User", :email=>"User@xerofit.com", :password=>"normaluser123", :role=>"normaluser", :enabled=>true)
+User.create(:first_name=>"Admin", :email=>"Admin@xerofit.com", :password=>"admin123", :role=>"admin",:enabled=>true)
+User.create(:first_name=>"Trainer User", :email=>"Trainer@xerofit.com", :password=>"trainer123", :role=>"trainer", :enabled=>true)
+User.create(:first_name=>"Normal User", :email=>"User@xerofit.com", :password=>"normaluser123", :role=>"normaluser", :enabled=>true)

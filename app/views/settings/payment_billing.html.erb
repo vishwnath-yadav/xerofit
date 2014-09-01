@@ -27,7 +27,10 @@
                 </div>
                 <h5>Billing Information</h5>
                 <div class="setting_form_field wdt_100">
-                  <%= user.input :fullname, input_html: { class: "setting_input" } %>
+                  <%= user.input :first_name, input_html: { class: "setting_input" } %>
+                </div>
+                <div class="setting_form_field wdt_100">
+                  <%= user.input :last_name, input_html: { class: "setting_input" } %>
                 </div>
                 <%= user.fields_for :addresses do |address| %>
                     <%address_type = Address::ADDRESS_TYPE[0]%>

@@ -57,7 +57,7 @@ class Admin::UsersController < Admin::AdminController
 	private
 
 	def permitted_user
-		params.require(:user).permit(:fullname, :role, :email, :password)
+		params.require(:user).permit(:first_name,:last_name, :role, :email, :password)
 	end
 
 end

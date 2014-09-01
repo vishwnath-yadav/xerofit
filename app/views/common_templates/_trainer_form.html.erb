@@ -6,8 +6,12 @@
       <% end %>
   </span>
   <div class="login_field">
-    <label>Fullname:</label>
-    <%= f.input :fullname, label: false, required: true %>
+    <label>First Name:</label>
+    <%= f.input :first_name, label: false, required: true %>
+  </div>
+  <div class="login_field">
+    <label>Last Name:</label>
+    <%= f.input :last_name, label: false, required: true %>
   </div>
   <%= f.hidden_field :role, value: "trainer" %>
   <div class="login_field">

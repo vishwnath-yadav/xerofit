@@ -485,7 +485,7 @@ ALTER SEQUENCE target_muscle_groups_id_seq OWNED BY target_muscle_groups.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    fullname character varying(255),
+    first_name character varying(255),
     email character varying(255) DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
     role character varying(255),
@@ -514,7 +514,8 @@ CREATE TABLE users (
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
-    token character varying(255)
+    token character varying(255),
+    last_name character varying(255)
 );
 
 

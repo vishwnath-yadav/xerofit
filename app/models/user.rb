@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     pic.reprocess!
   end
 
+  def fullname
+    "#{first_name} #{last_name}"
+  end
+
   protected
 
   def generate_token
