@@ -1,9 +1,11 @@
 <%=hidden_field_tag :video_max_size, @max_size_allowed%>
+
 <script>
     $( document ).ready(function() {
       max_size = parseInt($("#video_max_size").val());
       prg = $("#progressbar");
       upload_video('dropzone');
+      full_workout = "<%=params[:popup]%>";
     });
 
     function upload_video(id){
@@ -13,6 +15,7 @@
         url: "/videos/create",
         clickable: '.upload_new_video',
         paramName: "file", // The name that will be used to transfer the file
+        params: {full_workout: full_workout},
         maxFilesize: max_size, // MB
         });
 
