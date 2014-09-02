@@ -1,2 +1,23 @@
 .content.workout-builder{ padding-bottom: 0; }
 .content.workout-builder .middle_wrapper { padding-bottom: 0; }
+
+.header-scroll {
+    background: #fff;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    @include clearfix();
+
+    .header-title {
+        width: auto;
+        float: left;
+
+        h4 {
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+        }
+    }
+}
+
+.show-on-scroll { display: none; }

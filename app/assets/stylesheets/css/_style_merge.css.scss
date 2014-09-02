@@ -916,9 +916,6 @@ width: 45%;
     margin-bottom: 16px;
 }
 
-
-
-
 input:focus::-webkit-input-placeholder {
     opacity: 0;
 }
@@ -953,27 +950,7 @@ button[disabled], html input[disabled] {
     padding-bottom: 19px;
 }
 
-.fixed {
-     position: fixed;
-     top: 0;
-     left: 0;
-     z-index: 9999;
-}
-
-.fixed .show_img_on_scol .lib_image_box{
-    margin-left: 40px;
-}
-
-.show_img_on_scol{
-    display: none;
-}
-
-
-.pd30{
-    padding: 0 30px;
-}
-
-
+.pd30 { padding: 0 30px; }
 
 .equ_cls{
     width: 60%;
@@ -997,15 +974,9 @@ button[disabled], html input[disabled] {
 .dis_non{ display: none; }
 .dis_blk{ display: block;}
 .drag_img{ margin-top: 40px;}
-
 .usr_flter { width: 100% !important; }
-
 .error_color{ color: red; }
-
-
-.gray_bg{
-    background: gainsboro;
-}
+.gray_bg { background: gainsboro; }
 
 .wrk_success{
     margin: 1% 40% 0;

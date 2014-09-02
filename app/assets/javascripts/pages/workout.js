@@ -1,5 +1,26 @@
 $(document).ready(function() {
 
+  $(window).scroll(function(){
+    var sticky = $('.header-scroll'),
+    scroll = $(window).scrollTop();
+
+    if(scroll >= 70){
+      sticky.addClass('fixed');
+      $('.show-on-scroll').css('display','block');
+      $('.header-scroll .header-title').css('margin-left','40px');
+      $('.header-scroll .rght_btns').css('margin-right','40px');
+      $('.header-scroll').css('border-bottom','1px solid #D8D8D8');
+    }
+    else{
+      sticky.removeClass('fixed');
+      $('.show-on-scroll').css('display','none');
+      $('.header-scroll .header-title').css('margin-left','0px');
+      $('.header-scroll .rght_btns').css('margin-right','0px');
+      $('.header-scroll').css('border-bottom','0px');
+    }
+  });
+
+
   // $(document).on("change keyup",".for_work_change",function(){
   //   $('.wrk_sve').removeClass('dis_link');
   //   var flag= 1;
