@@ -1,5 +1,7 @@
-<%if params[:action_name] != "approval_page"%>
-	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_table')) %>");
-<%else%>
+<%if params[:action_name] == "approval_page"%>
 	$('.search_user').html("<%= escape_javascript(render(:partial => 'approval_table')) %>");
+<%elsif params[:action_name] == "uncut_workout"%>
+	$('.search_user').html("<%= escape_javascript(render(:partial => 'uncut_workout_table')) %>");
+<%else%>
+	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_table')) %>");
 <%end%>

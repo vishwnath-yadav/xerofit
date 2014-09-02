@@ -16,29 +16,7 @@
 </div>
 <hr>
 <div class="col-md-9 search_user">
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Date Added</th>
-        <th>Status</th>
-        <th>User Email</th>
-        <th>Actions</th>
-      </tr>
-      <% @library.each do |lib| %>
-        <tr>
-          <td><%=lib.id%></td>
-          <td><%=lib.title%></td>
-          <td><%=lib.created_at%></td>
-          <td><%=lib.status%></td>
-          <td><%=lib.user.email %></td>
-          <td>
-            <!-- <%#=link_to "Edit", edit_admin_move_path(lib)%> |  -->
-            <%= link_to "Delete", admin_move_path(lib), method: :delete, data: { confirm: 'Are you sure?' }%>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+    <%= render "common_table"%>
 </div>
 <div class="col-md-3">
   <%= render "common_filter"%>

@@ -1,6 +1,8 @@
-class Admin::MovesController < ApplicationController
+class Admin::MovesController < Admin::AdminController
+
 	def index
-		@library = Move.where(is_full_workout: false).order('created_at desc')
+		parm = params.merge({type: Move::TYPE[0]}) 
+		@moves = Move.get_library_list(parm,current_user,'', false)
 	end 
 
 	def edit
@@ -13,26 +15,17 @@ class Admin::MovesController < ApplicationController
 	end
 
 	def uncut_workout
-		@library = Move.where(is_full_workout: true).order('created_at desc')
+		parm = params.merge({type: Move::TYPE[0]}) 
+		@moves = Move.get_library_list(parm,current_user,'', true)
 	end
 
 	def approval_page
-		@moves = Move.where(is_full_workout: false).where(status: "Waiting for Approval").order('created_at desc')
-		@moves << Workout.all.where(status: "Waiting for Approval").order('created_at desc')
-		@moves = @moves.flatten
+		parm = params.merge({status: Move::STATUS[2]}) 
+		@moves = Move.get_library_list(parm,current_user,'', false)
 	end
 
 	def common_filter
-		# binding.pry
-		if params[:type] == Move::TYPE[0]
-			@moves = Move.by_name(params[:title]).by_status(params[:status])
-		elsif params[:type] == Move::TYPE[1]
-			@moves = Workout.by_name(params[:title]).by_status(params[:status])
-		else
-			@moves = Move.where(is_full_workout: false, status: "Waiting for Approval").by_name(params[:title]).by_status(params[:status]).order('created_at desc')
-			@moves << Workout.where(status: "Waiting for Approval").by_name(params[:title]).by_status(params[:status]).order('created_at desc')
-		end
-		# binding.pry
-		@moves = @moves.flatten
+		is_full_workout = params[:is_full_workout].blank? ? false : true
+		@moves = Move.get_library_list(params,current_user,'', params[:is_full_workout])
 	end
 end

@@ -10,7 +10,7 @@ class LibrariesController < ApplicationController
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
 		user = User.where(token: params[:id]).last
-		@list1 = Move.get_library_list(params,current_user,user)
+		@list1 = Move.get_library_list(params,current_user,user, false)
 		@move = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js

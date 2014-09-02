@@ -16,29 +16,7 @@
 </div>
 <hr>
 <div class="col-md-9 search_user">
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Date Added</th>
-        <th>Status</th>
-        <th>User Email</th>
-        <th>Actions</th>
-      </tr>
-      <% @workout.each do |work| %>
-        <tr>
-          <td><%=work.id%></td>
-          <td><%=work.title%></td>
-          <td><%=work.created_at%></td>
-          <td><%=work.status%></td>
-          <td><%=work.user.email %></td>
-          <td>
-            <!-- <%#=link_to "Edit", edit_admin_move_path(work)%> |  -->
-            <%= link_to "Delete", admin_workout_path(work), method: :delete, data: { confirm: 'Are you sure?' }%>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+    <%= render "admin/moves/common_table"%>
 </div>
 <div class="col-md-3">
   <%= render "admin/moves/common_filter"%>

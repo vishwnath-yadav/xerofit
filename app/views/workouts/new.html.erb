@@ -1,34 +1,39 @@
 <%=render "workout_head"%>
-<div class="middle_wrapper ">
-	<div class="workout_col">
-    <%=render "left_portion"%>
-      <div class="workout_col_mid autoheight">
-      	<div class="col_1" id="workout_auto_form">
-          <%=render "workout_auto_form"%>
-        </div>
-        <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-          <div class="add_photo drag_lib">
-            <%=hidden_field_tag :workout_id %>
-            <%=render "sub_blocks"%>
-          </div>
-          <div class="hidden_field_workout">
-          </div>
-        <%end%>
+<div class="middle_wrapper autoheight snappy">
+  <%= render "left_portion" %>
+
+    <div class="workout_col_mid autoheight">
+    	<div class="col_1" id="workout_auto_form">
+        <%= render "workout_auto_form" %>
       </div>
-      <%= render "workout_right_menu" %>
-  </div>
+      <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+        <div class="add_photo drag_lib">
+          <%=hidden_field_tag :workout_id %>
+          <%= render "sub_blocks" %>
+        </div>
+        <div class="hidden_field_workout">
+        </div>
+      <%end%>
+    </div>
+  <%= render "workout_right_menu" %>
 </div>
-<%=render "block_type_modal"%>
- <script type="text/javascript">
-   $(document).ready(function(){
+<%= render "block_type_modal" %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
     var setElementHeight = function () {
       var height = $(window).height();
-      var header_height = 2 * $('.header_wrapper').innerHeight();
-      $('.autoheight').css('height', (height - header_height - 5));
+      var topbarHeight = $('.topbar').outerHeight();
+      var controlBarHeight = $('.control_bar').outerHeight();
+      var buttonHeaderHeight = $('.details_page_header.workout-builder').outerHeight();
+      var offsetHeight = height + topbarHeight + controlBarHeight;
+
+      $('.autoheight').css({'height': (height - buttonHeaderHeight)+'px'})
     };
 
-    $(window).on("resize", function () {
+    $(window).on('resize', function () {
       setElementHeight();
     }).resize();
   });
- </script>
+</script>
