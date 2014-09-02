@@ -12,6 +12,7 @@ class Move < ActiveRecord::Base
 	
 	after_create :save_status
 	after_create :create_target_muscle_group
+	# after_update :date_updated_for_approval
 
 	accepts_nested_attributes_for :target_muscle_groups
 
@@ -27,7 +28,7 @@ class Move < ActiveRecord::Base
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
-	SELECT_TYPE = ["ID","Email","First Name","Last Name","Date Registered"]
+	SELECT_TYPE = ["ID","Title","Date Added","Status","Email"]
 
 	TYPE = ["Moves", "Workouts"]
 
@@ -73,7 +74,7 @@ class Move < ActiveRecord::Base
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
 			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).all
 			list = list.flatten
-			if sort == "updated_at"
+			if sort == "updated_at" || sort == "date_submitted_for_approval"
 				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
 			else
 				list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
@@ -144,6 +145,11 @@ class Move < ActiveRecord::Base
 		self.target_muscle_groups
 	end
 
-	
+	def date_updated_for_approval(new_status, old_status)
+		if old_status != STATUS[2] && new_status == STATUS[2] && !self.date_submitted_for_approval.present?
+			self.date_submitted_for_approval = self.updated_at
+			self.save
+		end 
+	end
 
 end
