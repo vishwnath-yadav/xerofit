@@ -4,7 +4,7 @@
   <%= render "upload" %>
 <% end %>
 
-<%= simple_nested_form_for(@move, url: (@move.new_record? ? libraries_path : library_path(@move)), html: {id: 'video_library_info'}) do |mov| %>
+<%= simple_nested_form_for(@move, url: (@move.new_record? ? libraries_path : library_path(@move)), html: {id: 'video_move_info'}) do |mov| %>
   <div class="col-xs-4 lib_form_rgt">
     <div style="color:red;">
       <% if @move.errors.full_messages.any? %>

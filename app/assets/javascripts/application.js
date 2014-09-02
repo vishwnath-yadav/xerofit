@@ -31,7 +31,7 @@
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
 
-//= require pages/library.js
+//= require pages/move.js
 //= require pages/workout.js
 
 
@@ -105,7 +105,7 @@ $(document).ready(function() {
   });
 
   $(document).on('click','#panda_video_enable', function(){
-    $('#video_library_info').submit();
+    $('#video_move_info').submit();
   });
 
 
