@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links" id="<%= @move.id%>">
-        <%= link_to("Fitness", libraries_path, :class=>'cb_breadcrumb') %>
+        <%= link_to("Fitness Library", libraries_path, :class=>'cb_breadcrumb') %>
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">
@@ -41,7 +41,7 @@
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@move.status%>">Save</a>
         <%if hide_if_admin%>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr = "<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
         <%end%>
       </div>
     </div>

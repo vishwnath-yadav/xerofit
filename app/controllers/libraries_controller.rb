@@ -43,7 +43,7 @@ class LibrariesController < ApplicationController
 	  	params[:move][:title] = video.video_title.split(".")[0]
 	  elsif params[:move][:title].blank?
 	  	params[:move][:title] = video[:video].split(".")[0]
-	  end 	
+	  end
 	  params[:move][:is_full_workout] = full_workout.blank? ? false : true
 	  @move = Move.new(library_params)
 	  @move.user_id = current_user.id
@@ -72,12 +72,13 @@ class LibrariesController < ApplicationController
 		end
 		@move.update_target_muscle(params[:move][:target_muscle_groups_attributes])
 		respond_to do |format|
-		old_status = @library.status
-	    if @library.update_attributes(library_params)
-			@library.date_updated_for_approval(params[:move][:status], old_status)
-	        format.html { redirect_to edit_path(@move), notice: 'successfully updated Library.' }
-	    else
-	        format.html { render action: "edit" }
+			old_status = @move.status
+		    if @move.update_attributes(library_params)
+				@move.date_updated_for_approval(params[:move][:status], old_status)
+		        format.html { redirect_to edit_path(@move), notice: 'successfully updated Library.' }
+		    else
+		        format.html { render action: "edit" }
+		    end
 	    end
 	end
 
@@ -189,6 +190,6 @@ class LibrariesController < ApplicationController
 	  def workout_params
 	    params.require(:workout).permit!
 	  end
-	end
+
 
 end
