@@ -79,7 +79,6 @@ class LibrariesController < ApplicationController
 	    else
 	        format.html { render action: "edit" }
 	    end
-    end
 	end
 
 
