@@ -256,30 +256,8 @@ ALTER SEQUENCE library_videos_id_seq OWNED BY library_videos.id;
 
 CREATE TABLE move_blocks (
     id integer NOT NULL,
-<<<<<<< HEAD
     block_id integer NOT NULL,
     move_id integer NOT NULL,
-=======
-    repetitions boolean DEFAULT true,
-    weight boolean DEFAULT false,
-    distance boolean DEFAULT false,
-    dist_option character varying(255),
-    dist_val integer DEFAULT 1,
-    weight_val integer DEFAULT 1,
-    duration boolean DEFAULT false,
-    minute integer DEFAULT 0,
-    second integer DEFAULT 0,
-    tempo boolean DEFAULT false,
-    temp_lower integer DEFAULT 0,
-    temp_pause integer DEFAULT 0,
-    temp_lift integer DEFAULT 0,
-    rep_min integer DEFAULT 1,
-    rep_max integer DEFAULT 1,
-    rep_total integer DEFAULT 1,
-    rep_each_side boolean DEFAULT true,
-    rep_option character varying(255),
-    library_block_id integer,
->>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -531,23 +509,13 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     pin_code integer,
-=======
-    pin_code character varying(255),
->>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
     date_of_birth date,
     gender character varying(255),
->>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
-    pin_code character varying(255),
-    date_of_birth date,
-    gender character varying(255),
     token character varying(255),
     last_name character varying(255)
 );
@@ -619,24 +587,15 @@ CREATE TABLE workouts (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    status character varying(255),
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     category character varying(255),
-<<<<<<< HEAD
     status character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying
-=======
     move_type character varying(255) DEFAULT 'workouts'::character varying,
-<<<<<<< HEAD
     mark_complete boolean DEFAULT true,
     date_submitted_for_approval timestamp without time zone
-=======
-    mark_complete boolean DEFAULT true
->>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
->>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3
 );
 
 
@@ -1000,8 +959,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140702090254');
 
 INSERT INTO schema_migrations (version) VALUES ('20140702121642');
 
-INSERT INTO schema_migrations (version) VALUES ('20140704094146');
-
 INSERT INTO schema_migrations (version) VALUES ('20140704094148');
 
 INSERT INTO schema_migrations (version) VALUES ('20140716133059');
@@ -1050,7 +1007,4 @@ INSERT INTO schema_migrations (version) VALUES ('20140902054729');
 
 INSERT INTO schema_migrations (version) VALUES ('20140902081143');
 
-<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20140902094051');
-=======
->>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3
