@@ -27,7 +27,7 @@ class Admin::MovesController < Admin::AdminController
 		@moves = Move.get_library_list(parm,current_user,'', false)
 	end
 
-	def common_filter
+	def admin_filter
 		is_full_workout = params[:is_full_workout].blank? ? false : true
 		@moves = Move.get_library_list(params,current_user,'', params[:is_full_workout])
 	end
