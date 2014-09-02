@@ -31,10 +31,12 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
-		if params[:status] == Move::STATUS[2]
-			@workout.status = Move::STATUS[2]	
-		end
+		# if params[:status] == Move::STATUS[2]
+		# 	@workout.status = Move::STATUS[2]	
+		# end
+		old_status = @workout.status
 		@workout.update_attributes(workout_params)
+		@workout.date_updated_for_approval(params[:workout][:status], old_status)
 		respond_to do |format|
 			format.html { redirect_to :back}
 			format.js {render 'create'}

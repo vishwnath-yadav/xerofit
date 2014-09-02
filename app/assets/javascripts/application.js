@@ -93,7 +93,7 @@ $(document).ready(function() {
   $(document).on('click','.edit_lib',function(){
     var status = $(this).attr('lib-status');
     if($('.thumbnail_col').length){
-      $('#library_status').val(status);
+      $('#move_status').val(status);
       if(validate_target_muscle_group()){
         $('#edit_video_info').submit();
       }

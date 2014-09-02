@@ -10,7 +10,7 @@
       <div id="video-container">
         <video id="move_video" width="560" height="316" controls poster="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>">
           <source src="<%= @library.library_video.panda_mp4.url %>" type="video/mp4">
-          <source src="<%= @library.library_video.panda_ogg.url %>" type="video/ogg">
+          <!-- <source src="<%#= @library.library_video.panda_ogg.url %>" type="video/ogg"> -->
         </video>
         <div class="video-poster-play">
           <div class="play-button"></div>

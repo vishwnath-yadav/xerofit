@@ -20,7 +20,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def approval_page
-		parm = params.merge({status: Move::STATUS[2]}) 
+		parm = params.merge({status: Move::STATUS[2], sorted_by: "date_submitted_for_approval", order: "ASC"}) 
 		@moves = Move.get_library_list(parm,current_user,'', false)
 	end
 

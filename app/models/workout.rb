@@ -105,4 +105,12 @@ class Workout < ActiveRecord::Base
 		pic.reprocess!
 	end
 
+	def date_updated_for_approval(new_status, old_status)
+		binding.pry
+		if old_status != Move::STATUS[2] && new_status == Move::STATUS[2] && !self.date_submitted_for_approval.present?
+			self.date_submitted_for_approval = self.updated_at
+			self.save
+		end 
+	end
+
 end

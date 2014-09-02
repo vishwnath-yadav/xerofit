@@ -70,7 +70,9 @@ class LibrariesController < ApplicationController
 		end
 		@library.update_target_muscle(params[:move][:target_muscle_groups_attributes])
 		respond_to do |format|
+		old_status = @library.status
 	    if @library.update_attributes(library_params)
+			@library.date_updated_for_approval(params[:move][:status], old_status)
 	        format.html { redirect_to edit_path(@library), notice: 'successfully updated Library.' }
 	    else
 	        format.html { render action: "edit" }
