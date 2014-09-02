@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped">
+      <tr>
+        <th>ID</th>
+        <th>User Email</th>
+        <th>Date Added/Uploaded</th>
+        <th>Download Video</th>
+        <th>Mark Complete</th>
+      </tr>
+      <% @moves.each do |move| %>
+        <tr>
+          <td><%=move.id%></td>
+          <td><%=move.user.email %></td>
+          <td><%=move.created_at%></td>
+          <td><%=link_to "Download", "javascript:void(0)"%></td>
+          <td>
+            <%if true%>
+              <%=check_box_tag 'mark_as', '', true %>
+            <%else%>
+              <%=check_box_tag 'mark_as', '', false%>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+    </table>

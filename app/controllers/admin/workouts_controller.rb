@@ -1,7 +1,8 @@
 class Admin::WorkoutsController < ApplicationController
 
 	def index
-		@workout = Workout.all.order('created_at desc')
+		parm = params.merge({type: Move::TYPE[1]}) 
+		@moves = Move.get_library_list(parm,current_user,'', false)
 	end
 	
 end

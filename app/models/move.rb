@@ -32,7 +32,7 @@ class Move < ActiveRecord::Base
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
-	scope :is_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
+	scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
 	def save_status
@@ -48,27 +48,28 @@ class Move < ActiveRecord::Base
 	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	# end
 
-	def self.get_library_list(params,cur_user,param_user_id)
+	def self.get_library_list(params,cur_user,param_user_id, is_full_workout)
+		# binding.pry
 		if cur_user.admin? && param_user_id.present?
-			list = list_view(params,param_user_id)
+			list = list_view(params,param_user_id,is_full_workout)
 		elsif cur_user.admin?
-			list = list_view(params,'')
+			list = list_view(params,'',is_full_workout)
 		else	
-			list = list_view(params,cur_user)
+			list = list_view(params,cur_user,is_full_workout)
 		end
 		return list
 	end
 
-	def self.list_view(params,user)
+	def self.list_view(params,user,is_full_workout)
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
-		if params[:type] == "Workouts" 
+		if params[:type] == TYPE[1] 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed).order("#{sort} #{order}")
-		elsif params[:type] == "Moves"
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).order("#{sort} #{order}")
+		elsif params[:type] == TYPE[0]
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).order("#{sort} #{order}")
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
-			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(user).all
+			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).all
 			list = list.flatten
 			if sort == "updated_at"
 				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
@@ -76,6 +77,7 @@ class Move < ActiveRecord::Base
 				list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
 			end
 		end
+		return list
 	end
 
 	def update_target_muscle(target_muscles)

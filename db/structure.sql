@@ -349,7 +349,8 @@ CREATE TABLE moves (
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
     work character varying(255),
-    is_full_workout boolean DEFAULT false
+    is_full_workout boolean DEFAULT false,
+    mark_complete boolean DEFAULT false
 );
 
 
@@ -591,7 +592,8 @@ CREATE TABLE workouts (
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     category character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying
+    move_type character varying(255) DEFAULT 'workouts'::character varying,
+    mark_complete boolean DEFAULT true
 );
 
 
@@ -990,3 +992,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140807092754');
 INSERT INTO schema_migrations (version) VALUES ('20140901052443');
 
 INSERT INTO schema_migrations (version) VALUES ('20140901055551');
+
+INSERT INTO schema_migrations (version) VALUES ('20140902081143');

@@ -7,16 +7,16 @@
     <th>User Email</th>
     <th>Actions</th>
   </tr>
-  <% @moves.each do |lib| %>
+  <% @moves.each do |move| %>
     <tr>
-      <td><%=lib.id%></td>
-      <td><%=lib.title%></td>
-      <td><%=lib.created_at%></td>
-      <td><%=lib.status%></td>
-      <td><%=lib.user.email %></td>
+      <td><%=move.id%></td>
+      <td><%=move.title%></td>
+      <td><%=move.created_at%></td>
+      <td><%=move.status%></td>
+      <td><%=move.user.email %></td>
       <td>
-        <!-- <%#=link_to "Edit", edit_admin_move_path(lib)%> |  -->
-        <%= link_to "Delete", admin_move_path(lib), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <!-- <%#=link_to "Edit", edit_admin_move_path(move)%> |  -->
+        <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
       </td>
     </tr>
   <% end %>

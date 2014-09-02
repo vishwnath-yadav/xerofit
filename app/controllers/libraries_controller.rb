@@ -10,7 +10,7 @@ class LibrariesController < ApplicationController
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
 		user = User.where(token: params[:id]).last
-		@list1 = Move.get_library_list(params,current_user,user)
+		@list1 = Move.get_library_list(params,current_user,user, false)
 		@list = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js
@@ -36,7 +36,6 @@ class LibrariesController < ApplicationController
 	end
 	
 	def create
-		binding.pry
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
 	  if params[:move][:title].blank? && params[:move][:is_full_workout].blank?
