@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
 	# layout :resolve_layout
 	def new
 		@workout = Workout.new
-		@libraries = Move.where(user_id: current_user.id)
+		@moves = Move.where(user_id: current_user.id)
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
 		@display = "block_hide"
@@ -80,8 +80,8 @@ class WorkoutsController < ApplicationController
 
 	def remove_library_from_block
 		id = params[:lib_block].split("_")
-		lib_block = LibraryBlock.where(block_id: id[0], move_id: id[1]).last
-		lib_block.library_detail.destroy
+		lib_block = MoveBlock.where(block_id: id[0], move_id: id[1]).last
+		lib_block.move_detail.destroy
 		lib_block.destroy
 		render text: true
 	end
@@ -95,12 +95,12 @@ class WorkoutsController < ApplicationController
 		filter_order = params[:order]
 		if !search_value.blank?
 			if filter_order == 'asc'
-				@libraries = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
+				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
 			else
-				@libraries = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
+				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
 			end
 		else
-			@libraries = Move.where("user_id = ?", current_user.id)
+			@moves = Move.where("user_id = ?", current_user.id)
 		end
 
 		respond_to do |format|
@@ -110,9 +110,9 @@ class WorkoutsController < ApplicationController
 
 
 	def load_lib_details
-		@lib_detail = params[:lib_detail].present? ? LibraryDetail.find(params[:lib_detail]) : nil
+		@lib_detail = params[:lib_detail].present? ? MoveDetail.find(params[:lib_detail]) : nil
 		if !@lib_detail.present?
-			@lib_detail = LibraryDetail.new()
+			@lib_detail = MoveDetail.new()
 			@lib_detail.save
 		end
 		if !params[:move].blank?
@@ -126,7 +126,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_lib_details
-		@lib_detail = LibraryDetail.find(params[:lib_detail_id])
+		@lib_detail = MoveDetail.find(params[:lib_detail_id])
 		if @lib_detail.present?
 			@lib_detail.update_attributes(library_detail_params)
 		end
@@ -147,6 +147,6 @@ class WorkoutsController < ApplicationController
 	  end
 
 	  def library_detail_params
-	  	params.require(:library_detail).permit!
+	  	params.require(:move_detail).permit!
 	  end
 end

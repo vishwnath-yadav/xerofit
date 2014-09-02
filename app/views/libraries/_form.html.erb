@@ -4,43 +4,43 @@
   <%= render "upload" %>
 <% end %>
 
-<%= simple_nested_form_for(@library, url: (@library.new_record? ? libraries_path : library_path(@library)), html: {id: 'video_library_info'}) do |lib| %>
+<%= simple_nested_form_for(@move, url: (@move.new_record? ? libraries_path : library_path(@move)), html: {id: 'video_library_info'}) do |mov| %>
   <div class="col-xs-4 lib_form_rgt">
     <div style="color:red;">
-      <% if @library.errors.full_messages.any? %>
+      <% if @move.errors.full_messages.any? %>
       <ul>
-      <% @library.errors.full_messages.each do |error_message| %>
+      <% @move.errors.full_messages.each do |error_message| %>
         <li><%= error_message %></li>
       <% end %>
         </ul>
       <% end %>
     </div>
-    <%= lib.hidden_field :is_full_workout, value: false, class: "full_workout" %>
+    <%= mov.hidden_field :is_full_workout, value: false, class: "full_workout" %>
     <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="input_field_wrap">
       <label>Title</label>
-      <%= lib.text_field :title, maxlength: "80" %>
+      <%= mov.text_field :title, maxlength: "80" %>
       <span class="detail_char" data-size="80">80</span>
     </div>
 
     <div class="input_field_wrap">
       <label>Directions</label>
-      <%= lib.text_area :directions, maxlength: "450", :class => "text_area_lg" %>
+      <%= mov.text_area :directions, maxlength: "450", :class => "text_area_lg" %>
       <span class="detail_char" data-size="450">450</span>
     </div>
 
     <div class="input_field_wrap">
       <label>Category</label>
       <div class="fancy_select">
-        <%= lib.select :category, Move::CATEGORIES, prompt: "Choose one" %>
+        <%= mov.select :category, Move::CATEGORIES, prompt: "Choose one" %>
       </div>
     </div>
 
     <div class="input_field_wrap">
         <label>Level of Difficulty</label>
       <div class="fancy_select">
-        <%= lib.select :difficulty, Move::DIFFICULTIES, prompt: "Choose one" %>
+        <%= mov.select :difficulty, Move::DIFFICULTIES, prompt: "Choose one" %>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<% if @list.present? %>
+<% if @move.present? %>
   <div class="col-sm-12">
     <ul class="library_list_view sortable_list">
       <li class="table_header">
@@ -17,39 +17,39 @@
         <%end%>
       </li>
 
-      <% @list.each_with_index do |ls, index| %>
+      <% @move.each_with_index do |mov, index| %>
         <li>
-          <% if ls.move_type == "workouts" %>
-            <a href="<%= workout_details_path(ls) %>" title="<%= ls.title %>" data-no-turbolink="true">
+          <% if mov.move_type == "workouts" %>
+            <a href="<%= workout_details_path(mov) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
-                  <% if ls.pic.present? %>
-                    <img src="<%= ls.pic.url(:thumb) %>" class='list_view_img wrk' />
+                  <% if mov.pic.present? %>
+                    <img src="<%= mov.pic.url(:thumb) %>" class='list_view_img wrk' />
                   <% else %>
                     <img src="/assets/ex_1.png" class="list_view_img wrk" />
                   <% end %>
                 </div>
-                <span><%= truncate(ls.title, :length => 35, :seperator => ' ...') %></span>
+                <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
               </span>
           <% else %>
-            <a href="<%= edit_path(ls) %>" title="<%= ls.title %>" data-no-turbolink="true">
+            <a href="<%= edit_path(mov) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
-                  <% if ls.library_video.present? && ls.library_video.image.present? %>
-                    <img src="<%= ls.library_video.image %>" class="list_view_img move" />
+                  <% if mov.library_video.present? && mov.library_video.image.present? %>
+                    <img src="<%= mov.library_video.image %>" class="list_view_img move" />
                   <% else %>
                     <img src="/assets/ex_2.png" class="list_view_img move" />
                   <% end %>
                 </div>
-                <span><%= truncate(ls.title, :length => 35, :seperator => ' ...') %></span>
+                <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
               </span>
           <% end %>
-            <span class="type_col"><%= ls.move_type.titleize.singularize %></span>
+            <span class="type_col"><%= mov.move_type.titleize.singularize %></span>
             <span class="status_col">
-              <img src="<%= status_icon(ls.status)%>" class="list_view_circle" />
-              <span><%= ls.status %></span>
+              <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
+              <span><%= mov.status %></span>
             </span>
-            <span class="date_col"><%= ls.updated_at.strftime("%B %d, %Y") %></span>
+            <span class="date_col"><%= mov.updated_at.strftime("%B %d, %Y") %></span>
           </a>
         </li>
       <% end %>
@@ -59,4 +59,4 @@
   <span> No Record Found...</span>
 <% end %>
 
-<%= paginate @list, :remote => true %>
+<%= paginate @move, :remote => true %>

@@ -1,12 +1,12 @@
-<% libraries.each do |lib|%>
-  <%if lib.has_full_detail%>
-    <div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=lib.id%>">
+<% moves.each do |move|%>
+  <%if move.has_full_detail%>
+    <div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=move.id%>">
   <%else%>
     <div class="white_list gray_bg">
   <%end%>
         <div class="white_list_left">
-            <h6><%= lib.title %></h6>
-              <p><%= lib.category %></p>
+            <h6><%= move.title %></h6>
+              <p><%= move.category %></p>
           </div>
           <div class="dots_img">
               <img src="/assets/dots_img.jpg" width="6" height="19" alt="dots_img" />

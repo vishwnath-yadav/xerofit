@@ -3,7 +3,6 @@ class VideosController < ApplicationController
 	
 	respond_to :json, :js
 	def create
-    binding.pry
   	if session[:video_id].blank?
 		@video = LibraryVideo.new(video: params[:file]) 
     else

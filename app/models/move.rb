@@ -6,9 +6,9 @@ class Move < ActiveRecord::Base
 	belongs_to :user
 	has_many :target_muscle_groups
 	has_one :library_video
-	has_one :library_detail
-	has_many :library_blocks
-	has_many :blocks, through: :library_blocks
+	has_one :move_detail
+	has_many :move_blocks
+	has_many :blocks, through: :move_blocks
 	
 	after_create :save_status
 	after_create :create_target_muscle_group

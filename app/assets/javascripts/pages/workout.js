@@ -113,11 +113,11 @@ $(document).ready(function() {
   });
 
   $(document).on('change', ".lib_detail_sel", function(){
-    $(".edit_library_detail").submit();
+    $(".edit_move_detail").submit();
   });
 
   $(document).on('click', ".lib_detail_chk", function(){
-    $(".edit_library_detail").submit();
+    $(".edit_move_detail").submit();
   });
 
   $(document).on('blur', ".lib_detail_inp", function(){
@@ -133,7 +133,7 @@ $(document).ready(function() {
       setTimeout(function(){$input.css('border','none')}, 3000);
     }
     else{
-      $(".edit_library_detail").submit();
+      $(".edit_move_detail").submit();
     }
   });
 

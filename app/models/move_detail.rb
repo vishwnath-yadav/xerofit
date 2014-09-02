@@ -1,5 +1,5 @@
-class LibraryDetail < ActiveRecord::Base
-	belongs_to :library_block
+class MoveDetail < ActiveRecord::Base
+	belongs_to :move_block
     validate :validate_workout
 
 	REP = (0..60).to_a
