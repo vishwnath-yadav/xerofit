@@ -16,7 +16,11 @@
       <td><%=move.user.email %></td>
       <td>
         <!-- <%#=link_to "Edit", edit_admin_move_path(move)%> |  -->
-        <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <% if controller_name == "workouts" %>
+        <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <% else %>
+          <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <% end %>
       </td>
     </tr>
   <% end %>
