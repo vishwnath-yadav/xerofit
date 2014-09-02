@@ -28,4 +28,10 @@ class Admin::MovesController < Admin::AdminController
 		is_full_workout = params[:is_full_workout].blank? ? false : true
 		@moves = Move.get_library_list(params,current_user,'', params[:is_full_workout])
 	end
+
+	# def common_sorting
+	# 	logger.debug "sssssssss"
+	# 	type = params[:sort_type]
+	# 	@users = User.all.order('type desc')	
+	# end
 end

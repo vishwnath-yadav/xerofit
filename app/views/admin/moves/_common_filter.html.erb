@@ -1,6 +1,7 @@
 <%= form_tag(common_filter_admin_moves_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
     <%= hidden_field_tag :action_name, action_name%>
     <%= hidden_field_tag :is_full_workout, is_full_workout%>
+    <%= hidden_field_tag :sorted_by, ''%>
     <table class="table table-bordered table-striped">
       <tr>
         <th colspan="2">Filters</th>

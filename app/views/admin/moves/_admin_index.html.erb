@@ -1,0 +1,9 @@
+<%= select_tag :sorted, options_for_select(Move::SELECT_TYPE), class: "form-control input-wid" %>
+<script>
+	$(document).ready(function(){
+		$(document).on('change','#sorted',function(){
+			alert("ssssssssss");
+			$('#sorted_by').val($(this).val());
+		});
+	})
+</script>

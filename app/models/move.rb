@@ -27,6 +27,8 @@ class Move < ActiveRecord::Base
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
+	SELECT_TYPE = ["ID","Email","First Name","Last Name","Date Registered"]
+
 	TYPE = ["Moves", "Workouts"]
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
