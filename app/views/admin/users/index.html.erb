@@ -16,21 +16,12 @@
   </div>
 </div>
 <hr>
-
-<script>
-  $(document).ready(function(){
-    $(document).on('change','#sorted',function(){
-      $('#sorted_by').val($(this).val());
-      $('#filter_user_form').submit();
-    });
-  })
-</script>
 <%= render "common_templates/admin/sort_select"%>
 <div class="col-md-9 search_user">
     <%= render "filter_index"%>
 </div>
 <div class="col-md-3">
-  <%= form_tag(filter_user_admin_users_path, remote: true, method: "get", id: "filter_user_form") do |f|%>
+  <%= form_tag(filter_user_admin_users_path, remote: true, method: "get", id: "admin_filter_form") do |f|%>
     <table class="table table-bordered table-striped">
       <%= hidden_field_tag :sorted_by, 'updated_at'%>
       <tr>
