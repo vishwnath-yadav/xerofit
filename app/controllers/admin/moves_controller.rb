@@ -1,5 +1,5 @@
-class Admin::MovesController < ApplicationController
-	
+class Admin::MovesController < Admin::AdminController
+
 	def index
 		parm = params.merge({type: Move::TYPE[0]}) 
 		@moves = Move.get_library_list(parm,current_user,'', false)

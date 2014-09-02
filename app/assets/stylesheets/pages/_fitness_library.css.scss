@@ -708,6 +708,21 @@ ul.exer_list_view li span.tx_rht.heading_txt{
 //
 
 
+.fixed {
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 9999;
+}
+
+.fixed .show_img_on_scol .lib_image_box{
+    margin-left: 40px;
+}
+
+.show_img_on_scol{
+    display: none;
+}
+
 .lib_img_coll {
     background: #fff;
     width: 100%;

@@ -52,29 +52,8 @@ body.pop{background:#d9d9d9;}
 .cent{ text-align: center; }
 
 
-.back_arrow{
-    background:url(/assets/prev_arrow.jpg) no-repeat left 0px;
-    font-size:14px;
-    color:#fff;
-    font-family: 'gotham_extralightregular';
-    padding-left:25px;
-    line-height:25px;
-    width:14.3%;
-    float:left;
-}
-.back_arrow a, .next_arrow a{color:#fff; text-decoration:none}
-.back_arrow a:hover, .next_arrow a:hover{color:#fff; text-decoration:underline}
-.next_arrow{
-    background:url(/assets/next_arrow.jpg) no-repeat right 0px;
-    font-size:14px;
-    color:#fff;
-    font-family: 'gotham_extralightregular';
-    padding-right:25px;
-    line-height:25px;
-    width:16.3%;
-    float:right;
-    margin-top:4px;
-}
+
+
 .m_32{
     margin:0px 32px;
 }
@@ -107,28 +86,6 @@ body.pop{background:#d9d9d9;}
     color:#fff;
     border:1px solid #4c9d8d;
 }
-
-
-
-
-.home_mid{max-width:740px; padding-top: 100px; margin:0px auto; text-align:center}
-.home_mid h2{ color:#fff; font-size:72px} 
-.home_mid p{color:#fff; font-size:48px; margin-top: 25px;
-margin-bottom: 100px; font-family: 'gotham_extralightregular';} 
-.home_mid a.user_btn{border: 1px solid #fff;
-border-radius: 5px;
-font-family: 'gotham_extralightregular';
-padding: 12px 65px;
-font-size: 24px;
-color: #fff;
-text-decoration: none;
-margin-right: 20px;}
-
-.home_mid a.user_btn:hover{
-    background:#72c9b8;
-    border:1px solid #4ea695;
-}
-
 
 
 /*=======DASHBOARD-PAGES==========*/
@@ -303,10 +260,6 @@ width: 48%;}
     width:5%;
 }
 
-.workout_col{
-    width:100%;
-    float:left;
-}
 .workout_col_left{
     width:25%;
     float:left;
@@ -386,14 +339,13 @@ width: 48%;}
     float:right;
     margin-top:3px;
 }
-.workout_col_mid{
+.workout_col_mid {
     width:50%;
     float:left;
     background:#fff;
     border-right:1px solid #e1e3e5;
     border-left:1px solid #e1e3e5;
     padding:36px;
-
     overflow-y: scroll;
 }
 .col_1{
@@ -959,9 +911,6 @@ width: 45%;
     margin-bottom: 16px;
 }
 
-
-
-
 input:focus::-webkit-input-placeholder {
     opacity: 0;
 }
@@ -996,27 +945,7 @@ button[disabled], html input[disabled] {
     padding-bottom: 19px;
 }
 
-.fixed {
-     position: fixed;
-     top: 0;
-     left: 0;
-     z-index: 9999;
-}
-
-.fixed .show_img_on_scol .lib_image_box{
-    margin-left: 40px;
-}
-
-.show_img_on_scol{
-    display: none;
-}
-
-
-.pd30{
-    padding: 0 30px;
-}
-
-
+.pd30 { padding: 0 30px; }
 
 .equ_cls{
     width: 60%;
@@ -1040,15 +969,9 @@ button[disabled], html input[disabled] {
 .dis_non{ display: none; }
 .dis_blk{ display: block;}
 .drag_img{ margin-top: 40px;}
-
 .usr_flter { width: 100% !important; }
-
 .error_color{ color: red; }
-
-
-.gray_bg{
-    background: gainsboro;
-}
+.gray_bg { background: gainsboro; }
 
 .wrk_success{
     margin: 1% 40% 0;

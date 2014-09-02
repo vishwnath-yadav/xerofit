@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Xerofit</title>
+  <title>Xerofit Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="//cloud.typography.com/636428/615064/css/fonts.css" />
   <%= javascript_include_tag "https://js.stripe.com/v1/" %>
-  <%= javascript_include_tag "application", "/assets/plugins/jquery.dropkick.min", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "application","admin/application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "admin/admin", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= render partial: 'layouts/admin_header' %>
+	<%= render partial: 'admin/admin_header' %>
 	<div class="container">
 		<div class="row">
       <%= yield %>
