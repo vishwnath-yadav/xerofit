@@ -17,14 +17,6 @@
 </div>
 <hr>
 <%= select_tag :sorted, options_for_select(@sort_array), class: "form-control input-wid" %>
-<script>
-  $(document).ready(function(){
-    $(document).on('change','#sorted',function(){
-      $('#sorted_by').val($(this).val());
-      $('#filter_user_form').submit();
-    });
-  })
-</script>
 <div class="col-md-9 search_user">
     <%= render "filter_index"%>
 </div>
