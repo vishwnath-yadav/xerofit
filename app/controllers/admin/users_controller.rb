@@ -1,7 +1,8 @@
 class Admin::UsersController < Admin::AdminController
 
 	def index
-		@users = User.all
+		@sort_array = User::USER_TYPE
+		@users = User.all.order('created_at DESC')
 	end
 
 	def new
@@ -48,7 +49,8 @@ class Admin::UsersController < Admin::AdminController
   end
 
 	def filter_user
-		@users = User.by_email(params[:email]).by_role(params[:role]).all
+		sort = params[:sorted_by]
+		@users = User.by_email(params[:email]).by_role(params[:role]).order("#{sort} DESC")
 		respond_to do |format|
 			format.js
 		end

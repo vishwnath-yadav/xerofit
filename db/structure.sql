@@ -350,7 +350,8 @@ CREATE TABLE moves (
     help character varying(255),
     work character varying(255),
     is_full_workout boolean DEFAULT false,
-    mark_complete boolean DEFAULT false
+    mark_complete boolean DEFAULT false,
+    date_submitted_for_approval timestamp without time zone
 );
 
 
@@ -593,7 +594,8 @@ CREATE TABLE workouts (
     category character varying(255),
     status character varying(255),
     move_type character varying(255) DEFAULT 'workouts'::character varying,
-    mark_complete boolean DEFAULT true
+    mark_complete boolean DEFAULT true,
+    date_submitted_for_approval timestamp without time zone
 );
 
 
@@ -1004,3 +1006,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140902052809');
 INSERT INTO schema_migrations (version) VALUES ('20140902054729');
 
 INSERT INTO schema_migrations (version) VALUES ('20140902081143');
+
+INSERT INTO schema_migrations (version) VALUES ('20140902094051');

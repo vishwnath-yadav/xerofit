@@ -28,7 +28,9 @@ class Move < ActiveRecord::Base
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
-	SELECT_TYPE = ["ID","Title","Date Added","Status","Email"]
+	MOVE_TYPE = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
+	UNCUT_TYPE = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
+	APPROVE_TYPE = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 
 	TYPE = ["Moves", "Workouts"]
 
@@ -67,18 +69,20 @@ class Move < ActiveRecord::Base
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
 		if params[:type] == TYPE[1] 
-			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed).order("#{sort} #{order}")
+			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
 		elsif params[:type] == TYPE[0]
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).order("#{sort} #{order}")
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout)
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
 			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).all
 			list = list.flatten
-			if sort == "updated_at" || sort == "date_submitted_for_approval"
-				list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
-			else
-				list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
-			end
+		end
+		if sort == "updated_at" || sort == "date_submitted_for_approval" || sort == "id"
+			list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
+		elsif sort == "email"
+			list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x.user["#{sort}".to_sym].downcase} : list.sort_by{|x| x.user["#{sort}".to_sym].downcase}.reverse
+		else
+			list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
 		end
 		return list
 	end

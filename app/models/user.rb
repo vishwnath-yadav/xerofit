@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   ROLES = %w[admin trainer normaluser]
   ROLESFORADMIN = %w[trainer normaluser]
 
+  USER_TYPE = [["Date Registered","created_at"],["ID","id"],["Email","email"],["First Name","first_name"],["Last Name","last_name"]]
+
   validates :role, presence: true
 
   scope :by_email, lambda { |email| where('email ilike ?', email+"%") unless email.blank? }
