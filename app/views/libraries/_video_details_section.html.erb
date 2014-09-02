@@ -4,8 +4,8 @@
 
 <div class="col-sm-6">
     <h5 class="input_label">Video File</h5>
-  <%if @library.library_video.present? && @library.library_video.panda_video.present?%>
-    <%if @library.library_video.panda_mp4.url.present? %>
+  <%if @move.library_video.present? && @move.library_video.panda_video.present?%>
+    <%if @move.library_video.panda_mp4.url.present? %>
 
       <div id="video-container">
         <video id="move_video" width="560" height="316" controls poster="<%= @library.library_video && @library.library_video.image.present? ? @library.library_video.image : '/assets/ex_2.png' %>">

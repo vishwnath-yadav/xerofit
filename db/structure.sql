@@ -216,87 +216,6 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
--- Name: library_blocks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE library_blocks (
-    id integer NOT NULL,
-    block_id integer NOT NULL,
-    move_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: library_blocks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE library_blocks_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: library_blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE library_blocks_id_seq OWNED BY library_blocks.id;
-
-
---
--- Name: library_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE library_details (
-    id integer NOT NULL,
-    repetitions boolean DEFAULT true,
-    weight boolean DEFAULT false,
-    distance boolean DEFAULT false,
-    dist_option character varying(255),
-    dist_val integer DEFAULT 1,
-    weight_val integer DEFAULT 1,
-    duration boolean DEFAULT false,
-    minute integer DEFAULT 0,
-    second integer DEFAULT 0,
-    tempo boolean DEFAULT false,
-    temp_lower integer DEFAULT 0,
-    temp_pause integer DEFAULT 0,
-    temp_lift integer DEFAULT 0,
-    rep_min integer DEFAULT 1,
-    rep_max integer DEFAULT 1,
-    rep_total integer DEFAULT 1,
-    rep_each_side boolean DEFAULT true,
-    rep_option character varying(255),
-    library_block_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: library_details_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE library_details_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: library_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE library_details_id_seq OWNED BY library_details.id;
-
-
---
 -- Name: library_videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -329,6 +248,109 @@ CREATE SEQUENCE library_videos_id_seq
 --
 
 ALTER SEQUENCE library_videos_id_seq OWNED BY library_videos.id;
+
+
+--
+-- Name: move_blocks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE move_blocks (
+    id integer NOT NULL,
+<<<<<<< HEAD
+    block_id integer NOT NULL,
+    move_id integer NOT NULL,
+=======
+    repetitions boolean DEFAULT true,
+    weight boolean DEFAULT false,
+    distance boolean DEFAULT false,
+    dist_option character varying(255),
+    dist_val integer DEFAULT 1,
+    weight_val integer DEFAULT 1,
+    duration boolean DEFAULT false,
+    minute integer DEFAULT 0,
+    second integer DEFAULT 0,
+    tempo boolean DEFAULT false,
+    temp_lower integer DEFAULT 0,
+    temp_pause integer DEFAULT 0,
+    temp_lift integer DEFAULT 0,
+    rep_min integer DEFAULT 1,
+    rep_max integer DEFAULT 1,
+    rep_total integer DEFAULT 1,
+    rep_each_side boolean DEFAULT true,
+    rep_option character varying(255),
+    library_block_id integer,
+>>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: move_blocks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE move_blocks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: move_blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE move_blocks_id_seq OWNED BY move_blocks.id;
+
+
+--
+-- Name: move_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE move_details (
+    id integer NOT NULL,
+    repetitions boolean DEFAULT true,
+    weight boolean DEFAULT false,
+    distance boolean DEFAULT false,
+    dist_option character varying(255),
+    dist_val integer DEFAULT 1,
+    weight_val integer DEFAULT 1,
+    duration boolean DEFAULT false,
+    minute integer DEFAULT 0,
+    second integer DEFAULT 0,
+    tempo boolean DEFAULT false,
+    temp_lower integer DEFAULT 0,
+    temp_pause integer DEFAULT 0,
+    temp_lift integer DEFAULT 0,
+    rep_min integer DEFAULT 1,
+    rep_max integer DEFAULT 1,
+    rep_total integer DEFAULT 1,
+    rep_each_side boolean DEFAULT false,
+    rep_option character varying(255),
+    move_block_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: move_details_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE move_details_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: move_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE move_details_id_seq OWNED BY move_details.id;
 
 
 --
@@ -509,6 +531,16 @@ CREATE TABLE users (
     provider character varying(255),
     uid character varying(255),
     avatar character varying(255),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    pin_code integer,
+=======
+    pin_code character varying(255),
+>>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
+    date_of_birth date,
+    gender character varying(255),
+>>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3
     pic_file_name character varying(255),
     pic_content_type character varying(255),
     pic_file_size integer,
@@ -593,9 +625,18 @@ CREATE TABLE workouts (
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     category character varying(255),
+<<<<<<< HEAD
+    status character varying(255),
+    move_type character varying(255) DEFAULT 'workouts'::character varying
+=======
     move_type character varying(255) DEFAULT 'workouts'::character varying,
+<<<<<<< HEAD
     mark_complete boolean DEFAULT true,
     date_submitted_for_approval timestamp without time zone
+=======
+    mark_complete boolean DEFAULT true
+>>>>>>> b5ae3865365560ea8293a6a31704e5fbe11cba33
+>>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3
 );
 
 
@@ -657,21 +698,21 @@ ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY library_blocks ALTER COLUMN id SET DEFAULT nextval('library_blocks_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY library_details ALTER COLUMN id SET DEFAULT nextval('library_details_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY library_videos ALTER COLUMN id SET DEFAULT nextval('library_videos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY move_blocks ALTER COLUMN id SET DEFAULT nextval('move_blocks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY move_details ALTER COLUMN id SET DEFAULT nextval('move_details_id_seq'::regclass);
 
 
 --
@@ -775,7 +816,7 @@ ALTER TABLE ONLY moves
 -- Name: library_blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY library_blocks
+ALTER TABLE ONLY move_blocks
     ADD CONSTRAINT library_blocks_pkey PRIMARY KEY (id);
 
 
@@ -783,7 +824,7 @@ ALTER TABLE ONLY library_blocks
 -- Name: library_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY library_details
+ALTER TABLE ONLY move_details
     ADD CONSTRAINT library_details_pkey PRIMARY KEY (id);
 
 
@@ -939,6 +980,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140624073552');
 
 INSERT INTO schema_migrations (version) VALUES ('20140624074543');
 
+INSERT INTO schema_migrations (version) VALUES ('20140625071514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625080723');
+
 INSERT INTO schema_migrations (version) VALUES ('20140625101424');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625101524');
@@ -979,7 +1024,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140724082647');
 
 INSERT INTO schema_migrations (version) VALUES ('20140724085147');
 
+INSERT INTO schema_migrations (version) VALUES ('20140725053946');
+
 INSERT INTO schema_migrations (version) VALUES ('20140725054513');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725063050');
 
 INSERT INTO schema_migrations (version) VALUES ('20140725095333');
 
@@ -995,6 +1044,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140901052443');
 
 INSERT INTO schema_migrations (version) VALUES ('20140901055551');
 
+INSERT INTO schema_migrations (version) VALUES ('20140902052809');
+
+INSERT INTO schema_migrations (version) VALUES ('20140902054729');
+
 INSERT INTO schema_migrations (version) VALUES ('20140902081143');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20140902094051');
+=======
+>>>>>>> cfddfc269b1f4b1c97392e310c2faa71248e1de3

@@ -1,4 +1,4 @@
-<%if @lib_detail.rep_option == LibraryDetail::REP_TYPE[1]%>
+<%if @lib_detail.rep_option == MoveDetail::REP_TYPE[1]%>
     <div class="min_col min_col_1 lib_detail_inp">
         <%= ld.input :rep_min, label: false,  input_html: {class: "", min: 1, max: 50, disabled: disabled} %>
         <label>Min</label>
@@ -7,7 +7,7 @@
             <%= ld.input :rep_max, label: false, input_html: {class: "", min: 1, max: 50,disabled: disabled} %>
         <label>Max</label>
     </div>
-<%elsif @lib_detail.rep_option == LibraryDetail::REP_TYPE[2]%>
+<%elsif @lib_detail.rep_option == MoveDetail::REP_TYPE[2]%>
     <div class="min_col min_col_1 lib_detail_inp">
         <%= ld.input :rep_total, label: false,  input_html: {class: "", min: 1, max: 50, disabled: disabled} %>
         <label>Total</label>
