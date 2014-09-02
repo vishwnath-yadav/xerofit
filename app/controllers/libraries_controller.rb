@@ -189,6 +189,6 @@ class LibrariesController < ApplicationController
 	  def workout_params
 	    params.require(:workout).permit!
 	  end
+	end
 
-  	
 end
