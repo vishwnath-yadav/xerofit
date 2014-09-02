@@ -47,7 +47,7 @@ Xerofit::Application.routes.draw do
     
     resources :moves do
       collection do
-        get :common_filter
+        get :admin_filter
       end
     end
 
