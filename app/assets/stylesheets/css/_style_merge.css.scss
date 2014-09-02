@@ -260,10 +260,6 @@ width: 48%;}
     width:5%;
 }
 
-.workout_col{
-    width:100%;
-    float:left;
-}
 .workout_col_left{
     width:25%;
     float:left;
@@ -343,14 +339,13 @@ width: 48%;}
     float:right;
     margin-top:3px;
 }
-.workout_col_mid{
+.workout_col_mid {
     width:50%;
     float:left;
     background:#fff;
     border-right:1px solid #e1e3e5;
     border-left:1px solid #e1e3e5;
     padding:36px;
-
     overflow-y: scroll;
 }
 .col_1{

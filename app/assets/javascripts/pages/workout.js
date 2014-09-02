@@ -20,6 +20,12 @@ $(document).ready(function() {
     }
   });
 
+  $('.snappy').snapPoint({
+    scrollDelay: 550,
+    scrollSpeed: 100,
+    outerTopOffset: 80,
+    innerTopOffset: 0,
+});
 
   // $(document).on("change keyup",".for_work_change",function(){
   //   $('.wrk_sve').removeClass('dis_link');
