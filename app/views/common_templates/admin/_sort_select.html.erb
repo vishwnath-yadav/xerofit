@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <%= select_tag :sorted, options_for_select(@sort_array), class: "form-control admin-sort" %>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$(document).on('change','#sorted',function(){
+			$('#sorted_by').val($(this).val());
+			$('#filter_user_form').submit();
+		});
+	})
+</script>
