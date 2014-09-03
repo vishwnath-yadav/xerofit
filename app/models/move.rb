@@ -42,6 +42,7 @@ class Move < ActiveRecord::Base
 
 	def save_status
 		self.status = STATUS[4]
+		self.move_type = Move::TYPE[0]
 		self.save
 	end
 

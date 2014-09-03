@@ -76,6 +76,7 @@ class Workout < ActiveRecord::Base
 
 	def save_status
 		self.status = Move::STATUS[4]
+		self.move_type = Move::TYPE[1]
 		self.save
 	end
 
