@@ -31,4 +31,11 @@ class Admin::MovesController < Admin::AdminController
 		is_full_workout = params[:is_full_workout].blank? ? false : true
 		@moves = Move.get_library_list(params,current_user,'', params[:is_full_workout])
 	end
+
+	def mark_complete
+		binding.pry
+		move = Move.find_by_id(params[:id])
+		move.mark_as = params[:mark_as] == 'true' ? true : false
+		move.save
+	end
 end

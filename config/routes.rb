@@ -48,6 +48,7 @@ Xerofit::Application.routes.draw do
     resources :moves do
       collection do
         get :admin_filter
+        get :mark_complete
       end
     end
 

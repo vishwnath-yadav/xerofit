@@ -13,11 +13,13 @@
           <td><%=move.updated_at%></td>
           <td><%=link_to "Download", "javascript:void(0)"%></td>
           <td>
-            <%if true%>
-              <%=check_box_tag 'mark_as', '', true %>
-            <%else%>
-              <%=check_box_tag 'mark_as', '', false%>
-            <%end%>
+            <span class="mark_btn" data-id="<%=move.id%>">
+              <%if move.mark_complete%>
+                <%=check_box_tag 'mark_btn', '', true %>
+              <%else%>
+                <%=check_box_tag 'mark_btn', '', false%>
+              <%end%>
+            </span>
           </td>
         </tr>
       <% end %>
