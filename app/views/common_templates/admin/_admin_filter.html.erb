@@ -4,26 +4,35 @@
       <tr>
         <th colspan="2">Filters</th>
       </tr>
-      <tr>
-        <th>Title</th>
-        <td><%= text_field_tag :title,"",class: "form-control input-wid usr_flter" %></td>
-      </tr>
-      <%if action_name == "approval_page"%>
-        <tr>
-          <th>type</th>
-          <td><%= select_tag :type, options_for_select(Move::TYPE), prompt: "Select Type", class: "form-control input-wid usr_flter" %></td>
-        </tr>
-        <%= hidden_field_tag :sorted_by, "date_submitted_for_approval"%>
-        <%= hidden_field_tag :order, "DESC"%>
-        <%= hidden_field_tag :status, Move::STATUS[2]%>
-      <%else%>
-        <tr>
-          <th>Status</th>
-          <td><%= select_tag :status, options_for_select(Move::STATUS), prompt: "Select Status", class: "form-control input-wid usr_flter" %></td>
-        </tr>
+      <% if action_name == "uncut_workout" %>
         <%= hidden_field_tag :sorted_by, 'updated_at'%>
         <%= hidden_field_tag :type, model_type%>
-      <%end%>
+        <tr>
+          <th>Email</th>
+          <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+        </tr>
+      <% else %>
+        <tr>
+          <th>Title</th>
+          <td><%= text_field_tag :title,"",class: "form-control input-wid usr_flter" %></td>
+        </tr>
+        <%if action_name == "approval_page"%>
+          <tr>
+            <th>type</th>
+            <td><%= select_tag :type, options_for_select(Move::TYPE), prompt: "Select Type", class: "form-control input-wid usr_flter" %></td>
+          </tr>
+          <%= hidden_field_tag :sorted_by, "date_submitted_for_approval"%>
+          <%= hidden_field_tag :order, "DESC"%>
+          <%= hidden_field_tag :status, Move::STATUS[2]%>
+        <%else%>
+          <tr>
+            <th>Status</th>
+            <td><%= select_tag :status, options_for_select(Move::STATUS), prompt: "Select Status", class: "form-control input-wid usr_flter" %></td>
+          </tr>
+          <%= hidden_field_tag :sorted_by, 'updated_at'%>
+          <%= hidden_field_tag :type, model_type%>
+        <%end%>
+      <% end %>  
       <tr>
         <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
       </tr>

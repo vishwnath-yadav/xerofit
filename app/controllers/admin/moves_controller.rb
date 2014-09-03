@@ -23,8 +23,9 @@ class Admin::MovesController < Admin::AdminController
 
 	def uncut_workout
 		@sort_array = Move::UNCUT_TYPE
-		parm = params.merge({type: Move::TYPE[0]})
-		@moves = FullWorkout.all
+		parm = params.merge({type: Move::TYPE[0]}) 
+		# @moves = Move.get_library_list(parm,current_user,'')
+		@moves = FullWorkout.all.order('updated_at desc')
 	end
 
 	def approval_page
@@ -34,11 +35,15 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def admin_filter
-		@moves = Move.get_library_list(params,current_user,'')
+		if params[:action_name] == "uncut_workout"
+			@moves = FullWorkout.get_workout_list(params,current_user)
+		else
+			@moves = Move.get_library_list(params,current_user,'')
+		end
 	end
 
 	def mark_complete
-		move = Move.find_by_id(params[:id])
+		move = FullWorkout.find(params[:id])
 		move.mark_complete = params[:mark_as] == 'true' ? true : false
 		move.save
 		render nothing: true
