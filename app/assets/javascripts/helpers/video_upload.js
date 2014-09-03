@@ -45,7 +45,8 @@ function upload_video_fancybox(obj){
 function html_setups(response){
   prg.parent().find('p').text('Upload Completed!');
   if(full_workout){
-    window.location.replace("/library?user="+response.user);
+    var url = response.user != "" ? "/library?user="+response.user : '/library' 
+    window.location.replace(url);
   }
   else{
     $(".video_id").val(response);
