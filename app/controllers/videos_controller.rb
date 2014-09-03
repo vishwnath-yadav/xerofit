@@ -25,6 +25,7 @@ class VideosController < ApplicationController
 
   def full_workout
     @video = FullWorkout.new(video: params[:file])
+    @video.user_id = current_user.id
     @video.save
     render text: "#{@video.present? ? @video.id : ""}"
   end

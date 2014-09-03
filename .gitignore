@@ -20,4 +20,5 @@
 .idea
 /public/system
 Gemfile.lock
+/config/database.yml
 
