@@ -25,6 +25,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def edit
+		@user = params[:user].blank? ? current_user : User.where(token: params[:user]).last
 		@workout = Workout.find(params[:id])
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
@@ -149,6 +150,7 @@ class WorkoutsController < ApplicationController
 
 	def workout_details
 		@workout = Workout.find(params[:id])
+		@user = @workout.user
 		@disabled = ([@workout.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
 	end

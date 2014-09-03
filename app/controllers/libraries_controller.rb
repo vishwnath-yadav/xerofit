@@ -9,8 +9,8 @@ class LibrariesController < ApplicationController
 		@order = params[:order].blank? || params[:order] == "DESC" ? "ASC" : "DESC"
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
-		user = User.where(token: params[:user]).last
-		@list1 = Move.get_library_list(params,current_user,user)
+		@user = User.where(token: params[:user]).last
+		@list1 = Move.get_library_list(params,current_user,@user)
 		@move = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js
@@ -27,6 +27,7 @@ class LibrariesController < ApplicationController
 	end
 	
 	def edit
+		@user = params[:user].blank? ? current_user : User.where(token: params[:user]).last
 		@move = Move.find(params[:id])
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = 1024
@@ -73,9 +74,9 @@ class LibrariesController < ApplicationController
 		    @move.update_attributes(library_params)
 			@move.date_updated_for_approval(params[:move][:status], old_status)
 	        if current_user.admin?
-	        	format.html { redirect_to libraries_path(@move, user: @move.user.token), notice: 'successfully updated Library.' }
+	        	format.html { redirect_to libraries_path(user: @move.user.token), notice: 'successfully updated Library.' }
 	        else
-	        	format.html { redirect_to libraries_path(@move), notice: 'successfully updated Library.' }
+	        	format.html { redirect_to libraries_path, notice: 'successfully updated Library.' }
 		    end
 	    end
 	end

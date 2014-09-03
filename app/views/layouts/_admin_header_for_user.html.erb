@@ -52,7 +52,7 @@
                     <%else%>
                         <img src="/assets/user_img.png" />
                     <%end%>
-                    <span class="user_name"><%= @user.fullname %></span>
+                    <span class="user_name"><%=@user.present? ? @user.fullname : current_user.fullname%></span>
                 </a>
                 <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
                     <li>
