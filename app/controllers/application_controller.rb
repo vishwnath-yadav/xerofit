@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if devise_controller?
       "login"
-    elsif current_user.admin?
+    elsif current_user.admin? && request.fullpath.match('/admin')
       "admin"
     else
       "application"

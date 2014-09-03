@@ -12,7 +12,11 @@
 </head>
 	<body>
     <div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
-        <%=render "layouts/header"%>
+        <%if current_user.admin?%>
+          <%=render "layouts/admin_header_for_user"%>
+        <%else%>
+          <%=render "layouts/header"%>
+        <%end%>
         <div class="content">
           <%= yield %>
         </div>

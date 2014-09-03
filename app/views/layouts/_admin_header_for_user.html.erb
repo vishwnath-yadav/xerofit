@@ -5,48 +5,48 @@
                 <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
                 <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
                     <li class="left_app">
-                        <a href="<%= trainer_dashboard_index_path %>" class="dropdown_app_icon home_app">
+                        <%=link_to '/admin', class: "dropdown_app_icon home_app" do%>
                             <span>Home</span>
-                        </a>
+                        <%end%>
                     </li>
                     <li>
-                        <a href="<%= libraries_path%>" class="dropdown_app_icon fitness_library_app">
+                        <%=link_to libraries_path(user: params[:user]), class: "dropdown_app_icon fitness_library_app" do%>
                             <span>Fitness Library</span>
-                        </a>
+                        <%end%>
                     </li>
                     <li>
-                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app">
+                        <%=link_to new_workout_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app" do%>
                             <span>Workout Builder</span>
-                        </a>
+                        <%end%>
                     </li>
                     <li class="right_app">
-                        <a href="javascript:void(0)" class="dropdown_app_icon support_app">
+                        <%=link_to "javascript:void(0)", class: "dropdown_app_icon support_app" do%>
                             <span>Support</span>
-                        </a>
+                        <%end%>
                     </li>
                     <li class="left_app btm_app">
-                        <a href="javascript:void(0)" class="dropdown_app_icon performance_app">
+                        <%=link_to "javascript:void(0)", class: "dropdown_app_icon performance_app" do%>
                             <span>Performance</span>
-                        </a>
+                        <%end%>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="topbar_logo">
-          <a id="xerofit_logo" href="/home"></a>
+          <a id="xerofit_logo" href="/admin"></a>
         </div>
 
         <div class="utility_menu">
             <div class="notification_dropdown dropdown">
-                <a href="#" class="notification_menu_toggle" data-toggle="dropdown"></a>
+                <a href="javascript:void(0)" class="notification_menu_toggle" data-toggle="dropdown"></a>
                 <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
-                    <li><a href="#">No new notifications</a></li>
+                    <li><a href="javascript:void(0)">No new notifications</a></li>
                 </ul>
             </div>
 
             <div class="utility_dropdown dropdown">
-                <a href="#" class="utility_menu_toggle" data-toggle="dropdown">
+                <a href="javascript:void(0)" class="utility_menu_toggle" data-toggle="dropdown">
                     <%if current_user.pic.present?%>
                         <%= image_tag current_user.pic.url(:medium), class: "profile_image" %>
                     <%else%>
@@ -55,8 +55,12 @@
                     <span class="user_name"><%= current_user.fullname %></span>
                 </a>
                 <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
-                    <li><a href="/settings" data-no-turbolink='true'>Settings</a></li>
-                    <li><%=link_to "Signout", destroy_user_session_path, :method => :delete %></li>
+                    <li>
+                        <%=link_to "Settings", settings_path(user: params[:user]), html_options: {"data-no-turbolink" => true}%>
+                    </li>
+                    <li>
+                        <%=link_to "Admin Dashboard", '/admin'%>
+                    </li>
                 </ul>
             </div>
         </div>

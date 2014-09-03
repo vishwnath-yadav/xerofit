@@ -27,7 +27,7 @@ class LibrariesController < ApplicationController
 	end
 	
 	def edit
-		@move = Move.find_by_id(params[:id])
+		@move = Move.find(params[:id])
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = @move.is_full_workout ? 1024 : 250
 		@size = @move.get_thumbnail()

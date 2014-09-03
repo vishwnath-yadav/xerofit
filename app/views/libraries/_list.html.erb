@@ -20,7 +20,7 @@
       <% @move.each_with_index do |mov, index| %>
         <li>
           <% if mov.move_type == "workouts" %>
-            <a href="<%= workout_details_path(mov) %>" title="<%= mov.title %>" data-no-turbolink="true">
+            <a href="<%= params[:user].blank? ? workout_details_path(mov) : workout_details_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
                   <% if mov.pic.present? %>
@@ -32,7 +32,7 @@
                 <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
               </span>
           <% else %>
-            <a href="<%= edit_path(mov) %>" title="<%= mov.title %>" data-no-turbolink="true">
+            <a href="<%= params[:user].blank? ? edit_path(mov) :  edit_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
                   <% if mov.library_video.present? && mov.library_video.image.present? %>

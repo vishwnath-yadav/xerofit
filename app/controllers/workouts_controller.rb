@@ -5,8 +5,9 @@ class WorkoutsController < ApplicationController
 
 
 	def new
-		@workout = Workout.new
-		@moves = Move.where(user_id: current_user.id)
+		user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
+		@workout = Workout.new(user_id: user)
+		@moves = user.single_moves
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
 		@display = "block_hide"
@@ -14,7 +15,7 @@ class WorkoutsController < ApplicationController
 
 	def create
 		@workout = Workout.new(workout_params)
-		@workout.user_id = current_user.id
+		# @workout.user_id = current_user.id
 		@workout.save
 		#@workout = Workout.new
 		respond_to do |format|
@@ -31,9 +32,6 @@ class WorkoutsController < ApplicationController
 
 	def update
 		@workout = Workout.find(params[:id])
-		# if params[:status] == Move::STATUS[2]
-		# 	@workout.status = Move::STATUS[2]	
-		# end
 		old_status = @workout.status
 		@workout.update_attributes(workout_params)
 		@workout.date_updated_for_approval(params[:workout][:status], old_status)
@@ -97,14 +95,15 @@ class WorkoutsController < ApplicationController
 	def search_lib
 		search_value = params[:search_value]
 		filter_order = params[:order]
+		user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 		if !search_value.blank?
 			if filter_order == 'asc'
-				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title ASC')
+				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", user.id).order('title ASC')
 			else
-				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", current_user.id).order('title DESC')
+				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", user.id).order('title DESC')
 			end
 		else
-			@moves = Move.where("user_id = ?", current_user.id)
+			@moves = user.single_moves
 		end
 
 		respond_to do |format|

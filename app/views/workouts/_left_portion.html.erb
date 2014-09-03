@@ -6,12 +6,13 @@
         <%= autocomplete_field_tag 'title', '', autocomplete_move_title_workouts_path, :class => "search_icon", :placeholder=>"Search within library..." %>
     </div>
     <%= hidden_field_tag :filter, "asc", class: "filter_desc" %>
+    <%= hidden_field_tag :user, params[:user]%>
     <div class="fitler_col" id="filter_library_col">
       <div class="filter_icon asc" id="filter_change">
         Filter
       </div>
       <span class="library_list">
-       <%= render "workout_left_menu", moves: current_user.single_moves %>
+       <%= render "workout_left_menu", moves: @moves %>
      </span>
     </div>
     <% end %>
