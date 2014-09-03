@@ -4,15 +4,22 @@
     $( document ).ready(function() {
       max_size = parseInt($("#video_max_size").val());
       prg = $("#progressbar");
-      upload_video('dropzone');
       full_workout = "<%=params[:popup]%>";
+      alert(full_workout);
+      if(full_workout == "true"){
+        url = "/videos/full_workout";
+      }else{
+        url = "/videos/create";
+      }
+      upload_video('dropzone');
     });
 
     function upload_video(id){
       size = 0;
+      alert(url);
       var myDropzone = new Dropzone("#"+id,
         {
-        url: "/videos/create",
+        url: url,
         clickable: '.upload_new_video',
         paramName: "file", // The name that will be used to transfer the file
         params: {full_workout: full_workout},

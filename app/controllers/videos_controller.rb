@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-	skip_before_filter :verify_authenticity_token, :only => [:create]
+	skip_before_filter :verify_authenticity_token, :only => [:create,:full_workout]
 	
 	respond_to :json, :js
 	def create
@@ -10,11 +10,9 @@ class VideosController < ApplicationController
     	@video.image = ''
     end
     if @video.save
-    	if params[:full_workout] == 'false'
   			p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
   			@video.panda_video_id = p_video.id
   			@video.save
-  		end
     end
   	render text: "#{@video.present? ? @video.id : ""}"
 	end
@@ -24,6 +22,12 @@ class VideosController < ApplicationController
 		@video.destroy
 		redirect_to :back
 	end
+
+  def full_workout
+    @video = FullWorkout.new(video: params[:file])
+    @video.save
+    render text: "#{@video.present? ? @video.id : ""}"
+  end
 
 	private
 	def video_params
