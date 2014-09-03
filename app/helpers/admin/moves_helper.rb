@@ -10,11 +10,4 @@ module Admin::MovesHelper
 		end
 	end
 
-	def is_full_workout
-		if (action_name == "uncut_workout" && controller_name == "moves")
-			return true
-		else
-			return ''
-		end
-	end
 end

@@ -37,7 +37,7 @@ class Move < ActiveRecord::Base
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
-	scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
+	# scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
 	def save_status
@@ -53,28 +53,28 @@ class Move < ActiveRecord::Base
 	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	# end
 
-	def self.get_library_list(params,cur_user,param_user_id, is_full_workout)
+	def self.get_library_list(params,cur_user,param_user_id)
 		# binding.pry
 		if cur_user.admin? && param_user_id.present?
-			list = list_view(params,param_user_id,is_full_workout)
+			list = list_view(params,param_user_id)
 		elsif cur_user.admin?
-			list = list_view(params,'',is_full_workout)
+			list = list_view(params,'')
 		else	
-			list = list_view(params,cur_user,is_full_workout)
+			list = list_view(params,cur_user)
 		end
 		return list
 	end
 
-	def self.list_view(params,user,is_full_workout)
+	def self.list_view(params,user)
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
 		if params[:type] == TYPE[1] 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
 		elsif params[:type] == TYPE[0]
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout)
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user)
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
-			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).is_full_workout(is_full_workout).all
+			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).all
 			list = list.flatten
 		end
 		if sort == "updated_at" || sort == "date_submitted_for_approval" || sort == "id"

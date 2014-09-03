@@ -223,6 +223,7 @@ CREATE TABLE full_workouts (
     id integer NOT NULL,
     video character varying(255),
     mark_complete boolean DEFAULT false,
+    user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

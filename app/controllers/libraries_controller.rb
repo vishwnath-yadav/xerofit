@@ -10,7 +10,7 @@ class LibrariesController < ApplicationController
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
 		user = User.where(token: params[:user]).last
-		@list1 = Move.get_library_list(params,current_user,user, false)
+		@list1 = Move.get_library_list(params,current_user,user)
 		@move = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
 			format.js
@@ -29,7 +29,7 @@ class LibrariesController < ApplicationController
 	def edit
 		@move = Move.find_by_id(params[:id])
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
-		@max_size_allowed = @move.is_full_workout ? 1024 : 250
+		@max_size_allowed = 1024
 		@size = @move.get_thumbnail()
 		@count = @move.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
 		@lib_attr = (@move.title.present? && @move.directions.present? && @move.category.present? && @move.difficulty.present? && @move.library_video.image.present? && @count!=5)
@@ -38,7 +38,6 @@ class LibrariesController < ApplicationController
 	def create
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
-	  full_workout = params[:move][:is_full_workout]
 	  if params[:move][:title].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
 	  end
@@ -80,9 +79,9 @@ class LibrariesController < ApplicationController
 		filter_order = params[:filter]
 		title = params[:title]
 		if filter_order == 'asc'
-			@moves = Move.by_name(title).is_full_workout(current_user).where(user_id: current_user.id).order('title asc')
+			@moves = Move.by_name(title).where(user_id: current_user.id).order('title asc')
 		else
-			@moves = Move.by_name(title).is_full_workout(current_user).where(user_id: current_user.id).order('title DESC')
+			@moves = Move.by_name(title).where(user_id: current_user.id).order('title DESC')
 		end
 		respond_to do |format|
 			format.js 
@@ -127,7 +126,7 @@ class LibrariesController < ApplicationController
 			@max_size_allowed = 250
 		elsif !session[:video_id].blank?
 			video = LibraryVideo.find_by_id(session[:video_id])
-			@max_size_allowed = video.move.is_full_workout ? 1024 : 250
+			@max_size_allowed = 250
 		else
 			@max_size_allowed = 1024
 		end

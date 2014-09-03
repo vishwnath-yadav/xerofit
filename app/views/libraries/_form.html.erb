@@ -15,7 +15,6 @@
         </ul>
       <% end %>
     </div>
-    <%= mov.hidden_field :is_full_workout, value: false, class: "full_workout" %>
     <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
     <%= hidden_field_tag :image, "", class: "image_url" %>
     <div class="input_field_wrap">
