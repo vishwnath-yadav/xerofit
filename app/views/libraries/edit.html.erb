@@ -65,7 +65,7 @@
         <%= hidden_field_tag :video, "#{@video_id.present? ? @video_id : ''}", class: "video_id" %>
         <%= hidden_field_tag :image, "", class: "image_url" %>
           <%if show_if_admin%>
-            <%=render "common_templates/change_status", f: mov %>
+            <%=render "common_templates/change_status", f: mov, disabled: @disabled %>
           <%else%>
             <%= mov.hidden_field :status %>
           <%end%>
