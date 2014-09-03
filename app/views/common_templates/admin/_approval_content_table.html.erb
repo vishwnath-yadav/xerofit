@@ -17,7 +17,11 @@
       <td><%=move.status%></td>
       <td><%=move.user.email %></td>
       <td>
-        <!-- <%#=link_to "Edit", edit_admin_move_path(move)%> |  -->
+        <%if move.move_type == Move::TYPE[0]%>
+          <%=link_to "View", edit_path(move, user: move.user.token)%> | 
+        <%else%>
+          <%=link_to "View", edit_workout_path(move, user: move.user.token)%> | 
+        <%end%>
         <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
       </td>
     </tr>
