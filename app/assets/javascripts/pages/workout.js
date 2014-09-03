@@ -1,31 +1,56 @@
 $(document).ready(function() {
 
   $(window).scroll(function(){
-    var sticky = $('.header-scroll'),
+    var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
 
     if(scroll >= 70){
-      sticky.addClass('fixed');
+      //sticky.addClass('fixed');
       $('.show-on-scroll').css('display','block');
-      $('.header-scroll .header-title').css('margin-left','40px');
-      $('.header-scroll .rght_btns').css('margin-right','40px');
-      $('.header-scroll').css('border-bottom','1px solid #D8D8D8');
+      //$('.header-scroll .header-title').css('margin-left','40px');
+      //$('.header-scroll .rght_btns').css('margin-right','40px');
+      //$('.header-scroll').css('border-bottom','1px solid #D8D8D8');
+      //$('body').css('overflow', 'hidden');
     }
     else{
-      sticky.removeClass('fixed');
+      //sticky.removeClass('fixed');
       $('.show-on-scroll').css('display','none');
-      $('.header-scroll .header-title').css('margin-left','0px');
-      $('.header-scroll .rght_btns').css('margin-right','0px');
-      $('.header-scroll').css('border-bottom','0px');
+      //$('.header-scroll .header-title').css('margin-left','0px');
+      //$('.header-scroll .rght_btns').css('margin-right','0px');
+      //$('.header-scroll').css('border-bottom','0px');
     }
   });
 
-  $('.snappy').snapPoint({
-    scrollDelay: 550,
-    scrollSpeed: 100,
-    outerTopOffset: 80,
-    innerTopOffset: 0,
-});
+//$('.snappy').snapPoint({
+//    scrollDelay: 550,
+//    scrollSpeed: 100,
+//    outerTopOffset: 80,
+//    innerTopOffset: 0,
+//  });
+
+
+  $(document).on('click','#enter-fullscreen', function(){
+    $.smoothScroll({
+      scrollElement: $('body'),
+      scrollTarget: '#workout-builder-app'
+    });
+    //$('.show-on-scroll').css('display','block');
+    $('body').addClass('disable-scroll');
+    $('#enter-fullscreen').addClass('hide');
+    $('#exit-fullscreen').removeClass('hide');
+    return false;
+  });
+
+  $(document).on('click','#exit-fullscreen', function(){
+    window.scrollTo(0, 0);
+    //$('.show-on-scroll').css('display','none');
+    $('body').removeClass('disable-scroll');
+    $('#exit-fullscreen').addClass('hide');
+    $('#enter-fullscreen').removeClass('hide');
+  });
+
+
+
 
   // $(document).on("change keyup",".for_work_change",function(){
   //   $('.wrk_sve').removeClass('dis_link');

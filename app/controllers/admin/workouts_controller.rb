@@ -7,4 +7,10 @@ class Admin::WorkoutsController < Admin::AdminController
 		@moves = Move.get_library_list(parm,current_user,'', false)
 	end
 
+	def destroy
+	    @work = Workout.find(params[:id])
+	    @work.destroy
+	    redirect_to :back
+	end
+
 end

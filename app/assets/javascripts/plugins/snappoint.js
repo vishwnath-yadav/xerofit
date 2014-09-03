@@ -12,10 +12,10 @@
 	jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
 
 	var snapPointTimer = null;
-	
+
 	$.fn.snapPoint = function(options) {
-		
-		var defaults = { 
+
+		var defaults = {
 			scrollDelay: 550,		// Amount of time the visitor has to scroll before the snap point kicks in (ms)
 			scrollSpeed: 90,		// Length of smooth scroll's animation (ms)
 			outerTopOffset: 200,	// Number of pixels for the downward vertical offset (relative to the top of your snapping container)
@@ -34,7 +34,7 @@
 		});
 
 		snapPointTimer = null
-		
+
 		function snapPointInit() {
 			elArray.each(function(){
 				var position = $(this).position();
@@ -42,7 +42,7 @@
 				elementPosLeft = position.left;
 
 				windowPosTop = $(jQuery.browser.webkit ? 'body' : 'html').scrollTop(); /*webkit uses body, others use html*/
-				
+
 				// scroll up or down
 				if ( windowPosTop + options.outerTopOffset >= elementPosTop && 
 					 elementPosTop + options.innerTopOffset >= windowPosTop && 
@@ -63,12 +63,8 @@
 						scrollLeft: elementPosLeft
 					}, options.scrollSpeed);
 				}
-
-
-
 			});
 		}
-	
 	}
 
 })( jQuery );

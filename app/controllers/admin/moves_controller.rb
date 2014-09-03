@@ -15,6 +15,12 @@ class Admin::MovesController < Admin::AdminController
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @count!=5)
 	end
 
+	def destroy
+    @move = Move.find(params[:id])
+    @move.destroy
+    redirect_to :back
+  end
+
 	def uncut_workout
 		@sort_array = Move::UNCUT_TYPE
 		parm = params.merge({type: Move::TYPE[0]}) 
