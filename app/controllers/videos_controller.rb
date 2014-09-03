@@ -27,6 +27,8 @@ class VideosController < ApplicationController
     @video = FullWorkout.new(video: params[:file])
     @video.user_id = current_user.id
     @video.save
+    user = User.where(:role=> "admin").pluck(:email)
+    Emailer.full_wkt_uploaded_success(@video,user).deliver
     render text: "#{@video.present? ? @video.id : ""}"
   end
 
