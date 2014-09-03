@@ -76,6 +76,7 @@ class Workout < ActiveRecord::Base
 
 	def save_status
 		self.status = Move::STATUS[4]
+		self.move_type = Move::TYPE[1]
 		self.save
 	end
 
@@ -106,10 +107,11 @@ class Workout < ActiveRecord::Base
 	end
 
 	def date_updated_for_approval(new_status, old_status)
-		# binding.pry
 		if old_status != Move::STATUS[2] && new_status == Move::STATUS[2] && !self.date_submitted_for_approval.present?
 			self.date_submitted_for_approval = self.updated_at
 			self.save
+			user = User.where(:role=> "admin").pluck(:email)
+			Emailer.status_mail_to_admin(self, user).deliver
 		end 
 	end
 

@@ -302,7 +302,7 @@ CREATE TABLE moves (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     status character varying(255),
-    move_type character varying(255) DEFAULT 'Single Move'::character varying,
+    move_type character varying(255),
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
     work character varying(255),
@@ -514,7 +514,7 @@ CREATE TABLE workouts (
     pic_updated_at timestamp without time zone,
     status character varying(255),
     category character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying,
+    move_type character varying(255),
     date_submitted_for_approval timestamp without time zone
 );
 

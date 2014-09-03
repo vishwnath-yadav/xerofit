@@ -17,4 +17,8 @@ class FullWorkout < ActiveRecord::Base
 		return list
 	end
 
+	def video_title
+		self.video.file.filename.split('.')[0]
+	end
+
 end

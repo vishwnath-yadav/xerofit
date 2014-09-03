@@ -1,7 +1,7 @@
 class Admin::MovesController < Admin::AdminController
 
 	def index
-		@sort_array = Move::MOVE_TYPE
+		@sort_array = Move::ADMIN_MOVE_FILTER
 		parm = params.merge({type: Move::TYPE[0]}) 
 		@moves = Move.get_library_list(parm,current_user,'')
 	end 
@@ -22,14 +22,14 @@ class Admin::MovesController < Admin::AdminController
     end
 
 	def uncut_workout
-		@sort_array = Move::UNCUT_TYPE
+		@sort_array = Move::ADMIN_UNCUT_FILTER
 		parm = params.merge({type: Move::TYPE[0]}) 
 		# @moves = Move.get_library_list(parm,current_user,'')
 		@moves = FullWorkout.all.order('updated_at desc')
 	end
 
 	def approval_page
-		@sort_array = Move::APPROVE_TYPE
+		@sort_array = Move::ADMIN_APPROVE_FILTER
 		parm = params.merge({status: Move::STATUS[2], sorted_by: "date_submitted_for_approval", order: "ASC"}) 
 		@moves = Move.get_library_list(parm,current_user,'')
 	end

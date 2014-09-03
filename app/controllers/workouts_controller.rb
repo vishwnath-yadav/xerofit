@@ -93,6 +93,7 @@ class WorkoutsController < ApplicationController
 	def remove_library_from_block
 		id = params[:lib_block].split("_")
 		lib_block = MoveBlock.where(block_id: id[0], move_id: id[1]).last
+		
 		lib_block.move_detail.destroy
 		lib_block.destroy
 		render text: true

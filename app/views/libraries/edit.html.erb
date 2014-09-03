@@ -235,9 +235,13 @@
 <script>
 $(document).ready(function(){
   var v = $('.smt_reviw').attr('lib-attr');
+  var status = $('.library_item_status').attr('data-status');
   if(v == "true")
   {
-    $('.smt_reviw').removeClass('dis_link')
+    $('.smt_reviw').removeClass('dis_link');
+  }
+  if( status == "Waiting for Approval"){
+     $('.smt_reviw').addClass('dis_link');
   }
   show_text_actual_size();
 });

@@ -28,9 +28,9 @@ class Move < ActiveRecord::Base
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
-	MOVE_TYPE = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
-	UNCUT_TYPE = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
-	APPROVE_TYPE = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
+	ADMIN_MOVE_FILTER = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
+	ADMIN_UNCUT_FILTER = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
+	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 
 	TYPE = ["Single Move", "Workouts"]	
 
@@ -42,6 +42,7 @@ class Move < ActiveRecord::Base
 
 	def save_status
 		self.status = STATUS[4]
+		self.move_type = Move::TYPE[0]
 		self.save
 	end
 
@@ -153,6 +154,8 @@ class Move < ActiveRecord::Base
 		if old_status != STATUS[2] && new_status == STATUS[2] && !self.date_submitted_for_approval.present?
 			self.date_submitted_for_approval = self.updated_at
 			self.save
+			admin_emails = User.where(:role=> "admin").pluck(:email)
+			Emailer.status_mail_to_admin(self, admin_emails).deliver
 		end 
 	end
 
