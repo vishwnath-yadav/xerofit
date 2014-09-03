@@ -153,8 +153,8 @@ class Move < ActiveRecord::Base
 		if old_status != STATUS[2] && new_status == STATUS[2] && !self.date_submitted_for_approval.present?
 			self.date_submitted_for_approval = self.updated_at
 			self.save
-			user = User.where(:role=> "admin").pluck(:email)
-			Emailer.status_mail_to_admin(self, user).deliver
+			admin_emails = User.where(:role=> "admin").pluck(:email)
+			Emailer.status_mail_to_admin(self, admin_emails).deliver
 		end 
 	end
 

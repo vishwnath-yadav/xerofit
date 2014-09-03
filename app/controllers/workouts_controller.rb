@@ -81,8 +81,6 @@ class WorkoutsController < ApplicationController
 			@workout.state = "completed"
 			@workout.save
 		end
-		user = User.where(:role=> "admin").pluck(:email)
-		Emailer.status_mail_to_admin(@workout, user).deliver
 		flash[:notice] = "Workout Saved Successfully!"
 		if current_user.admin?
 			redirect_to libraries_path(user: @workout.user.token)

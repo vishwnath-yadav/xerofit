@@ -15,10 +15,9 @@ class Emailer < ActionMailer::Base
     mail(to: email, subject: "Your #{model} Status has been updated")
   end
 
-  def status_mail_to_admin(object, user)
+  def status_mail_to_admin(object, eamils)
     @object = object
-    @user = user
-    mail(to: @user, subject: "Mail for approve the Workout")
+    mail(to: emails, subject: "Mail for approve the Workout")
   end
 
   def full_wkt_uploaded_success(video, user)
