@@ -2,7 +2,7 @@ class SettingsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-	   @user = User.find(current_user.id)
+	   @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 	end
 
 	def payment_billing

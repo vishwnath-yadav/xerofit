@@ -63,7 +63,7 @@
 		<%end%>
 		<%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
 			  <%=hidden_field_tag :company, "true"%>
-			  <%=hidden_field_tag :id, current_user.id%>
+			  <%=hidden_field_tag :id, @user.id%>
 			  <%=hidden_field_tag :type, "profile" %>
 			  <%= form.file_field :pic, :style =>"display:none" %>
 		<% end %>

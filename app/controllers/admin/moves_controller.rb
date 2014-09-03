@@ -16,15 +16,15 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def destroy
-    @move = Move.find(params[:id])
-    @move.destroy
-    redirect_to :back
-  end
+	    @move = Move.find(params[:id])
+	    @move.destroy
+	    redirect_to :back
+    end
 
 	def uncut_workout
 		@sort_array = Move::UNCUT_TYPE
-		parm = params.merge({type: Move::TYPE[0]}) 
-		@moves = Move.get_library_list(parm,current_user,'')
+		parm = params.merge({type: Move::TYPE[0]})
+		@moves = FullWorkout.all
 	end
 
 	def approval_page

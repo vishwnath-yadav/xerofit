@@ -47,12 +47,12 @@
 
             <div class="utility_dropdown dropdown">
                 <a href="javascript:void(0)" class="utility_menu_toggle" data-toggle="dropdown">
-                    <%if current_user.pic.present?%>
-                        <%= image_tag current_user.pic.url(:medium), class: "profile_image" %>
+                    <%if @user.present? && @user.pic.present?%>
+                        <%= image_tag @user.pic.url(:medium), class: "profile_image" %>
                     <%else%>
                         <img src="/assets/user_img.png" />
                     <%end%>
-                    <span class="user_name"><%= current_user.fullname %></span>
+                    <span class="user_name"><%= @user.fullname %></span>
                 </a>
                 <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
                     <li>

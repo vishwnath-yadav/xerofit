@@ -32,7 +32,7 @@ class Move < ActiveRecord::Base
 	UNCUT_TYPE = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
 	APPROVE_TYPE = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 
-	TYPE = ["Moves", "Workouts"]
+	TYPE = ["Single Move", "Workouts"]	
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }

@@ -24,9 +24,10 @@ class VideosController < ApplicationController
 	end
 
   def full_workout
-    @video = FullWorkout.new(video: params[:file])
+    @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
+    @video = FullWorkout.new(video: params[:file], user_id: @user.id)
     @video.save
-    render text: "#{@video.present? ? @video.id : ""}"
+    render json: {user: params[:user]}
   end
 
 	private
