@@ -24,12 +24,12 @@ class VideosController < ApplicationController
 	end
 
   def full_workout
-    @video = FullWorkout.new(video: params[:file])
-    @video.user_id = current_user.id
+    @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
+    @video = FullWorkout.new(video: params[:file], user_id: @user.id)
     @video.save
     user = User.where(:role=> "admin").pluck(:email)
     Emailer.full_wkt_uploaded_success(@video,user).deliver
-    render text: "#{@video.present? ? @video.id : ""}"
+    render json: {user: params[:user]}
   end
 
 	private

@@ -5,17 +5,18 @@ class WorkoutsController < ApplicationController
 
 
 	def new
-		user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
-		@workout = Workout.new(user_id: user)
-		@moves = user.single_moves
+		@user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
+		@workout = Workout.new()
+		@moves = @user.single_moves
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
 		@display = "block_hide"
 	end
 
 	def create
+		@user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 		@workout = Workout.new(workout_params)
-		# @workout.user_id = current_user.id
+		@workout.user_id = @user.id
 		@workout.save
 		#@workout = Workout.new
 		respond_to do |format|
@@ -36,7 +37,11 @@ class WorkoutsController < ApplicationController
 		@workout.update_attributes(workout_params)
 		@workout.date_updated_for_approval(params[:workout][:status], old_status)
 		respond_to do |format|
-			format.html { redirect_to :back}
+			if current_user.admin?
+				format.html { redirect_to libraries_path(user: @workout.user.token)}
+			else
+				format.html { redirect_to libraries_path}
+			end
 			format.js {render 'create'}
 		end
 	end
@@ -79,7 +84,11 @@ class WorkoutsController < ApplicationController
 		user = User.where(:role=> "admin").pluck(:email)
 		Emailer.status_mail_to_admin(@workout, user).deliver
 		flash[:notice] = "Workout Saved Successfully!"
-		redirect_to libraries_path
+		if current_user.admin?
+			redirect_to libraries_path(user: @workout.user.token)
+		else
+			redirect_to libraries_path
+		end
 	end
 
 	def remove_library_from_block

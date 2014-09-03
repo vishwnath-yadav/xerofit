@@ -37,16 +37,21 @@ class LibrariesController < ApplicationController
 	
 	def create
 	  @video_id = params[:video]
+	  @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 	  video = LibraryVideo.find(@video_id)
 	  if params[:move][:title].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
 	  end
 	  @move = Move.new(library_params)
-	  @move.user_id = current_user.id
+	  @move.user_id = @user.id
 	  if @move.save
 	  	video.move = @move
 	  	video.save
-    	redirect_to libraries_path, :notice => "Thank you for uploading the video."
+	  	if current_user.admin?
+    		redirect_to libraries_path(user: @user.token), :notice => "Thank you for uploading the video."
+    	else
+    		redirect_to libraries_path, :notice => "Thank you for uploading the video."
+    	end
 	  else
 	  	@libvideo = LibraryVideo.new
 	    render :new
@@ -65,12 +70,12 @@ class LibrariesController < ApplicationController
 		@move.update_target_muscle(params[:move][:target_muscle_groups_attributes])
 		respond_to do |format|
 			old_status = @move.status
-			binding.pry
-		    if @move.update_attributes(library_params)
-				@move.date_updated_for_approval(params[:move][:status], old_status)
-		        format.html { redirect_to edit_path(@move), notice: 'successfully updated Library.' }
-		    else
-		        format.html { render action: "edit" }
+		    @move.update_attributes(library_params)
+			@move.date_updated_for_approval(params[:move][:status], old_status)
+	        if current_user.admin?
+	        	format.html { redirect_to libraries_path(@move, user: @move.user.token), notice: 'successfully updated Library.' }
+	        else
+	        	format.html { redirect_to libraries_path(@move), notice: 'successfully updated Library.' }
 		    end
 	    end
 	end

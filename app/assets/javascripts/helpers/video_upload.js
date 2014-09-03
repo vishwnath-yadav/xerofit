@@ -44,12 +44,12 @@ function upload_video_fancybox(obj){
 
 function html_setups(response){
   prg.parent().find('p').text('Upload Completed!');
-  $(".video_id").val(response);
-  $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
-  $(".full_workout").val(full_workout);
   if(full_workout){
-    // $("#video_move_info").submit();
-    window.location.replace("/library");
+    window.location.replace("/library?user="+response.user);
+  }
+  else{
+    $(".video_id").val(response);
+    $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');  
   }
 }
 

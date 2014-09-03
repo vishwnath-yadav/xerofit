@@ -19,7 +19,7 @@
 
       <% @move.each_with_index do |mov, index| %>
         <li>
-          <% if mov.move_type == "workouts" %>
+          <% if mov.move_type == Move::TYPE[1] %>
             <a href="<%= params[:user].blank? ? workout_details_path(mov) : workout_details_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>

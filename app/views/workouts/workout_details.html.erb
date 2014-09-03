@@ -37,9 +37,7 @@
       </span>
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@workout.status%>">Save</a>
-        <%if hide_if_admin%>
           <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" work-attr="<%= @work %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
-        <%end%>
       </div>
     </div>
   </div>

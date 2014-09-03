@@ -19,7 +19,7 @@ class Admin::MovesController < Admin::AdminController
 	    @move = Move.find(params[:id])
 	    @move.destroy
 	    redirect_to :back
-	end
+    end
 
 	def uncut_workout
 		@sort_array = Move::ADMIN_UNCUT_FILTER

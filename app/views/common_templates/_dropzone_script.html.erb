@@ -5,6 +5,7 @@
       max_size = parseInt($("#video_max_size").val());
       prg = $("#progressbar");
       full_workout = "<%=params[:popup]%>";
+      user = $("#user").val();
       if(full_workout == "true"){
         url = "/videos/full_workout";
       }else{
@@ -20,7 +21,7 @@
         url: url,
         clickable: '.upload_new_video',
         paramName: "file", // The name that will be used to transfer the file
-        params: {full_workout: full_workout},
+        params: {full_workout: full_workout, user: user},
         maxFilesize: max_size, // MB
         });
 

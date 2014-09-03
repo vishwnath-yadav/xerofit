@@ -1,8 +1,8 @@
 <% if @move.present? %>
   <ul>
     <% @move.each_with_index do |mov, index| %>
-      <li class="<%= (mov.move_type!="workouts") ? 'wdth_img' : ''%> <%= cycle("first_row border_left", "first_row", "first_row", "first_row border_right", "border_left", "", "", "border_right", "last_row border_left", "last_row", "last_row", "last_row border_right" )%>">
-        <% if mov.move_type == "workouts" %>
+      <li class="<%= (mov.move_type!=Move::TYPE[1]) ? 'wdth_img' : ''%> <%= cycle("first_row border_left", "first_row", "first_row", "first_row border_right", "border_left", "", "", "border_right", "last_row border_left", "last_row", "last_row", "last_row border_right" )%>">
+        <% if mov.move_type == Move::TYPE[1] %>
           <a href="<%= params[:user].blank? ? workout_details_path(mov) : workout_details_path(mov, user: params[:user])%>" data-no-turbolink="true" class="grid_block workout">
             <% if mov.pic.present? %>
               <img src="<%= mov.pic.url(:w_square) %>" alt="cn_1" />
