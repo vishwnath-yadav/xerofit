@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links" id="<%= @move.id%>">
-        <%= link_to("Fitness Library", libraries_path, :class=>'cb_breadcrumb') %>
+        <%= link_to("Fitness Library", libraries_path(user: params[:user]), :class=>'cb_breadcrumb') %>
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">

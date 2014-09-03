@@ -39,7 +39,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def mark_complete
-		binding.pry
+		# binding.pry
 		move = Move.find_by_id(params[:id])
 		move.mark_as = params[:mark_as] == 'true' ? true : false
 		move.save

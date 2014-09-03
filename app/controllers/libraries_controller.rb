@@ -9,7 +9,7 @@ class LibrariesController < ApplicationController
 		@order = params[:order].blank? || params[:order] == "DESC" ? "ASC" : "DESC"
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
-		user = User.where(token: params[:id]).last
+		user = User.where(token: params[:user]).last
 		@list1 = Move.get_library_list(params,current_user,user, false)
 		@move = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
@@ -27,7 +27,7 @@ class LibrariesController < ApplicationController
 	end
 	
 	def edit
-		@move = Move.find(params[:id])
+		@move = Move.find_by_id(params[:id])
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = @move.is_full_workout ? 1024 : 250
 		@size = @move.get_thumbnail()
