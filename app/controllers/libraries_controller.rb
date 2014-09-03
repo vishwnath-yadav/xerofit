@@ -39,22 +39,15 @@ class LibrariesController < ApplicationController
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
 	  full_workout = params[:move][:is_full_workout]
-	  if params[:move][:title].blank? && full_workout.blank?
+	  if params[:move][:title].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
-	  elsif params[:move][:title].blank?
-	  	params[:move][:title] = video[:video].split(".")[0]
 	  end
-	  params[:move][:is_full_workout] = full_workout.blank? ? false : true
 	  @move = Move.new(library_params)
 	  @move.user_id = current_user.id
 	  if @move.save
 	  	video.move = @move
 	  	video.save
-	  	if !full_workout.blank?
-	    	redirect_to libraries_path, :notice => "Workout uploaded successfully. We'll let you know when it gets edited and added to your account"
-	    else
-	    	redirect_to libraries_path, :notice => "Thank you for uploading the video."
-	  	end
+    	redirect_to libraries_path, :notice => "Thank you for uploading the video."
 	  else
 	  	@libvideo = LibraryVideo.new
 	    render :new

@@ -80,6 +80,7 @@ Xerofit::Application.routes.draw do
   resources :videos, only: [:update,:destroy] do 
     collection do 
       post 'create'
+      post 'full_workout'
     end
   end
   

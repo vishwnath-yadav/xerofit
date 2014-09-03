@@ -48,7 +48,8 @@ function html_setups(response){
   $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
   $(".full_workout").val(full_workout);
   if(full_workout){
-    $("#video_move_info").submit();
+    // $("#video_move_info").submit();
+    window.location.replace("/library");
   }
 }
 
