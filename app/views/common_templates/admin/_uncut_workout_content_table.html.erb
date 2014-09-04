@@ -11,7 +11,7 @@
           <td><%=move.id%></td>
           <td><%=move.user.email %></td>
           <td><%=move.updated_at%></td>
-          <td><%=link_to "Download", "javascript:void(0)"%></td>
+          <td><%=link_to "Download", "javascript:void(0)", class: "download_video", "data-url" => move.video.to_s, "rel"=>"nofollow"%></td>
           <td>
             <span class="mark_btn" data-id="<%=move.id%>">
               <%if move.mark_complete%>

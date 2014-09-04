@@ -17,4 +17,8 @@ $(document).ready(function(){
     $.get(url, {status: value, type: data[0], id: data[1]}, function (data) {
     });
   });
+  // $(document).on('click', '.download_video', function(e) {
+  //   e.preventDefault();  //stop the browser from following
+  //   window.location.href = $(this).attr('data-url');
+  // });
 })
