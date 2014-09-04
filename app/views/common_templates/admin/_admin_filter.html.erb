@@ -11,6 +11,10 @@
           <th>Email</th>
           <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
         </tr>
+        <tr>
+          <th>Mark</th>
+          <td><%= select_tag :mark_complete, options_for_select([["Marked", true ],["Unmarked", false]]), class: "form-control input-wid usr_flter" %></td>
+        </tr>
       <% else %>
         <tr>
           <th>Title</th>
