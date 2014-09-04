@@ -20,7 +20,6 @@ $(document).ready(function(){
   });
 
   $(document).on('click','.mail_popup', function(){
-    alert("ssssssss");
     $('.admin_umcut_mail').val($(this).attr('data_attr'));
     $.fancybox.open({
       href: '#admin_mail_popup',
