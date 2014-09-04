@@ -33,9 +33,12 @@
 
 //= require pages/move.js
 //= require pages/workout.js
+//= require ckeditor-jquery
 
 
 $(document).ready(function() {
+
+      
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),

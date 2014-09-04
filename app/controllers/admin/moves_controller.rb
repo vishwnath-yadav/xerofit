@@ -63,4 +63,11 @@ class Admin::MovesController < Admin::AdminController
 		end		
 		render nothing: true
 	end
+
+	def uncut_workout_mail
+		full_workout = FullWorkout.find(params[:id])
+		user = full_workout.user
+		Emailer.uncut_workout_mail_to_user(params,user).deliver
+		render nothing: true
+	end
 end
