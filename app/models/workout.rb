@@ -1,31 +1,19 @@
 class Workout < ActiveRecord::Base
 	require 'RMagick'
 	obfuscate_id :spin => 12548694
-	# default_scope order('updated_at DESC')
-
-	#has_attached_file :pic, :styles => { :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"}, :default_url => "/images/:style/missing.png"
-  	
-	# attr_accessor :x, :y, :width, :height, :cropper_id
-
-	# has_attached_file :pic, :styles => { :display => '550x425>', :medium => "300x300>", :thumb => "150x150>" ,:square => "90x90>", :p_square => "55x55>", :w_square => "130x130>"},:whiny_thumbnails => true, :path => 
- #                          ":rails_root/public/system/:attachment/:id/:style/:style.:extension", 
- #                          :url => "/system/:attachment/:id/:style/:style.:extension"
-
-
-	# validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
-
-	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]
-	validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-	#validates :pic, :dimensions => { :width => 300, :height => 300 }, :on => :create, :if => "!pic.blank?"
 	
+	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
 	has_many :blocks
 	has_one :statastic
 	belongs_to :user
+	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]
 
 	after_create :save_status
 	
+	validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 	validates :title, presence: true
+	validates :pic, :dimensions => { :width => 500, :height => 500 }, if: :validate_image
 
 	STATES = [:initiated, :completed]
 
@@ -61,6 +49,10 @@ class Workout < ActiveRecord::Base
 		end
 	end
 
+	def min_image_size
+		"500x500"
+	end
+	
 	def increase_visit
 		if self.statastic.present?
 			self.statastic.visits += 1
@@ -79,15 +71,6 @@ class Workout < ActiveRecord::Base
 		self.move_type = Move::TYPE[1]
 		self.save
 	end
-
-
-	# def previous_post
-	#   self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
-	# end
-
-	# def next_post
-	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
-	# end
 
 	def self.workout_count
 		self.all.count
@@ -113,6 +96,11 @@ class Workout < ActiveRecord::Base
 			user = User.where(:role=> "admin").pluck(:email)
 			Emailer.status_mail_to_admin(self, user).deliver
 		end 
+	end
+
+	private
+	def validate_image
+   		self.pic? && (self.crop_x.blank? || self.crop_y.blank?)
 	end
 
 end

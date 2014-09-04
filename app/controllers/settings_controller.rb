@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
 	before_filter :authenticate_user!
-	before_action :fetch_user
+	before_action :fetch_user, only: [:index]
 
 	def index
 	end

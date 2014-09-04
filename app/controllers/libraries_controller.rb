@@ -2,7 +2,7 @@ require 'RMagick'
 include Magick
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
-	before_action :fetch_user
+	before_action :fetch_user, except: [:crop_image_save]
 	autocomplete :move, :title, :full => true
 
 	def index
