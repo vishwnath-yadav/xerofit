@@ -62,11 +62,7 @@
         </div>
 
         <div class="col-sm-6">
-          <%if show_if_admin%>
-            <%=render "common_templates/change_status", f: lib, disabled: @disabled%>
-          <%else%>
-              <%= lib.hidden_field :status, class: "workout_status" %>
-          <%end%>
+          <%= lib.hidden_field :status, class: "workout_status" %>
           <div class="input_field_wrap">
             <label>Title</label>
             <%= lib.text_field :title, class: "for_on_change", maxlength: "80", disabled: @disabled %>

@@ -56,11 +56,10 @@ class Admin::MovesController < Admin::AdminController
 			move = Workout.find_by_id(params[:id])
 		end
 		move.status = params[:status]
-		move.save
 		if move.status == Move::STATUS[2]
 			move.date_submitted_for_approval = move.updated_at
-			move.save
 		end		
+		move.save
 		render nothing: true
 	end
 end
