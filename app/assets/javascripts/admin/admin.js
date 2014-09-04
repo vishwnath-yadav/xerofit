@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
   $(document).on('change','#sorted',function(){
     $('#sorted_by').val($(this).val());
@@ -17,8 +18,23 @@ $(document).ready(function(){
     $.get(url, {status: value, type: data[0], id: data[1]}, function (data) {
     });
   });
-  // $(document).on('click', '.download_video', function(e) {
-  //   e.preventDefault();  //stop the browser from following
-  //   window.location.href = $(this).attr('data-url');
-  // });
+
+  $(document).on('click','.mail_popup', function(){
+    $('.admin_umcut_mail').val($(this).attr('data_attr'));
+    $.fancybox.open({
+      href: '#admin_mail_popup',
+      openMethod: 'fadescaleIn',
+      closeMethod: 'fadescaleOut',
+      autoSize: false,
+      autoHeight: false,
+      height: 338,
+      minHeight: 338,
+      width: 560,
+      padding: [28, 40, 40, 40]
+    });
+  });
+
+  $(document).on("click",".send_mail",function(){
+    $.fancybox.close();
+  });
 })

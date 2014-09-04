@@ -4,7 +4,7 @@
 
 @import "vendor/bootstrap";
 @import "admin/dashboard";
-
+@import "css/jquery.fancybox";
 
 .admin-sort-container{
 	float: right;
@@ -18,6 +18,22 @@
 .admin-sort-label{
 	float:left;
 	margin: 5px 15px;
+}
+
+.admin-mail-popup {
+    display: none;
+    width: 100%;
+    position: relative;
+}
+.fancybox-overlay-fixed .fancybox-outer, .fancybox-overlay-fixed .fancybox-inner{
+	height: 600px !important;
+}
+.fancybox-overlay-fixed .fancybox-skin{
+	height: 600px !important;
+}
+
+.send_mail{
+	margin-top: 15px;
 }
 
 #admin_change_status{

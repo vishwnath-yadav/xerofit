@@ -23,7 +23,6 @@ module Xerofit
     # config.i18n.default_locale = :de
     config.active_record.schema_format = :sql
 
-
       ADMIN_EMAIL="admin@seladex.com"
 
       # STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"

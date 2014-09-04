@@ -30,7 +30,6 @@ Xerofit::Application.routes.draw do
   #     get 'test'
   #   end
   # end
-
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do
@@ -50,6 +49,7 @@ Xerofit::Application.routes.draw do
         get :admin_filter
         get :mark_complete
         get :status_approve
+        post :uncut_workout_mail
       end
     end
 

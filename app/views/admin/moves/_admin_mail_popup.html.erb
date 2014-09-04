@@ -1,0 +1,20 @@
+<div id="admin_mail_popup" class="admin-mail-popup" data-no-turbolink>
+    <h2>Email Send Box</h2>
+    <%= form_tag('/admin/moves/uncut_workout_mail', remote: true, id: '') do |f| %>
+    	<%= hidden_field_tag :id, '', class: "admin_umcut_mail" %>
+    	<label>Subject</label>
+	    <%= text_field_tag :subject,"",class: "form-control input-wid usr_flter" %>
+    	<label>Message</label>
+    	<%= text_area_tag :message,"",class: "form-control input-wid usr_flter ckeditor" %>
+	  	<%=button_tag "Send", class: 'btn btn-primary send_mail'%>
+	<%end%>
+
+    
+</div>
+
+<script>
+$(document).ready(function () {
+	$('.ckeditor').ckeditor({
+		});
+})
+</script>

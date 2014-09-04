@@ -25,4 +25,10 @@ class Emailer < ActionMailer::Base
     @user = user
     mail(to: @user, subject: "New Full Workout has been uploaded")
   end
+
+  def uncut_workout_mail_to_user(params, user)
+    @user = user
+    @message = params[:message]
+    mail(to: user.email, subject: params[:subject])
+  end
 end
