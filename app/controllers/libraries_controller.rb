@@ -2,14 +2,13 @@ require 'RMagick'
 include Magick
 class LibrariesController < ApplicationController
 	before_filter :authenticate_user!
+	before_action :fetch_user, except: [:crop_image_save]
 	autocomplete :move, :title, :full => true
-	# layout :resolve_layout    
 
 	def index
 		@order = params[:order].blank? || params[:order] == "DESC" ? "ASC" : "DESC"
 		@sort_arrow = params[:sort_arrow].blank? ? 'descending' : params[:sort_arrow]
 		@view = params[:view_type].present? ? params[:view_type] : 'grid'
-		@user = User.where(token: params[:user]).last
 		@list1 = Move.get_library_list(params,current_user,@user)
 		@move = Kaminari.paginate_array(@list1).page(params[:page]).per(12)
 		respond_to do |format|
@@ -27,7 +26,6 @@ class LibrariesController < ApplicationController
 	end
 	
 	def edit
-		@user = params[:user].blank? ? current_user : User.where(token: params[:user]).last
 		@move = Move.find(params[:id])
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = 1024
@@ -38,7 +36,6 @@ class LibrariesController < ApplicationController
 	
 	def create
 	  @video_id = params[:video]
-	  @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 	  video = LibraryVideo.find(@video_id)
 	  if params[:move][:title].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
@@ -59,10 +56,6 @@ class LibrariesController < ApplicationController
 	  end
 	end
 
-	def show
-		@move = Move.find(params[:id])
-	end
-
 	def update
 		@move = Move.find(params[:id])
 		if params[:image].present?
@@ -81,44 +74,17 @@ class LibrariesController < ApplicationController
 	    end
 	end
 
-
 	def filter
 		filter_order = params[:filter]
 		title = params[:title]
 		if filter_order == 'asc'
-			@moves = Move.by_name(title).where(user_id: current_user.id).order('title asc')
+			@moves = Move.by_name(title).where(user_id: @user.id).order('title asc')
 		else
-			@moves = Move.by_name(title).where(user_id: current_user.id).order('title DESC')
+			@moves = Move.by_name(title).where(user_id: @user.id).order('title DESC')
 		end
 		respond_to do |format|
 			format.js 
 		end
-	end
-
-	def library_search_by_name
-		@view = params[:type]
-		if params[:name].present?
-			@move = Move.where(user_id: current_user, title: params[:name])
-		else
-			@move = Move.where(user_id: current_user)
-		end
-		respond_to do |format|
-			format.js
-		end
-	end
-
-	def sort_video
-		if params[:val] == 'Name'
-		  @libraries = Move.where(user_id: current_user.id).page(params[:page]).per(16).order('title ASC')
-		elsif params[:val] == 'Date'
-		  @libraries = Move.where(user_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
-		end
-		respond_to do |format|
-	      format.js
-	    end
-	end
-
-	def see_more_thumbnail
 	end
 
 	def destroy
@@ -163,19 +129,6 @@ class LibrariesController < ApplicationController
 		    format.js
 	    end
 	end
-
-	# def crop_image_save
-	#   @user = current_user
- #    respond_to do |format|
- #      if(params[:user][:crop_x] && params[:user][:crop_y] && params[:user][:crop_w] && params[:user][:crop_h])
- #        if(@user.update_attributes(user_params))
- #          @user.reprocess_pic
- #        end
- #    	end
- #        format.html { redirect_to settings_crop_image_test_path }
- #        format.json { render json: @user.errors, status: :unprocessable_entity }
- #    end
-	# end
 
 	private
 	  def library_params

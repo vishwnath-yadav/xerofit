@@ -89,9 +89,6 @@ Xerofit::Application.routes.draw do
   get '/library/move/:id', to: 'libraries#edit', as: :edit
   resources :libraries, except: [:edit, :show], path: :library do 
     collection do
-      get 'sort_video'
-      get 'see_more_thumbnail'
-      get 'library_search_by_name'
       get 'autocomplete_move_title'
       post 'filter'
       get 'full_workout_content'

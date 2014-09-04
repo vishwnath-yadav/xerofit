@@ -1,8 +1,8 @@
 class SettingsController < ApplicationController
 	before_filter :authenticate_user!
+	before_action :fetch_user, only: [:index]
 
 	def index
-	   @user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 	end
 
 	def payment_billing

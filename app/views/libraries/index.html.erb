@@ -19,7 +19,7 @@
 
         <div class="select_bar_col">
           <%= hidden_field_tag :id, params[:id]%>
-          <%= hidden_field_tag :type%>
+          <%#= hidden_field_tag :type%>
           <%= hidden_field_tag :sorted_by, "updated_at"%>
           <%= hidden_field_tag :order%>
           <%= hidden_field_tag :sort_arrow%>
@@ -29,11 +29,7 @@
 
           <div class="filter_control_wrap">
             <span class="custom_select type_select">
-              <select class="default">
-                <option>All Types</option>
-                <option>Moves</option>
-                <option>Workouts</option>
-              </select>
+              <%= select_tag :type, options_for_select(Move::TYPE), prompt: "All Types", class: "default" %>
             </span>
           </div>
           <div class="filter_control_wrap">

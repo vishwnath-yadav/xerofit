@@ -2,17 +2,17 @@ class User < ActiveRecord::Base
   require 'RMagick'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, :processors => [:cropper]
-  validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+
+  has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, :processors => [:cropper]
   has_many :moves 
   has_many :full_workouts 
   has_many :addresses
   has_many :subscriptions
-  accepts_nested_attributes_for :addresses, :subscriptions
   has_many :workouts
   
   before_create :generate_token
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   USER_TYPE = [["Date Registered","created_at"],["ID","id"],["Email","email"],["First Name","first_name"],["Last Name","last_name"]]
 
   validates :role, presence: true
+  validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  validates :pic, :dimensions => { :width => 300, :height => 300 }, if: :validate_image
+  
+  accepts_nested_attributes_for :addresses, :subscriptions
 
   scope :by_email, lambda { |email| where('email ilike ?', email+"%") unless email.blank? }
   scope :by_role, lambda { |role| where(role: role) unless role.blank? }
@@ -33,6 +37,10 @@ class User < ActiveRecord::Base
     define_method "#{role}?" do
       self.role == role
     end
+  end
+
+  def min_image_size
+    "300x300"
   end
 
   def build_association
@@ -130,6 +138,10 @@ class User < ActiveRecord::Base
   def generate_token
     token = SecureRandom.urlsafe_base64(self.id, false)
     self.token = token[0, 8]
+  end
+
+  def validate_image
+      self.pic? && (self.crop_x.blank? || self.crop_y.blank?)
   end
 
 end

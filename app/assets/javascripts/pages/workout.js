@@ -149,9 +149,11 @@ $(document).ready(function() {
   
   $(document).on("click",".met_tab_desc ul li", function(e){
     if($(e.target).hasClass("rm")){
-      var id = $(this).attr('id');
-      $("#block_"+id).remove();
-      remove_library_from_block(id)
+      var hiden_field_id = $(this).attr('id');
+      var main_block_id = hiden_field_id.split('_')[0];
+      $("#block_"+hiden_field_id).remove();
+      $('#block_'+main_block_id).remove();
+      remove_library_from_block(hiden_field_id);
       $(this).remove();
     }
     else{
