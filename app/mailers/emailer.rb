@@ -15,7 +15,7 @@ class Emailer < ActionMailer::Base
     mail(to: email, subject: "Your #{model} Status has been updated")
   end
 
-  def status_mail_to_admin(object, eamils)
+  def status_mail_to_admin(object, emails)
     @object = object
     mail(to: emails, subject: "Mail for approve the Workout")
   end
