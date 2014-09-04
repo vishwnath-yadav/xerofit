@@ -76,10 +76,16 @@ class WorkoutsController < ApplicationController
 	end
 
 	def remove_library_from_block
+		binding.pry
 		id = params[:lib_block].split("_")
-		lib_block = MoveBlock.where(block_id: id[0], move_id: id[1]).last
-		lib_block.move_detail.destroy
-		lib_block.destroy
+		move_block = Block.find_by_id(id[0])
+		move_detail = MoveDetail.find_by_id(id[1])
+		if move_block.present?
+			move_block.destroy
+		end
+		if move_detail.present?  
+			move_detail.destroy
+		end
 		render text: true
 	end
 
