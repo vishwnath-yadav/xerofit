@@ -296,7 +296,7 @@ CREATE TABLE moves (
     id integer NOT NULL,
     user_id integer,
     title character varying(255),
-    directions character varying(255),
+    directions text,
     category character varying(255),
     difficulty character varying(255),
     created_at timestamp without time zone,
@@ -503,7 +503,7 @@ CREATE TABLE workouts (
     id integer NOT NULL,
     title character varying(255),
     subtitle character varying(255),
-    description character varying(255),
+    description text,
     state character varying(255) DEFAULT 'initiated'::character varying,
     user_id integer,
     created_at timestamp without time zone,
@@ -851,3 +851,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140902094051');
 INSERT INTO schema_migrations (version) VALUES ('20140903052811');
 
 INSERT INTO schema_migrations (version) VALUES ('20140903062943');
+
+INSERT INTO schema_migrations (version) VALUES ('20140904065656');

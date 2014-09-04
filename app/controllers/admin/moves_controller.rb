@@ -48,4 +48,19 @@ class Admin::MovesController < Admin::AdminController
 		move.save
 		render nothing: true
 	end
+
+	def status_approve
+		if params[:type] == Move::TYPE[0]
+			move = Move.find_by_id(params[:id])
+		else
+			move = Workout.find_by_id(params[:id])
+		end
+		move.status = params[:status]
+		move.save
+		if move.status == Move::STATUS[2]
+			move.date_submitted_for_approval = move.updated_at
+			move.save
+		end		
+		render nothing: true
+	end
 end

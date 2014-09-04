@@ -132,7 +132,7 @@ class Move < ActiveRecord::Base
 	end
 
 	def has_full_detail
-		if [self.status] & [STATUS[0],STATUS[2],STATUS[3]]
+		if [STATUS[0],STATUS[2],STATUS[3]].include? (self.status)
 			return true
 		else
 			target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
