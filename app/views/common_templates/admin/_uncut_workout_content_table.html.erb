@@ -23,7 +23,7 @@
             </span>
           </td>
           <td>
-            <%=link_to "View", "javascript:void(0)" %> |<%=link_to "Send email", "javascript:void(0)", class: "mail_popup", data_attr: "#{move.id}", "data-no-turbolink" => true %> 
+            <%=link_to "View", libraries_path(user: move.user.token)%>  | <%=link_to "Send email", "javascript:void(0)", class: "mail_popup", data_attr: "#{move.id}", "data-no-turbolink" => true %> 
           </td>
         </tr>
       <% end %>
