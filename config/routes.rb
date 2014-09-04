@@ -49,6 +49,7 @@ Xerofit::Application.routes.draw do
       collection do
         get :admin_filter
         get :mark_complete
+        get :status_approve
       end
     end
 

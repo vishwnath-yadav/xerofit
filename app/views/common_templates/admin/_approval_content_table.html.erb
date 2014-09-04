@@ -14,7 +14,7 @@
       <td><%=move.title%></td>
       <td><%=move.move_type%></td>
       <td><%=move.date_submitted_for_approval%></td>
-      <td><%=move.status%></td>
+      <td><%= select_tag :status, options_for_select(Move::STATUS, :selected => move.status), id: "admin_change_status", data_attr: "#{move.move_type}_#{move.id}" %></td>
       <td><%=move.user.email %></td>
       <td>
         <%if move.move_type == Move::TYPE[0]%>
