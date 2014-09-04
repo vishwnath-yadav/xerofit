@@ -25,7 +25,7 @@ class Admin::MovesController < Admin::AdminController
 		@sort_array = Move::ADMIN_UNCUT_FILTER
 		parm = params.merge({type: Move::TYPE[0]}) 
 		# @moves = Move.get_library_list(parm,current_user,'')
-		@moves = FullWorkout.all.order('updated_at desc')
+		@moves = FullWorkout.where(mark_complete: false).order('updated_at desc')
 	end
 
 	def approval_page
