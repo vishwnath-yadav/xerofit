@@ -1,11 +1,9 @@
 class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
+	before_action :fetch_user
 	autocomplete :move, :title, :full => true
-	layout :resolve_layout
-
 
 	def new
-		@user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 		@workout = Workout.new()
 		@moves = @user.single_moves
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
@@ -14,7 +12,6 @@ class WorkoutsController < ApplicationController
 	end
 
 	def create
-		@user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
 		@workout = Workout.new(workout_params)
 		@workout.user_id = @user.id
 		@workout.save
@@ -25,7 +22,6 @@ class WorkoutsController < ApplicationController
 	end
 
 	def edit
-		@user = params[:user].blank? ? current_user : User.where(token: params[:user]).last
 		@workout = Workout.find(params[:id])
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
@@ -54,16 +50,6 @@ class WorkoutsController < ApplicationController
 		redirect_to libraries_path
 	end
 
-
-	def index
-		redirect_to libraries_path
-	end
-
-	def show
-		@workout = Workout.find(params[:id])
-		@workout.increase_visit
-	end
-
 	def get_workout_sub_block
 		@block = Block.new(:name => params[:title], :block_type=> params[:type])
 		@block.save
@@ -72,7 +58,6 @@ class WorkoutsController < ApplicationController
 			format.js 
 		end
 	end
-
 
 	def save_blocks
 		@workout = Workout.find_by_id(params[:workout_id])
@@ -93,35 +78,10 @@ class WorkoutsController < ApplicationController
 	def remove_library_from_block
 		id = params[:lib_block].split("_")
 		lib_block = MoveBlock.where(block_id: id[0], move_id: id[1]).last
-		
 		lib_block.move_detail.destroy
 		lib_block.destroy
 		render text: true
 	end
-
-
-	def marketplace
-	end
-
-	def search_lib
-		search_value = params[:search_value]
-		filter_order = params[:order]
-		user = params[:user].blank? ? current_user : User.find_by_token(params[:user])
-		if !search_value.blank?
-			if filter_order == 'asc'
-				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", user.id).order('title ASC')
-			else
-				@moves = Move.where("title ILIKE ? and user_id = ?", "#{search_value}%", user.id).order('title DESC')
-			end
-		else
-			@moves = user.single_moves
-		end
-
-		respond_to do |format|
-			format.js 
-		end
-	end
-
 
 	def load_lib_details
 		@lib_detail = params[:lib_detail].present? ? MoveDetail.find(params[:lib_detail]) : nil
