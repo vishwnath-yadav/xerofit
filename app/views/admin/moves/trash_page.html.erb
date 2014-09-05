@@ -1,28 +1,27 @@
-<div class="col-md-12">
-  <div class="col-md-9">
-    <a href="<%= admin_users_path %>">
-      <strong>
-        <i class="glyphicon glyphicon-th-list"></i> Trash List
-      </strong>
-    </a> 
-  </div> 
-  <!-- <div class="col-md-9">
-    <a href="<%= admin_users_path %>">
-      <strong>
-        <i class="glyphicon glyphicon-th-list"></i> Trash List
-      </strong>
-    </a> 
-  </div>  -->
+<ul class="nav navbar-nav custom-tabs" role="tablist">
+  <li class="active" data-params="move">
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="trash_move">Move & workout Trash</a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="user_trash" >User Trash</a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="uncut_workout">Uncut Workout Trash</a>
+  </li>
+</ul>
+
+<%= render "common_templates/admin/sort_select" %>
+<div class="each-block tab-content clearfix">
+   <div class="tab-pane active">
+      <div class="col-md-9 search_user">
+        <%= render "common_templates/admin/trash_content_table", moves: @moves%>
+      </div>
+      <div class="col-md-3">
+        <%= render "common_templates/admin/admin_filter"%>
+      </div>
+   </div>
 </div>
 <hr>
-<%= render "common_templates/admin/sort_select" %>
-<div class="col-md-9 search_user">
-    <%= render "common_templates/admin/trash_content_table"%>
-</div>
-<div class="col-md-3">
-  <%= render "common_templates/admin/admin_filter"%>
-</div>
-<%#= render "admin_approve_mail_popup" %>
 <script>
   $('.admin_li').removeClass('active');
   $('.admin_li.trash').addClass('active');

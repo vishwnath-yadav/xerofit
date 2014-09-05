@@ -8,27 +8,31 @@
         <th>Mark Complete</th>
         <th>Actions</th>
       </tr>
-      <% @moves.each do |move| %>
-        <tr>
-          <td><%=move.id%></td>
-          <td><%=move.user.email %></td>
-          <td><%= "%0.3f" % (move.video.size.to_f/1024/1024) %></td>
-          <td><%=move.updated_at%></td>
-          <td><%=link_to "Download", "javascript:void(0)"%>
-            <%# class: "download_video", "data-url" => move.video.to_s, "rel"=>"nofollow"%></td>
-          <td>
-            <span class="mark_btn" data-id="<%=move.id%>">
-              <%if move.mark_complete%>
-                <%=check_box_tag 'mark_btn', '', true %>
-              <%else%>
-                <%=check_box_tag 'mark_btn', '', false%>
-              <%end%>
-            </span>
-          </td>
-          <td>
-            <%=link_to "View", "javascript:void(0)" %> |<%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#admin_mail_popup", class: "mail_popup", data_attr: "#{move.id}"%> 
-          </td>
-        </tr>
-      <% end %>
+      <% if moves.present? %>
+        <% moves.each do |move| %>
+          <tr>
+            <td><%=move.id%></td>
+            <td><%=move.user.email %></td>
+            <td><%= "%0.3f" % (move.video.size.to_f/1024/1024) %></td>
+            <td><%=move.updated_at%></td>
+            <td><%=link_to "Download", "javascript:void(0)"%>
+              <%# class: "download_video", "data-url" => move.video.to_s, "rel"=>"nofollow"%></td>
+            <td>
+              <span class="mark_btn" data-id="<%=move.id%>">
+                <%if move.mark_complete%>
+                  <%=check_box_tag 'mark_btn', '', true %>
+                <%else%>
+                  <%=check_box_tag 'mark_btn', '', false%>
+                <%end%>
+              </span>
+            </td>
+            <td>
+              <%=link_to "View", libraries_path(user: move.user.token) %> |<%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#admin_mail_popup", class: "mail_popup", data_attr: "#{move.id}"%> 
+            </td>
+          </tr>
+        <% end %>
+        <%else%>
+        <tr><td colspan='7'> No Data Found...</td></tr>
+        <% end %>
     </table>
 

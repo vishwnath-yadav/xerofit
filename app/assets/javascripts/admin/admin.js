@@ -45,4 +45,12 @@ $(document).ready(function(){
     $.get(url, {url: data_url}, function (data) {
     });
   });
+
+  $(document).on('click','.user_trash,.uncut_workout,.trash_move',function(){
+    var text = $(this).text();
+    url = '/admin/moves/admin_trash';
+    $.get(url, {text: text}, function (data) {
+      $('.search_user').html(data);
+    });
+  });
 })

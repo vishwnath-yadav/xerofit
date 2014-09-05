@@ -25,7 +25,7 @@ class Admin::MovesController < Admin::AdminController
 		@sort_array = Move::ADMIN_UNCUT_FILTER
 		parm = params.merge({type: Move::TYPE[0]}) 
 		# @moves = Move.get_library_list(parm,current_user,'')
-		@moves = FullWorkout.where(mark_complete: false).order('updated_at desc')
+		@moves = FullWorkout.where(mark_complete: false, enable: true).order('updated_at desc')
 	end
 
 	def approval_page
@@ -83,11 +83,8 @@ class Admin::MovesController < Admin::AdminController
 		@sort_array = Move::ADMIN_TRASH_FILTER
 		parm = params.merge({enable: true}) 
 		@moves = Move.get_library_list(parm,current_user,'')
-		# @moves = Move.where(enable: false)
-		# @moves << Workout.where(enable: false)
-		# @moves << FullWorkout.where(enable: false)
-		# @moves << User.where(enabled: false)
-		# @moves = @moves.flatten
+		@full_workouts = FullWorkout.where(enable: false)
+		@users = User.where(enabled: false)
 	end
 
 	def trash
@@ -113,7 +110,6 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def admin_approve_workout_mail
-		logger.debug "sssssssssssss"
 		if params[:type] == Move::TYPE[0]
 			move = Move.find_by_id(params[:id])
 		else
@@ -122,6 +118,20 @@ class Admin::MovesController < Admin::AdminController
 		usr = move.user
 		Emailer.approve_mail_to_user(usr,params).deliver
 		render nothing: true
+	end
+
+	def admin_trash
+		if params[:text] == "User Trash"
+			user = User.where(enabled: false)
+			render partial: "common_templates/admin/user_trash_content_table", locals: {users: user}
+		elsif params[:text] == "Uncut Workout Trash"
+			move = FullWorkout.where(enable: true)
+			render partial: "common_templates/admin/uncut_workout_content_table", locals: {moves: move}
+		else
+			parm = params.merge({enable: true}) 
+			moves = Move.get_library_list(parm,current_user,'')
+			render partial: "common_templates/admin/trash_content_table", locals: {moves: move}
+		end
 	end
 
 end

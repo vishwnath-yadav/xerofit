@@ -56,6 +56,7 @@ Xerofit::Application.routes.draw do
         get :trash
         get :restore
         post :admin_approve_workout_mail
+        get :admin_trash
       end
     end
 
