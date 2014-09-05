@@ -7,26 +7,30 @@
         <th>Date Trashed</th>
         <th>Actions</th>
       </tr>
-      <% @moves.each do |move| %>
-        <tr>
-          <td><%=move.id%></td>
-          <td><%=move.title %></td>
-          <td><%=move.user.email %></td>
-          <td><%=move.move_type %></td>
-          <td><%=move.updated_at%></td>
-          <!-- <td>
-            <%#=link_to "Restore", "javascript:void(0)" %> 
-          </td> -->
-          <td>
-            <% if move.move_type == Move::TYPE[1] %>
-            <%=link_to "Restore",  restore_admin_moves_path(id: move, type: move.move_type)%> | 
-            <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
-            <% else %>
+      <% if moves.present? %>
+        <% moves.each do |move| %>
+          <tr>
+            <td><%=move.id%></td>
+            <td><%=move.title %></td>
+            <td><%=move.user.email %></td>
+            <td><%=move.move_type %></td>
+            <td><%=move.updated_at%></td>
+            <!-- <td>
+              <%#=link_to "Restore", "javascript:void(0)" %> 
+            </td> -->
+            <td>
+              <% if move.move_type == Move::TYPE[1] %>
               <%=link_to "Restore",  restore_admin_moves_path(id: move, type: move.move_type)%> | 
-              <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
-            <% end %>
-          </td>
-        </tr>
+              <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <% else %>
+                <%=link_to "Restore",  restore_admin_moves_path(id: move, type: move.move_type)%> | 
+                <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <% else %>
+        <tr><td colspan='6'> No Data Found...</td></tr>
       <% end %>
     </table>
 
