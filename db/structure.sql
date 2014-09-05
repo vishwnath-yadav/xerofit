@@ -3,7 +3,7 @@
 --
 
 SET statement_timeout = 0;
-SET client_encoding = 'LATIN1';
+SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -149,7 +149,8 @@ CREATE TABLE full_workouts (
     mark_complete boolean DEFAULT false,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    enable boolean DEFAULT true
 );
 
 
@@ -302,11 +303,12 @@ CREATE TABLE moves (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     status character varying(255),
-    move_type character varying(255) DEFAULT 'Single Move'::character varying,
+    move_type character varying(255),
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
     work character varying(255),
-    date_submitted_for_approval timestamp without time zone
+    date_submitted_for_approval timestamp without time zone,
+    enable boolean DEFAULT true
 );
 
 
@@ -514,8 +516,9 @@ CREATE TABLE workouts (
     pic_updated_at timestamp without time zone,
     status character varying(255),
     category character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying,
-    date_submitted_for_approval timestamp without time zone
+    move_type character varying(255),
+    date_submitted_for_approval timestamp without time zone,
+    enable boolean DEFAULT true
 );
 
 
@@ -853,3 +856,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140903052811');
 INSERT INTO schema_migrations (version) VALUES ('20140903062943');
 
 INSERT INTO schema_migrations (version) VALUES ('20140904065656');
+
+INSERT INTO schema_migrations (version) VALUES ('20140905063108');

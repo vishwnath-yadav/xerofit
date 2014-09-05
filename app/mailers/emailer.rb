@@ -23,10 +23,16 @@ class Emailer < ActionMailer::Base
   def full_wkt_uploaded_success(video, user)
     @video = video
     @user = user
-    mail(to: @user, subject: "New Full Workout has been uploaded")
+    mail(to: @user, subject: "New Full Workout uploaded")
   end
 
   def uncut_workout_mail_to_user(params, user)
+    @user = user
+    @message = params[:message]
+    mail(to: user.email, subject: params[:subject])
+  end
+
+  def approve_mail_to_user(user,params)
     @user = user
     @message = params[:message]
     mail(to: user.email, subject: params[:subject])

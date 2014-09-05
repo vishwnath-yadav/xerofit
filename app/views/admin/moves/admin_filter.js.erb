@@ -2,6 +2,8 @@
 	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_templates/admin/approval_content_table')) %>");
 <%elsif params[:action_name] == "uncut_workout"%>
 	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_templates/admin/uncut_workout_content_table')) %>");
+<%elsif params[:action_name] == "trash_page"%>
+	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_templates/admin/trash_content_table')) %>");
 <%else%>
 	$('.search_user').html("<%= escape_javascript(render(:partial => 'common_templates/admin/content_table')) %>");
 <%end%>

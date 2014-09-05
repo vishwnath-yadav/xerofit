@@ -76,7 +76,6 @@ class WorkoutsController < ApplicationController
 	end
 
 	def remove_library_from_block
-		binding.pry
 		id = params[:lib_block].split("_")
 		move_block = Block.find_by_id(id[0])
 		move_detail = MoveDetail.find_by_id(id[1])

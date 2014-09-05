@@ -21,20 +21,28 @@ $(document).ready(function(){
 
   $(document).on('click','.mail_popup', function(){
     $('.admin_umcut_mail').val($(this).attr('data_attr'));
-    $.fancybox.open({
-      href: '#admin_mail_popup',
-      openMethod: 'fadescaleIn',
-      closeMethod: 'fadescaleOut',
-      autoSize: false,
-      autoHeight: false,
-      height: 338,
-      minHeight: 338,
-      width: 560,
-      padding: [28, 40, 40, 40]
-    });
+  });
+
+   $(document).on('click','.send_approve_mail', function(){
+    var data = $(this).attr('data_attr').split("_");
+    $('.admin_umcut_mail').val(data[0]);
+    $('.admin_move_type').val(data[1]);
   });
 
   $(document).on("click",".send_mail",function(){
-    $.fancybox.close();
+    $('#admin_mail_popup').modal('hide');
+    $('#uncut_popup').submit();
+  }); 
+   $(document).on("click",".approve_mail",function(){
+    $('#approve_mail_popup').modal('hide');
+    $('#approve_popup').submit();
+  });
+
+ 
+  $(document).on('click','.download_video',function(){
+    var data_url = $(this).attr('data-url');
+    url = '/admin/moves/download_video';
+    $.get(url, {url: data_url}, function (data) {
+    });
   });
 })

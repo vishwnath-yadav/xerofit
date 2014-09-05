@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   scope :by_email, lambda { |email| where('email ilike ?', email+"%") unless email.blank? }
   scope :by_role, lambda { |role| where(role: role) unless role.blank? }
-
+  scope :by_name, lambda { |name| where('first_name LIKE ? OR last_name LIKE ?', "%#{name}%", "%#{name}%") unless name.blank? }
   User::ROLES.each do |role|
     # define methods such as student?, admin? etc.
     define_method "#{role}?" do

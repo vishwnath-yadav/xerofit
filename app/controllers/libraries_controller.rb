@@ -110,7 +110,6 @@ class LibrariesController < ApplicationController
 
 	respond_to :json, :js
 	def crop_image_save
-		# binding.pry
 		if params[:type] == "workout"
 			param = params[:workout]
 			@obj = Workout.find_by_id(params[:id])
