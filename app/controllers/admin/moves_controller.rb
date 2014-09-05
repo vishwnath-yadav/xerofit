@@ -69,4 +69,59 @@ class Admin::MovesController < Admin::AdminController
 		Emailer.uncut_workout_mail_to_user(params,user).deliver
 		render nothing: true
 	end
+
+	def download_video
+		url = params[:url]
+		new_file_path = "#{Rails.root.to_s}/public/your_video2.mp4"
+		open(new_file_path, "wb") do |file| 
+		  file.print open(url).read
+		end
+		render nothing: true
+	end
+
+	def trash_page
+		@sort_array = Move::ADMIN_TRASH_FILTER
+		parm = params.merge({enable: true}) 
+		@moves = Move.get_library_list(parm,current_user,'')
+		# @moves = Move.where(enable: false)
+		# @moves << Workout.where(enable: false)
+		# @moves << FullWorkout.where(enable: false)
+		# @moves << User.where(enabled: false)
+		# @moves = @moves.flatten
+	end
+
+	def trash
+		if params[:type] == Move::TYPE[0]
+			@move = Move.find(params[:id])
+		else
+			@move = Workout.find(params[:id])
+		end
+		@move.enable = false
+		@move.save
+		redirect_to :back
+	end
+
+	def restore
+		if params[:type] == Move::TYPE[0]
+			@move = Move.find(params[:id])
+		else
+			@move = Workout.find(params[:id])
+		end
+		@move.enable = true
+		@move.save
+		redirect_to :back
+	end
+
+	def admin_approve_workout_mail
+		logger.debug "sssssssssssss"
+		if params[:type] == Move::TYPE[0]
+			move = Move.find_by_id(params[:id])
+		else
+			move = Workout.find_by_id(params[:id])
+		end	
+		usr = move.user
+		Emailer.approve_mail_to_user(usr,params).deliver
+		render nothing: true
+	end
+
 end

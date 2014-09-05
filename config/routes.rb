@@ -34,6 +34,7 @@ Xerofit::Application.routes.draw do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do
       collection do
+        get :user_trash
         get :filter_user
       end
       member do
@@ -43,6 +44,7 @@ Xerofit::Application.routes.draw do
     end
     get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
+    get '/trash_page', to: 'moves#trash_page', as: :trash_page
     
     resources :moves do
       collection do
@@ -50,6 +52,10 @@ Xerofit::Application.routes.draw do
         get :mark_complete
         get :status_approve
         post :uncut_workout_mail
+        get :download_video
+        get :trash
+        get :restore
+        post :admin_approve_workout_mail
       end
     end
 

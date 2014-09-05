@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
 
 	def index
 		@sort_array = User::USER_TYPE
-		@users = User.all.order('created_at DESC')
+		@users = User.where(enabled: true).order('created_at DESC')
 	end
 
 	def new
@@ -50,10 +50,29 @@ class Admin::UsersController < Admin::AdminController
 
 	def filter_user
 		sort = params[:sorted_by]
-		@users = User.by_email(params[:email]).by_role(params[:role]).order("#{sort} DESC")
+		@users = User.by_name(params[:name]).by_email(params[:email]).by_role(params[:role]).order("#{sort} DESC")
 		respond_to do |format|
 			format.js
 		end
+	end
+
+	def user_trash
+		user = User.find(params[:id])
+		user.enabled = false
+		user.save
+		user.moves.each do |move|
+			move.enable = false
+			move.save
+		end	
+		user.workouts.each do |work|
+			work.enable = false
+			work.save
+		end
+		user.full_workouts.each do |full_workout| 
+			full_workout.enable = false
+			full_workout.save
+		end
+		redirect_to :back
 	end
 
 	private

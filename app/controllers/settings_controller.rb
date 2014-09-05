@@ -15,7 +15,6 @@ class SettingsController < ApplicationController
 	end
 
 	def save_payment_billing
-		# binding.pry
 		# current_user.subscriptions.new(params[:user][:subscriptions_attributes]["0"][:stripe_card_token])
 		# current_user.addresses.new(params[:user][:addresses_attributes]["0"])
 		# current_user.save

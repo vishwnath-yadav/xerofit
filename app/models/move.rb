@@ -31,6 +31,7 @@ class Move < ActiveRecord::Base
 	ADMIN_MOVE_FILTER = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
 	ADMIN_UNCUT_FILTER = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
+	ADMIN_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Title","title"],["Email","email"],["Content Type","move_type"]]
 
 	TYPE = ["Single Move", "Workouts"]	
 
@@ -55,7 +56,6 @@ class Move < ActiveRecord::Base
 	# end
 
 	def self.get_library_list(params,cur_user,param_user_id)
-		# binding.pry
 		if cur_user.admin? && param_user_id.present?
 			list = list_view(params,param_user_id)
 		elsif cur_user.admin?
@@ -69,13 +69,14 @@ class Move < ActiveRecord::Base
 	def self.list_view(params,user)
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
+		enable = params[:enable].blank? ? true : false
 		if params[:type] == TYPE[1] 
-			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
+			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
 		elsif params[:type] == TYPE[0]
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user)
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable)
 		else
-			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed)
-			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).all
+			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
+			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable).all
 			list = list.flatten
 		end
 		if sort == "updated_at" || sort == "date_submitted_for_approval" || sort == "id"

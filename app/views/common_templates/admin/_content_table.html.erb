@@ -19,10 +19,10 @@
       <td>
         <% if move.move_type == Move::TYPE[1] %>
         <%=link_to "View", workout_details_path(move, user: move.user.token)%> | 
-        <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
         <% else %>
           <%=link_to "View", edit_path(move, user: move.user.token)%> | 
-          <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
         <% end %>
       </td>
     </tr>

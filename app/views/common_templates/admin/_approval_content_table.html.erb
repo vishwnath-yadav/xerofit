@@ -24,7 +24,7 @@
         <%else%>
           <%=link_to "View", edit_workout_path(move, user: move.user.token)%> | 
         <%end%>
-        <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#approve_mail_popup", class: "send_approve_mail", data_attr: "#{move.id}_#{move.move_type}" %>
       </td>
     </tr>
   <% end %>

@@ -209,12 +209,14 @@ function check_require_field(){
     }
   });
   if($('.thumbnail_col').length){             //for cheking thumbnail are present or not
-    var target = $('.for_target_change').val();
-    var len = $(".select_thumb").length;
-
-    if((len <= 0)||(target == null)||(target == '')){
-      flag = 0;
-    }
+    // var target = $('.for_target_change').val();
+    $('.dis_blk').each(function(){
+      var target = $(this).find('.for_target_change').val();
+      var len = $(".select_thumb").length;
+      if((len <= 0)||(target == null)||(target == '')){
+        flag = 0;
+      }
+    })
   }
 
   if(flag == 1){
