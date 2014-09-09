@@ -46,7 +46,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def status_approve
-		hist = Histroy.new()
+		hist = History.new()
 		if params[:type] == Move::TYPE[0]
 			move = Move.find_by_id(params[:id])
 			hist.move_id = move.id
@@ -183,7 +183,7 @@ class Admin::MovesController < Admin::AdminController
 		else
 			@move = Move.find(params[:id])
 		end
-		@histroy = @move.histroys
+		@histroy = @move.histories
 	end
 
 	def uncut_trash_filter

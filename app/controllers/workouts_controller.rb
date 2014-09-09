@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.new(workout_params)
 		@workout.user_id = @user.id
 		@workout.save
-		@workout.histroy_create()
+		@workout.history_create()
 		#@workout = Workout.new
 		respond_to do |format|
 			format.js

@@ -5,7 +5,7 @@ class Workout < ActiveRecord::Base
 	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
 	has_many :blocks
-	has_many :histroys
+	has_many :histories
 	has_one :statastic
 	belongs_to :user
 	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]
@@ -98,12 +98,12 @@ class Workout < ActiveRecord::Base
 			Emailer.status_mail_to_admin(self, user).deliver
 		end 
 		if old_status != new_status
-			self.histroy_create()
+			self.history_create()
 		end
 	end
 
-	def histroy_create
-		@histroy = Histroy.new
+	def history_create
+		@histroy = History.new
 	  	@histroy.workout_id = self.id 
 	  	@histroy.status = self.status
 	  	@histroy.save 

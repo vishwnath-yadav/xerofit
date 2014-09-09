@@ -8,7 +8,7 @@ class Move < ActiveRecord::Base
 	has_one :library_video
 	has_one :move_detail
 	has_many :move_blocks
-	has_many :histroys
+	has_many :histories
 	has_many :blocks, through: :move_blocks
 	
 	after_create :save_status
@@ -162,12 +162,12 @@ class Move < ActiveRecord::Base
 			Emailer.status_mail_to_admin(self, admin_emails).deliver
 		end
 		if old_status != new_status
-			self.histroy_create()
+			self.history_create()
 		end
 	end
 
-	def histroy_create
-		@histroy = Histroy.new
+	def history_create
+		@histroy = History.new
 	  	@histroy.move_id = self.id 
 	  	@histroy.status = self.status
 	  	@histroy.save 
