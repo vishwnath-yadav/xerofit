@@ -1,26 +1,17 @@
-<ul class="nav navbar-nav custom-tabs" role="tablist">
-  <li class="active" data-params="move">
+<ul class="nav navbar-nav">
+  <li class="trash_li move active" data-params="move">
     <a href="javascript:void(0)" role="tab" data-toggle="tab" class="trash_move">Move & workout Trash</a>
   </li>
-  <li>
+  <li class="trash_li user">
     <a href="javascript:void(0)" role="tab" data-toggle="tab" class="user_trash" >User Trash</a>
   </li>
-  <li>
+  <li class="trash_li uncut">
     <a href="javascript:void(0)" role="tab" data-toggle="tab" class="uncut_workout">Uncut Workout Trash</a>
   </li>
 </ul>
-
-<%= render "common_templates/admin/sort_select" %>
-<div class="each-block tab-content clearfix">
-   <div class="tab-pane active">
-      <div class="col-md-9 search_user">
-        <%= render "common_templates/admin/trash_content_table", moves: @moves%>
-      </div>
-      <div class="col-md-3">
-        <%= render "common_templates/admin/admin_filter"%>
-      </div>
-   </div>
-</div>
+<span class="trash_list">
+  <%= render "trash_list"%>
+</span>
 <hr>
 <script>
   $('.admin_li').removeClass('active');

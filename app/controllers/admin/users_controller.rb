@@ -50,7 +50,7 @@ class Admin::UsersController < Admin::AdminController
 
 	def filter_user
 		sort = params[:sorted_by]
-		@users = User.by_name(params[:name]).by_email(params[:email]).by_role(params[:role]).order("#{sort} DESC")
+		@users = User.by_name(params[:name]).by_email(params[:email]).by_role(params[:role]).where(enabled: true).order("#{sort} DESC")
 		respond_to do |format|
 			format.js
 		end
@@ -58,19 +58,21 @@ class Admin::UsersController < Admin::AdminController
 
 	def user_trash
 		user = User.find(params[:id])
-		user.enabled = false
-		user.save
-		user.moves.each do |move|
-			move.enable = false
-			move.save
-		end	
-		user.workouts.each do |work|
-			work.enable = false
-			work.save
-		end
-		user.full_workouts.each do |full_workout| 
-			full_workout.enable = false
-			full_workout.save
+		if user.present?
+			user.enabled = false
+			user.save
+			user.moves.each do |move|
+				move.enable = false
+				move.save
+			end	
+			user.workouts.each do |work|
+				work.enable = false
+				work.save
+			end
+			user.full_workouts.each do |full_workout| 
+				full_workout.enable = false
+				full_workout.save
+			end
 		end
 		redirect_to :back
 	end

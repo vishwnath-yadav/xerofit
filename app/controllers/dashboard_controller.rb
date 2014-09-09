@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     end
 
     def trainer
-		render current_user.role
+		
 	end
 
 	def create

@@ -15,12 +15,8 @@
   </div> -->
 </div>
 <hr>
-<%= render "common_templates/admin/sort_select" %>
-<div class="col-md-9 search_user">
-    <%= render "common_templates/admin/uncut_workout_content_table", uncuts_wrk: true, moves: @moves%>
-</div>
-<div class="col-md-3">
-  <%= render "common_templates/admin/admin_filter"%>
+<span class="search_data">
+  <%= render "uncut_list" %>
 </div>
 <%= render "admin_mail_popup" %>
 <script>

@@ -48,7 +48,10 @@ Xerofit::Application.routes.draw do
     
     resources :moves do
       collection do
-        get :admin_filter
+        get :move_filter
+        get :uncut_filter
+        get :trash_filter
+        get :approve_filter
         get :mark_complete
         get :status_approve
         post :uncut_workout_mail
@@ -57,10 +60,16 @@ Xerofit::Application.routes.draw do
         get :restore
         post :admin_approve_workout_mail
         get :admin_trash
+        delete :destroy_fullworkout
+        get :histroy_page
+        # get :full_workout_trash
       end
     end
 
     resources :workouts do
+      collection do 
+        get :workout_filter
+      end
     end
   end
   

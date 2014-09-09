@@ -13,4 +13,8 @@ class Admin::WorkoutsController < Admin::AdminController
 	    redirect_to :back
 	end
 
+	def workout_filter
+		@moves = Move.get_library_list(params,current_user,'')
+	end
+
 end

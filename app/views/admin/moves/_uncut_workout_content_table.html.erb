@@ -8,15 +8,14 @@
         <th>Mark Complete</th>
         <th>Actions</th>
       </tr>
-      <% if moves.present? %>
-        <% moves.each do |move| %>
+      <% if @moves.present? %>
+        <% @moves.each do |move| %>
           <tr>
             <td><%=move.id%></td>
             <td><%=move.user.email %></td>
-            <td><%= "%0.3f" % (move.video.size.to_f/1024/1024) %></td>
+            <td><%= move.video_size %></td>
             <td><%=move.updated_at%></td>
-            <td><%=link_to "Download", "javascript:void(0)"%>
-              <%# class: "download_video", "data-url" => move.video.to_s, "rel"=>"nofollow"%></td>
+            <td><%=link_to "Download", "javascript:void(0)"%></td>
             <td>
               <span class="mark_btn" data-id="<%=move.id%>">
                 <%if move.mark_complete%>
@@ -27,7 +26,12 @@
               </span>
             </td>
             <td>
-              <%=link_to "View", libraries_path(user: move.user.token) %> |<%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#admin_mail_popup", class: "mail_popup", data_attr: "#{move.id}"%> 
+              <% if action_name == "uncut_workout" %>
+                <%=link_to "View", libraries_path(user: move.user.token) %> |<%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#admin_mail_popup", class: "mail_popup", data_attr: "#{move.id}"%> | <%=link_to "Trash", trash_admin_moves_path(id: move.id) %> 
+              <% else %>
+                <%=link_to "Restore",  restore_admin_moves_path(id: move.id, data_param: "full_workout")%> | 
+                <%= link_to "Delete", destroy_fullworkout_admin_moves_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <% end %> 
             </td>
           </tr>
         <% end %>

@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -172,6 +171,39 @@ CREATE SEQUENCE full_workouts_id_seq
 --
 
 ALTER SEQUENCE full_workouts_id_seq OWNED BY full_workouts.id;
+
+
+--
+-- Name: histroys; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE histroys (
+    id integer NOT NULL,
+    status character varying(255),
+    move_id integer,
+    workout_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: histroys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE histroys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: histroys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE histroys_id_seq OWNED BY histroys.id;
 
 
 --
@@ -574,6 +606,13 @@ ALTER TABLE ONLY full_workouts ALTER COLUMN id SET DEFAULT nextval('full_workout
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY histroys ALTER COLUMN id SET DEFAULT nextval('histroys_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY library_videos ALTER COLUMN id SET DEFAULT nextval('library_videos_id_seq'::regclass);
 
 
@@ -663,6 +702,14 @@ ALTER TABLE ONLY delayed_jobs
 
 ALTER TABLE ONLY full_workouts
     ADD CONSTRAINT full_workouts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY histroys
+    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
 
 
 --
@@ -859,3 +906,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140903062943');
 INSERT INTO schema_migrations (version) VALUES ('20140904065656');
 
 INSERT INTO schema_migrations (version) VALUES ('20140905063108');
+
+INSERT INTO schema_migrations (version) VALUES ('20140908123706');

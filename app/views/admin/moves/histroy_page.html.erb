@@ -1,0 +1,22 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="javascript:void(0)"
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Histroy List
+      </strong>
+    </a> 
+  </div> 
+  
+</div>
+<hr>
+<%#= render "common_templates/admin/sort_select" %>
+<div class="col-md-9 search_user">
+    <%= render "histroy_content_table"%>
+</div>
+<div class="col-md-3">
+  <%#= render "histroy_filter"%>
+</div>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.moves').addClass('active');
+</script>
