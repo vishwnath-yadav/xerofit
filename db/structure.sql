@@ -706,11 +706,11 @@ ALTER TABLE ONLY full_workouts
 
 
 --
--- Name: histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY histories
-    ADD CONSTRAINT histories_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
 
 
 --
@@ -909,3 +909,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140904065656');
 INSERT INTO schema_migrations (version) VALUES ('20140905063108');
 
 INSERT INTO schema_migrations (version) VALUES ('20140908123706');
+
+INSERT INTO schema_migrations (version) VALUES ('20140909144302');
