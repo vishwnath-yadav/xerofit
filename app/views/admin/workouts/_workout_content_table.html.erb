@@ -7,19 +7,23 @@
     <th>User Email</th>
     <th>Actions</th>
   </tr>
-  <% @moves.each do |move| %>
-    <tr>
-      <td><%=move.id%></td>
-      <td><%=move.title%></td>
-      <td><%=move.updated_at%></td>
-      <td>
-      <%=render "common_templates/change_status", move: move%>
-      </td>
-      <td><%=move.user.email %></td>
-      <td>
-        <%=link_to "View", workout_details_path(move, user: move.user.token)%> | <%=link_to "Histroy", histroy_page_admin_moves_path(id: move, type: move.move_type)%> |
-        <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
-      </td>
-    </tr>
+  <% if @moves.present? %>
+    <% @moves.each do |move| %>
+      <tr>
+        <td><%=move.id%></td>
+        <td><%=move.title%></td>
+        <td><%=move.updated_at%></td>
+        <td>
+        <%=render "common_templates/change_status", move: move%>
+        </td>
+        <td><%=move.user.email %></td>
+        <td>
+          <%=link_to "View", workout_details_path(move, user: move.user.token)%> | <%=link_to "Histroy", histroy_page_admin_moves_path(id: move, type: move.move_type)%> |
+          <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="6"> No Data Found...</td></tr>
   <% end %>
 </table>

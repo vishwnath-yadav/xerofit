@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :check_admin_user_or_not
+  # before_filter :check_admin_user_or_not
   
   layout :layout_by_resource
 
@@ -20,10 +20,8 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_user
-      logger.debug("dfsdfsdf")
       token = params[:user]
       if User.where(:token => token).last.present?
-        logger.debug("user found")
         @user = User.where(token: token).first
       else
         @user = current_user

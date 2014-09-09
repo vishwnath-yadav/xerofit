@@ -1,0 +1,35 @@
+<%= render "common_templates/admin/sort_select" %>
+  <div class="col-md-9 search_user">
+      <table class="table table-bordered table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>User Email</th>
+        <th>Video Size(MB)</th>
+        <th>Date Trashed </th>
+        <th>Actions</th>
+      </tr>
+      <% if @moves.present? %>
+        <% @moves.each do |move| %>
+          <tr>
+            <td><%=move.id%></td>
+            <td><%= move.video_title%></td>
+            <td><%= move.user.email %></td>
+            <td><%= move.video_size %></td>
+            <td><%=move.updated_at%></td>
+            <td>
+                <%=link_to "Restore",  "javascript:void(0)", class: "admin_trash_user", "data-params" => "full-workout_#{move.id}"%> | 
+                <%= link_to "Delete", destroy_fullworkout_admin_moves_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+            </td>
+          </tr>
+        <% end %>
+        <%else%>
+        <tr><td colspan='7'> No Data Found...</td></tr>
+        <% end %>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <%= render "admin/moves/uncut_trash_filter"%>
+  </div>
+
+

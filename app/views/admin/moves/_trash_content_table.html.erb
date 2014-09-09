@@ -20,10 +20,10 @@
             </td> -->
             <td>
               <% if move.move_type == Move::TYPE[1] %>
-              <%=link_to "Restore",  restore_admin_moves_path(id: move, type: move.move_type)%> | 
+              <%=link_to "Restore", 'javascript:void(0)', class: "admin_trash_move", "data-params" => "#{move.move_type}_#{move.id}" %> | 
               <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
               <% else %>
-                <%=link_to "Restore",  restore_admin_moves_path(id: move, type: move.move_type)%> | 
+                <%=link_to "Restore", 'javascript:void(0)', class: "admin_trash_move", "data-params" => "#{move.move_type}_#{move.id}" %> | 
                 <%= link_to "Delete", admin_move_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
               <% end %>
             </td>

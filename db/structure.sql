@@ -175,10 +175,10 @@ ALTER SEQUENCE full_workouts_id_seq OWNED BY full_workouts.id;
 
 
 --
--- Name: histroys; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: histories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE histroys (
+CREATE TABLE histories (
     id integer NOT NULL,
     status character varying(255),
     move_id integer,
@@ -189,10 +189,10 @@ CREATE TABLE histroys (
 
 
 --
--- Name: histroys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE histroys_id_seq
+CREATE SEQUENCE histories_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -201,10 +201,10 @@ CREATE SEQUENCE histroys_id_seq
 
 
 --
--- Name: histroys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE histroys_id_seq OWNED BY histroys.id;
+ALTER SEQUENCE histories_id_seq OWNED BY histories.id;
 
 
 --
@@ -607,7 +607,7 @@ ALTER TABLE ONLY full_workouts ALTER COLUMN id SET DEFAULT nextval('full_workout
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY histroys ALTER COLUMN id SET DEFAULT nextval('histroys_id_seq'::regclass);
+ALTER TABLE ONLY histories ALTER COLUMN id SET DEFAULT nextval('histories_id_seq'::regclass);
 
 
 --
@@ -706,11 +706,11 @@ ALTER TABLE ONLY full_workouts
 
 
 --
--- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY histroys
-    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY histories
+    ADD CONSTRAINT histories_pkey PRIMARY KEY (id);
 
 
 --

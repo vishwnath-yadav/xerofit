@@ -36,6 +36,7 @@ Xerofit::Application.routes.draw do
       collection do
         get :user_trash
         get :filter_user
+        get :user_trash_filter
       end
       member do
         patch :enable
@@ -52,6 +53,7 @@ Xerofit::Application.routes.draw do
         get :uncut_filter
         get :trash_filter
         get :approve_filter
+        get :uncut_trash_filter
         get :mark_complete
         get :status_approve
         post :uncut_workout_mail

@@ -8,7 +8,7 @@ class Move < ActiveRecord::Base
 	has_one :library_video
 	has_one :move_detail
 	has_many :move_blocks
-	has_many :histroys
+	has_many :histories
 	has_many :blocks, through: :move_blocks
 	
 	after_create :save_status
@@ -34,6 +34,7 @@ class Move < ActiveRecord::Base
 	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 	ADMIN_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Title","title"],["Email","email"],["Content Type","move_type"]]
 	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','number of moves by Approved and Active','number of moves by Needs Attention','number of moves by Waiting for Approval','number of moves by Ready to Submit','number of moves by Saved as Draft','Number of total workouts','average number of workouts per trainer','average video length in seconds','average video size in megabytes','How long it takes to encode a video on panda','How many videos in the encoding queue on panda']
+	ADMIN_UNCUT_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Email","email"]]
 	TYPE = ["Single Move", "Workouts"]	
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
@@ -68,7 +69,6 @@ class Move < ActiveRecord::Base
 	end
 
 	def self.list_view(params,user)
-		# binding.pry
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
 		enable = params[:enable].blank? ? true : false
@@ -160,7 +160,17 @@ class Move < ActiveRecord::Base
 			self.save
 			admin_emails = User.where(:role=> "admin").pluck(:email)
 			Emailer.status_mail_to_admin(self, admin_emails).deliver
-		end 
+		end
+		if old_status != new_status
+			self.history_create()
+		end
+	end
+
+	def history_create
+		@histroy = History.new
+	  	@histroy.move_id = self.id 
+	  	@histroy.status = self.status
+	  	@histroy.save 
 	end
 
 end
