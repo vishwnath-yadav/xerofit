@@ -72,12 +72,9 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def download_video
-		url = params[:url]
-		new_file_path = "#{Rails.root.to_s}/public/your_video2.mp4"
-		open(new_file_path, "wb") do |file| 
-		  file.print open(url).read
-		end
-		render nothing: true
+		fullworkout = FullWorkout.find(params[:id])
+		redirect_to fullworkout.download_url
+		# render nothing: true
 	end
 
 	def trash_page
@@ -103,23 +100,33 @@ class Admin::MovesController < Admin::AdminController
 
 	def restore
 		if params[:data_param] == "user"
-			@user = User.find(params[:id])
-			@user.enabled = true
-			@user.save
-		elsif params[:data_param] == "full_workout"
-			@fullworkout = FullWorkout.find(params[:id])
-			@fullworkout.enable = true
-			@fullworkout.save
+			@sort_array = User::USER_TYPE
+			user = User.find(params[:id])
+			user.enabled = true
+			user.save
+			@users = User.where(enabled: false).order('updated_at desc')
+			render partial: "admin/users/user_trash_content_table"
+		elsif params[:data_param] == "full-workout"
+			@sort_array = Move::ADMIN_UNCUT_TRASH_FILTER
+			fullworkout = FullWorkout.find(params[:id])
+			fullworkout.enable = true
+			fullworkout.save
+			@moves = FullWorkout.where(enable: false).order('updated_at desc')
+			render partial: "admin/moves/uncut_workout_trash_table"
 		else
+			@sort_array = Move::ADMIN_TRASH_FILTER
 			if params[:type] == Move::TYPE[0]
-				@move = Move.find(params[:id])
+				@move = Move.find_by_id(params[:id])
 			else
-				@move = Workout.find(params[:id])
+				@move = Workout.find_by_id(params[:id])
 			end
 			@move.enable = true
 			@move.save
+			parm = params.merge({enable: true,type: ''}) 
+			@moves = Move.get_library_list(parm,current_user,'')
+			render partial: "admin/moves/trash_list"
 		end
-		redirect_to :back
+		
 	end
 
 	def admin_approve_workout_mail
@@ -135,18 +142,18 @@ class Admin::MovesController < Admin::AdminController
 
 	def admin_trash
 		if params[:text] == "User Trash"
-			sort_array = User::USER_TYPE
-			user = User.where(enabled: false).order('updated_at desc')
-			render partial: "admin/users/user_list", locals: {users: user, :@sort_array => sort_array}
+			@sort_array = User::USER_TYPE
+			@users = User.where(enabled: false).order('updated_at desc')
+			render partial: "admin/users/user_trash_content_table"
 		elsif params[:text] == "Uncut Workout Trash"
-			@sort_array = Move::ADMIN_UNCUT_FILTER
+			@sort_array = Move::ADMIN_UNCUT_TRASH_FILTER
 			@moves = FullWorkout.where(enable: false).order('updated_at desc')
-			render partial: "admin/moves/uncut_list"
+			render partial: "admin/moves/uncut_workout_trash_table"
 		else
-			@sort_array = Move::ADMIN_MOVE_FILTER
+			@sort_array = Move::ADMIN_TRASH_FILTER
 			parm = params.merge({enable: true}) 
-			moves = Move.get_library_list(parm,current_user,'')
-			render partial: "admin/moves/trash_list", locals: {moves: moves}
+			@moves = Move.get_library_list(parm,current_user,'')
+			render partial: "admin/moves/trash_list"
 		end
 	end
 
@@ -155,6 +162,7 @@ class Admin::MovesController < Admin::AdminController
 		full_workout.destroy
 		redirect_to :back
 	end
+
 	def uncut_filter
 		@moves = FullWorkout.get_workout_list(params,current_user)
 	end
@@ -177,10 +185,11 @@ class Admin::MovesController < Admin::AdminController
 		end
 		@histroy = @move.histroys
 	end
-	# def full_workout_trash
-	# 	full_workout = FullWorkout.find(params[:id])
-	# 	full_workout.enable = false
-	# 	full_workout.save
-	# 	redirect_to :back
-	# end
+
+	def uncut_trash_filter
+		@sort_array = Move::ADMIN_UNCUT_TRASH_FILTER
+		parm = params.merge({enable: true})
+		@moves = FullWorkout.get_workout_list(parm,current_user)
+	end
+	
 end

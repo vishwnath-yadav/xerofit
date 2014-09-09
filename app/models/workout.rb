@@ -97,6 +97,16 @@ class Workout < ActiveRecord::Base
 			user = User.where(:role=> "admin").pluck(:email)
 			Emailer.status_mail_to_admin(self, user).deliver
 		end 
+		if old_status != new_status
+			self.histroy_create()
+		end
+	end
+
+	def histroy_create
+		@histroy = Histroy.new
+	  	@histroy.workout_id = self.id 
+	  	@histroy.status = self.status
+	  	@histroy.save 
 	end
 
 	private

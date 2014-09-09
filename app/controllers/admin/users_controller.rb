@@ -77,6 +77,15 @@ class Admin::UsersController < Admin::AdminController
 		redirect_to :back
 	end
 
+	def user_trash_filter
+		@sort_array = User::USER_TRASH_TYPE
+		sort = params[:sorted_by]
+		@users = User.by_email(params[:email]).by_role(params[:role]).where(enabled: false).order("#{sort} DESC")
+		respond_to do |format|
+			format.js
+		end
+	end
+
 	private
 
 	def permitted_user

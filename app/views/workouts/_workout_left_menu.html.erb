@@ -1,6 +1,5 @@
 <% moves.each do |move|%>
   <% if move.has_full_detail %>
-    <%= move.has_full_detail %>
     <div class="white_list"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=move.id%>">
   <%else%>
     <div class="white_list gray_bg">

@@ -1,0 +1,32 @@
+<%= render "common_templates/admin/sort_select"%>
+<div class="col-md-9 search_user">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>ID</th>
+        <th>User Email</th>
+        <th>User Role</th>
+        <th>Date Trashed</th>
+        <th>Actions</th>
+      </tr>
+      <% if @users.present? %>
+        <% @users.each do |move| %>
+          <tr>
+            <td><%=move.id%></td>
+            <td><%=move.email %></td>
+            <td><%=move.role %></td>
+            <td><%=move.updated_at%></td>
+            <td>
+              <%=link_to "Restore", "javascript:void(0)", class: "admin_trash_user", "data-params" => "user_#{move.id}" %> | 
+              <%= link_to "Delete", admin_user_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr><td colspan='5'> No Data Found...</td></tr>
+      <% end %>
+    </table>
+</div>
+<div class="col-md-3">
+  <%=  render "admin/users/admin_user_trash_filter"%>
+</div>
+

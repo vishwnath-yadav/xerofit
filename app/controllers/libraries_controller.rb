@@ -45,6 +45,7 @@ class LibrariesController < ApplicationController
 	  if @move.save
 	  	video.move = @move
 	  	video.save
+	  	@move.histroy_create()
 	  	if current_user.admin?
     		redirect_to libraries_path(user: @user.token), :notice => "Thank you for uploading the video."
     	else

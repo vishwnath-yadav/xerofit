@@ -53,4 +53,20 @@ $(document).ready(function(){
       $('.trash_list').html(data);
     });
   });
+
+  $(document).on('click','.admin_trash_move',function(){
+    var val = $(this).attr('data-params').split("_");
+    url = '/admin/moves/restore';
+    $.get(url, {id: val[1], type: val[0]}, function (data) {
+      $('.trash_list').html(data);
+    });
+  })
+
+  $(document).on('click','.admin_trash_user',function(){
+    var val = $(this).attr('data-params').split("_");
+    url = '/admin/moves/restore';
+    $.get(url, {id: val[1], data_param: val[0]}, function (data) {
+      $('.trash_list').html(data);
+    });
+  })
 })

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   ROLESFORADMIN = %w[trainer normaluser]
 
   USER_TYPE = [["Date Registered","created_at"],["ID","id"],["Email","email"],["First Name","first_name"],["Last Name","last_name"]]
+  USER_TRASH_TYPE = [["Date Trashed","updated_at"],["ID","id"],["Email","email"],["User Role","role"]]
 
   validates :role, presence: true
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']

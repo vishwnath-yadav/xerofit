@@ -27,6 +27,7 @@
 .fancybox-overlay-fixed .fancybox-outer, .fancybox-overlay-fixed .fancybox-inner{
 	height: 600px !important;
 }
+
 .fancybox-overlay-fixed .fancybox-skin{
 	height: 600px !important;
 }
@@ -34,4 +35,9 @@
 #admin_change_status{
 	height: 30px;
 	border-radius: 5px;
+}
+
+.active a{
+text-decoration: none;
+background-color: #eee;
 }

@@ -20,10 +20,8 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_user
-      logger.debug("dfsdfsdf")
       token = params[:user]
       if User.where(:token => token).last.present?
-        logger.debug("user found")
         @user = User.where(token: token).first
       else
         @user = current_user
