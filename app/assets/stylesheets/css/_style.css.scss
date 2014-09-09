@@ -460,13 +460,7 @@ p {
 	width:100%;
 	float:left;
 }
-.workout_col_left{
-	width:25%;
-	float:left;
 
-	overflow-y: scroll;
-	background: #f2f2f2;
-}
 .search_col{
 	background:#f9f9f9;
 	width:100%;
@@ -474,71 +468,9 @@ p {
 	padding:5px 20px;
 	border-bottom:1px solid #e1e3e5;
 }
-//.search_btn{ float:left; border:0; cursor:pointer; background:url(/assets/search_icon.jpg) no-repeat left 0px; width:22px; height:22px;}
-.search_btn:hover{opacity:.7}
-.search_icon{
-	background:none;
-	outline:none;
-	font-size:14px;
-	color:#c2c7ce;
-	float:left;
-	border:0px;
-	font-family: 'gotham-bookgotham-book';
-	padding:2px 5px 2px 5px;
-}
-.fitler_col{
-	width:100%;
-	float:left;
-	padding:10px 15px;
-	background:#f2f2f2;
-}
-.filter_icon{
-	background:url(/assets/down_icon.jpg) no-repeat right 3px;
-	padding-right:20px;
-	font-size:11px;
-	color:#7e8082;
-	font-family: 'gotham_extralightregular';
-	float:right;
-	margin-bottom:20px;
-	opacity: .6;
-}
-.filter_icon.asc{
-	background:url(/assets/up-icon.jpg) no-repeat right 3px;
-}
-.filter_icon a{color:#7e8082; text-decoration:none;}
-.filter_icon a:hover{color:#000;}
-.white_list{
-	width:100%;
-	float:left;
-	background:#fff;
-	padding:8px;
-	margin-bottom:9px;
-	cursor: pointer;
-}
-.white_list_left{
-	width:90%;
-	float:left;
-}
-.white_list_left h6{
-	font-size:11px;
-	color:#000;
-	font-family: 'gotham-bookgotham-book';
-	margin-bottom:5px;
-}
-.white_list_left h6 a{ color:#000; text-decoration:none;}
-.white_list_left h6 a:hover{ color:#cecccf; text-decoration:none;}
-.white_list_left p{
-	font-size:9px;
-	color:#cecccf;
-	font-family: 'gotham-bookgotham-book';
-	font-style:normal;
-	margin:0px;
-}
-.dots_img{
-	width:6px;
-	float:right;
-	margin-top:3px;
-}
+
+
+
 .workout_col_mid{
 	width:50%;
 	float:left;
@@ -716,8 +648,8 @@ height: 20px;
 }
 
 .workout_col_rght {
-width: 25%;
-float: left;
+width: 23%;
+float: right;
 overflow-y: scroll;
 
 }
@@ -1660,10 +1592,6 @@ min-width: 500px !important;}
 
 .modal_load{
 	margin: 14% 0 13% 44%;
-}
-
-.gray_bg{
-    background: gainsboro;
 }
 
 .wrk_success{

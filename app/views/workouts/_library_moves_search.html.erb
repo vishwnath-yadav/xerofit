@@ -1,0 +1,23 @@
+<span class="library_list">
+    <% @moves.each do |move|%>
+        <% if move.has_full_detail %>
+            <%#= move.has_full_detail %>
+            <div class="single-move"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=move.id%>">
+        <% else %>
+            <div class="single-move disabled">
+        <% end %>
+                <div class="move-thumb">
+                    <% if move.library_video.present? && move.library_video.image.present? %>
+                        <img src="<%= move.library_video.image %>" alt="<%=move.title%>">
+                    <% else %>
+                        <img src="/assets/ex_2.png">
+                    <% end %>
+                </div>
+
+                <div class="move-title">
+                    <h6><%= truncate(move.title, :length => 28, :seperator => ' ...') %></h6>
+                    <p><%= move.category %></p>
+                </div>
+            </div>
+    <% end %>
+</span>

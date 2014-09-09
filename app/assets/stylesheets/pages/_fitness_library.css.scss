@@ -79,7 +79,8 @@ input.search_bar {
         border: 1px solid $xero-blue;
     }
 }
-.search_bar_icon {
+.search_bar_icon,
+.search-bar-icon {
     position: absolute;
     left: 50%;
     top: 6px;
@@ -98,7 +99,8 @@ input.search_bar {
 
     }
 }
-#lib_name_for_search {
+#lib_name_for_search,
+#search-move-titles {
     border: 0;
     background: none;
     padding: 0;
@@ -109,7 +111,8 @@ input.search_bar {
     }
 }
 
-.search_bar_clear:before {
+.search_bar_clear:before,
+.search-bar-clear:before {
     content: '';
     background: url(/assets/search_bar_clear_icon.png);
     background-repeat: no-repeat;
