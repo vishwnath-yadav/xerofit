@@ -72,10 +72,8 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def download_video
-		# fullworkout = FullWorkout.find(params[:id])
-		data = open(params[:url])
-  		send_data data.read, :type => data.content_type, :x_sendfile => true, disposition: 'attachment', stream: 'true', :filename => "Video_file"
-		# render nothing: true
+		fullworkout = FullWorkout.find(params[:id])
+		redirect_to fullworkout.video_url
 	end
 
 	def trash_page

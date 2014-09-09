@@ -58,7 +58,6 @@ Xerofit::Application.routes.draw do
         get :status_approve
         post :uncut_workout_mail
         get :download_video
-        get :test
         get :trash
         get :restore
         post :admin_approve_workout_mail
