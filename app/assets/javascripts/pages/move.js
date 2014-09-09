@@ -135,9 +135,6 @@ $(document).ready(function(){
     $('#search_grid_list_form').submit();
   });
 
-  $(document).on("click","#lib_name_for_search",function(){
-    $('#search_grid_list_form').submit();
-  });
 
   $(document).on('dblclick','.dblclk_add ul li.for_on_changed',function(){
     var value = $(this).text();
