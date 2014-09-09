@@ -27,13 +27,4 @@ class FullWorkout < ActiveRecord::Base
 		"%0.3f" % (self.video.size.to_f/1024/1024) 
 	end
 
-	def download_url
-	  s3 = AWS::S3.new.buckets[ 'xerofit-development' ] # This can be done elsewhere as well.
-
-	  s3.url_for( :read,
-	    expires_in: 60.minutes, 
-	    use_ssl: true, 
-	    response_content_disposition: "attachment; filename='download'" ).to_s
-	end
-
 end

@@ -39,12 +39,12 @@ $(document).ready(function(){
   });
 
  
-  $(document).on('click','.download_video',function(){
-    var data_url = $(this).attr('data-url');
-    url = '/admin/moves/download_video';
-    $.get(url, {url: data_url}, function (data) {
-    });
-  });
+  // $(document).on('click','.download_video',function(){
+  //   var data_url = $(this).attr('data-url');
+  //   url = '/admin/moves/download_video';
+  //   $.get(url, {url: data_url}, function (data) {
+  //   });
+  // });
 
   $(document).on('click','.user_trash,.uncut_workout,.trash_move',function(){
     var text = $(this).text();
