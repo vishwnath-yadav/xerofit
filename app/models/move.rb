@@ -167,10 +167,10 @@ class Move < ActiveRecord::Base
 	end
 
 	def history_create
-		@histroy = History.new
-	  	@histroy.move_id = self.id 
-	  	@histroy.status = self.status
-	  	@histroy.save 
+		@history = History.new
+	  	@history.move_id = self.id 
+	  	@history.status = self.status
+	  	@history.save 
 	end
 
 end

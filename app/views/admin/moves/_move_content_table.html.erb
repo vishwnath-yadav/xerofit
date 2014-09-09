@@ -18,7 +18,7 @@
         </td>
         <td><%=move.user.email %></td>
         <td>
-            <%=link_to "View", edit_path(move, user: move.user.token)%> | <%=link_to "Histroy", histroy_page_admin_moves_path(id: move, type: move.move_type)%> |
+            <%=link_to "View", edit_path(move, user: move.user.token)%> | <%=link_to "History", history_page_admin_moves_path(id: move, type: move.move_type)%> |
             <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
         </td>
       </tr>

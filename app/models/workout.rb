@@ -103,10 +103,10 @@ class Workout < ActiveRecord::Base
 	end
 
 	def history_create
-		@histroy = History.new
-	  	@histroy.workout_id = self.id 
-	  	@histroy.status = self.status
-	  	@histroy.save 
+		@history = History.new
+	  	@history.workout_id = self.id
+	  	@history.status = self.status
+	  	@history.save
 	end
 
 	private

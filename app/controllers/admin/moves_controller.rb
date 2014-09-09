@@ -176,13 +176,13 @@ class Admin::MovesController < Admin::AdminController
 		@moves = Move.get_library_list(parm,current_user,'')
 	end
 
-	def histroy_page
+	def history_page
 		if params[:type] == Move::TYPE[1]
 			@move = Workout.find(params[:id])
 		else
 			@move = Move.find(params[:id])
 		end
-		@histroy = @move.histories
+		@history = @move.histories
 	end
 
 	def uncut_trash_filter

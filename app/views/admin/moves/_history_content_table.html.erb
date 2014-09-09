@@ -4,8 +4,8 @@
     <th>Status</th>
     <th>Date & Time</th>
   </tr>
-  <% if @histroy.present? %>
-    <% @histroy.each_with_index do |hist, index| %>
+  <% if @history.present? %>
+    <% @history.each_with_index do |hist, index| %>
       <tr>
         <td><%= index+1%></td>
         <td><%=hist.status%></td>
@@ -13,6 +13,6 @@
       </tr>
     <% end %>
   <% else %>
-    <tr><td colspan="3">No histroy...</td></tr>
+    <tr><td colspan="3">No history...</td></tr>
   <% end %>
 </table>
