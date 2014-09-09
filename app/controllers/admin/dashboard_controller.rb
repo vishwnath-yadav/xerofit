@@ -26,20 +26,20 @@ class Admin::DashboardController < Admin::AdminController
 		 video_size = 0
 		 video_encode = 0
 		 move = Move.all
-		 move.each do |mov|
-		 	video_length = video_length + mov.library_video.panda_video.encodings.map(&:duration).sum()
-	        video_size = video_size + mov.library_video.video.size 
-		    video_encode = video_encode + mov.library_video.panda_video.encodings.map(&:encoding_time).sum()
-		 end
-		 length_sec = video_length/1000
-		 size_mb =  video_size.to_f/1024/1024
-		 encode_time = video_encode/4
-		 avg_video_length = "%0.3f" % (length_sec.to_f/move_counts)
-		 avg_video_size = "%0.3f" % (size_mb.to_f/move_counts)
-		 avg_encode_time = "%0.3f" % (encode_time/move_counts)
-		 @statics << avg_video_length
-		 @statics << avg_video_size
-		 @statics << avg_encode_time
+		 # move.each do |mov|
+		 # 	video_length = video_length + mov.library_video.panda_video.encodings.map(&:duration).sum()
+	  #       video_size = video_size + mov.library_video.video.size 
+		 #    video_encode = video_encode + mov.library_video.panda_video.encodings.map(&:encoding_time).sum()
+		 # end
+		 # length_sec = video_length/1000
+		 # size_mb =  video_size.to_f/1024/1024
+		 # encode_time = video_encode/4
+		 # avg_video_length = "%0.3f" % (length_sec.to_f/move_counts)
+		 # avg_video_size = "%0.3f" % (size_mb.to_f/move_counts)
+		 # avg_encode_time = "%0.3f" % (encode_time/move_counts)
+		 @statics << 0
+		 @statics << 0
+		 @statics << 0
 		 @statics << 0
 	end
 end
