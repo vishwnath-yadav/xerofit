@@ -1,0 +1,14 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Status</th>
+    <th>Date & Time</th>
+  </tr>
+    <% @histroy.each do |hist| %>
+    <tr>
+      <td><%=hist.id%></td>
+      <td><%=hist.status%></td>
+      <td><%=hist.updated_at%></td>
+    </tr>
+  <% end %>
+</table>

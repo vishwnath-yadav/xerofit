@@ -23,7 +23,7 @@ class Admin::MovesController < Admin::AdminController
 
 	def uncut_workout
 		@sort_array = Move::ADMIN_UNCUT_FILTER
-		parm = params.merge({type: Move::TYPE[0]}) 
+		# parm = params.merge({type: Move::TYPE[0]}) 
 		# @moves = Move.get_library_list(parm,current_user,'')
 		@moves = FullWorkout.where(mark_complete: false, enable: true).order('updated_at desc')
 	end
@@ -34,12 +34,8 @@ class Admin::MovesController < Admin::AdminController
 		@moves = Move.get_library_list(parm,current_user,'')
 	end
 
-	def admin_filter
-		if params[:action_name] == "uncut_workout"
-			@moves = FullWorkout.get_workout_list(params,current_user)
-		else
-			@moves = Move.get_library_list(params,current_user,'')
-		end
+	def move_filter
+		@moves = Move.get_library_list(params,current_user,'')
 	end
 
 	def mark_complete
@@ -50,15 +46,20 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def status_approve
+		hist = Histroy.new()
 		if params[:type] == Move::TYPE[0]
 			move = Move.find_by_id(params[:id])
+			hist.move_id = move.id
 		else
 			move = Workout.find_by_id(params[:id])
+			hist.workout_id = move.id
 		end
+		hist.status = params[:status]
 		move.status = params[:status]
 		if move.status == Move::STATUS[2]
 			move.date_submitted_for_approval = move.updated_at
-		end		
+		end
+		hist.save
 		move.save
 		render nothing: true
 	end
@@ -90,8 +91,10 @@ class Admin::MovesController < Admin::AdminController
 	def trash
 		if params[:type] == Move::TYPE[0]
 			@move = Move.find(params[:id])
-		else
+		elsif params[:type] == Move::TYPE[1]
 			@move = Workout.find(params[:id])
+		else
+			@move = FullWorkout.find(params[:id])
 		end
 		@move.enable = false
 		@move.save
@@ -99,13 +102,23 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def restore
-		if params[:type] == Move::TYPE[0]
-			@move = Move.find(params[:id])
+		if params[:data_param] == "user"
+			@user = User.find(params[:id])
+			@user.enabled = true
+			@user.save
+		elsif params[:data_param] == "full_workout"
+			@fullworkout = FullWorkout.find(params[:id])
+			@fullworkout.enable = true
+			@fullworkout.save
 		else
-			@move = Workout.find(params[:id])
+			if params[:type] == Move::TYPE[0]
+				@move = Move.find(params[:id])
+			else
+				@move = Workout.find(params[:id])
+			end
+			@move.enable = true
+			@move.save
 		end
-		@move.enable = true
-		@move.save
 		redirect_to :back
 	end
 
@@ -122,16 +135,52 @@ class Admin::MovesController < Admin::AdminController
 
 	def admin_trash
 		if params[:text] == "User Trash"
-			user = User.where(enabled: false)
-			render partial: "common_templates/admin/user_trash_content_table", locals: {users: user}
+			sort_array = User::USER_TYPE
+			user = User.where(enabled: false).order('updated_at desc')
+			render partial: "admin/users/user_list", locals: {users: user, :@sort_array => sort_array}
 		elsif params[:text] == "Uncut Workout Trash"
-			move = FullWorkout.where(enable: true)
-			render partial: "common_templates/admin/uncut_workout_content_table", locals: {moves: move}
+			@sort_array = Move::ADMIN_UNCUT_FILTER
+			@moves = FullWorkout.where(enable: false).order('updated_at desc')
+			render partial: "admin/moves/uncut_list"
 		else
+			@sort_array = Move::ADMIN_MOVE_FILTER
 			parm = params.merge({enable: true}) 
 			moves = Move.get_library_list(parm,current_user,'')
-			render partial: "common_templates/admin/trash_content_table", locals: {moves: move}
+			render partial: "admin/moves/trash_list", locals: {moves: moves}
 		end
 	end
 
+	def destroy_fullworkout
+		full_workout = FullWorkout.find(params[:id])
+		full_workout.destroy
+		redirect_to :back
+	end
+	def uncut_filter
+		@moves = FullWorkout.get_workout_list(params,current_user)
+	end
+
+	def approve_filter
+		parm = params.merge({status: Move::STATUS[2], sorted_by: "date_submitted_for_approval"}) 
+		@moves = Move.get_library_list(parm,current_user,'')
+	end
+
+	def trash_filter
+		parm = params.merge({enable: true}) 
+		@moves = Move.get_library_list(parm,current_user,'')
+	end
+
+	def histroy_page
+		if params[:type] == Move::TYPE[1]
+			@move = Workout.find(params[:id])
+		else
+			@move = Move.find(params[:id])
+		end
+		@histroy = @move.histroys
+	end
+	# def full_workout_trash
+	# 	full_workout = FullWorkout.find(params[:id])
+	# 	full_workout.enable = false
+	# 	full_workout.save
+	# 	redirect_to :back
+	# end
 end

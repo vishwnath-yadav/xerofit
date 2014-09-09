@@ -5,6 +5,7 @@ class Workout < ActiveRecord::Base
 	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
 	has_many :blocks
+	has_many :histroys
 	has_one :statastic
 	belongs_to :user
 	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]

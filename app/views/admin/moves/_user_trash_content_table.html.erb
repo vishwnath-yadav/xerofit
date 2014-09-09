@@ -12,13 +12,13 @@
             <td><%=move.email %></td>
             <td><%=move.updated_at%></td>
             <td>
-              <%=link_to "Restore",  restore_admin_moves_path(id: move)%> | 
-              <%= link_to "Delete", admin_workout_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <%=link_to "Restore",  restore_admin_moves_path(id: move.id, data_param: "user")%> | 
+              <%= link_to "Delete", admin_user_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
             </td>
           </tr>
+        <% end %>
       <% else %>
         <tr><td colspan='4'> No Data Found...</td></tr>
-      <% end %>
       <% end %>
     </table>
 

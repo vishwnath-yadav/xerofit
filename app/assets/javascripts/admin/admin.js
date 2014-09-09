@@ -50,7 +50,7 @@ $(document).ready(function(){
     var text = $(this).text();
     url = '/admin/moves/admin_trash';
     $.get(url, {text: text}, function (data) {
-      $('.search_user').html(data);
+      $('.trash_list').html(data);
     });
   });
 })
