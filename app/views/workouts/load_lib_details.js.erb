@@ -1,4 +1,4 @@
- $("#move-details-panel").html("<%= escape_javascript(render(:partial => 'move_details_panel')) %>");
+ $("#move-details-panel").html("<%= escape_javascript(render(:partial => 'move_details_form')) %>");
  <%if !params[:lib_detail_id].present?%>
 	 $("#block_<%=params[:block_id]%>_<%=params[:lib_id]%>").val("<%=@lib_detail.id%>");
 	 $("#<%=params[:block_id]%>_<%=params[:lib_id]%>").attr('data-libdetail', "<%=@lib_detail.id%>");
