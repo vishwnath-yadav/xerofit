@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
 	before_filter :authenticate_user!
-
+    before_action :fetch_user, only: [:trainer]
+    
     def index
     end
 

@@ -1,6 +1,6 @@
 <p>Hello Admin</p>
 
-<p><%= @video.user.fullname.humanize%> has uploaded a full workout of name: <%= @video.video_title %>.</p>
+<p><%= @video.user.fullname.humanize%> has uploaded a full workout of name: <%= link_to @video.video_title, admin_uncut_workout_url %>.</p>
 
 <p>Thanks!</p><br />
    Team Xerofit
