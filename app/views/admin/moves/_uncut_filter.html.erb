@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <th>Mark</th>
-          <td><%= select_tag :mark_complete, options_for_select([["Marked", true ],["Unmarked", false]]), prompt: "Select Mark",class: "form-control input-wid usr_flter" %></td>
+          <td><%= select_tag :mark_complete, options_for_select([["Marked", true ],["Unmarked", false], ["Show all", '']]), prompt: "Select Mark ", class: "form-control input-wid usr_flter" %></td>
         </tr>
       <tr>
         <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
