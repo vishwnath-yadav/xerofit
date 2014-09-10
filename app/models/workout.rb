@@ -74,7 +74,7 @@ class Workout < ActiveRecord::Base
 	end
 
 	def self.workout_count
-		self.all.count
+		self.count
 	end
 
 	def cropping?
@@ -103,10 +103,34 @@ class Workout < ActiveRecord::Base
 	end
 
 	def history_create
-		@histroy = History.new
-	  	@histroy.workout_id = self.id 
-	  	@histroy.status = self.status
-	  	@histroy.save 
+		@history = History.new
+	  	@history.workout_id = self.id
+	  	@history.status = self.status
+	  	@history.save
+	end
+
+	def self.avg_workout_counts
+		(self.workout_count/User.trainer_count).to_i
+	end
+
+	def self.approve_status_count
+		self.where(status: Move::STATUS[0]).count
+	end
+
+	def self.attention_status_count
+		self.where(status: Move::STATUS[1]).count
+	end
+
+	def self.waiting_status_count
+		self.where(status: Move::STATUS[2]).count
+	end
+
+	def self.ready_status_count
+		self.where(status: Move::STATUS[3]).count
+	end
+
+	def self.saved_status_count
+		self.where(status: Move::STATUS[4]).count
 	end
 
 	private

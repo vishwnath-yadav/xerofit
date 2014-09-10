@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   scope :by_email, lambda { |email| where('email ilike ?', email+"%") unless email.blank? }
   scope :by_role, lambda { |role| where(role: role) unless role.blank? }
-  scope :by_name, lambda { |name| where('first_name LIKE ? OR last_name LIKE ?', "%#{name}%", "%#{name}%") unless name.blank? }
+  scope :by_name, lambda { |name| where('lower(first_name) LIKE lower(?) OR lower(last_name) LIKE lower(?)', "%#{name}%", "%#{name}%") unless name.blank? }
   User::ROLES.each do |role|
     # define methods such as student?, admin? etc.
     define_method "#{role}?" do
@@ -106,15 +106,15 @@ class User < ActiveRecord::Base
   end
   
   def self.admin_count
-    self.all.where(role: 'admin').count
+    self.where(role: 'admin').count
   end
 
   def self.trainer_count
-    self.all.where(role: 'trainer').count
+    self.where(role: 'trainer').count
   end
 
   def self.user_count
-    self.all.where(role: 'normaluser').count
+    self.where(role: 'normaluser').count
   end
 
   def cropping?

@@ -1,5 +1,5 @@
 <p>Hello Admin</p>
-<p><%= @object.user.fullname.humanize%> has requested for approval of <%= @object.move_type.humanize%>.
+<p><%= @object.user.fullname.humanize%> has requested for approval of <%= @object.move_type.humanize%> name: <%= link_to @object.title, admin_approval_page_url %>
 </p>
 
 <p>Thanks!</p><br />

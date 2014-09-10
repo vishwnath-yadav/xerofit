@@ -40,3 +40,148 @@
 .details_page_header.workout-builder {
     border-bottom: 1px solid #D8D8D8;
 }
+
+
+
+
+
+.fitler_col {
+    width: 100%;
+
+    //float: left;
+}
+
+.filter_icon{
+    background:url(/assets/down_icon.jpg) no-repeat right 3px;
+    padding-right:20px;
+    font-size:11px;
+    color:#7e8082;
+    font-family: 'gotham_extralightregular';
+    float:right;
+    margin-bottom:20px;
+    opacity: .6;
+}
+.filter_icon.asc{
+    background:url(/assets/up-icon.jpg) no-repeat right 3px;
+}
+.filter_icon a{color:#7e8082; text-decoration:none;}
+.filter_icon a:hover{color:#000;}
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Fitness Library panel with list of Single Moves
+// -------------------------------------------------------------------------- //
+
+
+.fitness-library-panel {
+    @include clearfix();
+    position: relative;
+    width: 380px;
+    float: left;
+    overflow-y: scroll;
+    padding: 28px 40px;
+
+
+    .library-moves {
+        @include clearfix();
+    }
+
+    // Drag & Drop Single Moves from User Library
+    .single-move {
+        width: 100%;
+        float: left;
+        background: #fff;
+        padding: 14px 14px 13px;
+        border-bottom: 1px solid #E5E5E5; // 90% Gray
+        cursor: move;
+        @include clearfix();
+        @include user-select(none);
+
+        .move-thumb {
+            float: left;
+            margin-right: 14px;
+        }
+
+        img {
+            width: 70px;
+            height: 42px;
+        }
+
+        .move-title {
+            float: left;
+            height: 42px;
+            padding: 6px 0px;
+
+            // Move Title
+            h6 {
+                font-size: 12px;
+                line-height: 14px;
+                color: $silver16;
+                @include gotham400();
+                margin-bottom: 4px;
+            }
+
+            // Move Category
+            p {
+                font-size: 9px;
+                line-height: 12px;
+                @include gotham300();
+                color: $silver51;
+                margin: 0px;
+            }
+        }
+    }
+
+    .single-move.disabled {
+        background: #F9F9F9;
+        cursor: not-allowed;
+    }
+}
+
+.builder-header {
+    float: left;
+    width: 100%;
+    position: relative;
+    @include clearfix();
+
+    > h3 {
+        float: left;
+        font-size: 14px;
+        line-height: 16px;
+        @include gotham500();
+        margin-bottom: 12px;
+
+        &:after {
+            display: block;
+            float: right;
+            margin-left: 14px;
+            height: 16px;
+            width: 16px;
+            content: '';
+            background: url('/assets/icons/question_mark.png');
+            background-repeat: no-repeat;
+            @include background-size(contain);
+        }
+    }
+}
+
+
+.builder-search-bar {
+    float: left;
+    width: 100%;
+    position: relative;
+    @include clearfix();
+    margin-bottom: 14px;
+}
+
+#search-move-titles {
+    height: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+

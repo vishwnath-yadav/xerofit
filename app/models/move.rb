@@ -33,7 +33,7 @@ class Move < ActiveRecord::Base
 	ADMIN_UNCUT_FILTER = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 	ADMIN_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Title","title"],["Email","email"],["Content Type","move_type"]]
-	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','number of moves by Approved and Active','number of moves by Needs Attention','number of moves by Waiting for Approval','number of moves by Ready to Submit','number of moves by Saved as Draft','Number of total workouts','average number of workouts per trainer','average video length in seconds','average video size in megabytes','How long it takes to encode a video on panda','How many videos in the encoding queue on panda']
+	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','number of moves by Approved and Active','number of moves by Needs Attention','number of moves by Waiting for Approval','number of moves by Ready to Submit','number of moves by Saved as Draft','Number of total workouts','average number of workouts per trainer','number of workouts by Approved and Active','number of workouts by Needs Attention','number of workouts by Waiting for Approval','number of workouts by Ready to Submit','number of workouts by Saved as Draft','average video length in seconds','average video size in megabytes','How long it takes to encode a video on panda','How many videos in the encoding queue on panda']
 	ADMIN_UNCUT_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Email","email"]]
 	TYPE = ["Single Move", "Workouts"]	
 
@@ -88,7 +88,6 @@ class Move < ActiveRecord::Base
 		else
 			list = order == "ASC" && list.size > 0 ? list.sort_by{|x| x["#{sort}".to_sym].downcase} : list.sort_by{|x| x["#{sort}".to_sym].downcase}.reverse
 		end
-		# binding.pry
 		return list
 	end
 
@@ -110,7 +109,7 @@ class Move < ActiveRecord::Base
 	end
 
 	def self.move_count
-		self.all.count
+		self.count
 	end
 
 	def get_thumbnail
@@ -167,10 +166,63 @@ class Move < ActiveRecord::Base
 	end
 
 	def history_create
-		@histroy = History.new
-	  	@histroy.move_id = self.id 
-	  	@histroy.status = self.status
-	  	@histroy.save 
+		@history = History.new
+	  	@history.move_id = self.id 
+	  	@history.status = self.status
+	  	@history.save 
+	end
+
+	def self.average_moves
+		(self.move_count/User.trainer_count).to_i
+	end
+
+	def self.approve_status_count
+		self.where(status: Move::STATUS[0]).count
+	end
+
+	def self.attention_status_count
+		self.where(status: Move::STATUS[1]).count
+	end
+
+	def self.waiting_status_count
+		self.where(status: Move::STATUS[2]).count
+	end
+
+	def self.ready_status_count
+		self.where(status: Move::STATUS[3]).count
+	end
+
+	def self.saved_status_count
+		self.where(status: Move::STATUS[4]).count
+	end
+
+	def self.video_process_count
+		arr=[]
+		video_length = 0
+		video_size = 0
+		video_encode = 0
+		avg_video_length = 0
+		avg_video_size = 0
+		avg_encode_time = 0
+		
+		move = self.all
+		if move.present?
+			 move.each do |mov|
+			 	if mov.library_video.present? && mov.library_video.panda_video.present? && mov.library_video.panda_video.encodings.present?
+				 	if mov.library_video.panda_video.encodings[0].status == "success" && mov.library_video.panda_video.encodings[1].status == "success" && mov.library_video.panda_video.encodings[2].status == "success" && mov.library_video.panda_video.encodings[3].status == "success"
+				 		video_length = video_length + mov.library_video.panda_video.encodings.map(&:duration).sum()
+			        	video_size = video_size + mov.library_video.video.size
+				    	video_encode = video_encode + mov.library_video.panda_video.encodings.map(&:encoding_time).sum()
+				    end
+			 	end
+			 end
+			 avg_video_length = "%0.3f" % ((video_length/1000).to_f/Move.move_count)
+			 avg_video_size = "%0.3f" % ((video_size.to_f/1024/1024).to_f/Move.move_count)
+			 avg_encode_time = "%0.3f" % ((video_encode/4)/Move.move_count)
+		end
+		 arr << avg_video_length
+		 arr << avg_video_size
+		 arr << avg_encode_time
 	end
 
 end

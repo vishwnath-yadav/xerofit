@@ -2,6 +2,7 @@ class WorkoutsController < ApplicationController
 	before_filter :authenticate_user!
 	before_action :fetch_user
 	autocomplete :move, :title, :full => true
+	layout :resolve_layout
 
 	def new
 		@workout = Workout.new()

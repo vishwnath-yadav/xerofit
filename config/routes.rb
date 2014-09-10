@@ -63,7 +63,7 @@ Xerofit::Application.routes.draw do
         post :admin_approve_workout_mail
         get :admin_trash
         delete :destroy_fullworkout
-        get :histroy_page
+        get :history_page
         # get :full_workout_trash
       end
     end
