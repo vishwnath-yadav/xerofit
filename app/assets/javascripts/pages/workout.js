@@ -184,7 +184,9 @@ $(document).ready(function() {
     }
   });
 
-
+  $(document).on('click','.close-panel', function(){
+      $("#move-details-panel").css('display', 'none');
+  });
 
   $(document).on("click",".met_tab_desc ul li", function(e){
     if($(e.target).hasClass("rm")){
