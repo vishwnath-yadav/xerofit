@@ -1,43 +1,30 @@
 <%= render "workout_head" %>
 <div class="middle_wrapper autoheight">
-	<div class="workout_col">
-    <%= render "library_moves_panel" %>
-      <div class="workout_col_mid autoheight">
-      	<div class="col_1" id="workout_auto_form">
-          <%= render "workout_auto_form" %>
+    <div class="workout_col">
+        <div class="builder_panels">
+            <%= render "library_moves_panel" %>
         </div>
-        <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-          <div class="add_photo drag_lib">
-            <%= hidden_field_tag :workout_id, @workout.id %>
-            <% @workout.blocks.each do |block| %>
-              <%= render "sub_blocks_edit", block: block %>
-            <%end%>
-            <%= render "sub_blocks", block: @block %>
-          </div>
-          <div class="hidden_field_workout">
-          </div>
-        <%end%>
-      </div>
-      <%= render "workout_right_menu" %>
-  </div>
+            <div class="workout_col_mid autoheight">
+                <div class="col_1" id="workout_auto_form">
+                    <%= render "workout_auto_form" %>
+                </div>
+                <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+                    <div class="add_photo drag_lib">
+                        <%= hidden_field_tag :workout_id, @workout.id %>
+                        <% @workout.blocks.each do |block| %>
+                            <%= render "sub_blocks_edit", block: block %>
+                        <%end%>
+                        <%= render "sub_blocks", block: @block %>
+                    </div>
+                    <div class="hidden_field_workout">
+                    </div>
+                <%end%>
+            </div>
+            <%#= render "move_details_panel" %>
+            <%= render "workout_right_menu" %>
+    </div>
 </div>
-<%=render "block_type_modal"%>
+<%= render "block_type_modal"%>
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    var setElementHeight = function () {
-      var height = $(window).height();
-      var topbarHeight = $('.topbar').outerHeight();
-      var controlBarHeight = $('.control_bar').outerHeight();
-      var buttonHeaderHeight = $('.details_page_header.workout-builder').outerHeight();
-      var offsetHeight = height - topbarHeight - controlBarHeight;
-
-      $('.autoheight').css({'height': (offsetHeight +buttonHeaderHeight)+'px'})
-    };
-
-    $(window).on('resize', function () {
-      setElementHeight();
-    }).resize();
-  });
-</script>
+<%= render "builderscripts/calculate_builder_dimension"%>

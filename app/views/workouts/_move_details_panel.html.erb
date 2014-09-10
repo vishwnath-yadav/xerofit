@@ -1,3 +1,4 @@
+<button class="close-panel"></button>
 <div class="move_detail">Move Details</div>
 <div style="color:red;">
     <% if @lib_detail.errors.full_messages.any? %>
@@ -18,20 +19,20 @@
 <%dist_disabled = is_distance(@lib_detail)%>
 <%weight_disabled = is_weight(@lib_detail)%>
 <div class="gray_1">
-	<div class="check_col">
+    <div class="check_col">
         <%=ld.input :repetitions, input_html: {class: "lib_detail_chk"} %>
     </div>
-    <div class="check_desc">
+    <div class="check_desc  FIND ME HERE">
      <div class="fancy_select">
         <%= ld.input :rep_option, collection: MoveDetail::REP_TYPE, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: disabled} %>
     </div>
     <div class="min_max_col">
-    	<%=render "rep_options", disabled: disabled, ld: ld%>
+        <%= render "rep_options", disabled: disabled, ld: ld%>
     </div>
     </div>
 </div>
 <div class="gray_1">
-	<div class="check_col">
+    <div class="check_col">
         <%=ld.input :weight, :input_html => { class: "lib_detail_chk" }%>
     </div>
     <div class="check_desc">
@@ -45,7 +46,7 @@
     
 </div>
 <div class="gray_1">
-	<div class="check_col">
+    <div class="check_col">
         <%=ld.input :distance, label: false, :input_html => { class: "lib_detail_chk" }%>
         <label>Distance</label>
     </div>
@@ -63,13 +64,13 @@
     
 </div>
 <div class="gray_1">
-	<div class="check_col">
+    <div class="check_col">
         <%=ld.input :duration, :input_html => { class: "lib_detail_chk" }%>
     </div>
     <div class="check_desc">
     <div class="min_max_col mt">
-    	<div class="min_col min_col_1 lib_detail_inp" >
-        	<%= ld.input :minute, label: false, input_html: {class: "", min: 1, max: 90, disabled: dur_disabled} %>
+        <div class="min_col min_col_1 lib_detail_inp" >
+            <%= ld.input :minute, label: false, input_html: {class: "", min: 1, max: 90, disabled: dur_disabled} %>
             <label>Minutes</label>
         </div>
         <div class="min_col min_col_1 lib_detail_inp">
@@ -80,25 +81,35 @@
     </div>
 </div>
 <div class="gray_1">
-	<div class="check_col">
+    <div class="check_col">
         <%=ld.input :tempo, :input_html => { class: "lib_detail_chk" }%>
     </div>
     <div class="check_desc">
     <div class="min_max_col mt">
-    	<div class="min_col min_col_1 lib_detail_inp">
-        	<%= ld.input :temp_lower, label: false, input_html: {class: "min_max_select" , min: 0, max: 10, disabled: temp_disabled} %>
+        <div class="min_col min_col_1 lib_detail_inp">
+            <%= ld.input :temp_lower, label: false, input_html: {class: "min_max_select" , min: 0, max: 10, disabled: temp_disabled} %>
             <label>Lower</label>
         </div>
         <div class="min_col min_col_1 lib_detail_inp">
-        	<%= ld.input :temp_pause, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
+            <%= ld.input :temp_pause, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
             <label>Pause</label>
             
         </div>
         <div class="min_col min_col_1 min_m lib_detail_inp">
-        	<%= ld.input :temp_lift, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
+            <%= ld.input :temp_lift, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
             <label>Lift</label>
         </div>
     </div>
     </div>
 </div>
 <% end %>
+
+
+<script type="text/javascript">
+
+  $(document).on('click','.close-panel', function(){
+      $("#move-details-panel").css('display', 'none;');
+  });
+
+</script>
+

@@ -1,5 +1,4 @@
 .content.workout-builder{ padding-bottom: 0; }
-.content.workout-builder .middle_wrapper { padding-bottom: 0; }
 
 .header-scroll {
     background: #fff;
@@ -45,28 +44,35 @@
 
 
 
-.fitler_col {
+
+
+
+
+
+
+
+
+// Setup the 2 Column builder layout
+.builder {
     width: 100%;
-
-    //float: left;
+    position: relative;
+    background: #fff;
+    float: left;
+    padding: 0;
 }
 
-.filter_icon{
-    background:url(/assets/down_icon.jpg) no-repeat right 3px;
-    padding-right:20px;
-    font-size:11px;
-    color:#7e8082;
-    font-family: 'gotham_extralightregular';
-    float:right;
-    margin-bottom:20px;
-    opacity: .6;
-}
-.filter_icon.asc{
-    background:url(/assets/up-icon.jpg) no-repeat right 3px;
-}
-.filter_icon a{color:#7e8082; text-decoration:none;}
-.filter_icon a:hover{color:#000;}
+.builder .column {
+    position: absolute;
+    top: 0;
+    bottom: 0;
 
+    &.split-left { width: 380px; }
+    &.split-right { left: 380px; }
+
+    .column-wrap {
+        overflow-y: scroll;
+    }
+}
 
 
 
@@ -77,13 +83,17 @@
 
 
 .fitness-library-panel {
-    @include clearfix();
     position: relative;
-    width: 380px;
     float: left;
-    overflow-y: scroll;
-    padding: 28px 40px;
+}
 
+.builder-panel {
+    @include clearfix();
+    width: 380px;
+    padding: 28px 40px;
+    overflow-y: scroll;
+    border-right: 1px solid $border-color;
+}
 
     .library-moves {
         @include clearfix();
@@ -139,7 +149,7 @@
         background: #F9F9F9;
         cursor: not-allowed;
     }
-}
+
 
 .builder-header {
     float: left;
@@ -168,7 +178,6 @@
     }
 }
 
-
 .builder-search-bar {
     float: left;
     width: 100%;
@@ -185,3 +194,128 @@
 }
 
 
+
+
+// -------------------------------------------------------------------------- //
+// Move Details panel to edit workout options
+// -------------------------------------------------------------------------- //
+
+
+#move-details-panel {
+    background: #FFF;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    z-index: 3;
+}
+
+.close-panel:before {
+    display: block;
+    float: right;
+    margin-left: 14px;
+    height: 16px;
+    width: 16px;
+    content: '';
+    background: url('/assets/icons/question_mark.png');
+    background-repeat: no-repeat;
+    @include background-size(contain);
+}
+
+
+.workout-editor {
+
+}
+
+
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Previous styles copied over from css/style.css
+// -------------------------------------------------------------------------- //
+
+.fitler_col {
+    width: 100%;
+
+    //float: left;
+}
+
+
+.add_photo{
+    //width:100%;
+    float:left;
+    padding-left:13px;
+
+    img{width:100%; height:auto}
+}
+
+
+.filter_icon{
+    background:url(/assets/down_icon.jpg) no-repeat right 3px;
+    padding-right:20px;
+    font-size:11px;
+    color:#7e8082;
+    font-family: 'gotham_extralightregular';
+    float:right;
+    margin-bottom:20px;
+    opacity: .6;
+}
+.filter_icon.asc{
+    background:url(/assets/up-icon.jpg) no-repeat right 3px;
+}
+.filter_icon a{color:#7e8082; text-decoration:none;}
+.filter_icon a:hover{color:#000;}
+
+
+
+.col_1 {
+    width:100%;
+    float:left;
+    border-bottom:1px solid #e1e3e5;
+    padding-bottom:20px;
+    margin-bottom:35px;
+
+    h2 {
+        font-size:28px;
+        color:#919295;
+        font-family: 'gotham_extralightregular';
+        margin-bottom:10px;
+    }
+
+    p {
+        font-size:12px;
+        color:#151f25;
+        font-family: 'gotham_extralightregular';
+        font-style:normal;
+        font-weight:bold;
+    }
+}
+
+.workout_col_rght {
+    width: 23%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow-y: scroll;
+}
+
+.move_detail {
+    border-bottom: 1px solid #d3d3d3;
+    color: #74787a;
+    font-size: 14px;
+    padding: 4px 0;
+    text-align: center;
+}
+.gray_1 {
+    width:100%;
+    float:left;
+    padding:20px 15px;
+    border-bottom:1px solid #d3d3d3;
+}

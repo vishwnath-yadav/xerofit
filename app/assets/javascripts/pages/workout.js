@@ -52,6 +52,7 @@ $(document).ready(function() {
 
 
 
+
   // $(document).on("change keyup",".for_work_change",function(){
   //   $('.wrk_sve').removeClass('dis_link');
   //   var flag= 1;
@@ -182,7 +183,9 @@ $(document).ready(function() {
       $('#new_workout_form').submit();
     }
   });
-  
+
+
+
   $(document).on("click",".met_tab_desc ul li", function(e){
     if($(e.target).hasClass("rm")){
       var hiden_field_id = $(this).attr('id');
@@ -379,7 +382,8 @@ function check_library_count(li_size, block_type, publish){
 }
 
 function load_library_content(lib_detail, block_id, lib_id, move){
-  $(".workout_col_rght").html('<img src="/assets/ajax-loader.gif" class="m50">');
+  $("#move-details-panel").css('display', 'block');
+  $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
   var url = '/builder/load_lib_details'
   $.get(url, {lib_detail:lib_detail,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
    });

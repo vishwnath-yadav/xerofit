@@ -25,12 +25,15 @@ $xero-blue: #289CF9;
 $xero-red: #FC2F6A;
 
 
+$border-color: #D7D6D1;  // 84 Black
 $hover-color: #D4EBFE; // ~15% Blue
 $active-color: #AEDAFD; // ~30% Blue
 $active-color-dark: #9ad1fc; // ~50% Blue
 $disabled-color: #CCCCCC; // 20% Black
 $dropdown-borders: #E5E5E5; // 90 Black
-$textbox-borders: #D7D6D1; // 84 Black
+
+
+$textbox-borders: $border-color;
 $placeholder-text: $disabled-color;
 
 
