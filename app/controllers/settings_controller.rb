@@ -29,6 +29,7 @@ class SettingsController < ApplicationController
 			@obj = Workout.find_by_id(params[:id])
 		end
 		if @obj.present?
+			@obj.pic_creating = params[:pic_creating]
 			@obj.pic = params[:user][:pic]
 			if @obj.save
 				@success = true

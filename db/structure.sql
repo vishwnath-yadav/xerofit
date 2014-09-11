@@ -3,8 +3,7 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
+SET client_encoding = 'LATIN1';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -706,11 +705,11 @@ ALTER TABLE ONLY full_workouts
 
 
 --
--- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY histories
-    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -909,5 +908,3 @@ INSERT INTO schema_migrations (version) VALUES ('20140904065656');
 INSERT INTO schema_migrations (version) VALUES ('20140905063108');
 
 INSERT INTO schema_migrations (version) VALUES ('20140908123706');
-
-INSERT INTO schema_migrations (version) VALUES ('20140909144302');

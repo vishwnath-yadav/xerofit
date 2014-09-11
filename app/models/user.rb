@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :pic_creating
 
 
   has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, :processors => [:cropper]
@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
   end
 
   def validate_image
-      self.pic? && (self.crop_x.blank? || self.crop_y.blank?)
+      self.pic? && !self.pic_creating.blank?
   end
 
 end
