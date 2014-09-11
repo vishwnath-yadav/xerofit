@@ -19,4 +19,11 @@ module WorkoutsHelper
 	def is_weight(lib_detail)
 		lib_detail.weight ? false : true
 	end
+
+	def is_set(lib_detail)
+		lib_detail.sets ? false : true
+	end
+	def is_rest(lib_detail)
+		lib_detail.rest ? false : true
+	end
 end

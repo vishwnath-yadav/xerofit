@@ -110,7 +110,11 @@ class Workout < ActiveRecord::Base
 	end
 
 	def self.avg_workout_counts
-		(self.workout_count/User.trainer_count).to_i
+		if self.workout_count != 0
+			(self.workout_count/User.trainer_count).to_i
+		else
+			return 0 
+		end
 	end
 
 	def self.approve_status_count

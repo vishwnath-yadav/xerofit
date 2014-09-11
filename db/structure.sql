@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -285,7 +284,6 @@ CREATE TABLE move_details (
     distance boolean DEFAULT false,
     dist_option character varying(255),
     dist_val integer DEFAULT 1,
-    weight_val integer DEFAULT 1,
     duration boolean DEFAULT false,
     minute integer DEFAULT 0,
     second integer DEFAULT 0,
@@ -300,7 +298,11 @@ CREATE TABLE move_details (
     rep_option character varying(255),
     move_block_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sets boolean DEFAULT false,
+    sets_count integer DEFAULT 1,
+    rest boolean DEFAULT false,
+    rest_time integer DEFAULT 30
 );
 
 
@@ -337,7 +339,7 @@ CREATE TABLE moves (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     status character varying(255),
-    move_type character varying(255) DEFAULT 'Single Move'::character varying,
+    move_type character varying(255),
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
     work character varying(255),
@@ -550,7 +552,7 @@ CREATE TABLE workouts (
     pic_updated_at timestamp without time zone,
     status character varying(255),
     category character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying,
+    move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true
 );
@@ -706,11 +708,11 @@ ALTER TABLE ONLY full_workouts
 
 
 --
--- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY histories
-    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -910,4 +912,4 @@ INSERT INTO schema_migrations (version) VALUES ('20140905063108');
 
 INSERT INTO schema_migrations (version) VALUES ('20140908123706');
 
-INSERT INTO schema_migrations (version) VALUES ('20140909144302');
+INSERT INTO schema_migrations (version) VALUES ('20140911063516');

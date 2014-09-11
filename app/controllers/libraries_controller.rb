@@ -78,10 +78,24 @@ class LibrariesController < ApplicationController
 	def filter
 		filter_order = params[:filter]
 		title = params[:title]
-		if filter_order == 'asc'
+		enabled_move = []
+		disabled_move = []
+		# if filter_order == 'asc'
 			@moves = Move.by_name(title).where(user_id: @user.id).order('title asc')
-		else
-			@moves = Move.by_name(title).where(user_id: @user.id).order('title DESC')
+		# else
+			# @moves = Move.by_name(title).where(user_id: @user.id).order('title DESC')
+		# end
+		if @moves.present?
+			@moves.each do |move|
+				res = move.has_full_detail
+				if res == true
+					enabled_move << move
+				else
+					disabled_move << move
+				end
+			end
+			@enabled_move = enabled_move.flatten.sort_by(&:title)
+			@disabled_move = disabled_move.flatten.sort_by(&:title)
 		end
 		respond_to do |format|
 			format.js 

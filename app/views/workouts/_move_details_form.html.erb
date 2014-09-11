@@ -25,7 +25,21 @@
         <% dur_disabled = is_duration(@lib_detail) %>
         <% dist_disabled = is_distance(@lib_detail) %>
         <% weight_disabled = is_weight(@lib_detail) %>
+        <% set_disabled = is_set(@lib_detail) %>
+        <% rest_disabled = is_rest(@lib_detail) %>
 
+        <div class="gray_1">
+            <div class="check_col">
+                <%=ld.input :sets, input_html: {class: "lib_detail_chk"} %>
+            </div>
+            <div class="check_desc">
+                <div class="min_max_col mt">
+                    <div class="min_col min_col_1 lib_detail_inp" >
+                        <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
+                     </div>
+                </div>
+            </div>
+        </div>
 
         <div class="gray_1">
             <div class="check_col">
@@ -47,11 +61,8 @@
                 <%=ld.input :weight, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
-                <div class="min_max_col mt">
-                    <div class="min_col min_col_1 lib_detail_inp" >
-                        <%= ld.input :weight_val, label: false, input_html: {class: "", min: 1, max: 100}, disabled: weight_disabled %>
-                        <label>Kilograms</label>
-                    </div>
+                <div class="weight_col">
+                        <label>Xero will calculate weight based on individual user.</label>
                 </div>
             </div>
         </div>
@@ -113,6 +124,19 @@
                     <div class="min_col min_col_1 min_m lib_detail_inp">
                         <%= ld.input :temp_lift, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
                         <label>Lift</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gray_1">
+            <div class="check_col">
+                <%=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="check_desc">
+                <div class="min_max_col mt">
+                    <div class="min_col min_col_1 lib_detail_inp" >
+                        <%= ld.input :rest_time, label: false, input_html: {class: "", min: 0, max: 180, step: 15, disabled: rest_disabled} %>
                     </div>
                 </div>
             </div>

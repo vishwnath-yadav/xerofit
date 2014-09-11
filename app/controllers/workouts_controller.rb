@@ -5,8 +5,22 @@ class WorkoutsController < ApplicationController
 	layout :resolve_layout
 
 	def new
+		enabled_move = []
+		disabled_move = []
 		@workout = Workout.new()
 		@moves = @user.single_moves
+		if @moves.present?
+			@moves.each do |move|
+				res = move.has_full_detail
+				if res == true
+					enabled_move << move
+				else
+					disabled_move << move
+				end
+			end
+			@enabled_move = enabled_move.flatten.sort_by(&:title)
+			@disabled_move = disabled_move.flatten.sort_by(&:title)
+		end
 		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
 		@block.save
 		@display = "block_hide"
