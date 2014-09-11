@@ -37,10 +37,10 @@
           <h4><%= @move.title%></h4>
         </div>
       </span>
-
+      <%dis_link = move.status != Move::STATUS[3] ? 'dis_link' : ''%>
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@move.status%>">Save</a>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib <%=dis_link%> smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
       </div>
     </div>
   </div>
