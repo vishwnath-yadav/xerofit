@@ -56,11 +56,12 @@
         upl = (size_ulpload/1024/1024).toFixed(1);
         prg.parent().find('p').text('Uploaded '+upl+' MB of '+size+' MB');
         prg.progressbar({
-        value: progress
-      });
+          value: progress
+        });
       });
 
       myDropzone.on("success", function(a, response) {
+        alert(response)
         html_setups(response);
       });
 
