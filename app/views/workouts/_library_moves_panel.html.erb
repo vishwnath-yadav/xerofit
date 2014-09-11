@@ -1,21 +1,23 @@
-<div id="fitness-library-panel" class="builder-panel zautoheight">
-    <%= simple_form_for(Move.new, url: filter_libraries_path, remote: true, html: {id: 'filter_search_form'}) do |lib| %>
+<div id="fitness-library-panel" class="builder-panel">
+    <section class="panel-inputs">
+        <%= simple_form_for(Move.new, url: filter_libraries_path, remote: true, html: {id: 'filter_search_form'}) do |lib| %>
 
-        <div class="builder-header">
-            <h3>Fitness Library</h3>
-            <div class="builder-search-bar">
-                <%= autocomplete_field_tag 'title', '', autocomplete_move_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search-move-by-title" %>
-                <input type="button" id="search-move-titles" />
-                <div class="search-bar-icon"></div>
-                <div class="search-bar-clear hide"></div>
+            <div class="builder-header">
+                <h3>Fitness Library</h3>
+                <div class="builder-search-bar">
+                    <%= autocomplete_field_tag 'title', '', autocomplete_move_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search-move-by-title" %>
+                    <input type="button" id="search-move-titles" />
+                    <div class="search-bar-icon"></div>
+                    <div class="search-bar-clear hide"></div>
+                </div>
+
+                <%= hidden_field_tag :user, params[:user]%>
+                <%= hidden_field_tag :filter, "asc", class: "filter_desc" %>
             </div>
 
-            <%= hidden_field_tag :user, params[:user]%>
-            <%= hidden_field_tag :filter, "asc", class: "filter_desc" %>
-        </div>
-
-        <div class="library-moves" id="filter_library_col">
-            <%= render 'library_moves_search' %>
-        </div>
-    <% end %>
+            <div class="library-moves" id="filter_library_col">
+                <%= render 'library_moves_search' %>
+            </div>
+        <% end %>
+    </section>
 </div>

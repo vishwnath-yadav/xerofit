@@ -74,6 +74,7 @@
     }
 }
 
+.column.split-right .column-wrap { border-left: 2px solid $border-color; }
 
 
 
@@ -90,9 +91,14 @@
 .builder-panel {
     @include clearfix();
     width: 380px;
-    padding: 28px 40px;
     overflow-y: scroll;
-    border-right: 1px solid $border-color;
+
+    .panel-inputs {
+        padding: 28px 40px;
+        width: 100%;
+        position: relative;
+        @include clearfix();
+    }
 }
 
     .library-moves {
@@ -213,18 +219,37 @@
     z-index: 3;
 }
 
+
+.panel-head {
+    width: 100%;
+    position: relative;
+    background: #F2F2F2;
+    padding: 7px;
+    text-align: center;
+    text-transform: uppercase;
+
+    > h5 {
+        font-size: 12px;
+        line-height: 14px;
+        @include gotham500();
+        color: $silver16;
+        letter-spacing: 2px;
+    }
+}
+
+
 .close-panel {
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 3px;
+    right: 3px;
     padding: 4px;
     border: none;
     background: none;
 
     &:before {
         display: block;
-        height: 16px;
-        width: 16px;
+        height: 14px;
+        width: 14px;
         content: '';
         background: url('/assets/icons/modal_close_icon.png');
         background-repeat: no-repeat;
@@ -296,22 +321,6 @@
     }
 }
 
-.workout_col_rght {
-    width: 23%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    overflow-y: scroll;
-}
-
-.move_detail {
-    border-bottom: 1px solid #d3d3d3;
-    color: #74787a;
-    font-size: 14px;
-    padding: 4px 0;
-    text-align: center;
-}
 .gray_1 {
     width:100%;
     float:left;
