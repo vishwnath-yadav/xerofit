@@ -15,7 +15,7 @@
             <td><%=move.user.email %></td>
             <td><%=move.video_size %></td>
             <td><%=move.updated_at%></td>
-            <td><%=link_to "Download", download_video_admin_moves_path(id: move.id)%></td>
+            <td><%=link_to "Download", "javascript:void(0)", class: "download_video", "data-url" => move.library_video.video.url%></td>
             <td>
               <span class="mark_btn" data-id="<%=move.id%>">
                 <%if move.mark_complete%>

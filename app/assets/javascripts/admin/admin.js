@@ -62,4 +62,6 @@ $(document).ready(function(){
       $('.trash_list').html(data);
     });
   })
+
+  
 })

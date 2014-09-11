@@ -1,35 +1,13 @@
-<%= form_tag('/library/crop_image_save', remote: true, id: 'crop_image_form') do |crop| %>
-    <img src="<%=current_user.pic.url(:display)%>" class="cropper">
-  <%["x", "y", "width", "height"].each do |att|%>
-    <%=hidden_field_tag "#{att}"%>
-  <%end%>
-  <%=hidden_field_tag "type", params[:type]%>
-  <%=hidden_field_tag "id", params[:id]%>
-  <%=button_tag :button%>
-<%end%>
+<%=link_to "Download", "javascript:void(0)", class: "download_video", "data-url" => Move.first.library_video.video.url%>
 
 <script>
 
-var $image = $('.cropper'),
-    $dataX = $("#x"),
-    $dataY = $("#y"),
-    $dataHeight = $("#height"),
-    $dataWidth = $("#width");
-
-$image.cropper({
-  aspectRatio: "auto",
-  multiple: true,
-  data: {
-    x: 200,
-    y: 200,
-    width: 400,
-    height: 200
-  },
-  done: function(data) {
-    $dataX.val(data.x);
-    $dataY.val(data.y);
-    $dataHeight.val(data.height);
-    $dataWidth.val(data.width);
-  }
-})
+$(document).on("click", "a.download_video", function () {
+  var url = $(this).attr('data-url');
+  alert(url);
+    $.fileDownload(url)
+        .done(function () { alert('File download a success!'); })
+        .fail(function () { alert('File download failed!'); });
+    return false; //this is critical to stop the click event which will trigger a normal file download
+  });
 </script>
