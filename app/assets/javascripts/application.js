@@ -34,7 +34,6 @@
 //= require pages/move.js
 //= require pages/workout.js
 //= require ckeditor-jquery
-//= require download.js
 
 
 $(document).ready(function() {
