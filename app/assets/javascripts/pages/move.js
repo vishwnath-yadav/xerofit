@@ -241,7 +241,7 @@ function check_require_field(){
 }
 
 function check_if_thumb_is_default(selected_thumb){
-    return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : false;
+    return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : true;
 }
 
 function show_text_actual_size(){
