@@ -37,10 +37,10 @@
           <h4><%= @move.title%></h4>
         </div>
       </span>
-
+      <%dis_link = @move.status != Move::STATUS[3] ? 'dis_link' : ''%>
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@move.status%>">Save</a>
-          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib <%=dis_link%> smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
       </div>
     </div>
   </div>
@@ -120,7 +120,7 @@
               <label>Target Muscle Groups</label>
               <%(1..5).each do |no|%>
                 <%if @disabled%>
-                    <input name="" type="button" class="fancy_input <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
+                    <input name="" type="button" class="fancy_input disable_cls <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
                 <%else%>
                     <input name="" type="button" class="fancy_input trg_num_edit <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
                 <%end%>
@@ -132,7 +132,7 @@
             <div class="input_field_wrap trgt_muscle_groups">
               <% i = 0 %>
               <%= mov.fields_for :target_muscle_groups do |builder| %>
-                <span class="edit_tmg <%= trg_hide(@move,i,@count)%>">
+                <span class="edit_tmg for_on_change <%= trg_hide(@move,i,@count)%>">
                   <% abc = TargetMuscleGroup::MUSCLES_TYPE[i][0] %>
                   <%=render partial: "target_muscle_group_fields", locals: {abc: abc, lib: builder, i: i, disabled: @disabled} %>
                   <%i += 1%>
@@ -150,7 +150,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="dblclk_add">
-              <ul id="equipment_list">
+              <ul id="equipment_list" class="<%= @disabled ? "disable_cls" : ""%>">
                 <% Move::EQUIPMENT_LIST.each do |list|%>
                   <% if @disabled %>
                     <li><%= list %></li>
@@ -197,7 +197,7 @@
             <h5 class="input_label">Replace Video</h5>
             <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
             <%if @disabled%>
-              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn"%>
+              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn disable_cls"%>
             <%else%>
               <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @move.library_video.id%>
             <%end%>
@@ -214,7 +214,7 @@
             <h5 class="input_label">Delete Move</h5>
             <p class="input_sub_text">Permanently remove this move and video from Xerofit. Proceed with caution, this action cannot be undone!</p>
             <%if @disabled%>
-              <%=link_to "Delete this move", "javascript:void(0)", :class => "remove_video_btn"%>
+              <%=link_to "Delete this move", "javascript:void(0)", :class => "remove_video_btn disable_cls"%>
             <%else%>
               <%=link_to "Delete this move", library_path(@move), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
             <%end%>
@@ -230,15 +230,15 @@
 
 <script>
 $(document).ready(function(){
-  var v = $('.smt_reviw').attr('lib-attr');
-  var status = $('.library_item_status').attr('data-status');
-  if(v == "true")
-  {
-    $('.smt_reviw').removeClass('dis_link');
-  }
-  if( status == "Waiting for Approval"){
-     $('.smt_reviw').addClass('dis_link');
-  }
+  // var v = $('.smt_reviw').attr('lib-attr');
+  // var status = $('.library_item_status').attr('data-status');
+  // if(v == "true")
+  // {
+  //   $('.smt_reviw').removeClass('dis_link');
+  // }
+  // if( status == "Waiting for Approval"){
+  //    $('.smt_reviw').addClass('dis_link');
+  // }
   show_text_actual_size();
 });
 $('.admin_li').removeClass('active')

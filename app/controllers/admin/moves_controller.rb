@@ -190,5 +190,11 @@ class Admin::MovesController < Admin::AdminController
 		parm = params.merge({enable: true})
 		@moves = FullWorkout.get_workout_list(parm,current_user)
 	end
+
+	def calculate_video_info
+		video_static = []
+		video_static << Move.video_process_count
+		@video_static = video_static.flatten
+	end
 	
 end

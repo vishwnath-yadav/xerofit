@@ -64,7 +64,7 @@ Xerofit::Application.routes.draw do
         get :admin_trash
         delete :destroy_fullworkout
         get :history_page
-        # get :full_workout_trash
+        get :calculate_video_info
       end
     end
 

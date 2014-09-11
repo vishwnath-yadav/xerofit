@@ -2,7 +2,7 @@
     <div class="del fancy_count <%= cycle("first_row", "first_row", "second_row", "second_row", "third_row" )%>">
         <label><%= abc %></label>
         <div class="toggle_rel">
-            <div class="drop_toggle target_<%=i%>">
+            <div class="drop_toggle target_<%=i%> <%= disabled ? "disable_cls" : ""%>">
                 <%= get_select_val(@move, i, abc)%>
             </div>
             <%if disabled == false%>
@@ -14,7 +14,7 @@
                 			<li class="sub_arw"><%=key%>
                 				<ul data-group="<%=key%>" data-id="<%=i%>" class="sub_dd_menu">
                 					<%value.each_with_index do |sub_opt, ind|%>
-                						<li class= "for_on_change1" data-subgroup='<%=ind > 0 ? "#{key} #{sub_opt}" : sub_opt%>' data-subcat="<%=sub_opt%>"><%=sub_opt%></li>
+                						<li class= "" data-subgroup='<%=ind > 0 ? "#{key} #{sub_opt}" : sub_opt%>' data-subcat="<%=sub_opt%>"><%=sub_opt%></li>
                 					<%end%>
                 				</ul>
                 			</li>
