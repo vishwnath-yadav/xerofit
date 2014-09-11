@@ -112,6 +112,7 @@
       </div>
     <% end %>
     <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
+          <%=hidden_field_tag :pic_creating, ""%>
           <%=hidden_field_tag :company, "true"%>
           <%=hidden_field_tag :id, @workout.id%>
           <%=hidden_field_tag :type, "workout" %>

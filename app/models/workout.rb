@@ -2,7 +2,7 @@ class Workout < ActiveRecord::Base
 	require 'RMagick'
 	obfuscate_id :spin => 12548694
 	
-	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :pic_creating
 
 	has_many :blocks
 	has_many :histories
@@ -139,7 +139,7 @@ class Workout < ActiveRecord::Base
 
 	private
 	def validate_image
-   		self.pic? && (self.crop_x.blank? || self.crop_y.blank?)
+   		self.pic? && !self.pic_creating.blank?	
 	end
 
 end

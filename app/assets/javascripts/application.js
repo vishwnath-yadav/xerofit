@@ -123,6 +123,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change","#user_pic", function(){
+    $('#pic_creating').val('true');
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};
@@ -141,7 +142,7 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".save_crop_image",function(){
-    
+     $('#pic_creating').val('');
      $(this).html('<img src="/assets/ajax-loader.gif" alt="Picture 1">');
      $("#crop_image_form").submit();
   });
