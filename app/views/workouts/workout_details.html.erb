@@ -101,7 +101,7 @@
                 <p>Upload your image</p>
                 <div class="custom-upload">
                   <div class="fake-file">
-                      <span class="choose_btn wrk_chos">Choose File</span>
+                      <span class="choose_btn wrk_chos <%= @disabled ? "disable_cls" : "" %>">Choose File</span>
                       <input disabled="disabled">
                   </div>
                 </div>
@@ -127,8 +127,8 @@
         <div class="lib_edit_botom">
           <h5 class="input_label">Delete Workout</h5>
           <p class="input_sub_text">Permanently remove this workout from Xerofit. This action will only delete the workout, not any of the moves associated with it. Proceed with caution, this action cannot be undone!</p>
-          <%if @disabled%>
-            <%=link_to "Delete this Workout", "javascript:void(0)", :class => "remove_video_btn"%>
+          <%if @disabled %>
+            <%=link_to "Delete this Workout", "javascript:void(0)", :class => "remove_video_btn disable_cls"%>
           <%else%>
             <%=link_to "Delete this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn", disabled: @disabled%>
           <%end%>

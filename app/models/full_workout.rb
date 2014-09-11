@@ -26,5 +26,5 @@ class FullWorkout < ActiveRecord::Base
 	def video_size
 		"%0.3f" % (self.video.size.to_f/1024/1024) 
 	end
-
+	 
 end

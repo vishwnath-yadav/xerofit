@@ -2,7 +2,7 @@
     <div class="del fancy_count <%= cycle("first_row", "first_row", "second_row", "second_row", "third_row" )%>">
         <label><%= abc %></label>
         <div class="toggle_rel">
-            <div class="drop_toggle target_<%=i%>">
+            <div class="drop_toggle target_<%=i%> <%= disabled ? "disable_cls" : ""%>">
                 <%= get_select_val(@move, i, abc)%>
             </div>
             <%if disabled == false%>

@@ -120,7 +120,7 @@
               <label>Target Muscle Groups</label>
               <%(1..5).each do |no|%>
                 <%if @disabled%>
-                    <input name="" type="button" class="fancy_input <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
+                    <input name="" type="button" class="fancy_input disable_cls <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
                 <%else%>
                     <input name="" type="button" class="fancy_input trg_num_edit <%= trg_count(@move, no, @count)%>"  value="<%=no%>"/>
                 <%end%>
@@ -150,7 +150,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="dblclk_add">
-              <ul id="equipment_list">
+              <ul id="equipment_list" class="<%= @disabled ? "disable_cls" : ""%>">
                 <% Move::EQUIPMENT_LIST.each do |list|%>
                   <% if @disabled %>
                     <li><%= list %></li>
@@ -197,7 +197,7 @@
             <h5 class="input_label">Replace Video</h5>
             <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
             <%if @disabled%>
-              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn"%>
+              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn disable_cls"%>
             <%else%>
               <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @move.library_video.id%>
             <%end%>
@@ -214,7 +214,7 @@
             <h5 class="input_label">Delete Move</h5>
             <p class="input_sub_text">Permanently remove this move and video from Xerofit. Proceed with caution, this action cannot be undone!</p>
             <%if @disabled%>
-              <%=link_to "Delete this move", "javascript:void(0)", :class => "remove_video_btn"%>
+              <%=link_to "Delete this move", "javascript:void(0)", :class => "remove_video_btn disable_cls"%>
             <%else%>
               <%=link_to "Delete this move", library_path(@move), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn"%>
             <%end%>
