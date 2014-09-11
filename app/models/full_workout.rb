@@ -34,5 +34,5 @@ class FullWorkout < ActiveRecord::Base
 			'N/A'
 		end
 	end
-
+	 
 end

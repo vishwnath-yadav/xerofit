@@ -874,3 +874,20 @@ button[disabled], html input[disabled] {
 .modal_load{
     margin: 14% 0 13% 44%;
 }
+
+.weight_col label{
+  font-size:12px !important;
+  font-family: 'gotham-bookgotham-book';
+  color:#666;
+}
+
+input[type="text"]:disabled{background: $disabled-color; cursor: default !important;} 
+textarea:disabled{background: $disabled-color; cursor: default !important;}
+select:disabled{background: $disabled-color; cursor: default !important;}
+
+.disable_cls{
+    background: $disabled-color !important;
+    cursor: default !important;
+}
+ul.disable_cls{overflow-y: hidden !important; }
+ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !important;}
