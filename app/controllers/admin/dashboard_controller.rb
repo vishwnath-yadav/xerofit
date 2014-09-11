@@ -21,8 +21,7 @@ class Admin::DashboardController < Admin::AdminController
 		 static << Workout.ready_status_count
 		 static << Workout.saved_status_count
 
-		 static << Move.video_process_count
-		 static << 0
+		 #static << Move.video_process_count
 
 		 @statics = static.flatten
 

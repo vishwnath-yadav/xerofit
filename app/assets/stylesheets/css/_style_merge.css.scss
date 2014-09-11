@@ -891,3 +891,8 @@ select:disabled{background: $disabled-color; cursor: default !important;}
 }
 ul.disable_cls{overflow-y: hidden !important; }
 ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !important;}
+
+.chk_rht{
+    float: right !important;   
+}
+
