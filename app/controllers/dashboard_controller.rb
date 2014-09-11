@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
         @user = User.from_omniauth(omniouth)
         if @user.enabled
             sign_in :user, @user
-        	redirect_to root_path, notice: 'Signed in successfully!'
+        	redirect_to root_path, notice: 'Welcome Back @user'
         else
         	redirect_to new_user_session_path
         end

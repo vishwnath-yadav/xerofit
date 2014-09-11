@@ -158,8 +158,10 @@ $(document).ready(function(){
             $this.addClass('selected_equipment');
             return false;
           }
-        }else{
-          alert("You can only select up to 5 pieces of equipment");
+        }
+        else {
+          alert("You are only allowed to select up to 5 pieces of equipment");
+          //$.growl.error({ title: "Growl", message: "You are only allowed to select up to 5 pieces of equipment" });
           return false;
         }
       });

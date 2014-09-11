@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       if current_user.trainer?
         if request.fullpath.match('/admin')
-          redirect_to libraries_path, :notice => "You are not Authorize for this page"
+          redirect_to libraries_path
         end
       end
     end

@@ -47,9 +47,9 @@ class LibrariesController < ApplicationController
 	  	video.save
 	  	@move.history_create()
 	  	if current_user.admin?
-    		redirect_to libraries_path(user: @user.token), :notice => "Thank you for uploading the video."
+    		redirect_to libraries_path(user: @user.token), :notice => "New move has been saved to your Fitness Library"
     	else
-    		redirect_to libraries_path, :notice => "Thank you for uploading the video."
+    		redirect_to libraries_path, :notice => "New move has been saved to your Fitness Library"
     	end
 	  else
 	  	@libvideo = LibraryVideo.new
@@ -68,9 +68,9 @@ class LibrariesController < ApplicationController
 		    @move.update_attributes(library_params)
 			@move.date_updated_for_approval(params[:move][:status], old_status)
 	        if current_user.admin?
-	        	format.html { redirect_to libraries_path(user: @move.user.token), notice: 'successfully updated Library.' }
+	        	format.html { redirect_to libraries_path(user: @move.user.token), notice: 'Your changes have been saved' }
 	        else
-	        	format.html { redirect_to libraries_path, notice: 'successfully updated Library.' }
+	        	format.html { redirect_to libraries_path, notice: 'Your changes have been saved' }
 		    end
 	    end
 	end

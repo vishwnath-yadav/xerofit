@@ -51,9 +51,9 @@ class WorkoutsController < ApplicationController
 		@workout.date_updated_for_approval(params[:workout][:status], old_status)
 		respond_to do |format|
 			if current_user.admin?
-				format.html { redirect_to libraries_path(user: @workout.user.token)}
+				format.html { redirect_to libraries_path(user: @workout.user.token), :notice => 'Your changes have been saved' }
 			else
-				format.html { redirect_to libraries_path}
+				format.html { redirect_to libraries_path, :notice => 'Your changes have been saved' }
 			end
 			format.js {render 'create'}
 		end
