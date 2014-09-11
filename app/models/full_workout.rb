@@ -20,11 +20,19 @@ class FullWorkout < ActiveRecord::Base
 	end
 
 	def video_title
-		self.video.file.filename.split('.')[0]
+		begin
+			self.video.file.filename.split('.')[0]
+		rescue
+			'N/A'
+		end
 	end
 
 	def video_size
-		"%0.3f" % (self.video.size.to_f/1024/1024) 
+		begin
+			"%0.3f" % (self.video.size.to_f/1024/1024) 
+		rescue
+			'N/A'
+		end
 	end
 	 
 end
