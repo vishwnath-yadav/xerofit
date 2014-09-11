@@ -13,7 +13,7 @@ $(document).ready(function(){
     obj.text(actual);
   });
 
-  $(document).on("change keyup",".for_on_change",function(){
+  $(document).on("change keyup click",".for_on_change",function(){
     $('.chg_save').removeClass('dis_link');
     check_require_field();
   });
@@ -22,10 +22,10 @@ $(document).ready(function(){
     $('.chg_save').removeClass('dis_link');
   });
 
-  $(document).on("click",".for_on_change1",function(){
-    $('.chg_save').removeClass('dis_link');
-    check_require_field();
-  });
+  // $(document).on("click",".for_on_change1",function(){
+  //   $('.chg_save').removeClass('dis_link');
+  //   check_require_field();
+  // });
 
   $(document).on("click",".del",function(){
     $(this).find(".fancy_select").slideToggle();
@@ -186,6 +186,8 @@ $(document).ready(function(){
     $('#move_video').get(0).play();
     $('#video-container').unbind('click');
   });
+
+
 });
 
 // Not a Great solution (needs to be fixed)
@@ -198,23 +200,29 @@ function check_selected_equipment(){
 
 function check_require_field(){
   var flag= 1;
-  $(".for_on_change").each(function() {
-    key = $(this).val();
-    if(key == null || key == '')
+  $(".for_on_change:visible").each(function() {
+    if($(this).find('.for_target_change').length){
+      key = $(this).find('.for_target_change').val();
+    }
+    else{
+      key = $(this).val();
+    }
+    var selected_thumb = $(".select_thumb").siblings('img').attr('src');
+    if(key == null || key == '' || check_if_thumb_is_default(selected_thumb))
     {
       flag=0;
     }
   });
-  if($('.thumbnail_col').length){             //for cheking thumbnail are present or not
-    // var target = $('.for_target_change').val();
-    $('.dis_blk').each(function(){
-      var target = $(this).find('.for_target_change').val();
-      var len = $(".select_thumb").length;
-      if((len <= 0)||(target == null)||(target == '')){
-        flag = 0;
-      }
-    })
-  }
+  // if($('.thumbnail_col').length){             //for cheking thumbnail are present or not
+  //   // var target = $('.for_target_change').val();
+  //   $('.dis_blk').each(function(){
+  //     var target = $(this).find('.for_target_change').val();
+  //     var len = $(".select_thumb").length;
+  //     if((len <= 0)||(target == null)||(target == '')){
+  //       flag = 0;
+  //     }
+  //   })
+  // }
 
   if(flag == 1){
     $('.smt_reviw').removeClass('dis_link');
@@ -228,8 +236,12 @@ function check_require_field(){
     status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
     status = status == STATUS[3] ? STATUS[4] : status
     $('.chg_save').attr('lib-status', status);
-    $('.library_item_status').html('<img src="'+status_icon+'"> '+status)
+    $('.library_item_status').html('<img src="'+status_icon+'"> '+status);
   }
+}
+
+function check_if_thumb_is_default(selected_thumb){
+    return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : true;
 }
 
 function show_text_actual_size(){
