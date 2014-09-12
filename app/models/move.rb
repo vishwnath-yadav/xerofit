@@ -217,7 +217,7 @@ class Move < ActiveRecord::Base
 				 	video_length = video_length + mov.library_video.panda_video.duration
 			        video_size = video_size + mov.library_video.panda_video.file_size
 			 		if mov.library_video.panda_video.encodings.present? 
-			 			if mov.video_encoding_success
+			 			if !mov.video_encoding_process
 				    		video_encode = video_encode + mov.library_video.panda_video.encodings.map(&:encoding_time).sum()
 			 			end   
 			 			if mov.video_encoding_process
@@ -228,7 +228,7 @@ class Move < ActiveRecord::Base
 			end
 			avg_video_length = "%0.3f" % ((video_length/1000).to_f/Move.move_count)
 			avg_video_size = "%0.3f" % ((video_size.to_f/1024/1024).to_f/Move.move_count)
-			# avg_encode_time = "%0.3f" % ((video_encode/4)/Move.move_count)
+			avg_encode_time = "%0.3f" % ((video_encode/4)/Move.move_count)
 		end
 		 arr << avg_video_length
 		 arr << avg_video_size
@@ -245,13 +245,13 @@ class Move < ActiveRecord::Base
 		end
     end
 
-    def video_encoding_success
-    	begin
-    		 self.library_video.panda_video.encodings.map(&:status).include? "success" 
-       	rescue
-    		return false
-    	end
-    end
+    # def video_encoding_success
+    # 	begin
+    # 		 self.library_video.panda_video.encodings.map(&:status).include? "success" 
+    #    	rescue
+    # 		return false
+    # 	end
+    # end
 
     def video_encoding_process
     	begin
