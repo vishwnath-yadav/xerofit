@@ -245,17 +245,9 @@ class Move < ActiveRecord::Base
 		end
     end
 
-    # def video_encoding_success
-    # 	begin
-    # 		 self.library_video.panda_video.encodings.map(&:status).include? "success" 
-    #    	rescue
-    # 		return false
-    # 	end
-    # end
-
     def video_encoding_process
     	begin
-    		 self.library_video.panda_video.encodings.map(&:status).include? "prosessing" 
+    		 self.library_video.panda_video.encodings.map(&:status).include? "processing" 
        	rescue
     		return false
     	end

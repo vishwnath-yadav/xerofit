@@ -65,6 +65,7 @@ gem 'devise'
  gem 'carrierwave-aws'
  gem 'mini_magick'
  gem 'carmen-rails'
+ gem 'fog'
  # gem 'rmagick'
  # gem 'will_paginate'
  gem "paperclip", "~> 4.1"
