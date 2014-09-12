@@ -112,7 +112,6 @@ Xerofit::Application.routes.draw do
       get 'full_workout_content'
       get 'image_test'
       patch 'crop_image_save'
-      get 'download_video'
     end
     member do
       

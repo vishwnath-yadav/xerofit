@@ -8,6 +8,7 @@ if defined?(CarrierWave)
         access_key_id: Settings.aws.access_key_id,
         secret_access_key: Settings.aws.secret_access_key
     }
+    # config.fog_attributes = {'Content-Disposition' => 'attachment'}
 
     if Rails.env.test?
       config.storage = :file
