@@ -72,7 +72,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def download_video
-		fullworkout = FullWorkout.find(params[:id])
+		fullworkout = FullWorkout.first
 		redirect_to fullworkout.video_url
 	end
 
