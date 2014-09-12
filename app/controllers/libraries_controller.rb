@@ -123,6 +123,15 @@ class LibrariesController < ApplicationController
 	    end
 	end
 
+	def image_test
+		
+	end
+
+	def download_video
+		@event = FullWorkout.first
+		redirect_to @event.video_url
+	end
+
 	respond_to :json, :js
 	def crop_image_save
 		if params[:type] == "workout"

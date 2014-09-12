@@ -34,5 +34,15 @@ class FullWorkout < ActiveRecord::Base
 			'N/A'
 		end
 	end
+
+	# def download_url(style_name=:original)
+	#  s3 = AWS::S3.new
+	#     bucket = s3.buckets['xerofit-development']
+	#     object = bucket.objects[s3_key]
+	#     object.url_for(:get, { 
+	#       expires: 10.minutes,
+	#       response_content_disposition: 'attachment;'
+	#     }).to_s
+	# end
 	 
 end
