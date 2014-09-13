@@ -3,21 +3,21 @@
     <h5 class="move_detail">Move Details</h5>
 </div>
 
+<div class="errors">
+    <div style="color:red;">
+        <% if @lib_detail.errors.full_messages.any? %>
+          <ul>
+          <% @lib_detail.errors.full_messages.each do |error_message| %>
+            <%= error_message %>
+          <% end %>
+          </ul>
+        <% end %>
+    </div>
 
-<div style="color:red;">
-    <% if @lib_detail.errors.full_messages.any? %>
-      <ul>
-      <% @lib_detail.errors.full_messages.each do |error_message| %>
-        <%= error_message %>
-      <% end %>
-      </ul>
-    <% end %>
+    <div class="red_txt success"></div>
 </div>
 
-<div class="red_txt success"></div>
-
-
-<section class="panel-inputs">
+<section class="panel-inputs editor-scroll">
     <%= simple_form_for(@lib_detail, url: "/builder/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
         <%= hidden_field_tag :lib_detail_id, @lib_detail.id %>
         <% disabled = is_disabled(@lib_detail) %>
@@ -28,9 +28,10 @@
         <% set_disabled = is_set(@lib_detail) %>
         <% rest_disabled = is_rest(@lib_detail) %>
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :sets, input_html: {class: "lib_detail_chk chk_rht"} %>
+
+        <div id="sets" class="input-section">
+            <div class="input-title">
+                <%=ld.input :sets, input_html: {class: "lib_detail_chk"} %>
             </div>
             <div class="check_desc">
                 <div class="min_max_col mt">
@@ -41,9 +42,10 @@
             </div>
         </div>
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :repetitions, input_html: {class: "lib_detail_chk chk_rht"} %>
+
+        <div id="reps" class="input-section">
+            <div class="input-title">
+                <%=ld.input :repetitions, input_html: {class: "lib_detail_chk"} %>
             </div>
             <div class="check_desc  FIND ME HERE">
                 <div class="fancy_select">
@@ -56,9 +58,9 @@
         </div>
 
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :weight, :input_html => { class: "lib_detail_chk chk_rht" }%>
+        <div id="weight" class="input-section">
+            <div class="input-title">
+                <%=ld.input :weight, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
                 <div class="weight_col">
@@ -68,10 +70,9 @@
         </div>
 
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :distance, label: false, :input_html => { class: "lib_detail_chk chk_rht" }%>
-                <label>Distance</label>
+        <div id="distance" class="input-section">
+            <div class="input-title">
+                <%=ld.input :distance, label: 'Distance', :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
             <div class="min_max_col mt">
@@ -87,9 +88,9 @@
         </div>
 
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :duration, :input_html => { class: "lib_detail_chk chk_rht" }%>
+        <div id="duration" class="input-section">
+            <div class="input-title">
+                <%=ld.input :duration, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
             <div class="min_max_col mt">
@@ -106,9 +107,9 @@
         </div>
 
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :tempo, :input_html => { class: "lib_detail_chk chk_rht" }%>
+        <div id="tempo" class="input-section">
+            <div class="input-title">
+                <%=ld.input :tempo, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
                 <div class="min_max_col mt">
@@ -129,9 +130,9 @@
             </div>
         </div>
 
-        <div class="gray_1">
-            <div class="check_col">
-                <%=ld.input :rest, :input_html => { class: "lib_detail_chk chk_rht" }%>
+        <div class="input-section">
+            <div class="input-title">
+                <%=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="check_desc">
                 <div class="min_max_col mt">

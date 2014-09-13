@@ -1,0 +1,61 @@
+// Input type=number Styling
+input[type="number"] {
+    border: 1px solid $input-border-color;
+    height: 28px;
+    width: 70px;
+    line-height: 14px;
+    padding: 0;
+    padding-left: 7px;
+
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        height: 26px;
+        top: 0;
+        cursor: pointer;
+        display: block;
+        width: 12px;
+        border-left: 1px solid $input-border-color;
+        color: $silver16;
+        text-align: center;
+        position: relative;
+        @include opacity(1);
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            right: 2px;
+            //margin-right: 2px;
+        }
+
+        // Arrow Up
+        &:before {
+            top: 4px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid $silver16;
+        }
+
+        &:after {
+            bottom: 4px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid $silver16;
+        }
+    }
+}
+
+input[type="number"][disabled]{
+    background: #F2F2F2;
+
+    &::-webkit-inner-spin-button {
+        color: $silver51;
+
+        &:before { border-bottom: 4px solid $silver51; }
+        &:after { border-top: 4px solid $silver51; }
+    }
+}

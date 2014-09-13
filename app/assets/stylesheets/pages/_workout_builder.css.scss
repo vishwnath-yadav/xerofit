@@ -91,10 +91,11 @@
 .builder-panel {
     @include clearfix();
     width: 380px;
+    height: 100%;
     overflow-y: scroll;
 
     .panel-inputs {
-        padding: 28px 40px;
+        padding: 14px 40px;
         width: 100%;
         position: relative;
         @include clearfix();
@@ -220,6 +221,7 @@
 }
 
 
+// Panel Header styling
 .panel-head {
     width: 100%;
     position: relative;
@@ -235,27 +237,59 @@
         color: $silver16;
         letter-spacing: 2px;
     }
-}
 
+    .close-panel {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 4px;
+        border: none;
+        background: none;
 
-.close-panel {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    padding: 4px;
-    border: none;
-    background: none;
-
-    &:before {
-        display: block;
-        height: 14px;
-        width: 14px;
-        content: '';
-        background: url('/assets/icons/modal_close_icon.png');
-        background-repeat: no-repeat;
-        @include background-size(contain);
+        &:before {
+            display: block;
+            height: 14px;
+            width: 14px;
+            content: '';
+            background: url('/assets/icons/modal_close_icon.png');
+            background-repeat: no-repeat;
+            @include background-size(contain);
+        }
     }
 }
+
+// Styling for individual sections in editor
+.panel-inputs .input-section {
+    width: 100%;
+    float: left;
+    padding: 13px 0 21px;
+    border-bottom:1px solid #F2F2F2;
+}
+
+.input-title {
+    width: 100%;
+    position: relative;
+    float: left;
+    line-height: 16px;
+    font-size: 14px;
+
+    label {
+        width: 100%;
+        margin: 0;
+        @include gotham500();
+        @include user-select(none);
+    }
+
+    input {
+        position: absolute;
+        right: 0;
+        top: 1px;
+        margin: 0;
+        height: 14px;
+        width: 14px;
+    }
+}
+
 
 
 
@@ -321,9 +355,34 @@
     }
 }
 
-.gray_1 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+.range_select{
     width:100%;
     float:left;
-    padding:20px 15px;
-    border-bottom:1px solid #d3d3d3;
+    background:#fff;
+    border:1px solid #bebfc1;
+    padding:6px;
+    border-radius:3px;
+    font-size:12px;
+    font-family: 'gotham-bookgotham-book';
+    color:#626364;
+    margin:0px;
 }
+.check_desc{
+    width:100%;
+    float:left;
+    padding:11px 19px;
+}
+

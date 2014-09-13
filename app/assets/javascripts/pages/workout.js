@@ -85,13 +85,7 @@ $(document).ready(function() {
      $("#workout_form").submit();
   });
 
-  $(document).on("click", "#filter_change", function(){
-    var filter_cls = $(this).attr("class");
-    $(this).toggleClass('asc', 500);
-    var type = $(this).hasClass("asc") ? 'asc' : 'desc';
-    $('.filter_desc').val(type);
-    $('#filter_search_form').submit();
-  });
+
 
   $(document).on("click","#search-move-titles",function(){
     $('#filter_search_form').submit();
@@ -143,6 +137,8 @@ $(document).ready(function() {
     $('#filter_search_form').submit();
   });
 
+
+
   $(document).on("click",".wrk_add_opt", function(){
     $.fancybox.open({
       href: '#wrk_add_option',
@@ -184,6 +180,7 @@ $(document).ready(function() {
     }
   });
 
+
   $(document).on('click','.close-panel', function(){
       $("#move-details-panel").css('display', 'none');
   });
@@ -207,6 +204,7 @@ $(document).ready(function() {
     }
   });
 
+  // Dropdown
   $(document).on('change', ".lib_detail_sel", function(){
     $(".edit_move_detail").submit();
   });
@@ -248,11 +246,8 @@ $(document).ready(function() {
     }
   });
 
-  // $(document).on('click','.edit_work', function(){
-  //   var status = $(this).attr('lib-status');
-  //   $('.workout_status').val(status);
-  //   $('#edit_workout_info').submit();
-  // });
+
+
 
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
