@@ -421,11 +421,7 @@ width: 48%;}
     color:#626364;
     margin:0px;
 }
-.check_desc{
-    width:100%;
-    float:left;
-    padding:11px 19px;
-}
+
 .min_max_col{
     width:100%;
     float:left;
@@ -875,11 +871,6 @@ button[disabled], html input[disabled] {
     margin: 14% 0 13% 44%;
 }
 
-.weight_col label{
-  font-size:12px !important;
-  font-family: 'gotham-bookgotham-book';
-  color:#666;
-}
 
 input[type="text"]:disabled{background: $disabled-color; cursor: default !important;} 
 textarea:disabled{background: $disabled-color; cursor: default !important;}
