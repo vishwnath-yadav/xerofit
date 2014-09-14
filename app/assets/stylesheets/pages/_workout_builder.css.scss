@@ -104,13 +104,6 @@
     height: 100%;
     overflow-y: scroll;
 
-    .panel-inputs {
-        padding: 14px 40px;
-        width: 100%;
-        position: relative;
-        @include clearfix();
-    }
-
     .library-moves {
         @include clearfix();
     }
@@ -267,56 +260,64 @@
     }
 }
 
-// Styling for individual sections in editor
-.panel-inputs .input-section {
-    width: 100%;
-    float: left;
-    position: relative;
-    padding: 13px 0 21px;
-    border-bottom: 1px solid #F2F2F2;
-    @include user-select(none);
-}
+// Styling for all sections in editor
 
-.section-title {
-    float: left;
-    width: 100%;
-    position: relative;
-    line-height: 16px;
-    font-size: 14px;
-
-    label {
-        width: 100%;
-        margin: 0;
-        @include gotham500();
-        @include user-select(none);
-    }
-
-    input {
-        position: absolute;
-        right: 0;
-        top: 1px;
-        margin: 0;
-        height: 14px;
-        width: 14px;
-    }
-}
-
-.input-wrap {
-    float: left;
-    padding-top: 20px;
+.builder-panel .panel-inputs {
+    padding: 14px 40px;
     width: 100%;
     position: relative;
     @include clearfix();
+
+    .input-section {
+        width: 100%;
+        float: left;
+        position: relative;
+        padding: 13px 0 21px;
+        border-bottom: 1px solid #F2F2F2;
+        @include user-select(none);
+    }
+
+    .section-title {
+        float: left;
+        width: 100%;
+        position: relative;
+        line-height: 16px;
+        font-size: 14px;
+
+        label {
+            width: 100%;
+            margin: 0;
+            @include gotham500();
+            @include user-select(none);
+        }
+
+        input {
+            position: absolute;
+            right: 0;
+            top: 1px;
+            margin: 0;
+            height: 14px;
+            width: 14px;
+        }
+    }
+
+    .input-wrap {
+        float: left;
+        padding-top: 20px;
+        width: 100%;
+        position: relative;
+        @include clearfix();
+    }
+
+
+    // Styling for specific sections
+
+    #weight .input-wrap label {
+        @include gotham300-italic();
+        font-size: 11px;
+        line-height: 14px;
+    }
 }
-
-.panel-inputs #weight .input-wrap label {
-    @include gotham300-italic();
-    font-size: 11px;
-    line-height: 14px;
-}
-
-
-
 // -------------------------------------------------------------------------- //
 // Previous styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
@@ -362,6 +363,67 @@
 
 
 
+.min_max_col{
+    width:100%;
+    float:left;
+    margin-top:13px;
+}
+.min_max_col.mt {
+    margin-top:0px;
+}
+
+.min_col {
+    width: 17%;
+    float:left;
+    margin-right: 31px;
+}
+
+
+.min_col.min_col_1{
+    width:20%;
+}
+
+.fancy_select.w60{ width:60%}
+.min_m{
+    margin-right:0px;
+}
+.min_col label{
+    font-size:9px;
+    color:#888688;
+    text-align:center;
+    width:100%;
+    float:left;
+    margin-top:3px;
+}
+.min_max_select{
+    width:100%;
+    float:left;
+    background:#fff;
+    border:1px solid #bebfc1;
+    padding:2px;
+    font-size:12px;
+    font-family: 'gotham-bookgotham-book';
+    color:#626364;
+    margin:0px;
+}
+.check_col_1{
+    width:32%;
+    float:left;
+}
+.check_col_1 label{
+    font-size:11px;
+    font-family: 'gotham-bookgotham-book';
+    color:#626364;
+}
+
+.min_col_1 .integer  input{
+    //width: 55px;
+    //padding: 7px;
+}
+
+.min_col_1 .integer input:focus{
+    outline: none;
+}
 
 
 
@@ -371,7 +433,7 @@
 
 
 
-.range_select{
+.range_select {
     width:100%;
     float:left;
     background:#fff;

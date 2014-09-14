@@ -33,12 +33,8 @@
             <div class="section-title">
                 <%=ld.input :sets, input_html: {class: "lib_detail_chk"} %>
             </div>
-            <div class="input-wrap">
-                <div class="min_max_col mt">
-                    <div class="min_col min_col_1 lib_detail_inp" >
-                        <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
-                     </div>
-                </div>
+            <div class="input-wrap lib_detail_inp">
+                <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
             </div>
         </div>
 
@@ -128,7 +124,7 @@
             </div>
         </div>
 
-        <div class="input-section">
+        <div id="rest" class="input-section">
             <div class="section-title">
                 <%=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
             </div>
