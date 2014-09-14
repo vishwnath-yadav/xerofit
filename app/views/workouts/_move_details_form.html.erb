@@ -47,7 +47,7 @@
                 <div class="fancy_select">
                     <%= ld.input :rep_option, collection: MoveDetail::REP_TYPE, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: disabled} %>
                 </div>
-                <div class="min_max_col">
+                <div class="inputs">
                     <%= render "rep_options", disabled: disabled, ld: ld%>
                 </div>
             </div>
@@ -68,16 +68,16 @@
             <div class="section-title">
                 <%=ld.input :distance, label: 'Distance', :input_html => { class: "lib_detail_chk" }%>
             </div>
+
+
             <div class="input-wrap">
-            <div class="min_max_col mt">
-                <div class="min_col min_col_1 lib_detail_inp" >
+                <div class="number-input-wrap lib_detail_inp" >
                     <%= ld.input :dist_val, label: false, input_html: {class: "", min: 1, max: 100}, disabled: dist_disabled %>
                     <label></label>
                 </div>
-                <div class="fancy_select wd50">
+                <div class="fancy_select">
                     <%= ld.input :dist_option, collection: MoveDetail::DIST_OPT, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: dist_disabled} %>
                 </div>
-            </div>
             </div>
         </div>
 
@@ -87,16 +87,14 @@
                 <%=ld.input :duration, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="input-wrap">
-            <div class="min_max_col mt">
-                <div class="min_col min_col_1 lib_detail_inp" >
+                <div class="number-input-wrap lib_detail_inp" >
                     <%= ld.input :minute, label: false, input_html: {class: "", min: 1, max: 90, disabled: dur_disabled} %>
                     <label>Minutes</label>
                 </div>
-                <div class="min_col min_col_1 lib_detail_inp">
+                <div class="number-input-wrap lib_detail_inp">
                     <%= ld.input :second, label: false, input_html: {class: "", min: 1, max: 55, disabled: dur_disabled} %>
                     <label>Seconds</label>
                 </div>
-            </div>
             </div>
         </div>
 
@@ -106,20 +104,18 @@
                 <%=ld.input :tempo, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="input-wrap">
-                <div class="min_max_col mt">
-                    <div class="min_col min_col_1 lib_detail_inp">
-                        <%= ld.input :temp_lower, label: false, input_html: {class: "min_max_select" , min: 0, max: 10, disabled: temp_disabled} %>
-                        <label>Lower</label>
-                    </div>
-                    <div class="min_col min_col_1 lib_detail_inp">
-                        <%= ld.input :temp_pause, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
-                        <label>Pause</label>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_lower, label: false, input_html: {class: "min_max_select" , min: 0, max: 10, disabled: temp_disabled} %>
+                    <label>Lower</label>
+                </div>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_pause, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
+                    <label>Pause</label>
 
-                    </div>
-                    <div class="min_col min_col_1 min_m lib_detail_inp">
-                        <%= ld.input :temp_lift, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
-                        <label>Lift</label>
-                    </div>
+                </div>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_lift, label: false, input_html: {class: "min_max_select", min: 0, max: 10, disabled: temp_disabled} %>
+                    <label>Lift</label>
                 </div>
             </div>
         </div>
@@ -129,10 +125,8 @@
                 <%=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="input-wrap">
-                <div class="min_max_col mt">
-                    <div class="min_col min_col_1 lib_detail_inp" >
-                        <%= ld.input :rest_time, label: false, input_html: {class: "", min: 0, max: 180, step: 15, disabled: rest_disabled} %>
-                    </div>
+                <div class="number-input-wrap lib_detail_inp" >
+                    <%= ld.input :rest_time, label: false, input_html: {class: "", min: 0, max: 180, step: 15, disabled: rest_disabled} %>
                 </div>
             </div>
         </div>

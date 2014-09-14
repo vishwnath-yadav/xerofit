@@ -806,20 +806,20 @@ button[disabled], html input[disabled] {
     color: red;
 }
 
-.lib_error{
+.lib_error {
     margin: 0;
     color: red;
     font-size: 10px;
 }
 
-.modal_load{
+.modal_load {
     margin: 14% 0 13% 44%;
 }
 
 
 input[type="text"]:disabled{background: $disabled-color; cursor: default !important;} 
 textarea:disabled{background: $disabled-color; cursor: default !important;}
-select:disabled{background: $disabled-color; cursor: default !important;}
+
 
 .disable_cls{
     background: $disabled-color !important;
@@ -827,8 +827,4 @@ select:disabled{background: $disabled-color; cursor: default !important;}
 }
 ul.disable_cls{overflow-y: hidden !important; }
 ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !important;}
-
-.chk_rht{
-    float: right !important;   
-}
 

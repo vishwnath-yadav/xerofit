@@ -3,6 +3,7 @@ input[type="number"] {
     border: 1px solid $input-border-color;
     height: 28px;
     width: 70px;
+    font-size: 12px;
     line-height: 14px;
     padding: 0;
     padding-left: 7px;
@@ -50,7 +51,7 @@ input[type="number"] {
 }
 
 input[type="number"][disabled]{
-    background: #F2F2F2;
+    background: $disabled-color;
 
     &::-webkit-inner-spin-button {
         color: $silver51;
@@ -58,4 +59,12 @@ input[type="number"][disabled]{
         &:before { border-bottom: 4px solid $silver51; }
         &:after { border-top: 4px solid $silver51; }
     }
+}
+
+select:disabled {
+    color: $silver51;
+    background: $disabled-color;
+    cursor: default !important;
+
+    &:hover { cursor: default; }
 }

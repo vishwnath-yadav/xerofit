@@ -307,20 +307,86 @@
         width: 100%;
         position: relative;
         @include clearfix();
+
+        .inputs {
+            width: 100%;
+            position: relative;
+            float: left;
+
+            > div {
+                float: left;
+                @include clearfix();
+            }
+        }
+
+        > div {
+            float: left;
+            @include clearfix();
+        }
+
+            // Wrapper for input[type=number]
+            .number-input-wrap {
+                margin-right: 20px;
+
+                label {
+                    float: left;
+                    font-size: 9px;
+                    line-height: 11px;
+                    @include gotham300();
+                    text-align: center;
+                    width: 100%;
+                    margin-top: 3px;
+                    margin-bottom: 0px;
+                }
+            }
+
+            .chechmark-wrap {
+                padding-top: 7px;
+
+                > div {
+                    float: left;
+                    @include clearfix();
+                    line-height: 14px;
+                }
+
+                input { margin: 0; }
+
+
+                label {
+                    margin: 0;
+                    @include gotham400();
+                    font-size: 11px;
+                    line-height: 14px;
+                    margin-left: 6px;
+                }
+            }
+
     }
 
 
     // Styling for specific sections
+
+    #reps .input-wrap .fancy_select { margin-bottom: 14px; }
 
     #weight .input-wrap label {
         @include gotham300-italic();
         font-size: 11px;
         line-height: 14px;
     }
+
+    #distance .input-wrap .fancy_select { width: 50%; }
 }
+
+
+
+
+
 // -------------------------------------------------------------------------- //
 // Previous styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
+
+
+
 
 .fitler_col {
     width: 100%;
@@ -387,14 +453,9 @@
 .min_m{
     margin-right:0px;
 }
-.min_col label{
-    font-size:9px;
-    color:#888688;
-    text-align:center;
-    width:100%;
-    float:left;
-    margin-top:3px;
-}
+
+
+
 .min_max_select{
     width:100%;
     float:left;
