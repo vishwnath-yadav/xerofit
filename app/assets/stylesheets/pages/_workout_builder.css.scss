@@ -260,8 +260,9 @@
     }
 }
 
-// Styling for all sections in editor
 
+
+// Styling for all sections in editor
 .builder-panel .panel-inputs {
     padding: 14px 40px;
     width: 100%;
@@ -324,48 +325,46 @@
             @include clearfix();
         }
 
-            // Wrapper for input[type=number]
-            .number-input-wrap {
-                margin-right: 20px;
+        // Wrapper for input[type=number]
+        .number-input-wrap {
+            margin-right: 20px;
 
-                label {
-                    float: left;
-                    font-size: 9px;
-                    line-height: 11px;
-                    @include gotham300();
-                    text-align: center;
-                    width: 100%;
-                    margin-top: 3px;
-                    margin-bottom: 0px;
-                }
+            label {
+                float: left;
+                font-size: 9px;
+                line-height: 11px;
+                @include gotham300();
+                text-align: center;
+                width: 100%;
+                margin-top: 3px;
+                margin-bottom: 0px;
+            }
+        }
+
+        .chechmark-wrap {
+            padding-top: 7px;
+
+            > div {
+                float: left;
+                @include clearfix();
+                line-height: 14px;
             }
 
-            .chechmark-wrap {
-                padding-top: 7px;
-
-                > div {
-                    float: left;
-                    @include clearfix();
-                    line-height: 14px;
-                }
-
-                input { margin: 0; }
+            input { margin: 0; }
 
 
-                label {
-                    margin: 0;
-                    @include gotham400();
-                    font-size: 11px;
-                    line-height: 14px;
-                    margin-left: 6px;
-                }
+            label {
+                margin: 0;
+                @include gotham400();
+                font-size: 11px;
+                line-height: 14px;
+                margin-left: 6px;
             }
-
+        }
     }
 
 
-    // Styling for specific sections
-
+    // Styling for specific sections in move details panel
     #reps .input-wrap .fancy_select { margin-bottom: 14px; }
 
     #weight .input-wrap label {
@@ -387,20 +386,12 @@
 
 
 
+.add_photo {
+    float: left;
+    padding-left: 13px;
 
-.fitler_col {
-    width: 100%;
+    img { width:100%; height:auto; }
 }
-
-
-.add_photo{
-    float:left;
-    padding-left:13px;
-
-    img{width:100%; height:auto}
-}
-
-
 
 .col_1 {
     width:100%;
@@ -424,88 +415,5 @@
         font-weight:bold;
     }
 }
-
-
-
-
-
-.min_max_col{
-    width:100%;
-    float:left;
-    margin-top:13px;
-}
-.min_max_col.mt {
-    margin-top:0px;
-}
-
-.min_col {
-    width: 17%;
-    float:left;
-    margin-right: 31px;
-}
-
-
-.min_col.min_col_1{
-    width:20%;
-}
-
-.fancy_select.w60{ width:60%}
-.min_m{
-    margin-right:0px;
-}
-
-
-
-.min_max_select{
-    width:100%;
-    float:left;
-    background:#fff;
-    border:1px solid #bebfc1;
-    padding:2px;
-    font-size:12px;
-    font-family: 'gotham-bookgotham-book';
-    color:#626364;
-    margin:0px;
-}
-.check_col_1{
-    width:32%;
-    float:left;
-}
-.check_col_1 label{
-    font-size:11px;
-    font-family: 'gotham-bookgotham-book';
-    color:#626364;
-}
-
-.min_col_1 .integer  input{
-    //width: 55px;
-    //padding: 7px;
-}
-
-.min_col_1 .integer input:focus{
-    outline: none;
-}
-
-
-
-
-
-
-
-
-
-.range_select {
-    width:100%;
-    float:left;
-    background:#fff;
-    border:1px solid #bebfc1;
-    padding:6px;
-    border-radius:3px;
-    font-size:12px;
-    font-family: 'gotham-bookgotham-book';
-    color:#626364;
-    margin:0px;
-}
-
 
 
