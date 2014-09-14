@@ -70,11 +70,20 @@
     &.split-right { left: 380px; }
 
     .column-wrap {
-        overflow-y: scroll;
+        //overflow-y: scroll;
+        width: auto;
+        top: 0;
+        //right: 0;
+        bottom: 0;
     }
+
+
 }
 
-.column.split-right .column-wrap { border-left: 2px solid $border-color; }
+.column.split-right .column-wrap {
+    border-left: 2px solid $border-color;
+    overflow: auto;
+}
 
 
 
@@ -90,6 +99,7 @@
 
 .builder-panel {
     @include clearfix();
+    position: relative;
     width: 380px;
     height: 100%;
     overflow-y: scroll;
@@ -100,7 +110,6 @@
         position: relative;
         @include clearfix();
     }
-}
 
     .library-moves {
         @include clearfix();
@@ -156,7 +165,7 @@
         background: #F9F9F9;
         cursor: not-allowed;
     }
-
+}
 
 .builder-header {
     float: left;
@@ -262,11 +271,14 @@
 .panel-inputs .input-section {
     width: 100%;
     float: left;
+    position: relative;
     padding: 13px 0 21px;
     border-bottom: 1px solid #F2F2F2;
+    @include user-select(none);
 }
 
 .section-title {
+    float: left;
     width: 100%;
     position: relative;
     line-height: 16px;
@@ -290,6 +302,7 @@
 }
 
 .input-wrap {
+    float: left;
     padding-top: 20px;
     width: 100%;
     position: relative;
@@ -297,7 +310,9 @@
 }
 
 .panel-inputs #weight .input-wrap label {
-
+    @include gotham300-italic();
+    font-size: 11px;
+    line-height: 14px;
 }
 
 

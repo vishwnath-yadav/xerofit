@@ -12,6 +12,12 @@
   font-style: normal;
 }
 
+@mixin gotham300-italic() {
+  font-family: 'Gotham SSm 3i', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
 @mixin gotham400() {
   font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
