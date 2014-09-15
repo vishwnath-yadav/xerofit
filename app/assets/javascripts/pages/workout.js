@@ -146,7 +146,7 @@ $(document).ready(function() {
       remove_library_from_block(hiden_field_id);
       $(this).remove();
     }
-    else{
+    else if($(e.target).hasClass("block_li")){
       $('.li_active').removeClass('li_active');
       $(this).addClass('li_active');
       var lib_id = $(this).attr('id').split("_")[1];
@@ -236,6 +236,7 @@ $(document).ready(function() {
       return false;
     }
   });
+
 });
 
 // $(document).on('page:load', ready);
@@ -268,14 +269,35 @@ function remove_msg(){
   $('.success').removeClass('move_detail').html('');
 }
 
-function drag_over(e) {
-    e.dataTransfer.dropEffect='move';
-    e.dataTransfer.setData("text/plain", e.target.getAttribute('id'));
-}
-
 function drag_start(e) {
     e.dataTransfer.dropEffect='move';
     e.dataTransfer.setData("text/plain", e.target.getAttribute('id'));
+}
+// temp = '';
+// count = 0;
+function drag_over(e){
+  // var element = $(e).attr('id');
+  // if(element != temp){
+  //   temp = element;
+  //   if($(e).siblings().length < 1){
+  //     console.log("inside if");
+  //     count = count + 1
+  //     console.log("dddddd 1"+count);
+  //   }
+  //   else if($(e).is(':last-child')){
+  //     $('.blank_li').remove();
+  //     $(e).after('<li class="blank_li" id="blank" ondragover="drag_over(this)">1</li>');
+  //     count = count + 1
+  //     console.log("dddddd 2"+count);
+  //   }
+  //   else{
+  //     $('.blank_li').remove();
+  //     $(e).before('<li class="blank_li" id="blank" ondragover="drag_over(this)">1</li>');
+  //     count = count + 1
+  //     console.log("dddddd 3"+count);
+  //   }
+  // }
+  return false;
 }
 
 function drag_drop(e, id) {
@@ -317,9 +339,10 @@ function manage_drop_library_into_block(id, block_type, element, text){
     alert("Library Already Exists");
   }
   else{
-    $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class="block_li"><span class="rm" id=rm_'+id+'_'+lib_id+'></span><h6>'+text+'</h6></li>');
+    $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class="block_li" ondragover="drag_over(this)"><span class="rm" id=rm_'+id+'_'+lib_id+'></span><h6>'+text+'</h6></li>');
     load_library_content('',id, lib_id, '');
     $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
+   $(".blank_li").remove();
   }
 }
 

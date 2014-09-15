@@ -1,4 +1,4 @@
-<div class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
+<div class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" >
     <%if !@display.blank? %>
         <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
     <%end%>
@@ -13,15 +13,16 @@
         <div class="met_tab_desc">
             <%=hidden_field_tag "block_id", @block.id %>
             <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type, class: "block_type" %>
-        	<ul class="sortable">
-            	<li>1</li>
+        	<ul class="sortable" id="sortable">
+            	<li class="blank_li" id='blank' ondragover="drag_over(this)">1</li>
             </ul>
         </div>
     </div>
 
 </div>
 <script>
-  $( ".sortable" ).sortable({
+$( ".sortable" ).sortable({
+  revert: true,
   stop: function( event, ui ) {sort_lis($(ui.item));}
 });
 </script>
