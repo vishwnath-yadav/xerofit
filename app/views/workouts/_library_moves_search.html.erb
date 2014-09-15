@@ -4,7 +4,7 @@
             <%#= move.has_full_detail %>
         <% if @enabled_move.present? %>
             <% @enabled_move.each do |move|%>    
-                <div class="single-move"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=move.id%>">
+                <div class="single-move"  draggable="true" ondragstart="drag_start(event)" id="lib_<%=move.id%>" dragable-type="Move">
                     <div class="move-thumb">
                         <% if move.library_video.present? && move.library_video.image.present? %>
                             <img src="<%= move.library_video.image %>" alt="<%=move.title%>">

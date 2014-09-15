@@ -3,7 +3,7 @@ class Block < ActiveRecord::Base
 	has_many :move_blocks
 	has_many :moves, through: :move_blocks
 
-	BLOCK_TYPE = ["circuit","superset","individual"]
+	BLOCK_TYPE = ["circuit","superset","water break", "individual"]
 
 	def name_type
 		if block_type == Block::BLOCK_TYPE[0]
@@ -11,6 +11,8 @@ class Block < ActiveRecord::Base
 		elsif block_type == Block::BLOCK_TYPE[1]
 			"2X"
 		elsif block_type == Block::BLOCK_TYPE[2]
+			"1X"
+		elsif block_type == Block::BLOCK_TYPE[3]
 			"1X"
 		end
 	end

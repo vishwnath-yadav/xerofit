@@ -1,4 +1,4 @@
-BLOCK_TYPE = ["circuit","superset","individual"]
+BLOCK_TYPE = ["circuit","superset","water break", "individual"]
 
 MUSCLES_TYPE = ["Primary","Secondary","Other","Other","Other"]
 

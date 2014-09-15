@@ -36,13 +36,7 @@ $(document).ready(function() {
      $("#workout_form").submit();
   });
 
-  $(document).on("click", "#filter_change", function(){
-    var filter_cls = $(this).attr("class");
-    $(this).toggleClass('asc', 500);
-    var type = $(this).hasClass("asc") ? 'asc' : 'desc';
-    $('.filter_desc').val(type);
-    $('#filter_search_form').submit();
-  });
+
 
   $(document).on("click","#search-move-titles",function(){
     $('#filter_search_form').submit();
@@ -94,6 +88,8 @@ $(document).ready(function() {
     $('#filter_search_form').submit();
   });
 
+
+
   $(document).on("click",".wrk_add_opt", function(){
     $.fancybox.open({
       href: '#wrk_add_option',
@@ -119,8 +115,8 @@ $(document).ready(function() {
       $('.met_tab_desc').each(function(){
         if(!$(this).closest('.block_hide').length){
           var b_id = $(this).find('#block_id').val();
-          var b_type = $(this).find('#block_type_'+b_id).val();
-          var li_size = $(this).find('ul li').size();
+          var b_type = $('#block_type_'+b_id).val();
+          var li_size = $(this).find('ul li.block_li').size();
           var check = check_library_publish(li_size, b_type)
           if(check != ''){
             verify = false;
@@ -135,8 +131,10 @@ $(document).ready(function() {
     }
   });
 
+
   $(document).on('click','.close-panel', function(){
-      $("#move-details-panel").css('display', 'none');
+    $('.li_active').removeClass('li_active');
+    $("#move-details-panel").css('display', 'none');
   });
 
   $(document).on("click",".met_tab_desc ul li", function(e){
@@ -158,6 +156,7 @@ $(document).ready(function() {
     }
   });
 
+  // Dropdown
   $(document).on('change', ".lib_detail_sel", function(){
     $(".edit_move_detail").submit();
   });
@@ -256,24 +255,22 @@ function create_sub_block(){
 
 function create_individual_sub_block(){
   $('.drag_img').remove();
-  var type = BLOCK_TYPE[2];
-  var title = 'Individual';
-  sub_block_ajax(type, title, 'block_hide');
+  sub_block_ajax();
 }
 
-function sub_block_ajax(type, title, display){
-  if(title){
-    url = '/builder/get_workout_sub_block';
-    $.get(url, {type:type,title:title,display:display}, function (data) {
-    });
-  }
-  else{
-    $('.title').css('border-color','red');
-  }
+function sub_block_ajax(){
+  url = '/builder/get_workout_sub_block';
+  $.get(url, {}, function (data) {
+  });
 }
 
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');
+}
+
+function drag_over(e) {
+    e.dataTransfer.dropEffect='move';
+    e.dataTransfer.setData("text/plain", e.target.getAttribute('id'));
 }
 
 function drag_start(e) {
@@ -283,27 +280,55 @@ function drag_start(e) {
 
 function drag_drop(e, id) {
     var element = e.dataTransfer.getData("Text");
-    var text = document.getElementById(element).innerHTML;
-    var lib_id = element.split("_")[1];
-    var size = parseInt($('.b'+id).text()) + 1;
-    $('.li_active').removeClass('li_active');
-    var block_type = $('#block_type_'+id).val();
-    var li_size = $("#block_"+id).find('.met_tab_desc ul li').size();
-    var check = check_library_count(li_size, block_type, false);
-    if(check != ''){
-      alert(check);
-    }
-    else if (check_library_present(lib_id, id)){
-      alert("Library Already Exists");
+    var text = $("#"+element).find('h6').text();
+    var dragable_type = $("#"+element).attr('data-dragable-type');
+    if(dragable_type == "Block"){
+      if($('#block_'+id).find('.block_hide').length){
+        var block_name = $("#"+element).attr('data-block-name');
+        initialize_new_block(id, block_name);
+      }
     }
     else{
-      individual_block_show(id);
-      $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class=li_active><span class="rm" id=rm_'+id+'_'+lib_id+'>X</span><span class="nummeric" data-libdetail="">'+size+'</span><h6>'+text+'</h6></li>');
-      $('.b'+id).text(size);
-      load_library_content('',id, lib_id, size);
-      $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
+      var block_type = $('#block_type_'+id).val();
+      if(block_type != ''){
+        manage_drop_library_into_block(id, block_type, element, text);
+      }
+      else{
+        manage_drop_library_directly(id, block_type, element, text); 
+      }
     }
-    $('.dots_img').remove() //removing all dots from dropped lis
+}
+
+function initialize_new_block(id, block_name){
+  $('.block_hide').removeClass('block_hide');
+  $("#block_type_"+id).val(block_name);
+  $("#block_type_h4_"+id).text(block_name);
+  create_individual_sub_block();
+}
+
+function manage_drop_library_into_block(id, block_type, element, text){
+  var li_size = $("#block_"+id).find('.met_tab_desc ul li.block_li').size();
+  var check = check_library_count(li_size, block_type);
+  var lib_id = element.split("_")[1];
+  if(check != ''){
+    alert(check);
+  }
+  else if (check_library_present(lib_id, id)){
+    alert("Library Already Exists");
+  }
+  else{
+    $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class="block_li"><span class="rm" id=rm_'+id+'_'+lib_id+'></span><h6>'+text+'</h6></li>');
+    load_library_content('',id, lib_id, '');
+    $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
+  }
+}
+
+function manage_drop_library_directly(id, block_type, element, text){
+  $('#block_'+id).find('.met_tab_col').addClass('single_move_drop');
+  $('#block_'+id).find('.met_tab_desc li:eq(0)').remove();
+  $('#block_'+id).find('.met_head').remove();
+  initialize_new_block(id, BLOCK_TYPE[3]);
+  manage_drop_library_into_block(id, block_type, element, text);
 }
 
 function individual_block_show(id){
@@ -313,22 +338,24 @@ function individual_block_show(id){
   }
 }
 
-function check_library_count(li_size, block_type, publish){
+function check_library_count(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
       alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == BLOCK_TYPE[2])&&(li_size>0)){
-   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
+  else if((block_type == BLOCK_TYPE[3])&&(li_size>0)){
+   alrt = BLOCK_TYPE[3]+" Block must have exactly 1 library";
   }
   return alrt;
 }
 
-function load_library_content(lib_detail, block_id, lib_id, move){
-  $("#move-details-panel").css('display', 'block');
-  $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
-  var url = '/builder/load_lib_details'
-  $.get(url, {lib_detail:lib_detail,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
+function load_library_content(lib_detail_id, block_id, lib_id, move){
+  if(lib_detail_id != ''){
+    $("#move-details-panel").css('display', 'block');
+    $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
+  }
+  var url = '/builder/load_lib_details';
+  $.get(url, {lib_detail_id:lib_detail_id,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
    });
 }
 
@@ -349,10 +376,12 @@ function check_library_publish(li_size, block_type){
 function check_library_present(lib_id, id){
   var present = false;
   $("#block_"+id).find(".met_tab_desc ul li").each(function(){
-    lid = $(this).attr('id').split("_")[1];
-    if(lid == lib_id){
-      present = true;
-      return false
+    if($(this).attr('id')){
+      lid = $(this).attr('id').split("_")[1];
+      if(lid == lib_id){
+        present = true;
+        return false
+      }
     }
   });
   return present;

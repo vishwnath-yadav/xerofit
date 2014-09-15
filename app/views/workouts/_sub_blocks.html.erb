@@ -1,26 +1,20 @@
-<div class="met_tab>" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
+<div class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false">
     <%if !@display.blank? %>
         <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
     <%end%>
     <div class="met_tab_col <%=@display%>">
     	<div class="met_head">
-        	<div class="tab_arrow">
-       	        down
-             </div>
              <div class="head_rght">
-             <h4><%= @block.name %></h4>
-             <p><span class="b<%= @block.id %>">0</span> moves // <%= @block.block_type.capitalize%> repeat: <%= @block.name_type %></p>
+             <h4 id="block_type_h4_<%= @block.id %>"><%= @block.name %></h4>
              </div>
         </div>
 
         <!-- <div class="met_tab_desc" id="b<%= @block.id %>"> -->
         <div class="met_tab_desc">
             <%=hidden_field_tag "block_id", @block.id %>
-            <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type %>
+            <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type, class: "block_type" %>
         	<ul class="sortable">
-            	<!-- <li>   
-                    Drag Here Libraries
-                </li> -->
+            	<li>1</li>
             </ul>
         </div>
     </div>

@@ -1,8 +1,2 @@
-// $('.drag_img').remove();
-$.fancybox.close();
-if($('.block_hide').length){
-	$('.block_hide').parent().before("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
-}
-else{
-	$('.drag_lib').append("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
-}
+$('.drag_lib').append("<%= escape_javascript(render(:partial => 'sub_blocks')) %>");
+$('.drag_img').remove();  //removing all dots from dropped lis

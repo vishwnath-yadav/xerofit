@@ -70,11 +70,20 @@
     &.split-right { left: 380px; }
 
     .column-wrap {
-        overflow-y: scroll;
+        //overflow-y: scroll;
+        width: auto;
+        top: 0;
+        //right: 0;
+        bottom: 0;
     }
+
+
 }
 
-.column.split-right .column-wrap { border-left: 2px solid $border-color; }
+.column.split-right .column-wrap {
+    border-left: 2px solid $border-color;
+    overflow: auto;
+}
 
 
 
@@ -90,16 +99,10 @@
 
 .builder-panel {
     @include clearfix();
+    position: relative;
     width: 380px;
+    height: 100%;
     overflow-y: scroll;
-
-    .panel-inputs {
-        padding: 28px 40px;
-        width: 100%;
-        position: relative;
-        @include clearfix();
-    }
-}
 
     .library-moves {
         @include clearfix();
@@ -155,7 +158,7 @@
         background: #F9F9F9;
         cursor: not-allowed;
     }
-
+}
 
 .builder-header {
     float: left;
@@ -220,6 +223,7 @@
 }
 
 
+// Panel Header styling
 .panel-head {
     width: 100%;
     position: relative;
@@ -235,75 +239,186 @@
         color: $silver16;
         letter-spacing: 2px;
     }
-}
 
+    .close-panel {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 4px;
+        border: none;
+        background: none;
 
-.close-panel {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    padding: 4px;
-    border: none;
-    background: none;
-
-    &:before {
-        display: block;
-        height: 14px;
-        width: 14px;
-        content: '';
-        background: url('/assets/icons/modal_close_icon.png');
-        background-repeat: no-repeat;
-        @include background-size(contain);
+        &:before {
+            display: block;
+            height: 14px;
+            width: 14px;
+            content: '';
+            background: url('/assets/icons/modal_close_icon.png');
+            background-repeat: no-repeat;
+            @include background-size(contain);
+        }
     }
 }
 
 
 
-
-
-
-// -------------------------------------------------------------------------- //
-// Previous styles copied over from css/style.css
-// -------------------------------------------------------------------------- //
-
-.fitler_col {
+// Styling for all sections in editor
+.builder-panel .panel-inputs {
+    padding: 14px 40px;
     width: 100%;
+    position: relative;
+    @include clearfix();
+
+    .input-section {
+        width: 100%;
+        float: left;
+        position: relative;
+        padding: 13px 0 21px;
+        border-bottom: 1px solid #F2F2F2;
+        @include user-select(none);
+    }
+
+    .section-title {
+        float: left;
+        width: 100%;
+        position: relative;
+        line-height: 16px;
+        font-size: 14px;
+
+        label {
+            width: 100%;
+            margin: 0;
+            @include gotham500();
+            @include user-select(none);
+        }
+
+        input {
+            position: absolute;
+            right: 0;
+            top: 1px;
+            margin: 0;
+            height: 14px;
+            width: 14px;
+        }
+    }
+
+    .input-wrap {
+        float: left;
+        padding-top: 20px;
+        width: 100%;
+        position: relative;
+        @include clearfix();
+
+        .inputs {
+            width: 100%;
+            position: relative;
+            float: left;
+
+            > div {
+                float: left;
+                @include clearfix();
+            }
+        }
+
+        > div {
+            float: left;
+            @include clearfix();
+        }
+
+        // Wrapper for input[type=number]
+        .number-input-wrap {
+            margin-right: 20px;
+
+            label {
+                float: left;
+                font-size: 9px;
+                line-height: 11px;
+                @include gotham300();
+                text-align: center;
+                width: 100%;
+                margin-top: 3px;
+                margin-bottom: 0px;
+            }
+        }
+
+        .chechmark-wrap {
+            padding-top: 7px;
+
+            > div {
+                float: left;
+                @include clearfix();
+                line-height: 14px;
+            }
+
+            input { margin: 0; }
+
+
+            label {
+                margin: 0;
+                @include gotham400();
+                font-size: 11px;
+                line-height: 14px;
+                margin-left: 6px;
+            }
+        }
+    }
+
+
+    // Styling for specific sections in move details panel
+    #reps .input-wrap .fancy_select { margin-bottom: 14px; }
+
+    #weight .input-wrap label {
+        @include gotham300-italic();
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    #distance .input-wrap .fancy_select { width: 50%; }
 }
 
 
-.add_photo{
-    //width:100%;
-    float:left;
-    padding-left:13px;
 
-    img{width:100%; height:auto}
+
+// -------------------------------------------------------------------------- //
+// Previous Workout Builder styles copied over from css/style.css
+// -------------------------------------------------------------------------- //
+
+
+
+.workout-preview {
+    width: 100%;
+    float: left;
+    padding: 39px;
+    position: relative;
+    @include clearfix();
+
+    .builder-dropzone {
+        padding: 39px;
+        float: left;
+        width: 100%;
+        position: relative;
+        background: #F2F2F2;
+        border: 1px solid #E3E3E3;
+        @include clearfix();
+        @include border-radius(6px);
+    }
 }
 
 
-.filter_icon{
-    background:url(/assets/down_icon.jpg) no-repeat right 3px;
-    padding-right:20px;
-    font-size:11px;
-    color:#7e8082;
-    font-family: 'gotham_extralightregular';
-    float:right;
-    margin-bottom:20px;
-    opacity: .6;
-}
-.filter_icon.asc{
-    background:url(/assets/up-icon.jpg) no-repeat right 3px;
-}
-.filter_icon a{color:#7e8082; text-decoration:none;}
-.filter_icon a:hover{color:#000;}
 
-
+.add_photo {
+    float: left;
+    //padding-left: 13px;
+    width: 100%;
+    img { width:100%; height:auto; }
+}
 
 .col_1 {
     width:100%;
     float:left;
     border-bottom:1px solid #e1e3e5;
     padding-bottom:20px;
-    margin-bottom:35px;
+    //margin-bottom:35px;
 
     h2 {
         font-size:28px;
@@ -321,9 +436,17 @@
     }
 }
 
-.gray_1 {
-    width:100%;
-    float:left;
-    padding:20px 15px;
-    border-bottom:1px solid #d3d3d3;
+.workout_block_options{
+    float: left;
+    margin: 0px 0 15px;
+
+    span {
+        background: #efefef;
+        padding: 10px;
+        margin: 4px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
+
+

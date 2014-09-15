@@ -21,7 +21,7 @@ class WorkoutsController < ApplicationController
 			@enabled_move = enabled_move.flatten.sort_by(&:title)
 			@disabled_move = disabled_move.flatten.sort_by(&:title)
 		end
-		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
+		@block = Block.new()
 		@block.save
 		@display = "block_hide"
 	end
@@ -39,7 +39,7 @@ class WorkoutsController < ApplicationController
 
 	def edit
 		@workout = Workout.find(params[:id])
-		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[2])
+		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[3])
 		@block.save
 		@display = "block_hide"
 	end
@@ -67,9 +67,9 @@ class WorkoutsController < ApplicationController
 	end
 
 	def get_workout_sub_block
-		@block = Block.new(:name => params[:title], :block_type=> params[:type])
+		@block = Block.new()
 		@block.save
-		@display = params[:display]
+		@display = 'block_hide'
 		respond_to do |format|
 			format.js 
 		end
@@ -105,7 +105,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def load_lib_details
-		@lib_detail = params[:lib_detail].present? ? MoveDetail.find(params[:lib_detail]) : nil
+		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
 		if !@lib_detail.present?
 			@lib_detail = MoveDetail.new()
 			@lib_detail.save
