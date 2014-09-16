@@ -84,6 +84,35 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('blur', ".lib_detail_popup", function(){
+    var libdetails_arr=[];
+    var $input = $(this).find('input');
+    var val = parseInt($input.val());
+    var name = $input.attr('name');
+    var id = $input.attr('data-block-id');
+    $('ul li.block_li').each(function(){
+      if ($(this).attr('id').split('_')[0] == id)
+      {
+        libdetails_arr.push($(this).attr('data-libdetail'));
+      }
+    })
+    url = '/builder/update_move_details';
+    $.get(url, {block_id:id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+    });
+  });
+
+  $(document).on('blur', ".water_detail", function(){
+    var $input = $(this).find('#minutes');
+    var $input1 = $(this).find('#seconds');
+    var val = parseInt($input.val());
+    var val1 = parseInt($input1.val());
+    var id = $input.attr('data-block-id');
+    
+    url = '/builder/update_water_block_details';
+    $.get(url, {block_id:id, minute:val, second:val1}, function (data) {
+    });
+  });
+
   $('#search-move-by-title').bind('railsAutocomplete.select', function(event, data){
     $('#filter_search_form').submit();
   });
@@ -182,7 +211,12 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click', ".met_head", function(){
+
+  $(document).on('click', ".met_head", function(e){
+    if($(e.target).is('span *')){
+            e.preventDefault();
+            return;
+        }
     $(this).siblings().toggle('slow');
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
   });
@@ -307,7 +341,12 @@ function drag_drop(e, id) {
     if(dragable_type == "Block"){
       if($('#block_'+id).find('.block_hide').length){
         var block_name = $("#"+element).attr('data-block-name');
-        initialize_new_block(id, block_name);
+        if(block_name == BLOCK_TYPE[2]){
+          initialize_new_water_block(id, block_name);
+        }
+        else{
+          initialize_new_block(id, block_name);
+        }
       }
     }
     else{
@@ -325,7 +364,15 @@ function initialize_new_block(id, block_name){
   $('.block_hide').removeClass('block_hide');
   $("#block_type_"+id).val(block_name);
   $("#block_type_h4_"+id).text(block_name);
+  $("#block_remove_"+id).text("Delete "+block_name);
   create_individual_sub_block();
+}
+
+function initialize_new_water_block(id, block_name){
+  $('.drag_img').remove();
+  url = '/builder/get_workout_water_sub_block';
+  $.get(url, {id:id}, function (data) {
+  });
 }
 
 function manage_drop_library_into_block(id, block_type, element, text){
@@ -377,8 +424,11 @@ function load_library_content(lib_detail_id, block_id, lib_id, move){
     $("#move-details-panel").css('display', 'block');
     $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
   }
+
+  sets_val = $('#block_'+block_id).find('#moves_sets').val();
+  rests_val = $('#block_'+block_id).find('#moves_rests').val();
   var url = '/builder/load_lib_details';
-  $.get(url, {lib_detail_id:lib_detail_id,lib_id:lib_id,block_id:block_id, move:move}, function (data) {
+  $.get(url, {lib_detail_id:lib_detail_id,lib_id:lib_id,block_id:block_id, move:move, sets:sets_val, rests:rests_val}, function (data) {
    });
 }
 

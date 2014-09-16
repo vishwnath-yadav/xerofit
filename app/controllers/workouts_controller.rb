@@ -75,6 +75,25 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def get_workout_water_sub_block
+		@old_block_id = params[:id]
+		@block = Block.new(name: Block::BLOCK_TYPE[2])
+		@block.save
+		respond_to do |format|
+			format.js 
+		end
+	end
+
+	def update_water_block_details
+		if params[:block_id].present?
+			@block = Block.find(params[:block_id])
+			@block.minutes = params[:minute]
+			@block.seconds = params[:second]
+			@block.save 
+		end
+		render text: true
+	end
+
 	def save_blocks
 		@workout = Workout.find_by_id(params[:workout_id])
 		if params[:workout].present?
@@ -108,6 +127,8 @@ class WorkoutsController < ApplicationController
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
 		if !@lib_detail.present?
 			@lib_detail = MoveDetail.new()
+			@lib_detail.sets_count = params[:sets]
+			@lib_detail.rest_time = params[:rests]
 			@lib_detail.save
 		end
 		if !params[:move].blank?
@@ -135,6 +156,23 @@ class WorkoutsController < ApplicationController
 		@user = @workout.user
 		@disabled = ([@workout.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
+	end
+
+	def update_move_details
+		if params[:lib_detail_arr].present?
+			lib_arr = params[:lib_detail_arr]
+			lib_arr.each do |lib_detail|
+				move_detail  = MoveDetail.find(lib_detail)
+				if params[:name] == "sets_count"
+						move_detail.sets_count = params[:value]
+						move_detail.save 
+				elsif params[:name] == "rest_time"
+						move_detail.rest_time = params[:value]
+						move_detail.save 
+				end
+			end
+		end
+		render text: true
 	end
 
 	private
