@@ -10,34 +10,10 @@ body {
     margin: 0px;
     padding: 0px;
     height:100%;
-    font-family: 'gotham-bookgotham-book';
+    @include gotham300();
 }
 
 body { background: #f7f7f7; }
-
-@font-face {
-    font-family: 'gotham_extralightregular';
-    src: url('/assets/ufonts.com_gotham_extralight-webfont.eot');
-    src: url('/assets/ufonts.com_gotham_extralight-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/ufonts.com_gotham_extralight-webfont.woff') format('woff'),
-         url('/assets/ufonts.com_gotham_extralight-webfont.ttf') format('truetype'),
-         url('/assets/ufonts.com_gotham_extralight-webfont.svg#gotham_extralightregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'gotham-bookgotham-book';
-    src: url('/assets/gothmbok-webfont.eot');
-    src: url('/assets/gothmbok-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/gothmbok-webfont.woff') format('woff'),
-         url('/assets/gothmbok-webfont.ttf') format('truetype'),
-         url('/assets/gothmbok-webfont.svg#gotham-bookgotham-book') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 
 .wrapper {
     min-height: 100%;
@@ -52,6 +28,13 @@ body { background: #f7f7f7; }
     height: 56px;
     background: #fff;
     border-bottom: 1px solid #E3E3E3;
+}
+
+.login-page {
+    width: 100%;
+    position: relative;
+    padding-top: 70px;
+    padding-bottom: 42px;
 }
 
 .content {
@@ -131,134 +114,245 @@ body { background: #f7f7f7; }
 }
 
 
-.middle_wrapper {
-    width: 100%;
-    float: left;
-    padding-bottom: 40px;
+
+
+
+// -------------------------------------------------------------------------- //
+// Login Pages
+// -------------------------------------------------------------------------- //
+
+
+
+.login-wrap {
+    width: 430px;
+    padding: 40px;
+    overflow: hidden;
+    position: relative;
     background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    @include border-radius(4px);
+
+    .login-head {
+        width: 100%;
+        float: left;
+        padding-bottom: 28px;
+
+        h2 {
+            color: $silver16;
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+            margin-bottom: 7px;
+            @include gotham400();
+        }
+
+        p {
+            color: $silver51;
+            font-size: 11px;
+            line-height: 14px;
+            margin: 0;
+
+            a {
+                color: $silver51;
+                text-decoration: none;
+                border-bottom: 1px solid $silver51;
+                cursor: pointer;
+
+                &:hover{
+                    color: $xero-blue;
+                    border-bottom: 1px solid $xero-blue;
+                }
+            }
+        }
+
+        p.left_p{ margin-top:34px; }
+
+        &.border_none {
+            border-bottom: 0;
+            padding-top: 65px;
+            padding-bottom: 0;
+        }
+
+        &.border_none.txt_cent {
+            text-align: center;
+            padding-top: 56px;
+            padding-bottom: 21px;
+
+            img { margin-bottom:30px; }
+        }
+    }
+
+    .login-body {
+        width: 100%;
+        float: left;
+        padding-top: 14px;
+
+        .input-field-wrap input { padding: 8px 10px; }
+
+        .input-field-wrap.fname,
+        .input-field-wrap.lname { width: 160px; }
+
+        .input-field-wrap.lname {float: right; }
+    }
 }
 
-//
-// ==================================================================
-// Login Page
-// ==================================================================
-//
-
-
-.popup_wrapper{max-width:470px; overflow:hidden; position:relative; background:#fff; margin:3% auto 0; border-radius:6px;}
-.popup_wrapper.wdt380{width:380px;}
-.popup_wrapper.wdt901{max-width:901px;}
-.left_pop{
-    width:450px;
-    float:left;
-    background:url(/assets/left_bg.png) no-repeat right 60%;
-    padding:2px 35px 20px 20px;
-}
-.left_pop.rght_pop{
-    background:none;
-}
-.close_icon{ width:20px; height:20px; position:absolute; right: 12px;
-top: 13px;}
-.close_icon img:hover{opacity:.6}
-.popup_wrapper .popup_header{width:100%; float:left; border-bottom:1px solid #f4f4f5;  padding:32px 50px 16px;}
-.popup_wrapper .popup_header h2{ color:#4a4a4a; font-size:24px;}
-.popup_wrapper .popup_header p{color: #999999;
-font-size: 12px;
-line-height: 19px;
-margin-top: 8px;}
-.popup_wrapper .popup_header p.left_p{
-    margin-top:34px;
-}
-.popup_wrapper .popup_header.border_none{border-bottom: 0; padding-top: 65px;
-padding-bottom: 0;}
-.popup_wrapper .popup_header.pb43 {
-
-padding-top: 43px;
-}
-.popup_wrapper .popup_header.border_none.txt_cent{text-align: center;
-padding-top: 56px;
-padding-bottom: 21px;
-}
-.popup_wrapper .popup_header.border_none.txt_cent img{margin-bottom:30px;}
-.popup_wrapper .popup_header p a {color:#00a1ff; text-decoration:underline;}
-.popup_wrapper .popup_header p a:hover{color:#000;}
-.popup_wrapper .popp_middle{width:100%; float:left; padding:32px 50px;}
-.login_field{width:100%; float:left; margin-bottom:12px;}
-.login_field label{color:#4a4a4a; font-size:16px; margin-bottom:15px; float:left; width:100%;}
-.login_field input{ border-radius:5px; outline: none; padding:6px; border:1px solid #d9d9d9; width:100%; float:left; color:#999999; font-family: 'gotham_extralightregular'; font-style:italic; font-size:14px;}
-.signin_btn{
-    background: #00a1ff;
-    font-size: 16px;
+.login-btn {
+    margin-top: 28px;
+    background: $xero-blue;
+    font-size: 18px;
+    line-height: 24px;
     width: 100%;
-    padding: 14px 10px;
-    border-radius: 5px;
+    padding: 16px 28px;
+    @include border-radius(5px);
     border: 0;
     text-align: center;
-    color:#fff;
-    margin-bottom:15px;
-    cursor:pointer;
-}
-/*.signin_btn:hover{
-    background:#666;
-    background: #00a1ff;
-}*/
-
-.signin_dis{
-    opacity: .4;
-    pointer-events: none;
-    cursor: default;
-}
-.signin_btn.request_btn{
-    background:#fff;
-    border:1px solid #666;
-    color:#666;
-}
-.signin_btn.request_btn:hover{
-    background:#666;
-    color:#fff;
-}
-.signin_btn.mar_bot_zero{margin-bottom: 00;
-margin-top: 17px;}
-span.lost_pass_txt{font-size: 12px;
-color: #b2b2b2;
-
-width: 100%;
-text-align: center;
-float: left;}
-span.lost_pass_txt a{color:#b2b2b2;}
-span.lost_pass_txt a:hover{
-    color:#00a1ff;
+    color: #fff;
+    cursor: pointer;
 }
 
-
-.reset_img{
-    margin-left: 120px;
-    margin-bottom: 31px;
-}
-
-.reset_text{
+.login-page .btn-footnote {
+    font-size: 10px;
+    line-height: 12px;
+    margin-top: 8px;
+    color: $silver51;
+    width: 100%;
+    display: block;
+    float: left;
     text-align: center;
-    margin-bottom: 15px;
+
+    a {
+        color: $silver71;
+        text-decoration: none;
+        border-bottom: 1px solid $silver71;
+        cursor: pointer;
+
+        &:hover{
+            color: $xero-blue;
+            border-bottom: 1px solid $xero-blue;
+        }
+    }
 }
 
-.usr_lgn_pas{
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Reset Password Page
+// -------------------------------------------------------------------------- //
+
+
+
+.login-wrap #reset-password {
+    width: 100%;
     position: relative;
+    float: left;
+    text-align: center;
+
+    &:before {
+        display: block;
+        content: '';
+        background: url(/assets/icons/checkmark_reset.png);
+        width: 70px;
+        height: 70px;
+        margin-left: auto;
+        margin-right: auto;
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+    }
+
+    h2 {
+        font-size: 23px;
+        line-height: 28px;
+        @include gotham400();
+        margin-top: 42px;
+        margin-bottom: 14px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 12px;
+        line-height: 21px;
+        color: $silver51;
+        margin: 0;
+    }
+
+    .reset-pass-footer {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 42px;
+
+        a {
+            color: $xero-blue;
+            text-decoration: none;
+            border-bottom: 1px solid $xero-blue;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 14px;
+
+            &:hover{
+                color: darken( $xero-blue, 15% );
+                border-bottom: 1px solid darken( $xero-blue, 15% );
+            }
+        }
+    }
 }
 
-.spn_pass{
+
+// Show hide password toggles
+.toggle-pass,
+.toggle-pass1 {
     position: absolute;
-    color: #000;
-    top: 43px;
+    bottom: 9px;
     right: 10px;
+    font-size: 11px;
+    line-height: 14px;
+    color: $silver16;
+    @include gotham500();
+    cursor: pointer;
 }
 
-.spn_pass1{
-    position: absolute;
-    color: #000;
-    top: 115px;
-    right: 10px;
+.error_notification,
+.error-messages {
+    color: $xero-red;
 }
 
-.user_password.field_with_errors .error{
+.error-messages {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 11px;
+    line-height: 14px;
+}
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Combo Signup Form
+// -------------------------------------------------------------------------- //
+
+
+
+.login-page .login-wrap.combo-join-wrap { width: 860px; }
+
+.combo-join-wrap .split-left,
+.combo-join-wrap .split-right {
+    width: 350px;
+}
+
+.combo-join-wrap .split-left { float:left; }
+.combo-join-wrap .split-right { float:right; }
+
+
+
+
+
+// Not sure what this is
+.user_password.field_with_errors .error {
     display: none;
 }
+

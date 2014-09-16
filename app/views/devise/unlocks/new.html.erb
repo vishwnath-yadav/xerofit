@@ -1,23 +1,23 @@
-<div class="middle_wrapper">
-  <div class="popup_wrapper">
-    <div class="popup_header">
+<div class="login-page">
+  <div class="login-wrap">
+    <div class="login-head">
       <h2>Resend unlock instructions</h2>
     </div>
-    <div class="popp_middle">
+    <div class="login-body">
       <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
     		<%= f.error_notification %>
-        <span class="error_color">
+
+        <span class="error-messages">
           <%#= f.full_error :unlock_token %>
             <% resource.errors.full_messages.each do |object| %>
               <%= object %></br>
             <% end %>
         </span>
-        <div class="form-inputs">
+
+        <div class="input-field-wrap">
     	    <%= f.input :email, required: true, autofocus: true %>
     	  </div>
-        <div class="form-actions">
-      		<%= f.button :submit, "Resend unlock instructions" %>
-    	  </div>
+      	<%= f.button :submit, "Resend unlock instructions", { :class=>"login-btn" } %>
 	    <% end %>
     </div>
   </div>

@@ -812,52 +812,11 @@ a.cancel_btn {
 //
 
 
-.text_area_lg { height: 154px; }
-.text_area_md { height: 112px; }
-.text_area_sm { height: 70px; }
+.input_field_wrap.move_difficulty_select,
+.input_field_wrap.move_category_select,
+.input_field_wrap.workout_category_select { width: 50%; }
 
-.input_field_wrap,
-.exr_field_col {
-    position: relative;
-    width: 100%;
-    @include clearfix();
-    float: left;
-    margin-bottom: 28px;
-
-    label {
-        float: left;
-        width: 100%;
-        @include gotham500();
-        color: $silver31;
-        font-size: 14px;
-        line-height: 16px;
-        margin-bottom: 12px;
-    }
-
-    input,
-    textarea {
-        width: 100%;
-        outline: none;
-        resize: none;
-        padding: 6px 8px;
-        float: left;
-        border-radius: 4px;
-        border: 1px solid $textbox-borders;
-        font-size: 12px;
-        color: $silver31;
-    }
-
-    input { line-height: 14px; }
-
-    h4 {color: #a5afbb; padding-bottom: 5px;}
-
-    &.move_difficulty_select,
-    &.move_category_select,
-    &.workout_category_select { width: 50%; }
-
-    .move_difficulty_select { float: right; }
-
-}
+.input_field_wrap .move_difficulty_select { float: right; }
 
 .sel_wid{width: 90%}
 .sel_wid select{width: 100%; height: 85px}
