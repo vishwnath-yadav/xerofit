@@ -34,7 +34,9 @@
   </ul>
 
 <% else %>
-  <span> No Record Found...</span>
+  <div class="empty-library">
+    <span>Your Fitness Library appears to be empty!</span>
+  </div>
 <% end %>
 
 <%= paginate @move, remote: true %>

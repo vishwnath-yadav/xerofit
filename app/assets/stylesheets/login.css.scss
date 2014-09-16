@@ -8,7 +8,8 @@
 @import 'helpers/variables';
 @import 'helpers/mixins';
 @import 'vendor/normalize';
+@import 'base/typography';
 @import 'vendor/bootstrap';
 
-@import "base/layout";
+@import 'base/layout';
 @import 'login/login_page';

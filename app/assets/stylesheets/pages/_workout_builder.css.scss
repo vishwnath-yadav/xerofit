@@ -1,4 +1,4 @@
-.content.workout-builder{ padding-bottom: 0; }
+.content.workout-builder { padding-bottom: 0; }
 
 .header-scroll {
     background: #fff;
@@ -43,16 +43,11 @@
 
 
 
+// -------------------------------------------------------------------------- //
+// Workout Builder Page Structure
+// -------------------------------------------------------------------------- //
 
 
-
-
-
-
-
-
-
-// Setup the 2 Column builder layout
 .builder {
     width: 100%;
     position: relative;
@@ -70,20 +65,18 @@
     &.split-right { left: 380px; }
 
     .column-wrap {
-        //overflow-y: scroll;
         width: auto;
         top: 0;
-        //right: 0;
         bottom: 0;
     }
-
-
 }
 
 .column.split-right .column-wrap {
     border-left: 2px solid $border-color;
     overflow: auto;
 }
+
+
 
 
 
@@ -205,6 +198,7 @@
 
 
 
+
 // -------------------------------------------------------------------------- //
 // Move Details panel to edit workout options
 // -------------------------------------------------------------------------- //
@@ -221,7 +215,6 @@
     display: none;
     z-index: 3;
 }
-
 
 // Panel Header styling
 .panel-head {
@@ -379,6 +372,7 @@
 
 
 
+
 // -------------------------------------------------------------------------- //
 // Previous Workout Builder styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
@@ -404,8 +398,6 @@
     }
 }
 
-
-
 .add_photo {
     float: left;
     //padding-left: 13px;
@@ -414,23 +406,22 @@
 }
 
 .col_1 {
-    width:100%;
-    float:left;
-    border-bottom:1px solid #e1e3e5;
-    padding-bottom:20px;
-    //margin-bottom:35px;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #e1e3e5;
+    padding-bottom: 20px;
 
     h2 {
         font-size:28px;
         color:#919295;
-        font-family: 'gotham_extralightregular';
+        @include gotham200();
         margin-bottom:10px;
     }
 
     p {
         font-size:12px;
         color:#151f25;
-        font-family: 'gotham_extralightregular';
+        @include gotham200();
         font-style:normal;
         font-weight:bold;
     }

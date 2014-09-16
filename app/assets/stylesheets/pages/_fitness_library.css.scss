@@ -138,10 +138,7 @@ input.search_bar {
     input {display: inline-block;}
 
     select {
-        //padding: 5px;
         left: 0;
-        //width: 250px;
-        //margin-right: 5px;
     }
 }
 
@@ -287,6 +284,11 @@ input.search_bar {
 // ==================================================================
 //
 
+
+.empty-library {
+    width: 100%;
+    text-align: center;
+}
 
 .library_col ul {
     position: relative;
@@ -543,11 +545,13 @@ ul.exer_list_view li span.tx_rht.heading_txt{
 }
 
 
-//
-// ==================================================================
-// Fitness Library Home - Pagination
-// ==================================================================
-//
+
+
+
+// -------------------------------------------------------------------------- //
+// Fitness Library Home Pagination
+// -------------------------------------------------------------------------- //
+
 
 
 .pagination_wrap {
@@ -618,11 +622,13 @@ ul.exer_list_view li span.tx_rht.heading_txt{
 }
 
 
-//
-// ==================================================================
+
+
+
+// -------------------------------------------------------------------------- //
 // Control Bar Styles for Details Pages
-// ==================================================================
-//
+// -------------------------------------------------------------------------- //
+
 
 
 .control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; }
@@ -771,7 +777,6 @@ ul.exer_list_view li span.tx_rht.heading_txt{
         float: left;
     }
 
-
     .rht_active {
         border: 1px solid $xero-blue;
         color: $xero-blue;
@@ -807,8 +812,7 @@ a.cancel_btn {
 .text_area_md { height: 112px; }
 .text_area_sm { height: 70px; }
 
-.input_field_wrap,
-.exr_field_col {
+.input_field_wrap {
     position: relative;
     width: 100%;
     @include clearfix();
