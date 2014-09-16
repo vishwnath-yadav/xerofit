@@ -1,0 +1,41 @@
+<!-- <div id="admin_mail_popup" class="admin-mail-popup" style= "display:block !important" data-no-turbolink>
+    <h2>Email Send Box</h2>
+    <%#= form_tag('/admin/moves/uncut_workout_mail', remote: true, id: '') do |f| %>
+    	<%#= hidden_field_tag :id, '', class: "admin_umcut_mail" %>
+    	<label>Subject</label>
+	    <%#= text_field_tag :subject,"",class: "form-control input-wid usr_flter" %>
+    	<label>Message</label>
+    	<%#= text_area_tag :message,"",class: "form-control input-wid usr_flter ckeditor" %>
+	  	<%#=button_tag "Send", class: 'btn btn-primary send_mail'%>
+	<%#end%>
+
+    
+</div> -->
+
+
+
+<div class="modal fade" id="admin_mail_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Email Send Box</h4>
+      </div>
+    <%= form_tag('/admin/moves/uncut_workout_mail', remote: true, id: 'uncut_popup') do |f| %>
+      <div class="modal-body">
+    	<%= hidden_field_tag :id, '', class: "admin_umcut_mail" %>
+    	<label>Subject</label>
+	    <%= text_field_tag :subject,"",class: "form-control input-wid usr_flter" %>
+    	<label>Message</label>
+    	<%= text_area_tag :message,"",class: "form-control input-wid usr_flter ckeditor" %>
+	  	<%#=button_tag "Send", class: 'btn btn-primary send_mail'%>
+      </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    <button type="button" class="btn btn-primary send_mail">Send Email</button>
+	      </div>
+	<%end%>
+    </div>
+  </div>
+</div>
+

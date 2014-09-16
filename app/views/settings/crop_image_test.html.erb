@@ -1,0 +1,11 @@
+ <div id="video-container">
+  <video id="move_video" width="560" height="316" controls poster="/assets/ex_2.png">
+    <source src="<%= @video.video.to_s %>" type="video/mp4">
+    <source src="<%= @video.video.to_s %>" type="video/ogg">
+  </video>
+  <div class="video-poster-play">
+    <div class="play-button"></div>
+  </div>
+</div>
+
+<a href="<%= @video.video.to_s %>" rel="nofollow">Download Here</a>

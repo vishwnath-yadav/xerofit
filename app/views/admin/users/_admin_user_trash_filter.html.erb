@@ -1,0 +1,19 @@
+<%= form_tag(user_trash_filter_admin_users_path, remote: true, method: "get", id: "admin_filter_form") do |f|%>
+    <table class="table table-bordered table-striped">
+      <%= hidden_field_tag :sorted_by, 'updated_at'%>
+      <tr>
+        <th colspan="2">Filters</th>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td><%= select_tag :role, options_for_select(User::ROLES), prompt: "Select Role", class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
+        <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
+      </tr>
+    </table>
+  <% end %>

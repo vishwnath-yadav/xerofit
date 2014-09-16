@@ -1,0 +1,12 @@
+<%#=link_to "Download", "javascript:void(0)", class: "download_video", "data-url" => Move.first.library_video.video.url%>
+<%= link_to 'Download Creative', download_video_libraries_path, class: "btn btn-info" %>
+
+ <script>
+
+// $(document).on("click", "a.download_video", function (e) {
+// 	var url = $(this).attr('data-url');
+// 	alert(url);
+// 	e.preventDefault();  //stop the browser from following
+// 	window.location.href = url;
+//   });
+ </script>

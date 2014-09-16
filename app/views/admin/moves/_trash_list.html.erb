@@ -1,0 +1,11 @@
+<%= render "common_templates/admin/sort_select" %>
+<div class="each-block tab-content clearfix">
+   <div class="tab-pane active">
+      <div class="col-md-9 search_user">
+        <%= render "admin/moves/trash_content_table", moves: @moves%>
+      </div>
+      <div class="col-md-3">
+        <%= render "admin/moves/trash_filter"%>
+      </div>
+   </div>
+</div>

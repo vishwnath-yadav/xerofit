@@ -1,0 +1,46 @@
+// Variables ===================================================================================== /
+
+// White - Grays - Black
+$black:                       hsl(0, 0%, 0%);
+$gray90:                      hsl(0, 0%, 10%);
+$gray80:                      hsl(0, 0%, 20%);
+$gray70:                      hsl(0, 0%, 30%);
+$gray60:                      hsl(0, 0%, 40%);
+$gray50:                      hsl(0, 0%, 50%);
+$gray40:                      hsl(0, 0%, 60%);
+$gray30:                      hsl(0, 0%, 70%);
+$gray20:                      hsl(0, 0%, 80%);
+$gray10:                      hsl(0, 0%, 90%);
+$white:                       hsl(0, 0%, 100%);
+
+
+// Silvers
+$silver16: #262728;
+$silver31: #4C4D4E;
+$silver51: #7E8082;
+
+// Other Colors
+$xero-brand: #24c4d4;
+$xero-blue: #289CF9;
+$xero-red: #FC2F6A;
+
+
+$border-color: #D7D6D1;  // 84 Black
+$hover-color: #D4EBFE; // ~15% Blue
+$active-color: #AEDAFD; // ~30% Blue
+$active-color-dark: #9ad1fc; // ~50% Blue
+//$disabled-color: #CCCCCC; // 20% Black
+$disabled-color: #F2F2F2;
+$dropdown-borders: #E5E5E5; // 90 Black
+
+
+$textbox-borders: $border-color;
+$placeholder-text: $disabled-color;
+$input-border-color: $border-color;
+
+
+// Typography variables
+$base-color:                  $black;
+$font-family:                 sans-serif;
+$line-height:                 1.375; // establish a consistent line-height equal to 22px
+$vertical-measure:            1.375em; // establish a vertical distance for margins equal to line-height

@@ -1,0 +1,1 @@
+<%= select_tag :type, options_for_select(Move::STATUS, move.status), prompt: "Select Status", class: "default", data_attr: "#{move.move_type}_#{move.id}", id: "admin_change_status" %>

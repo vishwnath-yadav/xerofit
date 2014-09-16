@@ -1,0 +1,12 @@
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th colspan="6" class="cent">Video Statistics</th>
+      </tr>
+      <% Move::ADMIN_VIDEO_STATISTICS.each_with_index do |stat, index|%>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= stat %></td>
+        <td><%= @video_static[index] %></td>
+      </tr>
+      <% end %>
+    </table>

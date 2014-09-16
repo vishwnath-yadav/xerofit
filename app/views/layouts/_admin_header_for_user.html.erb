@@ -1,0 +1,68 @@
+<header class="topbar">
+    <div class="container-fluid topbar_wrap">
+        <div class="global_nav">
+            <div class="dropdown">
+                <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
+                <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
+                    <li class="left_app">
+                        <%= link_to trainer_dashboard_index_path(user: params[:user]), class: "dropdown_app_icon home_app" do %>
+                            <span>Home</span>
+                        <%end%>
+                    </li>
+                    <li>
+                        <%= link_to libraries_path(user: params[:user]), class: "dropdown_app_icon fitness_library_app" do %>
+                            <span>Fitness Library</span>
+                        <%end%>
+                    </li>
+                    <li>
+                        <%= link_to new_workout_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app" do %>
+                            <span>Workout Builder</span>
+                        <%end%>
+                    </li>
+                    <li class="right_app">
+                        <%= link_to "facebook.com/groups/xerofit.trainers.beta", class: "dropdown_app_icon support_app" do %>
+                            <span>Support</span>
+                        <%end%>
+                    </li>
+                    <li class="left_app btm_app">
+                        <%= link_to "javascript:void(0)", class: "dropdown_app_icon performance_app" do %>
+                            <span>Performance</span>
+                        <%end%>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topbar_logo">
+          <a id="xerofit_logo" href="/admin"></a>
+        </div>
+
+        <div class="utility_menu">
+            <div class="notification_dropdown dropdown">
+                <a href="javascript:void(0)" class="notification_menu_toggle" data-toggle="dropdown"></a>
+                <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
+                    <li><a href="javascript:void(0)">No new notifications</a></li>
+                </ul>
+            </div>
+
+            <div class="utility_dropdown dropdown">
+                <a href="javascript:void(0)" class="utility_menu_toggle" data-toggle="dropdown">
+                    <%if @user.present? && @user.pic.present?%>
+                        <%= image_tag @user.pic.url(:medium), class: "profile_image" %>
+                    <%else%>
+                        <img src="/assets/user_img.png" />
+                    <%end%>
+                    <span class="user_name"><%=@user.present? ? @user.fullname : current_user.fullname%></span>
+                </a>
+                <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
+                    <li>
+                        <%=link_to "Settings", settings_path(user: params[:user]), html_options: {"data-no-turbolink" => true}%>
+                    </li>
+                    <li>
+                        <%=link_to "Admin Dashboard", '/admin'%>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

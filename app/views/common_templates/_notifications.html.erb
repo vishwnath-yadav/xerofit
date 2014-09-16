@@ -1,0 +1,14 @@
+<script>
+    $(function () {
+        $.growl({
+            title: "",
+            message: "<%= flash[:notice] %>",
+            namespace: "growl",
+            duration: 3000,
+            close: "&#215;",
+            location: "tl",
+            style: "default",
+            size: "large",
+        });
+    });
+</script>

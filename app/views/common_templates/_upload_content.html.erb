@@ -1,0 +1,24 @@
+<p class="input_label">Video</p>
+<div class="video_uplod upload_new_video" id="<%=popup.blank? ? 'dropzone' : ''%>">
+  <div class="upload_wrap <%=popup.blank? ? 'active' : ''%>">
+    <div class="video_uplod_icon"></div>
+    <div class="video_uplod_txt">
+      <h2>Drag and drop to upload video file</h2>
+      <div class="upload_btn_wrap">
+        <span>or</span>
+        <div class="upload_new_video">Choose file</div>
+      </div>
+      <div id="<%=popup.blank? ? 'progressbar' : ''%>"></div>
+      <p></p>
+      <input name="file" type="file" id="library_video_video" style="opacity:0;"/>
+    </div>
+  </div>
+  <div class="uplod_work">
+    <span class="full_workout" data-edit="">
+      Upload full workout
+    </span>
+  </div>
+</div>
+<%if popup.blank?%>
+  <%=render "common_templates/dropzone_script"%>
+<%end%>

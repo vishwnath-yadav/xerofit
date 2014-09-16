@@ -1,0 +1,19 @@
+<ul class="nav navbar-nav">
+  <li class="trash_li move active" data-params="move">
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="trash_move">Move & workout Trash</a>
+  </li>
+  <li class="trash_li user">
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="user_trash" >User Trash</a>
+  </li>
+  <li class="trash_li uncut">
+    <a href="javascript:void(0)" role="tab" data-toggle="tab" class="uncut_workout">Uncut Workout Trash</a>
+  </li>
+</ul>
+<span class="trash_list">
+  <%= render "trash_list"%>
+</span>
+
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.trash').addClass('active');
+</script>

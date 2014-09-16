@@ -1,0 +1,76 @@
+
+<div class="middle_wrapper">
+	<div class="dashboard_mid">
+		<%=  render "setting_left_menu" %>
+		<%= simple_form_for(@user, url: setting_path(@user), :html => { :multipart => true } ) do |user| %>
+			<div class="setting_edit">
+				<h2>Edit Profile</h2>
+				<div class="setting_form">
+					<div class="setting_form_field">
+						<label>First Name</label>
+						<%= user.input :first_name, label: false, input_html: { class: "setting_input" } %>
+					</div>
+					<div class="setting_form_field ml_27">
+						<label>Last Name</label>
+						<%= user.input :last_name, label: false,input_html: { class: "setting_input" } %>
+					</div>
+					<div class="setting_form_field wdt_100">
+						<label>Zip/Postal Code</label>
+						<%= user.input :pin_code, label: false,input_html: { class: "setting_input" } %>
+					</div>
+					<div class="setting_form_field wdt_100">
+						<label>Email Address</label>
+						<%= user.input :email, label: false,input_html: { class: "setting_input" } %>
+					</div>
+					<div class="setting_form_field wdt_100">
+					  <label>Date of Birth</label>
+			      <div class="fancy_select dob_select">
+			     		<%=select_month(@user.month, prompt: 'Choose month')%>
+			      </div>
+		        <div class="fancy_select dob_select m27">
+		        	<%=select_day(@user.day, prompt: 'Choose day')%>
+		        </div>
+		        <div class="fancy_select dob_select">
+		        	<%=select_year(@user.year, start_year: (Time.now.year-70) , end_year: Time.now.year , prompt: 'Choose year')%>
+		        </div>
+										</div>
+										<div class="setting_form_field wdt_100">
+											 <%= user.input :gender, :collection => ['Female', 'Male','Rather not say'], :as => :radio_buttons %>
+										</div>
+										<div class="profile_col">
+												<div class="profile_col_left">
+														<h5>Profile Photo</h5>
+														<%if @user.pic.present?%>
+															<%= image_tag @user.pic.url(:medium), class: "profile_image" %>
+														<%else%>
+																<img src="/assets/profile_img.jpg" width="111" height="111" alt="profile_img" class="profile_image" />
+														<%end%>
+											</div>
+											<h6>Upload your photo...</h6>
+											<p>Image should be at least 300px by 300px.</p>
+			      	<div class="custom-upload">
+			            <div class="fake-file">
+			                <span class="choose_btn">Browse</span>
+			                <input disabled="disabled" style="display:none">
+			            </div>
+			        </div>
+					</div>
+				</div>
+				<div class="save_col save_col1">
+						<%= user.button :button, "Save changes", :class=>"save_btn save_btn1" %>
+				</div>
+			</div>
+		<%end%>
+		<%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
+			  <%=hidden_field_tag :pic_creating, ""%>
+			  <%=hidden_field_tag :company, "true"%>
+			  <%=hidden_field_tag :id, @user.id%>
+			  <%=hidden_field_tag :type, "profile" %>
+			  <%= form.file_field :pic, :style =>"display:none" %>
+		<% end %>
+		
+	</div>
+	
+</div>
+
+<%=render "common_templates/modal_for_crop_image"%>

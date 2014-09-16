@@ -1,0 +1,26 @@
+<div class="col-md-12">
+    <table class="table table-bordered table-striped ">
+      <tr>
+        <th colspan="6" class="cent">Statistics</th>
+      </tr>
+      <% Move::ADMIN_STATISTICS.each_with_index do |stat, index|%>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= stat %></td>
+        <td><%= @statics[index] %></td>
+      </tr>
+      <% end %>
+    </table>
+    <div class="video_load">
+      <img src="/assets/ajax-loader.gif" alt="Picture 1" class="loader_style">
+    </div>
+</div>
+<script>
+$(window).load(function(){
+  url = '/admin/moves/calculate_video_info';
+    $.get(url, function (data) {
+    }); 
+});
+</script>
+
+

@@ -1,0 +1,84 @@
+
+<%show_if_admin = current_user.admin?%>
+<%hide_if_admin = !current_user.admin?%>
+
+<div class="control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap">
+        <div class="create_new control_bar_tooltip" data-toggle="tooltip" data-placement="bottom" title="Add New">
+
+          <a href="<%= params[:user].blank? ? new_library_path : new_library_path(user: params[:user]) %>" id="add_to_library" data-no-turbolink='true'></a>
+        </div>
+      <%= form_tag(libraries_path, remote: true, method: "get", id: "search_grid_list_form") do |f|%>
+          <div class="search_bar_col">
+            <%= autocomplete_field_tag 'title', '', autocomplete_move_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_lib_by_name" %>
+            <input type="button" id="lib_name_for_search">
+            <div class="search_bar_icon"></div>
+            <div class="search_bar_clear hide"></div>
+          </div>
+
+        <div class="select_bar_col">
+          <%= hidden_field_tag :id, params[:id]%>
+          <%#= hidden_field_tag :type%>
+          <%= hidden_field_tag :sorted_by, "updated_at"%>
+          <%= hidden_field_tag :order%>
+          <%= hidden_field_tag :sort_arrow%>
+          <%= hidden_field_tag :status%>
+          <%= hidden_field_tag :view_type, "grid"%>
+          <%= hidden_field_tag :user, params[:user]%>
+
+          <div class="filter_control_wrap">
+            <span class="custom_select type_select">
+              <%= select_tag :type, options_for_select(Move::TYPE), prompt: "All Types", class: "default" %>
+            </span>
+          </div>
+          <div class="filter_control_wrap">
+            <span class="custom_select status_select">
+              <select class="default">
+                <option class="green_icon">All Statuses</option>
+                <%=Move::STATUS.each do |st|%>
+                  <option><%=st%></option>
+                <%end%>
+              </select>
+            </span>
+          </div>
+
+          <div class="library_view_toggles">
+            <div class="list_icon view_type grid_pointer control_bar_tooltip" data-name="list" id="list_view" data-toggle="tooltip" data-placement="bottom" title="List"></div>
+
+            <div class="grid_icon grid_icon_active grid_pointer view_type control_bar_tooltip" data-name="grid" id="grid_view" data-toggle="tooltip" data-placement="bottom" title="Grid"></div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+
+<div class="middle_wrapper">
+  <div class="page_content">
+    <div class="container">
+      <div class="row">
+        <div class="library_col library_view">
+          <%= render "grid" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  $(function () {
+      $('.default').dropkick();
+      setTimeout(load_dropKick_js);
+  });
+
+  $('.control_bar_tooltip').tooltip({
+    placement: 'bottom'
+  });
+
+  $('.admin_li').removeClass('active')
+  $('.admin_li.library').addClass('active');
+</script>

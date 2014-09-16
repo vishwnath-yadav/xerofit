@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Index</th>
+    <th>Status</th>
+    <th>Date & Time</th>
+  </tr>
+  <% if @history.present? %>
+    <% @history.each_with_index do |hist, index| %>
+      <tr>
+        <td><%= index+1%></td>
+        <td><%=hist.status%></td>
+        <td><%=hist.updated_at%></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="3">No history...</td></tr>
+  <% end %>
+</table>

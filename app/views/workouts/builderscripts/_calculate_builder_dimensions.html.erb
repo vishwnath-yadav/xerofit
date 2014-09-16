@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        var setElementHeight = function () {
+            var height = $(window).height();
+            var topbarHeight = $('.topbar').outerHeight();
+            var controlBarHeight = $('.control_bar').outerHeight();
+            var buttonHeaderHeight = $('.details_page_header.workout-builder').outerHeight();
+            var offsetHeight = height + topbarHeight + controlBarHeight;
+
+            $('.autoheight').css({'height': (height - buttonHeaderHeight)+'px'})
+        };
+
+
+        var setElementWidth = function () {
+            var width = $(window).width();
+            var leftColumnWidth = $('.builder .column.split-left').outerWidth();
+            var rightColumn = $('.builder .column.split-right');
+
+            rightColumn.css({'width': (width - leftColumnWidth)+'px'})
+        };
+
+        $(window).on('resize', function () {
+            setElementHeight();
+            setElementWidth();
+        }).resize();
+    });
+</script>

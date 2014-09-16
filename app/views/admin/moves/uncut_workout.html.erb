@@ -1,0 +1,29 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Moves List
+      </strong>
+    </a> 
+  </div> 
+  <!-- <div class="col-md-3">
+    <%#=link_to new_admin_user_path do%>
+      <strong>
+        <i class="glyphicon glyphicon-plus"></i>
+      </strong>
+    <%#end%> 
+  </div> -->
+</div>
+<hr>
+<span class="search_data">
+  <%= render "uncut_list" %>
+</div>
+<%= render "admin_mail_popup" %>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.uncuts_wrk').addClass('active');
+  $(document).ready(function () {
+    $('.ckeditor').ckeditor({
+      });
+  })
+</script>

@@ -1,0 +1,106 @@
+#hero-img-trainers {
+    background: image-url("website/trainers/trainer_back_hero_dark_lg.jpg") no-repeat center center;
+    @include bgcover();
+}
+
+#trainer-hero {
+    h1 {
+        font-size: 42px;
+        @media (max-width: $screen-sm-min) { font-size: 32px; }
+    }
+
+    h4 {
+        font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 1.6;
+        @media (max-width: $screen-sm-min) { font-size: 18px; }
+    }
+}
+
+
+
+.cta-heading {
+    font-family: 'Gotham SSm 2r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+    font-weight: 200;
+    font-size: 36px;
+    line-height: 1.5;
+    @media (max-width: $screen-sm-min) { font-size: 24px; }
+}
+
+#exercise-ball-sec-img { background-image: url("/assets/website/trainers/trainer_move_04_flip_1x.png"); }
+#trainer-tablet-sec-img { background-image: url("/assets/website/trainers/trainer_move_01_flip_1x.png"); }
+#boxing-match-sec-img { background-image: url("/assets/website/trainers/trainer_move_09_1x.png"); }
+
+
+//
+// ==================================================================
+// Trainer Signup Modal
+// ==================================================================
+//
+
+
+.modal-subhead {
+    margin: 0;
+    font-size: 12px;
+    color: #7E8082;
+}
+
+.beta-signup-form {
+    //width: 300px;
+    margin-bottom: 20px;
+    position: relative;
+    @include clearfix();
+
+    .field {
+        width: 100%;
+        position: relative;
+        @include clearfix();
+
+        label {
+            color: #4C4D4E;
+            font-size: 14px;
+            line-height: 20px;
+            font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B';
+            font-weight: 400;
+            float: left;
+            margin-bottom: 8px;
+        }
+
+        input {
+            border-radius: 3px;
+            float: left;
+            box-sizing: border-box;
+            padding: 11px;
+            border: 1px solid #D8D8D8;
+            width: 100%;
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+
+    .name-field { margin-bottom: 24px; }
+    .email-field { margin-bottom: 30px; }
+}
+
+#trainer-signup-btn {
+    width: 100%;
+    background-color: $xero-blue;
+    font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';
+    font-weight: 300;
+    color: #fff;
+    border: 0px solid $xero-blue;
+
+    &:hover {
+        background-color: darken( $xero-blue, 10% );
+    }
+}
+
+.btn-sub-notice {
+    width: 100%;
+    margin: 0;
+    padding-top: 6px;
+    font-size: 9px;
+    text-align: center;
+    color: $placeholder-text;
+}

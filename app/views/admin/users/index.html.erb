@@ -1,0 +1,22 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Users List
+      </strong>
+    </a> 
+  </div> 
+  <div class="col-md-3">
+    <%=link_to new_admin_user_path do%>
+      Add New User
+    <%end%>
+  </div>
+</div>
+<hr>
+<span class="search_data">
+  <%= render "user_list" %>
+</span>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.users').addClass('active');
+</script>

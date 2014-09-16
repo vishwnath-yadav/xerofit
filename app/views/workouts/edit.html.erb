@@ -1,0 +1,29 @@
+<%= render "workout_head" %>
+<div class="middle_wrapper autoheight">
+    <div class="workout_col">
+        <div class="builder_panels">
+            <%= render "library_moves_panel" %>
+        </div>
+            <div class="workout_col_mid autoheight">
+                <div class="col_1" id="workout_auto_form">
+                    <%= render "workout_auto_form" %>
+                </div>
+                <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+                    <div class="add_photo drag_lib">
+                        <%= hidden_field_tag :workout_id, @workout.id %>
+                        <% @workout.blocks.each do |block| %>
+                            <%= render "sub_blocks_edit", block: block %>
+                        <%end%>
+                        <%= render "sub_blocks", block: @block %>
+                    </div>
+                    <div class="hidden_field_workout">
+                    </div>
+                <%end%>
+            </div>
+            <%= render "move_details_panel" %>
+    </div>
+</div>
+<%= render "block_type_modal"%>
+
+
+<%= render "builderscripts/calculate_builder_dimension"%>

@@ -1,0 +1,47 @@
+//
+// ==================================================================
+// Foundation
+// ==================================================================
+//
+
+
+@import 'helpers/variables';
+@import 'helpers/mixins';
+@import 'vendor/normalize';
+@import "base/typography";
+
+
+//
+// ==================================================================
+// Plugins & Vendor Styles
+// ==================================================================
+//
+
+
+@import "vendor/bootstrap";
+@import 'helpers/dropdowns';
+@import 'helpers/tooltips';
+@import 'helpers/fancy_select';
+@import 'helpers/notifications';
+@import 'helpers/input_styles';
+@import "css/drop_new";
+@import "css/dropzone";
+@import "css/jquery.fancybox";
+@import "css/jquery_jcrop";
+@import "vendor/jquery_ui";
+
+
+//
+// ==================================================================
+// Structure & Page Styles
+// ==================================================================
+//
+
+@import "base/layout";
+//@import "css/style";
+@import "css/style_merge";
+@import "pages/dashboard";
+@import "pages/fitness_library";
+@import "pages/workout_builder";
+@import "pages/settings";
+//@import "helpers/video_controls"

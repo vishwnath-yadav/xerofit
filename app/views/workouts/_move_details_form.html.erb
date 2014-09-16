@@ -1,0 +1,134 @@
+<div class="panel-head">
+    <button class="close-panel"></button>
+    <h5 class="move_detail">Move Details</h5>
+</div>
+
+<div class="errors">
+    <div style="color:red;">
+        <% if @lib_detail.errors.full_messages.any? %>
+          <ul>
+          <% @lib_detail.errors.full_messages.each do |error_message| %>
+            <%= error_message %>
+          <% end %>
+          </ul>
+        <% end %>
+    </div>
+
+    <div class="red_txt success"></div>
+</div>
+
+<section class="panel-inputs editor-scroll">
+
+    <%= simple_form_for(@lib_detail, url: "/builder/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
+        <%= hidden_field_tag :lib_detail_id, @lib_detail.id %>
+        <% disabled = is_disabled(@lib_detail) %>
+        <% set_disabled = is_set(@lib_detail) %>
+        <% weight_disabled = is_weight(@lib_detail) %>
+        <% dist_disabled = is_distance(@lib_detail) %>
+        <% dur_disabled = is_duration(@lib_detail) %>
+        <% temp_disabled = is_tempo(@lib_detail) %>
+        <% rest_disabled = is_rest(@lib_detail) %>
+
+
+        <div id="sets" class="input-section">
+            <div class="section-title">
+                <%=ld.input :sets, input_html: {class: "lib_detail_chk"} %>
+            </div>
+            <div class="input-wrap lib_detail_inp">
+                <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
+            </div>
+        </div>
+
+
+        <div id="reps" class="input-section">
+            <div class="section-title">
+                <%=ld.input :repetitions, input_html: {class: "lib_detail_chk"} %>
+            </div>
+            <div class="input-wrap">
+                <div class="fancy_select">
+                    <%= ld.input :rep_option, collection: MoveDetail::REP_TYPE, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: disabled} %>
+                </div>
+                <div class="inputs">
+                    <%= render "rep_options", disabled: disabled, ld: ld%>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="weight" class="input-section">
+            <div class="section-title">
+                <%=ld.input :weight, :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="input-wrap">
+                <label>Xero will calculate weight based on individual user.</label>
+            </div>
+        </div>
+
+
+        <div id="distance" class="input-section">
+            <div class="section-title">
+                <%=ld.input :distance, label: 'Distance', :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="input-wrap">
+                <div class="number-input-wrap lib_detail_inp" >
+                    <%= ld.input :dist_val, label: false, input_html: {class: "", min: 1, max: 100}, disabled: dist_disabled %>
+                    <label></label>
+                </div>
+                <div class="fancy_select">
+                    <%= ld.input :dist_option, collection: MoveDetail::DIST_OPT, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: dist_disabled} %>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="duration" class="input-section">
+            <div class="section-title">
+                <%=ld.input :duration, :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="input-wrap">
+                <div class="number-input-wrap lib_detail_inp" >
+                    <%= ld.input :minute, label: false, input_html: {class: "", min: 1, max: 90, disabled: dur_disabled} %>
+                    <label>Minutes</label>
+                </div>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :second, label: false, input_html: {class: "", min: 1, max: 55, disabled: dur_disabled} %>
+                    <label>Seconds</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="tempo" class="input-section">
+            <div class="section-title">
+                <%=ld.input :tempo, :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="input-wrap">
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_lower, label: false, input_html: { min: 0, max: 10, disabled: temp_disabled } %>
+                    <label>Lower</label>
+                </div>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_pause, label: false, input_html: { min: 0, max: 10, disabled: temp_disabled } %>
+                    <label>Pause</label>
+
+                </div>
+                <div class="number-input-wrap lib_detail_inp">
+                    <%= ld.input :temp_lift, label: false, input_html: { min: 0, max: 10, disabled: temp_disabled } %>
+                    <label>Lift</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="rest" class="input-section">
+            <div class="section-title">
+                <%=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
+            </div>
+            <div class="input-wrap">
+                <div class="number-input-wrap lib_detail_inp" >
+                    <%= ld.input :rest_time, label: false, input_html: {class: "", min: 0, max: 180, step: 15, disabled: rest_disabled} %>
+                </div>
+            </div>
+        </div>
+
+    <% end %>
+</section>

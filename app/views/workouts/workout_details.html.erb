@@ -1,0 +1,159 @@
+<%show_if_admin = current_user.admin?%>
+<%hide_if_admin = !current_user.admin?%>
+
+<div class="control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap content_details">
+      <div class="prev_lib_col control_bar_links">
+        <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=> 'cb_breadcrumb') %>
+        <%= link_to("Workout Builder", edit_workout_path(@workout), :class => 'cb_nav_link') if hide_if_admin%>
+      </div>
+      <div class="control_bar_context">
+        <div class="lib_image_box">
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:p_square) : '/assets/ex_1.png' %>" class="workout_edit_pic"/>
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @workout.title.titleize%></h4>
+          <p class="library_item_status" data-status="<%=@workout.status%>" data-status-icon="<%= status_icon(@workout.status)%>">
+            <img src="<%= status_icon(@workout.status)%>" />
+            <%= @workout.status %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="details_page_header">
+  <div class="container-fluid">
+    <div class="lib_img_coll">
+      <span class="show_img_on_scol">
+        <div class="lib_image_box">
+          <img src="<%= @workout.pic.present? ? @workout.pic.url(:square) : '/assets/ex_1.png' %>"  class="workout_edit_pic1" />
+        </div>
+        <div class="lib_text_box">
+          <h4><%= @workout.title.titleize%></h4>
+        </div>
+      </span>
+      <%dis_link = @workout.status != Move::STATUS[3] ? 'dis_link' : ''%>
+      <div class="rght_btns">
+        <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@workout.status%>">Save</a>
+          <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib <%=dis_link%> smt_reviw btn_right" work-attr="<%= @work %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page_content">
+  <div class="container">
+    <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>
+      <div class="row">
+        <div style="color:red;">
+          <% if @workout.errors.full_messages.any? %>
+            <ul>
+              <% @workout.errors.full_messages.each do |error_message| %>
+                <li><%= error_message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="col-sm-12">
+          <h3 class="lib_section_title first_section">Basic Workout Information</h3>
+        </div>
+
+        <div class="col-sm-6">
+          <%= lib.hidden_field :status, class: "workout_status" %>
+          <div class="input_field_wrap">
+            <label>Title</label>
+            <%= lib.text_field :title, class: "for_on_change", maxlength: "80", disabled: @disabled %>
+            <span class="detail_char" data-size="80">80</span>
+          </div>
+          <div class="input_field_wrap">
+            <label>Subtitle</label>
+            <%= lib.text_area :subtitle, maxlength: "120", :class => "text_area_sm for_on_change", disabled: @disabled %>
+            <span class="detail_char" data-size="120">120</span>
+          </div>
+          <div class="input_field_wrap workout_category_select">
+            <label>Category</label>
+            <div class="fancy_select">
+              <%= lib.select :category, Move::CATEGORIES, {prompt: "choose one"}, {class: "for_on_change workout_category", disabled: @disabled}%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input_field_wrap">
+              <label>Description</label>
+              <%= lib.text_area :description, maxlength: "450", :class => "text_area_lg for_on_change", disabled: @disabled %>
+              <span class="detail_char" data-size="450">450</span>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="lib_section_title">Workout Media</h3>
+        </div>
+        <div class="col-sm-6">
+          <div class="big_video_col">
+            <h5 class="input_label">Cover Image</h5>
+            <p class="input_sub_text">For best results, your image should be square and atleast 500px by 500px</p>
+            <div class="upload_content_frame_sm workout_cover_art upload_gry_box">
+              <div class="upload_wrapper">
+                <p>Upload your image</p>
+                <div class="custom-upload">
+                  <div class="fake-file">
+                      <span class="choose_btn wrk_chos <%= @disabled ? "disable_cls" : "" %>">Choose File</span>
+                      <input disabled="disabled">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
+          <%=hidden_field_tag :pic_creating, ""%>
+          <%=hidden_field_tag :company, "true"%>
+          <%=hidden_field_tag :id, @workout.id%>
+          <%=hidden_field_tag :type, "workout" %>
+          <%= form.file_field :pic, :style =>"display:none" %>
+    <% end %>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="lib_section_title">Other</h3>
+      </div>
+      <div class="col-sm-6">
+        <div class="lib_edit_botom">
+          <h5 class="input_label">Delete Workout</h5>
+          <p class="input_sub_text">Permanently remove this workout from Xerofit. This action will only delete the workout, not any of the moves associated with it. Proceed with caution, this action cannot be undone!</p>
+          <%if @disabled %>
+            <%=link_to "Delete this Workout", "javascript:void(0)", :class => "remove_video_btn disable_cls"%>
+          <%else%>
+            <%=link_to "Delete this Workout", workout_path(@workout), :method => :delete, :confirm => "Are you sure ?", :class => "remove_video_btn", disabled: @disabled%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var v = $('.smt_reviw').attr('work-attr');
+    var status = $('.library_item_status').attr('data-status');
+    if(v == "true")
+    {
+      $('.smt_reviw').removeClass('dis_link')
+    }
+    if( status == "Waiting for Approval"){
+     $('.smt_reviw').addClass('dis_link');
+    }
+    show_text_actual_size();
+  });
+  $('.admin_li').removeClass('active')
+  $('.admin_li.workout').addClass('active');
+</script>
+
+<%=render "common_templates/modal_for_crop_image"%>

@@ -1,0 +1,34 @@
+	<!-- <div class="form_field">
+        <%#= radio_button_tag("wrk_blocks_type", "", checked = true, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[0]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[0]%></span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 3 or more library.
+    </div>
+    <div class="form_field">
+        <%#= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[1]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[1]%></span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 2 library.
+    </div>
+    <div class="form_field">
+        <%#= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[2]}", name: "radio"}) %>
+        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[2]%></span>
+    </div>
+    <div class="block_msg">
+      You can create exactly 1 library.
+    </div>
+    <label>Title</label>
+    <input type='text' name='Title' class="title sub_block_title_input">
+    <input type='button' value="Ok" class='block_type_submit'> -->
+
+    <div class="workout_block_options">
+        <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
+            <%if index < 3%>
+                <span draggable="true" ondragstart="drag_start(event)" id="dragable_block_<%=index%>" data-dragable-type="Block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+                    <%=block.humanize%>
+                </span>
+            <%end%>
+        <%end%>
+    </div>

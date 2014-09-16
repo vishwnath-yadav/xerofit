@@ -1,0 +1,62 @@
+<% if @move.present? %>
+  <div class="col-sm-12">
+    <ul class="library_list_view sortable_list">
+      <li class="table_header">
+        <%if params[:sorted_by].blank? || params[:sorted_by] == "updated_at"%>
+          <span class="title_col column_sort" data-sort="title" data-order="<%=@order%>"><span>Name</span><div></div></span>
+          <span class="type_col">Type</span>
+          <span class="status_col">Status</span>
+          <span class="date_col column_sort <%=@sort_arrow%>" data-sort="updated_at" data-order="<%=@order%>">Last Modified<div></div>
+          </span>
+        <%else%>
+          <span class="title_col column_sort <%=@sort_arrow%>" data-sort="title" data-order="<%=@order%>"><span>Name</span><div></div></span>
+          <span class="type_col">Type</span>
+          <span class="status_col">Status</span>
+          <span class="date_col column_sort" data-sort="updated_at" data-order="<%=@order%>">Last Modified<div></div>
+          </span>
+        <%end%>
+      </li>
+
+      <% @move.each_with_index do |mov, index| %>
+        <li>
+          <% if mov.move_type == Move::TYPE[1] %>
+            <a href="<%= params[:user].blank? ? workout_details_path(mov) : workout_details_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
+              <span class="title_col">
+                <div>
+                  <% if mov.pic.present? %>
+                    <img src="<%= mov.pic.url(:thumb) %>" class='list_view_img wrk' />
+                  <% else %>
+                    <img src="/assets/ex_1.png" class="list_view_img wrk" />
+                  <% end %>
+                </div>
+                <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
+              </span>
+          <% else %>
+            <a href="<%= params[:user].blank? ? edit_path(mov) :  edit_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
+              <span class="title_col">
+                <div>
+                  <% if mov.library_video.present? && mov.library_video.image.present? %>
+                    <img src="<%= mov.library_video.image %>" class="list_view_img move" />
+                  <% else %>
+                    <img src="/assets/ex_2.png" class="list_view_img move" />
+                  <% end %>
+                </div>
+                <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
+              </span>
+          <% end %>
+            <span class="type_col"><%= mov.move_type.titleize.singularize %></span>
+            <span class="status_col">
+              <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
+              <span><%= mov.status %></span>
+            </span>
+            <span class="date_col"><%= mov.updated_at.strftime("%B %d, %Y") %></span>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <span> No Record Found...</span>
+<% end %>
+
+<%= paginate @move, :remote => true %>

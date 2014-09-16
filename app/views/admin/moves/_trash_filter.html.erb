@@ -1,0 +1,44 @@
+<%= form_tag(trash_filter_admin_moves_path, remote: true, method: "get", id: "admin_filter_form") do |f|%>
+    <%= hidden_field_tag :action_name, action_name%>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th colspan="2">Filters</th>
+      </tr>
+      <% if action_name == "uncut_workout" %>
+        <%= hidden_field_tag :sorted_by, 'updated_at'%>
+        <%= hidden_field_tag :type, model_type%>
+        <tr>
+          <th>Email</th>
+          <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+        </tr>
+        <tr>
+          <th>Mark</th>
+          <td><%= select_tag :mark_complete, options_for_select([["Marked", true ],["Unmarked", false]]), prompt: "Select Mark",class: "form-control input-wid usr_flter" %></td>
+        </tr>
+      <% else %>
+        <tr>
+          <th>Title</th>
+          <td><%= text_field_tag :title,"",class: "form-control input-wid usr_flter" %></td>
+        </tr>
+        <%if action_name == "approval_page"%>
+          <tr>
+            <th>type</th>
+            <td><%= select_tag :type, options_for_select(Move::TYPE), prompt: "Select Type", class: "form-control input-wid usr_flter" %></td>
+          </tr>
+          <%= hidden_field_tag :sorted_by, "date_submitted_for_approval"%>
+          <%= hidden_field_tag :order, "DESC"%>
+          <%= hidden_field_tag :status, Move::STATUS[2]%>
+        <%else%>
+          <tr>
+            <th>Status</th>
+            <td><%= select_tag :status, options_for_select(Move::STATUS), prompt: "Select Status", class: "form-control input-wid usr_flter" %></td>
+          </tr>
+          <%= hidden_field_tag :sorted_by, 'updated_at'%>
+          <%= hidden_field_tag :type, model_type%>
+        <%end%>
+      <% end %>  
+      <tr>
+        <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
+      </tr>
+    </table>
+  <% end %>

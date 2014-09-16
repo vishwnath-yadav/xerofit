@@ -1,0 +1,36 @@
+<div class="control_bar">
+    <div class="container-fluid">
+        <div class="control_bar_wrap">
+            <div class="control_bar_context">
+                <div class="lib_text_box">
+                    <h4>
+                        <%# if @workout.title.blank? %>
+                            New Workout
+                        <%# else %>
+                            <%#= @workout.title.titleize %>
+                        <%# end %>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="details_page_header workout-builder">
+    <div class="container-fluid">
+        <div class="header-scroll">
+            <span class="show-on-scroll">
+                <div class="header-title">
+                    <h4>New Workout</h4>
+                </div>
+            </span>
+
+            <div class="rght_btns">
+                <button id="enter-fullscreen">Enter Full Screen</button>
+                <button id="exit-fullscreen" class="hide">Exit Full Screen</button>
+                <a href="<%= trainer_dashboard_index_path %>" class="cancel_btn rht_active">Cancel</a>
+                <a href="javascript:void(0)" class="cancel_btn rht_active btn_right pub_btn" id="publish">Save</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<header class="topbar">
+    <div class="container-fluid topbar_wrap">
+        <div class="global_nav">
+            <div class="dropdown">
+                <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
+                <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
+                    <li class="left_app">
+                        <a href="<%= trainer_dashboard_index_path %>" class="dropdown_app_icon home_app">
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= libraries_path %>" class="dropdown_app_icon fitness_library_app">
+                            <span>Fitness Library</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app">
+                            <span>Workout Builder</span>
+                        </a>
+                    </li>
+                    <li class="right_app">
+                        <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta" class="dropdown_app_icon support_app">
+                            <span>Support</span>
+                        </a>
+                    </li>
+                    <li class="left_app btm_app">
+                        <a href="javascript:void(0)" class="dropdown_app_icon performance_app">
+                            <span>Performance</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topbar_logo">
+          <a id="xerofit_logo" href="/home"></a>
+        </div>
+
+        <div class="utility_menu">
+            <div class="notification_dropdown dropdown">
+                <a href="#" class="notification_menu_toggle" data-toggle="dropdown"></a>
+                <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
+                    <li><a href="#">No new notifications</a></li>
+                </ul>
+            </div>
+
+            <div class="utility_dropdown dropdown">
+                <a href="#" class="utility_menu_toggle" data-toggle="dropdown">
+                    <%if current_user.pic.present?%>
+                        <%= image_tag current_user.pic.url(:medium), class: "profile_image" %>
+                    <%else%>
+                        <img src="/assets/user_img.png" />
+                    <%end%>
+                    <span class="user_name"><%= current_user.fullname %></span>
+                </a>
+                <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
+                    <li><a href="/settings" data-no-turbolink='true'>Settings</a></li>
+                    <li><%=link_to "Signout", destroy_user_session_path, :method => :delete %></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

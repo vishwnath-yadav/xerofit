@@ -1,0 +1,10 @@
+<%if params[:type] == "workout"%>
+	$(".workout_edit_pic").attr('src', "<%=@obj.pic.url(:p_square)%>");
+	$(".workout_edit_pic1").attr('src', "<%=@obj.pic.url(:square)%>");
+<%else%>
+	$(".profile_image").attr('src', "<%=@obj.pic.url(:medium)%>");
+<%end%>
+$('.save_crop_image').html('<button type="button" class="btn btn-primary ">Crop</button>');
+$('.modal-body .bootstrap-modal-cropper').html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
+$(".modal-footer").addClass('hide');
+$('.modal').modal('toggle');

@@ -1,0 +1,16 @@
+<div id="order_state_code_wrapper">
+  <% parent_region ||= params[:parent_region] %>
+  <% country = Carmen::Country.coded(parent_region) %>
+
+  <% if country.nil? %>
+    <%= add.select "state", "<option value="">Please select a country above</option>".html_safe %>
+  <% elsif country.subregions? %>
+  <!-- sdfsdfsfsdfsd -->
+  <%#=country.subregions%>
+  <!-- dsfdsdddddddddddd -->
+  <%#=parent_region%>
+    <%= subregion_select(:add, :state, parent_region) %>
+  <% else %>
+    <%= add.text_field :state%>
+  <% end %>
+</div>

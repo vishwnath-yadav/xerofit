@@ -1,0 +1,15 @@
+<a href="javascript:void(0)" class="m_32 wrk_add_opt"><img src="/assets/icons/plus_icon_blue.png" width="23" height="27" alt="Add new Block" /></a>
+<%if @workout.new_record?%>
+	<%= simple_form_for @workout, :url => workouts_path, :html => {:method =>"post", id: "workout_form_auto"}, :remote => true do |f| %>
+      	<%= hidden_field_tag "user", @user.token%>
+		<h2 class="wrk_head" data-name="title" data-val="">Workout Title</h2>
+		<p class="wrk_subhead" data-name="subtitle" data-val="">Workout Subtitle</p>
+	<%end%>
+<%else%>
+	<%= simple_form_for @workout, :url => workout_path(@workout), :html => {:method => "put", id: "workout_form_auto"}, :remote => true do |f| %>
+		<%=hidden_field_tag :workid, @workout.id %>
+		<h2 class="wrk_head" data-name="title" data-val="<%=@workout.title%>"><%=@workout.title%></h2>
+		<p class="wrk_subhead" data-name="subtitle" data-val="<%=@workout.subtitle%>"><%=@workout.subtitle.blank? ? "Subtitle" : @workout.subtitle%></p>
+	<%end%>
+<%end%>
+

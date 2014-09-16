@@ -1,0 +1,12 @@
+<%if @success == true%>
+	
+	$('.modal-body .bootstrap-modal-cropper').html("<%= escape_javascript(render(:partial => '/common_templates/load_image_for_crop', locals: {url: @obj.pic.url(:medium)})) %>");
+    $(".modal-footer").removeClass('hide');
+
+<%else%>
+	$.fancybox.close();
+	$('.modal-body .bootstrap-modal-cropper').html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
+	$(".modal-footer").addClass('hide');
+	alert('Image should be at least <%=@obj.min_image_size%>.');
+<%end%>
+	

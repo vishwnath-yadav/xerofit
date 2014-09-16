@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> All Moves
+      </strong>
+    </a> 
+  </div> 
+</div>
+<hr>
+<%= render "common_templates/admin/sort_select" %>
+<div class="col-md-9 search_user">
+    <%=render "approval_content_table"%>
+</div>
+<div class="col-md-3">
+  <%= render "approve_filter"%>
+</div>
+<%= render "admin_approve_mail_popup" %>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.approval').addClass('active');
+  $(document).ready(function () {
+    $('.ckeditor').ckeditor({
+      });
+  })
+</script>

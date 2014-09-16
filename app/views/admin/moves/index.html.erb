@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <div class="col-md-9">
+    <a href="<%= admin_users_path %>">
+      <strong>
+        <i class="glyphicon glyphicon-th-list"></i> Moves List
+      </strong>
+    </a> 
+  </div> 
+  <!-- <div class="col-md-3">
+    <%#=link_to new_admin_user_path do%>
+      <strong>
+        <i class="glyphicon glyphicon-plus"></i>
+      </strong>
+    <%#end%>
+  </div> -->
+</div>
+<hr>
+<%= render "common_templates/admin/sort_select" %>
+<div class="col-md-9 search_user">
+    <%= render "move_content_table"%>
+</div>
+<div class="col-md-3">
+  <%= render "move_filter"%>
+</div>
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.moves').addClass('active');
+</script>

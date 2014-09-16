@@ -1,0 +1,46 @@
+  <% if @size.present? %>
+    <ul id="see_more">
+      <% @size.each_with_index do |move, index| %>
+          <%margin = index == 1 || index == 4 ? 'margn45' : ''%>
+          <%image_hide = index > 2 ? 'image_row image_hide' : '' %>
+          <%selected_thumb = index == 0 ? 'select_thumb' : '' %>
+          <li class= 'li_class <%= "#{margin} #{image_hide}"%>'>
+            <%= image_tag(@size[index], width: "167", alt: "upload_thumb") %>
+            <div class="video_title <%=selected_thumb%>">Selected</div>
+          </li>
+      <% end %>
+    </ul>
+    <p class="load_more"><a href='javascript:void(0)'>Show all</a></p>
+    <p class="load_less"><a href='javascript:void(0)'>Show less</a></p>
+  <% else %>
+    <p class="input_sub_text">Thumbnail selections will appear when the video has finished processing.</p>
+  <% end %>
+<%if disabled == false%>
+  <script>
+  $(document).ready(function(){
+    $(document).on('click','.li_class', function(){
+      if(!$(this).find('.video_title').hasClass('select_thumb')){
+        var src = $(this).find('img').prop('src');
+        $('.image_url').val(src);
+        $('.select_thumb').removeClass('select_thumb');
+        $(this).find('.video_title').addClass('select_thumb');
+        $('.chg_save').removeClass('dis_link');
+        check_require_field();
+      }
+    });
+
+    $(document).on('click','.load_more', function(){
+      $('.image_row').toggleClass('image_hide');
+      $('.load_more').hide();
+      $('.load_less').show();
+    });
+
+    $(document).on('click','.load_less', function(){
+      $('.image_row').toggleClass('image_hide');
+      $('.load_less').hide();
+      $('.load_more').show();
+    });
+  })
+  </script>
+<%end%>
+

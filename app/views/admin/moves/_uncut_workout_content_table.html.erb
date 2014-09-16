@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped">
+      <tr>
+        <th>ID</th>
+        <th>User Email</th>
+        <th>Video Size(MB)</th>
+        <th>Date Added/Uploaded</th>
+        <th>Download Video</th>
+        <th>Mark Complete</th>
+        <th>Actions</th>
+      </tr>
+      <% if @moves.present? %>
+        <% @moves.each do |move| %>
+          <tr>
+            <td><%=move.id%></td>
+            <td><%=move.user.email %></td>
+            <td><%=move.video_size %></td>
+            <td><%=move.updated_at%></td>
+            <td><%=link_to "Download", download_video_admin_moves_path(id: move.id), class: "download_video"%></td>
+            <td>
+              <span class="mark_btn" data-id="<%=move.id%>">
+                <%if move.mark_complete%>
+                  <%=check_box_tag 'mark_btn', '', true %>
+                <%else%>
+                  <%=check_box_tag 'mark_btn', '', false%>
+                <%end%>
+              </span>
+            </td>
+            <td>
+              <% if action_name == "uncut_workout" %>
+                <%=link_to "View", libraries_path(user: move.user.token) %> |<%=link_to "Send email", "javascript:void(0)", "data-toggle" => "modal", "data-target"=>"#admin_mail_popup", class: "mail_popup", data_attr: "#{move.id}"%> | <%=link_to "Trash", trash_admin_moves_path(id: move.id) %> 
+              <% else %>
+                <%=link_to "Restore",  restore_admin_moves_path(id: move.id, data_param: "full_workout")%> | 
+                <%= link_to "Delete", destroy_fullworkout_admin_moves_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <% end %> 
+            </td>
+          </tr>
+        <% end %>
+        <%else%>
+        <tr><td colspan='7'> No Data Found...</td></tr>
+        <% end %>
+    </table>
+

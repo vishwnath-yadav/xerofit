@@ -1,0 +1,46 @@
+<div class="col-sm-12">
+  <h3 class="lib_section_title">Video Details</h3>
+</div>
+
+<div class="col-sm-6">
+    <h5 class="input_label">Video File</h5>
+  <%if @move.library_video.present? && @move.library_video.panda_video.present?%>
+    <%if @move.library_video.panda_mp4.url.present? %>
+
+      <div id="video-container">
+        <video id="move_video" width="560" height="316" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
+          <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
+          <source src="<%= @move.library_video.panda_ogg.url %>" type="video/ogg">
+        </video>
+        <div class="video-poster-play">
+          <div class="play-button"></div>
+        </div>
+      </div>
+
+    <%else%>
+      <div class="no_video">
+        <span>Your video file is currently being processed.</span>
+      </div>
+    <%end%>
+  <%end%>
+</div>
+
+<div class="col-sm-6 thumbnail_col">
+  <h5 class="input_label">Video Thumbnail</h5>
+  <%= render 'thumbnail', disabled: disabled %>
+</div>
+
+<script>
+function toggleVideoControls() {
+  var video = document.getElementsByTagName("video")[0];
+
+  if (video.hasAttribute("controls")) {
+     video.removeAttribute("controls")
+  } else {
+     video.setAttribute("controls","controls")
+  }
+}
+
+toggleVideoControls();
+</script>
+

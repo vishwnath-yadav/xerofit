@@ -1,0 +1,1423 @@
+// Fitness Library ===================================================================================== /
+
+
+.middle_wrapper {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+
+.page_content {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    padding-top: 28px;
+    padding-bottom: 42px;
+}
+
+
+//
+// ==================================================================
+// Global Control Bar Styles
+// ==================================================================
+//
+
+
+.control_bar_wrap {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+    padding-top: 21px;
+    padding-bottom: 21px;
+
+    h4 {
+        font-size: 23px;
+        line-height: 28px;
+        margin: 0;
+    }
+}
+
+#add_to_library {
+    display: block;
+    height: 28px;
+    background: url(/assets/icons/plus_icon_blue.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+}
+
+div.create_new {
+    float: left;
+    width: 28px;
+    position: relative;
+}
+
+// Search Bar
+.search_bar_col {
+    width: 210px;
+    position: absolute;
+    left: 50%;
+    margin-left: -105px;
+    text-align: center;
+}
+
+input.search_bar {
+    font-size: 12px;
+    line-height: 14px;
+    width: 100%;
+    position: relative;
+    border: 1px solid $dropdown-borders;
+    padding: 6px 12px;
+    padding-left: 30px;
+    background: #FFF;
+    @include border-radius(4px);
+    text-align: center;
+
+    &:focus {
+        outline: none;
+        border: 1px solid $xero-blue;
+    }
+}
+.search_bar_icon,
+.search-bar-icon {
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    margin-left: -34px;
+
+    &:before {
+        display: block;
+        content: '';
+        height: 14px;
+        width: 14px;
+        background: url(/assets/icons/search_icon_small.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        float: left;
+        position: relative;
+
+    }
+}
+#lib_name_for_search,
+#search-move-titles {
+    border: 0;
+    background: none;
+    padding: 0;
+
+    &:focus {
+        outline: none;
+        outline: 0px auto -webkit-focus-ring-color;
+    }
+}
+
+.search_bar_clear:before,
+.search-bar-clear:before {
+    content: '';
+    background: url(/assets/search_bar_clear_icon.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 8px;
+    top: 7px;
+    cursor: pointer;
+
+    &:hover {cursor: pointer;}
+}
+
+
+// Control Bar Filters
+.select_bar_col {
+    width: auto;
+    float: right;
+    position: relative;
+
+    input {display: inline-block;}
+
+    select {
+        //padding: 5px;
+        left: 0;
+        //width: 250px;
+        //margin-right: 5px;
+    }
+}
+
+.filter_control_wrap {
+    float: left;
+    margin-right: 28px;
+    line-height: 14px;
+}
+
+.type_select {
+    min-width: 100px;
+    float: left;
+    background: #fff;
+}
+
+.status_select .dk_options_inner {
+    width: 220px;
+    left: 50%;
+    margin-left: -110px;
+
+    li:nth-child(2) a:before {
+        background: url(/assets/icons/status_icon_green.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(3) a:before {
+        background: url(/assets/icons/status_icon_red.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(4) a:before {
+        background: url(/assets/icons/status_icon_yellow.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(5) a:before {
+        background:url(/assets/icons/status_icon_purple.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+
+    li:nth-child(6) a:before {
+        background:url(/assets/icons/status_icon_gray.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        content: '';
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        margin-right: 10px;
+    }
+}
+
+// Grid and List View Toggles
+.library_view_toggles {
+    float: left;
+    position: relative;
+    @include clearfix();
+
+    .list_icon {
+        margin-right: 4px;
+        float: left;
+        background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/list_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .list_icon.list_icon_active {
+        background: url(/assets/icons/list_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon {
+        float: left;
+        //background-color: transparent;
+        width: 28px;
+        height: 28px;
+        @include border-radius(3px);
+        background: url(/assets/icons/grid_view_inactive.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+
+    .grid_icon.grid_icon_active {
+        background: url(/assets/icons/grid_view_active.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        @include background-size(contain);
+    }
+}
+
+.grid_pointer { cursor: pointer; }
+
+
+//
+// ==================================================================
+// Fitness Library Home - Grid View
+// ==================================================================
+//
+
+
+.library_col ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    float: left;
+    list-style: none;
+
+    li {
+        border: 1px solid #F9F9F9;
+        float: left;
+        width: 25%;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+
+    li.border_left { border-left: 0px; }
+    li.border_right { border-right: 0px; }
+    li.first_row { border-top: 0px; }
+    li.last_row { border-bottom: 0px; }
+    li:last-child { margin-right:0px; }
+
+    a.grid_block {
+        @include clearfix();
+        display: block;
+        padding: 39px 19px;
+        text-decoration: none;
+        @include user-select(none);
+
+        h6 {
+            font-size: 14px;
+            line-height: 16px;
+            color: $silver16;
+            @include gotham400();
+            text-align: left;
+            margin: 0;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            padding: 0px 14px;
+        }
+
+        img { height: 140px; }
+    }
+
+    a.grid_block.workout {
+        text-align: center;
+
+        > img {
+            width: 140px;
+        }
+    }
+
+    p {
+        text-align: left;
+        margin: 0;
+        float: left;
+        width: 100%;
+    }
+
+    p.block_status {
+        @include gotham300();
+        padding: 0px 14px;
+        color: $silver51;
+        font-size: 11px;
+        line-height: 14px;
+        height: 14px;
+        color: $silver31;
+
+        > img {
+            float: left;
+            margin-right: 6px;
+            height: 12px;
+            width: 12px;
+            margin-top: 1px;
+        }
+    }
+}
+
+.library_col ul li.wdth_img > img { width: 100% !important}
+
+
+//
+// ==================================================================
+// Fitness Library Home - List View
+// ==================================================================
+//
+
+
+//sort columns filters
+
+
+
+.icon-sort{
+    background-image: url('/assets/tip_icon.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.icon-sort_down{
+    background-image: url('/assets/tip_icon_down.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+ul.exer_list_view li span.name_sort{
+    width: auto;
+    padding-right: 5px;
+}
+
+ul.exer_list_view li span.sort_icon{
+    width: 12px;
+    float: left;
+    margin-top: 4px;
+    margin-left: 3px;
+    width:20px;
+}
+
+ul.exer_list_view li span.tx_rht.heading_txt{
+    float: right;
+    max-width: 153px
+}
+
+.library_col ul.library_list_view {
+
+    li.table_header {
+        padding: 0 14px 12px;
+        border-bottom: 2px solid #F9F9F9;
+        font-size: 14px;
+        line-height: 1;
+        color: $silver16;
+        @include gotham500();
+
+        span.column_sort {
+            cursor: pointer;
+        }
+
+        span.column_sort.descending > div,
+        span.column_sort.ascending > div {
+            display: block;
+            float: left;
+            width: 12px;
+            height: 7px;
+            margin-top: 3px;
+            margin-left: 8px;
+        }
+
+        span.column_sort > div {
+            background: none;
+        }
+
+        span.column_sort > span {
+            display: block;
+            float: left;
+        }
+
+        span.column_sort.descending > div {
+            content: '';
+            background: url(/assets/icons/angle_down.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+        }
+
+        span.column_sort.ascending div {
+            content: '';
+            background: url(/assets/icons/angle_up.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+        }
+    }
+
+    li.table_header > span.date_col.column_sort.descending div,
+    li.table_header > span.date_col.column_sort.ascending div {
+        float: right;
+    }
+
+    li {
+        display: block;
+        width: 100%;
+        float: left;
+        text-align: left;
+
+        font-size: 12px;
+        line-height: 42px;
+
+        border: none;
+        border-bottom: 1px solid #F9F9F9;
+        @include gotham300();
+        @include user-select(none);
+
+        a {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            text-decoration: none;
+            color: $silver31;
+            @include clearfix();
+        }
+
+        span {
+            display: block;
+            float: left;
+            @include clearfix();
+        }
+    }
+
+    // Table Column Widths
+    .title_col { width: 45%; }
+    .type_col { width: 20%; }
+    .status_col { width: 20%; }
+    .date_col { width: 15%; }
+
+    .title_col > div {
+        float: left;
+        width: 70px;
+        margin-right: 21px;
+    }
+
+    .title_col > div > img.list_view_img {
+        height: 42px;
+        width: 100%;
+    }
+
+    // Single Move Thumbnail Image
+    .title_col > div > img.list_view_img.move {
+        float: left;
+    }
+    // Workout Cover Art Image
+    .title_col > div > img.list_view_img.wrk {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 42px;
+    }
+
+    .date_col { text-align: right; }
+
+    .status_col > img.list_view_circle {
+        float: left;
+        margin-right: 6px;
+        height: 12px;
+        width: 12px;
+        margin-top: 14px;
+    }
+}
+
+
+//
+// ==================================================================
+// Fitness Library Home - Pagination
+// ==================================================================
+//
+
+
+.pagination_wrap {
+    @include clearfix();
+    //width: 100%;
+    position: relative;
+    margin-top: 42px;
+
+    ul.lib_pagination {
+
+        float: right;
+        width: auto;
+        position: relative;
+        @include clearfix();
+
+
+        li {
+            border: none;
+            width: auto;
+            float: left;
+            margin-right: 0;
+            position: relative;
+            @include user-select(none);
+
+            span {
+                //display: block;
+                text-align: center;
+            }
+
+            a {
+                display: block;
+                color: $silver16;
+                @include gotham500();
+                min-width: 28px;
+                text-align: center;
+                text-decoration: none;
+                padding: 0px 7px;
+                line-height: 1;
+                border-right: 1px solid #E3E3E3;
+                border-left: 1px solid #E3E3E3;
+
+                &:hover { color: lighten( $silver16, 30% ); }
+            }
+
+            a.paginate_disabled,
+            a.paginate_disabled:hover {
+                color: $disabled-color;
+                cursor: default;
+            }
+
+            a.current_page,
+            a.current_page:hover {
+                color: $xero-blue;
+                cursor: default;
+            }
+
+            a.paginate_next {
+                padding-right: 0px;
+                border-right: 0px;
+            }
+
+            a.paginate_prev {
+                padding-left: 0px;
+                border-left: 0px;
+            }
+        }
+    }
+}
+
+
+//
+// ==================================================================
+// Control Bar Styles for Details Pages
+// ==================================================================
+//
+
+
+.control_bar_wrap.content_details { padding-top: 14px; padding-bottom: 14px; }
+
+// Control Bar top section
+.control_bar_links {
+    position: relative;
+    width: 100%;
+    @include clearfix();
+    margin-bottom: 14px;
+
+    a {
+        color: $xero-blue;
+        font-size: 12px;
+        line-height: 14px;
+        text-decoration: none;
+    }
+
+    // Control Bar Breadcrumbs on left
+    .cb_breadcrumb {
+        float: left;
+
+        &:before {
+            content: '';
+            background: url(/assets/icons/angle_left_blue.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+            background-position: center;
+            display: block;
+            width: 7px;
+            height: 14px;
+            float: left;
+            margin-right: 7px;
+        }
+    }
+
+    // Control Bar Nav links on right
+    .cb_nav_link { float:right; }
+}
+
+// Control Bar main section
+.control_bar_context {
+    width: 100%;
+    position: relative;
+    padding: 7px 0px;
+    @include clearfix();
+
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
+
+        img {
+            width: auto;
+            height: 56px;
+        }
+    }
+
+    .lib_text_box {
+        width: auto;
+        float: left;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+}
+
+.details_page_header {
+    background: #fff;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.details_page_header .btn_header_wrap {
+    width: 100%;
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    @include clearfix();
+}
+
+
+//
+// ==================================================================
+// Scrolling Fixed Header & Button Styles
+// ==================================================================
+//
+
+
+.fixed {
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 9999;
+}
+
+.fixed .show_img_on_scol .lib_image_box{
+    margin-left: 40px;
+}
+
+.show_img_on_scol{
+    display: none;
+}
+
+.lib_img_coll {
+    background: #fff;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    @include clearfix();
+
+    .lib_image_box {
+        float: left;
+        margin-right: 21px;
+
+        img {
+            width: auto;
+            height: 28px;
+        }
+    }
+
+    .lib_text_box {
+        width: auto;
+        float: left;
+
+        h4 {
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+        }
+    }
+}
+
+// Buttons on the right of fixed header
+.rght_btns {
+    width: auto;
+    float: right;
+    text-align: right;
+    @include clearfix();
+
+    a {
+        font-size: 11px;
+        line-height: 14px;
+        border-radius: 4px;
+        padding: 7px 14px;
+        text-decoration: none;
+        float: left;
+    }
+
+
+    .rht_active {
+        border: 1px solid $xero-blue;
+        color: $xero-blue;
+    }
+    // Spacing between two buttons
+    a[lib-status="save"] { margin-right: 14px; }
+    .btn_right { margin-left: 14px; }
+}
+
+a.cancel_btn {
+    border: 1px solid #ccc;
+    color: #ccc;
+}
+
+.dis_link {
+    border: 1px solid #CCCCCC !important;
+    color: #CCCCCC !important;
+    pointer-events: none;
+    cursor: default;
+}
+
+
+
+
+//
+// ==================================================================
+// Form Styles
+// ==================================================================
+//
+
+
+.text_area_lg { height: 154px; }
+.text_area_md { height: 112px; }
+.text_area_sm { height: 70px; }
+
+.input_field_wrap,
+.exr_field_col {
+    position: relative;
+    width: 100%;
+    @include clearfix();
+    float: left;
+    margin-bottom: 28px;
+
+    label {
+        float: left;
+        width: 100%;
+        @include gotham500();
+        color: $silver31;
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 12px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        outline: none;
+        resize: none;
+        padding: 6px 8px;
+        float: left;
+        border-radius: 4px;
+        border: 1px solid $textbox-borders;
+        font-size: 12px;
+        color: $silver31;
+    }
+
+    input { line-height: 14px; }
+
+    h4 {color: #a5afbb; padding-bottom: 5px;}
+
+    &.move_difficulty_select,
+    &.move_category_select,
+    &.workout_category_select { width: 50%; }
+
+    .move_difficulty_select { float: right; }
+
+}
+
+.sel_wid{width: 90%}
+.sel_wid select{width: 100%; height: 85px}
+
+
+
+// Styling for target muscle group section
+.input_field_wrap.trgt_muscle_groups .edit_tmg div.fancy_count {
+    @include clearfix();
+
+    &.first_row,
+    &.second_row { margin-bottom: 14px; }
+}
+
+
+//
+// ==================================================================
+// Create New Move Page
+// ==================================================================
+//
+
+
+.upload_content_frame,
+.video_uplod {
+    width: 100%;
+    position: relative;
+    background: #F2F2F2;
+    border: 1px solid #E3E3E3;
+    height: 406px;
+    @include border-radius(6px);
+}
+
+.video_uploader {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+}
+
+.video_uplod .upload_wrap {
+    height: 212px;
+    width: 376px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -106px;
+    margin-left: -188px;
+
+
+    .video_uplod_icon {
+        position: relative;
+        margin-left: 108px;
+        margin-bottom: 28px;
+        width: 160px;
+        height: 90px;
+        background-color: #fff;
+
+        &:before {
+            content: '';
+            display: block;
+            height: 42px;
+            width: 50px;
+            position: absolute;
+            top: 24px;
+            left: 55px;
+            background: url(/assets/icons/video_icon_silver.png);
+            background-repeat: no-repeat;
+            @include background-size(contain);
+        }
+    }
+
+    .video_uplod_icon.uploading:before {
+        background: url(/assets/icons/video_icon_blue.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+    }
+
+    .video_uplod_txt {
+        position: relative;
+        width: 376px;
+        cursor: default;
+
+        h2 {
+            text-align: center;
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 14px;
+            display: block;
+            width: 100%;
+            @include text-overflow();
+        }
+
+        p {
+            margin: 0;
+            color: $silver51;
+            @include gotham300();
+        }
+    }
+}
+
+.upload_btn_wrap {
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+    span {
+        color: #ccc;
+        font-size: 11px;
+        line-height: 14px;
+        display: block;
+        margin-bottom: 14px;
+        cursor: default;
+    }
+
+    > div {
+        float: left;
+        position: relative;
+        left: 50%;
+        margin-left: -49px;
+        width: 98px;
+        text-align: center;
+        @include button($silver31);
+
+        &:hover {cursor: pointer;}
+    }
+}
+
+// Progressbar Styles
+#progressbar .ui-widget-header,
+#progressbar1 .ui-widget-header {
+    background-color: $xero-blue !important;
+    box-sizing: border-box!important;
+    color: #ffffff!important;
+    float: left!important;
+    font-size: 12px!important;
+    height: 100%!important;
+    text-align: center!important;
+    transition: width 0.6s ease 0s;
+    border: none !important;
+    @include border-radius(none);
+}
+
+.ui-progressbar{
+    height: 6px !important;
+    margin-bottom: 8px;
+}
+
+#progressbar.ui-widget-content,
+#progressbar1.ui-widget-content {
+    border: none !important;
+    background: #E3E3E3;
+}
+
+
+// Full Workout Upload Popup
+.full-workout-upload {
+    display: none;
+    width: 100%;
+    position: relative;
+
+    p.foot-note {
+        width: 360px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 14px;
+        margin-bottom: 0;
+        @include gotham400();
+    }
+}
+
+.full_upload_popup {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    h2 {
+        font-size: 23px;
+        line-height: 28px;
+        margin-bottom: 28px;
+    }
+
+    > .video_uplod {
+        height: 252px;
+    }
+    .video_uplod .upload_wrap {
+        height: 98px;
+        margin-top: -49px;
+    }
+}
+
+.video_uplod_txt .loader_pipe {
+    width: 100%;
+    float: left;
+    margin: 10px 0px;
+}
+
+input#library_video_video {
+    @include opacity(0.0);
+    display: inline;
+}
+
+
+
+//
+// ==================================================================
+// Library Edit Details Pages
+// ==================================================================
+//
+
+
+.lib_section_title {
+    @include gotham200();
+    font-size: 21px;
+    color: $silver51;
+    line-height: 25px;
+    padding-top: 28px;
+    margin-top: 56px;
+    margin-bottom: 28px;
+    border-top: 1px solid #F2F2F2;
+}
+
+.lib_section_title.first_section {
+    border: none;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.thumbnail_col p a{
+    color: #999b99;
+    font-size: 13px;
+    font-style:normal;
+
+    &:hover { color:#000 }
+}
+
+.thumbnail_col ul{
+    list-style: none;
+    margin: 0 0 2px;
+    float: left;
+    width: 100%;
+    padding: 0px;
+}
+
+.thumbnail_col ul li{
+    width: 176px;
+    float: left;
+    position: relative;
+    display: inline;
+    margin-bottom: 17px;
+}
+.select_thumb {display: block !important;}
+.thumbnail_col ul li .video_title{
+    display: none;
+    position: absolute;
+    top: 0;
+    background: rgba(66,139,202,0.7);
+    width: 100%;
+    padding: 5px 2px;
+    text-align: center;
+    color: #fff;
+}
+.thumbnail_col ul li .video_title.div_blck{display: block;}
+.thumbnail_col ul li:hover > .video_title{display: block;}
+
+p.load_more {
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+
+p.load_less{
+    float: left;
+    width: 100%;
+    text-align: right;
+    display: none;
+}
+
+.thumbnail_col ul li.margn45{margin:0px 16px;}
+.thumbnail_col ul li img{width:100%; height:auto;}
+
+
+// Make a play icon for the video
+.video-poster-play {
+    height: 84px;
+    width: 84px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -42px;
+    margin-left: -42px;
+    cursor: pointer;
+
+    > div.play-button {
+        width: 84px;
+        height: 84px;
+        position: absolute;
+        border: 2px solid #fff;
+        border-radius: 50%;
+
+        &:hover { background: rgba(255, 255, 255, 0.25) }
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            margin-top: -21px;
+            left: 50%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 21px solid transparent;
+            border-bottom: 21px solid transparent;
+            border-left: 28px solid #FFF;
+        }
+    }
+}
+
+.replace_video_section { margin-top: 42px; }
+
+a.replace_video_btn { @include button($xero-blue); }
+a.remove_video_btn { @include button($xero-red); }
+
+a.replace_video_btn,
+a.remove_video_btn {
+    float: left;
+    &:hover { text-decoration: none; }
+}
+
+.upload_content_frame_sm {
+    width: 260px;
+    height: 260px;
+    position: relative;
+    background: #F2F2F2;
+    border: 1px solid #E3E3E3;
+    float: left;
+    @include border-radius(6px);
+}
+
+.upload_gry_box .custom-upload .fake-file input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    border-radius: 3px;
+    color: #9c9e9f;
+    font-size: 9px;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.upload_gry_box p {
+    font-size: 14px;
+    color: $silver31;
+    margin-bottom: 28px;
+}
+
+.custom-upload {
+    background: none repeat scroll 0 0 transparent;
+    border-radius: 5px;
+    float: left;
+    height: 28px;
+    margin-bottom: 6px;
+    position: relative;
+    width: 20%;
+
+    input[type=file] {
+        cursor: pointer;
+        height: 100%;
+        opacity: 0;
+        outline: medium none;
+        position: relative;
+        text-align: right;
+        width: 76px;
+        z-index: 2;
+    }
+
+    .browse {
+        background: #a1a1a1;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        display: block;
+        float: right;
+        line-height: 34px;
+        padding: 0 10px;
+    }
+
+    .fake-file {
+        line-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 230%;
+        z-index: 1;
+    }
+}
+
+
+// Workout Details Page Cover Art Uploader
+.upload_content_frame_sm.workout_cover_art {
+
+    div.upload_wrapper {
+        @include clearfix();
+        width: 160px;
+        position: absolute;
+        top: 94px;
+        left: 50%;
+        margin-left: -80px;
+        text-align: center;
+    }
+
+    p { line-height: 16px; }
+    .choose_btn { font-size: 11px; }
+
+    div.custom-upload {
+        //float: none;
+        width: 100%;
+        margin-bottom: 0px;
+
+        input[type=file] { width: 100%; }
+    }
+
+    div.fake-file {
+        width: 100%;
+        height: 28px;
+
+        input {
+            margin-top: 0px;
+            padding-top: 14px;
+            text-align: center;
+        }
+    }
+}
+
+
+p.library_item_status {
+    font-size: 12px;
+    line-height: 14px;
+    color: $silver31;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 6px;
+
+    > img {
+        float: left;
+        margin-right: 6px;
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.dis_cls {
+    pointer-events: none;
+    cursor: default;
+}
+
+.uplod_work {
+    display: block;
+    position: absolute;
+    width: 168px;
+    left: 50%;
+    margin-left: -84px;
+    bottom: 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.no_video {
+    background-color: #F2F2F2;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    width: 100%;
+    height: 316px;
+    position: relative;
+
+    > span {
+        display: block;
+        color: $silver51;
+        position: absolute;
+        top: 50%;
+        margin-top: -7px;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        line-height: 14px;
+    }
+}
+
+
+// Required Equipment Section
+p.equ_h5.input_sub_text { margin-bottom: 0px; }
+
+ul#equipment_list {
+    width: 100%;
+    float: left;
+    list-style: none;
+    margin: 0px;
+    padding: 3px 0px;
+    border: 1px solid $textbox-borders;
+    @include border-radius(4px);
+    overflow-y: scroll;
+    height: 98px;
+
+    li {
+        width: 100%;
+        float: left;
+        color: $silver16;
+        padding: 2px 5px;
+        margin-bottom: 1px;
+        font-size: 11px;
+        line-height: 14px;
+        @include gotham400();
+        @include user-select(none);
+        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $hover-color;
+        }
+    }
+
+    li.selected_equipment {
+        background-color: $active-color-dark;
+    }
+}
+
+.equipment_pill {
+    float: left;
+    position: relative;
+    background: #F2F2F2;
+    padding: 7px 10px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    font-size: 11px;
+    line-height: 14px;
+    @include clearfix();
+    @include border-radius(4px);
+    @include gotham400();
+    @include user-select(none);
+
+    > span {
+        display: block;
+        float: left;
+        cursor: default
+    }
+}
+
+div.equipment_pill#1 {margin-right: 14px;}
+
+.equipment_pill > a.equip_close_icon {
+    float: left;
+    text-decortation: none;
+    margin-left: 8px;
+    margin-top: -1px;
+    font-size: 14px;
+    color: #CCCCCC;
+
+    &:before {
+        content: '\0078';
+        @include gotham300();
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $silver51;
+        text-decoration: none;
+    }
+}
