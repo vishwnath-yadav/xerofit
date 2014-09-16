@@ -304,7 +304,8 @@ body { background: #f7f7f7; }
 
 // Show hide password toggles
 .toggle-pass,
-.toggle-pass1 {
+.toggle-pass1,
+.toggle-pass2 {
     position: absolute;
     bottom: 9px;
     right: 10px;
@@ -312,6 +313,7 @@ body { background: #f7f7f7; }
     line-height: 14px;
     color: $silver16;
     @include gotham500();
+    @include user-select(none);
     cursor: pointer;
 }
 
