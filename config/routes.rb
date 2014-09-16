@@ -2,9 +2,9 @@ Xerofit::Application.routes.draw do
 # , ActiveAdmin::Devise.config
 
 #   ActiveAdmin.routes(self)
-  root 'website#home'
+  # root 'devise/sessions#new'
   
-  devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"}
+  devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"}, path: "", path_names: { sign_in: 'login', sign_up: 'join' }
   # devise_for :users, :controllers => {:passwords => "passwords"}
   # get '/auth/:provider/callback', to: 'sessions#create'
 
@@ -13,6 +13,14 @@ Xerofit::Application.routes.draw do
    get "/users_sign_up_new" => "registrations#users_sign_up_new"
    get "/reset_password" => "passwords#reset"
    post "/users_sign_up_create" => "registrations#users_sign_up_create"
+
+  authenticated :user do
+    root 'libraries#index', as: :authenticated_root
+  end
+
+  unauthenticated do
+    root 'devise/sessions#new', as: :unauthenticated_root
+  end
  end 
 
  match 'auth/:provider/callback', to: 'dashboard#create', via: [:get, :post]

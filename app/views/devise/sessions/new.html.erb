@@ -4,7 +4,7 @@
     <div class="popup_header">
       <h2>Sign In to Xerofit</h2>
 
-      <p>Don't have an account yet? <a href="combo_signup.html">Sign up here</a>.</p>
+      <p>Don't have an account yet? <%=link_to "Join Now!", new_user_registration_path%></p>
     </div>
     <div class="popp_middle">
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
