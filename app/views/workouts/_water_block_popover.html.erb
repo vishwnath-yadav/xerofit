@@ -1,0 +1,13 @@
+<div class="head hide">Time/Duration</div>
+<div class="content hide">
+  <div class="input-section">
+    <div class="input-wrap water_detail">
+        <input id="minutes" class="" max="10" min="1" step="1" type="number" value="1" data-block-id="<%= @block.id%>">
+        <h5>Minutes</h5>
+
+        <input id="seconds" class="" max="60" min="0" step="15" type="number" value="0" data-block-id="<%= @block.id%>">
+        <h5>Seconds</h5>
+    </div>
+  </div>
+  <a href="javascript:void(0)" id="block_remove_<%= @block.id %>" class="remove_video_btn"> Delete Water break </a>
+</div>

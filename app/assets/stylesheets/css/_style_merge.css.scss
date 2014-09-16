@@ -191,7 +191,7 @@ body.pop{background:#d9d9d9;}
     cursor: pointer;
 }
 .head_rght{
-    width:90%;
+    width:100%;
     float:left;
 }
 .met_tab_col .met_head h4{
@@ -547,3 +547,31 @@ input:focus::-moz-placeholder { opacity:0; }
 }
 ul.disable_cls{overflow-y: hidden !important; }
 ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !important;}
+
+.img_icon{
+float: right;
+width: 20px !important;
+height: auto !important;
+}
+
+.met_tab_col .water_head{
+    width: 30%;
+    float:left;
+    margin-left: 34%;
+    background:#7E8082;
+    border-radius:5px;
+    padding:10px;
+    position: relative;
+    cursor: pointer;
+    top: -22px;
+}
+
+.water_hr{
+    margin-bottom: 0;
+    border-top: 1px solid #111;
+    margin-top: 29px;
+}
+
+.water_mat_tab{
+    margin-bottom: 0px !important;
+}

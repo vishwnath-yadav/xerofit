@@ -129,6 +129,9 @@ Xerofit::Application.routes.draw do
       get 'search_lib'
       get 'autocomplete_move_title'
       get 'remove_library_from_block'
+      get 'update_move_details'
+      get 'get_workout_water_sub_block'
+      get 'update_water_block_details'
     end
     member do
       get '/edit', to: 'workouts#edit', as: :edit

@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -78,7 +77,9 @@ CREATE TABLE blocks (
     workout_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    move integer DEFAULT 0
+    move integer DEFAULT 0,
+    minutes integer DEFAULT 0,
+    seconds integer DEFAULT 0
 );
 
 
@@ -340,7 +341,7 @@ CREATE TABLE moves (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     status character varying(255),
-    move_type character varying(255) DEFAULT 'Single Move'::character varying,
+    move_type character varying(255),
     equipment character varying(255)[] DEFAULT '{}'::character varying[],
     help character varying(255),
     work character varying(255),
@@ -553,7 +554,7 @@ CREATE TABLE workouts (
     pic_updated_at timestamp without time zone,
     status character varying(255),
     category character varying(255),
-    move_type character varying(255) DEFAULT 'workouts'::character varying,
+    move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true
 );
@@ -709,11 +710,11 @@ ALTER TABLE ONLY full_workouts
 
 
 --
--- Name: histroys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY histories
-    ADD CONSTRAINT histroys_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -913,6 +914,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140905063108');
 
 INSERT INTO schema_migrations (version) VALUES ('20140908123706');
 
-INSERT INTO schema_migrations (version) VALUES ('20140909144302');
-
 INSERT INTO schema_migrations (version) VALUES ('20140911063516');
+
+INSERT INTO schema_migrations (version) VALUES ('20140916131956');

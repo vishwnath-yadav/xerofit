@@ -2,27 +2,18 @@
   <%if !@display.blank? %>
       <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
   <%end%>
-  <div class="met_tab_col <%=@display%>">
-  	<div class="met_head">
+  <div class="met_tab_col water_mat_tab <%=@display%>">
+    <hr class="water_hr">
+    <div class="water_head">
       <div class="head_rght">
-        <h4 id="block_type_h4_<%= @block.id %>" style="float:left;"><%= @block.name %></h4>
+        <h4 id="block_type_h4_<%= @block.id %>" style="float:left;color:white;"><%= Block::BLOCK_TYPE[2] %></h4>
         <span>
           <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
-            <%= render "block_popover" %>
+            <%= render "water_block_popover" %>
           </img>
         </span>
       </div>
     </div>
-
-    <!-- <div class="met_tab_desc" id="b<%= @block.id %>"> -->
-    <div class="met_tab_desc">
-      <%=hidden_field_tag "block_id", @block.id %>
-      <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type, class: "block_type" %>
-    	<ul class="sortable">
-      	<li>1</li>
-      </ul>
-    </div>
-  </div>
 </div>
 <script>
     $( ".sortable" ).sortable({
