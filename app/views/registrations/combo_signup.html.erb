@@ -1,28 +1,23 @@
-<div class="middle_wrapper">
-  <div class="popup_wrapper wdt901">
-    <div class="close_icon"><a href="#"><img src="/assets/close.png" width="20" height="20" alt="close_icon" /></a></div>
-    	<div class="left_pop">
-<div class="popup_header border_none pb43">
-
-       	  <h2>Get on the List</h2>
-            <p class="left_p">Right now Xerofit is only available with an invitation, but you can get on the list for early access below.</p>
-      </div>
-        <div class="popp_middle">
-        	<%=render "common_templates/user_form"%>
-          <span class="lost_pass_txt">Don’t worry, we’ll never send you any spam.</span>
-        </div>	
-        
+<div class="login-page">
+    <div class="combo-join-wrap login-wrap">
+        <div class="split-left">
+            <div class="login-head">
+                <h2>Get on the List</h2>
+                <p>Right now Xerofit is only available with an invitation, but you can get on the list for early access below.</p>
+            </div>
+            <div class="login-body">
+                <%= render "common_templates/user_form" %>
+            </div>
         </div>
-    <div class="left_pop rght_pop">
-<div class="popup_header border_none pb43">
-
-       	  <h2>Join as a Trainer</h2>
-      </div>
-        <div class="popp_middle">
-        	<%=render "common_templates/trainer_form"%>
-          <span class="lost_pass_txt">You agree to Xerofit's <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</span>
-        </div>	
-        
+        <div class="split-right">
+            <div class="login-head">
+                <h2>Become a Xerofit Trainer</h2>
+                <p>Already have an account?
+                    <a href="/">Sign in here</a>.
+            </div>
+            <div class="login-body">
+                <%= render "common_templates/trainer_form" %>
+            </div>
         </div>
     </div>
 </div>

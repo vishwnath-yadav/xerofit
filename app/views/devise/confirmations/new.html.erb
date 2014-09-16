@@ -1,12 +1,12 @@
 <div class="middle_wrapper">
-  <div class="popup_wrapper">
-    <div class="popup_header">
+  <div class="login-wrap">
+    <div class="login-head">
       <h2>Resend confirmation instructions</h2>
     </div>
-    <div class="popp_middle">
+    <div class="login-body">
       <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   		<%= f.error_notification %>
-  		<span class="error_color"> 
+  		<span class="error-messages"> 
   			<%#= f.full_error :confirmation_token %>
         <% resource.errors.full_messages.each do |object| %>
           <%= object %></br>

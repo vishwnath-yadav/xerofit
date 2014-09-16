@@ -1,8 +1,9 @@
 <%= simple_form_for(@user, url: users_sign_up_create_path) do |f| %>
-  <%= @user.errors.full_messages[0] %>
-  <div class="login_field">
-	  <%= f.input :email, required: true, autofocus: true %>
-	  <%= f.hidden_field :role, value: "normaluser" %>
-  </div>
- <%= f.button :submit, "Request an Invite", :class=>"signin_btn request_bt" %>
-<%end%>
+    <%= @user.errors.full_messages[0] %>
+    <div class="input-field-wrap">
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.hidden_field :role, value: "normaluser" %>
+    </div>
+    <%= f.button :submit, "Request an Invite", :class=>"login-btn" %>
+    <span class="btn-footnote">Don’t worry, we’ll never send you any spam.</span>
+<% end %>

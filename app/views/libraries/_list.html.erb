@@ -56,7 +56,10 @@
     </ul>
   </div>
 <% else %>
-  <span> No Record Found...</span>
+  <div class="empty-library">
+    <h3>Your Fitness Library is empty!</h3>
+    <span>Click the blue plus icon to start adding content.</span>
+  </div>
 <% end %>
 
 <%= paginate @move, :remote => true %>

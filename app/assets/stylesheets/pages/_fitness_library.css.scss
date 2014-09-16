@@ -284,6 +284,15 @@ input.search_bar {
 // ==================================================================
 //
 
+.empty-lebrary {
+    width: 100%;
+    text-align: center;
+
+    span {
+        display: block;
+    }
+}
+
 
 .empty-library {
     width: 100%;
@@ -798,6 +807,7 @@ a.cancel_btn {
 //
 
 
+<<<<<<< HEAD
 .text_area_lg { height: 154px; }
 .text_area_md { height: 112px; }
 .text_area_sm { height: 70px; }
@@ -833,16 +843,13 @@ a.cancel_btn {
     }
 
     input { line-height: 14px; }
+=======
+.input_field_wrap.move_difficulty_select,
+.input_field_wrap.move_category_select,
+.input_field_wrap.workout_category_select { width: 50%; }
+>>>>>>> 2417aff9853192c7109963443ed2aad4bde049cc
 
-    h4 {color: #a5afbb; padding-bottom: 5px;}
-
-    &.move_difficulty_select,
-    &.move_category_select,
-    &.workout_category_select { width: 50%; }
-
-    .move_difficulty_select { float: right; }
-
-}
+.input_field_wrap .move_difficulty_select { float: right; }
 
 .sel_wid{width: 90%}
 .sel_wid select{width: 100%; height: 85px}
