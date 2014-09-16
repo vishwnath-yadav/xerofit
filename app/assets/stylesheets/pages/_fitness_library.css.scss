@@ -287,6 +287,15 @@ input.search_bar {
 // ==================================================================
 //
 
+.empty-lebrary {
+    width: 100%;
+    text-align: center;
+
+    span {
+        display: block;
+    }
+}
+
 
 .library_col ul {
     position: relative;
