@@ -20,7 +20,7 @@
                     <label>New Password:</label>
                     <%= f.input :password, label: false, autofocus: true %>
                     <input type="text" id="txthdnPassword" />
-                    <span class="toggle-pass" >Show</span>
+                    <span class="toggle-pass2" >Show</span>
                 </div>
                 <div class="input-field-wrap">
                     <label>Reset Password:</label>
@@ -69,18 +69,18 @@
             }
         });
 
-        $(document).on('click','.toggle-pass', function() {
+        $(document).on('click','.toggle-pass2', function() {
             var isChecked = $(this).text();
             if(isChecked == "Show") {
                 $('#user_password').hide();
                 $('#txthdnPassword').show();
-                $('.toggle-pass').text("Hide");
+                $('.toggle-pass2').text("Hide");
                 $('#txthdnPassword').val($('#user_password').val());
             }
             else {
                 $('#user_password').show();
                 $('#txthdnPassword').hide();
-                $('.toggle-pass').text("Show");
+                $('.toggle-pass2').text("Show");
                 $('#user_password').val($('#txthdnPassword').val());
             }
         });

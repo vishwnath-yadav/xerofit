@@ -8,7 +8,12 @@
                 <a href="<%= params[:user].present? ? libraries_path(user: params[:user]) : libraries_path %>"><img src="/assets/icons/apps/fitness_library_app_large.png" alt="Fitness Library" />Fitness Library</a>
             </li>
             <li>
-                <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />Workout Builder</a>
+                <%if current_user.admin?%>
+                    <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />
+                <% else %>
+                    <a href="#" class="workout-builder-soon"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />
+                <% end %>
+                Workout Builder</a>
             </li>
             <li>
                 <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta"><img src="/assets/icons/apps/support_app_large.png" alt="Support" />Support</a>

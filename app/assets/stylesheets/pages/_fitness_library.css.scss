@@ -811,6 +811,10 @@ a.cancel_btn {
 .input_field_wrap.move_difficulty_select,
 .input_field_wrap.move_category_select,
 .input_field_wrap.workout_category_select { width: 50%; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5179e180a267a0b6e8775312d50ae5320871ef12
 
 .input_field_wrap .move_difficulty_select { float: right; }
 
@@ -930,8 +934,8 @@ a.cancel_btn {
         float: left;
         position: relative;
         left: 50%;
-        margin-left: -49px;
-        width: 98px;
+        margin-left: -56px;
+        width: 112px;
         text-align: center;
         @include button($silver31);
 

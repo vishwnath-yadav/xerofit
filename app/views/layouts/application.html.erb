@@ -13,9 +13,9 @@
 	<body>
     <div id="<%= "#{controller_name}_#{action_name}" -%>" class="wrapper">
         <%if current_user.admin?%>
-          <%=render "layouts/admin_header_for_user"%>
+          <%= render "layouts/admin_header_for_user"%>
         <%else%>
-          <%=render "layouts/header"%>
+          <%= render "layouts/header"%>
         <%end%>
         <div class="content">
           <%= yield %>

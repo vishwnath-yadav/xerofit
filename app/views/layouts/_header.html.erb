@@ -15,7 +15,11 @@
                         </a>
                     </li>
                     <li>
+                    <%if current_user.admin?%>
                         <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app">
+                    <% else %>
+                        <a href="#" class="workout-builder-soon dropdown_app_icon workout_builder_app">
+                    <% end %>
                             <span>Workout Builder</span>
                         </a>
                     </li>
@@ -38,12 +42,18 @@
         </div>
 
         <div class="utility_menu">
-            <div class="notification_dropdown dropdown">
-                <a href="#" class="notification_menu_toggle" data-toggle="dropdown"></a>
-                <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
-                    <li><a href="#">No new notifications</a></li>
-                </ul>
-            </div>
+
+
+            <%if current_user.admin?%>
+                <div class="notification_dropdown dropdown">
+                    <a href="#" class="notification_menu_toggle" data-toggle="dropdown"></a>
+                    <ul class="notification_menu_dropdown dropdown-menu dd_tip_center">
+                        <li><a href="#">No new notifications</a></li>
+                    </ul>
+                </div>
+            <% end %>
+
+
 
             <div class="utility_dropdown dropdown">
                 <a href="#" class="utility_menu_toggle" data-toggle="dropdown">
@@ -55,7 +65,9 @@
                     <span class="user_name"><%= current_user.fullname %></span>
                 </a>
                 <ul class="utility_menu_dropdown dropdown-menu dropdown-menu-right dd_tip_right">
-                    <li><a href="/settings" data-no-turbolink='true'>Settings</a></li>
+                    <%if current_user.admin?%>
+                        <li><a href="/settings" data-no-turbolink='true'>Settings</a></li>
+                    <% end %>
                     <li><%=link_to "Signout", destroy_user_session_path, :method => :delete %></li>
                 </ul>
             </div>
