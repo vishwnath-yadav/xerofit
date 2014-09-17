@@ -14,6 +14,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/structure.sql
-/public/
 .idea
