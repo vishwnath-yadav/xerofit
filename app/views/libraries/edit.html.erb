@@ -191,19 +191,23 @@
           </span>
       </div>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="lib_edit_botom replace_video_section">
-            <h5 class="input_label">Replace Video</h5>
-            <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
-            <%if @disabled%>
-              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn disable_cls"%>
-            <%else%>
-              <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @move.library_video.id%>
-            <%end%>
+
+      <%if current_user.admin?%>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="lib_edit_botom replace_video_section">
+              <h5 class="input_label">Replace Video</h5>
+              <p class="input_sub_text">Upload a new video file for this move to replace the old one.</p>
+              <%if @disabled%>
+                <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn disable_cls"%>
+              <%else%>
+                <%=link_to "Replace this video", "javascript:void(0)",:class => "replace_video_btn full_workout", "data-edit"=> @move.library_video.id%>
+              <%end%>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+
 
       <div class="row">
         <div class="col-sm-12">

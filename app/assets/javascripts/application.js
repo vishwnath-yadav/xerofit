@@ -39,7 +39,10 @@
 
 $(document).ready(function() {
 
-      
+    $(document).on("click", ".workout-builder-soon", function(event) {
+      event.preventDefault();
+      alert('Coming Soon!');
+    });
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),

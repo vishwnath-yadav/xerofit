@@ -1,47 +1,27 @@
-<!-- <div class="middle_wrapper">
-  <div class="popup_wrapper">
-    <div class="popup_header">
-      <h2>Forgot your password?</h2>
-    </div>
-    <div class="popp_middle">
-      <%#= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  			<%#= f.error_notification %>
-        <div class="login_field">
-          <%#= f.input :email, required: true, autofocus: true %>
-        </div>
-        <%#= f.button :submit, "Send me reset password instructions", {:class=>"signin_btn request_bt"} %>
-      <%# end %>
-    </div>
-	<%#= render "devise/shared/links" %>
-  </div>
-</div> -->
-
-
-<div class="zmiddle_wrapper">
-  <div class="popup_wrapper">
-      <!-- <div class="close_icon"> 
-        <a href="#"><img src="/assets/close.png" alt="Close" width="20" height="20" border="0" /></a></div> -->
-        <div class="popup_header border_none">
-          <h2>Reset Password</h2>
+<div class="login-page">
+    <div class="login-wrap">
+        <div class="login-head">
+            <h2>Reset Password</h2>
             <p>No problem, just tell us the email you used to signup, and we can reset it for you. If you don't get an email from us in the next few minutes, try checking your spam folder.</p>
         </div>
-        <div class="popp_middle">
-          <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-            <%= f.error_notification %>
-            <span class="error_color">
-              <% resource.errors.full_messages.each do |object| %>
-                <%= object %></br>
-              <% end %>
-            </span>
-          <div class="login_field">
-            <label>Email:</label>
-            <%= f.input :email, label: false, required: true, autofocus: true %>
-          </div>
-            
-            <%= f.button :submit, "Reset Password", {:class=>"signin_btn request_bt"} %>
-            <span class="lost_pass_txt">Remember it? <a href="<%= new_user_session_path %>">Back to login</a>.</span>
-          <% end %>
-        </div>  
+        <div class="login-body">
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= f.error_notification %>
+                <span class="error-messages">
+                    <% resource.errors.full_messages.each do |object| %>
+                        <%= object %></br>
+                    <% end %>
+                </span>
+
+                <div class="input-field-wrap">
+                    <label>Email:</label>
+                    <%= f.input :email, label: false, required: true, autofocus: true %>
+                </div>
+
+                <%= f.button :submit, "Reset Password", { :class=>"login-btn" } %>
+                <span class="btn-footnote">Remember it? <a href="<%= new_user_session_path %>">Back to login</a>.</span>
+            <% end %>
+        </div>
     </div>
 </div>
 
