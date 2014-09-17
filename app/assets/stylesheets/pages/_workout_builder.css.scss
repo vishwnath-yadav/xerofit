@@ -420,6 +420,36 @@
     }
 }
 
+.drag_img {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -98px;
+
+    &:before {
+        content: '';
+        background: url(/assets/icons/workout_builder_blocks.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 110px;
+        height: 93px;
+        margin-bottom: 47px;
+    }
+
+    &:after {
+        content: 'Drag and drop to add blocks or moves to begin creating a new workout.';
+        font-size: 18px;
+        line-height: 28px;
+        text-align: center;
+        color: $silver51;
+        display: block;
+    }
+}
 
 
 
@@ -548,15 +578,15 @@
     margin-bottom:45px;
 }
 .met_tab_col:last-child{
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
 .met_tab_col .met_head{
-    width:100%;
-    float:left;
-    background:#7E8082;
-    border-radius:5px;
-    padding:10px;
-    margin-top: 10px;
+    width: 100%;
+    float: left;
+    background: #7E8082;
+    border-radius: 5px;
+    padding: 10px;
+    //margin-top: 10px;
     cursor: pointer;
 }
 .head_rght{
