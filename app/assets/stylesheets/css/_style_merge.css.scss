@@ -1,5 +1,4 @@
 @charset "utf-8";
-/* CSS Document */
 
 html,
 body {margin: 0px; padding: 0px; height:100%;   @include gotham400();}
@@ -24,145 +23,12 @@ body{margin:0px; padding:0px;background:#f7f7f7;}
          url('/assets/gothmbok-webfont.svg#gotham-bookgotham-book') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 h1,h2,h3,h4,h5,h6{margin: 0px; font-weight:normal; padding: 0px;}
 
 
-body.home_bg{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
-body.home_bg.size{background:url(/assets/home_bg_img.jpg) no-repeat; background-size: cover;}
-body.signup_bg{ background:url(/assets/signup_bg.jpg) no-repeat center center; background-size: cover;}
-body.signup_bg.sing_size{ background:url(/assets/signup_bg.jpg) no-repeat ; background-size: cover;}
-body.gry_bg{background:#f4f4f5}
-body.dashboard{background:#f2f2f2;}
-body.pop{background:#d9d9d9;}
-.dashboard{background:#f2f2f2;}
-#page_wrapper{width: 100%; float: left; min-height:100%;
-    position:relative;}
-
 .cent{ text-align: center; }
-
-.m_32{
-    margin:0px 32px;
-}
-
-
-// Settings Pages Only
-.save_col{
-    width:100%;
-    float:left;
-    border-top:1px solid #ccc;
-    padding-top:27px;
-    margin-top:50px;
-}
-
-.save_col.save_col1{
-    margin-top:0px;
-}
-
-.save_btn{
-    background:#24c4d4;
-    padding:12px 30px;
-    float:right;
-    font-size:12px;
-    color:#fff;
-    border-radius:3px;
-    border:0px;
-}
-.save_btn.save_btn1{
-    background:#4c4d4e;
-    float:left;
-}
-.save_btn:hover{
-    background:#666;
-    cursor:pointer;
-}
-
-.ft_xero{
-    width:100%;
-    float:left;
-    background:#f2f2f2;
-    padding:10px 30px;
-    color:#908a85;
-    font-size:9px;
-    text-align:right;
-}
-.col_wdt{
-    width:100%;
-    float:left;
-}
-
-.dash_left{
-    width: 19.6%;
-    float: left;
-}
-
-.dashboard_mid{
-    max-width:1026px;
-    margin:0px auto;
-    // overflow:auto;
-    padding:40px 0px;
-}
-.dashboard_mid h3{
-    font-size:24px;
-    color:#a5afbb;
-    border-bottom:1px solid #e4e6e8;
-    padding-bottom:10px;
-    margin-bottom:20px;
-    @include gotham200();
-}
-.dashboard_mid h4{
-    font-size:20px;
-    color:#a5afbb;
-    border-bottom:1px solid #e4e6e8;
-    padding-bottom:10px;
-    margin-bottom:20px;
-    @include gotham200();
-}
-
-.alerts_col{
-    width:100%;
-    float:left;
-}
-.ques{
-    width:19px;
-    height:19px;
-    float:right;
-    background:url(/assets/question_mark.png) no-repeat 0px 0px;
-}
-.alerts_col_desc{
-    width:100%;
-    float:left;
-    min-height:153px;
-    text-align:center;
-    padding:20px;
-}
-.alerts_col_desc h5{
-    font-size:18px;
-    color:#dcdad6;
-    @include gotham300-italic();
-    margin-bottom:10px;
-}
-
-.setting_form .setting_input.mr15{
-    margin-right: 15px;
-}
-
-.wdt_70{
-    width: 70%;
-}
-
-#order_state_code_wrapper select{
-    border: 1px solid #e0e0e0;
-    border-radius: 3px;
-    padding: 6px;
-    color: #cfcdcd;
-    font-style: italic;
-    margin: 0px;
-}
-
-
 
 
 // Start Workout Builder
@@ -209,7 +75,7 @@ body.pop{background:#d9d9d9;}
 
     div.met_tab_desc{
         min-height: 0px;
-        
+
         ul.sortable{
             padding: 0px;
 
@@ -242,8 +108,8 @@ body.pop{background:#d9d9d9;}
     cursor: pointer;
     position: relative;
     background: #eee;
-    
 }
+
 .met_tab_desc ul li:hover{background:#ceeff2}
 
 
@@ -441,56 +307,14 @@ body.pop{background:#d9d9d9;}
     margin: 0 auto;
     float: none;
 }
+
 .m50 { margin: 50% 40% 100% 47%; }
-
-
-.workout_auto_input{
-    width: 180px;
-    height: 32px;
-    border-radius: 5px;
-    border: 2px solid #efefef;
-    font-size: 22px;
-}
-.workout_auto_input:focus{
-    width: 180px;
-    height: 32px;
-    outline: none;
-}
-
-.fetured_li{
-    width: 100%;
-    float: left;
-    margin-top: 13px;
-    border-bottom: 1px solid #ccc;
-}
-.fetured_li ul{
-    margin: 0px;
-    padding: 0px;
-}
-
-.fetured_li ul li{
-    width: auto;
-    float: left;
-    list-style: none;
-    display: inline;
-    padding: 0 10px;
-    color: gainsboro;
-    padding-bottom: 8px;
-}
-.fetured_li ul li.active_tab{
-    border-bottom: 2px solid #ccc;
-    color: black;
-}
-
-.flex-wrap .flex p{color: #111}
-.replace_video .video_uplod { width: 85%; }
 
 #dragandrophandler h2 {
     font-size: 19px;
     margin-bottom: 16px;
 }
 
-.block_hide.met_tab_col { opacity: 0; }
 
 .toggle_rel{position: relative; float: left; width: 100%;}
 .clear {clear: both;}
@@ -504,23 +328,13 @@ body.pop{background:#d9d9d9;}
 .error_color{ color: red; }
 .gray_bg { background: gainsboro; }
 
-.wrk_success{
-    margin: 1% 40% 0;
-    float: left;
-    font-size: 17px;
-    color: red;
-    color: red;
-}
-
 .lib_error {
     margin: 0;
     color: red;
     font-size: 10px;
 }
 
-.modal_load {
-    margin: 14% 0 13% 44%;
-}
+.modal_load { margin: 14% 0 13% 44%; }
 
 button[disabled], html input[disabled] {
     cursor: default;
@@ -532,6 +346,8 @@ textarea:disabled{background: $disabled-color; cursor: default !important;}
 input:focus::-webkit-input-placeholder { opacity: 0; }
 input:focus:-moz-placeholder { opacity:0; } /* FF 4-18 */
 input:focus::-moz-placeholder { opacity:0; }
+
+
 
 .disable_cls{
     background: $disabled-color !important;
@@ -546,24 +362,3 @@ width: 20px !important;
 height: auto !important;
 }
 
-.met_tab_col .water_head{
-    width: 30%;
-    float:left;
-    margin-left: 34%;
-    background:#7E8082;
-    border-radius:5px;
-    padding:10px;
-    position: relative;
-    cursor: pointer;
-    top: -22px;
-}
-
-.water_hr{
-    margin-bottom: 0;
-    border-top: 1px solid #111;
-    margin-top: 29px;
-}
-
-.water_mat_tab{
-    margin-bottom: 0px !important;
-}

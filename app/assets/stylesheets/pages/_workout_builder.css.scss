@@ -424,8 +424,6 @@
 
 
 
-
-
 // -------------------------------------------------------------------------- //
 // Previous Workout Builder styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
@@ -461,4 +459,67 @@
 }
 
 
+.fetured_li {
+    width: 100%;
+    float: left;
+    margin-top: 13px;
+    border-bottom: 1px solid #ccc;
 
+    ul {
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            width: auto;
+            float: left;
+            list-style: none;
+            display: inline;
+            padding: 0 10px;
+            color: gainsboro;
+            padding-bottom: 8px;
+        }
+
+        li.active_tab {
+            border-bottom: 2px solid #ccc;
+            color: black;
+        }
+    }
+}
+
+.met_tab_col .water_head{
+    width: 30%;
+    float:left;
+    margin-left: 34%;
+    background:#7E8082;
+    border-radius:5px;
+    padding:10px;
+    position: relative;
+    cursor: pointer;
+    top: -22px;
+}
+
+.water_hr{
+    margin-bottom: 0;
+    border-top: 1px solid #111;
+    margin-top: 29px;
+}
+
+.water_mat_tab{
+    margin-bottom: 0px !important;
+}
+
+.block_hide.met_tab_col { opacity: 0; }
+
+.workout_auto_input{
+    width: 180px;
+    height: 32px;
+    border-radius: 5px;
+    border: 2px solid #efefef;
+    font-size: 22px;
+
+    &:focus{
+        width: 180px;
+        height: 32px;
+        outline: none;
+    }
+}
