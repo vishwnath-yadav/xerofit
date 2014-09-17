@@ -386,27 +386,6 @@
     position: relative;
     @include clearfix();
 
-    // Drag and Drop Block Types
-    .workout-blocks {
-        padding: 28px 39px;
-        width: 100%;
-        float: left;
-        position: relative;
-        @include clearfix();
-        //margin: 0px 0 15px;
-
-        span {
-            background: #efefef;
-            float: left;
-            display: block;
-            padding: 14px 21px;
-            margin-right: 14px;
-            @include border-radius(5px);
-            line-height: 14px;
-            cursor: move;
-        }
-    }
-
     // Drag and Drop Target
     .builder-dropzone {
         padding: 39px;
@@ -420,6 +399,26 @@
     }
 }
 
+// Drag and Drop Block Types
+.workout-blocks {
+    padding: 28px 39px;
+    width: 100%;
+    float: left;
+    position: relative;
+    @include clearfix();
+    //margin: 0px 0 15px;
+
+    span {
+        background: #efefef;
+        float: left;
+        display: block;
+        padding: 14px 21px;
+        margin-right: 14px;
+        @include border-radius(5px);
+        line-height: 14px;
+        cursor: move;
+    }
+}
 
 
 
