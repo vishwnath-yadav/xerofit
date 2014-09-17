@@ -406,7 +406,6 @@
     float: left;
     position: relative;
     @include clearfix();
-    //margin: 0px 0 15px;
 
     span {
         background: #efefef;
@@ -427,6 +426,7 @@
     top: 50%;
     margin-left: -200px;
     margin-top: -98px;
+    @include user-select(none);
 
     &:before {
         content: '';
@@ -527,19 +527,19 @@
     top: -22px;
 }
 
-.water_hr{
+.water_hr {
     margin-bottom: 0;
     border-top: 1px solid #111;
     margin-top: 29px;
 }
 
-.water_mat_tab{
+.water_mat_tab {
     margin-bottom: 0px !important;
 }
 
 .block_hide.met_tab_col { opacity: 0; }
 
-.workout_auto_input{
+.workout_auto_input {
     width: 180px;
     height: 32px;
     border-radius: 5px;
@@ -567,15 +567,16 @@
 
 
 // Start Workout Builder
-.met_tab{
-    margin-bottom: 20px;
+.met_tab {
+    //margin-bottom: 20px;
     float: left;
     width: 100%;
 }
+
 .met_tab_col{
     width:100%;
     float:left;
-    margin-bottom:45px;
+    //margin-bottom:45px;
 }
 .met_tab_col:last-child{
     margin-bottom: 0px;
@@ -623,72 +624,75 @@
 
 
 
-.met_tab_desc{
-    width:100%;
-    float:left;
+.met_tab_desc {
+    width: 100%;
+    float: left;
     min-height: 160px;
     background: #fff;
-}
 
-.met_tab_desc ul{
-    margin-top: 2px;
-    padding: 5px;
-}
-.met_tab_desc ul li.li_active{background:#ceeff2}
-.met_tab_desc ul li{
-    float: left;
-    width: 100%;
-    list-style:none;
-    padding: 8px 0px 8px 6px;
-    border-bottom: 1px solid #ccc;
-    font-size: 13px;
-    cursor: pointer;
-    position: relative;
-    background: #eee;
-}
+    ul {
+        margin-top: 2px;
+        padding: 5px;
 
-.met_tab_desc ul li:hover{background:#ceeff2}
+        li {
+            float: left;
+            width: 100%;
+            list-style:none;
+            padding: 8px 0px 8px 6px;
+            //border-bottom: 1px solid #ccc;
+            font-size: 13px;
+            cursor: pointer;
+            position: relative;
+            background: #eee;
 
+            &:hover{background:#ceeff2}
 
-.met_tab_desc ul li span{
-    width:13px;
-    height:13px;
-    float:left;
-}
-.met_tab_desc ul li span.nummeric{
-    float: left;
-    line-height: 36px;
-    height: 37px;
-    width: 19px;
-}
-.met_tab_desc ul li:hover{
-}
-.met_tab_desc ul li h6{
-    font-size:14px;
-    color:#000;
-    margin-bottom:5px;
-}
-.met_tab_desc ul li p{
-    font-size:12px;
-    color:#8b8e94;
-    margin:0px;
-    font-style:normal;
-}
-.met_tab_desc ul li a{
-    text-decoration:none;
-}
-.met_tab_desc ul li span.rm{
-    float: right;
-    font-weight: bold;
-    position: absolute;
-    z-index: 99999999;
-    width: 20px;
-    right: 0;
-    height: 20px;
-}
+            span {
+                width:13px;
+                height:13px;
+                float:left;
+            }
 
-.met_tab_desc ul li span.rm:hover{ opacity: .6}
+            span.nummeric{
+                float: left;
+                line-height: 36px;
+                height: 37px;
+                width: 19px;
+            }
 
+            span.rm {
+                float: right;
+                font-weight: bold;
+                position: absolute;
+                z-index: 99999999;
+                width: 20px;
+                right: 0;
+                height: 20px;
+
+                &:hover{ opacity: .6}
+            }
+
+            h6 {
+                font-size:14px;
+                color:#000;
+                margin-bottom:5px;
+            }
+
+            p {
+                font-size:12px;
+                color:#8b8e94;
+                margin:0px;
+                font-style:normal;
+            }
+
+            a {
+                text-decoration:none;
+            }
+        }
+
+        li.li_active { background:#ceeff2}
+    }
+}
 
 
 .detail_form {
@@ -708,17 +712,18 @@
             width: 100%;
             margin-bottom: 5px;
         }
+
+        .detail_input,
+        .detail_msg {
+            background:#fff;
+            border-radius:3px;
+            float:left;
+            width:100%;
+            outline: none;
+            border:1px solid #e2e2e2;
+            padding:5px;
+            margin-bottom:5px;
+        }
     }
 }
 
-.detail_form .form_field .detail_input,
-.detail_form .form_field .detail_msg {
-    background:#fff;
-    border-radius:3px;
-    float:left;
-    width:100%;
-    outline: none;
-    border:1px solid #e2e2e2;
-    padding:5px;
-    margin-bottom:5px;
-}
