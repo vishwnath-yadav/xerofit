@@ -13,16 +13,26 @@
         <div class="column-wrap autoheight">
 
             <div class="col_1" id="workout_auto_form">
-                <%= render "workout_auto_form" %>
+                <%#= render "workout_auto_form" %>
             </div>
 
+            <div class="workout-blocks">
+                <% Block::BLOCK_TYPE.each_with_index do |block, index| %>
+                    <% if index < 3 %>
+                        <span draggable="true" ondragstart="drag_start(event)" id="dragable_block_<%=index%>" data-dragable-type="Block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+                            <%= block.humanize %>
+                        </span>
+                    <% end %>
+                <% end %>
+            </div>
+
+
             <div class="workout-preview">
-                <%=render "block_options"%>
                 <div class="builder-dropzone">
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
                         <div class="add_photo drag_lib">
-                            <%=hidden_field_tag :workout_id %>
+                            <%= hidden_field_tag :workout_id %>
                             <%= render "sub_blocks" %>
                         </div>
 
@@ -38,6 +48,4 @@
 
 
 
-
-<%= render "block_type_modal" %>
 <%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>

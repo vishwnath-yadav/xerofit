@@ -1,13 +1,22 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var setElementHeight = function () {
+
+            // Calculate Height Workout Builder
             var height = $(window).height();
             var topbarHeight = $('.topbar').outerHeight();
             var controlBarHeight = $('.control_bar').outerHeight();
             var buttonHeaderHeight = $('.details_page_header.workout-builder').outerHeight();
             var offsetHeight = height + topbarHeight + controlBarHeight;
 
+            // Calculate Height of workout preview dropzone block
+            var workoutBlocksHeader = $('.workout-blocks').outerHeight();
+            var dropzoneOffsetHeight = buttonHeaderHeight + workoutBlocksHeader + 39;
+
+
+            // Set the Height and Min-Heights
             $('.autoheight').css({'height': (height - buttonHeaderHeight)+'px'})
+            $('.builder-dropzone').css({'min-height': (height - dropzoneOffsetHeight)+'px'})
         };
 
 

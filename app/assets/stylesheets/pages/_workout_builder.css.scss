@@ -374,7 +374,7 @@
 
 
 // -------------------------------------------------------------------------- //
-// Previous Workout Builder styles copied over from css/style.css
+// Workout Buidler - Workout Preview Editor (Right Side)
 // -------------------------------------------------------------------------- //
 
 
@@ -382,10 +382,32 @@
 .workout-preview {
     width: 100%;
     float: left;
-    padding: 39px;
+    padding: 0px 39px 39px;
     position: relative;
     @include clearfix();
 
+    // Drag and Drop Block Types
+    .workout-blocks {
+        padding: 28px 39px;
+        width: 100%;
+        float: left;
+        position: relative;
+        @include clearfix();
+        //margin: 0px 0 15px;
+
+        span {
+            background: #efefef;
+            float: left;
+            display: block;
+            padding: 14px 21px;
+            margin-right: 14px;
+            @include border-radius(5px);
+            line-height: 14px;
+            cursor: move;
+        }
+    }
+
+    // Drag and Drop Target
     .builder-dropzone {
         padding: 39px;
         float: left;
@@ -398,18 +420,22 @@
     }
 }
 
-.add_photo {
-    float: left;
-    //padding-left: 13px;
-    width: 100%;
-    img { width:100%; height:auto; }
-}
+
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Previous Workout Builder styles copied over from css/style.css
+// -------------------------------------------------------------------------- //
+
 
 .col_1 {
     width: 100%;
     float: left;
-    border-bottom: 1px solid #e1e3e5;
-    padding-bottom: 20px;
+    //border-bottom: 1px solid #e1e3e5;
+    //padding-bottom: 20px;
 
     h2 {
         font-size:28px;
@@ -427,17 +453,12 @@
     }
 }
 
-.workout_block_options{
+.add_photo {
     float: left;
-    margin: 0px 0 15px;
-
-    span {
-        background: #efefef;
-        padding: 10px;
-        margin: 4px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+    //padding-left: 13px;
+    width: 100%;
+    img { width:100%; height:auto; }
 }
+
 
 
