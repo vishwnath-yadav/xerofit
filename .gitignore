@@ -15,7 +15,6 @@
 /log/*.log
 /tmp
 /structure.sql
-/db/structure.sql
 /public/
 .idea
 /public/system
