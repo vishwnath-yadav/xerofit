@@ -27,295 +27,18 @@ body{margin:0px; padding:0px;background:#f7f7f7;}
 
 h1,h2,h3,h4,h5,h6{margin: 0px; font-weight:normal; padding: 0px;}
 
-
-.cent{ text-align: center; }
-
-
-// Start Workout Builder
-.met_tab{
-    margin-bottom: 20px;
-    float: left;
-    width: 100%;
-}
-.met_tab_col{
-    width:100%;
-    float:left;
-    margin-bottom:45px;
-}
-.met_tab_col:last-child{
-    margin-bottom:0px;
-}
-.met_tab_col .met_head{
-    width:100%;
-    float:left;
-    background:#7E8082;
-    border-radius:5px;
-    padding:10px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-.head_rght{
-    width:100%;
-    float:left;
-}
-.met_tab_col .met_head h4{
-    font-size:14px;
-    color:#fff;
-    @include gotham500();
-    margin-bottom:5px;
-}
-.met_tab_col .met_head p {
-    font-size:11px;
-    color:#fff;
-    @include gotham300();
-    margin:0px;
-}
-.met_tab_col.single_move_drop{
-    margin-bottom: 10px;
-
-    div.met_tab_desc{
-        min-height: 0px;
-
-        ul.sortable{
-            padding: 0px;
-
-            li.block_li{
-                background: #fff;
-            }
-        }
-    }
-}
-
-.met_tab_desc{
-    width:100%;
-    float:left;
-    min-height: 160px;
-    background: #fff;
-}
-
-.met_tab_desc ul{
-    margin-top: 2px;
-    padding: 5px;
-}
-.met_tab_desc ul li.li_active{background:#ceeff2}
-.met_tab_desc ul li{
-    float: left;
-    width: 100%;
-    list-style:none;
-    padding: 8px 0px 8px 6px;
-    border-bottom: 1px solid #ccc;
-    font-size: 13px;
-    cursor: pointer;
-    position: relative;
-    background: #eee;
-}
-
-.met_tab_desc ul li:hover{background:#ceeff2}
-
-
-.met_tab_desc ul li span{
-    width:13px;
-    height:13px;
-    float:left;
-}
-.met_tab_desc ul li span.nummeric{
-    float: left;
-    line-height: 36px;
-    height: 37px;
-    width: 19px;
-}
-.met_tab_desc ul li:hover{
-}
-.met_tab_desc ul li h6{
-    font-size:14px;
-    color:#000;
-    margin-bottom:5px;
-}
-.met_tab_desc ul li p{
-    font-size:12px;
-    color:#8b8e94;
-    margin:0px;
-    font-style:normal;
-}
-.met_tab_desc ul li a{
-    text-decoration:none;
-}
-.met_tab_desc ul li span.rm{
-    float: right;
-    font-weight: bold;
-    position: absolute;
-    z-index: 99999999;
-    width: 20px;
-    right: 0;
-    height: 20px;
-}
-
-.met_tab_desc ul li span.rm:hover{ opacity: .6}
-
-.list_desc{
-    width:90%;
-    float:left;
-}
-
-.detail_form{
-    width:100%;
-    float:left;
-    padding:18px;
-}
-.detail_form .form_field{
-    width:100%;
-    float:left;
-    margin-bottom:30px;
-}
-.detail_form .form_field label{
-    font-size:14px;
-    color:#666;
-    float:left;
-    width:100%;
-    margin-bottom:5px;
-}
-.detail_form .form_field .detail_input,
-.detail_form .form_field .detail_msg {
-    background:#fff;
-    border-radius:3px;
-    float:left;
-    width:100%;
-    outline: none;
-    border:1px solid #e2e2e2;
-    padding:5px;
-    margin-bottom:5px;
-}
-
-.divider{
-    width:7px;
-    float:left;
-    margin:9px 5px;
-}
-
-// Workout Builder Block Type Modal
-.pop_col{
-    max-width:845px;
-    margin:50px auto;
-    border-radius:2px;
-    box-shadow:0px 0px 5px #ccc;
-    padding:35px 55px 55px;
-    overflow:auto;
-    background:#fff;
-    position:relative;
-}
-.pop_col h4{
-    font-size:20px;
-    color:#000;
-    margin-bottom:30px;
-}
-.pop_col h5{
-    font-size:16px;
-    color:#000;
-    margin-bottom:20px;
-}
-.pop_bg{
-    width:100%;
-    float:left;
-    border-radius:8px;
-    border:2px dashed #d4d7db;
-    padding:10px;
-}
-
-.pop_desc{
-    width: 54%;
-    float: left;
-    text-align: center;
-    background: url(/assets/or_img.jpg) no-repeat right;
-    padding:59px 90px 59px 45px;
-}
-
-.pop_desc.not_bg{
-    background: none;
-    padding: 74px 40px;
-    width: 45%;
-}
-
-.pop_desc .upload_img{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.pop_desc p{
-    font-size:14px;
-    color:#d3d4d5;
-    font-style:normal;
-    line-height:20px;
-}
-.pop_desc p a{
-    color:#959698;
-}
-.pop_desc p a:hover{
-    color:#000;
-}
-.browse_btn {
-    border: 1px solid #9c9e9f;
-    border-radius: 3px;
-    cursor:pointer;
-    padding: 7px 30px;
-    color: #9c9e9f;
-    font-size: 13px;
-    background: #fff;
-}
-.browse_btn:hover{border:1px solid #000}
-
-.li_class { cursor: pointer; }
-.image_hide{ display:none !important;}
-
-.ml{
-    margin-left: 50%;
-}
-
-.green_txt{
-    color: green;
-}
-
-.red_txt{
+.lib_error {
+    margin: 0;
     color: red;
+    font-size: 10px;
 }
-
-.wrk_block_types {
-    color: #b3adaf;
-    font-size: 16px;
-}
-
-.blc_type_head {
-    margin: 0 18% 5% 26%;
-    font-size: 16px;
-    border-bottom: 1px solid;
-}
-
-.blc_type_pop{
-    border: 1px solid #eee;
-    margin: 1px 1px;
-    padding: 5px 5px;
-    color: #b3adaf;
-    display: none;
-}
-
-.new_pop_class{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.photo_show {
-    max-width: 1090px;
-    margin: 0 auto;
-    float: none;
-}
-
-.m50 { margin: 50% 40% 100% 47%; }
 
 #dragandrophandler h2 {
     font-size: 19px;
     margin-bottom: 16px;
 }
 
-
+// Helper Classes
 .toggle_rel{position: relative; float: left; width: 100%;}
 .clear {clear: both;}
 .fl {float: left}
@@ -327,15 +50,18 @@ h1,h2,h3,h4,h5,h6{margin: 0px; font-weight:normal; padding: 0px;}
 .usr_flter { width: 100% !important; }
 .error_color{ color: red; }
 .gray_bg { background: gainsboro; }
-
-.lib_error {
-    margin: 0;
-    color: red;
-    font-size: 10px;
-}
-
+.li_class { cursor: pointer; }
+.image_hide { display:none !important;}
+.ml { margin-left: 50%; }
+.green_txt{ color: green; }
+.red_txt { color: red; }
+.m50 { margin: 50% 40% 100% 47%; }
 .modal_load { margin: 14% 0 13% 44%; }
+.cent{ text-align: center; }
 
+
+
+// Disabled Input Styles
 button[disabled], html input[disabled] {
     cursor: default;
     background: #ccc;
@@ -347,18 +73,9 @@ input:focus::-webkit-input-placeholder { opacity: 0; }
 input:focus:-moz-placeholder { opacity:0; } /* FF 4-18 */
 input:focus::-moz-placeholder { opacity:0; }
 
-
-
 .disable_cls{
     background: $disabled-color !important;
     cursor: default !important;
 }
 ul.disable_cls{overflow-y: hidden !important; }
 ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !important;}
-
-.img_icon{
-float: right;
-width: 20px !important;
-height: auto !important;
-}
-
