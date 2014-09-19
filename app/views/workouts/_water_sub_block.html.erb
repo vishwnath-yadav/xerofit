@@ -2,7 +2,7 @@
   <%if !@display.blank? %>
       <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
   <%end%>
-  <div class="met_tab_col water_mat_tab <%=@display%>">
+  <div class="met_tab_col water_mat_tab <%=@display%> workout-block-item">
     <hr class="water_hr">
     <div class="water_head">
       <div class="head_rght">
@@ -27,7 +27,7 @@
         return $(this).parent().find('.head').html();
       },
       content: function () {
-        return $(this).parent().find('.content').html();
+        return $(this).parent().find('.block-pop-content').html();
       }
       });
     });

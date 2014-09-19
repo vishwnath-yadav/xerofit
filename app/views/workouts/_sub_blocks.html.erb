@@ -4,7 +4,7 @@
         <div class="drag_img"></div>
     <% end %>
 
-    <div class="met_tab_col <%=@display%>">
+    <div class="met_tab_col <%=@display%> workout-block-item">
         <div class="met_head">
             <div class="head_rght">
                 <h4 id="block_type_h4_<%= @block.id %>" style="float:left;"><%= @block.name %></h4>
@@ -43,7 +43,7 @@
             return $(this).parent().find('.head').html();
         },
         content: function () {
-            return $(this).parent().find('.content').html();
+            return $(this).parent().find('.block-pop-content').html();
         }
         });
     });

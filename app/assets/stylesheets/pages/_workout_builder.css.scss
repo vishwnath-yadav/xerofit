@@ -456,8 +456,81 @@
 
 
 
+// -------------------------------------------------------------------------- //
+// Workout Builder Block Styles
+// -------------------------------------------------------------------------- //
 
 
+.block-pop-content {
+    display: none;
+}
+
+
+
+.workout-block-item {
+    @include clearfix();
+
+    .popover-content { width: 200px; }
+
+    .input-section {
+        width: 100%;
+        float: left;
+        position: relative;
+        padding-bottom: 14px;
+        @include user-select(none);
+
+        > h5 {
+            float: left;
+            width: 100%;
+            position: relative;
+            line-height: 16px;
+            font-size: 14px;
+            margin: 0;
+            margin-bottom: 10px;
+            @include gotham500();
+            @include user-select(none);
+        }
+    }
+
+    .input-section.last { border:none; }
+
+    .input-wrap {
+        float: left;
+        //width: 100%;
+        position: relative;
+        @include clearfix();
+    }
+
+    // Wrapper for input[type=number]
+    .number-input-wrap {
+        float: left;
+        position: relative;
+        width: 70px;
+        margin-right: 20px;
+        @include clearfix();
+
+        label {
+            float: left;
+            font-size: 9px;
+            line-height: 11px;
+            @include gotham300();
+            text-align: center;
+            width: 100%;
+            margin-top: 3px;
+            margin-bottom: 0px;
+        }
+    }
+    .number-input-wrap.last {margin: 0; float: right;}
+
+    .delete-block-btn {
+        @include button($xero-red);
+        @include user-select(none);
+        margin-top: 7px;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+}
 
 
 
