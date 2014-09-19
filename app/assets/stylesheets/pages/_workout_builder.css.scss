@@ -130,6 +130,7 @@
                 line-height: 14px;
                 color: $silver16;
                 @include gotham400();
+                margin-top: 0px;
                 margin-bottom: 4px;
             }
 
@@ -688,12 +689,12 @@
 
         ul.sortable{
             padding: 0px;
-
-            li.block_li{
-                background: #fff;
-            }
         }
     }
+}
+
+li.block_li{
+    background: #fff;
 }
 
 .met_tab_desc {
@@ -703,21 +704,20 @@
     background: #fff;
 
     ul {
-        margin-top: 2px;
-        padding: 5px;
+        @include clearfix();
+        margin: 0;
+        padding: 0;
 
         li {
             float: left;
             width: 100%;
-            list-style:none;
-            padding: 8px 0px 8px 6px;
-            //border-bottom: 1px solid #ccc;
-            font-size: 13px;
+            list-style: none;
+            padding: 14px;
+            font-size: 12px;
             cursor: pointer;
             position: relative;
-            background: #eee;
 
-            &:hover{background:#ceeff2}
+            &:hover{background: $hover-color;}
 
             span {
                 width:13px;
@@ -745,9 +745,10 @@
             }
 
             h6 {
-                font-size:14px;
-                color:#000;
-                margin-bottom:5px;
+                font-size: 14px;
+                line-height: 1;
+                color: $silver16;
+                margin: 0;
             }
 
             p {
