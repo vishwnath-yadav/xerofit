@@ -139,6 +139,8 @@ Xerofit::Application.routes.draw do
       get 'update_move_details'
       get 'get_workout_water_sub_block'
       get 'update_water_block_details'
+      get 'test'
+      get 'create_dragged_block'
     end
     member do
       get '/edit', to: 'workouts#edit', as: :edit

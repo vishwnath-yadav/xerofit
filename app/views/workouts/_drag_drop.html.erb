@@ -1,0 +1,12 @@
+
+<div class="met_tab" id="block_<%= @block.id %>">
+  <div class="met_tab_col single_move_drop">
+    <div class="met_tab_desc">
+      <%=hidden_field_tag "block_id", @block.id %>
+      <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type, class: "block_type" %>
+    	<ul class="sortable">
+      	<li>1</li>
+      </ul>
+    </div>
+  </div>
+</div>

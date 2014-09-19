@@ -1,0 +1,85 @@
+<%= render "workout_builder_header" %>
+
+<div id="workout-builder-app" class="builder autoheight">
+
+    <div class="column split-left">
+        <div class="column-wrap autoheight">
+            <%= render "library_moves_panel" %>
+            <%#= render "move_details_panel" %>
+        </div>
+    </div>
+
+    <div class="column split-right">
+        <div class="column-wrap autoheight">
+
+            <div class="col_1" id="workout_auto_form">
+                <%= render "workout_auto_form" %>
+            </div>
+
+            <div class="workout-preview">
+                <%=render "block_options"%>
+                <div class="builder-dropzone">
+                    <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+
+                        <div class="add_photo drag_lib" id="workout_container" ondrop="drag_workout(event)" ondragover="return false">
+                            <%=hidden_field_tag :workout_id %>
+                            <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
+                            <ol class="new_block">
+                                <%#= render "sub_blocks" %>
+                            </ol>
+                        </div>
+
+                        <div class="hidden_field_workout"></div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%#= render "workout_circuit" %>
+</div>
+
+<%= render "block_type_modal" %>
+<%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>
+<script type="text/javascript">
+// $("ol.new_block").sortable({
+//     group: 'no-drop',
+//     onDragStart: function (item, container, _super) {
+//     // Duplicate items of the no drop area
+//     if(!container.options.drop)
+//       item.clone().insertAfter(item)
+//     _super(item)
+//   }
+// });
+
+    var oldContainer
+    $("ol.new_block").sortable({
+      group: 'nested',
+      afterMove: function (placeholder, container) {
+        if(oldContainer != container){
+          if(oldContainer)
+            oldContainer.el.removeClass("active")
+          container.el.addClass("active")
+          
+          oldContainer = container
+        }
+      },
+      onDrop: function (item, container, _super) {
+        container.el.removeClass("active")
+        console.log("ssssssss");
+        _super(item)
+      }
+    })
+
+$(function () { 
+      $("[data-toggle='popover']").popover({
+        html:true,
+        title: function () {
+        return $(this).parent().find('.head').html();
+      },
+      content: function () {
+        return $(this).parent().find('.content').html();
+      }
+      });
+    });
+</script>>

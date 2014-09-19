@@ -14,7 +14,7 @@
             <td><%=move.title %></td>
             <td><%=move.user.email %></td>
             <td><%=move.move_type %></td>
-            <td><%=move.updated_at%></td>
+            <td><%=move.updated_at.strftime("%m/%d/%y %I:%M%P")%></td>
             <!-- <td>
               <%#=link_to "Restore", "javascript:void(0)" %> 
             </td> -->

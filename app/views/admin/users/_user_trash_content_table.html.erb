@@ -14,7 +14,7 @@
             <td><%=move.id%></td>
             <td><%=move.email %></td>
             <td><%=move.role %></td>
-            <td><%=move.updated_at%></td>
+            <td><%=move.updated_at.strftime("%m/%d/%y %I:%M%P")%></td>
             <td>
               <%=link_to "Restore", "javascript:void(0)", class: "admin_trash_user", "data-params" => "user_#{move.id}" %> | 
               <%= link_to "Delete", admin_user_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>

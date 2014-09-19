@@ -15,7 +15,8 @@
 //= require jquery.remotipart
 //= require autocomplete-rails
 //= require turbolinks
-
+//= require detect_timezone
+//= require jquery.detect_timezone
 
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
@@ -28,6 +29,8 @@
 //= require plugins/jcarousel.responsive.js
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
+//= require plugins/jquery-sortable-min.js
+
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js

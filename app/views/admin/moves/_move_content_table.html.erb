@@ -12,7 +12,7 @@
       <tr>
         <td><%=move.id%></td>
         <td><%=move.title%></td>
-        <td><%=move.updated_at%></td>
+        <td><%=move.updated_at.strftime("%m/%d/%y %I:%M%P")%></td>
         <td>
         <%=render "common_templates/change_status", move: move%>
         </td>

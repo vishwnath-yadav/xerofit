@@ -127,8 +127,10 @@ class WorkoutsController < ApplicationController
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
 		if !@lib_detail.present?
 			@lib_detail = MoveDetail.new()
-			@lib_detail.sets_count = params[:sets]
-			@lib_detail.rest_time = params[:rests]
+			if params[:sets].present?
+				@lib_detail.sets_count = params[:sets]
+				@lib_detail.rest_time = params[:rests]
+			end
 			@lib_detail.save
 		end
 		if !params[:move].blank?
@@ -173,6 +175,42 @@ class WorkoutsController < ApplicationController
 			end
 		end
 		render text: true
+	end
+
+	def test
+		enabled_move = []
+		disabled_move = []
+		@workout = Workout.new()
+		@moves = @user.single_moves
+		if @moves.present?
+			@moves.each do |move|
+				res = move.has_full_detail
+				if res == true
+					enabled_move << move
+				else
+					disabled_move << move
+				end
+			end
+			@enabled_move = enabled_move.flatten.sort_by(&:title)
+			@disabled_move = disabled_move.flatten.sort_by(&:title)
+		end
+		# @block = Block.new()
+		# @block.save
+		# @display = "block_hide"
+	end
+
+
+	def create_dragged_block
+		# if params[:name].present?
+		# 	@block = Block.new(block_type: params[:name])
+		# else
+		# 	@block = Block.new()
+		# end
+		# @block.save
+		@block_name = params[:name]
+		respond_to do |format|
+			format.js 
+		end 
 	end
 
 	private

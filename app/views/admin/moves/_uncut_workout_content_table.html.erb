@@ -14,7 +14,7 @@
             <td><%=move.id%></td>
             <td><%=move.user.email %></td>
             <td><%=move.video_size %></td>
-            <td><%=move.updated_at%></td>
+            <td><%=move.updated_at.strftime("%m/%d/%y %I:%M%P")%></td>
             <td><%=link_to "Download", download_video_admin_moves_path(id: move.id), class: "download_video"%></td>
             <td>
               <span class="mark_btn" data-id="<%=move.id%>">

@@ -135,6 +135,18 @@ class Move < ActiveRecord::Base
 		return size1
 	end
 
+	def check_thumbnail
+		if self.library_video.present? && self.library_video.image.present?
+			return true
+		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+			self.library_video.save
+			return true
+		else
+			return false
+		end
+	end
+
 	def has_full_detail
 		if [STATUS[0],STATUS[2],STATUS[3]].include? (self.status)
 			return true

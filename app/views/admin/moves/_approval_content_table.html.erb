@@ -14,7 +14,7 @@
         <td><%=move.id%></td>
         <td><%=move.title%></td>
         <td><%=move.move_type%></td>
-        <td><%=move.date_submitted_for_approval%></td>
+        <td><%=move.date_submitted_for_approval.strftime("%m/%d/%y %I:%M%P")%></td>
         <td>
           <%=render "common_templates/change_status", move: move%>
         </td>

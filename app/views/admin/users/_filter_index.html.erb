@@ -17,7 +17,7 @@
         <td><%=user.first_name%></td>
         <td><%=user.last_name%></td>
         <td><%=user.role%></td>
-        <td><%=user.created_at%></td>
+        <td><%=user.created_at.strftime("%m/%d/%y %I:%M%P")%></td>
         <td>
           <%=link_to "View", libraries_path(user: user.token)%> | <%= link_to "Trash", user_trash_admin_users_path(id: user) %>
         </td>
