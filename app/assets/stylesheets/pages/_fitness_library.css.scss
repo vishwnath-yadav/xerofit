@@ -285,6 +285,8 @@ input.search_bar {
     text-align: center;
 }
 
+
+
 .library_col ul {
     position: relative;
     margin: 0;
@@ -821,6 +823,7 @@ a.cancel_btn {
     &.second_row { margin-bottom: 14px; }
 }
 
+.toggle_rel {position: relative; float: left; width: 100%;}
 
 
 
@@ -1097,6 +1100,10 @@ p.load_less{
 .thumbnail_col ul li.margn45{margin:0px 16px;}
 .thumbnail_col ul li img{width:100%; height:auto;}
 
+// Library Image Thumbnails
+.li_class { cursor: pointer; }
+.image_hide { display:none !important;}
+
 
 // Make a play icon for the video
 .video-poster-play {
@@ -1135,6 +1142,7 @@ p.load_less{
 }
 
 .replace_video_section { margin-top: 42px; }
+.replace_video { display: none; }
 
 a.replace_video_btn { @include button($xero-blue); }
 a.remove_video_btn { @include button($xero-red); }
