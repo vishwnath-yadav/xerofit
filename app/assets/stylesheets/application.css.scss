@@ -1,48 +1,45 @@
-//
-// ==================================================================
-// Foundation
-// ==================================================================
-//
+// Application Stylesheet Importer ===================================================================================== /
 
 
-@import 'helpers/variables';
-@import 'helpers/mixins';
+
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/typography';
+@import 'base/layout';
+
+
+
+// -------------------------------------------------------------------------- //
+// Plugin and Vendor Styles
+// -------------------------------------------------------------------------- //
+
+
+
 @import 'vendor/normalize';
-@import "base/typography";
-
-
-//
-// ==================================================================
-// Plugins & Vendor Styles
-// ==================================================================
-//
-
-
-@import "vendor/bootstrap";
+@import 'vendor/bootstrap';
 @import 'helpers/dropdowns';
 @import 'helpers/popovers';
 @import 'helpers/tooltips';
 @import 'helpers/fancy_select';
 @import 'helpers/notifications';
 @import 'helpers/input_styles';
-@import "css/drop_new";
-@import "css/dropzone";
-@import "css/jquery.fancybox";
-@import "css/jquery_jcrop";
-@import "vendor/jquery_ui";
+@import 'css/drop_new';
+@import 'css/dropzone';
+@import 'css/jquery.fancybox';
+@import 'css/jquery_jcrop';
+@import 'vendor/jquery_ui';
 
 
-//
-// ==================================================================
-// Structure & Page Styles
-// ==================================================================
-//
 
-@import "base/layout";
-//@import "css/style";
-@import "css/style_merge";
-@import "pages/dashboard";
-@import "pages/fitness_library";
-@import "pages/workout_builder";
-@import "pages/settings";
-//@import "helpers/video_controls"
+// -------------------------------------------------------------------------- //
+// Structure and Page Styles
+// -------------------------------------------------------------------------- //
+
+
+
+@import 'css/style_merge';
+@import 'pages/dashboard';
+@import 'pages/fitness_library';
+@import 'pages/workout_builder';
+@import 'pages/settings';
+//@import 'helpers/video_controls'

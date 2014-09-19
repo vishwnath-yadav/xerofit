@@ -1,3 +1,7 @@
+// Workout Builder App ===================================================================================== /
+
+
+
 .content.workout-builder { padding-bottom: 0; }
 
 .header-scroll {
@@ -20,21 +24,13 @@
 }
 
 .show-on-scroll { display: none; }
-
-.middle_wrapper.autoheight {
-    //min-height: 400px;
-}
-
-.disable-scroll {
-    overflow: hidden;
-}
+.disable-scroll { overflow: hidden; }
 
 #enter-fullscreen,
 #exit-fullscreen {
     float: left;
     margin-right: 14px;
 }
-
 
 .details_page_header.workout-builder {
     border-bottom: 1px solid #D8D8D8;
@@ -46,6 +42,7 @@
 // -------------------------------------------------------------------------- //
 // Workout Builder Page Structure
 // -------------------------------------------------------------------------- //
+
 
 
 .builder {
@@ -202,6 +199,7 @@
 // -------------------------------------------------------------------------- //
 // Move Details panel to edit workout options
 // -------------------------------------------------------------------------- //
+
 
 
 #move-details-panel {
@@ -461,11 +459,7 @@
 // -------------------------------------------------------------------------- //
 
 
-.block-pop-content {
-    display: none;
-}
-
-
+.block-pop-content { display: none; }
 
 .workout-block-item {
     @include clearfix();
@@ -646,7 +640,6 @@
 }
 
 
-
 // Start Workout Builder
 .met_tab {
     //margin-bottom: 20px;
@@ -702,8 +695,6 @@
         }
     }
 }
-
-
 
 .met_tab_desc {
     width: 100%;
@@ -771,7 +762,7 @@
             }
         }
 
-        li.li_active { background:#ceeff2}
+        li.li_active { background: $active-color;}
     }
 }
 
@@ -808,3 +799,31 @@
     }
 }
 
+
+.img_icon {
+    float: right;
+    width: 20px !important;
+    height: auto !important;
+}
+
+.met_tab_col .water_head{
+    width: 30%;
+    float:left;
+    margin-left: 34%;
+    background:#7E8082;
+    border-radius:5px;
+    padding:10px;
+    position: relative;
+    cursor: pointer;
+    top: -22px;
+}
+
+.water_hr{
+    margin-bottom: 0;
+    border-top: 1px solid #111;
+    margin-top: 29px;
+}
+
+.water_mat_tab{
+    margin-bottom: 0px !important;
+}

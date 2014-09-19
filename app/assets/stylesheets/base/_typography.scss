@@ -1,14 +1,48 @@
-$base-font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
-$base-font-weight: 300;
-$base-font-color: $silver31;
+// Typography Styles ===================================================================================== /
 
+
+
+@mixin gotham200() {
+  font-family: 'Gotham SSm 2r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin gotham300() {
+  font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin gotham300-italic() {
+  font-family: 'Gotham SSm 3i', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@mixin gotham400() {
+  font-family: 'Gotham SSm 4r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin gotham500() {
+  font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin gotham700() {
+  font-family: 'Gotham SSm 7r', 'Gotham SSm A', 'Gotham SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
 * body {
-    font-family: $base-font-family;
-    font-weight: $base-font-weight;
+    @include gotham400();
     font-style: normal;
     line-height: 1.4;
-    color: $base-font-color;
+    color: $silver31;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
@@ -17,4 +51,6 @@ $base-font-color: $silver31;
     font-family: 'Gotham SSm 5r', 'Gotham SSm A', 'Gotham SSm B', sans-serif;
     font-weight: 500;
     font-style: normal;
+    padding: 0px;
+    margin: 0px;
 }
