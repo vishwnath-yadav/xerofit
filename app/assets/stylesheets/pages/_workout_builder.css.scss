@@ -374,7 +374,7 @@
 
 
 // -------------------------------------------------------------------------- //
-// Previous Workout Builder styles copied over from css/style.css
+// Workout Buidler - Workout Preview Editor (Right Side)
 // -------------------------------------------------------------------------- //
 
 
@@ -382,10 +382,11 @@
 .workout-preview {
     width: 100%;
     float: left;
-    padding: 39px;
+    padding: 0px 39px 39px;
     position: relative;
     @include clearfix();
 
+    // Drag and Drop Target
     .builder-dropzone {
         padding: 39px;
         float: left;
@@ -398,18 +399,78 @@
     }
 }
 
-.add_photo {
-    float: left;
-    //padding-left: 13px;
+// Drag and Drop Block Types
+.workout-blocks {
+    padding: 28px 39px;
     width: 100%;
-    img { width:100%; height:auto; }
+    float: left;
+    position: relative;
+    @include clearfix();
+
+    span {
+        background: #efefef;
+        float: left;
+        display: block;
+        padding: 14px 21px;
+        margin-right: 14px;
+        @include border-radius(5px);
+        line-height: 14px;
+        cursor: move;
+    }
 }
+
+// Placeholder icona dn text within Workout Preview
+.drag_img {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -98px;
+    @include user-select(none);
+
+    &:before {
+        content: '';
+        background: url(/assets/icons/workout_builder_blocks.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 110px;
+        height: 93px;
+        margin-bottom: 47px;
+    }
+
+    &:after {
+        content: 'Drag and drop to add blocks or moves to begin creating a new workout.';
+        font-size: 18px;
+        line-height: 28px;
+        text-align: center;
+        color: $silver51;
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Previous Workout Builder styles copied over from css/style.css
+// -------------------------------------------------------------------------- //
+
 
 .col_1 {
     width: 100%;
     float: left;
-    border-bottom: 1px solid #e1e3e5;
-    padding-bottom: 20px;
+    //border-bottom: 1px solid #e1e3e5;
+    //padding-bottom: 20px;
 
     h2 {
         font-size:28px;
@@ -427,17 +488,250 @@
     }
 }
 
-.workout_block_options{
+.add_photo {
     float: left;
-    margin: 0px 0 15px;
+    //padding-left: 13px;
+    width: 100%;
+    img { width:100%; height:auto; }
+}
 
-    span {
-        background: #efefef;
-        padding: 10px;
-        margin: 4px;
-        border-radius: 5px;
-        cursor: pointer;
+
+.fetured_li {
+    width: 100%;
+    float: left;
+    margin-top: 13px;
+    border-bottom: 1px solid #ccc;
+
+    ul {
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            width: auto;
+            float: left;
+            list-style: none;
+            display: inline;
+            padding: 0 10px;
+            color: gainsboro;
+            padding-bottom: 8px;
+        }
+
+        li.active_tab {
+            border-bottom: 2px solid #ccc;
+            color: black;
+        }
     }
 }
 
+.met_tab_col .water_head{
+    width: 30%;
+    float:left;
+    margin-left: 34%;
+    background:#7E8082;
+    border-radius:5px;
+    padding:10px;
+    position: relative;
+    cursor: pointer;
+    top: -22px;
+}
+
+.water_hr {
+    margin-bottom: 0;
+    border-top: 1px solid #111;
+    margin-top: 29px;
+}
+
+.water_mat_tab {
+    margin-bottom: 0px !important;
+}
+
+.block_hide.met_tab_col { opacity: 0; }
+
+.workout_auto_input {
+    width: 180px;
+    height: 32px;
+    border-radius: 5px;
+    border: 2px solid #efefef;
+    font-size: 22px;
+
+    &:focus{
+        width: 180px;
+        height: 32px;
+        outline: none;
+    }
+}
+
+.img_icon{
+    float: right;
+    width: 20px !important;
+    height: auto !important;
+}
+
+.wrk_block_types {
+    color: #b3adaf;
+    font-size: 16px;
+}
+
+
+
+// Start Workout Builder
+.met_tab {
+    //margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+
+.met_tab_col{
+    width:100%;
+    float:left;
+    //margin-bottom:45px;
+}
+.met_tab_col:last-child{
+    margin-bottom: 0px;
+}
+.met_tab_col .met_head{
+    width: 100%;
+    float: left;
+    background: #7E8082;
+    border-radius: 5px;
+    padding: 10px;
+    //margin-top: 10px;
+    cursor: pointer;
+}
+.head_rght{
+    width:100%;
+    float:left;
+}
+.met_tab_col .met_head h4{
+    font-size:14px;
+    color:#fff;
+    @include gotham500();
+    margin-bottom:5px;
+}
+.met_tab_col .met_head p {
+    font-size:11px;
+    color:#fff;
+    @include gotham300();
+    margin:0px;
+}
+.met_tab_col.single_move_drop{
+    margin-bottom: 10px;
+
+    div.met_tab_desc{
+        min-height: 0px;
+
+        ul.sortable{
+            padding: 0px;
+
+            li.block_li{
+                background: #fff;
+            }
+        }
+    }
+}
+
+
+
+.met_tab_desc {
+    width: 100%;
+    float: left;
+    min-height: 160px;
+    background: #fff;
+
+    ul {
+        margin-top: 2px;
+        padding: 5px;
+
+        li {
+            float: left;
+            width: 100%;
+            list-style:none;
+            padding: 8px 0px 8px 6px;
+            //border-bottom: 1px solid #ccc;
+            font-size: 13px;
+            cursor: pointer;
+            position: relative;
+            background: #eee;
+
+            &:hover{background:#ceeff2}
+
+            span {
+                width:13px;
+                height:13px;
+                float:left;
+            }
+
+            span.nummeric{
+                float: left;
+                line-height: 36px;
+                height: 37px;
+                width: 19px;
+            }
+
+            span.rm {
+                float: right;
+                font-weight: bold;
+                position: absolute;
+                z-index: 99999999;
+                width: 20px;
+                right: 0;
+                height: 20px;
+
+                &:hover{ opacity: .6}
+            }
+
+            h6 {
+                font-size:14px;
+                color:#000;
+                margin-bottom:5px;
+            }
+
+            p {
+                font-size:12px;
+                color:#8b8e94;
+                margin:0px;
+                font-style:normal;
+            }
+
+            a {
+                text-decoration:none;
+            }
+        }
+
+        li.li_active { background:#ceeff2}
+    }
+}
+
+
+.detail_form {
+    width: 100%;
+    float: left;
+    padding: 18px;
+
+    .form_field {
+        width: 100%;
+        float: left;
+        margin-bottom: 30px;
+
+        label{
+            font-size: 14px;
+            color: #666;
+            float: left;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .detail_input,
+        .detail_msg {
+            background:#fff;
+            border-radius:3px;
+            float:left;
+            width:100%;
+            outline: none;
+            border:1px solid #e2e2e2;
+            padding:5px;
+            margin-bottom:5px;
+        }
+    }
+}
 

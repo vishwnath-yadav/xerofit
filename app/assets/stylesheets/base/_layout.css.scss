@@ -65,6 +65,13 @@
     }
 }
 
+.footer_rht_col,
+.footer_lft_col {
+    width: 50%;
+    float: left;
+    position: relative;
+}
+
 .footer_rht_col { text-align: right; }
 
 
