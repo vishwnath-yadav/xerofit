@@ -1,4 +1,4 @@
-// Layout Styles ===================================================================================== /
+// Layout ===================================================================================== /
 
 
 
@@ -150,6 +150,11 @@ a.global_nav_toggle {
         background-repeat: no-repeat;
         @include background-size(contain);
         background-position: center;
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: $silver31;
     }
 
 }
