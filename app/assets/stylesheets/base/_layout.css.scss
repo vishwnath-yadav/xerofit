@@ -152,7 +152,8 @@ a.global_nav_toggle {
         background-position: center;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
         text-decoration: none;
         color: $silver31;
     }
