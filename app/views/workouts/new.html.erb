@@ -113,12 +113,12 @@ function initDroppable() {
                     var text = $.trim(ui.draggable.text());
                     if($parent.attr('data-block') == "block"){
                         block_name = $parent.attr('data-block-name');
-                        $this.after('<li class="others">'+text+'</li>');
+                        $this.after('<li class="others load_lib_detail">'+text+'</li>');
                         save_details(lib_id, block_name, drag_type, $this);
                     }
                     else if($parent.attr('data-block') == "main"){
                         if(flag){
-                            $this.after('<li class="single_move main_container"><div class="single_div">'+text+'</div></li>');
+                            $this.after('<li class="single_move main_container load_lib_detail"><div class="single_div">'+text+'</div></li>');
                             save_details(lib_id, block_name, drag_type, $this);
                         }
                     }

@@ -78,7 +78,6 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_blocks
-		
 		@workout = Workout.find_by_id(params[:workout_id])
 		if params[:block].present?
 			block_hash = params[:block]
@@ -109,16 +108,10 @@ class WorkoutsController < ApplicationController
 
 	def load_lib_details
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
-		if !@lib_detail.present?
-			@lib_detail = MoveDetail.new()
+		if @lib_detail.present?
 			@lib_detail.sets_count = params[:sets]
 			@lib_detail.rest_time = params[:rests]
 			@lib_detail.save
-		end
-		if !params[:move].blank?
-			block = Block.find(params[:block_id])
-			block.move = params[:move]
-			block.save
 		end
 		respond_to do |format|
 			format.js 

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $(document).click(function(event) {
     var target = $(event.target);
-    if(!target.is(".block_li, .block_li *")){
+    if(!target.is(".block_li, .block_li *, #move-details-panel, #move-details-panel *")){
        $('.li_active').removeClass('li_active');
        $("#move-details-panel").css('display', 'none');
     }
@@ -166,7 +166,7 @@ $(document).ready(function() {
     $("#move-details-panel").css('display', 'none');
   });
 
-  $(document).on("click",".met_tab_desc ul li", function(e){
+  $(document).on("click",".load_lib_detail", function(e){
     if($(e.target).hasClass("rm")){
       var hiden_field_id = $(this).attr('id');
       var main_block_id = hiden_field_id.split('_')[0];
@@ -176,15 +176,13 @@ $(document).ready(function() {
       $(this).remove();
     }
     else{
-      var $this = $(e.target).hasClass("block_li") ? $(this) : $(e.target).parent();
+      var $this = $(this);
       $('.li_active').removeClass('li_active');
       $this.addClass('li_active');
-      var ids = $this.attr('id') ? $this.attr('id').split("_") : []
-      if(ids){
-        var lib_id = ids[1];
-        var block_id = ids[0];
-        var lib_detail = $this.attr('data-libdetail');
-        load_library_content(lib_detail, block_id, lib_id, '');
+      var block_id = $this.attr('id') ? $this.attr('id') : []
+      if(block_id){
+        var lib_detail = block_id.split("_")[3];
+        load_library_content(lib_detail, block_id);
       }
     }
   });
@@ -292,16 +290,16 @@ function check_library_count(li_size, block_type){
   return alrt;
 }
 
-function load_library_content(lib_detail_id, block_id, lib_id, move){
-  if(lib_detail_id != ''){
-    $("#move-details-panel").css('display', 'block');
+function load_library_content(lib_detail_id, block_id){
+  setTimeout(function() {
+    $("#move-details-panel").show();
     $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
-  }
-
+  })
   sets_val = $('#block_'+block_id).find('#moves_sets').val();
   rests_val = $('#block_'+block_id).find('#moves_rests').val();
   var url = '/builder/load_lib_details';
-  $.get(url, {lib_detail_id:lib_detail_id,lib_id:lib_id,block_id:block_id, move:move, sets:sets_val, rests:rests_val}, function (data) {
+  $.get(url, {lib_detail_id:lib_detail_id, sets:sets_val, rests:rests_val}, function (data) {
+    //$("#move-details-panel").html(data);
    });
 }
 
