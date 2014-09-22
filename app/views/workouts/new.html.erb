@@ -67,10 +67,6 @@ function initDroppable() {
             accept: "#catalog ul li, #move ul li",
             hoverClass: "ui-state-hover",
             over: function( event, ui ) {
-                console.log(">>>>>>>>>>>")
-                console.log($(this));
-                console.log($(this).parent().attr('data-block'))
-                console.log(">>>>>>>>>>>")
                 if($(this).parent().attr('data-block') == "block"){
                     flag = false;
                 }
@@ -92,17 +88,25 @@ function initDroppable() {
                     if($parent.attr('data-block') == "main"){
                         block_name = ui.draggable.attr("data-block-name");
                         if(block_name == BLOCK_TYPE[2]){
-                            $this.after('<li class="water_block"><div class="water_hr"></div><div class="water_head">'+block_name+'</div></li>');
+                            if(($this).hasClass('main_container') && ($(this).attr('data-blck') == $(this).next('li').attr('data-blck'))){
+                                $this.after($('.water_break_block').html());
                                 block_name = block_name;         
-                                save_details(lib_id, block_name, drag_type, $this);             
+                                save_details(lib_id, block_name, drag_type, $this);     
+                            }else{
+                                alert("water break not place on this position.");
+                            } 
                           }
                         else {
-                            $this.after('<li class="main_container"><div><span class="first">'+block_name+'</span><ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="'+block_name+'"><li class="first"></li></ul></div></li>');
+                            if(block_name == BLOCK_TYPE[0]){
+                                $this.after($('.circuit_block').html());
+                            }else if(block_name == BLOCK_TYPE[1]){
+                                $this.after($('.superset_block').html());
+                            }
                             save_details(lib_id, block_name, drag_type, $this);
                         }
                     }
                     else{
-                        alert("Blcok inside block is not allowed.");
+                        alert("Block inside block is not allowed.");
                         event.preventDefault();
                         return false;
                     }
@@ -113,12 +117,24 @@ function initDroppable() {
                     var text = $.trim(ui.draggable.text());
                     if($parent.attr('data-block') == "block"){
                         block_name = $parent.attr('data-block-name');
-                        $this.after('<li class="others load_lib_detail">'+text+'</li>');
-                        save_details(lib_id, block_name, drag_type, $this);
+                        var li_size = $parent.find('li.others').size();
+                        var alrt = check_library_count(li_size, block_name);
+                        if(alrt != ''){
+                            alert(alrt);
+                        }
+                        else if(check_library_present(lib_id, $parent)){
+                            alert("Library Already Exists");
+                        }
+                        else{
+                            $this.after($('.block_inner_move').html());
+                            $this.next('li').text(text);
+                            save_details(lib_id, block_name, drag_type, $this);
+                        }
                     }
                     else if($parent.attr('data-block') == "main"){
                         if(flag){
-                            $this.after('<li class="single_move main_container load_lib_detail"><div class="single_div">'+text+'</div></li>');
+                            $this.after($('.individual_block').html());
+                            $this.next('li').find('div').text(text);
                             save_details(lib_id, block_name, drag_type, $this);
                         }
                     }
@@ -135,8 +151,6 @@ function initDroppable() {
     function save_details(lib_id, block_name, drag_type, $this){
         url = '/builder/create_workout_block';
         $.get(url, {lib_id: block_name, block_name: block_name, drag_type: drag_type}, function (data) {
-          console.log(data);
-          console.log(data.id);
           if(drag_type == "block"){
             $this.next('li').attr('id', "block_"+data.id);
             if(block_name == BLOCK_TYPE[2]){
@@ -148,8 +162,6 @@ function initDroppable() {
           }
           else{
             var block_id = $this.closest('li.main_container').attr('id').split("_")[1];
-            console.log(block_id);
-            console.log($this.next('li'));
             $this.next('li').attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
           }
         });
