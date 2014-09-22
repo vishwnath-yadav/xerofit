@@ -1,0 +1,110 @@
+<script type="text/javascript">
+    
+    function initDroppable() {
+        $("#cart ul li").droppable({
+            accept: "#catalog ul li, #move ul li",
+            hoverClass: "ui-state-hover",
+            over: function( event, ui ) {
+                if($(this).parent().attr('data-block') == "block"){
+                    flag = false;
+                }
+                else{
+                    flag = true;
+                }
+            },
+            drop: function(event, ui) {
+                if($(".drag_img").length){
+                    $(".drag_img").remove();
+                }
+                var $this = $(this);
+                var $parent = $this.parent();
+                var drag_type = ui.draggable.attr('data-dragable-type');
+                //var li_count = get_li_count();
+                var block_name = BLOCK_TYPE[3];
+                var lib_id = '';
+                if(drag_type == "block"){
+                    if($parent.attr('data-block') == "main"){
+                        block_name = ui.draggable.attr("data-block-name");
+                        if(block_name == BLOCK_TYPE[2]){
+                            if(($this).hasClass('main_container') && ($(this).attr('data-blck') == $(this).next('li').attr('data-blck'))){
+                                $this.after($('.water_break_block').html());
+                                block_popover_intilization();
+                                block_name = block_name;         
+                                save_details(lib_id, block_name, drag_type, $this);
+                            }else{
+                                alert("water break not place on this position.");
+                            } 
+                          }
+                        else {
+                            if(block_name == BLOCK_TYPE[0]){
+                                $this.after($('.circuit_block').html());
+                            }else if(block_name == BLOCK_TYPE[1]){
+                                $this.after($('.superset_block').html());
+                            }
+                            block_popover_intilization();
+                            save_details(lib_id, block_name, drag_type, $this);
+                        }
+                    }
+                    else{
+                        alert("Block inside block is not allowed.");
+                        event.preventDefault();
+                        return false;
+                    }
+
+                }
+                else {
+                    lib_id = ui.draggable.attr('data-move-id');
+                    var text = $.trim(ui.draggable.text());
+                    if($parent.attr('data-block') == "block"){
+                        block_name = $parent.attr('data-block-name');
+                        var li_size = $parent.find('li.others').size();
+                        var alrt = check_library_count(li_size, block_name);
+                        if(alrt != ''){
+                            alert(alrt);
+                        }
+                        else if(check_library_present(lib_id, $parent)){
+                            alert("Library Already Exists");
+                        }
+                        else{
+                            $this.after($('.block_inner_move').html());
+                            $this.next('li').text(text);
+                            save_details(lib_id, block_name, drag_type, $this);
+                        }
+                    }
+                    else if($parent.attr('data-block') == "main"){
+                        if(flag){
+                            $this.after($('.individual_block').html());
+                            block_popover_intilization();
+                            $this.next('li').find('div').text(text);
+                            save_details(lib_id, block_name, drag_type, $this);
+                        }
+                    }
+                }
+                initDroppable();
+                $("#cart .testt").sortable().disableSelection();
+
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
+
+    function save_details(lib_id, block_name, drag_type, $this){
+        url = '/builder/create_workout_block';
+        $.get(url, {lib_id: block_name, block_name: block_name, drag_type: drag_type}, function (data) {
+            if(drag_type == "block"){
+                $this.next('li').attr('id', "block_"+data.id);
+                if(block_name == BLOCK_TYPE[2]){
+                    $this.next('li').attr('id', "block_"+data.id).append('<input type="hidden" name=block['+data.id+'][0] id="block_'+data.id+'_0" value=0>');
+                }
+          }
+          else if(block_name == BLOCK_TYPE[3]){
+            $this.next('li').attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+          }
+          else{
+            var block_id = $this.closest('li.main_container').attr('id').split("_")[1];
+            $this.next('li').attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+          }
+        });
+    }
+</script>

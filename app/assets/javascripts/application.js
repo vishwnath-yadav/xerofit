@@ -18,7 +18,7 @@
 
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
-//= require plugins/jquery-ui-custom.min
+//= require plugins/jquery-ui-custom-2.min
 //= require plugins/dropzone.min
 //= require plugins/jquery.fancybox.pack.js
 //= require plugins/jquery.fancybox-transitions.js
