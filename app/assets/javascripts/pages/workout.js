@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  $(document).click(function(event) {
+    var target = $(event.target);
+    if(!target.is(".block_li, .block_li *, #move-details-panel, #move-details-panel *")){
+       $('.li_active').removeClass('li_active');
+       $("#move-details-panel").css('display', 'none');
+    }
+  });
+
   $(window).scroll(function(){
     var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
@@ -89,15 +97,17 @@ $(document).ready(function() {
     var $input = $(this).find('input');
     var val = parseInt($input.val());
     var name = $input.attr('name');
-    var id = $input.attr('data-block-id');
-    $('ul li.block_li').each(function(){
-      if ($(this).attr('id').split('_')[0] == id)
+    var $data = $(this).closest('li.main_container');
+    var block_id = $data.attr('id').split("_")[1];
+    $data.find('ul li.others').each(function(){
+      if ($(this).attr('id').split('_')[1] == block_id)
       {
-        libdetails_arr.push($(this).attr('data-libdetail'));
+      var lib_detail_id = $(this).attr('id').split('_')[3];
+        libdetails_arr.push(lib_detail_id);
       }
     })
     url = '/builder/update_move_details';
-    $.get(url, {block_id:id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+    $.get(url, {block_id:block_id,  value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
     });
   });
 
@@ -128,23 +138,21 @@ $(document).ready(function() {
       verify = false;
       alert("Please fill workout details.");
     }
-    else if($('.met_tab_desc').length <= 1){
+    else if($('.add_photo').find('li').length <= 1){
       verify = false;
       alert("Please create sub blocks.");
     }
     else{
-      $('.met_tab_desc').each(function(){
-        if(!$(this).closest('.block_hide').length){
-          var b_id = $(this).find('#block_id').val();
-          var b_type = $('#block_type_'+b_id).val();
-          var li_size = $(this).find('ul li.block_li').size();
-          var check = check_library_publish(li_size, b_type)
-          if(check != ''){
-            verify = false;
-            alert(check);
-            return false;
-          }
+      $('.cir_super_blk').each(function(){
+        var block_name = $(this).find('ul').attr('data-block-name');
+        var block_li_size = $(this).find('ul li.others').size();
+        var check = check_library_publish(block_li_size,block_name)
+        if(check != ''){
+          verify = false;
+          alert(check);
+          return false;
         }
+
       });
     }
     if(verify){
@@ -158,7 +166,7 @@ $(document).ready(function() {
     $("#move-details-panel").css('display', 'none');
   });
 
-  $(document).on("click",".met_tab_desc ul li", function(e){
+  $(document).on("click",".load_lib_detail", function(e){
     if($(e.target).hasClass("rm")){
       var hiden_field_id = $(this).attr('id');
       var main_block_id = hiden_field_id.split('_')[0];
@@ -167,13 +175,15 @@ $(document).ready(function() {
       remove_library_from_block(hiden_field_id);
       $(this).remove();
     }
-    else if($(e.target).hasClass("block_li")){
+    else{
+      var $this = $(this);
       $('.li_active').removeClass('li_active');
-      $(this).addClass('li_active');
-      var lib_id = $(this).attr('id').split("_")[1];
-      var block_id = $(this).attr('id').split("_")[0];
-      var lib_detail = $(this).attr('data-libdetail');
-      load_library_content(lib_detail, block_id, lib_id, '');
+      $this.addClass('li_active');
+      var block_id = $this.attr('id') ? $this.attr('id') : []
+      if(block_id){
+        var lib_detail = block_id.split("_")[3];
+        load_library_content(lib_detail, block_id);
+      }
     }
   });
 
@@ -270,22 +280,19 @@ function check_library_count(li_size, block_type){
   if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
       alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == BLOCK_TYPE[3])&&(li_size>0)){
-   alrt = BLOCK_TYPE[3]+" Block must have exactly 1 library";
-  }
   return alrt;
 }
 
-function load_library_content(lib_detail_id, block_id, lib_id, move){
-  if(lib_detail_id != ''){
-    $("#move-details-panel").css('display', 'block');
+function load_library_content(lib_detail_id, block_id){
+  setTimeout(function() {
+    $("#move-details-panel").show();
     $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
-  }
-
+  })
   sets_val = $('#block_'+block_id).find('#moves_sets').val();
   rests_val = $('#block_'+block_id).find('#moves_rests').val();
   var url = '/builder/load_lib_details';
-  $.get(url, {lib_detail_id:lib_detail_id,lib_id:lib_id,block_id:block_id, move:move, sets:sets_val, rests:rests_val}, function (data) {
+  $.get(url, {lib_detail_id:lib_detail_id, sets:sets_val, rests:rests_val}, function (data) {
+    //$("#move-details-panel").html(data);
    });
 }
 
@@ -293,24 +300,20 @@ function check_library_publish(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
     alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
-  }
-  else if((block_type == BLOCK_TYPE[2])&&(li_size<1)){
-   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
-  }
-  else if(block_type == BLOCK_TYPE[0] && li_size<3){
+  }else if(block_type == BLOCK_TYPE[0] && li_size<3){
     alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
   }
   return alrt;
 }
 
-function check_library_present(lib_id, id){
+function check_library_present(lib_id, $this){
   var present = false;
-  $("#block_"+id).find(".met_tab_desc ul li").each(function(){
+  $this.find("li.others").each(function(){
     if($(this).attr('id')){
-      lid = $(this).attr('id').split("_")[1];
+      lid = $(this).attr('id').split("_")[2];
       if(lid == lib_id){
         present = true;
-        return false
+        return true;
       }
     }
   });
@@ -330,4 +333,16 @@ function show_text_size(){
     var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
       $(this).text(input_len+' of '+ size+' Character');
   })
+}
+
+function block_popover_intilization(){
+  $("[data-toggle='popover']").popover({
+    html:true,
+    title: function () {
+        return $(this).parent().find('.head').html();
+    },
+    content: function () {
+        return $(this).parent().find('.content').html();
+    }
+  });
 }

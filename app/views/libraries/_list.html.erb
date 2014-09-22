@@ -35,7 +35,7 @@
             <a href="<%= params[:user].blank? ? edit_path(mov) :  edit_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
               <span class="title_col">
                 <div>
-                  <% if mov.library_video.present? && mov.library_video.image.present? %>
+                  <% if mov.check_thumbnail() %>
                     <img src="<%= mov.library_video.image %>" class="list_view_img move" />
                   <% else %>
                     <img src="/assets/ex_2.png" class="list_view_img move" />

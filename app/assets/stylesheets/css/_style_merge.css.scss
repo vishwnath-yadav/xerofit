@@ -544,6 +544,7 @@ ul.disable_cls li:hover{ background-color:#cccccc !important; cursor: default !i
 float: right;
 width: 20px !important;
 height: auto !important;
+cursur: pointer;
 }
 
 .water_block {
@@ -570,7 +571,6 @@ height: auto !important;
 }
 
 .add_photo>li{
-    background: yellow;
     display: block;
     float: left;
     width: 100%;
@@ -637,7 +637,11 @@ li.single_move{
     padding: 0px 0px 10px 0px;
     margin: 0px 0px 0px 0px;
     width: 100%;
+<<<<<<< HEAD
     background: yellow;
+=======
+    
+>>>>>>> e8ea814a28c64327ab4aaa28dffcab8af199d8e7
 
     div{
         padding: 11px 0px 10px 20px;
@@ -655,4 +659,11 @@ li.single_move{
 li.main_container:last-child{ padding-bottom: 50px; }
 .bgg{
     background: red;
+<<<<<<< HEAD
+=======
+}
+
+.block_options_html{
+    display:none;
+>>>>>>> e8ea814a28c64327ab4aaa28dffcab8af199d8e7
 }

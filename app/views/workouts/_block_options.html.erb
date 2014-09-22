@@ -1,36 +1,55 @@
-	<!-- <div class="form_field">
-        <%#= radio_button_tag("wrk_blocks_type", "", checked = true, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[0]}", name: "radio"}) %>
-        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[0]%></span>
-    </div>
-    <div class="block_msg">
-      You can create exactly 3 or more library.
-    </div>
-    <div class="form_field">
-        <%#= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[1]}", name: "radio"}) %>
-        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[1]%></span>
-    </div>
-    <div class="block_msg">
-      You can create exactly 2 library.
-    </div>
-    <div class="form_field">
-        <%#= radio_button_tag("wrk_blocks_type", "", checked = false, options = {class: "block_type", id: "type_#{Block::BLOCK_TYPE[2]}", name: "radio"}) %>
-        <span class="wrk_block_types"><%=Block::BLOCK_TYPE[2]%></span>
-    </div>
-    <div class="block_msg">
-      You can create exactly 1 library.
-    </div>
-    <label>Title</label>
-    <input type='text' name='Title' class="title sub_block_title_input">
-    <input type='button' value="Ok" class='block_type_submit'> -->
-
-    <div class="workout_block_options" id="catalog">
-        <ul class="block-option-ul">
-        <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
-            <%if index < 3%>
-                <li id="dragable_block_<%=index%>" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
-                    <%=block.humanize%>
-                </li>
-            <%end%>
+<div class="workout_block_options" id="catalog">
+    <ul class="block-option-ul">
+    <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
+        <%if index < 3%>
+            <li id="dragable_block_<%=index%>" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+                <%=block.humanize%>
+            </li>
         <%end%>
-        </ul>
-    </div>
+    <%end%>
+    </ul>
+</div>
+
+<div class="block_options_html circuit_block">
+    <li class="main_container cir_super_blk" data-blck='circuit'>
+        <div>
+            <span class="first">circuit</span>
+            <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="circuit">
+                <li class="first"></li>
+            </ul>
+        </div>
+    </li>
+</div>
+<div class="block_options_html superset_block">
+    <li class="main_container cir_super_blk" data-blck='superset'>
+        <div>
+            <span class="first">superset
+            </span>
+            <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="superset">
+                <li class="first"></li>
+            </ul>
+        </div>
+    </li>
+</div>
+<div class="block_options_html water_break_block">
+    <li class="water_block">
+        <div class="water_hr">
+        </div>
+        <div class="water_head">water break
+            <img src="/assets/setting.jpg" class="img_icon" style="margin-top:0px;" data-toggle="popover" data-placement="left">
+                <%= render "water_block_popover" %>
+            </img>
+        </div>
+    </li>
+</div>
+
+<div class="block_options_html individual_block">
+    <li class="single_move main_container load_lib_detail" data-blck='individual'>
+        <div class="single_div"></div>
+    </li>
+</div>
+
+<div class="block_options_html block_inner_move">
+    <li class="others load_lib_detail">
+    </li>
+</div>

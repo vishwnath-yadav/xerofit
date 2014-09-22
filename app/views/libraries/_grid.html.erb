@@ -17,7 +17,7 @@
           </a>
         <%else%>
           <a href="<%= params[:user].blank? ? edit_path(mov) :  edit_path(mov, user: params[:user])%>" data-no-turbolink="true" class="grid_block move">
-            <% if mov.library_video.present? && mov.library_video.image.present? %>
+            <% if mov.check_thumbnail() %>
               <img src="<%= mov.library_video.image %>" alt="cn_1" />
             <% else %>
               <img src="/assets/ex_2.png" alt="cn_1" />

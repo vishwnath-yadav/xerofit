@@ -512,7 +512,8 @@ CREATE TABLE users (
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     token character varying(255),
-    last_name character varying(255)
+    last_name character varying(255),
+    time_zone character varying(255)
 );
 
 
@@ -917,3 +918,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140908123706');
 INSERT INTO schema_migrations (version) VALUES ('20140911063516');
 
 INSERT INTO schema_migrations (version) VALUES ('20140916131956');
+
+INSERT INTO schema_migrations (version) VALUES ('20140920074532');

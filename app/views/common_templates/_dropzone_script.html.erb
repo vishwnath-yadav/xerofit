@@ -22,7 +22,7 @@
         clickable: '.upload_new_video',
         paramName: "file", // The name that will be used to transfer the file
         params: {full_workout: full_workout, user: user},
-        maxFilesize: max_size, // MB
+        maxFilesize: max_size // MB
         });
 
       myDropzone.on("addedfile", function(file) {
@@ -30,14 +30,14 @@
         $('.upload_wrap.active .video_uplod_txt h2').css('text-align', 'left');
         $('.upload_wrap.active .video_uplod_icon').addClass('uploading');
 
-        $('.upload_wrap.active  .video_uplod_icon').stop(true,true).delay( 150 ).animate({
+        $('.upload_wrap.active .video_uplod_icon').stop(true,true).delay( 150 ).animate({
           left: '-=100px',
           marginLeft: '0',
           marginBottom: '0',
           top: '+=61px',
         }, 600 );
 
-        $('.upload_wrap.active  .video_uplod_txt').stop().animate({
+        $('.upload_wrap.active .video_uplod_txt').stop().animate({
           left: '+=58px',
           top: '-=21px',
           marginLeft: '24px',

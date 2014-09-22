@@ -21,9 +21,9 @@ class WorkoutsController < ApplicationController
 			@enabled_move = enabled_move.flatten.sort_by(&:title)
 			@disabled_move = disabled_move.flatten.sort_by(&:title)
 		end
-		@block = Block.new()
-		@block.save
-		@display = "block_hide"
+		# @block = Block.new()
+		# @block.save
+		# @display = "block_hide"
 	end
 
 	def create
@@ -109,16 +109,10 @@ class WorkoutsController < ApplicationController
 
 	def load_lib_details
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
-		if !@lib_detail.present?
-			@lib_detail = MoveDetail.new()
-			@lib_detail.sets_count = params[:sets]
-			@lib_detail.rest_time = params[:rests]
+		if @lib_detail.present?
+			# @lib_detail.sets_count = params[:sets]
+			# @lib_detail.rest_time = params[:rests]
 			@lib_detail.save
-		end
-		if !params[:move].blank?
-			block = Block.find(params[:block_id])
-			block.move = params[:move]
-			block.save
 		end
 		respond_to do |format|
 			format.js 
@@ -146,7 +140,28 @@ class WorkoutsController < ApplicationController
 				end
 			end
 		end
-		render text: true
+		# render text: true
+		respond_to do |format|
+			format.js 
+		end
+	end
+
+	def create_workout_block
+		if params[:drag_type] == "block"
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			render json:{ id: @block.id}
+		elsif params[:block_name] == Block::BLOCK_TYPE[3]
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {id: @block.id, lib_detail_id: @lib_detail.id}
+		else
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {lib_detail_id: @lib_detail.id}
+		end
 	end
 
 	def create_workout_block

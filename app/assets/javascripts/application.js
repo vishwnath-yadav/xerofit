@@ -16,7 +16,6 @@
 //= require autocomplete-rails
 //= require turbolinks
 
-
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
 //= require plugins/jquery-ui-custom.min
@@ -24,8 +23,6 @@
 //= require plugins/jquery.fancybox.pack.js
 //= require plugins/jquery.fancybox-transitions.js
 //= require plugins/jquery_form.js
-//= require plugins/jquery.jcarousel.min
-//= require plugins/jcarousel.responsive.js
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
 

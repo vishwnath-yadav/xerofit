@@ -14,7 +14,6 @@ class VideosController < ApplicationController
   			@video.panda_video_id = p_video.id
   			@video.save
     end
-    # binding.pry
   	render text: "#{@video.present? ? @video.id : ""}"
 	end
 

@@ -1,49 +1,27 @@
-@import 'helpers/variables';
-@import 'helpers/mixins';
+// Admin Stylesheet Importer ===================================================================================== /
+
+
+
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/typography';
+@import 'base/layout';
+
+
+// -------------------------------------------------------------------------- //
+// Plugins and Vendors
+// -------------------------------------------------------------------------- //
+
+
 @import 'vendor/normalize';
+@import 'vendor/bootstrap';
+@import 'vendor/fancybox';
 
-@import "vendor/bootstrap";
-@import "admin/dashboard";
-@import "css/jquery.fancybox";
 
-.admin-sort-container{
-	float: right;
-}
+// -------------------------------------------------------------------------- //
+// Admin Pages
+// -------------------------------------------------------------------------- //
 
-.admin-sort-select{
-	float:right;
-	margin: 2px -10px 5px;
-}
 
-.admin-sort-label{
-	float:left;
-	margin: 5px 15px;
-}
+@import 'admin/dashboard';
 
-.admin-mail-popup {
-    display: none;
-    width: 100%;
-}
-.fancybox-overlay-fixed .fancybox-outer, .fancybox-overlay-fixed .fancybox-inner{
-	height: 600px !important;
-}
-
-.fancybox-overlay-fixed .fancybox-skin{
-	height: 600px !important;
-}
-
-#admin_change_status{
-	height: 30px;
-	border-radius: 5px;
-}
-
-.active a{
-text-decoration: none;
-background-color: #eee;
-}
-
-img.loader_style{
-    margin-top: 80px !important;
-    margin-left: 50% !important;
-    margin-bottom: 50px !important;
-}

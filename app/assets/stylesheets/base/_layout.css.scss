@@ -1,9 +1,16 @@
-//
-// ==================================================================
-// Main Layout Structure
-// ==================================================================
-//
+// Layout ===================================================================================== /
 
+
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+body { background:#f7f7f7; }
 
 .wrapper {
     min-height: 100%;
@@ -26,6 +33,31 @@
     padding-bottom: 112px;
     @include clearfix;
 }
+
+.middle_wrapper {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+.page_content {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    padding-top: 28px;
+    padding-bottom: 42px;
+}
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Footer Styles
+// -------------------------------------------------------------------------- //
+
+
 
 .main-footer {
     position: absolute;
@@ -65,16 +97,23 @@
     }
 }
 
+.footer_rht_col,
+.footer_lft_col {
+    width: 50%;
+    float: left;
+    position: relative;
+}
+
 .footer_rht_col { text-align: right; }
 
 
 
 
-//
-// ==================================================================
-// Topbar Styles
-// ==================================================================
-//
+
+// -------------------------------------------------------------------------- //
+// Topbar/Header Styles
+// -------------------------------------------------------------------------- //
+
 
 
 .topbar_wrap {
@@ -87,7 +126,6 @@
     padding: 14px 0px;
     float: left;
 }
-
 
 // Global Navigation
 a.global_nav_toggle {
@@ -112,6 +150,12 @@ a.global_nav_toggle {
         background-repeat: no-repeat;
         @include background-size(contain);
         background-position: center;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: $silver31;
     }
 
 }
