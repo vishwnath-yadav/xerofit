@@ -136,23 +136,21 @@ $(document).ready(function() {
       verify = false;
       alert("Please fill workout details.");
     }
-    else if($('.met_tab_desc').length <= 1){
+    else if($('.add_photo').find('li').length <= 1){
       verify = false;
       alert("Please create sub blocks.");
     }
     else{
-      $('.met_tab_desc').each(function(){
-        if(!$(this).closest('.block_hide').length){
-          var b_id = $(this).find('#block_id').val();
-          var b_type = $('#block_type_'+b_id).val();
-          var li_size = $(this).find('ul li.block_li').size();
-          var check = check_library_publish(li_size, b_type)
-          if(check != ''){
-            verify = false;
-            alert(check);
-            return false;
-          }
+      $('.cir_super_blk').each(function(){
+        var block_name = $(this).find('ul').attr('data-block-name');
+        var block_li_size = $(this).find('ul li.others').size();
+        var check = check_library_publish(block_li_size,block_name)
+        if(check != ''){
+          verify = false;
+          alert(check);
+          return false;
         }
+
       });
     }
     if(verify){
@@ -286,9 +284,6 @@ function check_library_count(li_size, block_type){
   if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
       alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
   }
-  else if((block_type == BLOCK_TYPE[3])&&(li_size>0)){
-   alrt = BLOCK_TYPE[3]+" Block must have exactly 1 library";
-  }
   return alrt;
 }
 
@@ -309,24 +304,20 @@ function check_library_publish(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
     alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
-  }
-  else if((block_type == BLOCK_TYPE[2])&&(li_size<1)){
-   alrt = BLOCK_TYPE[2]+" Block must have exactly 1 library";
-  }
-  else if(block_type == BLOCK_TYPE[0] && li_size<3){
+  }else if(block_type == BLOCK_TYPE[0] && li_size<3){
     alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
   }
   return alrt;
 }
 
-function check_library_present(lib_id, id){
+function check_library_present(lib_id, $this){
   var present = false;
-  $("#block_"+id).find(".met_tab_desc ul li").each(function(){
+  $this.find("li.others").each(function(){
     if($(this).attr('id')){
-      lid = $(this).attr('id').split("_")[1];
+      lid = $(this).attr('id').split("_")[2];
       if(lid == lib_id){
         present = true;
-        return false
+        return true;
       }
     }
   });
