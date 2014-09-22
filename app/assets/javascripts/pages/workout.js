@@ -117,15 +117,7 @@ $(document).ready(function() {
     $('#filter_search_form').submit();
   });
 
-
-
-  $(document).on("click",".wrk_add_opt", function(){
-    $.fancybox.open({
-      href: '#wrk_add_option',
-      type: 'inline'
-    });
-  });
-
+  
   $(document).on("click",".close_icon", function(){
     $.fancybox.close();
   });
@@ -187,10 +179,6 @@ $(document).ready(function() {
 
   // Dropdown
   $(document).on('change', ".lib_detail_sel", function(){
-    $(".edit_move_detail").submit();
-  });
-
-  $(document).on('click', ".lib_detail_chk", function(){
     $(".edit_move_detail").submit();
   });
 
@@ -260,42 +248,15 @@ $(document).ready(function() {
     obj.text(size+'/'+max_size+' Character');
   });
 
-  $(document).on('click',".block_type_submit", function(){
-     create_sub_block();
-  });
-
-  $(document).on('keyup','.sub_block_title_input',function(e){
-    if(e.keyCode == 13){
-      create_sub_block();
-      return false;
-    }
-  });
-
+  
 });
 
 // $(document).on('page:load', ready);
 
+    
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';
   $.get(url, {lib_block:id}, function (data) {
-  });
-}
-
-function create_sub_block(){
-  var type = $("input[name='radio']:checked").attr('id');
-  type = type.split("_")[1];
-  var title = $('.title').val();
-  sub_block_ajax(type, title, '');
-}
-
-function create_individual_sub_block(){
-  $('.drag_img').remove();
-  sub_block_ajax();
-}
-
-function sub_block_ajax(){
-  url = '/builder/get_workout_sub_block';
-  $.get(url, {}, function (data) {
   });
 }
 
@@ -303,110 +264,6 @@ function remove_msg(){
   $('.success').removeClass('move_detail').html('');
 }
 
-function drag_start(e) {
-    e.dataTransfer.dropEffect='move';
-    e.dataTransfer.setData("text/plain", e.target.getAttribute('id'));
-}
-// temp = '';
-// count = 0;
-function drag_over(e){
-  // var element = $(e).attr('id');
-  // if(element != temp){
-  //   temp = element;
-  //   if($(e).siblings().length < 1){
-  //     console.log("inside if");
-  //     count = count + 1
-  //     console.log("dddddd 1"+count);
-  //   }
-  //   else if($(e).is(':last-child')){
-  //     $('.blank_li').remove();
-  //     $(e).after('<li class="blank_li" id="blank" ondragover="drag_over(this)">1</li>');
-  //     count = count + 1
-  //     console.log("dddddd 2"+count);
-  //   }
-  //   else{
-  //     $('.blank_li').remove();
-  //     $(e).before('<li class="blank_li" id="blank" ondragover="drag_over(this)">1</li>');
-  //     count = count + 1
-  //     console.log("dddddd 3"+count);
-  //   }
-  // }
-  return false;
-}
-
-function drag_drop(e, id) {
-    var element = e.dataTransfer.getData("Text");
-    var text = $("#"+element).find('h6').text();
-    var dragable_type = $("#"+element).attr('data-dragable-type');
-    if(dragable_type == "Block"){
-      if($('#block_'+id).find('.block_hide').length){
-        var block_name = $("#"+element).attr('data-block-name');
-        if(block_name == BLOCK_TYPE[2]){
-          initialize_new_water_block(id, block_name);
-        }
-        else{
-          initialize_new_block(id, block_name);
-        }
-      }
-    }
-    else{
-      var block_type = $('#block_type_'+id).val();
-      if(block_type != ''){
-        manage_drop_library_into_block(id, block_type, element, text);
-      }
-      else{
-        manage_drop_library_directly(id, block_type, element, text); 
-      }
-    }
-}
-
-function initialize_new_block(id, block_name){
-  $('.block_hide').removeClass('block_hide');
-  $("#block_type_"+id).val(block_name);
-  $("#block_type_h4_"+id).text(block_name);
-  $("#block_remove_"+id).text("Delete "+block_name);
-  create_individual_sub_block();
-}
-
-function initialize_new_water_block(id, block_name){
-  $('.drag_img').remove();
-  url = '/builder/get_workout_water_sub_block';
-  $.get(url, {id:id}, function (data) {
-  });
-}
-
-function manage_drop_library_into_block(id, block_type, element, text){
-  var li_size = $("#block_"+id).find('.met_tab_desc ul li.block_li').size();
-  var check = check_library_count(li_size, block_type);
-  var lib_id = element.split("_")[1];
-  if(check != ''){
-    alert(check);
-  }
-  else if (check_library_present(lib_id, id)){
-    alert("Library Already Exists");
-  }
-  else{
-    $("#block_"+id).find('.met_tab_desc ul').append('<li id='+id+'_'+lib_id+' class="block_li" ondragover="drag_over(this)"><span class="rm" id=rm_'+id+'_'+lib_id+'></span><h6>'+text+'</h6></li>');
-    load_library_content('',id, lib_id, '');
-    $('#new_workout_form .hidden_field_workout').append('<input type=hidden name=workout['+id+']['+lib_id+'] id=block_'+id+'_'+lib_id+' value='+lib_id+'>');
-   $(".blank_li").remove();
-  }
-}
-
-function manage_drop_library_directly(id, block_type, element, text){
-  $('#block_'+id).find('.met_tab_col').addClass('single_move_drop');
-  $('#block_'+id).find('.met_tab_desc li:eq(0)').remove();
-  $('#block_'+id).find('.met_head').remove();
-  initialize_new_block(id, BLOCK_TYPE[3]);
-  manage_drop_library_into_block(id, block_type, element, text);
-}
-
-function individual_block_show(id){
-  if($("#block_"+id).find('.block_hide').length){
-    $('.block_hide').removeClass('block_hide');
-    create_individual_sub_block();
-  }
-}
 
 function check_library_count(li_size, block_type){
   var alrt = "";

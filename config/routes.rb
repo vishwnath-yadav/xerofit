@@ -129,7 +129,6 @@ Xerofit::Application.routes.draw do
   get '/library/workout/:id', to: 'workouts#workout_details', as: :workout_details
   resources :workouts, except: [:edit, :show], path: :builder do
     collection do
-      get 'get_workout_sub_block'
       post 'save_blocks'
       get 'load_lib_details'
       patch 'save_lib_details'
@@ -139,6 +138,8 @@ Xerofit::Application.routes.draw do
       get 'update_move_details'
       get 'get_workout_water_sub_block'
       get 'update_water_block_details'
+      get 'drag_test'
+      get 'create_workout_block'
     end
     member do
       get '/edit', to: 'workouts#edit', as: :edit

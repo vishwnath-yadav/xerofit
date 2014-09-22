@@ -1,0 +1,45 @@
+
+<li class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false" >
+  <%if !@display.blank? %>
+      <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
+  <%end%>
+  <div class="met_tab_col <%=@display%>">
+  	<div class="met_head">
+      <div class="head_rght">
+        <h4 id="block_type_h4_<%= @block.id %>" style="float:left;"><%= @block.name %></h4>
+        <span>
+          <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
+            <%= render "block_popover" %>
+          </img>
+        </span>
+      </div>
+    </div>
+
+    <!-- <div class="met_tab_desc" id="b<%= @block.id %>"> -->
+    <div class="met_tab_desc">
+      <%=hidden_field_tag "block_id", @block.id %>
+      <%=hidden_field_tag "block_type_#{@block.id}", @block.block_type, class: "block_type" %>
+    	<ul class="sortable">
+      	<li>1</li>
+      </ul>
+    </div>
+  </div>
+  </li>
+<script>
+    $( ".sortable" ).sortable({
+    stop: function( event, ui ) {sort_lis($(ui.item));}
+  });
+
+  $(function () { 
+      $("[data-toggle='popover']").popover({
+        html:true,
+        title: function () {
+        return $(this).parent().find('.head').html();
+      },
+      content: function () {
+        return $(this).parent().find('.content').html();
+      }
+      });
+    });
+  
+</script>
