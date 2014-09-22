@@ -78,6 +78,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_blocks
+		
 		@workout = Workout.find_by_id(params[:workout_id])
 		if params[:block].present?
 			block_hash = params[:block]
@@ -118,16 +119,6 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
-	def save_lib_details
-		@lib_detail = MoveDetail.find(params[:lib_detail_id])
-		if @lib_detail.present?
-			@lib_detail.update_attributes(library_detail_params)
-		end
-		respond_to do |format|
-			format.js {render 'load_lib_details.js.erb'}
-		end
-	end
-
 	def workout_details
 		@workout = Workout.find(params[:id])
 		@user = @workout.user
@@ -156,6 +147,25 @@ class WorkoutsController < ApplicationController
 	end
 
 	def create_workout_block
+		if params[:drag_type] == "block"
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			render json:{ id: @block.id}
+		elsif params[:block_name] == Block::BLOCK_TYPE[3]
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {id: @block.id, lib_detail_id: @lib_detail.id}
+		else
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {lib_detail_id: @lib_detail.id}
+		end
+	end
+
+	def create_workout_block
+		# binding.pry
 		if params[:drag_type] == "block"
 			@block = Block.new(name: params[:block_name])
 			@block.save

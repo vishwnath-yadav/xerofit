@@ -192,10 +192,6 @@ $(document).ready(function() {
     $(".edit_move_detail").submit();
   });
 
-  $(document).on('click', ".lib_detail_chk", function(){
-    $(".edit_move_detail").submit();
-  });
-
   $(document).on('blur', ".lib_detail_inp", function(){
     var $input = $(this).find('input');
     var val = parseInt($input.val());
