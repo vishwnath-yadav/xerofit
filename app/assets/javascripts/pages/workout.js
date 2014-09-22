@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  $(document).click(function(event) {
+    var target = $(event.target);
+    if(!target.is(".block_li, .block_li *")){
+       $('.li_active').removeClass('li_active');
+       $("#move-details-panel").css('display', 'none');
+    }
+  });
+
   $(window).scroll(function(){
     var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
@@ -167,13 +175,17 @@ $(document).ready(function() {
       remove_library_from_block(hiden_field_id);
       $(this).remove();
     }
-    else if($(e.target).hasClass("block_li")){
+    else{
+      var $this = $(e.target).hasClass("block_li") ? $(this) : $(e.target).parent();
       $('.li_active').removeClass('li_active');
-      $(this).addClass('li_active');
-      var lib_id = $(this).attr('id').split("_")[1];
-      var block_id = $(this).attr('id').split("_")[0];
-      var lib_detail = $(this).attr('data-libdetail');
-      load_library_content(lib_detail, block_id, lib_id, '');
+      $this.addClass('li_active');
+      var ids = $this.attr('id') ? $this.attr('id').split("_") : []
+      if(ids){
+        var lib_id = ids[1];
+        var block_id = ids[0];
+        var lib_detail = $this.attr('data-libdetail');
+        load_library_content(lib_detail, block_id, lib_id, '');
+      }
     }
   });
 

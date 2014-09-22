@@ -1,3 +1,7 @@
+// Workout Builder App ===================================================================================== /
+
+
+
 .content.workout-builder { padding-bottom: 0; }
 
 .header-scroll {
@@ -20,21 +24,13 @@
 }
 
 .show-on-scroll { display: none; }
-
-.middle_wrapper.autoheight {
-    //min-height: 400px;
-}
-
-.disable-scroll {
-    overflow: hidden;
-}
+.disable-scroll { overflow: hidden; }
 
 #enter-fullscreen,
 #exit-fullscreen {
     float: left;
     margin-right: 14px;
 }
-
 
 .details_page_header.workout-builder {
     border-bottom: 1px solid #D8D8D8;
@@ -46,6 +42,7 @@
 // -------------------------------------------------------------------------- //
 // Workout Builder Page Structure
 // -------------------------------------------------------------------------- //
+
 
 
 .builder {
@@ -132,6 +129,7 @@
                 line-height: 14px;
                 color: $silver16;
                 @include gotham400();
+                margin-top: 0px;
                 margin-bottom: 4px;
             }
 
@@ -215,6 +213,7 @@
 // -------------------------------------------------------------------------- //
 
 
+
 #move-details-panel {
     background: #FFF;
     width: 100%;
@@ -226,6 +225,9 @@
     display: none;
     z-index: 3;
 }
+
+.red_txt { color: red; }
+.green_txt{ color: green; }
 
 // Panel Header styling
 .panel-head {
@@ -385,7 +387,7 @@
 
 
 // -------------------------------------------------------------------------- //
-// Previous Workout Builder styles copied over from css/style.css
+// Workout Buidler - Workout Preview Editor (Right Side)
 // -------------------------------------------------------------------------- //
 
 
@@ -393,10 +395,11 @@
 .workout-preview {
     width: 100%;
     float: left;
-    padding: 39px;
+    padding: 0px 39px 39px;
     position: relative;
     @include clearfix();
 
+    // Drag and Drop Target
     .builder-dropzone {
         padding: 0px 39px 0 10px;
         float: left;
@@ -423,8 +426,8 @@
 .col_1 {
     width: 100%;
     float: left;
-    border-bottom: 1px solid #e1e3e5;
-    padding-bottom: 20px;
+    //border-bottom: 1px solid #e1e3e5;
+    //padding-bottom: 20px;
 
     h2 {
         font-size:28px;

@@ -63,5 +63,11 @@ $(document).ready(function(){
     });
   })
 
-  
+  $(document).on('click','.fetch_panda_data', function(){
+    $(this).hide();
+    $('.video_load').show();
+    url = '/admin/moves/calculate_video_info';
+      $.get(url, function (data) {
+      }); 
+  });
 })

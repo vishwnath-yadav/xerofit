@@ -1,4 +1,6 @@
-// Settings Page ===================================================================================== /
+// Settings ===================================================================================== /
+
+
 
 .setting_col{
     width:100%;
@@ -184,4 +186,122 @@ margin-bottom:20px;
     //background:#9c9e9f;
     cursor:pointer;
     color:#fff;
+}
+
+// -------------------------------------------------------------------------- //
+// Settings Pages
+// -------------------------------------------------------------------------- //
+
+
+.save_col{
+    width:100%;
+    float:left;
+    border-top:1px solid #ccc;
+    padding-top:27px;
+    margin-top:50px;
+}
+
+.save_col.save_col1{
+    margin-top:0px;
+}
+
+.save_btn{
+    background:#24c4d4;
+    padding:12px 30px;
+    float:right;
+    font-size:12px;
+    color:#fff;
+    border-radius:3px;
+    border:0px;
+}
+.save_btn.save_btn1{
+    background:#4c4d4e;
+    float:left;
+}
+.save_btn:hover{
+    background:#666;
+    cursor:pointer;
+}
+
+.ft_xero{
+    width:100%;
+    float:left;
+    background:#f2f2f2;
+    padding:10px 30px;
+    color:#908a85;
+    font-size:9px;
+    text-align:right;
+}
+.col_wdt{
+    width:100%;
+    float:left;
+}
+
+.dash_left{
+    width: 19.6%;
+    float: left;
+}
+
+.dashboard_mid{
+    max-width:1026px;
+    margin:0px auto;
+    // overflow:auto;
+    padding:40px 0px;
+}
+.dashboard_mid h3{
+    font-size:24px;
+    color:#a5afbb;
+    border-bottom:1px solid #e4e6e8;
+    padding-bottom:10px;
+    margin-bottom:20px;
+    @include gotham200();
+}
+.dashboard_mid h4{
+    font-size:20px;
+    color:#a5afbb;
+    border-bottom:1px solid #e4e6e8;
+    padding-bottom:10px;
+    margin-bottom:20px;
+    @include gotham200();
+}
+
+.alerts_col{
+    width:100%;
+    float:left;
+}
+.ques{
+    width:19px;
+    height:19px;
+    float:right;
+    background:url(/assets/question_mark.png) no-repeat 0px 0px;
+}
+.alerts_col_desc{
+    width:100%;
+    float:left;
+    min-height:153px;
+    text-align:center;
+    padding:20px;
+}
+.alerts_col_desc h5{
+    font-size:18px;
+    color:#dcdad6;
+    @include gotham300-italic();
+    margin-bottom:10px;
+}
+
+.setting_form .setting_input.mr15{
+    margin-right: 15px;
+}
+
+.wdt_70{
+    width: 70%;
+}
+
+#order_state_code_wrapper select{
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 6px;
+    color: #cfcdcd;
+    font-style: italic;
+    margin: 0px;
 }
