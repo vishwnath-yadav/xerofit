@@ -5,8 +5,8 @@
 //
 
 
-@import 'helpers/variables';
-@import 'helpers/mixins';
+@import 'base/variables';
+@import 'base/mixins';
 @import 'vendor/normalize';
 
 
@@ -69,11 +69,11 @@
 
 //@import 'base/typography';
 //@import 'base/grid';
-@import 'base/global';
-@import 'helpers/buttons';
-@import 'helpers/modals';
-@import 'helpers/headers';
-@import 'helpers/forms';
+//@import 'base/global';
+@import 'website/buttons';
+@import 'website/modals';
+@import 'website/headers';
+@import 'website/forms';
 
 
 //

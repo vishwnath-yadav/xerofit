@@ -23,8 +23,6 @@
 //= require plugins/jquery.fancybox.pack.js
 //= require plugins/jquery.fancybox-transitions.js
 //= require plugins/jquery_form.js
-//= require plugins/jquery.jcarousel.min
-//= require plugins/jcarousel.responsive.js
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
 //= require plugins/jquery-sortable-min.js

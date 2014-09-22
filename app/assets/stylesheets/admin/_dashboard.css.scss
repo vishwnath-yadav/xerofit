@@ -1,0 +1,47 @@
+.admin-sort-container{
+    float: right;
+}
+
+.admin-sort-select{
+    float:right;
+    margin: 2px -10px 5px;
+}
+
+.admin-sort-label{
+    float:left;
+    margin: 5px 15px;
+}
+
+.admin-mail-popup {
+    display: none;
+    width: 100%;
+}
+.fancybox-overlay-fixed .fancybox-outer, .fancybox-overlay-fixed .fancybox-inner{
+    height: 600px !important;
+}
+
+.fancybox-overlay-fixed .fancybox-skin{
+    height: 600px !important;
+}
+
+#admin_change_status{
+    height: 30px;
+    border-radius: 5px;
+}
+
+.active a{
+text-decoration: none;
+background-color: #eee;
+}
+
+img.loader_style{
+    margin-top: 80px !important;
+    margin-left: 50% !important;
+    margin-bottom: 50px !important;
+}
+
+.video_load{
+    display: none;
+}
+
+.usr_flter { width: 100% !important; }
