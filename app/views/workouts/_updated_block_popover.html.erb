@@ -5,7 +5,7 @@
         <label>Sets</label>
     </div>
     <div class="input-wrap lib_detail_popup">
-        <input id="moves_sets" class="sets_by_popup" max="10" min="1" name="sets_count" step="1" type="number" value="1">
+        <input id="moves_sets" class="sets_by_popup" max="10" min="1" name="sets_count" step="1" type="number" value="1" data-block-id="<%= @block.id%>">
     </div>
   </div>
   <div id="rest" class="input-section">
@@ -14,9 +14,9 @@
     </div>
     <div class="input-wrap">
       <div class="input-wrap lib_detail_popup" >
-        <input id="moves_rests" class="sets_by_popup" max="180" min="0" name="rest_time" step="15" type="number" value="30" >
+        <input id="moves_rests" class="sets_by_popup" max="180" min="0" name="rest_time" step="15" type="number" value="30" data-block-id="<%= @block.id%>">
       </div>
     </div>
   </div>
-<a href="javascript:void(0)" id="" class="remove_video_btn"> </a>
+<a href="javascript:void(0)" id="block_remove_<%= @block.id %>" class="remove_video_btn"> </a>
 </div>

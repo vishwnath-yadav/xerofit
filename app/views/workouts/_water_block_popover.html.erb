@@ -1,18 +1,13 @@
-<!--div class="head hide">Block Details</div-->
+<div class="head hide">Time/Duration</div>
+<div class="content hide">
+  <div class="input-section">
+    <div class="input-wrap water_detail">
+        <input id="minutes" class="" max="10" min="1" step="1" type="number" value="1" data-block-id="">
+        <h5>Minutes</h5>
 
-<div class="block-pop-content">
-    <div class="input-section">
-        <h5>Time/Duration</h5>
-        <div class="input-wrap water_detail">
-            <div class="number-input-wrap">
-                <input id="minutes" class="" max="10" min="1" step="1" type="number" value="1" data-block-id="<%= @block.id%>">
-                <label>Minutes</label>
-            </div>
-            <div class="number-input-wrap last">
-                <input id="seconds" class="" max="60" min="0" step="15" type="number" value="0" data-block-id="<%= @block.id%>">
-                <label>Seconds</label>
-            </div>
-        </div>
+        <input id="seconds" class="" max="60" min="0" step="15" type="number" value="0" data-block-id="">
+        <h5>Seconds</h5>
     </div>
-    <a href="javascript:void(0)" id="block_remove_<%= @block.id %>" class="delete-block-btn"> Delete Water break </a>
+  </div>
+  <a href="javascript:void(0)" id="block_remove_" class="remove_video_btn"> Delete Water break </a>
 </div>

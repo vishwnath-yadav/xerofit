@@ -22,7 +22,7 @@
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
                         <%=hidden_field_tag :workout_id %>
-                        <ul class="add_photo drag_lib testt" data-block="main">
+                        <ul class="add_photo drag_lib testt main_ul" data-block="main">
                             <%= render "sub_blocks" %>
                         </ul>
 
@@ -90,6 +90,7 @@ function initDroppable() {
                         if(block_name == BLOCK_TYPE[2]){
                             if(($this).hasClass('main_container') && ($(this).attr('data-blck') == $(this).next('li').attr('data-blck'))){
                                 $this.after($('.water_break_block').html());
+                                block_popover_intilization();
                                 block_name = block_name;         
                                 save_details(lib_id, block_name, drag_type, $this);     
                             }else{
@@ -102,6 +103,7 @@ function initDroppable() {
                             }else if(block_name == BLOCK_TYPE[1]){
                                 $this.after($('.superset_block').html());
                             }
+                            block_popover_intilization();
                             save_details(lib_id, block_name, drag_type, $this);
                         }
                     }
@@ -134,6 +136,7 @@ function initDroppable() {
                     else if($parent.attr('data-block') == "main"){
                         if(flag){
                             $this.after($('.individual_block').html());
+                            block_popover_intilization();
                             $this.next('li').find('div').text(text);
                             save_details(lib_id, block_name, drag_type, $this);
                         }

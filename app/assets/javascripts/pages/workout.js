@@ -97,15 +97,17 @@ $(document).ready(function() {
     var $input = $(this).find('input');
     var val = parseInt($input.val());
     var name = $input.attr('name');
-    var id = $input.attr('data-block-id');
-    $('ul li.block_li').each(function(){
-      if ($(this).attr('id').split('_')[0] == id)
+    var $data = $(this).closest('li.main_container');
+    var block_id = $data.attr('id').split("_")[1];
+    $data.find('ul li.others').each(function(){
+      if ($(this).attr('id').split('_')[1] == block_id)
       {
-        libdetails_arr.push($(this).attr('data-libdetail'));
+      var lib_detail_id = $(this).attr('id').split('_')[3];
+        libdetails_arr.push(lib_detail_id);
       }
     })
     url = '/builder/update_move_details';
-    $.get(url, {block_id:id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+    $.get(url, {block_id:block_id,  value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
     });
   });
 
@@ -335,4 +337,16 @@ function show_text_size(){
     var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
       $(this).text(input_len+' of '+ size+' Character');
   })
+}
+
+function block_popover_intilization(){
+  $("[data-toggle='popover']").popover({
+    html:true,
+    title: function () {
+        return $(this).parent().find('.head').html();
+    },
+    content: function () {
+        return $(this).parent().find('.content').html();
+    }
+  });
 }
