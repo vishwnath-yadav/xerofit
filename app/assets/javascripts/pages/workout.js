@@ -143,7 +143,7 @@ $(document).ready(function() {
       alert("Please create sub blocks.");
     }
     else{
-      $('.cir_super_blk').each(function(){
+      $('.main_ul .cir_super_blk').each(function(){
         var block_name = $(this).find('ul').attr('data-block-name');
         var block_li_size = $(this).find('ul li.others').size();
         var check = check_library_publish(block_li_size,block_name)
@@ -304,7 +304,7 @@ function check_library_publish(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
     alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
-  }else if(block_type == BLOCK_TYPE[0] && li_size<3){
+  }else if((block_type == BLOCK_TYPE[0])&&(li_size<3)){
     alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
   }
   return alrt;
