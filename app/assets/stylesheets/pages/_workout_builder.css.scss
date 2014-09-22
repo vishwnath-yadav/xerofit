@@ -95,7 +95,6 @@
     position: relative;
     width: 380px;
     height: 100%;
-    overflow-y: scroll;
 
     .library-moves {
         @include clearfix();
@@ -150,6 +149,18 @@
     .single-move.disabled {
         background: #F9F9F9;
         cursor: not-allowed;
+    }
+
+    ul.single-move-ul {
+        width: 100%;
+        float: left;
+        padding-left: 0;
+
+        li{
+            width: 100%;
+            float: left;
+            list-style: none;
+        }
     }
 }
 
@@ -387,7 +398,7 @@
     @include clearfix();
 
     .builder-dropzone {
-        padding: 39px;
+        padding: 0px 39px 0 10px;
         float: left;
         width: 100%;
         position: relative;
@@ -400,9 +411,13 @@
 
 .add_photo {
     float: left;
-    //padding-left: 13px;
     width: 100%;
-    img { width:100%; height:auto; }
+    
+    img {
+        width:100%; 
+        height:auto; 
+        margin-top: 25px;
+    }
 }
 
 .col_1 {
@@ -429,15 +444,26 @@
 
 .workout_block_options{
     float: left;
-    margin: 0px 0 15px;
+    margin: 0px 0 10px;
+    width: 100%;
 
-    span {
-        background: #efefef;
-        padding: 10px;
-        margin: 4px;
-        border-radius: 5px;
-        cursor: pointer;
+    ul.block-option-ul {
+        padding-left: 0;
+        width: 100%;
+        margin-bottom: 0;
+        
+        li {
+            width: auto;
+            float: left;
+            list-style: none;
+            background: #efefef;
+            padding: 10px;
+            margin: 4px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     }
+    
 }
 
 

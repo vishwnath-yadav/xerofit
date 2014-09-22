@@ -546,24 +546,113 @@ width: 20px !important;
 height: auto !important;
 }
 
-.met_tab_col .water_head{
-    width: 30%;
-    float:left;
-    margin-left: 34%;
-    background:#7E8082;
-    border-radius:5px;
-    padding:10px;
-    position: relative;
-    cursor: pointer;
-    top: -22px;
+.water_block {
+    color: white;
+
+    .water_head{
+        width: 30%; 
+        float: left;
+        margin-left: 34%;
+        background: #7E8082;
+        border-radius: 5px;
+        padding: 10px;
+        position: relative;
+        cursor: pointer;
+        top: -22px;
+        text-align: center;
+    }
+
+    .water_hr{
+        margin-bottom: 0px;
+        border-top: 1px solid #111;
+        margin-top: 20px;
+    }
 }
 
-.water_hr{
+.add_photo>li{
+    background: yellow;
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+li.blank_li{
+    padding: 0px 0 40px;
     margin-bottom: 0;
-    border-top: 1px solid #111;
-    margin-top: 29px;
 }
 
-.water_mat_tab{
-    margin-bottom: 0px !important;
+.main_container {
+    padding-bottom: 14px;
+
+    span {
+        list-style: none;
+        color: white;
+        width: 100%;
+        padding: 10px;
+        background: black;
+        display: block;
+        font-weight: bold;
+    }
+
+    ul{
+        float: left;
+        width: 100%;
+        padding-left: 0px;
+        color: white;
+        margin-left: 0px;
+        margin-bottom: 15px;
+        border: 1px solid #000;
+        min-height: 100px;
+
+        li.first{
+            background: gray;
+            height: 35px;
+            padding: 10px;
+            margin: 9px 0px 4px 9px;
+            width: 98%;
+        }
+            
+
+        li.others{
+            color: black;
+            list-style: none;
+            padding: 10px; 
+            margin: 9px;
+            width: 98%; 
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px; 
+            border-bottom-right-radius: 3px; 
+            border-bottom-right-radiusleft-radius: 3px;
+            background: rgb(255, 255, 255);
+        }
+    }
+
+    
+    
+}
+
+li.single_move{
+    color: black;
+    list-style: none;
+    padding: 0px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+    background: yellow;
+
+    div{
+        padding: 11px 0px 10px 20px;
+        border: 1px solid;
+        color: black;
+        margin-left: 0;
+        margin-bottom: 15px;
+        border: 1px solid #fff;
+        min-height: 45px;
+        background: #fff;
+        border-radius: 6px;
+    }
+}
+
+li.main_container:last-child{ padding-bottom: 50px; }
+.bgg{
+    background: red;
 }

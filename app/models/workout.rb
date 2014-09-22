@@ -38,7 +38,6 @@ class Workout < ActiveRecord::Base
 			if value.present?
 				value.each do|k, v|
 					unless k=='0' && v=='0'
-					binding.pry
 						lib = Move.find_by_id(k)
 						lib_block = MoveBlock.where(:move_id=>lib.id, :block_id=>block.id).last
 						if !lib_block.present?

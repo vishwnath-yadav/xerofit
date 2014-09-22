@@ -66,24 +66,7 @@ class WorkoutsController < ApplicationController
 		redirect_to libraries_path
 	end
 
-	def get_workout_sub_block
-		@block = Block.new()
-		@block.save
-		@display = 'block_hide'
-		respond_to do |format|
-			format.js 
-		end
-	end
-
-	def get_workout_water_sub_block
-		@old_block_id = params[:id]
-		@block = Block.new(name: Block::BLOCK_TYPE[2])
-		@block.save
-		respond_to do |format|
-			format.js 
-		end
-	end
-
+	
 	def update_water_block_details
 		if params[:block_id].present?
 			@block = Block.find(params[:block_id])
@@ -95,9 +78,10 @@ class WorkoutsController < ApplicationController
 	end
 
 	def save_blocks
+		
 		@workout = Workout.find_by_id(params[:workout_id])
-		if params[:workout].present?
-			block_hash = params[:workout]
+		if params[:block].present?
+			block_hash = params[:block]
 			@workout.save_blocks_and_libs(block_hash)
 			@workout.state = "completed"
 			@workout.save
@@ -141,16 +125,6 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
-	def save_lib_details
-		@lib_detail = MoveDetail.find(params[:lib_detail_id])
-		if @lib_detail.present?
-			@lib_detail.update_attributes(library_detail_params)
-		end
-		respond_to do |format|
-			format.js {render 'load_lib_details.js.erb'}
-		end
-	end
-
 	def workout_details
 		@workout = Workout.find(params[:id])
 		@user = @workout.user
@@ -173,6 +147,25 @@ class WorkoutsController < ApplicationController
 			end
 		end
 		render text: true
+	end
+
+	def create_workout_block
+		# binding.pry
+		if params[:drag_type] == "block"
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			render json:{ id: @block.id}
+		elsif params[:block_name] == Block::BLOCK_TYPE[3]
+			@block = Block.new(name: params[:block_name])
+			@block.save
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {id: @block.id, lib_detail_id: @lib_detail.id}
+		else
+			@lib_detail = MoveDetail.new()
+			@lib_detail.save
+			render json: {lib_detail_id: @lib_detail.id}
+		end
 	end
 
 	private
