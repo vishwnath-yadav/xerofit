@@ -1,24 +1,85 @@
-<li class="new_li">
-  <div class="met_tab" id="block_<%#= @block.id %>" ondrop="drag_drop(event)" ondragover="return false">
-    <div class="met_tab_col">
-        <div class="met_head">
-          <div class="head_rght">
-            <h4 id="block_type_h4_<%#= @block.id %>" style="float:left;">circuit</h4>
-            <span>
-              <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
-                <%#= render "block_popover" %>
-              </img>
-            </span>
+<div clsss="workout_circuit" style="display:none;">
+  <li class="li_block" id="individual">
+    <div class="met_tab" id="block_" ondrop="drag_drop(event)" ondragover="return false">
+      <div class="met_tab_col single_move_drop">
+          <div class="met_tab_desc">
+          	<ol>
+            	
+            </ol>
           </div>
         </div>
+      </div>
+  </li>
+  <li class="li_block" id="water_break">
+    <div class="met_tab" id="block_" ondrop="drag_drop(event)" ondragover="return false">
+      <div class="met_tab_col">
+          <div class="met_head">
+            <div class="head_rght">
+              <h4 id="block_type_h4_" style="float:left;"></h4>
+              <span>
+                <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
+                  <%#= render "block_popover" %>
+                </img>
+              </span>
+            </div>
+          </div>
 
-        <div class="met_tab_desc">
-          <%#=hidden_field_tag "block_id", @block.id %>
-          <%#=hidden_field_tag "block_type", @block_name, class: "block_type" %>
-          <ol>
-            <li>1</li>
-          </ol>
+          <div class="met_tab_desc">
+            <%#=hidden_field_tag "block_id", @block.id %>
+            <%#=hidden_field_tag "block_type", @block_name, class: "block_type" %>
+            <ol>
+              <li>1</li>
+            </ol>
+          </div>
         </div>
       </div>
-    </div>
-</li>
+  </li>
+  <li class="li_block" id="superset">
+    <div class="met_tab" id="block_" ondrop="drag_drop(event)" ondragover="return false">
+      <div class="met_tab_col">
+          <div class="met_head">
+            <div class="head_rght">
+              <h4 id="block_type_h4_" style="float:left;"></h4>
+              <span>
+                <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
+                  <%#= render "block_popover" %>
+                </img>
+              </span>
+            </div>
+          </div>
+
+          <div class="met_tab_desc">
+            <%#=hidden_field_tag "block_id", @block.id %>
+            <%#=hidden_field_tag "block_type", @block_name, class: "block_type" %>
+            <ol>
+              <li>1</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+  </li>
+  <li class="li_block" id="circuit">
+    <div class="met_tab" id="block_" ondrop="drag_drop(event)" ondragover="return false">
+      <div class="met_tab_col">
+          <div class="met_head">
+            <div class="head_rght">
+              <h4 id="block_type_h4_" style="float:left;"></h4>
+              <span>
+                <img src="/assets/setting.jpg" class="img_icon" data-toggle="popover" data-placement="left">
+                  <%#= render "block_popover" %>
+                </img>
+              </span>
+            </div>
+          </div>
+
+          <div class="met_tab_desc">
+            <%#=hidden_field_tag "block_id", @block.id %>
+            <%#=hidden_field_tag "block_type", @block_name, class: "block_type" %>
+            <ol>
+              <li>1</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+  </li>
+</div>

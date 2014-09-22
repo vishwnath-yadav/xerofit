@@ -346,24 +346,24 @@ function drag_over(e){
   return false;
 }
 
-// function drag_workout(e, id) {
-//   alert("ssss");
-//   var element = e.dataTransfer.getData("Text");
-//   var text = $("#"+element).find('h6').text();
-//   var dragable_type = $("#"+element).attr('data-dragable-type');
-//   $('.new_block').appand($('.new_li').html);
-//   // if(dragable_type == "Block"){
-//   //     var block_name = $("#"+element).attr('data-block-name');
+function drag_workout(e, id) {
+  alert("ssss");
+  var element = e.dataTransfer.getData("Text");
+  var text = $("#"+element).find('h6').text();
+  var dragable_type = $("#"+element).attr('data-dragable-type');
+  if(dragable_type == "Block"){
+      var block_name = $("#"+element).attr('data-block-name');
         
-//   //   }else{
-//   //     var block_name = BLOCK_TYPE[3]
-//   //   }
-//   //   url = "create_dragged_block"
-//   //   $.get(url, {name:block_name, text:text}, function (data) {
-//   //   });
-// }
+    }else{
+      var block_name = BLOCK_TYPE[3]
+    }
+    url = "create_dragged_block"
+    $.get(url, {name:block_name, text:text}, function (data) {
+    });
+  }
 
 function drag_drop(e, id) {
+  alert("sssssssddddddddddddd");
     var element = e.dataTransfer.getData("Text");
     var text = $("#"+element).find('h6').text();
     var dragable_type = $("#"+element).attr('data-dragable-type');

@@ -1,4 +1,6 @@
 //= require jquery
+//= require jquery.detect_timezone
+//= require browser_timezone_rails/application.js
 
 $(document).ready(function() {
   $('#txthdnPassword').hide();
@@ -17,5 +19,10 @@ $(document).ready(function() {
           $('#user_password').val($('#txthdnPassword').val());
       }
   });
+  $(document).on("blur","#user_email",function () {
+    var tz = jstz.determine();
+    var zone_name = tz.name();
+    $(".time_zone").val(zone_name);
+  })
 });
 

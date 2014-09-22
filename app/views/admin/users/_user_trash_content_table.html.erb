@@ -9,15 +9,15 @@
         <th>Actions</th>
       </tr>
       <% if @users.present? %>
-        <% @users.each do |move| %>
+        <% @users.each do |user| %>
           <tr>
-            <td><%=move.id%></td>
-            <td><%=move.email %></td>
-            <td><%=move.role %></td>
-            <td><%=move.updated_at.strftime("%m/%d/%y %I:%M%P")%></td>
+            <td><%=user.id%></td>
+            <td><%=user.email %></td>
+            <td><%=user.role %></td>
+            <td><%= user.time_zone.present? ? user.updated_at.in_time_zone(user.time_zone).strftime("%m/%d/%y %I:%M%P %Z") : user.updated_at.in_time_zone.strftime("%m/%d/%y %I:%M%P %Z")%></td>
             <td>
-              <%=link_to "Restore", "javascript:void(0)", class: "admin_trash_user", "data-params" => "user_#{move.id}" %> | 
-              <%= link_to "Delete", admin_user_path(move), method: :delete, data: { confirm: 'Are you sure?' }%>
+              <%=link_to "Restore", "javascript:void(0)", class: "admin_trash_user", "data-params" => "user_#{user.id}" %> | 
+              <%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }%>
             </td>
           </tr>
         <% end %>

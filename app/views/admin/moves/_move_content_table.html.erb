@@ -12,7 +12,7 @@
       <tr>
         <td><%=move.id%></td>
         <td><%=move.title%></td>
-        <td><%=move.updated_at.in_time_zone.strftime("%D %I:%M%P")%></td>
+        <td><%= move.user.time_zone.present? ? move.updated_at.in_time_zone(move.user.time_zone).strftime("%m/%d/%y %I:%M%P %Z") : move.updated_at.in_time_zone.strftime("%D %I:%M%P %Z")%></td>
         <td>
         <%=render "common_templates/change_status", move: move%>
         </td>

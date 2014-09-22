@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -513,7 +512,8 @@ CREATE TABLE users (
     pic_file_size integer,
     pic_updated_at timestamp without time zone,
     token character varying(255),
-    last_name character varying(255)
+    last_name character varying(255),
+    time_zone character varying(255)
 );
 
 
@@ -918,3 +918,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140908123706');
 INSERT INTO schema_migrations (version) VALUES ('20140911063516');
 
 INSERT INTO schema_migrations (version) VALUES ('20140916131956');
+
+INSERT INTO schema_migrations (version) VALUES ('20140920074532');

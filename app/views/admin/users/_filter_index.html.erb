@@ -17,7 +17,7 @@
         <td><%=user.first_name%></td>
         <td><%=user.last_name%></td>
         <td><%=user.role%></td>
-        <td><%=user.created_at.strftime("%m/%d/%y %I:%M%P")%></td>
+        <td><%= user.time_zone.present? ? user.created_at.in_time_zone(user.time_zone).strftime("%m/%d/%y %I:%M%P %Z") : user.created_at.in_time_zone.strftime("%m/%d/%y %I:%M%P %Z")%></td>
         <td>
           <%=link_to "View", libraries_path(user: user.token)%> | <%= link_to "Trash", user_trash_admin_users_path(id: user) %>
         </td>

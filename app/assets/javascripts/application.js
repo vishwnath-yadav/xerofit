@@ -15,8 +15,6 @@
 //= require jquery.remotipart
 //= require autocomplete-rails
 //= require turbolinks
-//= require detect_timezone
-//= require jquery.detect_timezone
 
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
