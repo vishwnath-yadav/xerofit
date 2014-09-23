@@ -17,7 +17,7 @@
             </div>
 
             <div class="workout-preview">
-                <div class="zbuilder-dropzone" id="cart">
+                <div id="cart">
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
                         <%=hidden_field_tag :workout_id %>
@@ -37,7 +37,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-    $("#cart .testt").sortable().disableSelection();
+    $("#cart .testt").sortable({
+        placeholder: 'sortable-placeholder'
+    }).disableSelection();
     initDroppable();
 
     $("#move ul li").draggable({
@@ -49,7 +51,8 @@ $(document).ready(function(){
         scroll : false,
         cursorAt: { top: 35, right: 28 },
         zIndex: 9999,
-        placeholder: 'portlet-placeholder ui-corner-all',
+        //placeholder: 'portlet-placeholder ui-corner-all',
+        //placeholder: 'sortable-placeholder',
         appendTo: 'body',
         containment: '#workout-builder-app',
         //handle: '.handle',
