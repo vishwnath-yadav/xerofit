@@ -661,3 +661,19 @@ li.main_container:last-child{ padding-bottom: 50px; }
 .block_options_html{
     display:none;
 }
+
+.main_container span.setting_link {
+position: relative;
+margin-top: -64px;
+background: none;
+}
+
+.main_container span.new_setting {
+position: relative;
+margin-top: -83px;
+background: none;
+}
+
+.popover-content{
+    color:#000;
+}

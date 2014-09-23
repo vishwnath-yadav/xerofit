@@ -350,3 +350,13 @@ function block_popover_intilization(){
     }
   });
 }
+
+function block_sortable(){
+  var i=1;
+  $('#cart ul li').each(function(){
+    if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){ 
+      $(this).text(i);
+      i=i+1;
+    }
+  });
+}
