@@ -10,40 +10,37 @@
     </div>
 
     <div class="column split-right">
-        <div id="workout-editor" class="column-wrap autoheight">
-            <div class="workout-blocks" id="catalog">
-                <ul class="block-option-ul new_block">
-                    <% Block::BLOCK_TYPE.each_with_index do |block, index| %>
-                        <% if index < 3 %>
-                            <li id="dragable_block_<%=index%>" class="block" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
-                                <%= block.humanize %>
-                            </li>
-                        <% end %>
-                    <% end %>
-                </ul>
+        <div class="column-wrap autoheight">
+
+            <div id="workout-blocks">
+                <%= render "workout_blocks" %>
                 <%= render "block_templates" %>
             </div>
 
-            <div class="workout-preview" id="cart">
-                <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
+            <div id="workout-editor">
+                <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
                     <%=hidden_field_tag :workout_id %>
+
                     <ul class="workout-list builder-dropzone add_photo drag_lib testt" data-block="main">
                         <%= render "sub_blocks" %>
                     </ul>
-
                     <div class="hidden_field_workout"></div>
+
                 <% end %>
             </div>
+
         </div>
     </div>
-
 </div>
+
+
+
 
 <script type="text/javascript">
 $(document).ready(function(){
 
-    $("#cart .testt").sortable({
+    $("#workout-editor .testt").sortable({
         placeholder: 'sortable-placeholder',
         update: function() {
             block_sortable();
@@ -52,19 +49,19 @@ $(document).ready(function(){
 
     initDroppable();
 
-    $("#catalog ul li").draggable({
-        connectToSortable:'#cart ul li',
+    $("#workout-blocks ul li").draggable({
+        connectToSortable:'#workout-editor ul li',
         cursor: 'grabbing',
         zIndex: 9999,
         appendTo: 'body',
-        containment: '#workout-editor',
+        containment: '#workout-builder-app .split-right',
         helper: function() {
             return $("<div class='dragging-block-wrap'></div>").append($(this).clone());
         }
     });
 
     $("#move ul li").draggable({
-        connectToSortable:'#cart ul li',
+        connectToSortable:'#workout-editor ul li',
         cursor: 'grabbing',
         zIndex: 9999,
         scroll : false,

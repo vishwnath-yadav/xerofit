@@ -194,7 +194,8 @@ $(document).ready(function() {
     $("#move-details-panel").css('display', 'none');
   });
 
-  $(document).on("click",".load_lib_detail", function(e){
+  $(document).on("click", ".load_lib_detail", function(e){
+    $(this).addClass('li_active');
     if($(e.target).hasClass("rm")){
       var hiden_field_id = $(this).attr('id');
       var main_block_id = hiden_field_id.split('_')[0];
@@ -286,12 +287,11 @@ $(document).ready(function() {
     obj.text(size+'/'+max_size+' Character');
   });
 
-  
 });
 
 // $(document).on('page:load', ready);
 
-    
+
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';
   $.get(url, {lib_block:id}, function (data) {
@@ -301,7 +301,6 @@ function remove_library_from_block(id){
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');
 }
-
 
 function check_library_count(li_size, block_type){
   var alrt = "";
@@ -357,7 +356,6 @@ function sort_lis(obj){
 function show_text_size(){
   $('.detail_char').each(function(){
     var size = $(this).attr('data-size');
-    
     var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
       $(this).text(input_len+' of '+ size+' Character');
   })
@@ -377,7 +375,7 @@ function block_popover_intilization(){
 
 function block_sortable(){
   var i=1;
-  $('#cart ul li').each(function(){
+  $('#workout-editor ul li').each(function(){
     if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){ 
       $(this).find('.sort_index').each(function(){
         $(this).text(i);

@@ -1,8 +1,8 @@
 <script type="text/javascript">
-    
+
     function initDroppable() {
-        $("#cart ul li").droppable({
-            accept: "#catalog ul li, #move ul li",
+        $("#workout-editor ul li").droppable({
+            accept: "#workout-blocks ul li, #move ul li",
             hoverClass: "ui-state-hover",
             over: function( event, ui ) {
                 if($(this).parent().attr('data-block') == "block"){
@@ -83,7 +83,7 @@
                     }
                 }
                 initDroppable();
-                $("#cart .testt").sortable().disableSelection();
+                $("#workout-editor .testt").sortable().disableSelection();
                 block_sortable();
 
                 event.preventDefault();

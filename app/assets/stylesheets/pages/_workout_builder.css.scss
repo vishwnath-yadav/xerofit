@@ -403,10 +403,10 @@
 
 
 
-.workout-preview {
+#workout-editor {
+    padding: 0px 39px 39px;
     width: 100%;
     float: left;
-    padding: 0px 39px 39px;
     position: relative;
     @include clearfix();
 
@@ -424,8 +424,8 @@
 }
 
 
-// Drag and Drop Block Types
-.workout-blocks {
+// Drag and Drop Workout Blocks Section
+#workout-blocks {
     padding: 28px 39px;
     width: 100%;
     float: left;
@@ -853,6 +853,7 @@ li.block_li {
     }
 }
 
+li.li_active { background: $active-color;}
 
 .detail_form {
     width: 100%;
