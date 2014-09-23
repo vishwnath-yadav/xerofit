@@ -42,6 +42,16 @@ $(document).ready(function(){
     }).disableSelection();
     initDroppable();
 
+     $("#catalog ul li").draggable({
+        helper: function() {
+            return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
+        },
+        connectToSortable:'#cart ul li',
+        cursor: 'move', 
+        cursorAt: { top: 20, left: 80 },
+        zIndex: 100
+    });
+
     $("#move ul li").draggable({
         //connectWith: '#cart ul li',
         //helper: 'clone',

@@ -1,5 +1,5 @@
 <div class="workout_block_options" id="catalog">
-    <ul class="block-option-ul">
+    <ul class="block-option-ul new_block">
         <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
             <%if index < 3%>
                 <li id="dragable_block_<%=index%>" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
@@ -14,6 +14,9 @@
     <li class="main_container cir_super_blk" data-blck='circuit'>
         <div>
             <span class="first">Circuit</span>
+            <span class="setting_icon"><img src="/assets/setting.jpg" class="img_icon" style="margin-top:0px;" data-toggle="popover" data-placement="left">
+                <%= render "block_popover" %>
+            </img></span>
             <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="circuit">
                 <li class="first"></li>
             </ul>
@@ -25,6 +28,9 @@
     <li class="main_container cir_super_blk" data-blck='superset'>
         <div>
             <span class="first">Superset</span>
+            <span class="setting_icon"><img src="/assets/setting.jpg" class="img_icon" style="margin-top:0px;" data-toggle="popover" data-placement="left">
+                <%= render "water_block_popover" %>
+            </img></span>
             <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="superset">
                 <li class="first"></li>
             </ul>
@@ -46,6 +52,9 @@
 <div class="block_options_html individual_block">
     <li class="single_move main_container load_lib_detail" data-blck='individual'>
         <div class="single_div"></div>
+        <span><img src="/assets/setting.jpg" class="img_icon" style="margin-top:0px;" data-toggle="popover" data-placement="left">
+                <%= render "water_block_popover" %>
+            </img></span>
     </li>
 </div>
 
