@@ -18,52 +18,52 @@
 
 
 // Core variables and mixins
-@import "vendor/bootstrap-sass/variables";
-@import "vendor/bootstrap-sass/mixins";
+@import "website/bootstrap-sass/variables";
+@import "website/bootstrap-sass/mixins";
 
 // Reset
-@import "vendor/bootstrap-sass/print";
+@import "website/bootstrap-sass/print";
 
 // Core CSS
-@import "vendor/bootstrap-sass/scaffolding";
-@import "vendor/bootstrap-sass/type";
-//@import "vendor/bootstrap-sass/code";
-@import "vendor/bootstrap-sass/grid";
-@import "vendor/bootstrap-sass/tables";
-@import "vendor/bootstrap-sass/forms";
-@import "vendor/bootstrap-sass/buttons";
+@import "website/bootstrap-sass/scaffolding";
+@import "website/bootstrap-sass/type";
+//@import "website/bootstrap-sass/code";
+@import "website/bootstrap-sass/grid";
+@import "website/bootstrap-sass/tables";
+@import "website/bootstrap-sass/forms";
+@import "website/bootstrap-sass/buttons";
 
 // Components
-@import "vendor/bootstrap-sass/component-animations";
-@import "vendor/bootstrap-sass/dropdowns";
-@import "vendor/bootstrap-sass/button-groups";
-@import "vendor/bootstrap-sass/input-groups";
-// @import "vendor/bootstrap-sass/navs";
-@import "vendor/bootstrap-sass/navbar";
-@import "vendor/bootstrap-sass/breadcrumbs";
-@import "vendor/bootstrap-sass/pagination";
-@import "vendor/bootstrap-sass/pager";
-@import "vendor/bootstrap-sass/labels";
-@import "vendor/bootstrap-sass/badges";
-@import "vendor/bootstrap-sass/jumbotron";
-@import "vendor/bootstrap-sass/thumbnails";
-@import "vendor/bootstrap-sass/alerts";
-// @import "vendor/bootstrap-sass/progress-bars";
-@import "vendor/bootstrap-sass/media";
-@import "vendor/bootstrap-sass/list-group";
-@import "vendor/bootstrap-sass/panels";
-@import "vendor/bootstrap-sass/wells";
-@import "vendor/bootstrap-sass/close";
+@import "website/bootstrap-sass/component-animations";
+@import "website/bootstrap-sass/dropdowns";
+@import "website/bootstrap-sass/button-groups";
+@import "website/bootstrap-sass/input-groups";
+// @import "website/bootstrap-sass/navs";
+@import "website/bootstrap-sass/navbar";
+@import "website/bootstrap-sass/breadcrumbs";
+@import "website/bootstrap-sass/pagination";
+@import "website/bootstrap-sass/pager";
+@import "website/bootstrap-sass/labels";
+@import "website/bootstrap-sass/badges";
+@import "website/bootstrap-sass/jumbotron";
+@import "website/bootstrap-sass/thumbnails";
+@import "website/bootstrap-sass/alerts";
+// @import "website/bootstrap-sass/progress-bars";
+@import "website/bootstrap-sass/media";
+@import "website/bootstrap-sass/list-group";
+@import "website/bootstrap-sass/panels";
+@import "website/bootstrap-sass/wells";
+@import "website/bootstrap-sass/close";
 
 // Components w/ JavaScript
-// @import "vendor/bootstrap-sass/modals";
-@import "vendor/bootstrap-sass/tooltip";
-// @import "vendor/bootstrap-sass/popovers";
-// @import "vendor/bootstrap-sass/carousel";
+// @import "website/bootstrap-sass/modals";
+@import "website/bootstrap-sass/tooltip";
+// @import "website/bootstrap-sass/popovers";
+// @import "website/bootstrap-sass/carousel";
 
 // Utility classes
-@import "vendor/bootstrap-sass/utilities";
-@import "vendor/bootstrap-sass/responsive-utilities";
+@import "website/bootstrap-sass/utilities";
+@import "website/bootstrap-sass/responsive-utilities";
 
 //@import 'vendor/boostrap/bootstrap-sass';
 

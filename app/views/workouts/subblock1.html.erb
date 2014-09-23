@@ -1,8 +1,12 @@
 
 <li class="met_tab" id="block_<%= @block.id %>" ondrop="drag_drop(event, <%= @block.id %>)" ondragover="return false" >
-  <%if !@display.blank? %>
-      <img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img">
-  <%end%>
+
+    <% if !@display.blank? %>
+      <div class="drag_img"></div>
+    <% end %>
+
+      <!--img src="/assets/add_photo.jpg" alt="add_photo" height="259" width="590" class="drag_img"-->
+  
   <div class="met_tab_col <%=@display%>">
   	<div class="met_head">
       <div class="head_rght">
