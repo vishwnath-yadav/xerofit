@@ -1,37 +1,37 @@
 <div class="workout_block_options" id="catalog">
     <ul class="block-option-ul">
-    <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
-        <%if index < 3%>
-            <li id="dragable_block_<%=index%>" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
-                <%=block.humanize%>
-            </li>
+        <%Block::BLOCK_TYPE.each_with_index do |block, index|%>
+            <%if index < 3%>
+                <li id="dragable_block_<%=index%>" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+                    <%=block.humanize%>
+                </li>
+            <%end%>
         <%end%>
-    <%end%>
     </ul>
 </div>
 
-<div class="block_options_html circuit_block">
+<div class="block block_options_html circuit_block">
     <li class="main_container cir_super_blk" data-blck='circuit'>
         <div>
-            <span class="first">circuit</span>
+            <span class="first">Circuit</span>
             <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="circuit">
                 <li class="first"></li>
             </ul>
         </div>
     </li>
 </div>
-<div class="block_options_html superset_block">
+
+<div class="block block_options_html superset_block">
     <li class="main_container cir_super_blk" data-blck='superset'>
         <div>
-            <span class="first">superset
-            </span>
+            <span class="first">Superset</span>
             <ul class="add_photo drag_lib wrk_block testt" data-block="block" data-block-name="superset">
                 <li class="first"></li>
             </ul>
         </div>
     </li>
 </div>
-<div class="block_options_html water_break_block">
+<div class="block block_options_html water_break_block">
     <li class="water_block">
         <div class="water_hr">
         </div>

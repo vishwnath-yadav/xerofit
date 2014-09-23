@@ -16,12 +16,12 @@
                 <%= render "block_options"%>
             </div>
 
-            <div class="workout-preview sort-me-please">
-                <div class="builder-dropzone" id="cart">
+            <div class="workout-preview">
+                <div class="zbuilder-dropzone" id="cart">
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
                         <%=hidden_field_tag :workout_id %>
-                        <ul class="add_photo drag_lib testt main_ul" data-block="main">
+                        <ul class="workout-list add_photo drag_lib testt main_ul builder-dropzone" data-block="main">
                             <%= render "sub_blocks" %>
                         </ul>
 
@@ -49,6 +49,7 @@ $(document).ready(function(){
         scroll : false,
         cursorAt: { top: 35, right: 28 },
         zIndex: 9999,
+        placeholder: 'portlet-placeholder ui-corner-all',
         appendTo: 'body',
         containment: '#workout-builder-app',
         //handle: '.handle',

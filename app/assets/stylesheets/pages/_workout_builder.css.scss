@@ -148,8 +148,9 @@
     }
 
     .ui-state-hover {
-        background: blue;
+        background: #E3E3E3;
         height: 42px;
+        width: 100%;
     }
 }
 
@@ -516,7 +517,7 @@ cursor: -moz-grabbing;
     position: relative;
     @include clearfix();
 
-    span {
+    .block {
         background: #efefef;
         float: left;
         display: block;
@@ -527,6 +528,20 @@ cursor: -moz-grabbing;
         cursor: move;
     }
 }
+
+
+// Workout Builder workout preview <ul>
+.workout-list {
+    display: block;
+    float: left;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    @include clearfix();
+    position: relative;
+}
+
+
 
 // Placeholder icon and text within Workout Preview
 .drag_img {
@@ -670,7 +685,6 @@ cursor: -moz-grabbing;
     float: left;
     //padding-left: 13px;
     width: 100%;
-    img { width:100%; height:auto; }
 }
 
 
@@ -810,6 +824,10 @@ cursor: -moz-grabbing;
             padding: 0px;
         }
     }
+}
+
+.met_tab.blank_li {
+    min-height: 50px;
 }
 
 li.block_li{
