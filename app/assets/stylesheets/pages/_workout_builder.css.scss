@@ -36,169 +36,6 @@
     border-bottom: 1px solid #D8D8D8;
 }
 
-.water_block {
-    color: white;
-
-    .water_head{
-        width: 30%; 
-        float: left;
-        margin-left: 34%;
-        background: #7E8082;
-        border-radius: 5px;
-        padding: 10px;
-        position: relative;
-        cursor: pointer;
-        top: -22px;
-        text-align: center;
-    }
-
-    .water_hr{
-        margin-bottom: 0px;
-        border-top: 1px solid #111;
-        margin-top: 20px;
-    }
-}
-
-.add_photo>li{
-    display: block;
-    float: left;
-    width: 100%;
-}
-
-li.blank_li{
-    padding: 0px 0 40px;
-    margin-bottom: 0;
-}
-
-.main_container {
-    padding-bottom: 14px;
-
-    span {
-        list-style: none;
-        color: white;
-        width: 100%;
-        padding: 10px;
-        background: black;
-        display: block;
-        font-weight: bold;
-    }
-
-    ul{
-        float: left;
-        width: 100%;
-        padding-left: 0px;
-        color: white;
-        margin-left: 0px;
-        margin-bottom: 15px;
-        border: 1px solid #000;
-        min-height: 100px;
-
-        li.first{
-            background: gray;
-            height: 35px;
-            padding: 10px;
-            margin: 9px 0px 4px 9px;
-            width: 98%;
-        }
-            
-
-        li.others{
-            color: black;
-            list-style: none;
-            padding: 10px; 
-            margin: 9px;
-            width: 98%; 
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px; 
-            border-bottom-right-radius: 3px; 
-            border-bottom-right-radiusleft-radius: 3px;
-            background: rgb(255, 255, 255);
-        }
-    }
-
-    
-    
-}
-
-li.single_move{
-    color: black;
-    list-style: none;
-    padding: 0px 0px 10px 0px;
-    margin: 0px 0px 0px 0px;
-    width: 100%;
-    div{
-        padding: 11px 0px 10px 20px;
-        border: 1px solid;
-        color: black;
-        margin-left: 0;
-        margin-bottom: 15px;
-        border: 1px solid #fff;
-        min-height: 45px;
-        background: #fff;
-        border-radius: 6px;
-    }
-}
-
-li.main_container:last-child{ padding-bottom: 50px; }
-.bgg{
-    background: red;
-}
-
-.block_options_html{
-    display:none !important;
-}
-
-
-.main_container span.setting_icon{margin-top: -40px;
-background: none;
-margin-bottom: 20px;}
-.popover-content{color:#000;}
-.time_flot{float: left;
-margin-right: 13px;
-margin-bottom: 11px;}
-.block-option-ul.new_block li{float: left;
-width: auto;
-margin-right: 12px;
-background: #eee;
-padding: 5px 9px;
-border-radius: 5px;}
-#rest, #sets{margin-bottom: 10px;}
-#rest input[type="number"], #sets input[type="number"]{
-
-width: 100%;
-
-}
-
-.img_icon1{
-    margin-top:0px;
-    float: right;
-}
-
-.sort_index{
-    margin-right: 12px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -221,7 +58,7 @@ width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
-    z-index: 50;
+    //z-index: 50;
 
     &.split-left { width: 380px; }
     &.split-right { left: 380px; }
@@ -283,120 +120,56 @@ width: 100%;
     }
 }
 
-.ui-state-hover {
-    background: #E3E3E3;
-    height: 42px;
+
+// A draggable single move in fitness library panel
+#workout-builder-app .single-move,
+.dragging-move-wrap.ui-draggable-dragging .single-move {
+    display: block;
     width: 100%;
-    margin-bottom: 7px;
-}
+    float: left;
+    background: #fff;
+    padding: 14px 14px 13px;
+    border-bottom: 1px solid #E5E5E5; // 90% Gray
+    @include clearfix();
+    @include user-select(none);
 
-.sortable-placeholder {
-    background: #E3E3E3;
-    height: 42px;
-    width: 100%;
-    margin-bottom: 7px;
-}
+    &:hover { @include cursor-grab(); }
 
-
-// Add a dropshadow when dragging a library move
-.dragging-move-wrap.ui-draggable-dragging {
-    width: 300px;
-    @include box-shadow( 0 0px 8px rgba(0, 0, 0, .25) );
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-}
-
-#workout-builder-app,
-.dragging-move-wrap.ui-draggable-dragging {
-    .single-move {
-        display: block;
-        width: 100%;
+    .move-thumb {
         float: left;
-        background: #fff;
-        padding: 14px 14px 13px;
-        border-bottom: 1px solid #E5E5E5; // 90% Gray
-        @include clearfix();
-        @include user-select(none);
+        margin-right: 14px;
+    }
 
-        &:hover {
-            //cursor: move;
-            cursor: grab;
-            cursor: -webkit-grab;
-            cursor: -moz-grab;
+    img {
+        width: 70px;
+        height: 42px;
+    }
+
+    .move-title {
+        float: left;
+        height: 42px;
+        padding: 6px 0px;
+
+        // Move Title
+        h6 {
+            font-size: 12px;
+            line-height: 14px;
+            color: $silver16;
+            @include gotham400();
+            margin-top: 0px;
+            margin-bottom: 4px;
         }
 
-        .move-thumb {
-            float: left;
-            margin-right: 14px;
-        }
-
-        img {
-            width: 70px;
-            height: 42px;
-        }
-
-        .move-title {
-            float: left;
-            height: 42px;
-            padding: 6px 0px;
-
-            // Move Title
-            h6 {
-                font-size: 12px;
-                line-height: 14px;
-                color: $silver16;
-                @include gotham400();
-                margin-top: 0px;
-                margin-bottom: 4px;
-            }
-
-            // Move Category
-            p {
-                font-size: 9px;
-                line-height: 12px;
-                @include gotham300();
-                color: $silver51;
-                margin: 0px;
-            }
+        // Move Category
+        p {
+            font-size: 9px;
+            line-height: 12px;
+            @include gotham300();
+            color: $silver51;
+            margin: 0px;
         }
     }
 }
-
-
-.ssssscrollable {
-  position: absolute;
-  top:100px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow: hidden;
-  overflow-y: scroll;
-cursor: -webkit-grab;
-cursor: -moz-grab;
-cursor: -webkit-grabbing;
-cursor: -moz-grabbing;
-}
-
-.static-top-bar {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  height: 100px;
-  width: 100%;
-  background-color: yellow;
-}
-
-
-
-
-
-
-
-
-
-
 
 
 .builder-header {
@@ -624,8 +397,6 @@ cursor: -moz-grabbing;
 
 
 
-
-
 // -------------------------------------------------------------------------- //
 // Workout Buidler - Workout Preview Editor (Right Side)
 // -------------------------------------------------------------------------- //
@@ -652,6 +423,7 @@ cursor: -moz-grabbing;
     }
 }
 
+
 // Drag and Drop Block Types
 .workout-blocks {
     padding: 28px 39px;
@@ -668,8 +440,15 @@ cursor: -moz-grabbing;
         margin-right: 14px;
         @include border-radius(5px);
         line-height: 14px;
-        cursor: move;
+
+        &:hover { @include cursor-grab(); }
     }
+}
+
+.block-option-ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
 }
 
 
@@ -684,10 +463,6 @@ cursor: -moz-grabbing;
     @include clearfix();
     position: relative;
 
-    .block {
-
-    }
-
     .single_move {
         background: #fff;
         padding: 13px 14px;
@@ -699,9 +474,8 @@ cursor: -moz-grabbing;
 }
 
 
-
 // Placeholder icon and text within Workout Preview
-.drag_img {
+.blank-workout-placeholder {
     width: 400px;
     position: absolute;
     left: 50%;
@@ -735,17 +509,13 @@ cursor: -moz-grabbing;
 
 
 
+
+
 // -------------------------------------------------------------------------- //
 // Workout Builder Block Styles
 // -------------------------------------------------------------------------- //
 
 
-
-.block-option-ul {
-    padding: 0;
-    list-style-type: none;
-    margin: 0;
-}
 
 .block-pop-content { display: none; }
 
@@ -813,6 +583,51 @@ cursor: -moz-grabbing;
         text-align: center;
     }
 }
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Workout Builder Drag and Drop Styles
+// -------------------------------------------------------------------------- //
+
+
+// When a library move from left panel is dragging
+.dragging-move-wrap.ui-draggable-dragging {
+    width: 300px;
+    @include box-shadow( 0 0px 8px rgba(0, 0, 0, .25) );
+    @include cursor-grabbing();
+}
+
+// When a workout block is dragging
+.dragging-block-wrap.ui-draggable-dragging {
+    @include box-shadow( 0 0px 8px rgba(0, 0, 0, .25) );
+    @include cursor-grabbing();
+
+    .block {
+        background: #efefef;
+        float: left;
+        display: block;
+        padding: 14px 21px;
+        line-height: 14px;
+    }
+}
+
+.ui-state-hover {
+    background: #E3E3E3;
+    height: 42px;
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+.sortable-placeholder {
+    background: #E3E3E3;
+    height: 42px;
+    width: 100%;
+    margin-bottom: 7px;
+}
+
 
 
 
@@ -960,6 +775,7 @@ cursor: -moz-grabbing;
         }
     }
 }
+
 
 .met_tab.blank_li {
     min-height: 50px;
@@ -1125,4 +941,127 @@ li.block_li {
     max-width: 1090px;
     margin: 0 auto;
     float: none;
+}
+
+.water_block {
+    color: white;
+
+    .water_head{
+        width: 30%;
+        float: left;
+        margin-left: 34%;
+        background: #7E8082;
+        border-radius: 5px;
+        padding: 10px;
+        position: relative;
+        cursor: pointer;
+        top: -22px;
+        text-align: center;
+    }
+
+    .water_hr{
+        margin-bottom: 0px;
+        border-top: 1px solid #111;
+        margin-top: 20px;
+    }
+}
+
+.add_photo>li {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+li.blank_li{
+    padding: 0px 0 40px;
+    margin-bottom: 0;
+}
+
+.main_container {
+    //padding-bottom: 14px;
+
+    span {
+        color: #fff;
+        width: 100%;
+        padding: 10px;
+        background: black;
+        display: block;
+    }
+
+    ul {
+        float: left;
+        width: 100%;
+        padding-left: 0px;
+        color: white;
+        margin-left: 0px;
+        margin-bottom: 15px;
+        border: 1px solid #000;
+        min-height: 100px;
+
+        li.first {
+            background: gray;
+            height: 35px;
+            padding: 10px;
+            margin: 9px 0px 4px 9px;
+            width: 98%;
+        }
+
+        li.others{
+            color: black;
+            list-style: none;
+            padding: 10px;
+            margin: 9px;
+            width: 98%;
+            @include border-radius(3px);
+            background: rgb(255, 255, 255);
+        }
+    }
+}
+
+li.single_move {
+    color: black;
+    list-style: none;
+    padding: 0px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+
+    div{
+        padding: 11px 0px 10px 20px;
+        border: 1px solid;
+        color: black;
+        margin-left: 0;
+        margin-bottom: 15px;
+        border: 1px solid #fff;
+        min-height: 45px;
+        background: #fff;
+        border-radius: 6px;
+    }
+}
+
+//li.main_container:last-child{ padding-bottom: 50px; }
+.bgg { background: red; }
+
+.block_options_html { display:none !important; }
+
+
+.main_container span.ssetting_icon {
+    margin-top: -40px;
+    background: none;
+    margin-bottom: 20px;
+}
+.popover-content {color:#000;}
+.time_flot {
+    float: left;
+    margin-right: 13px;
+    margin-bottom: 11px;
+}
+
+
+.img_icon1{
+    margin-top:0px;
+    float: right;
+}
+
+.sort_index{
+    margin-right: 12px;
 }

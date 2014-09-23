@@ -10,24 +10,30 @@
     </div>
 
     <div class="column split-right">
-        <div class="column-wrap autoheight">
-
-            <div class="workout-blocks">
-                <%= render "block_options"%>
+        <div id="workout-editor" class="column-wrap autoheight">
+            <div class="workout-blocks" id="catalog">
+                <ul class="block-option-ul new_block">
+                    <% Block::BLOCK_TYPE.each_with_index do |block, index| %>
+                        <% if index < 3 %>
+                            <li id="dragable_block_<%=index%>" class="block" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+                                <%= block.humanize %>
+                            </li>
+                        <% end %>
+                    <% end %>
+                </ul>
+                <%= render "block_templates" %>
             </div>
 
-            <div class="workout-preview">
-                <div id="cart">
-                    <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+            <div class="workout-preview" id="cart">
+                <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
-                        <%=hidden_field_tag :workout_id %>
-                        <ul class="add_photo drag_lib testt" data-block="main">
-                            <%= render "sub_blocks" %>
-                        </ul>
+                    <%=hidden_field_tag :workout_id %>
+                    <ul class="workout-list builder-dropzone add_photo drag_lib testt" data-block="main">
+                        <%= render "sub_blocks" %>
+                    </ul>
 
-                        <div class="hidden_field_workout"></div>
-                    <% end %>
-                </div>
+                    <div class="hidden_field_workout"></div>
+                <% end %>
             </div>
         </div>
     </div>
@@ -40,35 +46,32 @@ $(document).ready(function(){
     $("#cart .testt").sortable({
         placeholder: 'sortable-placeholder',
         update: function() {
-                block_sortable();
-              }
+            block_sortable();
+        }
     }).disableSelection();
+
     initDroppable();
 
     $("#catalog ul li").draggable({
-        helper: function() {
-            return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
-        },
         connectToSortable:'#cart ul li',
-        cursor: 'move', 
-        cursorAt: { top: 20, left: 80 },
-        zIndex: 100
+        cursor: 'grabbing',
+        zIndex: 9999,
+        appendTo: 'body',
+        containment: '#workout-editor',
+        helper: function() {
+            return $("<div class='dragging-block-wrap'></div>").append($(this).clone());
+        }
     });
 
     $("#move ul li").draggable({
-        //connectWith: '#cart ul li',
-        //helper: 'clone',
-
         connectToSortable:'#cart ul li',
         cursor: 'grabbing',
-        scroll : false,
-        cursorAt: { top: 35, right: 28 },
         zIndex: 9999,
-        //placeholder: 'portlet-placeholder ui-corner-all',
-        //placeholder: 'sortable-placeholder',
+        scroll : false,
         appendTo: 'body',
         containment: '#workout-builder-app',
         //handle: '.handle',
+        //placeholder: 'sortable-placeholder',
         helper: function() {
             return $("<div class='dragging-move-wrap'></div>").append($(this).clone());
         }
