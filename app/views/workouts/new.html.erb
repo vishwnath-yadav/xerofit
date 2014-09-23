@@ -21,7 +21,7 @@
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
 
                         <%=hidden_field_tag :workout_id %>
-                        <ul class="workout-list add_photo drag_lib testt main_ul builder-dropzone" data-block="main">
+                        <ul class="add_photo drag_lib testt" data-block="main">
                             <%= render "sub_blocks" %>
                         </ul>
 
@@ -38,11 +38,14 @@
 $(document).ready(function(){
 
     $("#cart .testt").sortable({
-        placeholder: 'sortable-placeholder'
+        placeholder: 'sortable-placeholder',
+        update: function() {
+                block_sortable();
+              }
     }).disableSelection();
     initDroppable();
 
-     $("#catalog ul li").draggable({
+    $("#catalog ul li").draggable({
         helper: function() {
             return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
         },

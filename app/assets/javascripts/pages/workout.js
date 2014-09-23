@@ -20,6 +20,34 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('click','.img_icon',function(){
+    block_popover_intilization();
+    var $input = $(this).closest('li.main_container');
+    var sets = $input.find('.content .sets_count').val();
+    var rest = $input.find('.content .rest_time').val();
+    $input.find('.popover-content .sets_by_popup').each(function(){
+      if($(this).attr('name') == "sets_count"){
+        $(this).val(sets);
+      }else{
+        $(this).val(rest);
+      }
+    })
+  });
+
+  $(document).on('click','.img_icon1',function(){
+    block_popover_intilization();
+    var $input = $(this).closest('li.water_block');
+    var min = $input.find('.content .minutes').val();
+    var sec = $input.find('.content .seconds').val();
+    $input.find('.popover-content .water_popup').each(function(){
+      if($(this).attr('name') == "minutes"){
+        $(this).val(min);
+      }else{
+        $(this).val(sec);
+      }
+    })
+  });
+
   $(document).on('click','#enter-fullscreen', function(){
     $.smoothScroll({
       scrollElement: $('body'),
@@ -92,12 +120,12 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('blur', ".lib_detail_popup", function(){
+  $(document).on("blur", '.sets_by_popup', function(){
     var libdetails_arr=[];
-    var $input = $(this).find('input');
-    var val = parseInt($input.val());
-    var name = $input.attr('name');
+    var val = parseInt($(this).val());
+    var name = $(this).attr('name');
     var $data = $(this).closest('li.main_container');
+    $(this).closest('li.main_container').find('.'+name).val(val);
     var block_id = $data.attr('id').split("_")[1];
     $data.find('ul li.others').each(function(){
       if ($(this).attr('id').split('_')[1] == block_id)
@@ -107,19 +135,19 @@ $(document).ready(function() {
       }
     })
     url = '/builder/update_move_details';
-    $.get(url, {block_id:block_id,  value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+    $.get(url, {block_id:block_id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
     });
   });
 
-  $(document).on('blur', ".water_detail", function(){
-    var $input = $(this).find('#minutes');
-    var $input1 = $(this).find('#seconds');
-    var val = parseInt($input.val());
-    var val1 = parseInt($input1.val());
-    var id = $input.attr('data-block-id');
+  $(document).on('blur', ".water_popup", function(){
+    var name = $(this).attr('name');
+    var value = parseInt($(this).val());
+    var $data = $(this).closest('li.water_block');
+    $(this).closest('li.water_block').find('.'+name).val(value);
+    var block_id = $data.attr('id').split("_")[1];
     
     url = '/builder/update_water_block_details';
-    $.get(url, {block_id:id, minute:val, second:val1}, function (data) {
+    $.get(url, {block_id:block_id, minute:value, name:name}, function (data) {
     });
   });
 
@@ -343,6 +371,18 @@ function block_popover_intilization(){
     },
     content: function () {
         return $(this).parent().find('.content').html();
+    }
+  });
+}
+
+function block_sortable(){
+  var i=1;
+  $('#cart ul li').each(function(){
+    if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){ 
+      $(this).find('.sort_index').each(function(){
+        $(this).text(i);
+        i=i+1;
+      })
     }
   });
 }
