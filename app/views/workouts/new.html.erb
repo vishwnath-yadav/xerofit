@@ -22,7 +22,7 @@
                 <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
                     <%=hidden_field_tag :workout_id %>
 
-                    <ul class="workout-list builder-dropzone add_photo drag_lib testt" data-block="main">
+                    <ul class="workout-list add_photo testt" data-block="main">
                         <%= render "sub_blocks" %>
                     </ul>
                     <div class="hidden_field_workout"></div>

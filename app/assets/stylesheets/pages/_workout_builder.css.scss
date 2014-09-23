@@ -403,27 +403,6 @@
 
 
 
-#workout-editor {
-    padding: 0px 39px 39px;
-    width: 100%;
-    float: left;
-    position: relative;
-    @include clearfix();
-
-    // Drag and Drop Target
-    .builder-dropzone {
-        padding: 39px;
-        float: left;
-        width: 100%;
-        position: relative;
-        background: #F2F2F2;
-        border: 1px solid #E3E3E3;
-        @include clearfix();
-        @include border-radius(6px);
-    }
-}
-
-
 // Drag and Drop Workout Blocks Section
 #workout-blocks {
     padding: 28px 39px;
@@ -432,46 +411,60 @@
     position: relative;
     @include clearfix();
 
+    ul.block-wrap {
+        padding: 0;
+        list-style-type: none;
+        margin: 0;
+        @include clearfix();
+    }
+
     .block {
         background: #efefef;
         float: left;
         display: block;
         padding: 14px 21px;
         margin-right: 14px;
-        @include border-radius(5px);
         line-height: 14px;
+        @include user-select(none);
+        @include border-radius(5px);
 
         &:hover { @include cursor-grab(); }
     }
 }
 
-.block-option-ul {
-    padding: 0;
-    list-style-type: none;
-    margin: 0;
-}
 
-
-// Workout Builder workout preview <ul>
-.workout-list {
-    display: block;
-    float: left;
+#workout-editor {
+    padding: 0px 39px 39px;
     width: 100%;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    @include clearfix();
+    float: left;
     position: relative;
+    @include clearfix();
 
-    .single_move {
-        background: #fff;
-        padding: 13px 14px;
-        line-height: 16px;
-        font-size: 14px;
-        @include gotham500();
-        margin-bottom: 7px;
+    // Workout Builder workout preview <ul>
+    ul.workout-list {
+        list-style-type: none;
+        display: block;
+        position: relative;
+        float: left;
+        width: 100%;
+        padding: 39px;
+        margin: 0;
+        background: #F2F2F2;
+        border: 1px solid #E3E3E3;
+        @include clearfix();
+        @include border-radius(6px);
+
+        .single_move {
+            background: #fff;
+            padding: 13px 14px;
+            line-height: 16px;
+            font-size: 14px;
+            @include gotham500();
+            margin-bottom: 7px;
+        }
     }
 }
+
 
 
 // Placeholder icon and text within Workout Preview
