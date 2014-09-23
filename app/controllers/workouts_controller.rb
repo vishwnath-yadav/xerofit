@@ -70,15 +70,17 @@ class WorkoutsController < ApplicationController
 	def update_water_block_details
 		if params[:block_id].present?
 			@block = Block.find(params[:block_id])
-			@block.minutes = params[:minute]
-			@block.seconds = params[:second]
+			if params[:name] == "minutes"
+					@block.minutes = params[:minute]
+			elsif params[:name] == "seconds"
+					@block.seconds = params[:second]
+			end
 			@block.save 
 		end
 		render text: true
 	end
 
 	def save_blocks
-		
 		@workout = Workout.find_by_id(params[:workout_id])
 		if params[:block].present?
 			block_hash = params[:block]
@@ -110,8 +112,6 @@ class WorkoutsController < ApplicationController
 	def load_lib_details
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
 		if @lib_detail.present?
-			# @lib_detail.sets_count = params[:sets]
-			# @lib_detail.rest_time = params[:rests]
 			@lib_detail.save
 		end
 		respond_to do |format|
@@ -159,29 +159,32 @@ class WorkoutsController < ApplicationController
 			render json: {id: @block.id, lib_detail_id: @lib_detail.id}
 		else
 			@lib_detail = MoveDetail.new()
+			if params[:sets].present? && params[:rest].present?
+				@lib_detail.sets_count = params[:sets]
+				@lib_detail.rest_time = params[:rest]
+			end
 			@lib_detail.save
 			render json: {lib_detail_id: @lib_detail.id}
 		end
 	end
 
-	def create_workout_block
-		# binding.pry
-		if params[:drag_type] == "block"
-			@block = Block.new(name: params[:block_name])
-			@block.save
-			render json:{ id: @block.id}
-		elsif params[:block_name] == Block::BLOCK_TYPE[3]
-			@block = Block.new(name: params[:block_name])
-			@block.save
-			@lib_detail = MoveDetail.new()
-			@lib_detail.save
-			render json: {id: @block.id, lib_detail_id: @lib_detail.id}
-		else
-			@lib_detail = MoveDetail.new()
-			@lib_detail.save
-			render json: {lib_detail_id: @lib_detail.id}
-		end
-	end
+	# def create_workout_block
+	# 	if params[:drag_type] == "block"
+	# 		@block = Block.new(name: params[:block_name])
+	# 		@block.save
+	# 		render json:{ id: @block.id}
+	# 	elsif params[:block_name] == Block::BLOCK_TYPE[3]
+	# 		@block = Block.new(name: params[:block_name])
+	# 		@block.save
+	# 		@lib_detail = MoveDetail.new()
+	# 		@lib_detail.save
+	# 		render json: {id: @block.id, lib_detail_id: @lib_detail.id}
+	# 	else
+	# 		@lib_detail = MoveDetail.new()
+	# 		@lib_detail.save
+	# 		render json: {lib_detail_id: @lib_detail.id}
+	# 	end
+	# end
 
 	private
 	  def workout_params

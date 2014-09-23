@@ -38,11 +38,14 @@
 $(document).ready(function(){
 
     $("#cart .testt").sortable({
-        placeholder: 'sortable-placeholder'
+        placeholder: 'sortable-placeholder',
+        update: function() {
+                block_sortable();
+              }
     }).disableSelection();
     initDroppable();
 
-     $("#catalog ul li").draggable({
+    $("#catalog ul li").draggable({
         helper: function() {
             return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
         },
