@@ -17,11 +17,11 @@
             </div>
 
             <div class="workout-preview">
-                <div id="cart">
                     <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-
                         <%=hidden_field_tag :workout_id %>
-                        <ul class="add_photo drag_lib testt" data-block="main">
+                <div id="cart">
+
+                        <ul class="add_photo drag_lib testt" data-block="main" style="height: 500px;">
                             <%= render "sub_blocks" %>
                         </ul>
 
@@ -33,18 +33,27 @@
     </div>
 
 </div>
-
+<style type="text/css">
+.portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+  }
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 
     $("#cart .testt").sortable({
-        placeholder: 'sortable-placeholder',
-        update: function() {
-                block_sortable();
-              }
-    }).disableSelection();
-    initDroppable();
-
+          accept: ".move_sort",
+          placeholder: "portlet-placeholder ui-corner-all",
+          receive: function(e,ui) {
+              copyHelper= null;
+          },
+          update: function(event, ui) {
+        /* If newelement ==1, this is a new element to the list, transform it */
+            ui.item.html('<div class="portlet-header">Feeds</div>');         
+          }
+    })
     $("#catalog ul li").draggable({
         helper: function() {
             return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
@@ -55,23 +64,23 @@ $(document).ready(function(){
         zIndex: 100
     });
 
-    $("#move ul li").draggable({
-        //connectWith: '#cart ul li',
-        //helper: 'clone',
-
-        connectToSortable:'#cart ul li',
+    $(".move_sort").sortable({
+        connectWith:'#cart ul li',
+        forcePlaceholderSize: false,
+        placeholder: "portlet-placeholder ui-corner-all",
+        helper: function(e,li) {
+          copyHelper= li.clone().insertAfter(li);
+          return $("<div class='dragging-move-wrap'></div>").append(li.clone());
+        },
+        stop: function() {
+          copyHelper && copyHelper.remove();
+        },
         cursor: 'grabbing',
         scroll : false,
         cursorAt: { top: 35, right: 28 },
         zIndex: 9999,
-        //placeholder: 'portlet-placeholder ui-corner-all',
-        //placeholder: 'sortable-placeholder',
-        appendTo: 'body',
-        containment: '#workout-builder-app',
-        //handle: '.handle',
-        helper: function() {
-            return $("<div class='dragging-move-wrap'></div>").append($(this).clone());
-        }
+        appendTo: 'body'
+        
     });
     flag = true;
 })

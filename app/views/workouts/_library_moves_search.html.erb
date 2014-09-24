@@ -3,22 +3,18 @@
         <%# if move.has_full_detail %>
             <%#= move.has_full_detail %>
         <% if @enabled_move.present? %>
-        <ul class="fitness-library-moves">
+        <ul class="fitness-library-moves move_sort">
             <% @enabled_move.each do |move|%>
-            <li class="single-move" data-dragable-type="move" data-move-id="<%=move.id%>">
-                <div class="move-thumb">
-                    <% if move.library_video.present? && move.library_video.image.present? %>
-                        <img src="<%= move.library_video.image %>" alt="<%=move.title%>">
+            <div class="single-move" data-dragable-type="move" data-move-id="<%=move.id%>">
+                <div class="move-thumb"><% if move.library_video.present? && move.library_video.image.present? %>
+                        <img src="<%= move.library_video.image %>" alt="<%=move.title%>" style="height: 42px; width:50px;">
                     <% else %>
                         <img src="/assets/ex_2.png">
                     <% end %>
                 </div>
-
-                <div class="move-title">
-                    <h6><%= truncate(move.title, :length => 26, :seperator => ' ...') %></h6>
-                    <p><%= move.category %></p>
-                </div>
-            </li>
+                <div class="move-title"><h6><%= truncate(move.title, :length => 26, :seperator => ' ...') %></h6>
+                    <p><%= move.category %></p></div>
+              </div>
             <% end %>
         </ul>
         <% end %>
