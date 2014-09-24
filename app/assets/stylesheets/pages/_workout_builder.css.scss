@@ -624,6 +624,10 @@
     float: left;
 }
 
+li.sortable-placeholder + li.first{
+   display: none;
+}
+
 
 
 
@@ -1011,7 +1015,7 @@ li.blank_li{
     }
 
     ul.block-body {
-        background: #fff;
+        background: #efefef;
         float: left;
         width: 100%;
         @include clearfix();

@@ -1,7 +1,7 @@
 <ul class="block-wrap">
     <% Block::BLOCK_TYPE.each_with_index do |block, index| %>
         <% if index < 3 %>
-            <li id="dragable_block_<%=index%>" class="block" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
+            <li id="dragable_block_<%=index%>" class="block moving" data-dragable-type="block" data-block-name="<%=Block::BLOCK_TYPE[index]%>">
                 <%= block.humanize %>
             </li>
         <% end %>
