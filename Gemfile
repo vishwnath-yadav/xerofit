@@ -66,6 +66,7 @@ gem 'devise'
  gem 'mini_magick'
  gem 'carmen-rails'
  gem 'fog'
+ gem 'unf'
  # gem 'rmagick'
  # gem 'will_paginate'
  gem "paperclip", "~> 4.1"
