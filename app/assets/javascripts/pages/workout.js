@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click','.img_icon',function(){
+  $(document).on('click','.block-settings',function(){
     block_popover_intilization();
     var $input = $(this).closest('li.main_container');
     var sets = $input.find('.content .sets_count').val();

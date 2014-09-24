@@ -4,6 +4,7 @@
         $("#workout-editor ul li").droppable({
             accept: "#workout-blocks ul li, #move ul li",
             hoverClass: "ui-state-hover",
+            placeholder: 'sortable-placeholder',
             over: function( event, ui ) {
                 if($(this).parent().attr('data-block') == "block"){
                     flag = false;
@@ -83,7 +84,7 @@
                     }
                 }
                 initDroppable();
-                $("#workout-editor .testt").sortable().disableSelection();
+                $("#workout-editor .workout-list").sortable().disableSelection();
                 block_sortable();
 
                 event.preventDefault();

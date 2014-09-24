@@ -22,7 +22,7 @@
                 <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
                     <%=hidden_field_tag :workout_id %>
 
-                    <ul class="workout-list add_photo testt" data-block="main">
+                    <ul class="workout-list add_photo" data-block="main">
                         <%= render "sub_blocks" %>
                     </ul>
                     <div class="hidden_field_workout"></div>
@@ -34,23 +34,26 @@
     </div>
 </div>
 
-
+<%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
 
-    $("#workout-editor .testt").sortable({
+    $("#workout-editor .workout-list").sortable({
         placeholder: 'sortable-placeholder',
+        handle: '.block-header',
+        cursor: 'grabbing',
         update: function() {
             block_sortable();
-        }
+        },
     }).disableSelection();
 
     initDroppable();
 
     $("#workout-blocks ul li").draggable({
         connectToSortable:'#workout-editor ul li',
+        //placeholder: 'sortable-placeholder',
         cursor: 'grabbing',
         zIndex: 9999,
         appendTo: 'body',
@@ -67,7 +70,6 @@ $(document).ready(function(){
         scroll : false,
         appendTo: 'body',
         containment: '#workout-builder-app',
-        //handle: '.handle',
         //placeholder: 'sortable-placeholder',
         helper: function() {
             return $("<div class='dragging-move-wrap'></div>").append($(this).clone());
@@ -80,4 +82,4 @@ $(document).ready(function(){
 
 
 <%= render :partial => "workouts/builderscripts/builder_drag_drop" %>
-<%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>
+
