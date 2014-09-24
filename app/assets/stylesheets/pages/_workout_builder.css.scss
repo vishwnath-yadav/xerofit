@@ -609,16 +609,19 @@
 
 .ui-state-hover {
     background: #E3E3E3;
-    height: 42px;
+    //height: 42px;
     width: 100%;
     margin-bottom: 7px;
 }
 
 .sortable-placeholder {
     background: #E3E3E3;
-    height: 42px;
+    //height: 42px;
+    padding: 28px;
     width: 100%;
+    margin-top: 7px;
     margin-bottom: 7px;
+    float: left;
 }
 
 
@@ -947,9 +950,9 @@ li.li_active { background: $active-color;}
 }
 
 .add_photo>li {
-    display: block;
-    float: left;
-    width: 100%;
+    //display: block;
+    //float: left;
+    //width: 100%;
 }
 
 li.blank_li{
@@ -962,6 +965,8 @@ li.blank_li{
     @include clearfix();
     position: relative;
     width: 100%;
+    margin-bottom: 14px;
+    float: left;
     //padding-bottom: 14px;
 
     .block-header {
@@ -1012,6 +1017,7 @@ li.blank_li{
         @include clearfix();
         border: 1px solid $silver51;
         padding: 7px;
+        list-style-type: none;
         //margin-bottom: 15px;
         //min-height: 100px;
 
