@@ -1,7 +1,5 @@
 <%= render "workout_builder_header" %>
-
 <div id="workout-builder-app" class="builder autoheight">
-
     <div class="column split-left">
         <div class="column-wrap autoheight">
             <%= render "library_moves_panel" %>
@@ -12,81 +10,23 @@
     <div class="column split-right">
         <div class="column-wrap autoheight">
 
-            <div class="workout-blocks">
-                <%= render "block_options"%>
+            <div id="workout-blocks">
+                <%= render "workout_blocks" %>
+                <%= render "block_templates" %>
             </div>
 
-            <div class="workout-preview">
-                    <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-                        <%=hidden_field_tag :workout_id %>
-                <div id="cart">
+            <div id="workout-editor">
+                <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
+                    <%=hidden_field_tag :workout_id %>
 
-                        <ul class="add_photo drag_lib testt" data-block="main" style="height: 500px;">
-                            <%= render "sub_blocks" %>
-                        </ul>
-
-                        <div class="hidden_field_workout"></div>
-                    <% end %>
-                </div>
+                    <ul class="workout-list add_photo main_drop_block" data-block="main">
+                        <%= render "sub_blocks" %>
+                    </ul>
+                <% end %>
             </div>
+
         </div>
     </div>
-
 </div>
-<style type="text/css">
-.portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-  }
-</style>
-<script type="text/javascript">
-$(document).ready(function(){
 
-    $("#cart .testt").sortable({
-          accept: ".move_sort",
-          placeholder: "portlet-placeholder ui-corner-all",
-          receive: function(e,ui) {
-              copyHelper= null;
-          },
-          update: function(event, ui) {
-        /* If newelement ==1, this is a new element to the list, transform it */
-            ui.item.html('<div class="portlet-header">Feeds</div>');         
-          }
-    })
-    $("#catalog ul li").draggable({
-        helper: function() {
-            return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
-        },
-        connectToSortable:'#cart ul li',
-        cursor: 'move', 
-        cursorAt: { top: 20, left: 80 },
-        zIndex: 100
-    });
-
-    $(".move_sort").sortable({
-        connectWith:'#cart ul li',
-        forcePlaceholderSize: false,
-        placeholder: "portlet-placeholder ui-corner-all",
-        helper: function(e,li) {
-          copyHelper= li.clone().insertAfter(li);
-          return $("<div class='dragging-move-wrap'></div>").append(li.clone());
-        },
-        stop: function() {
-          copyHelper && copyHelper.remove();
-        },
-        cursor: 'grabbing',
-        scroll : false,
-        cursorAt: { top: 35, right: 28 },
-        zIndex: 9999,
-        appendTo: 'body'
-        
-    });
-    flag = true;
-})
-
-</script>
-
-
-<%= render :partial => "workouts/builderscripts/builder_drag_drop" %>
 <%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>

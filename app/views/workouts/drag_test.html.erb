@@ -1,119 +1,80 @@
-  <style>
-  body {
-    min-width: 520px;
-  }
-  .column {
-    width: 170px;
-    float: left;
-    padding-bottom: 100px;
-  }
-  .column_full {
-    width: 100%;
-    float: left;
-    padding-bottom: 100px;
-  }
-  .portlet1 {
-    margin: 0 1em 1em 0;
-    padding: 0.3em;
-    border: 1px solid red;
-  }
-  .portlet-header1 {
-    padding: 0.2em 0.3em;
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-  .portlet {
-    margin: 0 1em 1em 0;
-    padding: 0.3em;
-    border: 1px solid red;
-  }
-  .portlet-header {
-    padding: 0.2em 0.3em;
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-
-  .portlet-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin-top: -8px;
-  }
-  .portlet-content {
-    padding: 0.4em;
-  }
-  .portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-  }
-  </style>
-  <script>
-  $(function() {
-
-    $( ".column" ).sortable({
-          connectWith: ".column_full",
-          forcePlaceholderSize: false,
-          placeholder: "portlet-placeholder ui-corner-all",
-          helper: function(e,li) {
-              copyHelper= li.clone().insertAfter(li);
-              return li.clone();
-          },
-          stop: function() {
-              copyHelper && copyHelper.remove();
-          }
-      });
-      $(".column_full").sortable({
-          accept: ".column",
-          placeholder: "portlet-placeholder ui-corner-all",
-          receive: function(e,ui) {
-              copyHelper= null;
-          },
-          update: function(event, ui) {
-        /* If newelement ==1, this is a new element to the list, transform it */
-            ui.item.html('<div class="portlet-header">Feeds</div>');         
-          }
-      });
-
-  });
-  </script>
-</head>
-<body>
-<div style="width:100%;">
- <div style="float:left;width:30%;border:1px solid green;margin-right:20px">
-    <div class="column">
-      <div class="portlet">
-        <div class="portlet-header">Feeds</div>
-        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-      </div>
+<div id="products">
+    <h1 class="ui-widget-header">Products</h1>    
+    <div id="catalog">
+        <h3><a href="#">T-Shirts</a></h3>
+        <div>
+            <ul>
+                <li id="1">Lolcat Shirt</li>
+                <li id="2">Cheezeburger Shirt</li>
+                <li id="3">Buckit Shirt</li>
+            </ul>
+        </div>
+        <h3><a href="#">Bags</a></h3>
+        <div>
+            <ul>
+                <li>Zebra Striped</li>
+                <li>Black Leather</li>
+                <li>Alligator Leather</li>
+            </ul>
+        </div>
+        <h3><a href="#">Gadgets</a></h3>
+        <div>
+            <ul>
+                <li>iPhone</li>
+                <li>iPod</li>
+                <li>iPad</li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
 
- <div style="float:left;width:60%;border:1px solid black;">
-    <div class="column column_full">
-      <div class="portlet">
-        <div class="portlet-header">Feeds</div>
-        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-      </div>
-     
-      <div class="portlet">
-          <div class="column_full" style="border: 1px solid black;width: 50%;">
-         
-            <div class="portlet">
-              <div class="portlet-header">Feeds</div>
-              <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-            </div>
-           
-            <div class="portlet">
-              <div class="portlet-header">News</div>
-              <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-            </div>
-           
-          </div>
-      </div>
-     
+<div id="cart">
+    <h1 class="ui-widget-header">Shopping Cart</h1>
+    <div class="ui-widget-content">
+        <ol>
+            <li class="placeholder" id="test">Add your items here</li>
+            <ol>
+                <li class="placeholder" id="test">Add your items here</li>
+            </ol>
+        </ol>
     </div>
-     
-        
-    </div>
- 
+</div>
+
+<script type="text/javascript">
+/*o.v.*/
+jQuery(document).ready(function($) {
+
+    //make the catalogue and the cart into "sortables"
+    $("#catalog ul, #cart ol").sortable().disableSelection();
+    
+    function initDroppable() {
+        $("#cart ol li").droppable({
+            accept: "#catalog ul li",
+            hoverClass: "ui-state-hover",
+            drop: function(event, ui) {
+                $("<li></li>").text(ui.draggable.text()).insertAfter(this);
+                console.log(ui.draggable);
+                console.log(ui.draggable.attr('id'));
+                console.log($(this).parent());
+                initDroppable();
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
+    
+    //now initialize the cart as a droppable for the first run
+    initDroppable();
+
+});
+</script>
+
+<style type="text/css">
+h1 { padding: .2em; margin: 0; }
+   #products { float:left; width: 500px; margin-right: 2em;border:1px dashed orange; }
+   #products h3 {background:#eee;}
+    /*This float below really didn't want to play with my browser*/
+    /*#cart { width: 200px; float: left; }*/
+    /* style the list to maximize the droppable hitarea */
+    #cart ol { margin: 0; padding: 1em 0 1em 3em; }
+</style>

@@ -10,13 +10,13 @@
             var offsetHeight = height + topbarHeight + controlBarHeight;
 
             // Calculate Height of workout preview dropzone block
-            var workoutBlocksHeader = $('.workout-blocks').outerHeight();
+            var workoutBlocksHeader = $('#workout-blocks').outerHeight();
             var dropzoneOffsetHeight = buttonHeaderHeight + workoutBlocksHeader + 39;
 
 
             // Set the Height and Min-Heights
             $('.autoheight').css({'height': (height - buttonHeaderHeight)+'px'})
-            $('.builder-dropzone').css({'min-height': (height - dropzoneOffsetHeight)+'px'})
+            $('.workout-list').css({'min-height': (height - dropzoneOffsetHeight)+'px'})
         };
 
 
