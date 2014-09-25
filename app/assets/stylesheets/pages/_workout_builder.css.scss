@@ -1031,6 +1031,7 @@ li.blank_li{
             background: #e3e3e3;
             height: 42px;
             line-height: 42px;
+            margin-bottom: 5px;
         }
 
         li.others{
@@ -1091,4 +1092,14 @@ li.single_move {
 
 .sort_index{
     margin-right: 12px;
+}
+
+.popover-title{
+  color:black;   
+}
+
+
+.active_li{
+    background: #E6F2F8 !important;
+    border: 1px solid #45aafa;
 }

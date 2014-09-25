@@ -168,6 +168,20 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def remove_block
+		if params[:block_id].present?
+			block = Block.find(params[:block_id])
+			block.destroy
+		end
+		if params[:lib_detail_arr].present?
+			lib_details = params[:lib_detail_arr]
+			lib_details.each do |details_id|
+				detail = MoveDetail.find(details_id)
+				detail.destroy
+			end
+		end
+		render text: true
+	end
 	# def create_workout_block
 	# 	if params[:drag_type] == "block"
 	# 		@block = Block.new(name: params[:block_name])

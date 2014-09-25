@@ -20,6 +20,34 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('click','.remove_block',function(){
+    var arr = []
+    var $input = $(this).closest('li.main_container');
+    var id = $input.attr('id').split("_")[1];
+    $input.find('li.load_lib_detail').each(function(){
+       var lib_detail_id = $(this).attr('id').split("_")[3];
+        arr.push(lib_detail_id);
+    })
+    url = '/builder/remove_block';
+    $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
+      console.log(data);
+      if(data){
+        $input.remove();
+      }
+    });
+  })
+
+  $(document).on('click','.remove_water_block',function(){
+    var $input = $(this).closest('li.water_block');
+    var id = $input.attr('id').split("_")[1];
+    url = '/builder/remove_block';
+    $.get(url, {block_id:id}, function (data) {
+      if(data){
+        $input.remove();
+      }
+    });
+  })
+
   $(document).on('click','.block-settings',function(){
     block_popover_intilization();
     var $input = $(this).closest('li.main_container');
@@ -195,20 +223,34 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".load_lib_detail", function(e){
-    $(this).addClass('li_active');
-    if($(e.target).hasClass("rm")){
-      var hiden_field_id = $(this).attr('id');
-      var main_block_id = hiden_field_id.split('_')[0];
-      $("#block_"+hiden_field_id).remove();
-      $('#block_'+main_block_id).remove();
-      remove_library_from_block(hiden_field_id);
-      $(this).remove();
+    // $(this).addClass('li_active');
+    // if($(e.target).hasClass("rm")){
+    //   var hiden_field_id = $(this).attr('id');
+    //   var main_block_id = hiden_field_id.split('_')[0];
+    //   $("#block_"+hiden_field_id).remove();
+    //   $('#block_'+main_block_id).remove();
+    //   remove_library_from_block(hiden_field_id);
+    //   $(this).remove();
+    // }
+    // else{
+    //   var $this = $(this);
+    //   $('.li_active').removeClass('li_active');
+    //   $this.addClass('li_active');
+    //   var block_id = $this.attr('id') ? $this.attr('id') : []
+    //   if(block_id){
+    //     var lib_detail = block_id.split("_")[3];
+    //     load_library_content(lib_detail, block_id);
+    //   }
+    // }
+    // var $this = $(this);
+    if($(this).hasClass('active_li')){
+      $('.active_li').removeClass('active_li');
+      $("#move-details-panel").css('display', 'none');
     }
     else{
-      var $this = $(this);
-      $('.li_active').removeClass('li_active');
-      $this.addClass('li_active');
-      var block_id = $this.attr('id') ? $this.attr('id') : []
+      $('.active_li').removeClass('active_li');
+      $(this).addClass('active_li');
+      var block_id = $(this).attr('id') ? $(this).attr('id') : []
       if(block_id){
         var lib_detail = block_id.split("_")[3];
         load_library_content(lib_detail, block_id);
@@ -315,7 +357,7 @@ $(document).ready(function() {
 
 // $(document).on('page:load', ready);
 function initialize_drag_drop_js(){
-    var drag_type = '', string = '', block_name = '', lib_id = '',text = '';
+    var drag_type = '', string = '', block_name = '', lib_id = '',text = '',object = '',flag = true;
     $(".main_drop_block").sortable({
         placeholder: 'sortable-placeholder',
         cursor: 'grabbing',
@@ -326,8 +368,15 @@ function initialize_drag_drop_js(){
             if(drag_type == "block"){ 
               if($(this).attr('data-block') == "main"){
                   block_name = ui.item.attr("data-block-name");
-                  if(block_name == BLOCK_TYPE[2]){          
+                  if(block_name == BLOCK_TYPE[2]){
+                    object = $(this).find('li.moving');
+                    if(object.hasClass('moving') && (object.prev("li").attr('data-blck') == object.next('li').attr('data-blck')) && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
                       html.push($('.water_break_block').html());
+                    }else{
+                      object.remove();
+                      alert("Water break not add in this position.");
+                      return false;
+                    }
                   }else{
                       if(block_name == BLOCK_TYPE[0]){
                           string = $('.circuit_block').html();
@@ -340,21 +389,27 @@ function initialize_drag_drop_js(){
               }
             }else{
               text = ui.item.find('h6').text();
-              console.log(lib_id);
               if($(this).attr('data-block') == "block"){
                   block_name = $(this).attr('data-block-name');
                   var li_size = $(this).find('li.others').size();
                   var alrt = check_library_count(li_size, block_name);
                   if(alrt != ''){
                       alert(alrt);
+                      flag = false;
                   }
                   else if(check_library_present(lib_id, $(this))){
                       alert("Library Already Exists");
+                      flag = false;
                   }
                   else{
+                    var li_length = $(this).find('li.first').size();
+                    $(this).find('li.first').remove();
+                    
                     string = $('.block_inner_move').html();
                     html.push(string);
-                      
+                    for (var i = 1; i < li_length; i++) {
+                      html.push('<li class="first">'+i+'</li>');
+                    }
                   }
                 }
                 else{
@@ -369,13 +424,17 @@ function initialize_drag_drop_js(){
             else{
                 $(this).find('li').replaceWith(html.join(''));
             }
-            $('.for_id').find('b').after(text);
-            save_details(lib_id, block_name, drag_type, $('.workout-list .for_id'));
-            // console.log($('.for_id').length)
+            $('.for_id b.txt').text(text);
+            if(flag){
+              save_details(lib_id, block_name, drag_type, $('.workout-list .for_id'));
+            }
             $(this).find('li.moving').removeClass('moving');
             initialize_drag_drop_js();
         }, 
         update: function (){
+          if(object != ''){
+            object.remove();
+          }
           block_sortable();
         }
     }).disableSelection();
