@@ -612,6 +612,7 @@
 // Main wrap for workout block content Popovers
 .block-popover-wrap {
     @include clearfix();
+    color: $silver31;
 
     .input-section {
         width: 100%;
@@ -685,9 +686,11 @@
 // -------------------------------------------------------------------------- //
 
 
+
 // When a library move from left panel is dragging
 .dragging-move-wrap.ui-draggable-dragging {
     width: 300px !important;
+    height: 70px !important;
     @include box-shadow( 0 0px 8px rgba(0, 0, 0, .25) );
     @include cursor-grabbing();
 }
@@ -715,21 +718,20 @@
     }
 }
 
-.ui-state-hover {
-    background: red;
-    //height: 42px;
-    width: 100%;
-    margin-bottom: 7px;
-}
-
 .sortable-placeholder {
-    background: #E3E3E3;
-    //height: 42px;
-    padding: 28px;
+    float: left;
+    background: #D8D8D8;
+    padding: 14px;
     width: 100%;
     margin-top: 7px;
     margin-bottom: 7px;
-    float: left;
+    line-height: 28px;
+    text-align: center;
+
+    &:before {
+        content: 'Add content here';
+        color: $silver51;
+    }
 }
 
 li.sortable-placeholder + li.first { display: none; }
@@ -741,6 +743,7 @@ li.sortable-placeholder + li.first { display: none; }
 // -------------------------------------------------------------------------- //
 // Previous Workout Builder styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
+
 
 
 .fetured_li {
