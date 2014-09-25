@@ -2,14 +2,14 @@
     <div class="homepage_icons">
         <ul>
             <li>
-                <a href="<%= params[:user].present? ? trainer_dashboard_index_path(user: params[:user]): trainer_dashboard_index_path %>"><img src="/assets/icons/apps/home_app_large.png" alt="Home" />Home</a>
+                <a href="<%= params[:user].present? ? trainer_dashboard_index_path(user: params[:user]): trainer_dashboard_index_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/home_app_large.png" alt="Home" />Home</a>
             </li>
             <li>
-                <a href="<%= params[:user].present? ? libraries_path(user: params[:user]) : libraries_path %>"><img src="/assets/icons/apps/fitness_library_app_large.png" alt="Fitness Library" />Fitness Library</a>
+                <a href="<%= params[:user].present? ? libraries_path(user: params[:user]) : libraries_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/fitness_library_app_large.png" alt="Fitness Library" />Fitness Library</a>
             </li>
             <li>
                 <%if current_user.admin?%>
-                    <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />
+                    <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />
                 <% else %>
                     <a href="#" class="workout-builder-soon"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />
                 <% end %>

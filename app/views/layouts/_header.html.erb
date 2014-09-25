@@ -5,18 +5,19 @@
                 <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
                 <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
                     <li class="left_app">
+                        "data-no-turbolink" => 'true'
                         <a href="<%= trainer_dashboard_index_path %>" class="dropdown_app_icon home_app">
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= libraries_path %>" class="dropdown_app_icon fitness_library_app">
+                        <a href="<%= libraries_path %>" class="dropdown_app_icon fitness_library_app" data-no-turbolink="true">
                             <span>Fitness Library</span>
                         </a>
                     </li>
                     <li>
                     <%if current_user.admin?%>
-                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app">
+                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app" data-no-turbolink="true">
                     <% else %>
                         <a href="#" class="workout-builder-soon dropdown_app_icon workout_builder_app">
                     <% end %>
@@ -24,7 +25,7 @@
                         </a>
                     </li>
                     <li class="right_app">
-                        <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta" class="dropdown_app_icon support_app">
+                        <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta" class="dropdown_app_icon support_app" data-no-turbolink="true">
                             <span>Support</span>
                         </a>
                     </li>
