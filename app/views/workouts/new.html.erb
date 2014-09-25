@@ -11,7 +11,7 @@
         <div class="column-wrap autoheight">
 
             <div id="workout-blocks">
-                <%= render "workout_blocks" %>
+                <%= render "workout_blocks_section" %>
                 <%= render "workouts/builder_blocks/block_templates" %>
             </div>
 
@@ -20,7 +20,8 @@
                     <%=hidden_field_tag :workout_id %>
 
                     <ul class="workout-list add_photo main_drop_block" data-block="main">
-                        <%= render "sub_blocks" %>
+                        <!--div class="blank-workout-placeholder"></div-->
+                        <%#= render "sub_blocks" %>
                     </ul>
                 <% end %>
             </div>
