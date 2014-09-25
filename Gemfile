@@ -66,13 +66,14 @@ gem 'devise'
  gem 'mini_magick'
  gem 'carmen-rails'
  gem 'fog'
+ gem 'unf'
  # gem 'rmagick'
  # gem 'will_paginate'
  gem "paperclip", "~> 4.1"
  gem 'rails4-autocomplete'
  gem 'obfuscate_id', :git => 'https://github.com/namick/obfuscate_id.git'
  gem 'ckeditor_rails'
- gem 'browser-timezone-rails'
+ # gem 'browser-timezone-rails'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

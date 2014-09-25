@@ -20,7 +20,35 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click','.img_icon',function(){
+  $(document).on('click','.remove_block',function(){
+    var arr = []
+    var $input = $(this).closest('li.main_container');
+    var id = $input.attr('id').split("_")[1];
+    $input.find('li.load_lib_detail').each(function(){
+       var lib_detail_id = $(this).attr('id').split("_")[3];
+        arr.push(lib_detail_id);
+    })
+    url = '/builder/remove_block';
+    $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
+      console.log(data);
+      if(data){
+        $input.remove();
+      }
+    });
+  })
+
+  $(document).on('click','.remove_water_block',function(){
+    var $input = $(this).closest('li.water_block');
+    var id = $input.attr('id').split("_")[1];
+    url = '/builder/remove_block';
+    $.get(url, {block_id:id}, function (data) {
+      if(data){
+        $input.remove();
+      }
+    });
+  })
+
+  $(document).on('click','.block-settings',function(){
     block_popover_intilization();
     var $input = $(this).closest('li.main_container');
     var sets = $input.find('.content .sets_count').val();
@@ -194,20 +222,35 @@ $(document).ready(function() {
     $("#move-details-panel").css('display', 'none');
   });
 
-  $(document).on("click",".load_lib_detail", function(e){
-    if($(e.target).hasClass("rm")){
-      var hiden_field_id = $(this).attr('id');
-      var main_block_id = hiden_field_id.split('_')[0];
-      $("#block_"+hiden_field_id).remove();
-      $('#block_'+main_block_id).remove();
-      remove_library_from_block(hiden_field_id);
-      $(this).remove();
+  $(document).on("click", ".load_lib_detail", function(e){
+    // $(this).addClass('li_active');
+    // if($(e.target).hasClass("rm")){
+    //   var hiden_field_id = $(this).attr('id');
+    //   var main_block_id = hiden_field_id.split('_')[0];
+    //   $("#block_"+hiden_field_id).remove();
+    //   $('#block_'+main_block_id).remove();
+    //   remove_library_from_block(hiden_field_id);
+    //   $(this).remove();
+    // }
+    // else{
+    //   var $this = $(this);
+    //   $('.li_active').removeClass('li_active');
+    //   $this.addClass('li_active');
+    //   var block_id = $this.attr('id') ? $this.attr('id') : []
+    //   if(block_id){
+    //     var lib_detail = block_id.split("_")[3];
+    //     load_library_content(lib_detail, block_id);
+    //   }
+    // }
+    // var $this = $(this);
+    if($(this).hasClass('active_li')){
+      $('.active_li').removeClass('active_li');
+      $("#move-details-panel").css('display', 'none');
     }
     else{
-      var $this = $(this);
-      $('.li_active').removeClass('li_active');
-      $this.addClass('li_active');
-      var block_id = $this.attr('id') ? $this.attr('id') : []
+      $('.active_li').removeClass('active_li');
+      $(this).addClass('active_li');
+      var block_id = $(this).attr('id') ? $(this).attr('id') : []
       if(block_id){
         var lib_detail = block_id.split("_")[3];
         load_library_content(lib_detail, block_id);
@@ -286,12 +329,141 @@ $(document).ready(function() {
     obj.text(size+'/'+max_size+' Character');
   });
 
-  
+  $("#workout-blocks ul li").draggable({
+        connectToSortable:'.main_drop_block',
+        cursor: 'grabbing',
+        zIndex: 9999,
+        appendTo: 'body',
+        containment: '#workout-builder-app .split-right',
+        helper: function() {
+            return $("<div class='dragging-block-wrap' style='width: 200px;'></div>").append($(this).clone());
+        }
+    });
+
+    $("#move ul li").draggable({
+        connectToSortable:'.main_drop_block',
+        cursor: 'grabbing',
+        zIndex: 9999,
+        scroll : false,
+        appendTo: 'body',
+        containment: '#workout-builder-app',
+        helper: function() {
+          return $("<div class='dragging-move-wrap' style='width:300px'></div>").append($(this).clone());
+        }
+    });
+
+    initialize_drag_drop_js();
 });
 
 // $(document).on('page:load', ready);
+function initialize_drag_drop_js(){
+    var drag_type = '', string = '', block_name = '', lib_id = '',text = '',object = '',flag = true;
+    $(".main_drop_block").sortable({
+        placeholder: 'sortable-placeholder',
+        cursor: 'grabbing',
+        receive: function(event, ui) {
+            lib_id = ui.item.attr('data-move-id');
+            drag_type = ui.item.attr('data-dragable-type');
+            var html = [];
+            if(drag_type == "block"){ 
+              if($(this).attr('data-block') == "main"){
+                  block_name = ui.item.attr("data-block-name");
+                  if(block_name == BLOCK_TYPE[2]){
+                    object = $(this).find('li.moving');
+                    if(object.hasClass('moving') && (object.prev("li").attr('data-blck') == object.next('li').attr('data-blck')) && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
+                      html.push($('.water_break_block').html());
+                    }else{
+                      object.remove();
+                      alert("Water break not add in this position.");
+                      return false;
+                    }
+                  }else{
+                      if(block_name == BLOCK_TYPE[0]){
+                          string = $('.circuit_block').html();
+                          html.push(string);
+                      }else if(block_name == BLOCK_TYPE[1]){
+                          string = $('.superset_block').html();
+                          html.push(string);
+                      }
+                  }
+              }
+            }else{
+              text = ui.item.find('h6').text();
+              if($(this).attr('data-block') == "block"){
+                  block_name = $(this).attr('data-block-name');
+                  var li_size = $(this).find('li.others').size();
+                  var alrt = check_library_count(li_size, block_name);
+                  if(alrt != ''){
+                      alert(alrt);
+                      flag = false;
+                  }
+                  else if(check_library_present(lib_id, $(this))){
+                      alert("Library Already Exists");
+                      flag = false;
+                  }
+                  else{
+                    var li_length = $(this).find('li.first').size();
+                    $(this).find('li.first').remove();
+                    
+                    string = $('.block_inner_move').html();
+                    html.push(string);
+                    for (var i = 1; i < li_length; i++) {
+                      html.push('<li class="first">'+i+'</li>');
+                    }
+                  }
+                }
+                else{
+                  block_name = BLOCK_TYPE[3]
+                  string = $('.individual_block').html();
+                  html.push(string);
+                }  
+            }
+            if($(this).find('li.moving').length){
+                $(this).find('li.moving').replaceWith(html.join(''));
+            }
+            else{
+                $(this).find('li').replaceWith(html.join(''));
+            }
+            $('.for_id b.txt').text(text);
+            if(flag){
+              save_details(lib_id, block_name, drag_type, $('.workout-list .for_id'));
+            }
+            $(this).find('li.moving').removeClass('moving');
+            initialize_drag_drop_js();
+        }, 
+        update: function (){
+          if(object != ''){
+            object.remove();
+          }
+          block_sortable();
+        }
+    }).disableSelection();
+}
 
-    
+function save_details(lib_id, block_name, drag_type, $this){
+    var sets = $this.closest('li.main_container').find('.sets_count').val();
+    var rests = $this.closest('li.main_container').find('.rest_time').val();
+    url = '/builder/create_workout_block';
+    $.get(url, {lib_id: lib_id, block_name: block_name, drag_type: drag_type, sets: sets, rest:rests}, function (data) {
+        if(drag_type == "block"){
+            $this.attr('id', "block_"+data.id);
+            $this.find('.content').addClass("setting_"+data.id);
+            if(block_name == BLOCK_TYPE[2]){
+                $this.attr('id', "block_"+data.id).append('<input type="hidden" name=block['+data.id+'][0] id="block_'+data.id+'_0" value=0>');
+            }
+          }
+          else if(block_name == BLOCK_TYPE[3]){
+            $this.attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+          }
+          else{
+            var block_id = $this.closest('li.main_container').attr('id').split("_")[1];
+            $this.attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+          }
+          $this.removeClass('for_id');
+    });
+}
+
+
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';
   $.get(url, {lib_block:id}, function (data) {
@@ -301,7 +473,6 @@ function remove_library_from_block(id){
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');
 }
-
 
 function check_library_count(li_size, block_type){
   var alrt = "";
@@ -357,7 +528,6 @@ function sort_lis(obj){
 function show_text_size(){
   $('.detail_char').each(function(){
     var size = $(this).attr('data-size');
-    
     var input_len = $(this).closest('.form_field').find('input, textarea').val().length;
       $(this).text(input_len+' of '+ size+' Character');
   })
@@ -377,7 +547,7 @@ function block_popover_intilization(){
 
 function block_sortable(){
   var i=1;
-  $('#cart ul li').each(function(){
+  $('#workout-editor ul li').each(function(){
     if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){ 
       $(this).find('.sort_index').each(function(){
         $(this).text(i);

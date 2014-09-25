@@ -5,7 +5,7 @@
         <% if @enabled_move.present? %>
         <ul class="fitness-library-moves">
             <% @enabled_move.each do |move|%>
-            <li class="single-move" data-dragable-type="move" data-move-id="<%=move.id%>">
+            <li class="single-move moving" data-dragable-type="move" data-move-id="<%=move.id%>">
                 <div class="move-thumb">
                     <% if move.library_video.present? && move.library_video.image.present? %>
                         <img src="<%= move.library_video.image %>" alt="<%=move.title%>">

@@ -1,7 +1,5 @@
 <%= render "workout_builder_header" %>
-
 <div id="workout-builder-app" class="builder autoheight">
-
     <div class="column split-left">
         <div class="column-wrap autoheight">
             <%= render "library_moves_panel" %>
@@ -12,72 +10,23 @@
     <div class="column split-right">
         <div class="column-wrap autoheight">
 
-            <div class="workout-blocks">
-                <%= render "block_options"%>
+            <div id="workout-blocks">
+                <%= render "workout_blocks" %>
+                <%= render "block_templates" %>
             </div>
 
-            <div class="workout-preview">
-                <div id="cart">
-                    <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+            <div id="workout-editor">
+                <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
+                    <%=hidden_field_tag :workout_id %>
 
-                        <%=hidden_field_tag :workout_id %>
-                        <ul class="add_photo drag_lib testt" data-block="main">
-                            <%= render "sub_blocks" %>
-                        </ul>
-
-                        <div class="hidden_field_workout"></div>
-                    <% end %>
-                </div>
+                    <ul class="workout-list add_photo main_drop_block" data-block="main">
+                        <%= render "sub_blocks" %>
+                    </ul>
+                <% end %>
             </div>
+
         </div>
     </div>
-
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-
-    $("#cart .testt").sortable({
-        placeholder: 'sortable-placeholder',
-        update: function() {
-                block_sortable();
-              }
-    }).disableSelection();
-    initDroppable();
-
-    $("#catalog ul li").draggable({
-        helper: function() {
-            return $("<div style='width:140px;float:left;'></div>").append($(this).clone());
-        },
-        connectToSortable:'#cart ul li',
-        cursor: 'move', 
-        cursorAt: { top: 20, left: 80 },
-        zIndex: 100
-    });
-
-    $("#move ul li").draggable({
-        //connectWith: '#cart ul li',
-        //helper: 'clone',
-
-        connectToSortable:'#cart ul li',
-        cursor: 'grabbing',
-        scroll : false,
-        cursorAt: { top: 35, right: 28 },
-        zIndex: 9999,
-        //placeholder: 'portlet-placeholder ui-corner-all',
-        //placeholder: 'sortable-placeholder',
-        appendTo: 'body',
-        containment: '#workout-builder-app',
-        //handle: '.handle',
-        helper: function() {
-            return $("<div class='dragging-move-wrap'></div>").append($(this).clone());
-        }
-    });
-    flag = true;
-})
-
-</script>
-
-
-<%= render :partial => "workouts/builderscripts/builder_drag_drop" %>
 <%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>
