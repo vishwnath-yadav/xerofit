@@ -1,5 +1,4 @@
 //= require jquery
-//= require browser_timezone_rails
 
 $(document).ready(function() {
   $('#txthdnPassword').hide();
