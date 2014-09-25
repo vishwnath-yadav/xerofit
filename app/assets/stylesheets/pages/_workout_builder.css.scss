@@ -1002,10 +1002,10 @@ li.blank_li{
             top: 0;
             display: block;
             padding-right: 7px;
-            @include filled-icon();
+            @include xerofit-icon();
 
             &:before {
-                content: "\e602";
+                content: "\e601";
                 line-height: 42px;
                 font-size: 21px;
             }
