@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   $(document).on('click','.remove_block',function(){
     var arr = []
-    var $input = $(this).closest('li.main_container');
+    var $input = $(this).closest('li.block-container');
     var id = $input.attr('id').split("_")[1];
     $input.find('li.load_lib_detail').each(function(){
        var lib_detail_id = $(this).attr('id').split("_")[3];
@@ -51,7 +51,7 @@ $(document).ready(function() {
   // Activate Superset & Circuit Block Popover
   $(document).on('click','.block-settings',function(){
     block_popover_intilization();
-    var $input = $(this).closest('li.main_container');
+    var $input = $(this).closest('li.block-container');
     var sets = $input.find('.content .sets_count').val();
     var rest = $input.find('.content .rest_time').val();
     $input.find('.popover-content .sets_by_popup').each(function(){
@@ -152,8 +152,8 @@ $(document).ready(function() {
     var libdetails_arr=[];
     var val = parseInt($(this).val());
     var name = $(this).attr('name');
-    var $data = $(this).closest('li.main_container');
-    $(this).closest('li.main_container').find('.'+name).val(val);
+    var $data = $(this).closest('li.block-container');
+    $(this).closest('li.block-container').find('.'+name).val(val);
     var block_id = $data.attr('id').split("_")[1];
     $data.find('ul li.others').each(function(){
       if ($(this).attr('id').split('_')[1] == block_id)
@@ -441,8 +441,8 @@ function initialize_drag_drop_js(){
 }
 
 function save_details(lib_id, block_name, drag_type, $this){
-    var sets = $this.closest('li.main_container').find('.sets_count').val();
-    var rests = $this.closest('li.main_container').find('.rest_time').val();
+    var sets = $this.closest('li.block-container').find('.sets_count').val();
+    var rests = $this.closest('li.block-container').find('.rest_time').val();
     url = '/builder/create_workout_block';
     $.get(url, {lib_id: lib_id, block_name: block_name, drag_type: drag_type, sets: sets, rest:rests}, function (data) {
         if(drag_type == "block"){
@@ -456,7 +456,7 @@ function save_details(lib_id, block_name, drag_type, $this){
             $this.attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
           }
           else{
-            var block_id = $this.closest('li.main_container').attr('id').split("_")[1];
+            var block_id = $this.closest('li.block-container').attr('id').split("_")[1];
             $this.attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
           }
           $this.removeClass('for_id');
