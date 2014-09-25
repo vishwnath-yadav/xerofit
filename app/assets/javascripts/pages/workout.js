@@ -37,7 +37,7 @@ $(document).ready(function() {
     });
   })
 
-  $(document).on('click','.remove_water_block',function(){
+  $(document).on('click','.remove-break-block',function(){
     var $input = $(this).closest('li.water_block');
     var id = $input.attr('id').split("_")[1];
     url = '/builder/remove_block';
@@ -99,8 +99,6 @@ $(document).ready(function() {
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
      $("#workout_form").submit();
   });
-
-
 
   $(document).on("click","#search-move-titles",function(){
     $('#filter_search_form').submit();
@@ -365,7 +363,7 @@ function initialize_drag_drop_js(){
             lib_id = ui.item.attr('data-move-id');
             drag_type = ui.item.attr('data-dragable-type');
             var html = [];
-            if(drag_type == "block"){ 
+            if(drag_type == "block"){
               if($(this).attr('data-block') == "main"){
                   block_name = ui.item.attr("data-block-name");
                   if(block_name == BLOCK_TYPE[2]){
@@ -374,7 +372,7 @@ function initialize_drag_drop_js(){
                       html.push($('.water_break_block').html());
                     }else{
                       object.remove();
-                      alert("Water break not add in this position.");
+                      alert("The Break workout block cannot be placed at the beginning or end of a workout.");
                       return false;
                     }
                   }else{

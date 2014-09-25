@@ -512,7 +512,7 @@
 
 .block-pop-content { display: none; }
 
-.workout-block-item {
+.block-popover-wrap {
     @include clearfix();
 
     .popover-content { width: 200px; }
@@ -567,7 +567,8 @@
     }
     .number-input-wrap.last {margin: 0; float: right;}
 
-    .delete-block-btn {
+    .remove_block,
+    .remove-break-block {
         @include button($xero-red);
         @include user-select(none);
         margin-top: 7px;
