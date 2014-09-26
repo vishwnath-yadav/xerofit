@@ -3,7 +3,7 @@ class Admin::WorkoutsController < Admin::AdminController
 
 	def index
 		@sort_array = Move::ADMIN_MOVE_FILTER
-		parm = params.merge({type: Move::TYPE[1]}) 
+		parm = params.merge({type: Move::TYPE[2]}) 
 		@moves = Move.get_library_list(parm,current_user,'')
 	end
 

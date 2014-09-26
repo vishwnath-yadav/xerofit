@@ -2,7 +2,7 @@ class Admin::MovesController < Admin::AdminController
 
 	def index
 		@sort_array = Move::ADMIN_MOVE_FILTER
-		parm = params.merge({type: Move::TYPE[0]}) 
+		parm = params.merge({type: Move::TYPE[1]}) 
 		@moves = Move.get_library_list(parm,current_user,'')
 	end 
 
@@ -23,8 +23,6 @@ class Admin::MovesController < Admin::AdminController
 
 	def uncut_workout
 		@sort_array = Move::ADMIN_UNCUT_FILTER
-		# parm = params.merge({type: Move::TYPE[0]}) 
-		# @moves = Move.get_library_list(parm,current_user,'')
 		@moves = FullWorkout.where(mark_complete: false, enable: true).order('updated_at desc')
 	end
 
@@ -47,7 +45,7 @@ class Admin::MovesController < Admin::AdminController
 
 	def status_approve
 		hist = History.new()
-		if params[:type] == Move::TYPE[0]
+		if params[:type] == Move::TYPE[1]
 			move = Move.find_by_id(params[:id])
 			hist.move_id = move.id
 		else
@@ -85,9 +83,9 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def trash
-		if params[:type] == Move::TYPE[0]
+		if params[:type] == Move::TYPE[1]
 			@move = Move.find(params[:id])
-		elsif params[:type] == Move::TYPE[1]
+		elsif params[:type] == Move::TYPE[2]
 			@move = Workout.find(params[:id])
 		else
 			@move = FullWorkout.find(params[:id])
@@ -114,7 +112,7 @@ class Admin::MovesController < Admin::AdminController
 			render partial: "admin/moves/uncut_workout_trash_table"
 		else
 			@sort_array = Move::ADMIN_TRASH_FILTER
-			if params[:type] == Move::TYPE[0]
+			if params[:type] == Move::TYPE[1]
 				@move = Move.find_by_id(params[:id])
 			else
 				@move = Workout.find_by_id(params[:id])
@@ -129,7 +127,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def admin_approve_workout_mail
-		if params[:type] == Move::TYPE[0]
+		if params[:type] == Move::TYPE[1]
 			move = Move.find_by_id(params[:id])
 		else
 			move = Workout.find_by_id(params[:id])
@@ -177,7 +175,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def history_page
-		if params[:type] == Move::TYPE[1]
+		if params[:type] == Move::TYPE[2]
 			@move = Workout.find(params[:id])
 		else
 			@move = Move.find(params[:id])

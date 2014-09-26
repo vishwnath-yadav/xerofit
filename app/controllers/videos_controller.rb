@@ -11,7 +11,9 @@ class VideosController < ApplicationController
     end
     if @video.save
   			update_scheduled_date = Time.now + 20
+        logger.debug(">>>>>>>>>>>>>>>>job work starting>>>>>>>>>>>>>>")
         delayed_job = Delayed::Job.enqueue(PandaVideoUpload.new(@video.id), 0, update_scheduled_date)
+        logger.debug(">>>>>>>>>>>>>>>>job work end>>>>>>>>>>>>>>")
     end
   	render text: "#{@video.present? ? @video.id : ""}"
 	end

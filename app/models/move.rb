@@ -36,7 +36,7 @@ class Move < ActiveRecord::Base
 	ADMIN_UNCUT_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','Number of moves by Approved and Active','Number of moves by Needs Attention','Number of moves by Waiting for Approval','Number of moves by Ready to Submit','Number of moves by Saved as Draft','Number of total workouts','Average number of workouts per trainer','Number of workouts by Approved and Active','Number of workouts by Needs Attention','Number of workouts by Waiting for Approval','Number of workouts by Ready to Submit','Number of workouts by Saved as Draft']
 	ADMIN_VIDEO_STATISTICS = ['Average video length in seconds','Average video size in megabytes','How long it takes to encode a video on panda','How many videos in the encoding queue on panda']
-	TYPE = ["Single Move", "Workouts"]	
+	TYPE = ["All Type", "Single Move", "Workouts"]	
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
@@ -46,7 +46,7 @@ class Move < ActiveRecord::Base
 
 	def save_status
 		self.status = STATUS[4]
-		self.move_type = Move::TYPE[0]
+		self.move_type = Move::TYPE[1]
 		self.save
 	end
 
@@ -138,10 +138,10 @@ class Move < ActiveRecord::Base
 	def check_thumbnail
 		if self.library_video.present? && self.library_video.image.present?
 			return true
-		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
-			self.library_video.save
-			return true
+		# elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
+		# 	self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+		# 	self.library_video.save
+		# 	return true
 		else
 			return false
 		end

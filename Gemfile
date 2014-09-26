@@ -84,4 +84,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'rmagick', require: false
 
+gem 'foreman'
+
 

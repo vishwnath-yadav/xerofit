@@ -35,20 +35,27 @@ class LibrariesController < ApplicationController
 	end
 	
 	def create
+	  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>")
 	  @video_id = params[:video]
 	  video = LibraryVideo.find(@video_id)
+	  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
 	  if params[:move][:title].blank?
 	  	params[:move][:title] = video.video_title.split(".")[0]
 	  end
 	  @move = Move.new(library_params)
 	  @move.user_id = @user.id
 	  if @move.save
-	  	video.move = @move
-	  	video.save
+	  	logger.debug("dd*********************")
+	  	video.delay(:queue => 'saving_video_id').update_attributes(move_id: @move.id)
+	  	# video.update_attributes(move_id: @move.id)
+	  	logger.debug("ddddddddddddddddddddddddd")
 	  	@move.history_create()
+	  	logger.debug("dddddddddddd>>>>>>>>>>>>>>>>>>>>>ddddddddddddd")
 	  	if current_user.admin?
+	  		logger.debug(">>>>>>>>>>>>>>>>>>>>>>sdfdsfdfsd>>")
     		redirect_to libraries_path(user: @user.token), :notice => "New move has been saved to your Fitness Library"
     	else
+	  		logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
     		redirect_to libraries_path, :notice => "New move has been saved to your Fitness Library"
     	end
 	  else
