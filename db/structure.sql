@@ -557,7 +557,8 @@ CREATE TABLE workouts (
     category character varying(255),
     move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
-    enable boolean DEFAULT true
+    enable boolean DEFAULT true,
+    number_of_moves integer DEFAULT 0
 );
 
 
@@ -920,3 +921,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140911063516');
 INSERT INTO schema_migrations (version) VALUES ('20140916131956');
 
 INSERT INTO schema_migrations (version) VALUES ('20140920074532');
+
+INSERT INTO schema_migrations (version) VALUES ('20140926055644');

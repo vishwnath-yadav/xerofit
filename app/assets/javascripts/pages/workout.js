@@ -370,7 +370,7 @@ function initialize_drag_drop_js(){
                   block_name = ui.item.attr("data-block-name");
                   if(block_name == BLOCK_TYPE[2]){
                     object = $(this).find('li.moving');
-                    if(object.hasClass('moving') && (object.prev("li").attr('data-blck') == object.next('li').attr('data-blck')) && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
+                    if(object.hasClass('moving') && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
                       html.push($('.water_break_block').html());
                     }else{
                       object.remove();
@@ -431,10 +431,22 @@ function initialize_drag_drop_js(){
             $(this).find('li.moving').removeClass('moving');
             initialize_drag_drop_js();
         }, 
-        update: function (){
+        update: function (event, ui){
           if(object != ''){
             object.remove();
           }
+          console.log(ui.item);
+          console.log($(this));
+          if(ui.item.hasClass('break-block')){
+            console.log(ui.item.prev("li").attr('data-blck'));
+            console.log(ui.item.next('li').attr('data-blck'));
+            if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){
+              console.log("false");
+              return false;
+            }
+          }
+          console.log("sssssssssssssssss");
+          $('.blank-workout-placeholder').remove();
           block_sortable();
         }
     }).disableSelection();

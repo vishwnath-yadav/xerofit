@@ -18,9 +18,9 @@
             <div id="workout-editor">
                 <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
                     <%=hidden_field_tag :workout_id %>
-
+                    <%#= bl.input_field :number_of_moves%>
                     <ul class="workout-list add_photo main_drop_block" data-block="main">
-                        <!--div class="blank-workout-placeholder"></div-->
+                        <div class="blank-workout-placeholder"></div>
                         <%#= render "sub_blocks" %>
                     </ul>
                 <% end %>
