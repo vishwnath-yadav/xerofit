@@ -9,8 +9,8 @@ class MoveDetail < ActiveRecord::Base
 	DIST_OPT = ["Miles","Feet","Meters", "Kilometers"]
 
 	def validate_workout
-		if !(repetitions or distance  or duration)
-			self.errors.add(:base, "Atleast 1 of Repetitions, Distance and Duration field is required in order to save a workout")
+		if !(repetitions or distance  or duration or weight)
+			self.errors.add(:base, "Atleast 1 of Repetitions, Weight, Distance and Duration field is required in order to save a workout")
 		end
 	end
 end
