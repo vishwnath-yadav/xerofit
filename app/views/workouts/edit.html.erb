@@ -1,28 +1,32 @@
-<%= render "workout_head" %>
-<div class="middle_wrapper autoheight">
-    <div class="workout_col">
-        <div class="builder_panels">
+<%= render "workout_builder_header" %>
+<div id="workout-builder-app" class="builder autoheight">
+    <div class="column split-left">
+        <div class="column-wrap autoheight">
             <%= render "library_moves_panel" %>
+            <%= render "move_details_panel" %>
         </div>
-            <div class="workout_col_mid autoheight">
-                <div class="col_1" id="workout_auto_form">
-                    <%= render "workout_auto_form" %>
-                </div>
+    </div>
+    <div class="column split-right">
+        <div class="column-wrap autoheight">
+
+            <div id="workout-blocks">
+                <%= render "workout_blocks_section" %>
+                <%= render "workouts/builder_blocks/block_templates" %>
+            </div>
+            <div id="workout-editor">
                 <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-                    <div class="add_photo drag_lib">
+                    <ul class="workout-list add_photo main_drop_block" data-block="main">
                         <%= hidden_field_tag :workout_id, @workout.id %>
                         <% @workout.blocks.each do |block| %>
-                            <%= render "sub_blocks_edit", block: block %>
+                            <%= render "sub_blocks", block: block %>
                         <%end%>
-                        <%= render "sub_blocks", block: @block %>
-                    </div>
-                    <div class="hidden_field_workout">
-                    </div>
+                        <%#= render "sub_blocks", block: @block %>
+                    </ul>
                 <%end%>
             </div>
-            <%= render "move_details_panel" %>
+            <%#= render "move_details_panel" %>
     </div>
 </div>
 
 
-<%= render "builderscripts/calculate_builder_dimension"%>
+<%= render "workouts/builderscripts/calculate_builder_dimensions" %>

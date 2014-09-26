@@ -38,9 +38,24 @@ class WorkoutsController < ApplicationController
 	end
 
 	def edit
+		enabled_move = []
+		disabled_move = []
 		@workout = Workout.find(params[:id])
-		@block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[3])
-		@block.save
+		@moves = @user.single_moves
+		if @moves.present?
+			@moves.each do |move|
+				res = move.has_full_detail
+				if res == true
+					enabled_move << move
+				else
+					disabled_move << move
+				end
+			end
+			@enabled_move = enabled_move.flatten.sort_by(&:title)
+			@disabled_move = disabled_move.flatten.sort_by(&:title)
+		end
+		# @block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[3])
+		# @block.save
 		@display = "block_hide"
 	end
 
@@ -148,11 +163,11 @@ class WorkoutsController < ApplicationController
 
 	def create_workout_block
 		if params[:drag_type] == "block"
-			@block = Block.new(name: params[:block_name])
+			@block = Block.new(name: params[:block_name], :block_type=> params[:block_name])
 			@block.save
 			render json:{ id: @block.id}
 		elsif params[:block_name] == Block::BLOCK_TYPE[3]
-			@block = Block.new(name: params[:block_name])
+			@block = Block.new(name: params[:block_name],:block_type=> Block::BLOCK_TYPE[3])
 			@block.save
 			@lib_detail = MoveDetail.new()
 			@lib_detail.save

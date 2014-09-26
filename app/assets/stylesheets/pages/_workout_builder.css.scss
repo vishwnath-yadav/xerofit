@@ -1090,3 +1090,35 @@ li.single_move {
     background: #E6F2F8 !important;
     border: 1px solid #45aafa;
 }
+
+
+
+.block-container.single_move{
+    cursor: url(/assets/cursor-blck.png), auto;
+    
+    .move_remove{
+        float: right;
+        width: 3%;
+        display: block;
+        
+        .remove_single_move{
+            float:right;
+            z-index:99;
+            display: none;
+            padding-bottom: 0;
+            height: 16px;
+            width: 22px;
+        }
+
+    }
+
+    .move_content{
+        float: left;
+    }
+}
+
+.block-container.single_move:hover{
+    .remove_single_move{
+        display: block;
+    }
+}
