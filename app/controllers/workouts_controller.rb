@@ -93,6 +93,11 @@ class WorkoutsController < ApplicationController
 
 	def save_blocks
 		@workout = Workout.find_by_id(params[:workout_id])
+		if params[:number_of_moves].present?
+			count = params[:number_of_moves]
+			@workout.number_of_moves = count.to_i
+			@workout.save
+		end
 		if params[:block].present?
 			block_hash = params[:block]
 			@workout.save_blocks_and_libs(block_hash)
