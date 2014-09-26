@@ -73,9 +73,9 @@ class Move < ActiveRecord::Base
 		sort = params[:sorted_by].blank? ? "updated_at" : params[:sorted_by]
 		order = params[:order].blank? ? "DESC" : params[:order]
 		enable = params[:enable].blank? ? true : false
-		if params[:type] == TYPE[1] 
+		if params[:type] == TYPE[2] 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
-		elsif params[:type] == TYPE[0]
+		elsif params[:type] == TYPE[1]
 			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable)
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
