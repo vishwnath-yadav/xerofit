@@ -58,6 +58,24 @@ class User < ActiveRecord::Base
     self.moves
   end
 
+  def enabled_disabled_move
+    enabled_move = []
+    disabled_move = []
+    if self.moves.present?
+      self.moves.each do |move|
+        res = move.has_full_detail
+        if res == true
+          enabled_move << move
+        else
+          disabled_move << move
+        end
+      end
+      enabled_move = enabled_move.flatten.sort_by(&:title)
+      disabled_move = disabled_move.flatten.sort_by(&:title)
+    end
+    {enabled_move: enabled_move, disabled_move: disabled_move}
+  end
+
   def day
     self.date_of_birth.present? ? self.date_of_birth.day : 0
   end

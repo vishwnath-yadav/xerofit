@@ -1,26 +1,19 @@
 <div class="block_options_html circuit_block">
-    <%= render partial: "circuit_block", locals: {cls: 'for_id', id: ''}%>
+    <%= render partial: "circuit_block", locals: {cls: 'for_id', id: '', move_blocks: []}%>
 </div>
-
 
 <div class="block_options_html superset_block" >
-    <%= render partial: "superset_block", locals: {cls: 'for_id', id: ''}%>
+    <%= render partial: "superset_block", locals: {cls: 'for_id', id: '', move_blocks: []}%>
 </div>
-
-
 
 <div class="block_options_html water_break_block">
     <%= render partial: "break_block", locals: {cls: 'for_id', id: ''}%>
 </div>
 
-
-
 <div class="block_options_html individual_block">
-    <%= render partial: "individual_block", locals: {cls: 'for_id', id: ''}%>
+    <%= render partial: "individual_block", locals: {text: '', cls: 'for_id', id: ''}%>
 </div>
 
-
-
 <div class="block_options_html block_inner_move">
-    <%= render partial: "block_inner_move", locals: {cls: 'for_id', id: ''}%>
+    <%= render partial: "block_inner_move", locals: {cls: 'for_id', id: '', text: ''}%>
 </div>

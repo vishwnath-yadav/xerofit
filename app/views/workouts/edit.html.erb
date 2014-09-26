@@ -1,32 +1,37 @@
 <%= render "workout_builder_header" %>
 <div id="workout-builder-app" class="builder autoheight">
-    <div class="column split-left">
-        <div class="column-wrap autoheight">
-            <%= render "library_moves_panel" %>
-            <%= render "move_details_panel" %>
-        </div>
+  <div class="column split-left">
+    <div class="column-wrap autoheight">
+      <%= render "library_moves_panel" %>
+      <%= render "move_details_panel" %>
     </div>
-    <div class="column split-right">
-        <div class="column-wrap autoheight">
-
-            <div id="workout-blocks">
-                <%= render "workout_blocks_section" %>
-                <%= render "workouts/builder_blocks/block_templates" %>
-            </div>
-            <div id="workout-editor">
-                <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
-                    <ul class="workout-list add_photo main_drop_block" data-block="main">
-                        <%= hidden_field_tag :workout_id, @workout.id %>
-                        <% @workout.blocks.each do |block| %>
-                            <%= render "sub_blocks", block: block %>
-                        <%end%>
-                        <%#= render "sub_blocks", block: @block %>
-                    </ul>
-                <%end%>
-            </div>
-            <%#= render "move_details_panel" %>
+  </div>
+  <div class="column split-right">
+    <div class="column-wrap autoheight">
+      <div id="workout-blocks">
+        <%= render "workout_blocks_section" %>
+        <%= render "workouts/builder_blocks/block_templates" %>
+      </div>
+      <div id="workout-editor">
+        <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
+          <%=hidden_field_tag :indexes%>
+          <ul class="workout-list add_photo main_drop_block" data-block="main">
+            <%= hidden_field_tag :workout_id, @workout.id %>
+            <%if @workout.present? %>
+              <% @workout.blocks.each do |block| %>
+                <%= render "sub_blocks", block: block %>
+              <%end%>
+            <%else%>
+              <li class="met_tab blank_li" >
+                <div class="blank-workout-placeholder"></div>
+              </li>
+            <%end%>
+          </ul>
+        <%end%>
     </div>
+  </div>
 </div>
-
-
 <%= render "workouts/builderscripts/calculate_builder_dimensions" %>
+<script>
+  block_sortable() //for indexes of moves.
+</script>

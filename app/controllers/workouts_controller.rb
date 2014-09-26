@@ -8,19 +8,9 @@ class WorkoutsController < ApplicationController
 		enabled_move = []
 		disabled_move = []
 		@workout = Workout.new()
-		@moves = @user.single_moves
-		if @moves.present?
-			@moves.each do |move|
-				res = move.has_full_detail
-				if res == true
-					enabled_move << move
-				else
-					disabled_move << move
-				end
-			end
-			@enabled_move = enabled_move.flatten.sort_by(&:title)
-			@disabled_move = disabled_move.flatten.sort_by(&:title)
-		end
+		moves = @user.enabled_disabled_move
+		@enabled_move = moves[:enabled_move]
+		@disabled_move = moves[:disabled_move]
 	end
 
 	def create
@@ -37,22 +27,10 @@ class WorkoutsController < ApplicationController
 		enabled_move = []
 		disabled_move = []
 		@workout = Workout.find(params[:id])
-		@moves = @user.single_moves
-		if @moves.present?
-			@moves.each do |move|
-				res = move.has_full_detail
-				if res == true
-					enabled_move << move
-				else
-					disabled_move << move
-				end
-			end
-			@enabled_move = enabled_move.flatten.sort_by(&:title)
-			@disabled_move = disabled_move.flatten.sort_by(&:title)
-		end
-		# @block = Block.new(:name => "Individual", :block_type=> Block::BLOCK_TYPE[3])
-		# @block.save
-		@display = "block_hide"
+		moves = @user.enabled_disabled_move
+		@enabled_move = moves[:enabled_move]
+		@disabled_move = moves[:disabled_move]
+		@blocks = @workout.blocks.sort_by{|b| b.sort_index}
 	end
 
 	def update
@@ -96,6 +74,7 @@ class WorkoutsController < ApplicationController
 		if params[:block].present?
 			block_hash = params[:block]
 			@workout.save_blocks_and_libs(block_hash)
+			@workout.save_index_hash(params[:indexes])
 			@workout.state = "completed"
 			@workout.save
 		end

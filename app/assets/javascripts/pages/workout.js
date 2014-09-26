@@ -220,6 +220,7 @@ $(document).ready(function() {
       });
     }
     if(verify){
+      block_indexing();
       $('#new_workout_form').submit();
     }
   });
@@ -575,4 +576,19 @@ function block_sortable(){
       })
     }
   });
+}
+
+function block_indexing(){
+  var ids = '';
+  var length = $('.workout-list .block-container').length;
+  for(i=0;i<length;i++){
+    console.log(i);
+    if($('.workout-list .block-container:eq('+i+')').length){
+      var id = $('.workout-list .block-container:eq('+i+')').attr('id').split('_')[1];
+      ids = ids != '' ? ids + ','+id : id;
+      console.log(ids);
+    }
+  }
+  $('#indexes').val(ids);
+  console.log(ids);
 }

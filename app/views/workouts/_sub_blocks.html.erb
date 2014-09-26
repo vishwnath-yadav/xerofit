@@ -1,25 +1,11 @@
-<!-- <li class="met_tab blank_li" >
-    <div class="blank-workout-placeholder"></div>
-</li> -->
-
 <%if block.name == Block::BLOCK_TYPE[3]%>
-	<%= render partial: 'individual_block', locals: {cls: '', id: "block_#{block.id}_#{block.moves.first.id}_#{block.get_lib_detail(block.moves.first.id.to_s)}"}%>
+	<%move_block = block.move_blocks.first%>
+	<%= render 'individual_block', text: move_block.move.title ,cls: '', id: "block_#{block.id}_#{block.moves.first.id}_#{move_block.move_detail.id}"%>
+<%elsif block.name == Block::BLOCK_TYPE[2]%>
+	<%= render 'break_block', cls: '', id: "block_"+block.id.to_s%>
+<%elsif block.name == Block::BLOCK_TYPE[1]%>
+	<%= render 'superset_block', cls: '', id: "block_"+block.id.to_s, move_blocks: block.move_blocks%>
+<%elsif block.name == Block::BLOCK_TYPE[0]%>
+	<%= render partial: 'circuit_block', locals: {move_blocks: block.move_blocks, cls: '', id: "block_"+block.id.to_s}%>
 <% end %>
 
-<%if block.name == Block::BLOCK_TYPE[2]%>
-	<%= render partial: 'break_block', locals: {cls: '', id: "block_"+block.id.to_s}%>
-<% end %>
-
-<%if block.name == Block::BLOCK_TYPE[1]%>
-	<%= render partial: 'superset_block', locals: {cls: '', id: "block_"+block.id.to_s}%>
-<% end %>
-
-<%if block.name == Block::BLOCK_TYPE[0]%>
-	<%= render partial: 'circuit_block', locals: {cls: '', id: "block_"+block.id.to_s}%>
-<% end %>
-
-<% if block.moves.present? %>
-	<%block.moves.each_with_index do |lib, ind|%>
-	    <%#= render partial: 'block_inner_move', locals: {cls: '', id: "block_"+block.id.to_s+"_"+block.moves.first.id.to_s+"_"+block.get_lib_detail(block.moves.first.id.to_s)}%>
-	<%end%>
-<%end%>

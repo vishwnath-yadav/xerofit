@@ -55,6 +55,13 @@ class Workout < ActiveRecord::Base
 		end
 	end
 
+	def save_index_hash(indexes)
+		ids = indexes.split(",")
+		ids.each_with_index do |id, ind|
+			Block.update([id], [sort_index: ind.to_i])
+		end
+	end
+
 	def min_image_size
 		"500x500"
 	end
