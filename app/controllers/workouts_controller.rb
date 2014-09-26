@@ -71,6 +71,11 @@ class WorkoutsController < ApplicationController
 
 	def save_blocks
 		@workout = Workout.find_by_id(params[:workout_id])
+		if params[:number_of_moves].present?
+			count = params[:number_of_moves]
+			@workout.number_of_moves = count.to_i
+			@workout.save
+		end
 		if params[:block].present?
 			block_hash = params[:block]
 			@workout.save_blocks_and_libs(block_hash)
@@ -106,6 +111,16 @@ class WorkoutsController < ApplicationController
 		end
 		respond_to do |format|
 			format.js 
+		end
+	end
+
+	def save_lib_details
+		@lib_detail = MoveDetail.find(params[:lib_detail_id])
+		if @lib_detail.present?
+			@lib_detail.update_attributes(library_detail_params)
+		end
+		respond_to do |format|
+			format.js {render 'load_lib_details.js.erb'}
 		end
 	end
 

@@ -30,16 +30,20 @@ $(document).ready(function() {
 
   $(document).on('click','.remove_block',function(){
     var arr = []
+    var count = 0;
     var $input = $(this).closest('li.block-container');
     var id = $input.attr('id').split("_")[1];
     $input.find('li.load_lib_detail').each(function(){
        var lib_detail_id = $(this).attr('id').split("_")[3];
         arr.push(lib_detail_id);
+        count = count + 1;
     })
+    subtract_move_count(count);
     url = '/builder/remove_block';
     $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
       if(data){
         $input.remove();
+        block_sortable();
       }
     });
   })
@@ -52,6 +56,7 @@ $(document).ready(function() {
     $.get(url, {block_id:id}, function (data) {
       if(data){
         $input.remove();
+        block_sortable();
       }
     });
   })
@@ -233,26 +238,25 @@ $(document).ready(function() {
 
   $(document).on("click", ".load_lib_detail", function(e){
     if($(this).hasClass('active_li')){
-      alert("d")
       $('.active_li').removeClass('active_li');
       $("#move-details-panel").css('display', 'none');
     }
     else if($(e.target).hasClass('remove_single_move')){
-      alert("2")
       var arr = [];
       var $input = $(this).closest('li.block-container');
       var id = $input.attr('id').split("_")[1];
       var lib_detail_id = $input.attr('id').split("_")[3];
+      subtract_move_count(1);
       arr.push(lib_detail_id);
       url = '/builder/remove_block';
       $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
         if(data){
           $input.remove();
+          block_sortable();
         }
       });
     }
     else{
-      alert("3")
       $('.active_li').removeClass('active_li');
       $(this).addClass('active_li');
       var block_id = $(this).attr('id') ? $(this).attr('id') : []
@@ -264,7 +268,7 @@ $(document).ready(function() {
   });
 
   // Dropdown
-  $(document).on('change', ".lib_detail_sel", function(){
+  $(document).on('change', ".lib_detail_chk", function(){
     $(".edit_move_detail").submit();
   });
 
@@ -309,9 +313,6 @@ $(document).ready(function() {
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
     var name = $(this).attr('name');
-    console.log(txt);
-    console.log(name);
-    console.log(name.indexOf('name'));
     // if(txt == '' && name.indexOf('name') > -1){
     //   alert("Title Can't be blank");    
     // }
@@ -372,7 +373,7 @@ $(document).ready(function() {
 
 // $(document).on('page:load', ready);
 function initialize_drag_drop_js(){
-    var drag_type = '', string = '', block_name = '', lib_id = '',text = '',object = '',flag = true;
+    var drag_type = '', string = '', block_name = '', lib_id = '',text = '',object = '',flag = true, check=true;
     $(".main_drop_block").sortable({
         placeholder: 'sortable-placeholder',
         cursor: 'grabbing',
@@ -422,6 +423,10 @@ function initialize_drag_drop_js(){
                     
                     string = $('.block_inner_move').html();
                     html.push(string);
+                    check = add_move_count();
+                    if(!check){
+                      return false;
+                    }
                     for (var i = 1; i < li_length; i++) {
                       html.push('<li class="first">'+i+'</li>');
                     }
@@ -431,6 +436,10 @@ function initialize_drag_drop_js(){
                   block_name = BLOCK_TYPE[3]
                   string = $('.individual_block').html();
                   html.push(string);
+                  check = add_move_count();
+                  if(!check){
+                    return false;
+                  }
                 }  
             }
             if($(this).find('li.moving').length){
@@ -449,6 +458,10 @@ function initialize_drag_drop_js(){
         update: function (event, ui){
           if(object != ''){
             object.remove();
+          }
+          if(!check){
+            $('.workout-list').find('li.moving').remove();
+            alert("You reached your maximum limit(99) to add the single move");
           }
           if(ui.item.hasClass('break-block')){
             if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){
@@ -484,6 +497,23 @@ function save_details(lib_id, block_name, drag_type, $this){
     });
 }
 
+function add_move_count(){
+  var count = $('.moves_count').val();
+  if(parseInt(count)<99){
+    $('.moves_count').val(parseInt(count)+1);
+    $('#number_of_moves').val(parseInt(count)+1);
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function subtract_move_count(no_of_moves){
+  var count = $('.moves_count').val();
+  $('.moves_count').val(parseInt(count)-parseInt(no_of_moves));
+  $('#number_of_moves').val(parseInt(count)-parseInt(no_of_moves));
+
+}
 
 function remove_library_from_block(id){
   url = '/builder/remove_library_from_block';
