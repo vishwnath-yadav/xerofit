@@ -232,12 +232,10 @@ $(document).ready(function() {
 
   $(document).on("click", ".load_lib_detail", function(e){
     if($(this).hasClass('active_li')){
-      alert("d")
       $('.active_li').removeClass('active_li');
       $("#move-details-panel").css('display', 'none');
     }
     else if($(e.target).hasClass('remove_single_move')){
-      alert("2")
       var arr = [];
       var $input = $(this).closest('li.block-container');
       var id = $input.attr('id').split("_")[1];
@@ -251,7 +249,6 @@ $(document).ready(function() {
       });
     }
     else{
-      alert("3")
       $('.active_li').removeClass('active_li');
       $(this).addClass('active_li');
       var block_id = $(this).attr('id') ? $(this).attr('id') : []
@@ -264,7 +261,6 @@ $(document).ready(function() {
 
   // Dropdown
   $(document).on('change', ".lib_detail_chk", function(){
-    alert("sssssssss");
     $(".edit_move_detail").submit();
   });
 
@@ -309,9 +305,6 @@ $(document).ready(function() {
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
     var name = $(this).attr('name');
-    console.log(txt);
-    console.log(name);
-    console.log(name.indexOf('name'));
     // if(txt == '' && name.indexOf('name') > -1){
     //   alert("Title Can't be blank");    
     // }
