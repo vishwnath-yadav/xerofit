@@ -66,8 +66,8 @@ class WorkoutsController < ApplicationController
 		redirect_to libraries_path
 	end
 
-	
-	def update_water_block_details
+
+	def update_break_block_details
 		if params[:block_id].present?
 			@block = Block.find(params[:block_id])
 			if params[:name] == "minutes"

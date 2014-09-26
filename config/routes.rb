@@ -137,7 +137,7 @@ Xerofit::Application.routes.draw do
       get 'remove_library_from_block'
       get 'update_move_details'
       get 'get_workout_water_sub_block'
-      get 'update_water_block_details'
+      get 'update_break_block_details'
       get 'drag_test'
       get 'create_workout_block'
       get 'remove_block'
