@@ -15,6 +15,11 @@
       <div id="workout-editor">
         <%=form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl|%>
           <%=hidden_field_tag :indexes%>
+          <%=hidden_field_tag :number_of_moves, @workout.number_of_moves.present? ? @workout.number_of_moves : 0 %>
+            <span class="float_right">
+              <label>Number of Moves:</label>
+              <%= text_field_tag :moves_count, {}, {class: "moves_count", max: "99", min: "1", name: "moves_count", value: "0", disabled: true} %>
+            </span>
           <ul class="workout-list add_photo main_drop_block" data-block="main">
             <%= hidden_field_tag :workout_id, @workout.id %>
             <%if @workout.present? %>
