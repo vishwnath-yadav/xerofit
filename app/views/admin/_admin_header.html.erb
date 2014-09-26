@@ -1,38 +1,38 @@
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <%=link_to "Xerofit Admin", admin_dashboard_path, class: "navbar-brand", "data-no-turbolink" => 'true'%>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <%=link_to "Xerofit Admin", admin_dashboard_path, class: "navbar-brand", "data-no-turbolink" => 'true'%>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="admin_li users">
+                    <%=link_to "Users", admin_users_path%>
+                </li>
+                <li class="admin_li moves">
+                    <%=link_to "Moves",  admin_moves_path %>
+                </li>
+                <li class="admin_li uncuts_wrk">
+                    <%=link_to "Uncut Workouts", admin_uncut_workout_path%>
+                </li>
+                <li class="admin_li workouts">
+                    <%=link_to "Workouts", admin_workouts_path%>
+                </li>
+                <li class="admin_li approval">
+                    <%=link_to "Approval Queue", admin_approval_page_path%>
+                </li>
+                <li class="admin_li trash">
+                    <%=link_to "Trash", admin_trash_page_path%>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:void(0)"><%=current_user.email%></a>
+                </li>
+                <li>
+                    <%=link_to destroy_user_session_path, :method => :delete do%>
+                    Logout
+                    <%end%>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="admin_li users">
-          <%=link_to "Users", admin_users_path%>
-        </li>
-        <li class="admin_li moves">
-          <%=link_to "Moves",  admin_moves_path %>
-        </li>
-        <li class="admin_li uncuts_wrk">
-          <%=link_to "Uncut Workouts", admin_uncut_workout_path%>
-        </li>
-        <li class="admin_li workouts">
-          <%=link_to "Workouts", admin_workouts_path%>
-        </li>
-        <li class="admin_li approval">
-          <%=link_to "Approval Queue", admin_approval_page_path%>
-        </li>
-        <li class="admin_li trash">
-          <%=link_to "Trash", admin_trash_page_path%>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:void(0)"><%=current_user.email%></a>
-        </li>
-        <li>
-          <%=link_to destroy_user_session_path, :method => :delete do%>
-          Logout
-          <%end%>
-        </li>
-      </ul>
-    </div>
-  </div>
 </nav>
