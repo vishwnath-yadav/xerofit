@@ -3,7 +3,7 @@ $(document).ready(function() {
   $(document).click(function(event) {
     var target = $(event.target);
     if(!target.is(".block_li, .block_li *, #move-details-panel, #move-details-panel *")){
-       $('.li_active').removeClass('li_active');
+       $('.active_li').removeClass('active_li');
        $("#move-details-panel").css('display', 'none');
     }
   });
