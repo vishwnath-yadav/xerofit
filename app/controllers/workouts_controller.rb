@@ -21,9 +21,6 @@ class WorkoutsController < ApplicationController
 			@enabled_move = enabled_move.flatten.sort_by(&:title)
 			@disabled_move = disabled_move.flatten.sort_by(&:title)
 		end
-		# @block = Block.new()
-		# @block.save
-		# @display = "block_hide"
 	end
 
 	def create
@@ -31,7 +28,6 @@ class WorkoutsController < ApplicationController
 		@workout.user_id = @user.id
 		@workout.save
 		@workout.history_create()
-		#@workout = Workout.new
 		respond_to do |format|
 			format.js
 		end

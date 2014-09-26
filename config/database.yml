@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   host: localhost
-  database: xerofit_dev
+  database: xerofit-trainers
   pool: 5
   timeout: 5000
   username: postgres

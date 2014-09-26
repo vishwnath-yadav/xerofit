@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $(document).click(function(event) {
     var target = $(event.target);
-    if(!target.is(".block_li, .block_li *, #move-details-panel, #move-details-panel *")){
+    if(!target.is(".load_lib_detail, .load_lib_detail *, #move-details-panel, #move-details-panel *")){
        $('.active_li').removeClass('active_li');
        $("#move-details-panel").css('display', 'none');
     }
@@ -231,11 +231,13 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".load_lib_detail", function(e){
-    if($(this).hasClass('active_li') && !$(e.target).hasClass('remove_single_move')){
+    if($(this).hasClass('active_li')){
+      alert("d")
       $('.active_li').removeClass('active_li');
       $("#move-details-panel").css('display', 'none');
     }
     else if($(e.target).hasClass('remove_single_move')){
+      alert("2")
       var arr = [];
       var $input = $(this).closest('li.block-container');
       var id = $input.attr('id').split("_")[1];
@@ -249,6 +251,7 @@ $(document).ready(function() {
       });
     }
     else{
+      alert("3")
       $('.active_li').removeClass('active_li');
       $(this).addClass('active_li');
       var block_id = $(this).attr('id') ? $(this).attr('id') : []

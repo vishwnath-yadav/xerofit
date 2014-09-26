@@ -103,7 +103,7 @@
                 <div class="custom-upload">
                   <div class="fake-file">
                       <span class="choose_btn wrk_chos <%= @disabled ? "disable_cls" : "" %>">Choose File</span>
-                      <input disabled="disabled">
+                      <!-- <input disabled="disabled"> -->
                   </div>
                 </div>
               </div>
@@ -113,11 +113,11 @@
       </div>
     <% end %>
     <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
-          <%=hidden_field_tag :pic_creating, ""%>
-          <%=hidden_field_tag :company, "true"%>
-          <%=hidden_field_tag :id, @workout.id%>
-          <%=hidden_field_tag :type, "workout" %>
-          <%= form.file_field :pic, :style =>"display:none" %>
+          <%#=hidden_field_tag :pic_creating, ""%>
+          <%#=hidden_field_tag :company, "true"%>
+          <%#=hidden_field_tag :id, @workout.id%>
+          <%#=hidden_field_tag :type, "workout" %>
+          <%#= form.file_field :pic, :style =>"display:none" %>
     <% end %>
 
     <div class="row">
