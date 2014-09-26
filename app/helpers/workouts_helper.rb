@@ -21,10 +21,10 @@ module WorkoutsHelper
 	end
 
 	def is_set(lib_detail)
-		lib_detail.sets ? false : true
+		lib_detail.move_block.block.name == Block::BLOCK_TYPE[3] ? false : true
 	end
 
 	def is_rest(lib_detail)
-		lib_detail.rest ? false : true
+		lib_detail.move_block.block.name == Block::BLOCK_TYPE[3] ? false : true
 	end
 end

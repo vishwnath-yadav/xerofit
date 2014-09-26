@@ -22,11 +22,11 @@
     <%= simple_form_for(@lib_detail, url: "/builder/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
         <%= hidden_field_tag :lib_detail_id, @lib_detail.id %>
         <% disabled = is_disabled(@lib_detail) %>
-        <% set_disabled = is_set(@lib_detail) %>
         <% weight_disabled = is_weight(@lib_detail) %>
         <% dist_disabled = is_distance(@lib_detail) %>
         <% dur_disabled = is_duration(@lib_detail) %>
         <% temp_disabled = is_tempo(@lib_detail) %>
+        <% set_disabled = is_set(@lib_detail) %>
         <% rest_disabled = is_rest(@lib_detail) %>
 
 
