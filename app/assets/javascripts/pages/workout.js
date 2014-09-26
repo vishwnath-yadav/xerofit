@@ -20,9 +20,17 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('click','body',function(e){
+    $('[data-toggle="popover"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+  })
+
   $(document).on('click','.remove_block',function(){
     var arr = []
-    var $input = $(this).closest('li.main_container');
+    var $input = $(this).closest('li.block-container');
     var id = $input.attr('id').split("_")[1];
     $input.find('li.load_lib_detail').each(function(){
        var lib_detail_id = $(this).attr('id').split("_")[3];
@@ -30,15 +38,14 @@ $(document).ready(function() {
     })
     url = '/builder/remove_block';
     $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
-      console.log(data);
       if(data){
         $input.remove();
       }
     });
   })
 
-  $(document).on('click','.remove_water_block',function(){
-    var $input = $(this).closest('li.water_block');
+  $(document).on('click','.remove-break-block',function(){
+    var $input = $(this).closest('li.break-block');
     var id = $input.attr('id').split("_")[1];
     url = '/builder/remove_block';
     $.get(url, {block_id:id}, function (data) {
@@ -48,9 +55,10 @@ $(document).ready(function() {
     });
   })
 
+  // Activate Superset & Circuit Block Popover
   $(document).on('click','.block-settings',function(){
     block_popover_intilization();
-    var $input = $(this).closest('li.main_container');
+    var $input = $(this).closest('li.block-container');
     var sets = $input.find('.content .sets_count').val();
     var rest = $input.find('.content .rest_time').val();
     $input.find('.popover-content .sets_by_popup').each(function(){
@@ -62,9 +70,10 @@ $(document).ready(function() {
     })
   });
 
-  $(document).on('click','.img_icon1',function(){
+  // Activate Break Block Popover
+  $(document).on('click','.break-block-settings',function(){
     block_popover_intilization();
-    var $input = $(this).closest('li.water_block');
+    var $input = $(this).closest('li.break-block');
     var min = $input.find('.content .minutes').val();
     var sec = $input.find('.content .seconds').val();
     $input.find('.popover-content .water_popup').each(function(){
@@ -99,8 +108,6 @@ $(document).ready(function() {
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
      $("#workout_form").submit();
   });
-
-
 
   $(document).on("click","#search-move-titles",function(){
     $('#filter_search_form').submit();
@@ -152,8 +159,8 @@ $(document).ready(function() {
     var libdetails_arr=[];
     var val = parseInt($(this).val());
     var name = $(this).attr('name');
-    var $data = $(this).closest('li.main_container');
-    $(this).closest('li.main_container').find('.'+name).val(val);
+    var $data = $(this).closest('li.block-container');
+    $(this).closest('li.block-container').find('.'+name).val(val);
     var block_id = $data.attr('id').split("_")[1];
     $data.find('ul li.others').each(function(){
       if ($(this).attr('id').split('_')[1] == block_id)
@@ -170,11 +177,11 @@ $(document).ready(function() {
   $(document).on('blur', ".water_popup", function(){
     var name = $(this).attr('name');
     var value = parseInt($(this).val());
-    var $data = $(this).closest('li.water_block');
-    $(this).closest('li.water_block').find('.'+name).val(value);
+    var $data = $(this).closest('li.break-block');
+    $(this).closest('li.break-block').find('.'+name).val(value);
     var block_id = $data.attr('id').split("_")[1];
-    
-    url = '/builder/update_water_block_details';
+
+    url = '/builder/update_break_block_details';
     $.get(url, {block_id:block_id, minute:value, name:name}, function (data) {
     });
   });
@@ -183,7 +190,7 @@ $(document).ready(function() {
     $('#filter_search_form').submit();
   });
 
-  
+
   $(document).on("click",".close_icon", function(){
     $.fancybox.close();
   });
@@ -336,7 +343,7 @@ $(document).ready(function() {
         appendTo: 'body',
         containment: '#workout-builder-app .split-right',
         helper: function() {
-            return $("<div class='dragging-block-wrap' style='width: 200px;'></div>").append($(this).clone());
+            return $("<div class='dragging-block-wrap'></div>").append($(this).clone());
         }
     });
 
@@ -348,7 +355,7 @@ $(document).ready(function() {
         appendTo: 'body',
         containment: '#workout-builder-app',
         helper: function() {
-          return $("<div class='dragging-move-wrap' style='width:300px'></div>").append($(this).clone());
+          return $("<div class='dragging-move-wrap'></div>").append($(this).clone());
         }
     });
 
@@ -365,16 +372,16 @@ function initialize_drag_drop_js(){
             lib_id = ui.item.attr('data-move-id');
             drag_type = ui.item.attr('data-dragable-type');
             var html = [];
-            if(drag_type == "block"){ 
+            if(drag_type == "block"){
               if($(this).attr('data-block') == "main"){
                   block_name = ui.item.attr("data-block-name");
                   if(block_name == BLOCK_TYPE[2]){
                     object = $(this).find('li.moving');
-                    if(object.hasClass('moving') && (object.prev("li").attr('data-blck') == object.next('li').attr('data-blck')) && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
+                    if(object.hasClass('moving') && (typeof object.prev("li").attr('data-blck') != "undefined") && (typeof object.next('li').attr('data-blck') != "undefined")){          
                       html.push($('.water_break_block').html());
                     }else{
                       object.remove();
-                      alert("Water break not add in this position.");
+                      alert("The Break workout block cannot be placed at the beginning or end of a workout.");
                       return false;
                     }
                   }else{
@@ -431,18 +438,24 @@ function initialize_drag_drop_js(){
             $(this).find('li.moving').removeClass('moving');
             initialize_drag_drop_js();
         }, 
-        update: function (){
+        update: function (event, ui){
           if(object != ''){
             object.remove();
           }
+          if(ui.item.hasClass('break-block')){
+            if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){
+              return false;
+            }
+          }
+          $('.blank-workout-placeholder').remove();
           block_sortable();
         }
     }).disableSelection();
 }
 
 function save_details(lib_id, block_name, drag_type, $this){
-    var sets = $this.closest('li.main_container').find('.sets_count').val();
-    var rests = $this.closest('li.main_container').find('.rest_time').val();
+    var sets = $this.closest('li.block-container').find('.sets_count').val();
+    var rests = $this.closest('li.block-container').find('.rest_time').val();
     url = '/builder/create_workout_block';
     $.get(url, {lib_id: lib_id, block_name: block_name, drag_type: drag_type, sets: sets, rest:rests}, function (data) {
         if(drag_type == "block"){
@@ -456,7 +469,7 @@ function save_details(lib_id, block_name, drag_type, $this){
             $this.attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
           }
           else{
-            var block_id = $this.closest('li.main_container').attr('id').split("_")[1];
+            var block_id = $this.closest('li.block-container').attr('id').split("_")[1];
             $this.attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
           }
           $this.removeClass('for_id');
@@ -477,7 +490,7 @@ function remove_msg(){
 function check_library_count(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size == 2)){
-      alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
+      alrt = BLOCK_TYPE[1]+"The Superset block requires a total of 2 moves";
   }
   return alrt;
 }
@@ -548,7 +561,7 @@ function block_popover_intilization(){
 function block_sortable(){
   var i=1;
   $('#workout-editor ul li').each(function(){
-    if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){ 
+    if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){
       $(this).find('.sort_index').each(function(){
         $(this).text(i);
         i=i+1;

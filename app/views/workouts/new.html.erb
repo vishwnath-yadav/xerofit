@@ -11,16 +11,17 @@
         <div class="column-wrap autoheight">
 
             <div id="workout-blocks">
-                <%= render "workout_blocks" %>
-                <%= render "block_templates" %>
+                <%= render "workout_blocks_section" %>
+                <%= render "workouts/builder_blocks/block_templates" %>
             </div>
 
             <div id="workout-editor">
                 <%= form_tag("/builder/save_blocks", method: "post", id: "new_workout_form") do |bl| %>
                     <%=hidden_field_tag :workout_id %>
-
+                    <%#= bl.input_field :number_of_moves%>
                     <ul class="workout-list add_photo main_drop_block" data-block="main">
-                        <%= render "sub_blocks" %>
+                        <div class="blank-workout-placeholder"></div>
+                        <%#= render "sub_blocks" %>
                     </ul>
                 <% end %>
             </div>
@@ -29,4 +30,4 @@
     </div>
 </div>
 
-<%= render :partial => "workouts/builderscripts/calculate_builder_dimensions" %>
+<%= render "workouts/builderscripts/calculate_builder_dimensions" %>

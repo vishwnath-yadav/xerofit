@@ -21,7 +21,7 @@ class LibrariesController < ApplicationController
 		session[:video_id] = ''
 		@move = Move.new
 		@libvideo = LibraryVideo.new
-		@max_size_allowed = 250
+		@max_size_allowed = 300
 		5.times { @move.target_muscle_groups.build }
 	end
 	
@@ -118,10 +118,10 @@ class LibrariesController < ApplicationController
 	def full_workout_content
 		session[:video_id] = !params[:video_id].blank? ? params[:video_id] : ''
 		if params[:popup].blank?
-			@max_size_allowed = 250
+			@max_size_allowed = 300
 		elsif !session[:video_id].blank?
 			video = LibraryVideo.find_by_id(session[:video_id])
-			@max_size_allowed = 250
+			@max_size_allowed = 300
 		else
 			@max_size_allowed = 1024
 		end

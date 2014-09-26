@@ -1,6 +1,5 @@
 //= require jquery
 
-
 $(document).ready(function() {
   $('#txthdnPassword').hide();
   $(document).on('click','.toggle-pass', function() {

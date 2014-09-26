@@ -10,12 +10,12 @@
                         <%end%>
                     </li>
                     <li>
-                        <%= link_to libraries_path(user: params[:user]), class: "dropdown_app_icon fitness_library_app" do %>
+                        <%= link_to libraries_path(user: params[:user]), class: "dropdown_app_icon fitness_library_app", "data-no-turbolink" => 'true' do %>
                             <span>Fitness Library</span>
                         <%end%>
                     </li>
                     <li>
-                        <%= link_to new_workout_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app" do %>
+                        <%= link_to new_workout_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app", "data-no-turbolink" => 'true' do %>
                             <span>Workout Builder</span>
                         <%end%>
                     </li>

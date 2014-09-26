@@ -9,7 +9,7 @@ class Admin::MovesController < Admin::AdminController
 	def edit
 		@library = Move.find(params[:id])
 		@disabled = ([@library.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
-		@max_size_allowed = 250
+		@max_size_allowed = 300
 		@size = @library.get_thumbnail()
 		@count = @library.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
 		@lib_attr = (@library.title.present? && @library.directions.present? && @library.category.present? && @library.difficulty.present? && @library.library_video.image.present? && @count!=5)
