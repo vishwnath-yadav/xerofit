@@ -10,10 +10,13 @@ class VideosController < ApplicationController
     	@video.image = ''
     end
     if @video.save
-  			update_scheduled_date = Time.now + 20
-        logger.debug(">>>>>>>>>>>>>>>>job work starting>>>>>>>>>>>>>>")
-        delayed_job = Delayed::Job.enqueue(PandaVideoUpload.new(@video.id), 0, update_scheduled_date)
-        logger.debug(">>>>>>>>>>>>>>>>job work end>>>>>>>>>>>>>>")
+      p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")
+      @video.panda_video_id = p_video.id
+      @video.save
+  			# update_scheduled_date = Time.now + 20
+     #    logger.debug(">>>>>>>>>>>>>>>>job work starting>>>>>>>>>>>>>>")
+     #    delayed_job = Delayed::Job.enqueue(PandaVideoUpload.new(@video.id), 0, update_scheduled_date)
+     #    logger.debug(">>>>>>>>>>>>>>>>job work end>>>>>>>>>>>>>>")
     end
   	render text: "#{@video.present? ? @video.id : ""}"
 	end

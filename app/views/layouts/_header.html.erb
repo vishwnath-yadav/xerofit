@@ -19,7 +19,7 @@
                     <%if current_user.admin?%>
                         <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app" data-no-turbolink="true">
                     <% else %>
-                        <a href="#" class="workout-builder-soon dropdown_app_icon workout_builder_app">
+                        <a href="<%= new_workout_path %>" class="dropdown_app_icon workout_builder_app" data-no-turbolink="true">
                     <% end %>
                             <span>Workout Builder</span>
                         </a>
