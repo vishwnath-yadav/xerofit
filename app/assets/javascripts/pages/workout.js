@@ -20,6 +20,14 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('click','body',function(e){
+    $('[data-toggle="popover"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+  })
+
   $(document).on('click','.remove_block',function(){
     var arr = []
     var $input = $(this).closest('li.block-container');
@@ -30,7 +38,6 @@ $(document).ready(function() {
     })
     url = '/builder/remove_block';
     $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
-      console.log(data);
       if(data){
         $input.remove();
       }
@@ -435,17 +442,11 @@ function initialize_drag_drop_js(){
           if(object != ''){
             object.remove();
           }
-          console.log(ui.item);
-          console.log($(this));
           if(ui.item.hasClass('break-block')){
-            console.log(ui.item.prev("li").attr('data-blck'));
-            console.log(ui.item.next('li').attr('data-blck'));
             if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){
-              console.log("false");
               return false;
             }
           }
-          console.log("sssssssssssssssss");
           $('.blank-workout-placeholder').remove();
           block_sortable();
         }
