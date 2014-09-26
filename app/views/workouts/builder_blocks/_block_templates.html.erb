@@ -1,66 +1,26 @@
 <div class="block_options_html circuit_block">
-    <li class="block-container cir_super_blk for_id" data-blck="circuit">
-
-        <div class="block-header">
-            <h3>Circuit</h3>
-            <span class="block-settings" data-toggle="popover" data-placement="left"></span>
-            <%= render "workouts/builder_blocks/circuit_popover" %>
-        </div>
-
-        <ul class="block-body add_photo main_drop_block" data-block="block" data-block-name="circuit">
-            <li class="first">1</li>
-            <li class="first">2</li>
-            <li class="first">3</li>
-        </ul>
-
-    </li>
+    <%= render partial: "circuit_block", locals: {cls: 'for_id', id: ''}%>
 </div>
 
 
 <div class="block_options_html superset_block" >
-    <li class="block-container cir_super_blk for_id" data-blck="superset">
-
-        <div class="block-header">
-            <h3>Superset</h3>
-            <span class="block-settings" data-toggle="popover" data-placement="left"></span>
-            <%= render "workouts/builder_blocks/superset_popover" %>
-        </div>
-
-        <ul class="block-body add_photo main_drop_block" data-block="block" data-block-name="superset">
-            <li class="first">1</li>
-            <li class="first">2</li>
-        </ul>
-
-    </li>
+    <%= render partial: "superset_block", locals: {cls: 'for_id', id: ''}%>
 </div>
 
 
 
 <div class="block_options_html water_break_block">
-    <li class="block-container break-block for_id">
-        <div class="zzwater_hr">
-        </div>
-
-        <div class="block-header">
-            <h3>Break</h3>
-            <span class="break-block-settings" data-toggle="popover" data-placement="left"></span>
-            <%= render "workouts/builder_blocks/break_popover" %>
-        </div>
-    </li>
+    <%= render partial: "break_block", locals: {cls: 'for_id', id: ''}%>
 </div>
 
 
 
 <div class="block_options_html individual_block">
-    <li class="block-container single_move load_lib_detail for_id" data-blck='individual'>
-        <b class="sort_index"></b><b class="txt"></b></li>
+    <%= render partial: "individual_block", locals: {cls: 'for_id', id: ''}%>
 </div>
 
 
 
 <div class="block_options_html block_inner_move">
-    <li class="others load_lib_detail block-header for_id">
-        <b class="sort_index"></b>
-        <b class="txt"></b>
-    </li>
+    <%= render partial: "block_inner_move", locals: {cls: 'for_id', id: ''}%>
 </div>
