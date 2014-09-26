@@ -20,7 +20,7 @@
         </td>
         <td><%=move.user.email %></td>
         <td>
-          <%if move.move_type == Move::TYPE[0]%>
+          <%if move.move_type == Move::TYPE[1]%>
             <%=link_to "View", edit_path(move, user: move.user.token)%> |
           <%else%>
             <%=link_to "View", edit_workout_path(move, user: move.user.token)%> |
