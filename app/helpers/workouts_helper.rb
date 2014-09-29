@@ -20,13 +20,23 @@ module WorkoutsHelper
 		lib_detail.weight ? false : true
 	end
 
-	def is_set(lib_detail)
-		# lib_detail.move_block.block.name == Block::BLOCK_TYPE[3] ? false : true
-		true
+	def is_set(lib_detail, type)
+		if lib_detail.move_block.present?
+			(lib_detail.move_block.block.name == Block::BLOCK_TYPE[3]) ? false : true
+		elsif type == Block::BLOCK_TYPE[3]
+			false
+		else
+			true
+		end
 	end
 
-	def is_rest(lib_detail)
-		# lib_detail.move_block.block.name == Block::BLOCK_TYPE[3] ? false : true
-		true
+	def is_rest(lib_detail, type)
+		if lib_detail.move_block.present?
+			(lib_detail.move_block.block.name == Block::BLOCK_TYPE[3]) ? false : true
+		elsif type == Block::BLOCK_TYPE[3]
+			false
+		else
+			true
+		end
 	end
 end

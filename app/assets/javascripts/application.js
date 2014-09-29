@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require autocomplete-rails
-//= require turbolinks
 
 //= require plugins/bootstrap.min
 //= require plugins/bootstrap-progressbar.min
@@ -32,6 +32,7 @@
 //= require pages/move.js
 //= require pages/workout.js
 //= require ckeditor-jquery
+
 
 
 $(document).ready(function() {

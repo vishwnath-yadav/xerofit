@@ -63,7 +63,6 @@ $(document).ready(function() {
 
   // Activate Superset & Circuit Block Popover
   $(document).on('click','.block-settings',function(){
-    block_popover_intilization();
     var $input = $(this).closest('li.block-container');
     var sets = $input.find('.content .sets_count').val();
     var rest = $input.find('.content .rest_time').val();
@@ -78,7 +77,6 @@ $(document).ready(function() {
 
   // Activate Break Block Popover
   $(document).on('click','.break-block-settings',function(){
-    block_popover_intilization();
     var $input = $(this).closest('li.break-block');
     var min = $input.find('.content .minutes').val();
     var sec = $input.find('.content .seconds').val();
@@ -203,6 +201,8 @@ $(document).ready(function() {
 
   $(document).on('click','#publish', function(){
     var verify = true;
+    var check = $('.workout-list').find('li').first().hasClass('break-block');
+    var check1 = $('.workout-list').find('li').last().hasClass('break-block');
     if(!$('#workid').length){
       verify = false;
       alert("Please fill workout details.");
@@ -210,6 +210,10 @@ $(document).ready(function() {
     else if($('.workout-list').find('li.load_lib_detail').length <= 1){
       verify = false;
       alert("Please create sub blocks with move.");
+    }
+    else if(check || check1){
+      verify = false;
+      alert("Please change the order, break will not first or last in workout order.");
     }
     else{
       $('.workout-list .cir_super_blk').each(function(){
@@ -281,23 +285,6 @@ $(document).ready(function() {
       }
     }
   });
-
-  // $(document).on('click', ".remove_inner_move", function(){
-  //    var arr = [];
-  //     var $input = $(this).closest('li.others');
-  //     var id = $input.attr('id').split("_")[1];
-  //     var lib_detail_id = $input.attr('id').split("_")[3];
-  //     subtract_move_count(1);
-  //     arr.push(lib_detail_id);
-  //     url = '/builder/remove_block';
-  //     $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
-  //       if(data){
-  //         $input.remove();
-  //         block_sortable();
-  //       }
-  //     });
-
-  // })
 
   // Dropdown
   $(document).on('change', ".lib_detail_chk", function(){
@@ -544,14 +531,13 @@ function subtract_move_count(no_of_moves){
   var count = $('.moves_count').val();
   $('.moves_count').val(parseInt(count)-parseInt(no_of_moves));
   $('#number_of_moves').val(parseInt(count)-parseInt(no_of_moves));
-
 }
 
-function remove_library_from_block(id){
-  url = '/builder/remove_library_from_block';
-  $.get(url, {lib_block:id}, function (data) {
-  });
-}
+// function remove_library_from_block(id){
+//   url = '/builder/remove_library_from_block';
+//   $.get(url, {lib_block:id}, function (data) {
+//   });
+// }
 
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');
@@ -570,10 +556,9 @@ function load_library_content(lib_detail_id, block_id){
     $("#move-details-panel").show();
     $("#move-details-panel").html('<img src="/assets/ajax-loader.gif" class="m50">');
   })
-  sets_val = $('#block_'+block_id).find('#moves_sets').val();
-  rests_val = $('#block_'+block_id).find('#moves_rests').val();
+  type = $('#'+block_id).attr('data-blck');
   var url = '/builder/load_lib_details';
-  $.get(url, {lib_detail_id:lib_detail_id, sets:sets_val, rests:rests_val}, function (data) {
+  $.get(url, {lib_detail_id:lib_detail_id, blk_type: type}, function (data) {
     //$("#move-details-panel").html(data);
    });
 }
@@ -644,13 +629,10 @@ function block_indexing(){
   var ids = '';
   var length = $('.workout-list .block-container').length;
   for(i=0;i<length;i++){
-    console.log(i);
     if($('.workout-list .block-container:eq('+i+')').length){
       var id = $('.workout-list .block-container:eq('+i+')').attr('id').split('_')[1];
       ids = ids != '' ? ids + ','+id : id;
-      console.log(ids);
     }
   }
   $('#indexes').val(ids);
-  console.log(ids);
 }
