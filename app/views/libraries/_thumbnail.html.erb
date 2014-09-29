@@ -19,14 +19,14 @@
   <script>
   $(document).ready(function(){
     $(document).on('click','.li_class', function(){
-      if(!$(this).find('.video_title').hasClass('select_thumb')){
+      // if(!$(this).find('.video_title').hasClass('select_thumb')){
         var src = $(this).find('img').prop('src');
         $('.image_url').val(src);
         $('.select_thumb').removeClass('select_thumb');
         $(this).find('.video_title').addClass('select_thumb');
         $('.chg_save').removeClass('dis_link');
         check_require_field();
-      }
+      // }
     });
 
     $(document).on('click','.load_more', function(){
