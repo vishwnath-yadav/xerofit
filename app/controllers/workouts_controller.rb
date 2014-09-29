@@ -79,10 +79,11 @@ class WorkoutsController < ApplicationController
 		if params[:block].present?
 			block_hash = params[:block]
 			@workout.save_blocks_and_libs(block_hash)
-			@workout.save_index_hash(params[:indexes])
 			@workout.state = "completed"
 			@workout.save
 		end
+		@workout.save_index_hash(params[:indexes])
+		@workout.save
 		flash[:notice] = "Workout Saved Successfully!"
 		if current_user.admin?
 			redirect_to libraries_path(user: @workout.user.token)
@@ -105,9 +106,13 @@ class WorkoutsController < ApplicationController
 	end
 
 	def load_lib_details
+		@blk_type = "nothing"
 		@lib_detail = params[:lib_detail_id].present? ? MoveDetail.find(params[:lib_detail_id]) : nil
 		if @lib_detail.present?
 			@lib_detail.save
+		end
+		if params[:blk_type].present?
+			@blk_type = params[:blk_type]
 		end
 		respond_to do |format|
 			format.js 
@@ -174,36 +179,25 @@ class WorkoutsController < ApplicationController
 	end
 
 	def remove_block
-		if params[:block_id].present?
-			block = Block.find(params[:block_id])
-			block.destroy
+		if !params[:move_type].present?
+			if params[:block_id].present?
+				block = Block.find(params[:block_id])
+				block.destroy
+			end
 		end
 		if params[:lib_detail_arr].present?
 			lib_details = params[:lib_detail_arr]
 			lib_details.each do |details_id|
 				detail = MoveDetail.find(details_id)
+				move_blk = detail.move_block
+				if move_blk.present?
+					move_blk.destroy
+				end
 				detail.destroy
 			end
 		end
 		render text: true
 	end
-	# def create_workout_block
-	# 	if params[:drag_type] == "block"
-	# 		@block = Block.new(name: params[:block_name])
-	# 		@block.save
-	# 		render json:{ id: @block.id}
-	# 	elsif params[:block_name] == Block::BLOCK_TYPE[3]
-	# 		@block = Block.new(name: params[:block_name])
-	# 		@block.save
-	# 		@lib_detail = MoveDetail.new()
-	# 		@lib_detail.save
-	# 		render json: {id: @block.id, lib_detail_id: @lib_detail.id}
-	# 	else
-	# 		@lib_detail = MoveDetail.new()
-	# 		@lib_detail.save
-	# 		render json: {lib_detail_id: @lib_detail.id}
-	# 	end
-	# end
 
 	private
 	  def workout_params

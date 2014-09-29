@@ -6,7 +6,7 @@
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links">
         <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=> 'cb_breadcrumb') %>
-        <%= link_to("Workout Builder", edit_workout_path(@workout), :class => 'cb_nav_link', "data-no-turbolinks"=>true)  if hide_if_admin %>
+        <%= link_to("Workout Builder", edit_workout_path(@workout), :class => 'cb_nav_link')  if hide_if_admin %>
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">
@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-
+<%#=hidden_field_tag :number_of_moves, @workout.number_of_moves, class: "workout_moves_count"%>
 <div class="page_content">
   <div class="container">
     <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>

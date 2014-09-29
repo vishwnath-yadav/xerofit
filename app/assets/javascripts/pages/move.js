@@ -230,6 +230,17 @@ function check_require_field(){
     $('.smt_reviw').removeClass('dis_link');
     $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
     $('.chg_save').attr('lib-status', STATUS[3]);
+
+    // if(parseInt($('#number_of_moves').val()) >= 7 && $('#number_of_moves').hasClass('workout_moves_count')){
+    //   $('.smt_reviw').removeClass('dis_link');
+    //   $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+    //   $('.chg_save').attr('lib-status', STATUS[3]);
+    // }
+    // if(!$('#number_of_moves').hasClass('workout_moves_count')){
+    //  $('.smt_reviw').removeClass('dis_link');
+    //  $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+    //  $('.chg_save').attr('lib-status', STATUS[3]); 
+    // }
   }
   else{
     $('.smt_reviw').attr('class','cancel_btn rht_active edit_lib dis_link smt_reviw btn_right');
@@ -243,7 +254,8 @@ function check_require_field(){
 }
 
 function check_if_thumb_is_default(selected_thumb){
-    return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : true;
+    // return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : true;
+    return false;
 }
 
 function show_text_actual_size(){

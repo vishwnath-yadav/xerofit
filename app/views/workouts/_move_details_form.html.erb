@@ -26,8 +26,8 @@
         <% dist_disabled = is_distance(@lib_detail) %>
         <% dur_disabled = is_duration(@lib_detail) %>
         <% temp_disabled = is_tempo(@lib_detail) %>
-        <% set_disabled = is_set(@lib_detail) %>
-        <% rest_disabled = is_rest(@lib_detail) %>
+        <% set_disabled = is_set(@lib_detail,@blk_type) %>
+        <% rest_disabled = is_rest(@lib_detail,@blk_type) %>
 
 
         <div id="sets" class="input-section">
