@@ -1,16 +1,16 @@
 @font-face {
-    font-family: 'xerofit-iconfont';
-    src: font-url('xerofit-iconfont.eot?-6241hk');
-    src: font-url('xerofit-iconfont.eot?#iefix-6241hk') format('embedded-opentype'),
-         font-url('xerofit-iconfont.woff?-6241hk') format('woff'),
-         font-url('xerofit-iconfont.ttf?-6241hk') format('truetype'),
-         font-url('xerofit-iconfont.svg?-6241hk#xerofit-iconfont') format('svg');
+    font-family: 'xerofit-icons';
+    src: font-url('xerofit-icons.eot?-97u460');
+    src: font-url('xerofit-icons.eot?#iefix-97u460') format('embedded-opentype'),
+         font-url('xerofit-icons.woff?-97u460') format('woff'),
+         font-url('xerofit-icons.ttf?-97u460') format('truetype'),
+         font-url('xerofit-icons.svg?-97u460#xerofit-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 [class^="xico-"], [class*=" xico-"] {
-    font-family: 'xerofit-iconfont';
+    font-family: 'xerofit-icons';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -23,9 +23,81 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.xico-settings-gear-line:before {
+.xico-calendar-fill:before {
     content: "\e600";
 }
-.xico-settings-gear-fill:before {
+.xico-calendar-line:before {
     content: "\e601";
+}
+.xico-discover-fill:before {
+    content: "\e602";
+}
+.xico-discover-line:before {
+    content: "\e603";
+}
+.xico-filter-fill:before {
+    content: "\e604";
+}
+.xico-filter-line:before {
+    content: "\e605";
+}
+.xico-heart-fill:before {
+    content: "\e606";
+}
+.xico-heart-line:before {
+    content: "\e607";
+}
+.xico-home-fill:before {
+    content: "\e608";
+}
+.xico-home-line:before {
+    content: "\e609";
+}
+.xico-image-fill:before {
+    content: "\e60a";
+}
+.xico-image-line:before {
+    content: "\e60b";
+}
+.xico-notification-bell-fill:before {
+    content: "\e60c";
+}
+.xico-notification-bell-line:before {
+    content: "\e60d";
+}
+.xico-profile-fill:before {
+    content: "\e60e";
+}
+.xico-profile-line:before {
+    content: "\e60f";
+}
+.xico-settings-gear-fill:before {
+    content: "\e610";
+}
+.xico-settings-gear-line:before {
+    content: "\e611";
+}
+.xico-user-fill:before {
+    content: "\e612";
+}
+.xico-user-line:before {
+    content: "\e613";
+}
+.xico-video-fill:before {
+    content: "\e614";
+}
+.xico-video-line:before {
+    content: "\e615";
+}
+.xico-workout-builder-fill:before {
+    content: "\e616";
+}
+.xico-workout-builder-line:before {
+    content: "\e617";
+}
+.xico-arrow-collapse:before {
+    content: "\e618";
+}
+.xico-arrow-expand:before {
+    content: "\e619";
 }
