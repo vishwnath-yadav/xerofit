@@ -84,6 +84,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'rmagick', require: false
 
-gem 'awesome_nested_set'
+# gem 'awesome_nested_set'
 
 

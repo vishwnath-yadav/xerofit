@@ -3,7 +3,7 @@
 --
 
 SET statement_timeout = 0;
-SET client_encoding = 'LATIN1';
+SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -559,8 +559,7 @@ CREATE TABLE workouts (
     move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    number_of_moves integer DEFAULT 0,
-    sort_index integer
+    number_of_moves integer DEFAULT 0
 );
 
 
@@ -925,7 +924,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140916131956');
 INSERT INTO schema_migrations (version) VALUES ('20140920074532');
 
 INSERT INTO schema_migrations (version) VALUES ('20140926055644');
-
-INSERT INTO schema_migrations (version) VALUES ('20140926164951');
 
 INSERT INTO schema_migrations (version) VALUES ('20140926164952');
