@@ -174,9 +174,11 @@ class WorkoutsController < ApplicationController
 	end
 
 	def remove_block
-		if params[:block_id].present?
-			block = Block.find(params[:block_id])
-			block.destroy
+		if !params[:move_type].present?
+			if params[:block_id].present?
+				block = Block.find(params[:block_id])
+				block.destroy
+			end
 		end
 		if params[:lib_detail_arr].present?
 			lib_details = params[:lib_detail_arr]

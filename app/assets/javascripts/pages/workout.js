@@ -256,6 +256,21 @@ $(document).ready(function() {
         }
       });
     }
+    else if($(e.target).hasClass('remove_inner_move')){
+      var arr = [];
+      var $input = $(this).closest('li.others');
+      var id = $input.attr('id').split("_")[1];
+      var lib_detail_id = $input.attr('id').split("_")[3];
+      subtract_move_count(1);
+      arr.push(lib_detail_id);
+      url = '/builder/remove_block';
+      $.get(url, {block_id:id, lib_detail_arr:arr, move_type:"inner"}, function (data) {
+        if(data){
+          $input.remove();
+          block_sortable();
+        }
+      });
+    }
     else{
       $('.active_li').removeClass('active_li');
       $(this).addClass('active_li');
@@ -266,6 +281,23 @@ $(document).ready(function() {
       }
     }
   });
+
+  // $(document).on('click', ".remove_inner_move", function(){
+  //    var arr = [];
+  //     var $input = $(this).closest('li.others');
+  //     var id = $input.attr('id').split("_")[1];
+  //     var lib_detail_id = $input.attr('id').split("_")[3];
+  //     subtract_move_count(1);
+  //     arr.push(lib_detail_id);
+  //     url = '/builder/remove_block';
+  //     $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
+  //       if(data){
+  //         $input.remove();
+  //         block_sortable();
+  //       }
+  //     });
+
+  // })
 
   // Dropdown
   $(document).on('change', ".lib_detail_chk", function(){
