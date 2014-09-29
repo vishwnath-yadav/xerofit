@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-
+<%#=hidden_field_tag :number_of_moves, @workout.number_of_moves, class: "workout_moves_count"%>
 <div class="page_content">
   <div class="container">
     <%= simple_nested_form_for(@workout, url: (workout_path(@workout)), html: {id: 'edit_workout_info'}) do |lib| %>
