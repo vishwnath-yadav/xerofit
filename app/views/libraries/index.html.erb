@@ -44,9 +44,9 @@
           </div>
 
           <div class="library_view_toggles">
-            <div class="list_icon view_type grid_pointer control_bar_tooltip" data-name="list" id="list_view" data-toggle="tooltip" data-placement="bottom" title="List"></div>
+            <div class="list_icon view_type grid_pointer control_bar_tooltip" data-name="list" id="list_view" data-toggle="tooltip" data-placement="bottom" title="List View"></div>
 
-            <div class="grid_icon grid_icon_active grid_pointer view_type control_bar_tooltip" data-name="grid" id="grid_view" data-toggle="tooltip" data-placement="bottom" title="Grid"></div>
+            <div class="grid_icon grid_icon_active grid_pointer view_type control_bar_tooltip" data-name="grid" id="grid_view" data-toggle="tooltip" data-placement="bottom" title="Grid View"></div>
           </div>
         </div>
       <%end%>
@@ -76,7 +76,8 @@
   });
 
   $('.control_bar_tooltip').tooltip({
-    placement: 'bottom'
+    placement: 'bottom',
+    container: 'body'
   });
 
   $('.admin_li').removeClass('active')
