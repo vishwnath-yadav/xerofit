@@ -20,6 +20,11 @@ $(document).ready(function() {
     }
   });
 
+  $('.builder-tooltip').tooltip({
+    placement: 'bottom',
+    container: 'body'
+  });
+
   $(document).on('click','body',function(e){
     $('[data-toggle="popover"]').each(function () {
         if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {

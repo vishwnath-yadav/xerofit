@@ -26,15 +26,10 @@
 .show-on-scroll { display: none; }
 .disable-scroll { overflow: hidden; }
 
-#enter-fullscreen,
-#exit-fullscreen {
-    float: left;
-    margin-right: 14px;
-}
-
 .details_page_header.workout-builder {
     border-bottom: 1px solid #D8D8D8;
 }
+
 
 
 
@@ -412,6 +407,7 @@
     @include clearfix();
 
     ul.block-wrap {
+        float: left;
         padding: 0;
         list-style-type: none;
         margin: 0;
@@ -435,6 +431,34 @@
         &:hover { @include cursor-grab(); }
     }
 }
+
+.workout-builder .editor-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -14px;
+    margin-top: -14px;
+
+    a.fullscreen-toggle {
+        color: $xero-blue;
+        cursor: pointer;
+        display: block;
+        padding: 4px;
+        text-decoration: none;
+        @include border-radius(4px);
+
+        &:before {
+            font-size: 20px;
+            line-height: 1;
+            @include xerofit-icon();
+            display: block;
+        }
+    }
+}
+
+// Expand & Collapse Icons
+#exit-fullscreen:before { content: '\e618'; }
+#enter-fullscreen:before { content: '\e619'; }
 
 
 #workout-editor {
