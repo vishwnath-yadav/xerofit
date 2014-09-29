@@ -1,7 +1,7 @@
 class LibraryVideo < ActiveRecord::Base
 	belongs_to :move
 	mount_uploader :video, VideoUploader
-	store_in_background :video
+	# store_in_background :video
 
 	def panda_video
 		begin
