@@ -897,40 +897,6 @@ li.sortable-placeholder + li.first { display: none; }
 
 
 
-.fetured_li {
-    width: 100%;
-    float: left;
-    margin-top: 13px;
-    border-bottom: 1px solid #ccc;
-
-    ul {
-        margin: 0px;
-        padding: 0px;
-
-        li {
-            width: auto;
-            float: left;
-            list-style: none;
-            display: inline;
-            padding: 0 10px;
-            color: gainsboro;
-            padding-bottom: 8px;
-        }
-
-        li.active_tab {
-            border-bottom: 2px solid #ccc;
-            color: black;
-        }
-    }
-}
-
-
-.water_mat_tab {
-    margin-bottom: 0px !important;
-}
-
-.block_hide.met_tab_col { opacity: 0; }
-
 .workout_auto_input {
     width: 180px;
     height: 32px;
@@ -945,142 +911,23 @@ li.sortable-placeholder + li.first { display: none; }
     }
 }
 
-.wrk_block_types {
-    color: #b3adaf;
-    font-size: 16px;
-}
-
-
-// Start Workout Builder
+// Still in edit
 .met_tab {
     //margin-bottom: 20px;
     float: left;
     width: 100%;
 }
 
-.met_tab_col{
-    width:100%;
-    float:left;
-    //margin-bottom:45px;
-}
-.met_tab_col:last-child{
-    margin-bottom: 0px;
-}
-.met_tab_col .met_head{
-    width: 100%;
-    float: left;
-    background: #7E8082;
-    border-radius: 5px;
-    padding: 10px;
-    //margin-top: 10px;
-    cursor: pointer;
-}
-.head_rght{
-    width:100%;
-    float:left;
-}
-.met_tab_col .met_head h4{
-    font-size:14px;
-    color:#fff;
-    @include gotham500();
-    margin-bottom:5px;
-}
-.met_tab_col .met_head p {
-    font-size:11px;
-    color:#fff;
-    @include gotham300();
-    margin:0px;
-}
-.met_tab_col.single_move_drop{
-    margin-bottom: 10px;
+.met_tab.blank_li { min-height: 50px; }
 
-    div.met_tab_desc{
-        min-height: 0px;
 
-        ul.sortable{
-            padding: 0px;
-        }
-    }
+// Used to highlight clicked move in workout editor
+.active_li {
+    background: #E6F2F8 !important;
+    border: 1px solid #45aafa;
 }
 
-
-.met_tab.blank_li {
-    min-height: 50px;
-}
-
-li.block_li {
-    background: #fff;
-}
-
-.met_tab_desc {
-    width: 100%;
-    float: left;
-    min-height: 160px;
-    background: #fff;
-
-    ul {
-        @include clearfix();
-        margin: 0;
-        padding: 0;
-
-        li {
-            float: left;
-            width: 100%;
-            list-style: none;
-            padding: 14px;
-            font-size: 12px;
-            cursor: pointer;
-            position: relative;
-
-            &:hover{background: $hover-color;}
-
-            span {
-                width:13px;
-                height:13px;
-                float:left;
-            }
-
-            span.nummeric{
-                float: left;
-                line-height: 36px;
-                height: 37px;
-                width: 19px;
-            }
-
-            span.rm {
-                float: right;
-                font-weight: bold;
-                position: absolute;
-                z-index: 99999999;
-                width: 20px;
-                right: 0;
-                height: 20px;
-
-                &:hover{ opacity: .6}
-            }
-
-            h6 {
-                font-size: 14px;
-                line-height: 1;
-                color: $silver16;
-                margin: 0;
-            }
-
-            p {
-                font-size:12px;
-                color:#8b8e94;
-                margin:0px;
-                font-style:normal;
-            }
-
-            a { text-decoration:none; }
-        }
-
-        li.li_active { background: $active-color;}
-    }
-}
-
-li.li_active { background: $active-color;}
+li.li_active { background: $active-color; }
 
 .detail_form {
     width: 100%;
@@ -1092,7 +939,7 @@ li.li_active { background: $active-color;}
         float: left;
         margin-bottom: 30px;
 
-        label{
+        label {
             font-size: 14px;
             color: #666;
             float: left;
@@ -1114,106 +961,13 @@ li.li_active { background: $active-color;}
     }
 }
 
-.met_tab_col .water_head{
-    width: 30%;
-    float:left;
-    margin-left: 34%;
-    background:#7E8082;
-    border-radius:5px;
-    padding:10px;
-    position: relative;
-    cursor: pointer;
-    top: -22px;
-}
-
-.water_hr{
-    margin-bottom: 0;
-    border-top: 1px solid #111;
-    margin-top: 29px;
-}
-
-.water_mat_tab{
-    margin-bottom: 0px !important;
-}
-
-
-
-.blc_type_head {
-    margin: 0 18% 5% 26%;
-    font-size: 16px;
-    border-bottom: 1px solid;
-}
-
-.blc_type_pop{
-    border: 1px solid #eee;
-    margin: 1px 1px;
-    padding: 5px 5px;
-    color: #b3adaf;
-    display: none;
-}
-
-
-.new_pop_class{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.photo_show {
-    max-width: 1090px;
-    margin: 0 auto;
-    float: none;
-}
-
-.water_block {
-
-
-    .water_head{
-        width: 30%;
-        float: left;
-        margin-left: 34%;
-        background: #7E8082;
-        border-radius: 5px;
-        padding: 10px;
-        position: relative;
-        cursor: pointer;
-        top: -22px;
-        text-align: center;
-    }
-
-    .water_hr{
-        margin-bottom: 0px;
-        border-top: 1px solid #111;
-        margin-top: 20px;
-    }
-}
-
-li.blank_li{
+li.blank_li {
     padding: 0px 0 40px;
     margin-bottom: 0;
 }
 
-
-.time_flot {
-    float: left;
-    margin-right: 13px;
-    margin-bottom: 11px;
-}
-
-
-.img_icon1{
-    margin-top:0px;
-    float: right;
-}
-
-
-// Number
+// Number counter
 .sort_index { margin-right: 12px; }
-
-
-.active_li{
-    background: #E6F2F8 !important;
-    border: 1px solid #45aafa;
-}
 
 // Move counter for the workout
 .float_right {

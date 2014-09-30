@@ -295,11 +295,6 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('mouseover','.fetured_li ul li', function(){
-    $('.active_tab').removeClass('active_tab');
-    $(this).addClass('active_tab');
-  });
-
   $(document).on('keyup',"#workout_form input, textarea", function(){
     var obj = $(this).closest('.form_field').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
