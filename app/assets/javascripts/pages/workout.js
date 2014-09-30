@@ -337,7 +337,7 @@ function setting_sets_and_rests($this){
   var libdetails_arr=[];
   var val = parseInt($this.val());
   var name = $this.attr('name');
-  var $data = $this).closest('li.block-container');
+  var $data = $this.closest('li.block-container');
   $this.closest('li.block-container').find('.'+name).val(val);
   var block_id = $data.attr('id').split("_")[1];
   if(name == "sets_count"){
