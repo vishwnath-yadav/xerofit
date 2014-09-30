@@ -567,13 +567,33 @@
 
         &:hover { @include cursor-grab(); }
 
-        // Block Title
-        h3 {
-            margin: 0;
+
+
+        > div {
+            position: relative;
+            width: 100%;
+            @include clearfix;
             line-height: 28px;
-            font-size: 18px;
-            float: left;
+
+            // Block Title
+            h3 {
+                float: left;
+                line-height: 28px;
+                margin: 0;
+                font-size: 18px;
+            }
+
+            // Block Sets and Rest Values
+            span.block-options {
+                font-size: 12px;
+                margin-left: 21px;
+                float: left;
+                display: block;
+                color: #fff;
+                @include gotham300-italic();
+            }
         }
+
 
         // Settings Icon
         span.block-settings,
@@ -582,7 +602,7 @@
             height: 42px;
             text-align: center;
             position: absolute;
-            z-index:9999999;
+            //z-index: 9999999;
             right: 0;
             top: 0;
             display: block;
@@ -1172,10 +1192,3 @@ li.blank_li{
     }
 }
 
-.popover-data {
-    position: relative;
-    top: 5px;
-    left: 8px;
-    color: yellow;
-    font-weight: 700;
-}

@@ -341,9 +341,9 @@ function setting_sets_and_rests($this){
   $this.closest('li.block-container').find('.'+name).val(val);
   var block_id = $data.attr('id').split("_")[1];
   if(name == "sets_count"){
-    $("#block_"+block_id).find('.popover-data').text( '\"'+ val + " Sets with " + $data.find('.rest_time').val() + " seconds rest"+'\"');
+    $("#block_"+block_id).find('.block-options').text( '\"'+ val + " Sets with " + $data.find('.rest_time').val() + " seconds rest"+'\"');
   }else if(name == "rest_time"){
-    $("#block_"+block_id).find('.popover-data').text( '\"'+ $data.find('.sets_count').val() + " Sets with " + val + " seconds rest"+'\"');
+    $("#block_"+block_id).find('.block-options').text( '\"'+ $data.find('.sets_count').val() + " Sets with " + val + " seconds rest"+'\"');
   }
 
   $data.find('ul li.block-move').each(function(){
@@ -608,7 +608,8 @@ function show_text_size(){
 
 function block_popover_intilization(){
   $("[data-toggle='popover']").popover({
-    html:true,
+    html: true,
+    container: 'body',
     title: function () {
         return $(this).parent().find('.head').html();
     },
