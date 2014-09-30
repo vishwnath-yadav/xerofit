@@ -29,4 +29,13 @@ Xerofit::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = false
+
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_credentials => {
+  #     :bucket => Settings.aws.bucket,
+  #     :access_key_id => Settings.aws.access_key_id,
+  #     :secret_access_key => Settings.aws.secret_access_key
+  #   }
+  # }
 end

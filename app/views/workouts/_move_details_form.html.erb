@@ -21,25 +21,23 @@
 
     <%= simple_form_for(@lib_detail, url: "/builder/save_lib_details", remote: true, :defaults => {:required => false}) do |ld| %>
         <%= hidden_field_tag :lib_detail_id, @lib_detail.id %>
+        <%= hidden_field_tag :blk_type, params[:blk_type] %>
         <% disabled = is_disabled(@lib_detail) %>
         <% weight_disabled = is_weight(@lib_detail) %>
         <% dist_disabled = is_distance(@lib_detail) %>
         <% dur_disabled = is_duration(@lib_detail) %>
         <% temp_disabled = is_tempo(@lib_detail) %>
-        <% set_disabled = is_set(@lib_detail,@blk_type) %>
-        <% rest_disabled = is_rest(@lib_detail,@blk_type) %>
-
+        <% set_disabled = is_set(@lib_detail, params[:blk_type]) %>
+        <% rest_disabled = is_rest(@lib_detail, params[:blk_type]) %>
 
         <div id="sets" class="input-section">
             <div class="section-title">
-                <label>Sets</label>
-                <%#=ld.input :sets, input_html: {class: "lib_detail_chk"} %>
+              <label>Sets</label>
             </div>
             <div class="input-wrap lib_detail_inp">
-                <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
+              <%= ld.input :sets_count, label: false, input_html: {class: "", min: 1, max: 10}, disabled: set_disabled %>
             </div>
         </div>
-
 
         <div id="reps" class="input-section">
             <div class="section-title">
@@ -54,7 +52,6 @@
                 </div>
             </div>
         </div>
-
 
         <div id="weight" class="input-section">
             <div class="section-title">
@@ -131,7 +128,6 @@
         <div id="rest" class="input-section">
             <div class="section-title">
                 <label>Rests</label>
-                <%#=ld.input :rest, :input_html => { class: "lib_detail_chk" }%>
             </div>
             <div class="input-wrap">
                 <div class="number-input-wrap lib_detail_inp" >

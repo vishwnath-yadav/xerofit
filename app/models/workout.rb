@@ -8,7 +8,12 @@ class Workout < ActiveRecord::Base
 	has_many :histories
 	has_one :statastic
 	belongs_to :user
-	has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" }, :processors => [:cropper]
+	has_attached_file :pic, 
+	:styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>",:thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" },
+	:processors => [:cropper],
+	:storage => :s3, 
+	:path => "/image/workout/:id/:style/:filename",
+	:s3_credentials => Proc.new{|a| a.instance.s3_credentials }
 
 	after_create :save_status
 	
@@ -21,13 +26,18 @@ class Workout < ActiveRecord::Base
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
-
   
 	Workout::STATES.each do |state|
 	    define_method "#{state}?" do
 	      self.state.try(&:to_sym) == state
 	    end
 	end
+  
+  def s3_credentials
+    { :bucket => Settings.aws.bucket, 
+      :access_key_id => Settings.aws.access_key_id, 
+      :secret_access_key => Settings.aws.secret_access_key}
+  end
 
 	def save_blocks_and_libs(block_hash)
 		block_hash.each do|key, value|
@@ -94,9 +104,9 @@ class Workout < ActiveRecord::Base
 	end
 
 	def pic_geometry(style = :original)
-		@geometry ||= {}
-		@geometry[style] ||= Paperclip::Geometry.from_file(pic.path(style))
-	end
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(pic.url(style))
+  end
 
 	def reprocess_pic
 		pic.reprocess!

@@ -7,8 +7,13 @@ class User < ActiveRecord::Base
   
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :pic_creating
 
-
-  has_attached_file :pic, :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, :processors => [:cropper]
+  has_attached_file :pic, 
+                    :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, 
+                    :processors => [:cropper],
+                    :storage => :s3, 
+                    :path => "/image/user/:id/:style/:filename",
+                    :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
+  
   has_many :moves 
   has_many :full_workouts 
   has_many :addresses
@@ -38,6 +43,12 @@ class User < ActiveRecord::Base
     define_method "#{role}?" do
       self.role == role
     end
+  end
+
+  def s3_credentials
+    { :bucket => Settings.aws.bucket, 
+      :access_key_id => Settings.aws.access_key_id, 
+      :secret_access_key => Settings.aws.secret_access_key}
   end
 
   def min_image_size
@@ -141,7 +152,7 @@ class User < ActiveRecord::Base
   
   def pic_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(pic.path(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(pic.url(style))
   end
   
   def reprocess_pic
