@@ -293,7 +293,8 @@
         width: 100%;
         float: left;
         position: relative;
-        padding: 13px 0 21px;
+        padding-top: 14px;
+        padding-bottom: 13px;
         border-bottom: 1px solid #F2F2F2;
         @include user-select(none);
     }
