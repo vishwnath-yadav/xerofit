@@ -251,43 +251,10 @@ $(document).ready(function() {
       $("#move-details-panel").css('display', 'none');
     }
     else if($(e.target).hasClass('remove_single_move')){
-      var arr = [];
-      var $input = $(this).closest('li.block-container');
-      var id = $input.attr('id').split("_")[1];
-      var lib_detail_id = $input.attr('id').split("_")[3];
-      subtract_move_count(1);
-      arr.push(lib_detail_id);
-      url = '/builder/remove_block';
-      $.get(url, {block_id:id, lib_detail_arr:arr}, function (data) {
-        if(data){
-          $input.remove();
-          block_sortable();
-        }
-      });
-    }
-    else if($(e.target).hasClass('remove_inner_move')){
-      var arr = [];
-      var $input = $(this).closest('li.others');
-      var id = $input.attr('id').split("_")[1];
-      var lib_detail_id = $input.attr('id').split("_")[3];
-      subtract_move_count(1);
-      arr.push(lib_detail_id);
-      url = '/builder/remove_block';
-      $.get(url, {block_id:id, lib_detail_arr:arr, move_type:"inner"}, function (data) {
-        if(data){
-          $input.remove();
-          block_sortable();
-        }
-      });
+      remove_moves($(this));
     }
     else{
-      $('.active_li').removeClass('active_li');
-      $(this).addClass('active_li');
-      var block_id = $(this).attr('id') ? $(this).attr('id') : []
-      if(block_id){
-        var lib_detail = block_id.split("_")[3];
-        load_library_content(lib_detail, block_id);
-      }
+      activate_moves($(this));
     }
   });
 
@@ -337,18 +304,6 @@ $(document).ready(function() {
   $(document).on('blur', ".blur_input", function(){
     var txt = $(this).val();
     var name = $(this).attr('name');
-    // if(txt == '' && name.indexOf('name') > -1){
-    //   alert("Title Can't be blank");    
-    // }
-    // else if(name.indexOf('subtitle') > -1 && $('.wrk_head').text() == "Workout Title"){
-    //   alert("Title Can't be blank");    
-    //   $('.wrk_subhead').show();
-    //   $(this).parent().remove();
-    // }
-    // else{
-    //   $("#workout_form_auto").submit();
-    // }
-
     if(txt == ''){
       alert("Title Can't be blank");
 
@@ -498,27 +453,68 @@ function initialize_drag_drop_js(){
     }).disableSelection();
 }
 
+function remove_moves($this){
+  var arr = [];
+  var $input = $this.closest('li.load_lib_detail');
+  var id = $input.attr('id').split("_")[1];
+  var lib_detail_id = $input.attr('id').split("_")[3];
+  var move_type = $input.hasClass('block-container') ? '' :  "inner";
+  subtract_move_count(1);
+  arr.push(lib_detail_id);
+  url = '/builder/remove_block';
+  $.get(url, {block_id:id, lib_detail_arr:arr,move_type: move_type}, function (data) {
+    if(data){
+      var lis = add_blank_lis($input.closest('li.block-container'));
+      $input.after(lis);
+      $input.remove();
+      block_sortable();
+    }
+  });
+}
+
+function activate_moves($this){
+  $('.active_li').removeClass('active_li');
+  $this.addClass('active_li');
+  var block_id = $this.attr('id') ? $this.attr('id') : []
+  if(block_id){
+    var lib_detail = block_id.split("_")[3];
+    load_library_content(lib_detail, block_id);
+  }
+}
+
+function add_blank_lis($this){
+  var block_name = $this.attr('data-blck');
+  var li_length = block_name == BLOCK_TYPE[0] ? 4 : block_name == BLOCK_TYPE[1] ? 3 : 0
+  var blank_lis = ''
+  var count_lib = $this.find('li.others').length ? $this.find('li.others').length - 1 : 0;
+  $this.find('li.first').remove();
+  for (var i = 1; i < (li_length - count_lib); i++) {
+    blank_lis += '<li class="first">'+i+'</li>';
+  }
+  return blank_lis;
+}
+
 function save_details(lib_id, block_name, drag_type, $this){
-    var sets = $this.closest('li.block-container').find('.sets_count').val();
-    var rests = $this.closest('li.block-container').find('.rest_time').val();
-    url = '/builder/create_workout_block';
-    $.get(url, {lib_id: lib_id, block_name: block_name, drag_type: drag_type, sets: sets, rest:rests}, function (data) {
-        if(drag_type == "block"){
-            $this.attr('id', "block_"+data.id);
-            $this.find('.content').addClass("setting_"+data.id);
-            if(block_name == BLOCK_TYPE[2]){
-                $this.attr('id', "block_"+data.id).append('<input type="hidden" name=block['+data.id+'][0] id="block_'+data.id+'_0" value=0>');
-            }
-          }
-          else if(block_name == BLOCK_TYPE[3]){
-            $this.attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
-          }
-          else{
-            var block_id = $this.closest('li.block-container').attr('id').split("_")[1];
-            $this.attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
-          }
-          $this.removeClass('for_id');
-    });
+  var sets = $this.closest('li.block-container').find('.sets_count').val();
+  var rests = $this.closest('li.block-container').find('.rest_time').val();
+  url = '/builder/create_workout_block';
+  $.get(url, {lib_id: lib_id, block_name: block_name, drag_type: drag_type, sets: sets, rest:rests}, function (data) {
+  if(drag_type == "block"){
+      $this.attr('id', "block_"+data.id);
+      $this.find('.content').addClass("setting_"+data.id);
+      if(block_name == BLOCK_TYPE[2]){
+          $this.attr('id', "block_"+data.id).append('<input type="hidden" name=block['+data.id+'][0] id="block_'+data.id+'_0" value=0>');
+      }
+    }
+    else if(block_name == BLOCK_TYPE[3]){
+      $this.attr('id', "block_"+data.id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+data.id+']['+lib_id+'] id="block_'+data.id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+    }
+    else{
+      var block_id = $this.closest('li.block-container').attr('id').split("_")[1];
+      $this.attr('id', "block_"+block_id+"_"+lib_id+"_"+data.lib_detail_id).append('<input type="hidden" name=block['+block_id+']['+lib_id+'] id="block_'+block_id+'_'+lib_id+'" value='+data.lib_detail_id+'>');
+    }
+    $this.removeClass('for_id');
+  });
 }
 
 function add_move_count(){
@@ -537,12 +533,6 @@ function subtract_move_count(no_of_moves){
   $('.moves_count').val(parseInt(count)-parseInt(no_of_moves));
   $('#number_of_moves').val(parseInt(count)-parseInt(no_of_moves));
 }
-
-// function remove_library_from_block(id){
-//   url = '/builder/remove_library_from_block';
-//   $.get(url, {lib_block:id}, function (data) {
-//   });
-// }
 
 function remove_msg(){
   $('.success').removeClass('move_detail').html('');
