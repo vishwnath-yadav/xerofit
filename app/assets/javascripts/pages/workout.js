@@ -206,7 +206,7 @@ $(document).ready(function() {
     else{
       $('.workout-list .cir_super_blk').each(function(){
         var block_name = $(this).find('ul').attr('data-block-name');
-        var block_li_size = $(this).find('ul li.others').size();
+        var block_li_size = $(this).find('ul li.block-move').size();
         var check = check_library_publish(block_li_size,block_name)
         if(check != ''){
           verify = false;
@@ -233,7 +233,7 @@ $(document).ready(function() {
       $('.active_li').removeClass('active_li');
       $("#move-details-panel").css('display', 'none');
     }
-    else if($(e.target).hasClass('remove_single_move')){
+    else if($(e.target).hasClass('remove-single-move')){
       remove_moves($(this));
     }
     else{
@@ -346,7 +346,7 @@ function setting_sets_and_rests($this){
     $("#block_"+block_id).find('.popover-data').text( '\"'+ $data.find('.sets_count').val() + " Sets with " + val + " seconds rest"+'\"');
   }
 
-  $data.find('ul li.others').each(function(){
+  $data.find('ul li.block-move').each(function(){
     if ($(this).attr('id').split('_')[1] == block_id)
     {
     var lib_detail_id = $(this).attr('id').split('_')[3];
@@ -394,20 +394,20 @@ function initialize_drag_drop_js(){
               text = ui.item.find('h6').text();
               if($(this).attr('data-block') == "block"){
                   block_name = $(this).attr('data-block-name');
-                  var li_size = $(this).find('li.others').size();
+                  var li_size = $(this).find('li.block-move').size();
                   var alrt = check_library_count(li_size, block_name);
                   if(alrt != ''){
                       alert(alrt);
                       flag = false;
                   }
                   else if(check_library_present(lib_id, $(this))){
-                      alert("Library Already Exists");
+                      alert("This move has already been added to this block");
                       flag = false;
                   }
                   else{
-                    var li_length = $(this).find('li.first').size();
-                    $(this).find('li.first').remove();
-                    
+                    var li_length = $(this).find('li.block-move-placeholder').size();
+                    $(this).find('li.block-move-placeholder').remove();
+
                     string = $('.block_inner_move').html();
                     html.push(string);
                     check = add_move_count();
@@ -415,7 +415,7 @@ function initialize_drag_drop_js(){
                       return false;
                     }
                     for (var i = 1; i < li_length; i++) {
-                      html.push('<li class="first">'+i+'</li>');
+                      html.push('<li class="block-move-placeholder">'+i+'</li>');
                     }
                   }
                 }
@@ -494,10 +494,10 @@ function add_blank_lis($this){
   var block_name = $this.attr('data-blck');
   var li_length = block_name == BLOCK_TYPE[0] ? 4 : block_name == BLOCK_TYPE[1] ? 3 : 0
   var blank_lis = ''
-  var count_lib = $this.find('li.others').length ? $this.find('li.others').length - 1 : 0;
-  $this.find('li.first').remove();
+  var count_lib = $this.find('li.block-move').length ? $this.find('li.block-move').length - 1 : 0;
+  $this.find('li.block-move-placeholder').remove();
   for (var i = 1; i < (li_length - count_lib); i++) {
-    blank_lis += '<li class="first">'+i+'</li>';
+    blank_lis += '<li class="block-move-placeholder">'+i+'</li>';
   }
   return blank_lis;
 }
@@ -580,7 +580,7 @@ function check_library_publish(li_size, block_type){
 
 function check_library_present(lib_id, $this){
   var present = false;
-  $this.find("li.others").each(function(){
+  $this.find("li.block-move").each(function(){
     if($(this).attr('id')){
       lid = $(this).attr('id').split("_")[2];
       if(lid == lib_id){
@@ -621,7 +621,7 @@ function block_popover_intilization(){
 function block_sortable(){
   var i=1;
   $('#workout-editor ul li').each(function(){
-    if($(this).hasClass('first') || $(this).hasClass('others') || $(this).hasClass('single_move')){
+    if($(this).hasClass('block-move-placeholder') || $(this).hasClass('block-move') || $(this).hasClass('single_move')){
       $(this).find('.sort_index').each(function(){
         $(this).text(i);
         i=i+1;

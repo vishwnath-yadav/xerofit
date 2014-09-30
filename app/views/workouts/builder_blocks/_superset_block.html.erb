@@ -20,7 +20,7 @@
 	        <%if move_blocks[no].present?%>
 	          <%=render "block_inner_move", text: mb[no].move.title, cls: '', id: " block_#{mb[no].block.id}_#{mb[no].move.id}_#{mb[no].move_detail.id}" %>
 	        <%else%>
-	          <li class="first"><%="#{no + 1}"%></li>
+	          <li class="block-move-placeholder"><%="#{no + 1}"%></li>
 	        <%end%>
 	      <%end%>
 	    <%end%>
