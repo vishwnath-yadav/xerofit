@@ -165,22 +165,7 @@ $(document).ready(function() {
   });
 
   $(document).on("blur", '.sets_by_popup', function(){
-    var libdetails_arr=[];
-    var val = parseInt($(this).val());
-    var name = $(this).attr('name');
-    var $data = $(this).closest('li.block-container');
-    $(this).closest('li.block-container').find('.'+name).val(val);
-    var block_id = $data.attr('id').split("_")[1];
-    $data.find('ul li.others').each(function(){
-      if ($(this).attr('id').split('_')[1] == block_id)
-      {
-      var lib_detail_id = $(this).attr('id').split('_')[3];
-        libdetails_arr.push(lib_detail_id);
-      }
-    })
-    url = '/builder/update_move_details';
-    $.get(url, {block_id:block_id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
-    });
+    setting_sets_and_rests($(this));
   });
 
   $(document).on('blur', ".water_popup", function(){
@@ -189,7 +174,6 @@ $(document).ready(function() {
     var $data = $(this).closest('li.break-block');
     $(this).closest('li.break-block').find('.'+name).val(value);
     var block_id = $data.attr('id').split("_")[1];
-
     url = '/builder/update_break_block_details';
     $.get(url, {block_id:block_id, minute:value, name:name}, function (data) {
     });
@@ -198,7 +182,6 @@ $(document).ready(function() {
   $('#search-move-by-title').bind('railsAutocomplete.select', function(event, data){
     $('#filter_search_form').submit();
   });
-
 
   $(document).on("click",".close_icon", function(){
     $.fancybox.close();
@@ -349,6 +332,25 @@ $(document).ready(function() {
 
     initialize_drag_drop_js();
 });
+
+function setting_sets_and_rests($this){
+  var libdetails_arr=[];
+  var val = parseInt($this.val());
+  var name = $this.attr('name');
+  var $data = $this.closest('li.block-container');
+  $this.closest('li.block-container').find('.'+name).val(val);
+  var block_id = $data.attr('id').split("_")[1];
+  $data.find('ul li.others').each(function(){
+    if ($(this).attr('id').split('_')[1] == block_id)
+    {
+    var lib_detail_id = $(this).attr('id').split('_')[3];
+      libdetails_arr.push(lib_detail_id);
+    }
+  })
+  url = '/builder/update_move_details';
+  $.get(url, {block_id:block_id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+  });
+}
 
 // $(document).on('page:load', ready);
 function initialize_drag_drop_js(){
