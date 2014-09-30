@@ -1,6 +1,11 @@
 <li class="block-container cir_super_blk <%=cls%>" data-blck="superset" id="<%=id%>">
     <div class="block-header">
         <h3>Superset</h3>
+        <% if move_blocks.present?%>
+            <span class="popover-data"><%="#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds rest"%></span>
+        <% else %>
+           <span class="popover-data">"1 Sets with 0 seconds rest"</span>
+        <% end %>
         <span class="block-settings" data-toggle="popover" data-placement="left"></span>
         <%= render "workouts/builder_blocks/superset_popover" %>
     </div>
