@@ -209,38 +209,21 @@ function check_require_field(){
     else{
       key = $(this).val();
     }
-    var selected_thumb = $(".select_thumb").siblings('img').attr('src');
-    if(key == null || key == '' || check_if_thumb_is_default(selected_thumb))
+    if(key == null || key == '')
     {
       flag=0;
     }
   });
-  // if($('.thumbnail_col').length){             //for cheking thumbnail are present or not
-  //   // var target = $('.for_target_change').val();
-  //   $('.dis_blk').each(function(){
-  //     var target = $(this).find('.for_target_change').val();
-  //     var len = $(".select_thumb").length;
-  //     if((len <= 0)||(target == null)||(target == '')){
-  //       flag = 0;
-  //     }
-  //   })
-  // }
-
+  
+  if($('#number_of_moves').length){
+    if(parseInt($('#number_of_moves').val()) < 7){
+      flag = 0 ;
+    }
+  }
   if(flag == 1){
     $('.smt_reviw').removeClass('dis_link');
     $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
     $('.chg_save').attr('lib-status', STATUS[3]);
-
-    // if(parseInt($('#number_of_moves').val()) >= 7 && $('#number_of_moves').hasClass('workout_moves_count')){
-    //   $('.smt_reviw').removeClass('dis_link');
-    //   $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
-    //   $('.chg_save').attr('lib-status', STATUS[3]);
-    // }
-    // if(!$('#number_of_moves').hasClass('workout_moves_count')){
-    //  $('.smt_reviw').removeClass('dis_link');
-    //  $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
-    //  $('.chg_save').attr('lib-status', STATUS[3]); 
-    // }
   }
   else{
     $('.smt_reviw').attr('class','cancel_btn rht_active edit_lib dis_link smt_reviw btn_right');
@@ -251,11 +234,6 @@ function check_require_field(){
     $('.chg_save').attr('lib-status', status);
     $('.library_item_status').html('<img src="'+status_icon+'"> '+status);
   }
-}
-
-function check_if_thumb_is_default(selected_thumb){
-    // return selected_thumb ? selected_thumb.indexOf("_1.") > 0 : true;
-    return false;
 }
 
 function show_text_actual_size(){

@@ -39,6 +39,22 @@ class Workout < ActiveRecord::Base
       :secret_access_key => Settings.aws.secret_access_key}
   end
 
+	def save_number_of_moves(number_of_moves)
+		if number_of_moves.present?
+			count = number_of_moves
+			self.number_of_moves = count.to_i
+		end
+	end
+
+	def save_blocks(block)
+		if block.present?
+			block_hash = block
+			self.save_blocks_and_libs(block_hash)
+			self.state = "completed"
+		end
+	end
+		
+
 	def save_blocks_and_libs(block_hash)
 		block_hash.each do|key, value|
 			block = Block.find_by_id(key)
@@ -62,6 +78,12 @@ class Workout < ActiveRecord::Base
 					end	
 				end
 			end
+		end
+	end
+
+	def change_status
+		if self.has_full_detail && self.number_of_moves >= 7
+			self.status = Move::STATUS[3]
 		end
 	end
 
@@ -157,6 +179,16 @@ class Workout < ActiveRecord::Base
 
 	def self.saved_status_count
 		self.where(status: Move::STATUS[4]).count
+	end
+
+	def has_full_detail
+		if [Move::STATUS[0],Move::STATUS[2],Move::STATUS[3]].include? (self.status)
+			return true
+		else
+			attributes = [self.title, self.subtitle, self.description, self.status]
+			req = attributes & [nil, ""]
+			req.size == 0 
+		end
 	end
 
 	private
