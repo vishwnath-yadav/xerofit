@@ -538,8 +538,10 @@ function add_move_count(){
 
 function subtract_move_count(no_of_moves){
   var count = $('.moves_count').val();
-  $('.moves_count').val(parseInt(count)-parseInt(no_of_moves));
-  $('#number_of_moves').val(parseInt(count)-parseInt(no_of_moves));
+  if(parseInt(count)>0){
+    $('.moves_count').val(parseInt(count)-parseInt(no_of_moves));
+    $('#number_of_moves').val(parseInt(count)-parseInt(no_of_moves));
+  }
 }
 
 function remove_msg(){

@@ -125,7 +125,7 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:id])
 		@user = @workout.user
 		@disabled = ([@workout.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
-		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present?)
+		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present? && (@workout.number_of_moves >= 7))
 	end
 
 	def update_move_details

@@ -2,7 +2,8 @@
     <div class="block-header">
         <h3>Superset</h3>
         <% if move_blocks.present?%>
-            <span class="popover-data"><%="#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds rest"%></span>
+            <% string = "#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds rest" %>
+            <span class="popover-data">"<%= string %>"</span>
         <% else %>
            <span class="popover-data">"1 Sets with 0 seconds rest"</span>
         <% end %>
