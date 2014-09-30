@@ -337,9 +337,15 @@ function setting_sets_and_rests($this){
   var libdetails_arr=[];
   var val = parseInt($this.val());
   var name = $this.attr('name');
-  var $data = $this.closest('li.block-container');
+  var $data = $this).closest('li.block-container');
   $this.closest('li.block-container').find('.'+name).val(val);
   var block_id = $data.attr('id').split("_")[1];
+  if(name == "sets_count"){
+    $("#block_"+block_id).find('.popover-data').text( '\"'+ val + " Sets with " + $data.find('.rest_time').val() + " seconds rest"+'\"');
+  }else if(name == "rest_time"){
+    $("#block_"+block_id).find('.popover-data').text( '\"'+ $data.find('.sets_count').val() + " Sets with " + val + " seconds rest"+'\"');
+  }
+
   $data.find('ul li.others').each(function(){
     if ($(this).attr('id').split('_')[1] == block_id)
     {
