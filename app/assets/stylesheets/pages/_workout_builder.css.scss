@@ -69,9 +69,7 @@
     border-left: 2px solid $border-color;
     overflow: hidden;
     overflow-y: scroll;
-    //overflow: auto;
 }
-
 
 
 
@@ -80,6 +78,7 @@
 // -------------------------------------------------------------------------- //
 // Fitness Library panel with list of Single Moves
 // -------------------------------------------------------------------------- //
+
 
 
 .fitness-library-panel {
@@ -490,15 +489,6 @@
         border: 1px solid #E3E3E3;
         @include clearfix();
         @include border-radius(6px);
-
-        .single_move {
-            background: #fff;
-            padding: 13px 14px;
-            line-height: 16px;
-            font-size: 14px;
-            @include gotham500();
-            margin-bottom: 7px;
-        }
     }
 }
 
@@ -634,8 +624,8 @@
             width: 100%;
             display: block;
             @include clearfix();
-            margin-top: 4px;
-            margin-bottom: 4px;
+            margin-top: 3px;
+            margin-bottom: 3px;
         }
 
         // The moves that get added to a Circuit or Superset Block
@@ -670,10 +660,22 @@
 
 
 
-// Delete Button to remove single move
-.single_move,
-.block-move {
+#workout-editor ul.workout-list li.single_move {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    padding: 7px 14px;
+    font-size: 14px;
+    @include gotham500();
+    margin-top: 3px;
+    margin-bottom: 3px;
 
+    div.move-details {
+        float: left;
+        line-height: 28px;
+    }
+
+    // Delete Button to remove single move
     .remove-single-move {
         position: absolute;
         right: 10px;
@@ -700,8 +702,6 @@
 
     // Show the Delete Icon when hovering over single move
     &:hover .remove-single-move:before { display: block; }
-
-    .move_content { float: left; }
 }
 
 
@@ -842,6 +842,50 @@
 }
 
 li.sortable-placeholder + li.first { display: none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1161,13 +1205,9 @@ li.blank_li{
     float: right;
 }
 
-.sort_index{
-    margin-right: 12px;
-}
 
-.popover-title{
-  color:black;
-}
+// Number
+.sort_index { margin-right: 12px; }
 
 
 .active_li{
@@ -1191,4 +1231,3 @@ li.blank_li{
         border-radius: 5px;
     }
 }
-
