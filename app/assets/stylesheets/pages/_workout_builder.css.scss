@@ -598,21 +598,36 @@
         padding: 7px;
         list-style-type: none;
 
+
+
+
+
+
+
+
         li.first {
+            float: left;
+            width: 100%;
+            display: block;
+            @include clearfix();
             color: $silver51;
             text-align: center;
             background: #e3e3e3;
-            height: 42px;
             line-height: 42px;
-            margin-bottom: 5px;
+            margin-top: 4px;
+            margin-bottom: 4px;
         }
 
         li.others{
-            color: black;
-            list-style: none;
-            padding: 10px;
-            margin: 9px;
-            width: 98%;
+            float: left;
+            width: 100%;
+            display: block;
+            @include clearfix();
+            color: $silver31;
+
+            //padding: 10px;
+            margin-top: 4px;
+            margin-bottom: 4px;
             @include border-radius(3px);
             background: rgb(255, 255, 255);
         }
@@ -630,7 +645,7 @@
 
 
 // Container for workout block hidden Popovers
-.block_options_html { display:none !important; }
+.block_options_html { display: none !important; }
 
 // Main wrap for workout block content Popovers
 .block-popover-wrap {
@@ -752,7 +767,7 @@
     text-align: center;
 
     &:before {
-        content: 'Add content here';
+        content: 'Place content here';
         color: $silver51;
     }
 }
