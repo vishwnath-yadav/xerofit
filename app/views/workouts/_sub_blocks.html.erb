@@ -2,7 +2,7 @@
 	<%move_block = block.move_blocks.first%>
 	<%= render 'workouts/builder_blocks/individual_block', text: move_block.move.title ,cls: '', id: "block_#{block.id}_#{block.moves.first.id}_#{move_block.move_detail.id}"%>
 <%elsif block.name == Block::BLOCK_TYPE[2]%>
-	<%= render 'workouts/builder_blocks/break_block', cls: '', id: "block_"+block.id.to_s%>
+	<%= render 'workouts/builder_blocks/break_block', cls: '', id: "block_"+block.id.to_s, block: block%>
 <%elsif block.name == Block::BLOCK_TYPE[1]%>
 	<%= render 'workouts/builder_blocks/superset_block', cls: '', id: "block_"+block.id.to_s, move_blocks: block.move_blocks%>
 <%elsif block.name == Block::BLOCK_TYPE[0]%>
