@@ -11,7 +11,7 @@ development:
     APP_ID: '1044996955605-gr0lvpu3ejbf4jlc2ghh3ut3vt78h8er.apps.googleusercontent.com'
     APP_SECRET_ID: 'EiJx0W5quLsbidRx-n2Y6AyE'
   aws:
-    bucket: 'xerofit-development'
+    bucket: 'xerofit-dev'
     access_key_id: 'AKIAJQO4FI77C73MNHRA'
     secret_access_key: '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'
 
@@ -28,6 +28,6 @@ production:
     APP_ID: '1055695204606-kas71rqieg1e0fsguvhekum2eo4lgd4g.apps.googleusercontent.com'
     APP_SECRET_ID: 'ZJha_iPwdCt0KzQMbkYEzK9I'
   aws:
-    bucket: 'xerofit-production'
+    bucket: 'xerofit-development'
     access_key_id: 'AKIAJQO4FI77C73MNHRA'
     secret_access_key: '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'
