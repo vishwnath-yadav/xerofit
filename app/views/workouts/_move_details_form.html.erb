@@ -41,14 +41,16 @@
             <div class="section-title">
                 <%=ld.input :repetitions, input_html: {class: "lib_detail_chk"} %>
             </div>
-            <div class="input-wrap">
-                <div class="fancy_select">
-                    <%= ld.input :rep_option, collection: MoveDetail::REP_TYPE, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: disabled} %>
+            <% if !disabled %>
+                <div class="input-wrap">
+                    <div class="fancy_select">
+                        <%= ld.input :rep_option, collection: MoveDetail::REP_TYPE, include_blank: false, label: false,   input_html: {class: "lib_detail_sel", disabled: disabled} %>
+                    </div>
+                    <div class="inputs">
+                        <%= render "rep_options", disabled: disabled, ld: ld%>
+                    </div>
                 </div>
-                <div class="inputs">
-                    <%= render "rep_options", disabled: disabled, ld: ld%>
-                </div>
-            </div>
+            <% end %>
         </div>
 
         <div id="weight" class="input-section">

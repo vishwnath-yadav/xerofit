@@ -4,6 +4,12 @@
 
     <div class="block-header">
         <h3>Break</h3>
+        <% if block.present? %>
+            <% string = "#{block.minutes} : #{block.seconds} minutes break" %>
+            <span class="block-options"><%= string %></span>
+        <% else %>
+            <span class="block-options"> 1 : 00 minutes break</span>
+        <% end %>
         <span class="break-block-settings" data-toggle="popover" data-placement="left"></span>
         <%= render "workouts/builder_blocks/break_popover" %>
     </div>
