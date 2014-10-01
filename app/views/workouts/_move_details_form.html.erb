@@ -3,16 +3,14 @@
     <h5 class="move_detail">Move Details</h5>
 </div>
 
-<div class="errors">
-    <div style="color:red;">
-        <% if @lib_detail.errors.full_messages.any? %>
-          <ul>
-          <% @lib_detail.errors.full_messages.each do |error_message| %>
+<div class="panel-errors">
+    <% if @lib_detail.errors.full_messages.any? %>
+        <span>
+            <% @lib_detail.errors.full_messages.each do |error_message| %>
             <%= error_message %>
-          <% end %>
-          </ul>
-        <% end %>
-    </div>
+            <% end %>
+        </span>
+    <% end %>
 
     <div class="red_txt success"></div>
 </div>
