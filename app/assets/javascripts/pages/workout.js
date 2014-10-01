@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  popover_hide();
+  
   $(document).click(function(event) {
     var target = $(event.target);
     if($('.wrk_head_title_input').is(':visible')){
@@ -33,13 +35,7 @@ $(document).ready(function() {
     container: 'body'
   });
 
-  $(document).on('click','body',function(e){
-    $('[data-toggle="popover"]').each(function () {
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
-  })
+  
 
   $(document).on('click','.remove_block',function(){
     var arr = []
@@ -172,18 +168,21 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on("blur", '.sets_by_popup', function(){
+  $(document).on("click", '.save_block_popover', function(){
     setting_sets_and_rests($(this));
   });
 
-  $(document).on('blur', ".water_popup", function(){
-    var name = $(this).attr('name');
-    var value = parseInt($(this).val());
+  $(document).on('click', ".save_break_block_popover", function(){
     var $data = $(this).closest('li.break-block');
-    $(this).closest('li.break-block').find('.'+name).val(value);
+    var min = $data.find('.popover-content .water_popup').first().val();
+    var sec = $data.find('.popover-content .water_popup').last().val();
+    $data.find('.content .minutes').val(min);
+    $data.find('.content .seconds').val(sec);
+  
     var block_id = $data.attr('id').split("_")[1];
+    $('.break-block-settings').click();
     url = '/builder/update_break_block_details';
-    $.get(url, {block_id:block_id, minute:value, name:name}, function (data) {
+    $.get(url, {block_id:block_id, minute:min, second:sec}, function (data) {
     });
   });
 
@@ -353,15 +352,16 @@ function manage_wrk_title(target){
 
 function setting_sets_and_rests($this){
   var libdetails_arr=[];
-  var val = parseInt($this.val());
-  var name = $this.attr('name');
   var $data = $this.closest('li.block-container');
-  $this.closest('li.block-container').find('.'+name).val(val);
   var block_id = $data.attr('id').split("_")[1];
-  if(name == "sets_count"){
-    $("#block_"+block_id).find('.block-options').text( '\"'+ val + " Sets with " + $data.find('.rest_time').val() + " seconds rest"+'\"');
-  }else if(name == "rest_time"){
-    $("#block_"+block_id).find('.block-options').text( '\"'+ $data.find('.sets_count').val() + " Sets with " + val + " seconds rest"+'\"');
+  var sets = $data.find('.popover-content .sets_by_popup').first().val();
+  var rest = $data.find('.popover-content .sets_by_popup').last().val();
+  $data.find('.content .sets_count').val(sets);
+  $data.find('.content .rest_time').val(rest);
+  if($data.attr('data-blck') == "superset"){
+     $("#block_"+block_id).find('.block-options').text( '\"'+ sets + " Sets with no rest"+'\"');
+  }else{
+     $("#block_"+block_id).find('.block-options').text( '\"'+ sets + " Sets with " + rest + " seconds rest"+'\"');
   }
 
   $data.find('ul li.block-move').each(function(){
@@ -371,8 +371,11 @@ function setting_sets_and_rests($this){
       libdetails_arr.push(lib_detail_id);
     }
   })
+
+  // popover_hide()
+  $('.block-settings').click();
   url = '/builder/update_move_details';
-  $.get(url, {block_id:block_id, value:val, name:name, lib_detail_arr:libdetails_arr}, function (data) {
+  $.get(url, {block_id:block_id, sets:sets, rest:rest, lib_detail_arr:libdetails_arr}, function (data) {
   });
 }
 
@@ -659,4 +662,14 @@ function block_indexing(){
     }
   }
   $('#indexes').val(ids);
+}
+
+function popover_hide(){
+  $(document).on('click','body',function(e){
+    $('[data-toggle="popover"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+  })
 }

@@ -6,7 +6,7 @@
     <div class="control_bar_wrap content_details">
       <div class="prev_lib_col control_bar_links">
         <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=> 'cb_breadcrumb') %>
-        <%= link_to("Edit in Workout Builder", edit_workout_path(@workout), :class => 'cb_nav_link') %>
+        <%= link_to("Edit in Workout Builder", params[:user].blank? ? edit_workout_path(@workout) : edit_workout_path(@workout, user: params[:user]) , :class => 'cb_nav_link') %>
       </div>
       <div class="control_bar_context">
         <div class="lib_image_box">
