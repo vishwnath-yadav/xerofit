@@ -2,6 +2,10 @@ $(document).ready(function() {
 
   $(document).click(function(event) {
     var target = $(event.target);
+    if($('.wrk_head_title_input').is(':visible')){
+      manage_wrk_title(target);
+      return false;
+    }
     if(!target.is(".load_lib_detail, .load_lib_detail *, #move-details-panel, #move-details-panel *")){
        $('.active_li').removeClass('active_li');
        $("#move-details-panel").css('display', 'none');
@@ -277,27 +281,25 @@ $(document).ready(function() {
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
   });
 
-  $(document).on('click', ".wrk_head,.wrk_subhead", function(){
-    if($('.workout_auto_input').length < 1){
-      $( ".workout_auto_input").focus();
-      var name = $(this).attr('data-name');
-      var text = $(this).attr('data-val');
-      $(this).hide();
-      $(this).after('<p><input type=text name=workout['+name+'] id=auto_form_field class="workout_auto_input blur_input" value='+text+'></p>');
+  $(document).on('click', ".wrk_head", function(){
+      $('.wrk_head_title').hide();
+      $('.wrk_head_title_input').show();
       $('.workout_auto_input').focus();
-    }
+      return false;
   });
 
-  $(document).on('blur', ".blur_input", function(){
-    var txt = $(this).val();
-    var name = $(this).attr('name');
-    if(txt == ''){
-      alert("Title Can't be blank");
+  // $(document).on('blur', ".workout_auto_input", function(e){
+    
+  // });
 
-    }else{
-      $("#workout_form_auto").submit();
-    }
-  });
+  // $(document).on('blur', ".save_wrk_title", function(){
+  //   var txt = $('.workout_auto_input').val();
+  //   if(txt == ''){
+  //     alert("Title Can't be blank");
+  //   }else{
+  //     $("#workout_form_auto").submit();
+  //   }
+  // });
 
   $(document).on('keyup',"#workout_form input, textarea", function(){
     var obj = $(this).closest('.form_field').find('span.detail_char');
@@ -331,6 +333,23 @@ $(document).ready(function() {
 
     initialize_drag_drop_js();
 });
+
+function manage_wrk_title(target){
+  if(target.hasClass('save_wrk_title')){
+    var txt = $('.workout_auto_input').val();
+    if(txt == ''){
+      alert("Title Can't be blank");
+    }else{
+      $("#workout_form_auto").submit();
+    }
+    return false;
+  }
+  else if(!target.is('.workout_auto_input')){
+    $('.wrk_head_title').show();
+    $('.wrk_head_title_input').hide();  
+    return false;
+  }
+}
 
 function setting_sets_and_rests($this){
   var libdetails_arr=[];
