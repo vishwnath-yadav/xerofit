@@ -4,7 +4,7 @@
         <div class="move-details">
             <h3>Superset</h3>
             <% if move_blocks.present?%>
-                <% string = "#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds rest" %>
+                <% string = "#{move_blocks[0].move_detail.sets_count} Sets with no rest" %>
                 <span class="block-options"><%= string %></span>
             <% else %>
                <span class="block-options">1 set with no rest</span>

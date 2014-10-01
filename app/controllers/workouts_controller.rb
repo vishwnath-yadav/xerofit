@@ -59,11 +59,8 @@ class WorkoutsController < ApplicationController
 	def update_break_block_details
 		if params[:block_id].present?
 			@block = Block.find(params[:block_id])
-			if params[:name] == "minutes"
-					@block.minutes = params[:minute]
-			elsif params[:name] == "seconds"
-					@block.seconds = params[:second]
-			end
+			@block.minutes = params[:minute]
+			@block.seconds = params[:second]
 			@block.save 
 		end
 		render text: true
@@ -133,13 +130,9 @@ class WorkoutsController < ApplicationController
 			lib_arr = params[:lib_detail_arr]
 			lib_arr.each do |lib_detail|
 				move_detail  = MoveDetail.find(lib_detail)
-				if params[:name] == "sets_count"
-						move_detail.sets_count = params[:value]
-						move_detail.save 
-				elsif params[:name] == "rest_time"
-						move_detail.rest_time = params[:value]
-						move_detail.save 
-				end
+				move_detail.sets_count = params[:sets]
+				move_detail.rest_time = params[:rest]
+				move_detail.save 
 			end
 		end
 		# render text: true

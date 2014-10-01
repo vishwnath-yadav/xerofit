@@ -993,3 +993,18 @@ li.blank_li {
         border-radius: 5px;
     }
 }
+
+
+.save_block_popover, .save_break_block_popover{
+    border: 1px solid #289cf9;
+    color: #289cf9;
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: none;
+    margin-top: 7px;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
