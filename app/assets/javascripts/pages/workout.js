@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   popover_hide();
-  
+
   $(document).click(function(event) {
     var target = $(event.target);
     if($('.workout-title-input').is(':visible')){
@@ -13,7 +13,7 @@ $(document).ready(function() {
        $("#move-details-panel").css('display', 'none');
     }
   });
-  
+
   $(document).on('change', ".lib_detail_sel", function(){
     $(".edit_move_detail").submit();
   });

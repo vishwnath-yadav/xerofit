@@ -55,7 +55,13 @@
         position: relative;
 
         // Workout Title
-        h4 { float: left; white-space: nowrap; }
+        h4 {
+            float: left;
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+            white-space: nowrap;
+        }
 
         // 'save' and 'edit' buttons
         a {
