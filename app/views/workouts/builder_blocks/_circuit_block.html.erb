@@ -1,0 +1,34 @@
+<li class="block-container cir_super_blk <%=cls%>" data-blck="circuit" id="<%=id%>">
+    <div class="block-header">
+
+        <div>
+            <h3>Circuit</h3>
+            <% if move_blocks.present? %>
+                <% string = "#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds of rest" %>
+                <span class="block-options"><%= string %></span>
+            <% else %>
+                <span class="block-options">1 set with 30 seconds of rest</span>
+            <% end %>
+        </div>
+
+        <span class="block-settings" data-toggle="popover" data-placement="left"></span>
+
+        <%= render "workouts/builder_blocks/circuit_popover" %>
+    </div>
+
+    <ul class="block-body add_photo main_drop_block" data-block="block" data-block-name="circuit">
+        <% if move_blocks.present? && move_blocks.size >= 3 %>
+            <% move_blocks.each do |mb| %>
+                <%= render "block_inner_move", text: mb.move.title, cls: '', id: "block_#{mb.block.id}_#{mb.move.id}_#{mb.move_detail.id}" %>
+            <% end %>
+        <% else %>
+            <% (0..2).each_with_index do |no| %>
+                <% if move_blocks[no].present?%>
+                    <%= render "block_inner_move", text: mb[no].move.title, cls: '', id: " block_#{mb[no].block.id}_#{mb[no].move.id}_#{mb[no].move_detail.id}" %>
+                <% else %>
+                    <li class="block-move-placeholder"><%="#{no + 1}" %></li>
+                <% end %>
+            <% end %>
+        <% end %>
+    </ul>
+</li>
