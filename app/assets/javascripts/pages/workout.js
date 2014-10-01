@@ -18,31 +18,31 @@ $(document).ready(function() {
     $(".edit_move_detail").submit();
   });
 
-
-
-  // [dev-note] Is this function being used?
+  // Sticky header title
   $(window).scroll(function(){
-    var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
 
-    if(scroll >= 70){
+    if(scroll >= 84){
       $('.show-on-scroll').css('display','block');
+      $('.workout-builder .control_bar .control_bar_context').remove('.workout-title-wrap');
+      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.workout-builder .header-scroll .show-on-scroll');
     }
     else{
       $('.show-on-scroll').css('display','none');
+      $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
+      $('.workout-builder .header-scroll .show-on-scroll').remove('.workout-title-wrap');
     }
   });
 
 
-
-
-
+  // Tooltips for workout editor buttons
   $('.builder-tooltip').tooltip({
     placement: 'bottom',
     container: 'body'
   });
 
 
+  // Delete circuit and superset block from popover
   $(document).on('click','.remove_block',function(){
     var arr = []
     var count = 0;
@@ -63,7 +63,7 @@ $(document).ready(function() {
     });
   })
 
-  
+  // Delete break block from popover button
   $(document).on('click','.remove-break-block',function(){
     var $input = $(this).closest('li.break-block');
     var id = $input.attr('id').split("_")[1];
@@ -104,6 +104,8 @@ $(document).ready(function() {
     })
   });
 
+
+
   $(document).on('click','#enter-fullscreen', function(){
     $.smoothScroll({
       scrollElement: $('body'),
@@ -112,6 +114,9 @@ $(document).ready(function() {
     $('body').addClass('disable-scroll');
     $('#enter-fullscreen').addClass('hide');
     $('#exit-fullscreen').removeClass('hide');
+
+    $('.control_bar .control_bar_context span').remove('.workout-title-wrap');
+    $('.control_bar .workout-title-wrap').appendTo('.header-scroll .show-on-scroll');
     return false;
   });
 
@@ -121,7 +126,13 @@ $(document).ready(function() {
     $('body').removeClass('disable-scroll');
     $('#exit-fullscreen').addClass('hide');
     $('#enter-fullscreen').removeClass('hide');
+
+    $('.workout-title-wrap').appendTo('.control_bar .control_bar_context span');
+    $('.header-scroll .show-on-scroll').remove('.workout-title-wrap');
+
   });
+
+
 
   $(document).on("click", ".wrk_out_form", function(){
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
