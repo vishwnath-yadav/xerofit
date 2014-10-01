@@ -1,7 +1,7 @@
 <li class="block-container cir_super_blk <%=cls%>" data-blck="circuit" id="<%=id%>">
     <div class="block-header">
 
-        <div>
+        <div class="move-details">
             <h3>Circuit</h3>
             <% if move_blocks.present? %>
                 <% string = "#{move_blocks[0].move_detail.sets_count} Sets with #{move_blocks[0].move_detail.rest_time} seconds of rest" %>
@@ -12,7 +12,6 @@
         </div>
 
         <span class="block-settings" data-toggle="popover" data-placement="left"></span>
-
         <%= render "workouts/builder_blocks/circuit_popover" %>
     </div>
 

@@ -608,7 +608,7 @@ function show_text_size(){
 function block_popover_intilization(){
   $("[data-toggle='popover']").popover({
     html: true,
-    container: 'body',
+    //container: 'body',
     title: function () {
         return $(this).parent().find('.head').html();
     },
