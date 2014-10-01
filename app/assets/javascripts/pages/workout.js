@@ -196,7 +196,7 @@ $(document).ready(function() {
     $data.find('.content .minutes').val(min);
     $data.find('.content .seconds').val(sec);
     var block_id = $data.attr('id').split("_")[1];
-    $("#block_"+block_id).find('.block-options').text( min +" : " + sec + " minutes break");
+    $("#block_"+block_id).find('.block-options').text( min + " min " + sec + " sec");
     $('.break-block-settings').click();
     url = '/builder/update_break_block_details';
     $.get(url, {block_id:block_id, minute:min, second:sec}, function (data) {
