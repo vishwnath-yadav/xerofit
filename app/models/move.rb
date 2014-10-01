@@ -25,7 +25,7 @@ class Move < ActiveRecord::Base
 
 	DIFFICULTIES = ["Beginner","Intermediate","Athletic","Elite"]
 	
-	EQUIPMENT_LIST = ["Ab Board","Adjustable Ab Board","Ankle Weights","Balance Beam","Balance Block","Balance Disc","Balance Dome (Bosu Ball)","Balance Pad","Barbell","Decline Bench","Dual Grip Medicine Ball","Dumbbells","Elliptical Machine","Exercise Ball (Swiss Ball)","Exercise Bike","Fit Chair","Fitness Tubes","Flat Band","Flat Bench","Foam Roller","Folding Mat","Incline Bench","Inflatable Pilates Ball Roller","Kettlebell","Medicine Ball","Mini Medicine Ball","Non-Bouncing Physical Therapy (P.T.) Ball","Plates","Pull Up Bar","Punching Bag","Resistance Band","Semi-Recumbent Ab Bench","Spin Style Bike","Stationary Bike","Suspension Trainer (TRX)","Treadmill","Upright Bike","Weighted Gloves","Weighted Vest","Wobble Board","Wrist Weights","Yoga Block","Yoga mat"]
+	EQUIPMENT_LIST = ["Ab Board","Adjustable Ab Board","Ankle Weights","Balance Beam","Balance Block","Balance Disc","Balance Dome (Bosu Ball)","Balance Pad","Barbell","Barbell Plates","Decline Bench","Dual Grip Medicine Ball","Dumbbells","Elliptical Machine","Exercise Ball (Swiss Ball)","Exercise Bike","Fit Chair","Fitness Tubes","Flat Band","Flat Bench","Foam Roller","Folding Mat","Incline Bench","Inflatable Pilates Ball Roller","Kettlebell","Medicine Ball","Mini Medicine Ball","Non-Bouncing Physical Therapy (P.T.) Ball","Plates","Pull Up Bar","Punching Bag","Resistance Band","Semi-Recumbent Ab Bench","Spin Style Bike","Stationary Bike","Suspension Trainer (TRX)","Treadmill","Upright Bike","Weighted Gloves","Weighted Vest","Wobble Board","Wrist Weights","Yoga Block","Yoga mat"]
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
 	
@@ -138,10 +138,10 @@ class Move < ActiveRecord::Base
 	def check_thumbnail
 		if self.library_video.present? && self.library_video.image.present?
 			return true
-		# elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-		# 	self.library_video.image = self.library_video.panda_mp4.screenshots[0]
-		# 	self.library_video.save
-		# 	return true
+		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+			self.library_video.save
+			return true
 		else
 			return false
 		end

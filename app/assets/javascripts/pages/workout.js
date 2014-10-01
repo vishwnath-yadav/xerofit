@@ -7,6 +7,10 @@ $(document).ready(function() {
        $("#move-details-panel").css('display', 'none');
     }
   });
+  
+  $(document).on('change', ".lib_detail_sel", function(){
+    $(".edit_move_detail").submit();
+  });
 
   $(window).scroll(function(){
     var sticky = $('.zheader-scroll'),
