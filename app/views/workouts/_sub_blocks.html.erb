@@ -1,11 +1,11 @@
 <%if block.name == Block::BLOCK_TYPE[3]%>
 	<%move_block = block.move_blocks.first%>
-	<%= render 'individual_block', text: move_block.move.title ,cls: '', id: "block_#{block.id}_#{block.moves.first.id}_#{move_block.move_detail.id}"%>
+	<%= render 'workouts/builder_blocks/individual_block', text: move_block.move.title ,cls: '', id: "block_#{block.id}_#{block.moves.first.id}_#{move_block.move_detail.id}"%>
 <%elsif block.name == Block::BLOCK_TYPE[2]%>
-	<%= render 'break_block', cls: '', id: "block_"+block.id.to_s%>
+	<%= render 'workouts/builder_blocks/break_block', cls: '', id: "block_"+block.id.to_s%>
 <%elsif block.name == Block::BLOCK_TYPE[1]%>
-	<%= render 'superset_block', cls: '', id: "block_"+block.id.to_s, move_blocks: block.move_blocks%>
+	<%= render 'workouts/builder_blocks/superset_block', cls: '', id: "block_"+block.id.to_s, move_blocks: block.move_blocks%>
 <%elsif block.name == Block::BLOCK_TYPE[0]%>
-	<%= render partial: 'circuit_block', locals: {move_blocks: block.move_blocks, cls: '', id: "block_"+block.id.to_s}%>
+	<%= render partial: 'workouts/builder_blocks/circuit_block', locals: {move_blocks: block.move_blocks, cls: '', id: "block_"+block.id.to_s}%>
 <% end %>
 
