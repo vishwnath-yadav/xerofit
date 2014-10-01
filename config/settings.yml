@@ -11,7 +11,7 @@ development:
     APP_ID: '1044996955605-gr0lvpu3ejbf4jlc2ghh3ut3vt78h8er.apps.googleusercontent.com'
     APP_SECRET_ID: 'EiJx0W5quLsbidRx-n2Y6AyE'
   aws:
-    bucket: 'xerofit-development'
+    bucket: 'xerofit-dev'
     access_key_id: 'AKIAJQO4FI77C73MNHRA'
     secret_access_key: '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'
 
@@ -20,7 +20,7 @@ test:
 
 production:
   <<: *defaults
-  host: 'evening-basin-1426.herokuapp.com/'
+  host: 'trainers.xerofit.com/'
   facebook:
     APP_ID: '1495361647345455'
     APP_SECRET_ID: '1d605640672025bd2f184072a150ea89'
