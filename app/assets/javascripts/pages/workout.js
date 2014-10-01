@@ -465,7 +465,7 @@ function initialize_drag_drop_js(){
                   if(!check){
                     return false;
                   }
-                }  
+                }
             }
             if($(this).find('li.moving').length){
                 $(this).find('li.moving').replaceWith(html.join(''));
@@ -479,14 +479,14 @@ function initialize_drag_drop_js(){
             }
             $(this).find('li.moving').removeClass('moving');
             initialize_drag_drop_js();
-        }, 
+        },
         update: function (event, ui){
           if(object != ''){
             object.remove();
           }
           if(!check){
             $('.workout-list').find('li.moving').remove();
-            alert("You reached your maximum limit(99) to add the single move");
+            alert("You have reached the max number of moves (99) that can be added to a single workout.");
           }
           if(ui.item.hasClass('break-block')){
             if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){
