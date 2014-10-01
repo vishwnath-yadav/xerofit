@@ -1,26 +1,31 @@
-<%if @workout.new_record?%>
+<% if @workout.new_record? %>
 	<%= simple_form_for @workout, :url => workouts_path, :html => {:method =>"post", id: "workout_form_auto"}, :remote => true do |f| %>
-      	<%= hidden_field_tag "user", @user.token%>
-		<div class="wrk_head_title">
+      	<%= hidden_field_tag "user", @user.token %>
+
+		<div class="workout-title">
 			<h4>New Workout</h4>
-			<span class="wrk_head">create</span>
+			<a class="edit-workout-title">edit</a>
 		</div>
-		<div class="wrk_head_title_input" style="display:none;">
-			<%=f.text_field :title, class: "workout_auto_input"%>
-			<span class="save_wrk_title" data-name="title">save</span>
+
+		<div class="workout-title-input">
+			<%=f.text_field :title, class: "title-textbox" %>
+			<a class="save-workout-title" data-name="title">save</a>
 		</div>
-	<%end%>
-<%else%>
+	<% end %>
+
+<% else %>
 	<%= simple_form_for @workout, :url => workout_path(@workout), :html => {:method => "put", id: "workout_form_auto"}, :remote => true do |f| %>
 		<%=hidden_field_tag :workid, @workout.id %>
-		<div class="wrk_head_title">
-			<h4><%=@workout.title%></h4>
-			<span class="wrk_head">edit</span>
-		</div>
-		<div class="wrk_head_title_input" style="display:none;">
-			<%=f.text_field :title, class: "workout_auto_input"%>
-			<span class="save_wrk_title" data-name="title">save</span>
-		</div>
-	<%end%>
-<%end%>
 
+		<div class="workout-title">
+			<h4><%= @workout.title %></h4>
+			<a class="edit-workout-title">edit</a>
+		</div>
+
+		<div class="workout-title-input">
+			<%= f.text_field :title, class: "title-textbox" %>
+			<a class="save-workout-title" data-name="title">save</a>
+		</div>
+
+	<% end %>
+<% end %>

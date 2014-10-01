@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="control_bar_wrap">
             <div class="control_bar_context">
-                <div class="lib_text_box workout_auto_form">
-                    <%= render "workout_auto_form"%>
+                <div class="workout-title-wrap">
+                    <%= render "workout_auto_form" %>
                 </div>
             </div>
         </div>
@@ -14,6 +14,11 @@
     <div class="container-fluid">
         <div class="header-scroll">
             <span class="show-on-scroll">
+
+
+                <!--div class="workout-title-wrap header-title">
+                    <%#= render "workout_auto_form" %>
+                </div-->
                 <div class="header-title">
                     <h4><%= @workout.title.present? ? @workout.title : 'New Workout'%></h4>
                 </div>

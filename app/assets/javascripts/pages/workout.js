@@ -4,7 +4,7 @@ $(document).ready(function() {
   
   $(document).click(function(event) {
     var target = $(event.target);
-    if($('.wrk_head_title_input').is(':visible')){
+    if($('.workout-title-input').is(':visible')){
       manage_wrk_title(target);
       return false;
     }
@@ -18,6 +18,9 @@ $(document).ready(function() {
     $(".edit_move_detail").submit();
   });
 
+
+
+  // [dev-note] Is this function being used?
   $(window).scroll(function(){
     var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
@@ -30,12 +33,15 @@ $(document).ready(function() {
     }
   });
 
+
+
+
+
   $('.builder-tooltip').tooltip({
     placement: 'bottom',
     container: 'body'
   });
 
-  
 
   $(document).on('click','.remove_block',function(){
     var arr = []
@@ -280,19 +286,19 @@ $(document).ready(function() {
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
   });
 
-  $(document).on('click', ".wrk_head", function(){
-      $('.wrk_head_title').hide();
-      $('.wrk_head_title_input').show();
-      $('.workout_auto_input').focus();
+  $(document).on('click', ".edit-workout-title", function(){
+      $('.workout-title').hide();
+      $('.workout-title-input').show();
+      $('.title-textbox').focus();
       return false;
   });
 
-  // $(document).on('blur', ".workout_auto_input", function(e){
+  // $(document).on('blur', ".title-textbox", function(e){
     
   // });
 
-  // $(document).on('blur', ".save_wrk_title", function(){
-  //   var txt = $('.workout_auto_input').val();
+  // $(document).on('blur', ".save-workout-title", function(){
+  //   var txt = $('.title-textbox').val();
   //   if(txt == ''){
   //     alert("Title Can't be blank");
   //   }else{
@@ -334,18 +340,18 @@ $(document).ready(function() {
 });
 
 function manage_wrk_title(target){
-  if(target.hasClass('save_wrk_title')){
-    var txt = $('.workout_auto_input').val();
+  if(target.hasClass('save-workout-title')){
+    var txt = $('.title-textbox').val();
     if(txt == ''){
-      alert("Title Can't be blank");
+      alert("The workout title cannot be blank. Please enter a title for this workout");
     }else{
       $("#workout_form_auto").submit();
     }
     return false;
   }
-  else if(!target.is('.workout_auto_input')){
-    $('.wrk_head_title').show();
-    $('.wrk_head_title_input').hide();  
+  else if(!target.is('.title-textbox')){
+    $('.workout-title').show();
+    $('.workout-title-input').hide();
     return false;
   }
 }
