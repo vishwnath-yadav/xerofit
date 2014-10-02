@@ -1,4 +1,4 @@
- <%= simple_form_for @workout, :url => @workout.new_record? ? workouts_path : workout_path(@workout), :defaults => {:required => false}, :html => {:method => @workout.new_record? ? "post" : "put", id: "workout_form-POOOOOOPPP"}, :remote => true do |f| %>
+ <%= simple_form_for @workout, :url => @workout.new_record? ? workouts_path : workout_path(@workout), :defaults => {:required => false}, :html => {:method => @workout.new_record? ? "post" : "put", id: "workout_form"}, :remote => true do |f| %>
 
     <% if @workout_1.present? && @workout_1.errors.any? %>
         <div id="error_explanation">
