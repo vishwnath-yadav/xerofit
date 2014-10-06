@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
   popover_hide();
-  
+
   $(document).click(function(event) {
     var target = $(event.target);
-    if($('.wrk_head_title_input').is(':visible')){
+    if($('.workout-title-input').is(':visible')){
       manage_wrk_title(target);
       return false;
     }
@@ -13,30 +13,36 @@ $(document).ready(function() {
        $("#move-details-panel").css('display', 'none');
     }
   });
-  
+
   $(document).on('change', ".lib_detail_sel", function(){
     $(".edit_move_detail").submit();
   });
 
+  // Sticky header title
   $(window).scroll(function(){
-    var sticky = $('.zheader-scroll'),
     scroll = $(window).scrollTop();
 
-    if(scroll >= 70){
+    if(scroll >= 84){
       $('.show-on-scroll').css('display','block');
+      $('.workout-builder .control_bar .control_bar_context').remove('.workout-title-wrap');
+      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.workout-builder .header-scroll .show-on-scroll');
     }
     else{
       $('.show-on-scroll').css('display','none');
+      $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
+      $('.workout-builder .header-scroll .show-on-scroll').remove('.workout-title-wrap');
     }
   });
 
+
+  // Tooltips for workout editor buttons
   $('.builder-tooltip').tooltip({
     placement: 'bottom',
     container: 'body'
   });
 
-  
 
+  // Delete circuit and superset block from popover
   $(document).on('click','.remove_block',function(){
     var arr = []
     var count = 0;
@@ -57,7 +63,7 @@ $(document).ready(function() {
     });
   })
 
-  
+  // Delete break block from popover button
   $(document).on('click','.remove-break-block',function(){
     var $input = $(this).closest('li.break-block');
     var id = $input.attr('id').split("_")[1];
@@ -98,6 +104,8 @@ $(document).ready(function() {
     })
   });
 
+
+
   $(document).on('click','#enter-fullscreen', function(){
     $.smoothScroll({
       scrollElement: $('body'),
@@ -106,6 +114,9 @@ $(document).ready(function() {
     $('body').addClass('disable-scroll');
     $('#enter-fullscreen').addClass('hide');
     $('#exit-fullscreen').removeClass('hide');
+
+    $('.control_bar .control_bar_context span').remove('.workout-title-wrap');
+    $('.control_bar .workout-title-wrap').appendTo('.header-scroll .show-on-scroll');
     return false;
   });
 
@@ -115,7 +126,13 @@ $(document).ready(function() {
     $('body').removeClass('disable-scroll');
     $('#exit-fullscreen').addClass('hide');
     $('#enter-fullscreen').removeClass('hide');
+
+    $('.workout-title-wrap').appendTo('.control_bar .control_bar_context span');
+    $('.header-scroll .show-on-scroll').remove('.workout-title-wrap');
+
   });
+
+
 
   $(document).on("click", ".wrk_out_form", function(){
      $(this).parent().html('<img src="/assets/ajax-loader.gif" class="ml">');
@@ -179,7 +196,7 @@ $(document).ready(function() {
     $data.find('.content .minutes').val(min);
     $data.find('.content .seconds').val(sec);
     var block_id = $data.attr('id').split("_")[1];
-    $("#block_"+block_id).find('.block-options').text( min +" : " + sec + " minutes break");
+    $("#block_"+block_id).find('.block-options').text( min + " min " + sec + " sec");
     $('.break-block-settings').click();
     url = '/builder/update_break_block_details';
     $.get(url, {block_id:block_id, minute:min, second:sec}, function (data) {
@@ -280,19 +297,19 @@ $(document).ready(function() {
     $(this).find('.tab_arrow').toggleClass('right_arow', 500);
   });
 
-  $(document).on('click', ".wrk_head", function(){
-      $('.wrk_head_title').hide();
-      $('.wrk_head_title_input').show();
-      $('.workout_auto_input').focus();
+  $(document).on('click', ".edit-workout-title", function(){
+      $('.workout-title').hide();
+      $('.workout-title-input').show();
+      $('.title-textbox').focus();
       return false;
   });
 
-  // $(document).on('blur', ".workout_auto_input", function(e){
+  // $(document).on('blur', ".title-textbox", function(e){
     
   // });
 
-  // $(document).on('blur', ".save_wrk_title", function(){
-  //   var txt = $('.workout_auto_input').val();
+  // $(document).on('blur', ".save-workout-title", function(){
+  //   var txt = $('.title-textbox').val();
   //   if(txt == ''){
   //     alert("Title Can't be blank");
   //   }else{
@@ -334,18 +351,18 @@ $(document).ready(function() {
 });
 
 function manage_wrk_title(target){
-  if(target.hasClass('save_wrk_title')){
-    var txt = $('.workout_auto_input').val();
+  if(target.hasClass('save-workout-title')){
+    var txt = $('.title-textbox').val();
     if(txt == ''){
-      alert("Title Can't be blank");
+      alert("The workout title cannot be blank. Please enter a title for this workout");
     }else{
       $("#workout_form_auto").submit();
     }
     return false;
   }
-  else if(!target.is('.workout_auto_input')){
-    $('.wrk_head_title').show();
-    $('.wrk_head_title_input').hide();  
+  else if(!target.is('.title-textbox')){
+    $('.workout-title').show();
+    $('.workout-title-input').hide();
     return false;
   }
 }
@@ -448,7 +465,7 @@ function initialize_drag_drop_js(){
                   if(!check){
                     return false;
                   }
-                }  
+                }
             }
             if($(this).find('li.moving').length){
                 $(this).find('li.moving').replaceWith(html.join(''));
@@ -462,14 +479,14 @@ function initialize_drag_drop_js(){
             }
             $(this).find('li.moving').removeClass('moving');
             initialize_drag_drop_js();
-        }, 
+        },
         update: function (event, ui){
           if(object != ''){
             object.remove();
           }
           if(!check){
             $('.workout-list').find('li.moving').remove();
-            alert("You reached your maximum limit(99) to add the single move");
+            alert("You have reached the max number of moves (99) that can be added to a single workout.");
           }
           if(ui.item.hasClass('break-block')){
             if((typeof ui.item.prev("li").attr('data-blck') == "undefined") || (typeof ui.item.next('li').attr('data-blck') == "undefined")){

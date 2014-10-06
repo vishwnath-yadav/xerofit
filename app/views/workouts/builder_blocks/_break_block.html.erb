@@ -1,16 +1,18 @@
 <li class="block-container break-block <%=cls%>" id="<%=id%>">
-    <div class="zzwater_hr">
-    </div>
 
     <div class="block-header">
-        <h3>Break</h3>
-        <% if block.present? %>
-            <% string = "#{block.minutes} : #{block.seconds} minutes break" %>
-            <span class="block-options"><%= string %></span>
-        <% else %>
-            <span class="block-options"> 1 : 00 minutes break</span>
-        <% end %>
+        <div class="move-details">
+            <h3>Break</h3>
+            <% if block.present? %>
+                <% string = "#{block.minutes} min #{block.seconds} sec" %>
+                <span class="block-options"><%= string %></span>
+            <% else %>
+                <span class="block-options">1 min</span>
+            <% end %>
+        </div>
+
         <span class="break-block-settings" data-toggle="popover" data-placement="left"></span>
         <%= render "workouts/builder_blocks/break_popover" %>
     </div>
+    <span class="break-wings"></span>
 </li>

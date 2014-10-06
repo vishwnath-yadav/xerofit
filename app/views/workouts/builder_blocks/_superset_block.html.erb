@@ -22,13 +22,13 @@
             <%=render "workouts/builder_blocks/block_inner_move", text: mb.move.title, cls: '', id: "block_#{mb.block.id}_#{mb.move.id}_#{mb.move_detail.id}" %>
         <% end %>
 	    <% else %>
-	      <%(0..1).each_with_index do |no| %>
-	        <%if move_blocks[no].present?%>
-	          <%=render "workouts/builder_blocks/block_inner_move", text: mb[no].move.title, cls: '', id: " block_#{mb[no].block.id}_#{mb[no].move.id}_#{mb[no].move_detail.id}" %>
-	        <% else %>
-	          <li class="block-move-placeholder"><%="#{no + 1}"%></li>
-	        <% end %>
-	      <% end %>
+            <%(0..1).each_with_index do |no| %>
+                <%if move_blocks[no].present?%>
+                    <%=render "workouts/builder_blocks/block_inner_move", text: mb[no].move.title, cls: '', id: " block_#{mb[no].block.id}_#{mb[no].move.id}_#{mb[no].move_detail.id}" %>
+                <% else %>
+                  <li class="block-move-placeholder"><%="#{no + 1}"%></li>
+                <% end %>
+            <% end %>
 	    <% end %>
     </ul>
 </li>

@@ -5,7 +5,7 @@ class MoveDetail < ActiveRecord::Base
 	REP = (0..60).to_a
 	DURATION = ["Seconds", "Minutes", "Hours"]
 	TEMPO = (0..5).to_a
-	REP_TYPE = ["Repeat Until Failure","Number Range","Fixed Number"]
+	REP_TYPE = ["Fixed Number", "Number Range", "Repeat Until Failure"]
 	DIST_OPT = ["Miles","Feet","Meters", "Kilometers"]
 
 	def validate_details

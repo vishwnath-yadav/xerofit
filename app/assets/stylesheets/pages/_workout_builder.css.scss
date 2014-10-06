@@ -4,6 +4,17 @@
 
 .content.workout-builder { padding-bottom: 0; }
 
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Workout Builder - Control Bar Styles
+// -------------------------------------------------------------------------- //
+
+
+
+// Scrolling Header
 .header-scroll {
     background: #fff;
     width: 100%;
@@ -26,17 +37,108 @@
 .show-on-scroll { display: none; }
 .disable-scroll { overflow: hidden; }
 
-.details_page_header.workout-builder {
-    border-bottom: 1px solid #D8D8D8;
+.workout-builder .details_page_header { border-bottom: 1px solid #D8D8D8; }
+
+
+
+// Left Section of header with workout title
+.workout-builder .workout-title-wrap {
+    float: left;
+    width: auto;
+    @include clearfix();
+    @include user-select(none);
+
+    // Contianer for the input textbox and title
+    div.workout-title,
+    div.workout-title-input {
+        @include clearfix();
+        position: relative;
+
+        // Workout Title
+        h4 {
+            float: left;
+            font-size: 23px;
+            line-height: 28px;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        // 'save' and 'edit' buttons
+        a {
+            font-size: 11px;
+            line-height: 14px;
+            padding: 7px;
+            float: left;
+            margin-left: 7px;
+            color: $silver51;
+            text-decoration: underline;
+
+            &:hover {
+                cursor: pointer;
+                color: $xero-blue;
+            }
+        }
+
+        input.title-textbox {
+            float: left;
+            padding: 0;
+            margin: 0;
+            width: 300px;
+            height: 28px;
+            border: 1px solid $textbox-borders;
+            font-size: 16px;
+            line-height: 20px;
+            padding: 4px;
+
+            &:focus {
+                width: 300px;
+                height: 28px;
+                outline: none;
+            }
+        }
+    }
+
+    // hide the input textbox container for title
+    .workout-title-input { display: none; }
 }
 
+
+
+// Middle Container for builder header
+.workout-builder .editor-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -14px;
+    margin-top: -14px;
+
+    a.fullscreen-toggle {
+        color: $xero-blue;
+        cursor: pointer;
+        display: block;
+        padding: 4px;
+        text-decoration: none;
+        @include border-radius(4px);
+
+        &:before {
+            font-size: 20px;
+            line-height: 1;
+            @include xerofit-icon();
+            display: block;
+        }
+    }
+}
+
+// Expand & Collapse Icons
+#exit-fullscreen:before { content: '\e618'; }
+#enter-fullscreen:before { content: '\e619'; }
 
 
 
 
 
 // -------------------------------------------------------------------------- //
-// Workout Builder Page Structure
+// Workout Builder Split Layout Structure
 // -------------------------------------------------------------------------- //
 
 
@@ -334,6 +436,7 @@
     .input-wrap {
         float: left;
         padding-top: 20px;
+        padding-bottom: 14px;
         width: 100%;
         position: relative;
         @include clearfix();
@@ -415,6 +518,23 @@
 
 
 
+// Total # of moves counter for the workout editor
+.total-move-counter {
+    display: block;
+    height: 28px;
+    position: absolute;
+    top: -32px;
+    right: 40px;
+    @include clearfix();
+
+    .moves_count {
+        width: 45px;
+        border: none;
+        padding: 4px 0px 2px 18px;
+        border-radius: 5px;
+    }
+}
+
 // Drag and Drop Workout Blocks Section (Top of Workout Editor)
 #workout-blocks {
     padding: 28px 39px;
@@ -449,35 +569,6 @@
     }
 }
 
-.workout-builder .editor-buttons {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -14px;
-    margin-top: -14px;
-
-    a.fullscreen-toggle {
-        color: $xero-blue;
-        cursor: pointer;
-        display: block;
-        padding: 4px;
-        text-decoration: none;
-        @include border-radius(4px);
-
-        &:before {
-            font-size: 20px;
-            line-height: 1;
-            @include xerofit-icon();
-            display: block;
-        }
-    }
-}
-
-// Expand & Collapse Icons
-#exit-fullscreen:before { content: '\e618'; }
-#enter-fullscreen:before { content: '\e619'; }
-
-
 #workout-editor {
     padding: 0px 39px 39px;
     width: 100%;
@@ -498,6 +589,9 @@
         border: 1px solid #E3E3E3;
         @include clearfix();
         @include border-radius(6px);
+
+        li.block-container:first-child {margin-top: 0px;}
+        li.block-container:last-child {margin-bottom: 0px;}
     }
 }
 
@@ -662,6 +756,28 @@
 // -------------------------------------------------------------------------- //
 
 
+
+.block-container.break-block .block-header {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+.block-container.break-block .break-wings {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    z-index: 1;
+}
+
+
+
+
+
 // -------------------------------------------------------------------------- //
 // Workout Builder Single Move Styles
 // -------------------------------------------------------------------------- //
@@ -711,6 +827,9 @@
     // Show the Delete Icon when hovering over single move
     &:hover .remove-single-move:before { display: block; }
 }
+
+// Move index number counter
+.sort_index { margin-right: 12px; }
 
 
 
@@ -788,6 +907,20 @@
         width: 100%;
         text-align: center;
     }
+}
+
+.save_block_popover, .save_break_block_popover{
+    border: 1px solid #289cf9;
+    color: #289cf9;
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: none;
+    margin-top: 7px;
+    float: left;
+    width: 100%;
+    text-align: center;
 }
 
 .block-container .popover { max-width: 212px; }
@@ -888,36 +1021,10 @@ li.sortable-placeholder + li.first { display: none; }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------------------------------------------------- //
 // Previous Workout Builder styles copied over from css/style.css
 // -------------------------------------------------------------------------- //
 
-
-
-.workout_auto_input {
-    width: 180px;
-    height: 32px;
-    border-radius: 5px;
-    border: 2px solid #efefef;
-    font-size: 22px;
-
-    &:focus{
-        width: 180px;
-        height: 32px;
-        outline: none;
-    }
-}
 
 // Still in edit
 .met_tab {
@@ -927,7 +1034,6 @@ li.sortable-placeholder + li.first { display: none; }
 }
 
 .met_tab.blank_li { min-height: 50px; }
-
 
 // Used to highlight clicked move in workout editor
 .active_li {
@@ -972,39 +1078,4 @@ li.li_active { background: $active-color; }
 li.blank_li {
     padding: 0px 0 40px;
     margin-bottom: 0;
-}
-
-// Number counter
-.sort_index { margin-right: 12px; }
-
-// Move counter for the workout
-.float_right {
-    display: block;
-    height: 28px;
-    position: absolute;
-    top: -32px;
-    right: 40px;
-    @include clearfix();
-
-    .moves_count {
-        width: 45px;
-        border: none;
-        padding: 4px 0px 2px 18px;
-        border-radius: 5px;
-    }
-}
-
-
-.save_block_popover, .save_break_block_popover{
-    border: 1px solid #289cf9;
-    color: #289cf9;
-    border-radius: 4px;
-    padding: 7px 14px;
-    font-size: 12px;
-    line-height: 14px;
-    text-decoration: none;
-    margin-top: 7px;
-    float: left;
-    width: 100%;
-    text-align: center;
 }

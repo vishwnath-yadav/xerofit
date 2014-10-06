@@ -2,8 +2,8 @@
 <%if !@workout.errors.present?%>
 	//show_text_size();
 	//$(".success").addClass('move_detail').html('Workout Created');
-	$(".workout_auto_form").html("<%= escape_javascript(render(:partial => 'workout_auto_form'))%>");
+	$(".workout-title-wrap").html("<%= escape_javascript(render(:partial => 'workout_title_form'))%>");
 	$("#workout_id").val("<%=@workout.id%>");
-	//$(".header-title h4").text("<%= @workout.title%>");
+	//$(".header-title h4").text("<%= @workout.title %>");
 	//setTimeout(remove_msg, 4000);
 <%end%>

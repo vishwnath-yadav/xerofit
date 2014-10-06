@@ -1,0 +1,31 @@
+<% if @workout.new_record? %>
+	<%= simple_form_for @workout, :url => workouts_path, :html => {:method =>"post", id: "workout_form_auto"}, :remote => true do |f| %>
+      	<%= hidden_field_tag "user", @user.token %>
+
+		<div class="workout-title">
+			<h4>New Workout</h4>
+			<a class="edit-workout-title">edit</a>
+		</div>
+
+		<div class="workout-title-input">
+			<%=f.text_field :title, class: "title-textbox" %>
+			<a class="save-workout-title" data-name="title">save</a>
+		</div>
+	<% end %>
+
+<% else %>
+	<%= simple_form_for @workout, :url => workout_path(@workout), :html => {:method => "put", id: "workout_form_auto"}, :remote => true do |f| %>
+		<%=hidden_field_tag :workid, @workout.id %>
+
+		<div class="workout-title">
+			<h4><%= @workout.title %></h4>
+			<a class="edit-workout-title">edit</a>
+		</div>
+
+		<div class="workout-title-input">
+			<%= f.text_field :title, class: "title-textbox" %>
+			<a class="save-workout-title" data-name="title">save</a>
+		</div>
+
+	<% end %>
+<% end %>

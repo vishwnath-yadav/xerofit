@@ -1,18 +1,28 @@
-<%if @lib_detail.rep_option == MoveDetail::REP_TYPE[1]%>
+<% if @lib_detail.rep_option == MoveDetail::REP_TYPE[1]%>
     <div class="number-input-wrap lib_detail_inp">
         <%= ld.input :rep_min, label: false,  input_html: {class: "", min: 1, max: 50, disabled: disabled} %>
         <label>Min</label>
     </div>
     <div class="number-input-wrap lib_detail_inp">
-            <%= ld.input :rep_max, label: false, input_html: {class: "", min: 1, max: 50,disabled: disabled} %>
+            <%= ld.input :rep_max, label: false, input_html: {class: "", min: 1, max: 50, disabled: disabled} %>
         <label>Max</label>
     </div>
-<%elsif @lib_detail.rep_option == MoveDetail::REP_TYPE[2]%>
+    <div class="chechmark-wrap">
+         <%=ld.input :rep_each_side, input_html: {class: "lib_detail_chk", disabled: disabled} %>
+    </div>
+
+<% elsif @lib_detail.rep_option == MoveDetail::REP_TYPE[2] %>
+    <div class="chechmark-wrap">
+         <%=ld.input :rep_each_side, input_html: {class: "lib_detail_chk", disabled: disabled} %>
+    </div>
+
+<% else %>
     <div class="number-input-wrap lib_detail_inp">
-        <%= ld.input :rep_total, label: false,  input_html: {class: "", min: 1, max: 50, disabled: disabled} %>
+        <%= ld.input :rep_total, label: false,  input_html: {class: "", min: 1, max: 50, disabled: disabled } %>
         <label>Total</label>
     </div>
-<%end%>
-<div class="chechmark-wrap">
-     <%=ld.input :rep_each_side, input_html: {class: "lib_detail_chk", disabled: disabled} %>
-</div>
+
+    <div class="chechmark-wrap">
+         <%=ld.input :rep_each_side, input_html: {class: "lib_detail_chk", disabled: disabled} %>
+    </div>
+<% end %>
