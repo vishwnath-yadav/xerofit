@@ -46,6 +46,9 @@ Xerofit::Application.routes.draw do
         get :user_trash_filter
       end
       member do
+        get :change_password
+        put :update_password
+        get :send_confirmation
         patch :enable
         patch :disable
       end
