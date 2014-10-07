@@ -125,6 +125,15 @@ class WorkoutsController < ApplicationController
 		@work = (@workout.title.present? && @workout.subtitle.present? && @workout.description.present? && @workout.category.present? && (@workout.number_of_moves >= 7))
 	end
 
+	def delete_workout_image
+		@workout = Workout.find(params[:id])
+		if @workout.present? && @workout.pic.present?
+			@workout.pic.destroy
+			@workout.save
+		end
+		redirect_to :back
+	end
+
 	def update_move_details
 		if params[:lib_detail_arr].present?
 			lib_arr = params[:lib_detail_arr]

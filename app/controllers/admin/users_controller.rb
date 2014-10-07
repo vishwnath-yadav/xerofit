@@ -57,8 +57,6 @@ class Admin::UsersController < Admin::AdminController
     if @user.update(user_params)
       redirect_to admin_users_path, notice: "password is Successfully changed."
     else
-    	 # @user.errors.full_messages
-      # render #change_password_admin_user_path(@user)#, notice: @user.errors.full_messages
       render :change_password, id: @user.id
     end
   end

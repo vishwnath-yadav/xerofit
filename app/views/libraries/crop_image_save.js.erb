@@ -1,6 +1,9 @@
 <%if params[:type] == "workout"%>
 	$(".workout_edit_pic").attr('src', "<%=@obj.pic.url(:p_square)%>");
 	$(".workout_edit_pic1").attr('src', "<%=@obj.pic.url(:square)%>");
+	$(".workout_detail_pic").html("<img src='<%= @obj.pic.url(:w_square)%>' class='workout_edit_pic'/> ");
+	$(".workout_detail_pic").append("<div style=clear:both></div>");
+	$(".workout_detail_pic").append("<a href='/builder/<%= @obj.id %>/delete_workout_image' class='remove_video_btn work_del'>Delete uploaded image</a> ");
 <%else%>
 	$(".profile_image").attr('src', "<%=@obj.pic.url(:medium)%>");
 <%end%>

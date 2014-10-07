@@ -1,14 +1,18 @@
-//= require browser_timezone_rails/application.js
+//= require jquery.cookie
+//= require jstz
+//= require browser_timezone_rails/set_time_zone
 $(document).ready(function(){
   $(document).on("blur","#user_email",function () {
     var tz = jstz.determine();
     var zone_name = tz.name();
     $(".time_zone").val(zone_name);
-  })
+  });
+
   $(document).on('change','#sorted',function(){
     $('#sorted_by').val($(this).val());
     $('#admin_filter_form').submit();
   });
+
   $(document).on('change','.mark_btn',function(){
     var mark_as = $(this).find('input').is(':checked');
     var id = $(this).attr('data-id');
