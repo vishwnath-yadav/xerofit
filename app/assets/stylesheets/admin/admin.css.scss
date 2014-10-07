@@ -24,4 +24,19 @@
 
 
 @import 'admin/dashboard';
+@import 'helpers/notifications';
 
+
+span.error{
+	color: red;
+	display: block;
+}
+
+.form_width{
+	width: 35%;
+}
+
+.admin_chg_pwd{
+	width: 35%;
+	margin-bottom: 10px;
+}

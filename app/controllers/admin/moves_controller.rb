@@ -47,6 +47,9 @@ class Admin::MovesController < Admin::AdminController
 		hist = History.new()
 		if params[:type] == Move::TYPE[1]
 			move = Move.find_by_id(params[:id])
+			if params[:status] == Move::STATUS[0]
+				move.date_of_approval = DateTime.now
+			end
 			hist.move_id = move.id
 		else
 			move = Workout.find_by_id(params[:id])

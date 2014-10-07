@@ -1,0 +1,67 @@
+<% if @move.present? %>
+  <div class="discover_div">
+    <div class="col-sm-6">
+      <video id="move_video" width="560" height="316" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
+        <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
+      </video>
+    </div>
+    <div class="col-sm-6">
+      <table>
+        <tr colspan="2">
+          <td>
+            <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg",class: "img_user"%>
+          </td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td><%= @move.user.fullname.humanize %></td>
+        </tr>
+        <tr>
+          <td>Date of Approval:</td>
+          <td><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><td>
+        </tr>
+        <tr>
+          <td>Title:</td>
+          <td><%= @move.title %></td>
+        </tr>
+        <tr>
+          <td>Directions:</td>
+          <td><%= @move.directions %></td>
+        </tr>
+        <tr>
+          <td>Category:</td>
+          <td><%= @move.category %></td>
+        </tr>
+        <tr>
+          <td>Level of Difficulty:</td>
+          <td><%= @move.difficulty %></td>
+        </tr>
+        <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
+        <% if target_muscle.present? %>
+          <tr>
+            <td>Target Muscle Groups:</td>
+            <td><%= target_muscle.join(',') %></td>
+          </tr>
+        <% end %>
+        <% if @move.help.present? %>
+          <tr>
+            <td>Helpful tips and Tricks:</td>
+            <td><%= @move.help %></td>
+          </tr>
+        <% end %>
+        <% if @move.work.present? %>
+          <tr>
+            <td>Why it works:</td> 
+            <td><%= @move.work %></td>
+          </tr>
+        <% end %>
+        <% if @move.equipment.present? %>
+          <tr>
+            <td>Required Equipment:</td> 
+            <td><%= @move.equipment %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+<% end %>

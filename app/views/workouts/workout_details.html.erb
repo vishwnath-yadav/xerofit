@@ -96,22 +96,33 @@
         <div class="col-sm-6">
           <div class="big_video_col">
             <h5 class="input_label">Cover Image</h5>
-            <p class="input_sub_text">For best results, your image should be square and atleast 500px by 500px</p>
-            <div class="upload_content_frame_sm workout_cover_art upload_gry_box">
-              <div class="upload_wrapper">
-                <p>Upload your image</p>
-                <div class="custom-upload">
-                  <div class="fake-file">
-                      <span class="choose_btn wrk_chos <%= @disabled ? "disable_cls" : "" %>">Choose File</span>
-                      <input disabled="disabled">
+            <% if @workout.pic.present?%>
+              <div class="workout_svd_pic">
+                <%= image_tag @workout.pic.url(:w_square), class: "workout_image" %>
+                <div style="clear:both"></div>
+                <%= link_to "Delete uploaded image", delete_workout_image_workout_path(@workout) ,class: "remove_video_btn work_del" %>
+              </div>
+            <% else %>
+              <div class="workout_detail_pic">
+                <p class="input_sub_text">For best results, your image should be square and atleast 500px by 500px</p>
+                <div class="upload_content_frame_sm workout_cover_art upload_gry_box">
+                  <div class="upload_wrapper">
+                    <p>Upload your image</p>
+                    <div class="custom-upload">
+                      <div class="fake-file">
+                          <span class="choose_btn wrk_chos <%= @disabled ? "disable_cls" : "" %>">Choose File</span>
+                          <input disabled="disabled">
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
+
     <%= form_for :user, :url => '/settings/save_user_pic' ,remote: true, :html => { :id => "user_logo" } do |form| %>
           <%=hidden_field_tag :pic_creating, ""%>
           <%=hidden_field_tag :company, "true"%>

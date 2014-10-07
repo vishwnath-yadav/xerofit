@@ -1,42 +1,48 @@
 <div class="col-md-12">
 	<%= simple_nested_form_for(@user, url: (@user.new_record? ? admin_users_path : admin_user_path(@user)), html: {id: 'admin_create_user', class: "form-horizontal"}) do |lib| %>
-	<fieldset>
-
-	<legend><%=@user.new_record? ? "New User" : "Edit User"%></legend>
-    <% if @user.errors.full_messages.any? %>
-    	<div class="alert alert-danger">
-    	  <p>Please fix the errors below.</p>
-    	  <ul class="rails-bootstrap-forms-error-summary">
-    	    <% @user.errors.full_messages.each do |error_message| %>
-                <li><%= error_message %></li>
-              <% end %>
-    	  </ul>
-    	</div>
-    <%end%>
-	<!-- Select Basic -->
-	<div class="form-group">
-        <label for="inputEmail">First Name</label>
-        <%= lib.text_field :first_name, class: "form-control input-wid", placeholder: "First Name" %>
+    <div class="form_width">
+    	<fieldset>
+            <legend><%=@user.new_record? ? "New User" : "Edit User"%></legend>
+            <% if @user.errors.full_messages.any? %>
+                <div class="alert alert-danger">
+                  <p>Please fix the errors below.</p>
+                  <ul class="rails-bootstrap-forms-error-summary">
+                    <% @user.errors.full_messages.each do |error_message| %>
+                        <li><%= error_message %></li>
+                      <% end %>
+                  </ul>
+                </div>
+            <%end%>
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label for="inputEmail">First Name</label>
+                <%= lib.text_field :first_name, class: "form-control input-wid", placeholder: "First Name" %>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Last Name</label>
+                <%= lib.text_field :last_name, class: "form-control input-wid", placeholder: "Last Name" %>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <%= lib.text_field :email, class: "form-control input-wid", placeholder: "Email" %>
+            </div>
+            <%if @user.new_record?%>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <%= lib.password_field :password, class: "form-control input-wid", placeholder: "Password" %>
+                </div>
+                <%= lib.input :time_zone, :as => :hidden, :input_html => { class: "time_zone" } %>
+            <%end%>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <%= lib.select :role, User::ROLES, {}, class: "form-control input-wid" %>
+            </div>
+            <%= lib.submit :Save, class: "btn btn-primary" %>
+            <% if !@user.new_record? %>
+                <%= link_to "Reset Password", change_password_admin_user_path(@user), class: "btn btn-primary" %>
+                <%= link_to "Send Confirmation", send_confirmation_admin_user_path(@user), class: "btn btn-primary" %>
+            <% end %>
+    	</fieldset>
     </div>
-    <div class="form-group">
-        <label for="inputEmail">Last Name</label>
-        <%= lib.text_field :last_name, class: "form-control input-wid", placeholder: "Last Name" %>
-    </div>
-	<div class="form-group">
-        <label for="inputEmail">Email</label>
-        <%= lib.text_field :email, class: "form-control input-wid", placeholder: "Email" %>
-    </div>
-    <%if @user.new_record?%>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <%= lib.password_field :password, class: "form-control input-wid", placeholder: "Password" %>
-        </div>
-    <%end%>
-    <div class="form-group">
-        <label for="role">Role</label>
-        <%= lib.select :role, User::ROLES, {}, class: "form-control input-wid" %>
-    </div>
-    <%= lib.submit :Save, class: "btn btn-primary" %>
-	</fieldset>
 	<%end%>
 </div>

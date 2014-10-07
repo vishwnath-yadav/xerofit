@@ -113,6 +113,23 @@ input.search_bar {
 }
 
 
+.search_bar_clear1:before {
+    content: '';
+    background: url(/assets/search_bar_clear_icon.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 8px;
+    top: 7px;
+    cursor: pointer;
+
+    &:hover {cursor: pointer;}
+}
+
+
 // Control Bar Filters
 .select_bar_col {
     width: auto;
@@ -1400,3 +1417,12 @@ div.equipment_pill#1 {margin-right: 14px;}
         text-decoration: none;
     }
 }
+
+
+.discover_div{
+ text-align: right;   
+}
+
+.img_user{width: 50px !important;
+height: auto;
+margin-bottom: 12px;}

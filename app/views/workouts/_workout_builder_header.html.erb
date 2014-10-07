@@ -13,6 +13,7 @@
 <div class="details_page_header">
     <div class="container-fluid">
         <div class="header-scroll">
+            <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=> 'cb_breadcrumb') %>
             <span class="show-on-scroll"></span>
 
             <div class="editor-buttons">

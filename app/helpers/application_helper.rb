@@ -12,6 +12,8 @@ module ApplicationHelper
 			controller_name = "Workout Builder"
 		elsif controller_name == "settings"
 			controller_name = "Settings"
+		elsif controller_name == "discover"
+			controller_name = "Discover"
 		else
 			controller_name = "Home"
 		end

@@ -46,6 +46,9 @@ Xerofit::Application.routes.draw do
         get :user_trash_filter
       end
       member do
+        get :change_password
+        put :update_password
+        get :send_confirmation
         patch :enable
         patch :disable
       end
@@ -53,6 +56,7 @@ Xerofit::Application.routes.draw do
     get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
     get '/trash_page', to: 'moves#trash_page', as: :trash_page
+    # get '/discover', to: 'moves#discover', as: :discover
     
     resources :moves do
       collection do
@@ -66,6 +70,7 @@ Xerofit::Application.routes.draw do
         post :uncut_workout_mail
         get :download_video
         get :trash
+        # get :search_in_discover_data
         get :restore
         post :admin_approve_workout_mail
         get :admin_trash
@@ -143,6 +148,7 @@ Xerofit::Application.routes.draw do
       get 'remove_block'
     end
     member do
+      get 'delete_workout_image'
       get '/edit', to: 'workouts#edit', as: :edit
     end
   end
@@ -169,8 +175,14 @@ Xerofit::Application.routes.draw do
     end
   end
 
-
-
+  get '/discover', to: 'discover#discover', as: :discover
+  get '/discover/search_in_discover_data', to: 'discover#search_in_discover_data'
+  get '/discover/move/:id', to: 'discover#discover_details', as: :discover_details
+  resources :discover, only: [] do
+    collection do
+      get :autocomplete_move_title
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -48,6 +48,27 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def change_password
+  	@user = User.find(params[:id])
+  end
+
+  def update_password
+  	@user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: "password is Successfully changed."
+    else
+      render :change_password, id: @user.id
+    end
+  end
+
+  def send_confirmation
+  	@user = User.find(params[:id])
+  	if @user.present?
+  		@user.send_confirmation_instructions
+  		redirect_to admin_users_path, notice: "confirmation mail send to user successfully."
+  	end
+  end
+
 	def filter_user
 		sort = params[:sorted_by]
 		@users = User.by_name(params[:name]).by_email(params[:email]).by_role(params[:role]).where(enabled: true).order("#{sort} DESC")
@@ -89,7 +110,11 @@ class Admin::UsersController < Admin::AdminController
 	private
 
 	def permitted_user
-		params.require(:user).permit(:first_name,:last_name, :role, :email, :password)
+		params.require(:user).permit(:first_name,:last_name, :time_zone, :role, :email, :password)
 	end
+
+  def user_params
+    params.require(:user).permit!
+  end
 
 end

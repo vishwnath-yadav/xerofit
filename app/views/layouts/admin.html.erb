@@ -16,6 +16,9 @@
       <%= yield %>
   	</div>
   </div>
+  <% if flash[:notice].present? %>
+    <%= render partial: "common_templates/notifications" %>
+  <% end %>
   <%flash.clear%>
 </body>
 </html>
