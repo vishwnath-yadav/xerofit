@@ -49,11 +49,12 @@ Xerofit::Application.routes.draw do
         get :change_password
         put :update_password
         get :send_confirmation
+        get :confirm_user_access
         patch :enable
         patch :disable
       end
     end
-    get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
+    # get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
     get '/trash_page', to: 'moves#trash_page', as: :trash_page
     # get '/discover', to: 'moves#discover', as: :discover

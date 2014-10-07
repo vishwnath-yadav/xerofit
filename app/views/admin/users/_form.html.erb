@@ -41,6 +41,9 @@
             <% if !@user.new_record? %>
                 <%= link_to "Reset Password", change_password_admin_user_path(@user), class: "btn btn-primary" %>
                 <%= link_to "Send Confirmation", send_confirmation_admin_user_path(@user), class: "btn btn-primary" %>
+                <% if !@user.confirmed_at.present? %>
+                    <%= link_to "Confirm user access", confirm_user_access_admin_user_path(@user), class: "btn btn-primary" %>
+                <% end %>
             <% end %>
     	</fieldset>
     </div>

@@ -18,7 +18,11 @@
         </tr>
         <tr>
           <td>Date of Approval:</td>
-          <td><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><td>
+          <% if @move.date_of_approval.present? %>
+            <td><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><td>
+          <% else %>
+            <td><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><td>
+          <% end %>
         </tr>
         <tr>
           <td>Title:</td>

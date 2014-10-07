@@ -186,9 +186,9 @@ class Move < ActiveRecord::Base
 	  	@history.save 
 	end
 
-	def self.average_moves
-		if self.move_count != 0
-			(self.move_count/User.trainer_count).to_i
+	def self.average_moves(move_count,trainer_count)
+		if move_count != 0
+			(move_count/trainer_count).to_i
 		else 
 			return 0
 		end
@@ -216,6 +216,7 @@ class Move < ActiveRecord::Base
 
 	def self.video_process_count
 		arr=[]
+		moves = []
 		video_length = 0
 		video_size = 0
 		video_encode = 0
@@ -223,7 +224,11 @@ class Move < ActiveRecord::Base
 		avg_video_size = 0
 		avg_encode_time = 0
 		video_on_queue = 0
- 		move = self.all
+		trainers = User.where(role: 'trainer')
+		trainers.each do |user|
+ 			moves << user.moves
+		end
+		move = moves.flatten
 		if move.present?
 			move.each do |mov|
 			 	if mov.video_present
