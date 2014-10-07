@@ -10,7 +10,7 @@ class Move < ActiveRecord::Base
 	has_many :move_blocks
 	has_many :histories
 	has_many :blocks, through: :move_blocks
-	
+
 	after_create :save_status
 	after_create :create_target_muscle_group
 	# after_update :date_updated_for_approval
@@ -20,15 +20,15 @@ class Move < ActiveRecord::Base
 	validates :title, presence: true
 
 	validates :equipment, :length => { :maximum => 6, :message=>"size can not be greater than 5."}
-	
+
 	CATEGORIES = ["Agility", "Bodybuilding","Bodyweight","Cardio","Core","Dance","Dumbbell","Endurance","Exercise Ball","Kettlebell","Martial Arts","Medicine Ball","Office","Pilates","Playground","Postnatal","Prenatal","Pull Ups","Recovery","Resistance Bands","Stairs","Stretching","TRX","Warm Up","Yoga"]
 
 	DIFFICULTIES = ["Beginner","Intermediate","Athletic","Elite"]
-	
-	EQUIPMENT_LIST = ["Ab Board","Adjustable Ab Board","Ankle Weights","Balance Beam","Balance Block","Balance Disc","Balance Dome (Bosu Ball)","Balance Pad","Barbell","Barbell Plates","Chair","Decline Bench","Dual Grip Medicine Ball","Dumbbells","Elliptical Machine","Exercise Ball (Swiss Ball)","Exercise Bike","Fitness Tubes","Flat Band","Flat Bench","Foam Roller","Folding Mat","Incline Bench","Inflatable Pilates Ball Roller","Kettlebell","Medicine Ball","Mini Medicine Ball","Non-Bouncing Physical Therapy (P.T.) Ball","Plates","Pull Up Bar","Punching Bag","Resistance Band","Semi-Recumbent Ab Bench","Spin Style Bike","Stationary Bike","Suspension Trainer (TRX)","Treadmill","Upright Bike","Weighted Gloves","Weighted Vest","Wobble Board","Wrist Weights","Yoga Block","Yoga mat"]
+
+	EQUIPMENT_LIST = ["Ab Board","Adjustable Ab Board","Ankle Weights","Balance Beam","Balance Block","Balance Disc","Balance Dome (Bosu Ball)","Balance Pad","Barbell","Barbell Plates","Chair","Decline Bench","Dual Grip Medicine Ball","Dumbbells","Elliptical Machine","Exercise Ball (Swiss Ball)","Exercise Bike","Fitness Tubes","Flat Band","Flat Bench","Foam Roller","Folding Mat","Incline Bench","Inflatable Pilates Ball Roller","Kettlebell","Medicine Ball","Mini Medicine Ball","Non-Bouncing Physical Therapy (P.T.) Ball","Plates","Pull Up Bar","Punching Bag","Resistance Band","Semi-Recumbent Ab Bench","Spin Style Bike","Stationary Bike","Suspension Trainer (TRX)","Treadmill","Upright Bike","Weighted Gloves","Weighted Vest","Wobble Board","Wrist Weights","Yoga Block","Yoga Mat"]
 
 	STATUS = ["Approved and Active","Needs Attention","Waiting for Approval","Ready to Submit","Saved as Draft"]
-	
+
 	ADMIN_MOVE_FILTER = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
 	ADMIN_UNCUT_FILTER = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
@@ -36,7 +36,7 @@ class Move < ActiveRecord::Base
 	ADMIN_UNCUT_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','Number of moves by Approved and Active','Number of moves by Needs Attention','Number of moves by Waiting for Approval','Number of moves by Ready to Submit','Number of moves by Saved as Draft','Number of total workouts','Average number of workouts per trainer','Number of workouts by Approved and Active','Number of workouts by Needs Attention','Number of workouts by Waiting for Approval','Number of workouts by Ready to Submit','Number of workouts by Saved as Draft']
 	ADMIN_VIDEO_STATISTICS = ['Average video length in seconds','Average video size in megabytes','How long it takes to encode a video on panda','How many videos in the encoding queue on panda']
-	TYPE = ["All Type", "Single Move", "Workouts"]	
+	TYPE = ["All Type", "Single Move", "Workouts"]
 
 	scope :by_status, lambda { |status| where(status: status) unless status == "All Statuses" || status.blank? }
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
