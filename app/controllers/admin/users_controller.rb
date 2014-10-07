@@ -69,6 +69,15 @@ class Admin::UsersController < Admin::AdminController
   	end
   end
 
+  def confirm_user_access
+  	@user = User.find(params[:id])
+  	if @user.present?
+  		@user.confirmed_at = Time.now
+  		@user.save
+  		redirect_to :back, notice: "User successfully confirmed."
+  	end
+  end
+
 	def filter_user
 		sort = params[:sorted_by]
 		@users = User.by_name(params[:name]).by_email(params[:email]).by_role(params[:role]).where(enabled: true).order("#{sort} DESC")

@@ -153,9 +153,9 @@ class Workout < ActiveRecord::Base
 	  	@history.save
 	end
 
-	def self.avg_workout_counts
-		if self.workout_count != 0
-			(self.workout_count/User.trainer_count).to_i
+	def self.avg_workout_counts(workout_count,trainer_count)
+		if workout_count != 0
+			(workout_count/trainer_count).to_i
 		else
 			return 0 
 		end
