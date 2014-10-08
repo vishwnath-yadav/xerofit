@@ -51,7 +51,6 @@ $(document).ready(function(){
   });
 
   $('#search_approve_move').bind('railsAutocomplete.select', function(event, data){
-    console.log("sssssssss");
     $('#search_in_discover_data').submit();
   });
 

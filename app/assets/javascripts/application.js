@@ -135,9 +135,13 @@ $(document).ready(function() {
         $(".modal-footer").addClass('hide');
         $(".bootstrap-modal-cropper").html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
       });
-    $modal.modal('show');
-    $(".load_modal").click();
-    $("#user_logo").submit();
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 && parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))) > 8){      // If Internet Explorer, return version number
+          $modal.modal('show');
+        }
+      $(".load_modal").click();
+      $("#user_logo").submit();
   });
 
   $(document).on("click",".save_crop_image",function(){
