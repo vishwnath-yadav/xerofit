@@ -7,23 +7,18 @@
     margin: 0px auto;
 }
 
+
+// Global Styles for App Icon List
 ul.trainer-apps {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: block;
-    margin-top: 28px;
-    position: relative;
-    width: 100%;
     @include clearfix();
 
     li {
-        width: 154px;
         text-align: center;
-        margin: 42px;
         height: auto;
         float: left;
-        font-size: 17px;
         color: $silver31;
         @include user-select(none);
 
@@ -37,31 +32,26 @@ ul.trainer-apps {
             span {
                 display: block;
                 position: relative;
-                height: 154px;
-                width: 154px;
                 color: #fff;
-                @include border-radius(28px);
 
                 // App icon container
                 &:before {
                     @include xerofit-icon();
                     display: block;
-                    height: 84px;
-                    width: 84px;
                     position: absolute;
                     top: 50%;
-                    margin-top: -42px;
                     left: 50%;
-                    margin-left: -42px;
-                    font-size: 75px;
-                    line-height: 84px;
                 }
             }
 
             // Title of each app
-            &:after {
-                display: block;
-                padding-top: 21px;
+            &:after { display: block; }
+
+            // Hover visual cue
+            &:hover,
+            &:focus {
+                background-color: transparent;
+                @include opacity(0.85);
             }
         }
 
@@ -98,12 +88,7 @@ ul.trainer-apps {
         background-color: #5A68F4;
 
         // [icon] dumbbell-line
-        &:before {
-            content: '\e648';
-            width: 100px;
-            margin-left: -50px;
-            font-size: 90px;
-        }
+        &:before { content: '\e648'; }
     }
 
     li > a.workout-builder > span {
@@ -132,5 +117,49 @@ ul.trainer-apps {
 
         // [icon] trend-chart-line
         &:before { content: '\e606'; }
+    }
+}
+
+
+// Trainer homescreen apps list styles
+ul.trainer-apps.homescreen {
+    position: relative;
+    width: 100%;
+    display: block;
+    margin-top: 28px;
+
+    li {
+        width: 154px;
+        margin: 42px;
+        font-size: 17px;
+
+        a span {
+            height: 154px;
+            width: 154px;
+            @include border-radius(28px);
+
+            &:before {
+                height: 84px;
+                width: 84px;
+                margin-top: -42px;
+                margin-left: -42px;
+                font-size: 75px;
+                line-height: 84px;
+            }
+        }
+
+        // Title of each app
+        a:after { padding-top: 21px; }
+    }
+
+    img.coming-soon-banner {
+        height: 98px;
+        width: 98px;
+    }
+
+    li > a.fitness-library > span:before {
+        width: 100px;
+        margin-left: -50px;
+        font-size: 90px;
     }
 }

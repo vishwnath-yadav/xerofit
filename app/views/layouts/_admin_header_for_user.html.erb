@@ -1,38 +1,40 @@
 <header class="topbar">
-    <div class="container-fluid topbar_wrap">
-        <div class="global_nav">
+    <div class="container-fluid topbar-wrap">
+        <div class="global-nav">
             <div class="dropdown">
                 <a href="#" class="global_nav_toggle" data-toggle="dropdown"><%= change_menu_title(controller_name)%></a>
-                <ul class="global_nav_dropdown dropdown-menu dd_tip_left">
-                    <li class="left_app">
-                        <%= link_to trainer_dashboard_index_path(user: params[:user]), class: "dropdown_app_icon home_app" do %>
-                            <span>Home</span>
-                        <%end%>
+
+                <ul class="trainer-apps dropdown-menu dd_tip_left">
+                    <li>
+                        <%= link_to trainer_dashboard_index_path(user: params[:user]), class: "home" do %>
+                            <span></span>
+                        <% end %>
                     </li>
                     <li>
-                        <%= link_to libraries_path(user: params[:user]), class: "dropdown_app_icon fitness_library_app", "data-no-turbolink" => 'true' do %>
-                            <span>Fitness Library</span>
-                        <%end%>
+                        <%= link_to libraries_path(user: params[:user]), class: "fitness-library", "data-no-turbolink" => 'true' do %>
+                            <span></span>
+                        <% end %>
                     </li>
                     <li>
-                        <%= link_to new_workout_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app", "data-no-turbolink" => 'true' do %>
-                            <span>Workout Builder</span>
-                        <%end%>
+                        <%= link_to new_workout_path(user: params[:user]), class: "workout-builder", "data-no-turbolink" => 'true' do %>
+                            <span></span>
+                        <% end %>
                     </li>
                     <li>
-                        <%= link_to discover_path(user: params[:user]), class: "dropdown_app_icon workout_builder_app", "data-no-turbolink" => 'true' do %>
-                            <span>Workout Builder</span>
-                        <%end%>
+                        <%= link_to discover_path(user: params[:user]), class: "discover", "data-no-turbolink" => 'true' do %>
+                            <span></span>
+                        <% end %>
                     </li>
-                    <li class="right_app">
-                        <%= link_to "facebook.com/groups/xerofit.trainers.beta", class: "dropdown_app_icon support_app" do %>
-                            <span>Support</span>
-                        <%end%>
+                    <li>
+                        <%= link_to "facebook.com/groups/xerofit.trainers.beta", class: "support" do %>
+                            <span></span>
+                        <% end %>
                     </li>
-                    <li class="left_app btm_app">
-                        <%= link_to "javascript:void(0)", class: "dropdown_app_icon performance_app" do %>
-                            <span>Performance</span>
-                        <%end%>
+                    <li>
+                        <%= link_to "javascript:void(0)", class: "performance" do %>
+                            <span></span>
+                            <img class="coming-soon-banner" src="/assets/icons/coming_soon_banner.png" />
+                        <% end %>
                     </li>
                 </ul>
             </div>

@@ -116,13 +116,13 @@ body { background:#f7f7f7; }
 
 
 
-.topbar_wrap {
+.topbar-wrap {
     width: 100%;
     position: relative;
     @include clearfix();
 }
 
-.global_nav {
+.global-nav {
     padding: 14px 0px;
     float: left;
 }
@@ -132,24 +132,24 @@ a.global_nav_toggle {
     display: block;
     width: 100%;
     position: relative;
-    padding-right: 20px;
+    padding-right: 22px;
     font-size: 17px;
     line-height: 28px;
     color: $silver31;
     text-decoration: none;
 
+    // [icon] chevron-down
     &:after {
-        content: '';
-        background: url(/assets/icons/chevron_down.png);
+        @include xerofit-icon();
+        content: '\e61d';
         display: block;
         position: absolute;
         right: 0;
         top: 0;
-        width: 12px;
+        font-size: 14px;
+        text-align: right;
         height: 28px;
-        background-repeat: no-repeat;
-        @include background-size(contain);
-        background-position: center;
+        line-height: 28px;
     }
 
     &:hover,
@@ -161,55 +161,51 @@ a.global_nav_toggle {
 }
 
 
-ul.global_nav_dropdown.dropdown-menu {
+// Global Navigation Dropdown apps list styles
+.global-nav ul.trainer-apps.dropdown-menu {
+    margin-top: 14px; // For the dropdown menu
     padding: 19px; // Offset the 1px border
-    width: 580px;
+    width: 544px; // 4 apps per row
 
-    > li {
-        display: inline-block;
-        float: left;
-        @include clearfix;
-        padding: 10px;
+    li {
+        margin: 14px;
+        font-size: 11px;
 
-        > a {
-            display: inline-block;
+        a {
             padding: 0;
-            font-size: 12px;
-            line-height: 14px;
+            line-height: 18px;
 
-            &:hover,
-            &:focus {
-                background-color: transparent;
+            span {
+                height: 98px;
+                width: 98px;
+                @include border-radius(21px);
+
+                &:before {
+                    height: 60px;
+                    width: 60px;
+                    margin-top: -30px;
+                    margin-left: -30px;
+                    font-size: 50px;
+                    line-height: 60px;
+                }
             }
+
+            // Title of each app
+            &:after { padding-top: 10px; @include gotham500(); }
+
         }
     }
-    li.left_app {padding-left: 0px;}
-    li.right_app {padding-right: 0px;}
-    li.btm_app {padding-bottom:0px; padding-top:20px;}
-}
 
-// Global Nav App Icons
-.home_app { background: url(/assets/home_icon.png);}
-.fitness_library_app { background: url(/assets/fitness_icon.png);}
-.workout_builder_app { background: url(/assets/workout_icon.png);}
-.support_app { background: url(/assets/support_icon.png);}
-.performance_app { background: url(/assets/performance_icon.png);}
+    img.coming-soon-banner {
+        height: 64px;
+        width: 64px;
+    }
 
-.dropdown_app_icon {
-    height: 125px;
-    width: 120px;
-    background-repeat: no-repeat;
-    @include background-size(100px);
-    background-position: center top;
-    position: relative;
-
-    > span {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
+    li > a.fitness-library > span:before {
+        font-size: 60px;
     }
 }
+
 
 
 // Topbar Xerofit Logo
