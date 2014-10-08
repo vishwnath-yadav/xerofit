@@ -23,7 +23,7 @@
           <%= hidden_field_tag :sorted_by, "updated_at"%>
           <%= hidden_field_tag :order%>
           <%= hidden_field_tag :sort_arrow%>
-          <%= hidden_field_tag :status%>
+          <%#= hidden_field_tag :status%>
           <%= hidden_field_tag :view_type, "grid"%>
           <%= hidden_field_tag :user, params[:user]%>
 
@@ -34,7 +34,7 @@
           </div>
           <div class="filter_control_wrap">
             <span class="custom_select status_select">
-              <select class="default">
+              <select class="default" name="status" id="status">
                 <option class="green_icon">All Statuses</option>
                 <%=Move::STATUS.each do |st|%>
                   <option><%=st%></option>
@@ -71,8 +71,11 @@
 
 <script>
   $(function () {
-      $('.default').dropkick();
-      setTimeout(load_dropKick_js);
+    $('.default').dropkick({
+      change: function (value, label) {
+        load_dropKick_js();
+      }
+    });
   });
 
   $('.control_bar_tooltip').tooltip({
