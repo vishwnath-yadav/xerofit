@@ -130,8 +130,9 @@
 }
 
 // Expand & Collapse Icons
-#exit-fullscreen:before { content: '\e618'; }
-#enter-fullscreen:before { content: '\e619'; }
+// [icon] arrow-expand arrow-collapse
+#exit-fullscreen:before { content: '\e660'; }
+#enter-fullscreen:before { content: '\e65f'; }
 
 
 
@@ -694,7 +695,6 @@
             height: 42px;
             text-align: center;
             position: absolute;
-            //z-index: 9999999;
             right: 0;
             top: 0;
             display: block;

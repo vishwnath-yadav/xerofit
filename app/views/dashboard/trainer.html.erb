@@ -1,24 +1,35 @@
-<div class="dashboard_container">
-    <div class="homepage_icons">
-        <ul>
-            <li>
-                <a href="<%= params[:user].present? ? trainer_dashboard_index_path(user: params[:user]): trainer_dashboard_index_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/home_app_large.png" alt="Home" />Home</a>
-            </li>
-            <li>
-                <a href="<%= params[:user].present? ? libraries_path(user: params[:user]) : libraries_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/fitness_library_app_large.png" alt="Fitness Library" />Fitness Library</a>
-            </li>
-            <li>
-                <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />Workout Builder</a>
-            </li>
-            <li>
-                <a href="<%= params[:user].present? ? discover_path(user: params[:user]) : discover_path %>" data-no-turbolink="true"><img src="/assets/icons/apps/workout_builder_app_large.png" alt="Workout Builder" />Discover</a>
-            </li>
-            <li>
-                <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta"><img src="/assets/icons/apps/support_app_large.png" alt="Support" />Support</a>
-            </li>
-            <li>
-                <a href="javascript:void(0)"><img src="/assets/icons/apps/performance_app_large.png" alt="Performance" />Performance</a>
-            </li>
-        </ul>
-    </div>
+<div class="dashboard-container">
+    <ul class="trainer-apps">
+        <li>
+            <a href="<%= params[:user].present? ? trainer_dashboard_index_path(user: params[:user]): trainer_dashboard_index_path %>" class="home" data-no-turbolink="true">
+                <span></span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= params[:user].present? ? libraries_path(user: params[:user]) : libraries_path %>" class="fitness-library" data-no-turbolink="true">
+                <span></span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= params[:user].present? ? new_workout_path(user: params[:user]) : new_workout_path %>" class="workout-builder" data-no-turbolink="true">
+                <span></span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= params[:user].present? ? discover_path(user: params[:user]) : discover_path %>" class="discover" data-no-turbolink="true">
+                <span></span>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="http://facebook.com/groups/xerofit.trainers.beta" class="support">
+                <span></span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="performance">
+                <span></span>
+                <img class="coming-soon-banner" src="/assets/icons/coming_soon_banner.png" />
+            </a>
+        </li>
+    </ul>
 </div>

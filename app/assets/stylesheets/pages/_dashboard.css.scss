@@ -2,42 +2,135 @@
 
 
 
-.dashboard_container {
+.dashboard-container {
     width: 952px;
     margin: 0px auto;
 }
 
-.homepage_icons {
+ul.trainer-apps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
     margin-top: 28px;
     position: relative;
     width: 100%;
     @include clearfix();
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: inline;
+    li {
+        width: 154px;
+        text-align: center;
+        margin: 42px;
+        height: auto;
+        float: left;
+        font-size: 17px;
+        color: $silver31;
+        @include user-select(none);
 
-        li {
-            width: 154px;
-            text-align: center;
-            margin: 42px;
-            height: auto;
-            float: left;
-            font-size: 17px;
+        a {
             color: $silver31;
+            text-decoration: none;
+            position: relative;
+            display: block;
 
-            img {
-                width:100%;
-                height:auto;
-                margin-bottom: 21px;
+            // App container
+            span {
+                display: block;
+                position: relative;
+                height: 154px;
+                width: 154px;
+                color: #fff;
+                @include border-radius(28px);
+
+                // App icon container
+                &:before {
+                    @include xerofit-icon();
+                    display: block;
+                    height: 84px;
+                    width: 84px;
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -42px;
+                    left: 50%;
+                    margin-left: -42px;
+                    font-size: 75px;
+                    line-height: 84px;
+                }
             }
 
-            a {
-                color: $silver31;
-                text-decoration:none;
+            // Title of each app
+            &:after {
+                display: block;
+                padding-top: 21px;
             }
         }
+
+        // Coming soon yellow banner
+        img.coming-soon-banner {
+            height: 98px;
+            width: 98px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+
+    // Individual app icon titles
+    a.home:after { content: 'Home'; }
+    a.fitness-library:after { content: 'Fitness Library'; }
+    a.workout-builder:after { content: 'Workout Builder'; }
+    a.discover:after { content: 'Discover'; }
+    a.support:after { content: 'Support'; }
+    a.performance:after { content: 'Performance'; }
+
+
+
+    // App Containers and Icons
+    li > a.home > span {
+        background-color: $silver16;
+
+        // [icon] home-line
+        &:before { content: '\e61b'; }
+    }
+
+    li > a.fitness-library > span {
+        background-color: #5A68F4;
+
+        // [icon] dumbbell-line
+        &:before {
+            content: '\e648';
+            width: 100px;
+            margin-left: -50px;
+            font-size: 90px;
+        }
+    }
+
+    li > a.workout-builder > span {
+        background-color: #FC2F6A;
+
+        // [icon] workout-builder-line
+        &:before { content: '\e600'; }
+    }
+
+    li > a.discover > span {
+        background-color: #FE9739;
+
+        // [icon] discover-line
+        &:before { content: '\e64a'; }
+    }
+
+    li > a.support > span {
+        background-color: $silver71;
+
+        // [icon] support-line
+        &:before { content: '\e608'; }
+    }
+
+    li > a.performance > span {
+        background-color: #29CE85;
+
+        // [icon] trend-chart-line
+        &:before { content: '\e606'; }
     }
 }
