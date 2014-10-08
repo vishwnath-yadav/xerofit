@@ -701,8 +701,9 @@
             padding-right: 7px;
             @include xerofit-icon();
 
+            // [icon] settings-gear-line
             &:before {
-                content: "\e611";
+                content: "\e60e";
                 line-height: 42px;
                 font-size: 21px;
             }

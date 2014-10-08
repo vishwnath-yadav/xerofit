@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'xerofit-icons';
-    src: font-url('xerofit-icons.eot?-97u460');
-    src: font-url('xerofit-icons.eot?#iefix-97u460') format('embedded-opentype'),
-         font-url('xerofit-icons.woff?-97u460') format('woff'),
-         font-url('xerofit-icons.ttf?-97u460') format('truetype'),
-         font-url('xerofit-icons.svg?-97u460#xerofit-icons') format('svg');
+    src: font-url('xerofit-icons.eot?-agnhyy');
+    src: font-url('xerofit-icons.eot?#iefix-agnhyy') format('embedded-opentype'),
+         font-url('xerofit-icons.woff?-agnhyy') format('woff'),
+         font-url('xerofit-icons.ttf?-agnhyy') format('truetype'),
+         font-url('xerofit-icons.svg?-agnhyy#xerofit-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,90 +23,183 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.xico-calendar-fill:before {
-    content: "\e600";
+.xico-chevron-down:before {
+    content: "\e61d";
 }
-.xico-calendar-line:before {
-    content: "\e601";
+.xico-chevron-left:before {
+    content: "\e61e";
 }
-.xico-discover-fill:before {
-    content: "\e602";
+.xico-chevron-right:before {
+    content: "\e61f";
 }
-.xico-discover-line:before {
-    content: "\e603";
-}
-.xico-filter-fill:before {
-    content: "\e604";
-}
-.xico-filter-line:before {
-    content: "\e605";
-}
-.xico-heart-fill:before {
-    content: "\e606";
-}
-.xico-heart-line:before {
-    content: "\e607";
-}
-.xico-home-fill:before {
-    content: "\e608";
-}
-.xico-home-line:before {
-    content: "\e609";
-}
-.xico-image-fill:before {
-    content: "\e60a";
-}
-.xico-image-line:before {
-    content: "\e60b";
-}
-.xico-notification-bell-fill:before {
-    content: "\e60c";
-}
-.xico-notification-bell-line:before {
-    content: "\e60d";
-}
-.xico-profile-fill:before {
-    content: "\e60e";
-}
-.xico-profile-line:before {
-    content: "\e60f";
-}
-.xico-settings-gear-fill:before {
-    content: "\e610";
-}
-.xico-settings-gear-line:before {
-    content: "\e611";
-}
-.xico-user-fill:before {
-    content: "\e612";
-}
-.xico-user-line:before {
-    content: "\e613";
-}
-.xico-video-fill:before {
-    content: "\e614";
-}
-.xico-video-line:before {
-    content: "\e615";
-}
-.xico-workout-builder-fill:before {
-    content: "\e616";
+.xico-chevron-up:before {
+    content: "\e620";
 }
 .xico-workout-builder-line:before {
-    content: "\e617";
+    content: "\e600";
 }
-.xico-arrow-collapse:before {
-    content: "\e618";
+.xico-workout-builder-fill:before {
+    content: "\e601";
 }
-.xico-arrow-expand:before {
-    content: "\e619";
+.xico-video-line:before {
+    content: "\e602";
 }
-.xico-circle-close-fill:before {
-    content: "\e61a";
+.xico-video-fill:before {
+    content: "\e603";
 }
-.xico-close:before {
-    content: "\e61b";
+.xico-user-line:before {
+    content: "\e604";
+}
+.xico-user-fill:before {
+    content: "\e605";
+}
+.xico-trend-chart-line:before {
+    content: "\e606";
+}
+.xico-trend-chart-fill:before {
+    content: "\e607";
+}
+.xico-support-line:before {
+    content: "\e608";
+}
+.xico-support-fill:before {
+    content: "\e609";
+}
+.xico-stopwatch-line:before {
+    content: "\e60a";
+}
+.xico-stopwatch-fill:before {
+    content: "\e60b";
+}
+.xico-star-line:before {
+    content: "\e60c";
+}
+.xico-star-fill:before {
+    content: "\e60d";
+}
+.xico-settings-gear-line:before {
+    content: "\e60e";
+}
+.xico-settings-gear-fill:before {
+    content: "\e60f";
+}
+.xico-search-line:before {
+    content: "\e610";
+}
+.xico-search-fill:before {
+    content: "\e611";
+}
+.xico-profile-line:before {
+    content: "\e612";
+}
+.xico-profile-fill:before {
+    content: "\e613";
 }
 .xico-plus:before {
+    content: "\e614";
+}
+.xico-pie-chart-line:before {
+    content: "\e615";
+}
+.xico-pie-chart-fill:before {
+    content: "\e616";
+}
+.xico-notification-bell-line:before {
+    content: "\e617";
+}
+.xico-notification-bell-fill:before {
+    content: "\e618";
+}
+.xico-image-line:before {
+    content: "\e619";
+}
+.xico-image-fill:before {
+    content: "\e61a";
+}
+.xico-home-line:before {
+    content: "\e61b";
+}
+.xico-home-fill:before {
     content: "\e61c";
+}
+.xico-heart-line:before {
+    content: "\e642";
+}
+.xico-heart-fill:before {
+    content: "\e643";
+}
+.xico-flag-line:before {
+    content: "\e644";
+}
+.xico-flag-fill:before {
+    content: "\e645";
+}
+.xico-filter-line:before {
+    content: "\e646";
+}
+.xico-filter-fill:before {
+    content: "\e647";
+}
+.xico-dumbbell-line:before {
+    content: "\e648";
+}
+.xico-dumbbell-fill:before {
+    content: "\e649";
+}
+.xico-discover-line:before {
+    content: "\e64a";
+}
+.xico-discover-fill:before {
+    content: "\e64b";
+}
+.xico-close:before {
+    content: "\e64c";
+}
+.xico-clock-line:before {
+    content: "\e64d";
+}
+.xico-clock-fill:before {
+    content: "\e64e";
+}
+.xico-circle-question-line:before {
+    content: "\e64f";
+}
+.xico-circle-question-fill:before {
+    content: "\e650";
+}
+.xico-circle-question-empty:before {
+    content: "\e651";
+}
+.xico-circle-plus-line:before {
+    content: "\e652";
+}
+.xico-circle-plus-fill:before {
+    content: "\e653";
+}
+.xico-circle-plus-empty:before {
+    content: "\e654";
+}
+.xico-circle-minus-line:before {
+    content: "\e655";
+}
+.xico-circle-minus-fill:before {
+    content: "\e656";
+}
+.xico-circle-minus-empty:before {
+    content: "\e657";
+}
+.xico-checkmark:before {
+    content: "\e65c";
+}
+.xico-calendar-line:before {
+    content: "\e65d";
+}
+.xico-calendar-fill:before {
+    content: "\e65e";
+}
+.xico-arrow-expand:before {
+    content: "\e65f";
+}
+.xico-arrow-collapse:before {
+    content: "\e660";
 }
