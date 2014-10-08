@@ -127,7 +127,6 @@ $(document).ready(function() {
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};
-  
       $modal.on("shown.bs.modal", function() {
         
       }).on("hidden.bs.modal", function() {
@@ -136,7 +135,7 @@ $(document).ready(function() {
         $(".modal-footer").addClass('hide');
         $(".bootstrap-modal-cropper").html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
       });
-    
+    $modal.modal('show');
     $(".load_modal").click();
     $("#user_logo").submit();
   });
