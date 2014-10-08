@@ -25,6 +25,7 @@
 //= require plugins/jquery_form.js
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
+//= require plugins/jquery.placeholder.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -36,6 +37,8 @@
 
 
 $(document).ready(function() {
+
+    $('input').placeholder();
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
@@ -180,26 +183,27 @@ function validate_target_muscle_group(){
   var is_filled = true
   var visible_blocks = $('.dis_blk').length;
   var selected_values = "";
-  for(i=0;i<=visible_blocks;i++){
+  for(i=0;i<visible_blocks;i++){
     var current_obj = i;
     var next_obj = i + 1;
     var $trg = $(".taget_val:eq("+current_obj+")");
     var $trg_nxt = $(".taget_val:eq("+next_obj+")");
     var target_val = $.trim($(".target_"+current_obj).text());
-    if($trg.val() == "" && $trg_nxt.length && $trg_nxt.val() != ""){
-      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
-      is_filled = false;
-      $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
-      return false;
-    }
-    else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") < 0){
-      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
-      is_filled = false;
-      $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
-      return false;
-    }
+      if($trg.val() == "" && $trg_nxt.length && $trg_nxt.val() != ""){
+        $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
+        is_filled = false;
+        $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
+        return false;
+      }
+      else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") < 0){
+        $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
+        is_filled = false;
+        $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
+        return false;
+      }
     selected_values += " "+target_val;
   }
+
   return is_filled;
 }
 

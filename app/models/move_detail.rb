@@ -13,6 +13,8 @@ class MoveDetail < ActiveRecord::Base
 			self.errors.add(:base, "Atleast 1 of the following sections is required: Repetitions, Weight, Distance, or Duration")
 		elsif tempo && !(temp_lower > 0 or temp_pause > 0 or temp_lift > 0)
 			self.errors.add(:base, "In the Tempo section at least one of the values for lower, pause, or lift must be greater than 0")
+		elsif repetitions && (rep_min > rep_max)
+			self.errors.add(:base, "min not greater then max")
 		end
 	end
 end
