@@ -13,7 +13,9 @@
 <div class="details_page_header">
     <div class="container-fluid">
         <div class="header-scroll">
-            <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=> 'cb_breadcrumb') %>
+            <% unless @workout.new_record? %>
+                <%= link_to("Fitness Library", params[:user].blank? ? workout_details_path(@workout) : workout_details_path(@workout, user: params[:user]), :class=> 'cb_breadcrumb') %>
+            <% end %>
             <span class="show-on-scroll"></span>
 
             <div class="editor-buttons">

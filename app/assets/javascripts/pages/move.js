@@ -50,6 +50,10 @@ $(document).ready(function(){
     $('#search_in_discover_data').submit();
   });
 
+  $('#search_approve_move').bind('railsAutocomplete.select', function(event, data){
+    $('#search_in_discover_data').submit();
+  });
+
   $(document).on('keyup blur',"input[type=text], textarea", function(){
     var obj = $(this).closest('.input_field_wrap').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
@@ -248,6 +252,7 @@ function check_selected_equipment(){
 
 function check_require_field(){
   var flag= 1;
+
   $(".for_on_change:visible").each(function() {
     if($(this).find('.for_target_change').length){
       key = $(this).find('.for_target_change').val();
@@ -261,11 +266,18 @@ function check_require_field(){
     }
   });
   
+  if($('.thumbnail_col').length){
+    if($('.thumbnail_col ul li').length == 0){
+      flag = 0;
+    }
+  }
+  
   if($('#number_of_moves').length){
     if(parseInt($('#number_of_moves').val()) < 7){
       flag = 0 ;
     }
   }
+
   if(flag == 1){
     $('.smt_reviw').removeClass('dis_link');
     $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])

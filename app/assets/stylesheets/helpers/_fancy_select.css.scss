@@ -11,6 +11,7 @@
     border: 1px solid #e1e0dd;
     font-size: 11px;
     line-height: 14px;
+    overflow: hidden;
     @include gotham300();
     @include border-radius(4px);
     @include user-select(none);
@@ -31,7 +32,7 @@
 
 .fancy_select select {
     background: transparent;
-    width: 100%;
+    width: 108%;
     outline: none;
     border: 0;
     color: $silver31;
@@ -191,4 +192,8 @@ p.input_sub_text {
     color: $silver51;
     @include gotham300();
     margin-bottom: 14px;
+}
+
+.target_overflow{
+    overflow: visible;
 }

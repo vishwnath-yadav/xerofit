@@ -25,6 +25,7 @@
 //= require plugins/jquery_form.js
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
+//= require plugins/jquery.placeholder.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -36,6 +37,8 @@
 
 
 $(document).ready(function() {
+
+    $('input').placeholder();
 
     $(window).scroll(function(){
       var sticky = $('.lib_img_coll'),
@@ -124,7 +127,6 @@ $(document).ready(function() {
     var $modal = $("#bootstrap-modal"),
         $image = $modal.find(".bootstrap-modal-cropper img"),
         originalData = {};
-  
       $modal.on("shown.bs.modal", function() {
         
       }).on("hidden.bs.modal", function() {
@@ -133,9 +135,13 @@ $(document).ready(function() {
         $(".modal-footer").addClass('hide');
         $(".bootstrap-modal-cropper").html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
       });
-    
-    $(".load_modal").click();
-    $("#user_logo").submit();
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 && parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))) > 8){      // If Internet Explorer, return version number
+          $modal.modal('show');
+        }
+      $(".load_modal").click();
+      $("#user_logo").submit();
   });
 
   $(document).on("click",".save_crop_image",function(){
@@ -168,49 +174,39 @@ $(document).ready(function() {
     select_wrapper.load(url)
   });
 
-  
-
-  setTimeout(load_dropKick_js, 5000);
   setTimeout(remove_success_msg, 5000);
 });
 
 
 function load_dropKick_js() {
-  $('.status_select ul li').click(function(){
-    $('#status').val($(this).text());
-    $('#search_grid_list_form').submit();
-  });
-
-  $('.type_select ul li').click(function(){
-    $('#type').val($(this).text());
-    $('#search_grid_list_form').submit();
-  });
+  $('#search_grid_list_form').submit();
 }
 
 function validate_target_muscle_group(){
   var is_filled = true
   var visible_blocks = $('.dis_blk').length;
   var selected_values = "";
-  for(i=0;i<=visible_blocks;i++){
+  for(i=0;i<visible_blocks;i++){
     var current_obj = i;
     var next_obj = i + 1;
     var $trg = $(".taget_val:eq("+current_obj+")");
     var $trg_nxt = $(".taget_val:eq("+next_obj+")");
     var target_val = $.trim($(".target_"+current_obj).text());
-    if($trg.val() == "" && $trg_nxt.length && $trg_nxt.val() != ""){
-      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
-      is_filled = false;
-      $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
-      return false;
-    }
-    else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") < 0){
-      $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
-      is_filled = false;
-      $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
-      return false;
-    }
+      if($trg.val() == "" && $trg_nxt.length && $trg_nxt.val() != ""){
+        $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
+        is_filled = false;
+        $(".error_msg_"+current_obj).addClass('lib_error').text("Please Select a "+MUSCLES_TYPE[i]+" target muscle group.");
+        return false;
+      }
+      else if(selected_values.indexOf(target_val) > -1 && selected_values.indexOf("Choose") < 0){
+        $(".edit_tmg:eq("+current_obj+")").find('.drop_toggle').css("border", "1px solid red");
+        is_filled = false;
+        $(".error_msg_"+current_obj).addClass('lib_error').text("Muscle group selections cannot match each other.");
+        return false;
+      }
     selected_values += " "+target_val;
   }
+
   return is_filled;
 }
 
