@@ -50,6 +50,11 @@ $(document).ready(function(){
     $('#search_in_discover_data').submit();
   });
 
+  $('#search_approve_move').bind('railsAutocomplete.select', function(event, data){
+    console.log("sssssssss");
+    $('#search_in_discover_data').submit();
+  });
+
   $(document).on('keyup blur',"input[type=text], textarea", function(){
     var obj = $(this).closest('.input_field_wrap').find('span.detail_char');
     var max_size = parseInt(obj.attr('data-size'));
