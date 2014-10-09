@@ -12,10 +12,20 @@
     font-size: 11px;
     line-height: 14px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
     @include gotham300();
     @include border-radius(4px);
     @include user-select(none);
 
+    transition: all 240ms ease-out;
+    -webkit-transition: all 240ms ease-out;
+    -moz-transition: all 240ms ease-out;
+    -ms-transition: all 240ms ease-out;
+    -o-transition: all 240ms ease-out;
+
+    /*
     &:after {
         content: '';
         position: absolute;
@@ -27,6 +37,26 @@
         background-repeat: no-repeat;
         @include background-size(contain);
     }
+    */
+
+    //[icon] chevron-down
+    &:after {
+        @include xerofit-icon();
+        content: '\e61d';
+        display: block;
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        margin-top: -9px;
+        height: 18px;
+        width: 20px;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: right;
+        color: $silver51;
+        border-left: 1px solid #e1e0dd;
+    }
+
     &:hover { cursor: pointer; }
 }
 
@@ -44,7 +74,10 @@
     -moz-appearance: none;
     appearance: none;
     height: 28px;
-    padding-left: 10px;
+    //display: block;
+    //padding-left: 10px;
+    text-indent: 10px;
+    line-height: 1;
 }
 
 .fancy_select ul {
@@ -88,6 +121,8 @@
         -webkit-background-clip: padding-box;
         background-clip: padding-box;
     }
+
+    &:after { content: ''; }
 }
 
 .fancy_select ul ul.sub_dd_menu { display: none; }
