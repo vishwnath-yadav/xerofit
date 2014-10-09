@@ -17,7 +17,7 @@
         <%else%>
           <%= render "layouts/header"%>
         <%end%>
-        <div class="content">
+        <div class="content <%= "#{controller_name}" %>">
           <%= yield %>
         </div>
         <%=render "layouts/footer"%>
