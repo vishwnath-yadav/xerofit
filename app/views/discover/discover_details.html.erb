@@ -39,13 +39,18 @@
 <section class="video-details">
     <div class="container">
         <div class="row">
-
             <div class="col-sm-8">
 
-                <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg", class: "img_user"%>
+                <div class="move-attribution">
+                    <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg", class: "img_user trainer-avatar"%>
+                    <div class="video-title">
+                        <h3><%= @move.title.titleize %></h3>
+                        <span>By <%= @move.user.fullname.humanize.titleize %></span>
+                    </div>
+                </div>
 
-                <%= @move.user.fullname.humanize %>
-                <aside class="move-details-long">
+                <aside class="move-basic-info">
+                    <h4 class="section-title">Basic Info</h4>
                     <ul>
                         <li>
                             <label>Directions</label>
@@ -69,48 +74,49 @@
             </div>
 
             <div class="col-sm-4">
-                <table class="move-details-short">
-                    <tr>
-                        <td>Move Title:</td>
-                        <td><%= @move.title.titleize %></td>
-                    </tr>
-                    <tr>
-                        <td>Date Added:</td>
-                        <% if @move.date_of_approval.present? %>
-                            <td><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><td>
-                        <% else %>
-                            <td><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><td>
+                <h4 class="section-title">Additional Details</h4>
+
+                <aside class="move-details">
+                    <ul>
+                        <li>
+                            <label>Category</label>
+                            <p><%= @move.category %></p>
+                        </li>
+
+                        <li>
+                            <label>Difficulty</label>
+                            <p><%= @move.difficulty %></p>
+                        </li>
+
+                        <li>
+                            <label>Date Added</label>
+                            <% if @move.date_of_approval.present? %>
+                                <p><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><p>
+                            <% else %>
+                                <p><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><p>
+                            <% end %>
+                        </li>
+
+                        <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
+                        <% if target_muscle.present? %>
+                            <li>
+                                <label>Target Muscles</label>
+                                <p><%= target_muscle.join(', ') %></p>
+                            </li>
                         <% end %>
-                    </tr>
-                    <tr>
-                        <td>Category:</td>
-                        <td><%= @move.category %></td>
-                    </tr>
-                    <tr>
-                        <td>Level of Difficulty:</td>
-                        <td><%= @move.difficulty %></td>
-                    </tr>
 
-                    <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
-                    <% if target_muscle.present? %>
-                        <tr>
-                            <td>Target Muscle Groups:</td>
-                            <td><%= target_muscle.join(',') %></td>
-                        </tr>
-                    <% end %>
-
-
-                    <% if @move.equipment.present? %>
-                        <tr>
-                            <td>Required Equipment:</td>
-                            <td><%= @move.equipment %></td>
-                        </tr>
-                    <% end %>
-                </table>
+                        <% if @move.equipment.present? %>
+                            <li>
+                                <label>Equipment</label>
+                                <p><%= @move.equipment %></p>
+                            </li>
+                        <% end %>
+                    </ul>
+                </aside>
             </div>
-
         </div>
     </div>
 </section>
+
 
 <% end %>
