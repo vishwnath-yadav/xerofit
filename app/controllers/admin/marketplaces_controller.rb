@@ -45,6 +45,28 @@ class Admin::MarketplacesController < ApplicationController
 	def add_lists
 	end
 
+	def delete_move_in_list
+		if params[:market_id].present? && params[:move_id].present? 
+			market_move = MarketplaceMove.where(move_id: params[:move_id], marketplace_list_id: params[:market_id]).first
+			market_move.destroy
+			redirect_to :back, notice: "Move Destroy from list successfully."
+		end
+	end
+
+	def delete_list
+		if params[:list_id].present?
+			marketplace_moves = MarketplaceMove.where(marketplace_list_id: params[:list_id])
+			if marketplace_moves.present?
+				marketplace_moves.each do |market_move|
+					market_move.destroy
+				end
+			end
+			market_list = MarketplaceList.find(params[:list_id])
+			market_list.destroy
+			redirect_to admin_marketplaces_path, notice: "Move List Destroyed successfully."
+		end
+	end
+
 	private
 
 	def list_params

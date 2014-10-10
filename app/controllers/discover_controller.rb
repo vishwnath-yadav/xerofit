@@ -8,13 +8,13 @@ class DiscoverController < ApplicationController
 
 	def Lists_move
 		@sort_array = Move::CATEGORIES
-		binding.pry
-		# @marketplaceList = MarketplaceList.find_by_title(params[:name]).moves
-		@discovered_moves = MarketplaceList.find_by_title(params[:name]).moves
+		@discovered_moves = MarketplaceList.find_by_title(params[:name]).moves.page(params[:page]).per(25)
 	end
 
 	def search_in_discover_data
-		@discovered_moves = Move.by_name(params[:title]).by_category(params[:category]).where(status: Move::STATUS[0]).order('updated_at desc')
+		# binding.pry
+		@moves = MarketplaceList.find_by_title(params[:name]).moves
+		@discovered_moves = @moves.by_name(params[:title]).by_category(params[:category]).where(status: Move::STATUS[0]).order('updated_at desc')
 	end
 
 	def discover_details

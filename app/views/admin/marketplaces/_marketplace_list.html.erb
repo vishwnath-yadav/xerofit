@@ -22,7 +22,7 @@
 						<tr>
 							<td><%= active.id %></td>
 							<td><%= active.title %></td>
-							<td><%= "number of moves" %></td>
+							<td><%=  active.moves.count%></td>
 							<%= fields_for 'active_list[]', active do |f| %>
 								<td><%= f.select :list_order, (1..@active_list.count).to_a, prompt: "select order"%></td>
 								<td><%= f.select :status, [['active',true],['inactive', false]] %></td>

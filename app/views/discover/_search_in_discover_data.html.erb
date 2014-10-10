@@ -1,14 +1,11 @@
-<%= form_tag(discover_search_in_discover_data_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
-    <div style="float:left;">
-      <h3> Browse All </h3>
-    </div>
+<%= form_tag(search_in_discover_data_discover_index_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
     <div class="search_bar_col">
       <%= autocomplete_field_tag 'title', '', autocomplete_move_title_discover_index_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_approve_move" %>
       <!-- <input type="button" id="lib_name_for_search"> -->
       <div class="search_bar_icon"></div>
       <div class="search_bar_clear1 hide"></div>
     </div>
-
+    <%= hidden_field_tag :name, params[:name] %>
   <div class="select_bar_col">
     <div class="filter_control_wrap">
       <span class="custom_select type_select">

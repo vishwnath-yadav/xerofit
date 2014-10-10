@@ -1,7 +1,7 @@
 <div class="control_bar">
   <div class="container-fluid">
     <div class="control_bar_wrap">
-      <%= render "search_in_discover_data"%>
+      <h3>Browse All</h3>
     </div>
   </div>
 </div>
@@ -149,13 +149,13 @@
 		<div id="wrapper">
 			<div id="carousel">
 				<div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 732px; height: 190px; margin: 0px; overflow: hidden;">
-					<ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 3660px; height: 190px; z-index: auto;">
 						<% if @marketplaceList.present? %>
 							<% @marketplaceList.each_with_index do |list, index| %>    
 								<div>
 									<%= list.title %>
 									<%= link_to "See more", "/discover/#{list.title}"%>
 								</div>
+								<ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 3660px; height: 190px; z-index: auto;">
 								<% if list.moves.present? %>
 									<% list.moves.each do |mov| %>	
 							      <li>
@@ -171,11 +171,11 @@
 							  <% else %>
 							  	<h3>That List have not any Move.</h3>
 							  <% end %>
+							</ul>
 							<% end %>
 						<% else %>
 							<h3> No Active list is Available Now.</h3>
 						<% end %>
-					</ul>
 				</div>
 				<div class="clearfix"></div>
 
