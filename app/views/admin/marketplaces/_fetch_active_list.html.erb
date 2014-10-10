@@ -1,0 +1,11 @@
+<div>
+	<%= form_tag('/admin/discover/add_lists', method: :get, id: "add_move_to_list") do |f| %>
+		<%= hidden_field_tag "move_id", @move.id %>
+		<% if @active_list.present? %>
+		<%=collection_check_boxes(:list_check, :list_ids, @active_list, :id, :title)%>
+			
+		<% else %>
+			<p> No active Move is available.</p>
+		<% end %>
+	<% end %>
+</div>

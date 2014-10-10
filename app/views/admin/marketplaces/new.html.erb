@@ -1,0 +1,19 @@
+<div class="create_list">
+  <h2>Change new List</h2>
+  <div class="setting_form ">
+    <%= simple_form_for(@marketplace, url: admin_marketplaces_path, html: { method: :post }) do |f| %>
+      <div class="setting_form_field wdt_100">
+        
+        <label>List Title</label>
+          <%= f.input :title, label: false, placeholder: "List Name",required: true,autofocus: true, input_html:{class: "form-control input-wid"} %>
+        
+        <label>List Status</label>
+        <%= f.input :status, collection: [['active', true],['inactive', false ]], selected: "active", label: false, prompt: "select list status", as: :select, input_html:{class: "form-control input-wid"} %>
+      </div>
+      <div class="save_col save_col1">
+        <%= f.button :submit, "Change my password", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

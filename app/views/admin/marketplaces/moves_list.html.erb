@@ -1,0 +1,37 @@
+<%= render 'marketplace_tabs' %>
+<div>
+	<h2>Marketplace Moves</h2>
+	<div>
+		<table border='1' style="width:100%">
+			<tr>
+				<th>Move ID</th>
+				<th>Move Name</th>
+				<th>Trainer Name</th>
+				<th>Category</th>
+				<th>Lists</th>
+				<th>Actions</th>
+			</tr>
+			<% if @moves_list.present? %>
+				<% @moves_list.each do |move|%>
+					<tr>
+						<td><%= move.id %></td>
+						<td><%= move.title %></td>
+						<td><%= move.user.fullname %></td>
+						<td><%= move.category %></td>
+						<td></td>
+						<td><%= link_to "Add to list", 'javascript:void(0)', class: "marketplace_move", data_attr: "#{move.id}"%></td>
+					</tr>
+				<% end %>
+			<% else %>
+				<tr colspan='6'>
+					No Active list is available
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<%= render "marketplace_moves_list_popup" %>
+<script>
+  $('.discover_li').removeClass('active');
+  $('.discover_li.moves').addClass('active');
+</script>

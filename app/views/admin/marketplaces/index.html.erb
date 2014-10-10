@@ -1,0 +1,13 @@
+<%= render 'marketplace_tabs'%>
+
+<span class="admin_market_list">
+  <%= render "marketplace_list"%>
+</span>
+
+
+<script>
+  $('.admin_li').removeClass('active');
+  $('.admin_li.Discover').addClass('active');
+  $('.discover_li').removeClass('active');
+  $('.discover_li.list').addClass('active');
+</script>

@@ -1,0 +1,32 @@
+<div>
+	<h2><%= @marketplace.title %></h2>
+	<div>
+		<table border='1' style="width:100%">
+			<tr>
+				<th>#</th>
+				<th>Move ID</th>
+				<th>Move Name</th>
+				<th>Trainer Name</th>
+				<th>Category</th>
+				<th>Views</th>
+				<th>Actions</th>
+			</tr>
+			<% if @marketplace.present? %>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% else %>
+				<tr colspan='6'>
+					No Active list is available
+				</tr>
+			<% end %>
+		</table>
+		<%= link_to 'Delete List', 'javascript:void(0)', class: "btn btn-primary"%>
+	</div>
+</div>
