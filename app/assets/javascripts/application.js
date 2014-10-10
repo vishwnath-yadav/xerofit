@@ -34,7 +34,6 @@
 //= require pages/workout.js
 //= require pages/discover.js
 //= require ckeditor-jquery
-//= require owl.carousel
 
 
 
