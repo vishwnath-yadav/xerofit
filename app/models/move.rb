@@ -256,6 +256,9 @@ class Move < ActiveRecord::Base
 		 arr << video_on_queue
 	end
 
+	def market_place_list
+		self.marketplace_lists.map(&:title).join(',') rescue '' 
+	end
 
     def video_present
     	begin

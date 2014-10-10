@@ -1,8 +1,7 @@
 <%= render 'marketplace_tabs' %>
 <div>
-	<h2>Marketplace Moves</h2>
-	<div>
-		<table border='1' style="width:100%">
+	<div class="col-md-12">
+		<table class="table table-bordered table-striped">
 			<tr>
 				<th>Move ID</th>
 				<th>Move Name</th>
@@ -18,7 +17,7 @@
 						<td><%= move.title %></td>
 						<td><%= move.user.fullname %></td>
 						<td><%= move.category %></td>
-						<td></td>
+						<td><%=move.market_place_list%></td>
 						<td><%= link_to "Add to list", 'javascript:void(0)', class: "marketplace_move", data_attr: "#{move.id}"%></td>
 					</tr>
 				<% end %>
@@ -30,6 +29,7 @@
 		</table>
 	</div>
 </div>
+
 <%= render "marketplace_moves_list_popup" %>
 <script>
   $('.discover_li').removeClass('active');

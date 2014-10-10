@@ -83,14 +83,13 @@ $(document).ready(function(){
   $(document).on('click','.marketplace_move', function(){
     $('#marketplace_move_popup').modal('show'); 
     var move_id = $(this).attr('data_attr');
-    console.log(move_id);
     url = '/admin/discover/fetch_active_list';
     $.get(url,{id:move_id}, function (data) {
      });
   })
 
   $('#marketplace_move_popup').on('hidden.bs.modal', function () {
-    console.log(">>>>>>>>>>>>>");
+    $('#marketplace_move_popup .modal-body').html('<img src="/assets/ajax-loader.gif" alt="Picture 1" class="modal_load">');
   });
 
   $(document).on('click','.save_move_in_list', function(){

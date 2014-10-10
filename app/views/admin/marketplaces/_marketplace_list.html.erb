@@ -2,8 +2,9 @@
  	<%= link_to "Create new List", new_admin_marketplace_path, class: "btn btn-primary" %>
 </div>
 
-<div>
+<div class="col-md-12">
 	<h2>Active Lists</h2>
+<<<<<<< HEAD
 	<div>
 		<%= form_tag('/admin/discover/update_lists', method: :put) do |f| %>
 
@@ -42,38 +43,7 @@
 	</div>
 </div>
 
-<div>
-	<h2>Inactive Lists</h2>
-	<div>
-		<%= form_tag('/admin/discover/update_lists', method: 'put') do |f| %>
-			<table border='1' style="width:100%">
-				<tr>
-					<th>ID</th>
-					<th>List Name</th>
-					<th>Number of moves</th>
-					<th>Status</th>
-					<th>Action</th>
-				</tr>
-				<%= hidden_field_tag :list_type, 'inactive' %>
-				<% if @inactive_list.present? %>
-					<% @inactive_list.each do |inactive|%>
-						<tr>
-							<td><%= inactive.id %></td>
-							<td><%= inactive.title %></td>
-							<td><%= "number of moves" %></td>
-							<%= fields_for 'inactive_list[]', inactive do |f| %>
-								<td><%= f.select :status, [['active',true],['inactive', false]] %></td>
-							<% end %>
-							<td><%= link_to "edit", edit_admin_marketplace_path(inactive) %></td>
-						</tr>
-					<% end %>
-				<% else %>
-					<tr colspan='6'>
-						No Inactive list is available
-					</tr>
-				<% end %>
-			</table>
-			<%= submit_tag "save" %>
-		<% end %>
-	</div>
+<div class="col-md-12">
+	<h2>InActive Lists</h2>
+	<%=render "listing", list: @inactive_list, type: 'inactive_list'%>
 </div>

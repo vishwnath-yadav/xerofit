@@ -64,9 +64,9 @@ Xerofit::Application.routes.draw do
         put :update_lists
         get :moves_list
         get :fetch_active_list
-        get :add_lists
         get :delete_move_in_list
         get :delete_list
+        post :add_lists
       end
     end
     
