@@ -4,43 +4,7 @@
 
 <div class="col-md-12">
 	<h2>Active Lists</h2>
-<<<<<<< HEAD
-	<div>
-		<%= form_tag('/admin/discover/update_lists', method: :put) do |f| %>
-
-			<table border='1' style="width:100%">
-				<tr>
-					<th>ID</th>
-					<th>List Name</th>
-					<th>Number of moves</th>
-					<th>Page Order</th>
-					<th>Status</th>
-					<th>Action</th>
-				</tr>
-				<%= hidden_field_tag :list_type, 'active' %>
-				<% if @active_list.present? %>
-					<% @active_list.each do |active|%>
-						<tr>
-							<td><%= active.id %></td>
-							<td><%= active.title %></td>
-							<td><%=  active.moves.count%></td>
-							<%= fields_for 'active_list[]', active do |f| %>
-								<td><%= f.select :list_order, (1..@active_list.count).to_a, prompt: "select order"%></td>
-								<td><%= f.select :status, [['active',true],['inactive', false]] %></td>
-							<% end %>
-							<td><%= link_to "edit", edit_admin_marketplace_path(active) %></td>
-						</tr>
-					<% end %>
-				<% else %>
-					<tr colspan='6'>
-						No Active list is available
-					</tr>
-				<% end %>
-			</table>
-
-			<%= submit_tag "save" %>
-		<% end %>
-	</div>
+	<%=render "listing", list: @active_list, type: 'active_list'%>
 </div>
 
 <div class="col-md-12">
