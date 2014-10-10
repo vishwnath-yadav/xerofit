@@ -1,0 +1,211 @@
+// Discover App ===================================================================================== /
+
+
+
+// -------------------------------------------------------------------------- //
+// Discover Home
+// -------------------------------------------------------------------------- //
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Discover List View Page
+// -------------------------------------------------------------------------- //
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Discover Single Move Video Page
+// -------------------------------------------------------------------------- //
+
+
+
+// Control Bar
+.discover .header-title-wrap {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+
+    img {
+        float: left;
+        margin-right: 21px;
+        width: auto;
+        height: 56px;
+    }
+
+    h4 {
+        width: auto;
+        float: left;
+        font-size: 23px;
+        line-height: 28px;
+        margin: 0;
+    }
+}
+
+
+// Scrolling fixed header container
+#discover-video-header {
+    background: #fff;
+    width: 100%;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    @include clearfix();
+
+    .show-on-scroll { padding-top: 14px; padding-bottom: 13px; }
+
+    // Make img smaller in fixed header
+    .header-title-wrap img { height: 28px; }
+}
+
+
+
+// Container for video player
+section.video-player {
+    width: 100%;
+    position: relative;
+    background-color: $silver16;
+
+    video {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+// Section Headers and dividers
+.discover h4.section-title {
+    @include gotham200();
+    font-size: 21px;
+    color: $silver51;
+    line-height: 25px;
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #F2F2F2;
+    letter-spacing: -1px;
+}
+
+
+
+// Container for move metadata
+section.video-details {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    padding-top: 28px;
+    padding-bottom: 70px;
+
+    .move-attribution {
+        width: 100%;
+        position: relative;
+        @include clearfix();
+        margin-bottom: 42px;
+
+        .trainer-avatar {
+            float: left;
+            width: 56px !important;
+            height: auto;
+        }
+
+        div.video-title {
+            float: left;
+            padding: 7px 14px;
+
+            h3 {
+                font-size: 18px;
+                line-height: 21px;
+                margin: 0;
+                margin-bottom: 7px;
+
+            }
+            span {
+                display: block;
+                font-size: 11px;
+                line-height: 14px;
+                color: $silver71;
+            }
+        }
+    }
+
+
+    // Styling that applies to both sections
+    aside ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        @include clearfix();
+
+        li {
+            float: left;
+            width: 100%;
+            position: relative;
+            display: block;
+
+            p { margin: 0; }
+        }
+    }
+
+
+    // Left section of move basic info (large section)
+    .move-basic-info ul li {
+        margin-bottom: 28px;
+
+        // Dont add a margin to the last one
+        &:last-of-type { margin: 0; }
+
+        label {
+            @include gotham500();
+            color: $silver16;
+            width: 100%;
+            font-size: 14px;
+            line-height: 16px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            line-height: 1.5;
+            @include gotham300();
+        }
+    }
+
+
+    // Right column with move details (small section)
+    .move-details ul li {
+        @include clearfix();
+        margin-bottom: 7px;
+
+        // Dont add a margin to the last one
+        &:last-of-type { margin: 0; }
+
+        label {
+            float: left;
+            display: block;
+            @include gotham400();
+            color: $silver16;
+            text-align: right;
+            width: 30%;
+            font-size: 12px;
+            line-height: 14px;
+            margin: 0;
+            padding-right: 7px;
+        }
+
+        p {
+            width: 70%;
+            padding-left: 7px;
+            float: left;
+            @include gotham300();
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+}
+
+
+

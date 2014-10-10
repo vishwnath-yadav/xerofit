@@ -138,6 +138,12 @@ button[disabled], html input[disabled] {
     cursor: default !important;
 }
 
+a.disable_cls {
+    background: transparent !important;
+    border-color: #CCC !important;
+    color: #CCC !important;
+}
+
 ul.disable_cls{overflow-y: hidden !important; }
 
 

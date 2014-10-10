@@ -1,71 +1,122 @@
 <% if @move.present? %>
-  <div class="discover_div">
-    <div class="col-sm-6">
-      <video id="move_video" width="560" height="316" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
-        <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
-      </video>
+
+
+<div class="control_bar">
+    <div class="container-fluid">
+        <div class="control_bar_wrap">
+            <div class="prev_lib_col control_bar_links">
+                <a href="#" class="cb_breadcrumb">Back to Discover</a>
+            </div>
+            <div id="discover-control-bar" class="control_bar_context">
+                <div class="header-title-wrap">
+                    <img src="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" />
+                    <h4><%= @move.title.titleize %></h4>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-6">
-      <table>
-        <tr colspan="2">
-          <td>
-            <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg",class: "img_user"%>
-          </td>
-        </tr>
-        <tr>
-          <td>Name:</td>
-          <td><%= @move.user.fullname.humanize %></td>
-        </tr>
-        <tr>
-          <td>Date of Approval:</td>
-          <% if @move.date_of_approval.present? %>
-            <td><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><td>
-          <% else %>
-            <td><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><td>
-          <% end %>
-        </tr>
-        <tr>
-          <td>Title:</td>
-          <td><%= @move.title %></td>
-        </tr>
-        <tr>
-          <td>Directions:</td>
-          <td><%= @move.directions %></td>
-        </tr>
-        <tr>
-          <td>Category:</td>
-          <td><%= @move.category %></td>
-        </tr>
-        <tr>
-          <td>Level of Difficulty:</td>
-          <td><%= @move.difficulty %></td>
-        </tr>
-        <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
-        <% if target_muscle.present? %>
-          <tr>
-            <td>Target Muscle Groups:</td>
-            <td><%= target_muscle.join(',') %></td>
-          </tr>
-        <% end %>
-        <% if @move.help.present? %>
-          <tr>
-            <td>Helpful tips and Tricks:</td>
-            <td><%= @move.help %></td>
-          </tr>
-        <% end %>
-        <% if @move.work.present? %>
-          <tr>
-            <td>Why it works:</td> 
-            <td><%= @move.work %></td>
-          </tr>
-        <% end %>
-        <% if @move.equipment.present? %>
-          <tr>
-            <td>Required Equipment:</td> 
-            <td><%= @move.equipment %></td>
-          </tr>
-        <% end %>
-      </table>
+</div>
+
+
+
+<header id="discover-video-header">
+    <span class="show-on-scroll"></span>
+</header>
+
+
+
+<section class="video-player">
+    <div class="container-fluid">
+        <video id="move_video" width="854" height="480" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
+            <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
+            <source src="<%= @move.library_video.panda_ogg.url %>" type="video/ogg">
+        </video>
     </div>
-  </div>
+</section>
+
+
+
+<section class="video-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+
+                <div class="move-attribution">
+                    <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg", class: "img_user trainer-avatar"%>
+                    <div class="video-title">
+                        <h3><%= @move.title.titleize %></h3>
+                        <span>By <%= @move.user.fullname.humanize.titleize %></span>
+                    </div>
+                </div>
+
+                <aside class="move-basic-info">
+                    <h4 class="section-title">Basic Info</h4>
+                    <ul>
+                        <li>
+                            <label>Directions</label>
+                            <p><%= @move.directions %></p>
+                        </li>
+
+                        <% if @move.help.present? %>
+                            <li>
+                                <label>Helpful tips and Tricks</label>
+                                <p><%= @move.help %></p>
+                            </li>
+                        <% end %>
+                        <% if @move.work.present? %>
+                            <li>
+                                <label>Why it works</label>
+                                <p><%= @move.work %></p>
+                            </li>
+                        <% end %>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="col-sm-4">
+                <h4 class="section-title">Additional Details</h4>
+
+                <aside class="move-details">
+                    <ul>
+                        <li>
+                            <label>Category</label>
+                            <p><%= @move.category %></p>
+                        </li>
+
+                        <li>
+                            <label>Difficulty</label>
+                            <p><%= @move.difficulty %></p>
+                        </li>
+
+                        <li>
+                            <label>Date Added</label>
+                            <% if @move.date_of_approval.present? %>
+                                <p><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><p>
+                            <% else %>
+                                <p><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><p>
+                            <% end %>
+                        </li>
+
+                        <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
+                        <% if target_muscle.present? %>
+                            <li>
+                                <label>Target Muscles</label>
+                                <p><%= target_muscle.join(', ') %></p>
+                            </li>
+                        <% end %>
+
+                        <% if @move.equipment.present? %>
+                            <li>
+                                <label>Equipment</label>
+                                <p><%= @move.equipment %></p>
+                            </li>
+                        <% end %>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <% end %>
