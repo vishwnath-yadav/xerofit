@@ -34,15 +34,31 @@ class Admin::MarketplacesController < ApplicationController
 	end
 
 	def moves_list
-		@moves_list = Move.where(status: Move::STATUS[0]).order('updated_at desc')
+		@moves_list = Move.includes(:marketplace_lists).where(status: Move::STATUS[0]).order('updated_at desc')
 	end
 
 	def fetch_active_list
 		@move = Move.find_by_id(params[:id])
-		@active_list = MarketplaceList.where(status: true)
+		@marketplace_list = MarketplaceList.where(status: true)
+		@marketplace_selected_list = MarketplaceMove.all.select{|l| l.move_id == @move.id}.collect{|d|d.marketplace_list.id}.compact
 	end
 
 	def add_lists
+		binding.pry
+		move = Move.find_by_id(params[:move_id])
+		marketplace_lists = params[:list_check][:list_ids]
+		marketplace_selected_list = MarketplaceMove.all.select{|l| l.move_id == move.id}
+		if marketplace_selected_list.size > 0
+			marketplace_selected_list.each do |l|
+				l.destroy
+			end
+		end
+		marketplace_lists.each do |l|
+			unless l.blank?
+				MarketplaceMove.create(move_id: move.id, marketplace_list_id: l)
+			end
+		end
+		redirect_to moves_list_admin_marketplaces_path
 	end
 
 	private
