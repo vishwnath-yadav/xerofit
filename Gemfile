@@ -84,6 +84,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'rmagick', require: false
 gem 'jquery-turbolinks'
-gem 'owlcarousel-rails'
+# gem 'owlcarousel-rails'
 
 

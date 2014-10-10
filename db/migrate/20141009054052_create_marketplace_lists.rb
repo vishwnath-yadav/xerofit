@@ -3,7 +3,7 @@ class CreateMarketplaceLists < ActiveRecord::Migration
     create_table :marketplace_lists do |t|
       t.string :title
       t.boolean :status, default: true
-      t.integer :order
+      t.integer :list_order
       t.timestamps
     end
   end

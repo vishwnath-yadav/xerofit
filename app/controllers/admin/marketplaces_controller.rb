@@ -1,7 +1,7 @@
 class Admin::MarketplacesController < ApplicationController
 
 	def index
-		@active_list = MarketplaceList.where(status: true)
+		@active_list = MarketplaceList.where(status: true).order('list_order asc')
 		@inactive_list = MarketplaceList.where(status: false)
 	end
 
