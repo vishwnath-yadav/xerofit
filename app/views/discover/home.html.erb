@@ -150,13 +150,30 @@
 			<div id="carousel">
 				<div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 732px; height: 190px; margin: 0px; overflow: hidden;">
 					<ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 3660px; height: 190px; z-index: auto;">
-						<% @discovered_moves.each_with_index do |mov, index| %>  
-						  	<% if mov.library_video.image.present? %>
-					            <li><img src="<%= mov.library_video.image %>" class="list_view_img move" />
-					            </li>
-					        <% else %>
-					            <li><img src="/assets/ex_2.png" class="list_view_img move" /></li>
-					        <% end %>
+						<% if @marketplaceList.present? %>
+							<% @marketplaceList.each_with_index do |list, index| %>    
+								<div>
+									<%= list.title %>
+									<%= link_to "See more", "/discover/#{list.title}"%>
+								</div>
+								<% if list.moves.present? %>
+									<% list.moves.each do |mov| %>	
+							      <li>
+									  	<% if mov.library_video.image.present? %>
+								        	<img src="<%= mov.library_video.image %>" class="list_view_img move" />
+								      <% else %>
+								        	<img src="/assets/ex_2.png" class="list_view_img move" />
+								      <% end %>
+								      <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
+								      <span><%= mov.user.fullname %></span>
+							      </li>
+							    <% end %>
+							  <% else %>
+							  	<h3>That List have not any Move.</h3>
+							  <% end %>
+							<% end %>
+						<% else %>
+							<h3> No Active list is Available Now.</h3>
 						<% end %>
 					</ul>
 				</div>

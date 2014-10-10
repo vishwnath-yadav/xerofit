@@ -185,13 +185,14 @@ Xerofit::Application.routes.draw do
     end
   end
 
-  get '/discover', to: 'discover#discover', as: :discover
+  get '/discover', to: 'discover#home', as: :discover
+  get '/discover/:title', to: 'discover#Lists_move'
   get '/discover/search_in_discover_data', to: 'discover#search_in_discover_data'
   get '/discover/move/:id', to: 'discover#discover_details', as: :discover_details
   resources :discover, only: [] do
     collection do
       get :autocomplete_move_title
-      get :home
+      # get :home
     end
   end
   # Example of regular route:

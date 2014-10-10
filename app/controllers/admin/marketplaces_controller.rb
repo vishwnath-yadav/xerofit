@@ -43,7 +43,6 @@ class Admin::MarketplacesController < ApplicationController
 	end
 
 	def add_lists
-		binding.pry
 	end
 
 	private

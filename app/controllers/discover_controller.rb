@@ -3,12 +3,14 @@ class DiscoverController < ApplicationController
 
 	def home
 		@sort_array = Move::CATEGORIES
-		@discovered_moves = Move.where(status: Move::STATUS[0]).order('updated_at desc')
+		@marketplaceList = MarketplaceList.where(status: true)
 	end
 
-	def discover
+	def Lists_move
 		@sort_array = Move::CATEGORIES
-		@discovered_moves = Move.where(status: Move::STATUS[0]).order('updated_at desc')
+		binding.pry
+		# @marketplaceList = MarketplaceList.find_by_title(params[:name]).moves
+		@discovered_moves = MarketplaceList.find_by_title(params[:name]).moves
 	end
 
 	def search_in_discover_data
