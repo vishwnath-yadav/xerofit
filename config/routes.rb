@@ -64,6 +64,8 @@ Xerofit::Application.routes.draw do
         put :update_lists
         get :moves_list
         get :fetch_active_list
+        get :delete_move_in_list
+        get :delete_list
         post :add_lists
       end
     end
@@ -185,15 +187,15 @@ Xerofit::Application.routes.draw do
     end
   end
 
-  get '/discover', to: 'discover#discover', as: :discover
-  get '/discover/search_in_discover_data', to: 'discover#search_in_discover_data'
+  get '/discover', to: 'discover#home', as: :discover
   get '/discover/move/:id', to: 'discover#discover_details', as: :discover_details
   resources :discover, only: [] do
     collection do
       get :autocomplete_move_title
-      get :home
+      get :search_in_discover_data
     end
   end
+  get '/discover/:name', to: 'discover#Lists_move'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

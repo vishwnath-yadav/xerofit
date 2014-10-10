@@ -97,7 +97,7 @@
                             <% end %>
                         </li>
 
-                        <% target_muscle = @move.target_muscle_groups.map{|m| m.target_muscle_group}-["",nil]%>
+                        <% target_muscle = @move.target_muscle_groups.map{|m| [m.target_muscle_group + "-" + m.sub_target_muscle_group]}.flatten - ["","-",nil]%>
                         <% if target_muscle.present? %>
                             <li>
                                 <label>Target Muscles</label>
@@ -108,7 +108,7 @@
                         <% if @move.equipment.present? %>
                             <li>
                                 <label>Equipment</label>
-                                <p><%= @move.equipment %></p>
+                                <p><%= @move.equipment.join(', ') %></p>
                             </li>
                         <% end %>
                     </ul>
