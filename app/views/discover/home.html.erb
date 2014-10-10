@@ -9,9 +9,10 @@
       	<% if @marketplaceList.present? %>
       		<%@marketplaceList.each do |list|%>
       		<div class="owl-main-container">
-		      	<h3>
+		      	<h3 style="float:left;">
 		      		<%=list.title.humanize%>
 	      		</h3>
+	      		<%= link_to "See more", "/discover/#{list.title}", class: "pull-right"%>
 		      	<div class="library_col">
 			        <ul class="owl-carousel">
 			      		<% if list.moves.present?%>	

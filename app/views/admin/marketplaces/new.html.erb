@@ -1,14 +1,14 @@
 <div class="create_list">
-  <h2>Change new List</h2>
+  <h2>Create new List</h2>
   <div class="setting_form ">
     <%= simple_form_for(@marketplace, url: admin_marketplaces_path, html: { method: :post }) do |f| %>
       <div class="setting_form_field wdt_100">
         
         <label>List Title</label>
-          <%= f.input :title, label: false, placeholder: "List Name",required: true,autofocus: true, input_html:{class: "form-control input-wid"} %>
+          <%= f.input :title, label: false, placeholder: "List Name",required: true,autofocus: true, input_html:{class: "form-control input-wid create_list"} %>
         
         <label>List Status</label>
-        <%= f.input :status, collection: [['active', true],['inactive', false ]], selected: "active", label: false, prompt: "select list status", as: :select, input_html:{class: "form-control input-wid"} %>
+        <%= f.input :status, collection: [['active', true],['inactive', false ]], selected: "active", label: false, prompt: "select list status", as: :select, input_html:{class: "form-control input-wid create_list"} %>
       </div>
       <div class="save_col save_col1">
         <%= f.button :submit, "Save List", class: "btn btn-primary" %>

@@ -3,7 +3,7 @@
 --
 
 SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
+SET client_encoding = 'LATIN1';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -413,7 +413,8 @@ CREATE TABLE moves (
     work character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    date_of_approval timestamp without time zone
+    date_of_approval timestamp without time zone,
+    views_count integer DEFAULT 0
 );
 
 
@@ -625,7 +626,8 @@ CREATE TABLE workouts (
     move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    number_of_moves integer DEFAULT 0
+    number_of_moves integer DEFAULT 0,
+    sort_index integer
 );
 
 
@@ -1021,6 +1023,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140920074532');
 
 INSERT INTO schema_migrations (version) VALUES ('20140926055644');
 
+INSERT INTO schema_migrations (version) VALUES ('20140926164951');
+
 INSERT INTO schema_migrations (version) VALUES ('20140926164952');
 
 INSERT INTO schema_migrations (version) VALUES ('20141007095738');
@@ -1028,3 +1032,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141007095738');
 INSERT INTO schema_migrations (version) VALUES ('20141009054052');
 
 INSERT INTO schema_migrations (version) VALUES ('20141009054121');
+
+INSERT INTO schema_migrations (version) VALUES ('20141010120250');
