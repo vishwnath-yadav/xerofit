@@ -57,7 +57,16 @@ Xerofit::Application.routes.draw do
     # get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
     get '/trash_page', to: 'moves#trash_page', as: :trash_page
-    # get '/discover', to: 'moves#discover', as: :discover
+    # get '/discover', to: 'marketplaces#admin_discover_page', as: :discover
+
+    resources :marketplaces, path: :discover do
+      collection do
+        put :update_lists
+        get :moves_list
+        get :fetch_active_list
+        get :add_lists
+      end
+    end
     
     resources :moves do
       collection do
@@ -182,6 +191,7 @@ Xerofit::Application.routes.draw do
   resources :discover, only: [] do
     collection do
       get :autocomplete_move_title
+      get :home
     end
   end
   # Example of regular route:

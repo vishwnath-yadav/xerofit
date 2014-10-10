@@ -84,7 +84,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'rmagick', require: false
 gem 'jquery-turbolinks'
-
-# gem 'awesome_nested_set'
+gem 'owlcarousel-rails'
 
 

@@ -10,6 +10,8 @@ class Move < ActiveRecord::Base
 	has_many :move_blocks
 	has_many :histories
 	has_many :blocks, through: :move_blocks
+	has_many :marketplace_moves
+	has_many :marketplace_lists, through: :marketplace_moves
 
 	after_create :save_status
 	after_create :create_target_muscle_group

@@ -33,6 +33,7 @@
 //= require pages/move.js
 //= require pages/workout.js
 //= require ckeditor-jquery
+//= require owl.carousel
 
 
 

@@ -1,5 +1,11 @@
 class DiscoverController < ApplicationController
 	autocomplete :move, :title
+
+	def home
+		@sort_array = Move::CATEGORIES
+		@discovered_moves = Move.where(status: Move::STATUS[0]).order('updated_at desc')
+	end
+
 	def discover
 		@sort_array = Move::CATEGORIES
 		@discovered_moves = Move.where(status: Move::STATUS[0]).order('updated_at desc')

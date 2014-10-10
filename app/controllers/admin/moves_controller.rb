@@ -21,10 +21,10 @@ class Admin::MovesController < Admin::AdminController
 	    redirect_to :back
     end
 
-	def uncut_workout
-		@sort_array = Move::ADMIN_UNCUT_FILTER
-		@moves = FullWorkout.where(mark_complete: false, enable: true).order('updated_at desc')
-	end
+	# def uncut_workout
+	# 	@sort_array = Move::ADMIN_UNCUT_FILTER
+	# 	@moves = FullWorkout.where(mark_complete: false, enable: true).order('updated_at desc')
+	# end
 
 	def approval_page
 		@sort_array = Move::ADMIN_APPROVE_FILTER
