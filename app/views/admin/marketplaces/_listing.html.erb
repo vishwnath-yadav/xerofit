@@ -1,0 +1,34 @@
+<%= form_tag('/admin/discover/update_lists', method: :put) do |f| %>
+	<%= hidden_field_tag :list_type, 'active' %>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>ID</th>
+			<th>List Name</th>
+			<th>Number of moves</th>
+			<th>Page Order</th>
+			<th>Status</th>
+			<th>Action</th>
+		</tr>
+		<% if list.present? %>
+			<% list.each do |active|%>
+				<tr>
+					<td><%= active.id %></td>
+					<td><%= active.title %></td>
+					<td><%= "number of moves" %></td>
+					<%= fields_for "#{type}[]", active do |f| %>
+						<td><%= f.select :list_order, (1..list.count).to_a, prompt: "select order"%></td>
+						<td><%= f.select :status, [['active',true],['inactive', false]] %></td>
+					<% end %>
+					<td><%= link_to "edit", edit_admin_marketplace_path(active) %></td>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr>
+				<td colspan='6'>No Active list is available</td>
+			</tr>
+		<% end %>
+	</table>
+	<div style="float:right;">
+		<%= submit_tag "save" %>
+	</div>
+<% end %>
