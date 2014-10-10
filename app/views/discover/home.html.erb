@@ -1,204 +1,60 @@
-<div class="control_bar">
-  <div class="container-fluid">
-    <div class="control_bar_wrap">
-      <h3>Browse All</h3>
+<link rel="stylesheet" href="/assets/vendor/owl.carousel.css">
+<link rel="stylesheet" href="/assets/vendor/owl.theme.css">
+<script src="/assets/plugins/owl.carousel.min.js"></script>
+
+<div class="middle_wrapper">
+  <div class="page_content">
+    <div class="container">
+      <div class="row">
+      	<% if @marketplaceList.present? %>
+      		<%@marketplaceList.each do |list|%>
+      		<div class="owl-main-container">
+		      	<h3>
+		      		<%=list.title.humanize%>
+	      		</h3>
+		      	<div class="library_col">
+			        <ul class="owl-carousel">
+			      		<% if list.moves.present?%>	
+									<% list.moves.each do |mov| %>	
+										<li class="wdth_img border_left owl-li">
+											<a href="/library/move/2845010976" data-no-turbolink="true" class="grid_block move">
+												<% if mov.library_video.image.present? %>
+								        	<img src="<%= mov.library_video.image %>" class="list_view_img move" />
+									      <% else %>
+									        	<img src="/assets/ex_2.png" class="list_view_img move" />
+									      <% end %>
+									      <p class="block_status">
+									      	<%= truncate(mov.title, :length => 35, :seperator => ' ...') %>
+									        <%= mov.user.fullname %>
+									      </p>
+									    </a>
+									  </li>
+								  <%end%>
+							  <%else%>
+							  	<li class="wdth_img border_left owl-li">No Move Added.</li>
+							  <%end%>
+							</ul>
+						</div>
+						</div>
+					<%end%>
+				<%end%>
+      </div>
     </div>
   </div>
 </div>
-
-		<script type="text/javascript" src="./Beautiful carousel with carouFredSel and UI Kit from Design Deck_files/jquery.carouFredSel.js"></script>
-		 
-		<script type="text/javascript" src="./Beautiful carousel with carouFredSel and UI Kit from Design Deck_files/prettify.js"></script>
-		 
-		 
-		
-		<style type="text/css" media="all">
-			html, #c-carousel {
-				height: 100%;
-				padding: 0;
-				margin: 0;
-			}
-			#c-carousel {
-				background-color: #f3f3f3;
-				min-height: 350px;
-			}
-			#c-carousel * {
-				font-family: Arial, Geneva, SunSans-Regular, sans-serif;
-				font-size: 14px;
-				color: #333;
-				line-height: 22px;
-			}
-
-			#wrapper {
-				width: 735px;
-				height: 220px;
-				margin: -110px 0 0 -367px;
-				position: absolute;
-				left: 50%;
-				top: 50%;
-			}
-
-			#carousel {
-				width: 735px;
-				position:vrelative;
-			}
-			#carousel ul {
-				list-style: none;
-				display: block;
-				margin: 0;
-				padding: 0;
-			}
-			#carousel li {
-				background: transparent url(img/carousel_polaroid.png) no-repeat 0 0;
-				font-size: 40px;
-				color: #999;
-				text-align: center;
-				display: block;
-				width: 232px;
-				height: 178px;
-				padding: 0;
-				margin: 6px;
-				float: left;
-				position: relative;
-			}
-
-			#carousel li img {
-				width: 201px;
-				height: 127px;
-				margin-top: 14px;
-			}
-			
-			#carousel li span {
-				background: transparent url(img/carousel_shine.png) no-repeat 0 0;
-				text-indent: -999px;
-				display: block;
-				overflow: hidden;
-				width: 201px;
-				height: 127px;
-				position: absolute;
-				z-index: 2;
-				top: 14px;
-				left: 16px;
-			}			
-
-			.clearfix {
-				float: none;
-				clear: both;
-			}
-			#carousel .prev, #carousel .next {
-				background: transparent url(img/carousel_control.png) no-repeat 0 0;
-				text-indent: -999px;
-				display: block;
-				overflow: hidden;
-				width: 15px;
-				height: 21px;
-				margin-left: 10px;
-				position: absolute;
-				top: 70px;				
-			}
-			#carousel .prev {
-				background-position: 0 0;
-				left: -30px;
-			}
-			#carousel .prev:hover {
-				left: -31px;
-			}			
-			#carousel .next {
-				background-position: -18px 0;
-				right: -20px;
-			}
-			#carousel .next:hover {
-				right: -21px;
-			}				
-			#carousel .pager {
-				text-align: center;
-				margin: 0 auto;
-			}
-			#carousel .pager a {
-				background: transparent url(img/carousel_control.png) no-repeat -2px -32px;
-				text-decoration: none;
-				text-indent: -999px;
-				display: inline-block;
-				overflow: hidden;
-				width: 8px;
-				height: 8px;
-				margin: 0 5px 0 0;
-			}
-			#carousel .pager a.selected {
-				background: transparent url(img/carousel_control.png) no-repeat -12px -32px;
-				text-decoration: underline;				
-			}
-			
-			#source {
-				text-align: center;
-				width: 100%;
-				position: absolute;
-				bottom: 10px;
-				left: 0;
-			}
-			#source, #source a {
-				font-size: 12px;
-				color: #999;
-			}
-			
-			
-		</style>
-		 
-	<link rel="stylesheet" type="text/css" href="./Beautiful carousel with carouFredSel and UI Kit from Design Deck_files/widget006.old.css" media="all"><link rel="stylesheet" type="text/css" href="./Beautiful carousel with carouFredSel and UI Kit from Design Deck_files/counter015.css" media="all"></head>
-	<div id="c-carousel">
-		<div id="wrapper">
-			<div id="carousel">
-				<div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 732px; height: 190px; margin: 0px; overflow: hidden;">
-						<% if @marketplaceList.present? %>
-							<% @marketplaceList.each_with_index do |list, index| %>    
-								<div>
-									<%= list.title %>
-									<%= link_to "See more", "/discover/#{list.title}"%>
-								</div>
-								<ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 3660px; height: 190px; z-index: auto;">
-								<% if list.moves.present? %>
-									<% list.moves.each do |mov| %>	
-							      <li>
-									  	<% if mov.library_video.image.present? %>
-								        	<img src="<%= mov.library_video.image %>" class="list_view_img move" />
-								      <% else %>
-								        	<img src="/assets/ex_2.png" class="list_view_img move" />
-								      <% end %>
-								      <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
-								      <span><%= mov.user.fullname %></span>
-							      </li>
-							    <% end %>
-							  <% else %>
-							  	<h3>That List have not any Move.</h3>
-							  <% end %>
-							</ul>
-							<% end %>
-						<% else %>
-							<h3> No Active list is Available Now.</h3>
-						<% end %>
-				</div>
-				<div class="clearfix"></div>
-
-				<a id="prev" class="prev" href="javascript:void(0)" >prev</a>
-
-				<a id="next" class="next" href="javascript:void(0)" >next</a>
-			</div>
-		</div>
-		 
-		
-		
-	</div> <!-- /c-carousel -->
-		 <script type="text/javascript">
-			$(function() {
-
-				$('#carousel ul').carouFredSel({
-					prev: '#prev',
-					next: '#next',
-					pagination: "#pager",
-					circular: true,    
-					items  : 4,
-					scroll: 1000
-				});
-	
-			});
-		</script>
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+  $(".owl-carousel").owlCarousel({
+    // Most important owl features
+    items : 3,
+    //Basic Speeds
+    slideSpeed : 200,
+    paginationSpeed : 800,
+    rewindSpeed : 1000,
+    autoPlay: true,
+    navigation: true
+	})
+ 
+});
+</script>

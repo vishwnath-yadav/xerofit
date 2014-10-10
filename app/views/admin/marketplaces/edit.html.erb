@@ -35,3 +35,9 @@
 		<%= link_to 'Delete List', delete_list_admin_marketplaces_path(list_id: @marketplace.id) , class: "btn btn-primary"%>
 	</div>
 </div>
+
+  
+<script>
+  $('.admin_li').removeClass('active')
+  $('.admin_li.discover').addClass('active');
+</script>

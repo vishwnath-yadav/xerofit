@@ -44,7 +44,6 @@ class Admin::MarketplacesController < ApplicationController
 	end
 
 	def add_lists
-		binding.pry
 		move = Move.find_by_id(params[:move_id])
 		marketplace_lists = params[:list_check][:list_ids]
 		marketplace_selected_list = MarketplaceMove.all.select{|l| l.move_id == move.id}

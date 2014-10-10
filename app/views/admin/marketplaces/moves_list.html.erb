@@ -32,6 +32,8 @@
 
 <%= render "marketplace_moves_list_popup" %>
 <script>
-  $('.discover_li').removeClass('active');
+ $('.admin_li').removeClass('active')
+ $('.admin_li.discover').addClass('active');
+ $('.discover_li').removeClass('active');
   $('.discover_li.moves').addClass('active');
 </script>

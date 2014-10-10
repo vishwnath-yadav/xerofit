@@ -1,6 +1,7 @@
 //= require jquery.cookie
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
+
 $(document).ready(function(){
   $(document).on("blur","#user_email",function () {
     var tz = jstz.determine();
