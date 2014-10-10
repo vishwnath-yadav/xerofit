@@ -1,4 +1,7 @@
 <%= form_tag(search_in_discover_data_discover_index_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
+      <div style="float:left;">
+        <h4><%= link_to "Browse All", discover_path %></h4>
+      </div>
     <div class="search_bar_col">
       <%= autocomplete_field_tag 'title', '', autocomplete_move_title_discover_index_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_approve_move" %>
       <!-- <input type="button" id="lib_name_for_search"> -->

@@ -4,7 +4,7 @@
 		<%= link_to "Go to list page", admin_marketplaces_path %>
 	</span>
 	<div>
-		<table border='1' style="width:100%">
+		<table class="table table-bordered table-striped">
 			<tr>
 				<th>#</th>
 				<th>Move ID</th>
@@ -22,13 +22,15 @@
 						<td><%=move.title%></td>
 						<td><%=move.user.fullname%></td>
 						<td><%=move.category%></td>
-						<td><%=move%></td>
+						<td><%=move.views_count%></td>
 						<td><%= link_to "Delete From List", delete_move_in_list_admin_marketplaces_path(move_id: move.id, market_id: @marketplace.id) %> | <%= link_to "View", discover_details_path(move) %></td>
 					</tr>
 				<%end%>
 			<% else %>
-				<tr colspan='6'>
-					No Active list is available
+				<tr>
+					<td colspan='6'>
+						No Active list is available
+					</td>
 				</tr>
 			<% end %>
 		</table>

@@ -413,7 +413,8 @@ CREATE TABLE moves (
     work character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    date_of_approval timestamp without time zone
+    date_of_approval timestamp without time zone,
+    views_count integer DEFAULT 0
 );
 
 
@@ -1028,3 +1029,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141007095738');
 INSERT INTO schema_migrations (version) VALUES ('20141009054052');
 
 INSERT INTO schema_migrations (version) VALUES ('20141009054121');
+
+INSERT INTO schema_migrations (version) VALUES ('20141010120250');
