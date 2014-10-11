@@ -180,54 +180,36 @@
     z-index: 999;
 
     // Next & Previous buttons
-    .owl-next {
-        height: 84px;
-        width: 56px;
-        position: absolute;
-        right: -84px;
-        color: $silver71;
-
-        &:hover { color: $silver16; }
-
-        // [icon] chevron-right-thin
-        &:before {
-            @include xerofit-icon();
-            content: '\e626';
-            font-size: 70px;
-            line-height: 84px;
-            position: absolute;
-            left: 0;
-        }
-    }
-
+    .owl-next,
     .owl-prev {
         height: 84px;
         width: 56px;
         position: absolute;
-        left: -84px;
         color: $silver71;
 
-        &:hover { color: $silver16; }
-
-        // [icon] chevron-left-thin
         &:before {
             @include xerofit-icon();
-            content: '\e624';
+            content: '';
             font-size: 70px;
             line-height: 84px;
             position: absolute;
-            right: 0;
-            display: block;
-            height: 84px;
         }
     }
+
+    .owl-next { right: -84px; }
+    .owl-prev { left: -84px; }
+
+    // [icon] chevron-right-thin
+    // [icon] chevron-left-thin
+    .owl-next:before { left: 0; content: '\e626'; }
+    .owl-prev:before { right: 0; content: '\e624'; }
 
     .owl-next:hover,
     .owl-next:focus,
     .owl-prev:hover,
     .owl-prev:focus {
         text-decoration: none;
-        //color: $xero-blue;
+        color: $silver16;
     }
 }
 
