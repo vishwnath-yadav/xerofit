@@ -26,6 +26,12 @@ $(document).ready(function() {
       $('#discover-video-header .show-on-scroll').remove('.header-title-wrap');
     }
   });
+
+$(".xfit-gallery .owl-nav .owl-next").on("mouseover", function () {
+    $(this).css('color', 'red !important');
+    console.log('Im here bitch');
+});
+
 });
 
 function loadMarketplaceCarousel (listName) {
@@ -46,7 +52,7 @@ function loadMarketplaceCarousel (listName) {
     dots: true,
     //dotsEach: 4,
     // dotData: true,
-    //navText: false,
+    navText: true,
 
 
     //slideSpeed : 600,

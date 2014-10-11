@@ -51,10 +51,10 @@
             line-height: 14px;
             padding: 7px 0;
 
-            // [icon] chevron-right
+            // [icon] chevron-right-thick
             &:after {
                 @include xerofit-icon();
-                content: '\e61f';
+                content: '\e625';
                 font-size: 10px;
                 line-height: 14px;
                 margin-left: 4px;
@@ -71,26 +71,50 @@
 
 
 
-.discover-list {
-
-
-    .list-item {
-        //@include clearfix();
-    }
+// Carousel Gallery individual list items
+.discover-list .list-item {
+    width: 100%;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    //@include clearfix();
 
     .list-item-img {
         width: 260px;
         height: 148px;
+        margin-bottom: 14px;
         background-repeat: no-repeat;
         @include background-size(cover);
         background-position: center;
     }
+
+    h5 {
+        margin: 0;
+        @include gotham500();
+        color: $silver16;
+        font-size: 15px;
+        line-height: 18px;
+    }
+
+    span {
+        margin-top: 2px;
+        display: block;
+        color: $silver51;
+        font-size: 11px;
+        line-height: 14px;
+        @include gotham300();
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        //color: $xero-blue;
+    }
 }
 
 
-.discover-list-img {
 
-}
+
 
 
 

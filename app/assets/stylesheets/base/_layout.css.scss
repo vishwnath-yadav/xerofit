@@ -138,10 +138,10 @@ a.global_nav_toggle {
     color: $silver31;
     text-decoration: none;
 
-    // [icon] chevron-down
+    // [icon] chevron-down-thick
     &:after {
         @include xerofit-icon();
-        content: '\e61d';
+        content: '\e621';
         display: block;
         position: absolute;
         right: 0;
