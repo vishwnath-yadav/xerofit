@@ -1,0 +1,35 @@
+<% @marketplaceList.each do |list| %>
+    <section class="discover-gallery">
+        <h3 style="zfloat:left;"><%= list.title.humanize %></h3>
+        <%= link_to "See more", "/discover/#{list.title}", class: "zpull-right"%>
+
+        <div class="discover-list owl-carousel owl-theme">
+            <% list.moves.each do |mov| %>
+
+                <a href="<%= params[:user].blank? ? discover_details_path(mov) : discover_details_path(mov, user: params[:user]) %>" data-no-turbolink="true" class="list-item">
+
+                    <figure class="list-item-img" style="background-image: url(<%= mov.library_video.image %>);"></figure>
+
+                    <h5><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></h5>
+                    <span><%= mov.user.fullname %></span>
+                </a>
+            <% end %>
+        </div>
+    </section>
+<% end %>
+
+
+
+<!-- Will there ever not be an image present if its approved? Maybe a load failure image would be worth having here -->
+
+<%# if mov.library_video.image.present? %>
+    <!--figure class="list-item-img" style="background-image: url(<%#= mov.library_video.image %>);"></figure-->
+<%# else %>
+    <!--img src="/assets/ex_2.png" class="list_view_img move" /-->
+<%# end %>
+
+
+
+<script type="text/javascript">
+    loadMarketplaceCarousel(".discover-list");
+</script>

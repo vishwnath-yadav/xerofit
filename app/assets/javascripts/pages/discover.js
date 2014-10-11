@@ -1,7 +1,11 @@
 $(document).ready(function() {
 
 
-  // Sticky header title
+  // Carousel for marketplace lists
+
+
+
+  // Sticky header title on move video page
   $(window).scroll(function(){
     scroll = $(window).scrollTop();
     var sticky = $('#discover-video-header');
@@ -23,3 +27,35 @@ $(document).ready(function() {
     }
   });
 });
+
+function loadMarketplaceCarousel (listName) {
+
+  $(listName).owlCarousel({
+    responsive: {
+        0: {
+            items: 4
+        }
+    },
+    //items: 4,
+    nav: true,
+    slideBy: 4,
+    loop: true,
+    autoWidth: true,
+    margin: 20,
+    navRewind: false,
+    dots: true,
+    //dotsEach: 4,
+    // dotData: true,
+    //navText: false,
+
+
+    //slideSpeed : 600,
+    //paginationSpeed: 800,
+    //dotsSpeed: 600,
+
+
+    // This option is broken right now
+    //navBy: 'page',
+    //slideBy: 'page',
+  })
+}

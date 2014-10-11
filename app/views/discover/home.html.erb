@@ -1,61 +1,21 @@
-<link rel="stylesheet" href="/assets/vendor/owl.carousel.css">
-<link rel="stylesheet" href="/assets/vendor/owl.theme.css">
-<script src="/assets/plugins/owl.carousel.min.js"></script>
-
-<div class="middle_wrapper">
-  <div class="page_content">
-    <div class="container">
-      <div class="row">
-      	<% if @marketplaceList.present? %>
-      		<%@marketplaceList.each do |list|%>
-      		<div class="owl-main-container">
-		      	<h3 style="float:left;">
-		      		<%=list.title.humanize%>
-	      		</h3>
-	      		<%= link_to "See more", "/discover/#{list.title}", class: "pull-right"%>
-		      	<div class="library_col">
-			        <ul class="owl-carousel">
-			      		<% if list.moves.present?%>	
-									<% list.moves.each do |mov| %>	
-										<li class="wdth_img border_left owl-li">
-											<a href="/library/move/2845010976" data-no-turbolink="true" class="grid_block move">
-												<% if mov.library_video.image.present? %>
-								        	<img src="<%= mov.library_video.image %>" class="list_view_img move" />
-									      <% else %>
-									        	<img src="/assets/ex_2.png" class="list_view_img move" />
-									      <% end %>
-									      <p class="block_status">
-									      	<%= truncate(mov.title, :length => 35, :seperator => ' ...') %>
-									        <%= mov.user.fullname %>
-									      </p>
-									    </a>
-									  </li>
-								  <%end%>
-							  <%else%>
-							  	<li class="wdth_img border_left owl-li">No Move Added.</li>
-							  <%end%>
-							</ul>
-						</div>
-						</div>
-					<%end%>
-				<%end%>
-      </div>
+<div class="control_bar">
+  <div class="container-fluid">
+    <div class="control_bar_wrap">
+      <%= render "search_in_discover_data"%>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
- 
-  $(".owl-carousel").owlCarousel({
-    // Most important owl features
-    items : 3,
-    //Basic Speeds
-    slideSpeed : 200,
-    paginationSpeed : 800,
-    rewindSpeed : 1000,
-    autoPlay: true,
-    navigation: true
-	})
- 
-});
-</script>
+
+
+<div class="middle_wrapper">
+    <div class="page_content">
+        <div class="container">
+            <div class="row">
+                <% if @marketplaceList.present? %>
+                    <%= render "discover_lists" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -2,9 +2,76 @@
 
 
 
+// [hack] This is a hack to fix carousel dots plugin
+.discover-list .owl-dots .owl-dot {
+    display: none !important;
+
+    &:nth-of-type(4n+1) { display: inline-block !important; }
+}
+
+
+
+
+
 // -------------------------------------------------------------------------- //
 // Discover Home
 // -------------------------------------------------------------------------- //
+
+
+.zowl-wrapper{
+    width: 100% !important;
+    border: 1px solid #efefef !important;
+}
+
+.owl-item {
+    //width: 20% !important;
+    float: left;
+}
+
+.owl-li {
+    border: none !important;
+    width: 100% !important;
+}
+
+.owl-main-container{
+    float: left;
+    width: 100%;
+    margin-bottom: 68px;
+}
+
+.discover-gallery {
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    position: relative;
+    @include clearfix();
+}
+
+
+
+
+
+.discover-list {
+
+
+    .list-item {
+        //@include clearfix();
+    }
+
+    .list-item-img {
+        width: 260px;
+        height: 148px;
+        background-repeat: no-repeat;
+        @include background-size(cover);
+        background-position: center;
+    }
+}
+
+
+.discover-list-img {
+
+}
 
 
 

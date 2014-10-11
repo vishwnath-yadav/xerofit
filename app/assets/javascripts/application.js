@@ -26,6 +26,7 @@
 //= require plugins/smooth-scroll.min
 //= require plugins/jquery.growl.js
 //= require plugins/jquery.placeholder.js
+//= require plugins/owl.carousel-v2.4-beta.js
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
