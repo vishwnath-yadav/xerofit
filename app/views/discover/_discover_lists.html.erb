@@ -1,7 +1,10 @@
 <% @marketplaceList.each do |list| %>
+
     <section class="discover-gallery">
-        <h3 style="zfloat:left;"><%= list.title.humanize %></h3>
-        <%= link_to "See more", "/discover/#{list.title}", class: "zpull-right"%>
+        <div class="list-heading">
+            <h3><%= list.title.humanize %></h3>
+            <%= link_to "See more", "/discover/#{list.title}" %>
+        </div>
 
         <div class="discover-list owl-carousel owl-theme">
             <% list.moves.each do |mov| %>
@@ -16,6 +19,7 @@
             <% end %>
         </div>
     </section>
+
 <% end %>
 
 
