@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'xerofit-icons';
-    src: font-url('xerofit-icons.eot?-agnhyy');
-    src: font-url('xerofit-icons.eot?#iefix-agnhyy') format('embedded-opentype'),
-         font-url('xerofit-icons.woff?-agnhyy') format('woff'),
-         font-url('xerofit-icons.ttf?-agnhyy') format('truetype'),
-         font-url('xerofit-icons.svg?-agnhyy#xerofit-icons') format('svg');
+    src: font-url('xerofit-icons.eot?-hn9mnr');
+    src: font-url('xerofit-icons.eot?#iefix-hn9mnr') format('embedded-opentype'),
+         font-url('xerofit-icons.woff?-hn9mnr') format('woff'),
+         font-url('xerofit-icons.ttf?-hn9mnr') format('truetype'),
+         font-url('xerofit-icons.svg?-hn9mnr#xerofit-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,6 +23,30 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.xico-chevron-down-thick:before {
+    content: "\e621";
+}
+.xico-chevron-down-thin:before {
+    content: "\e622";
+}
+.xico-chevron-left-thick:before {
+    content: "\e623";
+}
+.xico-chevron-left-thin:before {
+    content: "\e624";
+}
+.xico-chevron-right-thick:before {
+    content: "\e625";
+}
+.xico-chevron-right-thin:before {
+    content: "\e626";
+}
+.xico-chevron-up-thick:before {
+    content: "\e627";
+}
+.xico-chevron-up-thin:before {
+    content: "\e628";
+}
 .xico-chevron-down:before {
     content: "\e61d";
 }
