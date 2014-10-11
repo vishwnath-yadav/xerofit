@@ -9,6 +9,7 @@
     &:nth-of-type(4n+1) { display: inline-block !important; }
 }
 
+.discover .control_bar_wrap h4 { float: left; }
 
 
 
@@ -22,17 +23,20 @@
 // Section container for each marketplace list
 .discover-gallery {
     float: left;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 21px 20px 41px;
     width: 100%;
     position: relative;
     @include clearfix();
+    margin-bottom: 28px;
+    border-bottom: 1px solid #F2F2F2;
+
+    &:last-of-type { margin-bottom: 0px; border: none; }
 
     // Container for content above carousel gallery
     .list-heading {
         width: 100%;
         position: relative;
-        margin-bottom: 28px;
+        margin-bottom: 21px;
         @include clearfix();
 
         h3 {
@@ -63,7 +67,7 @@
             &:hover,
             &:focus {
                 text-decoration: none;
-                color: $xero-blue;
+                color: darken( $xero-blue, 10% );
             }
         }
     }
@@ -94,6 +98,7 @@
         color: $silver16;
         font-size: 15px;
         line-height: 18px;
+        @include text-overflow();
     }
 
     span {
