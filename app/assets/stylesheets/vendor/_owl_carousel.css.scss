@@ -219,31 +219,50 @@
     margin-top: 42px;
     text-align: center;
     -webkit-tap-highlight-color: transparent;
+    line-height: 1;
 
     .owl-dot {
         display: inline-block;
+        position: relative;
         zoom: 1;
         *display: inline;
+        margin-bottom: -2px;
 
         span {
-            width: 10px;
-            height: 10px;
-            margin: 5px 7px;
-            background: #d6d6d6;
+            width: 14px;
+            height: 14px;
+            border: 1px solid $silver16;
+            margin: 7px;
             display: block;
+            @include border-radius(30px);
+            @include opacity(0.5);
             -webkit-backface-visibility: visible;
             -webkit-transition: opacity 200ms ease;
             -moz-transition: opacity 200ms ease;
             -ms-transition: opacity 200ms ease;
             -o-transition: opacity 200ms ease;
             transition: opacity 200ms ease;
-            -webkit-border-radius: 30px;
-            -moz-border-radius: 30px;
-            border-radius: 30px;
+        }
+
+        //&:hover span:before,
+        &.active span:before {
+            content: '';
+            display: block;
+            height: 8px;
+            width: 8px;
+            position: absolute;
+            top: 50%;
+            margin-top: -4px;
+            left: 50%;
+            margin-left: -4px;
+            @include border-radius(10px);
+            background-color: $silver16;
         }
 
         &.active span,
-        &:hover span { background: #869791; }
+        span:hover { @include opacity(1); }
+
+        //&:hover span { background-color: #869791; }
     }
 }
 
