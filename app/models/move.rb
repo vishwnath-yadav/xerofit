@@ -120,7 +120,6 @@ class Move < ActiveRecord::Base
 	end
 
 	def get_thumbnail
-		binding.pry
 		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.screenshots.present? && !self.library_video.image.present?
 			self.library_video.image = self.library_video.first_screenshot
 			self.library_video.save
