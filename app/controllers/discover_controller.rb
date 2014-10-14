@@ -45,7 +45,7 @@ class DiscoverController < ApplicationController
 						@video_info.update_attributes(completed_video_views: views_count, view_completed_time: DateTime.now, status: "completed")
 					end
 				else
-						@video_info = VideoInfo.create(move_id: @move.id, user_id: @move.user.id, view_start_time: DateTime.now, status: "playing")
+						@video_info = VideoInfo.create(move_id: @move.id, user_id: current_user.id, view_start_time: DateTime.now, status: "playing")
 				end
 			end
 		end
