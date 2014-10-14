@@ -38,6 +38,18 @@
   font-style: normal;
 }
 
+@mixin gotham-narrow300() {
+  font-family: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin gotham-narrow400() {
+  font-family: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 * body {
     @include gotham400();
     font-style: normal;

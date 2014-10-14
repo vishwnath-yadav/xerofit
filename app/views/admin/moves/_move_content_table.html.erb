@@ -1,25 +1,28 @@
-<table class="table table-bordered table-striped">
+<table class="admin-table table table-bordered table-striped">
   <tr>
-    <th>ID</th>
+    <th>Move ID</th>
+    <th>Panda Video ID</th>
     <th>Title</th>
+    <th>User Email</th>
     <th>Date Added</th>
     <th>Status</th>
-    <th>User Email</th>
     <th>Actions</th>
   </tr>
   <% if @moves.present? %>
     <% @moves.each do |move| %>
       <tr>
         <td><%=move.id%></td>
+        <td><%=move.library_video.panda_video_id%></td>
         <td><%=move.title%></td>
+        <td><%=move.user.email %></td>
         <td><%=move.user.time_zone.present? ? (move.updated_at.in_time_zone(move.user.time_zone).strftime("%m/%d/%y %I:%M%P %Z")) : (move.updated_at.time.strftime("%m/%d/%y %I:%M%P %Z")) %></td>
         <td>
-        <%=render "common_templates/change_status", move: move%>
+        <%= render "common_templates/change_status", move: move %>
         </td>
-        <td><%=move.user.email %></td>
+        
         <td>
-            <%=link_to "View", edit_path(move, user: move.user.token)%> | <%=link_to "History", history_page_admin_moves_path(id: move, type: move.move_type)%> |
-            <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
+          <%=link_to "View", edit_path(move, user: move.user.token)%> | <%=link_to "History", history_page_admin_moves_path(id: move, type: move.move_type)%> |
+          <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%>
         </td>
       </tr>
     <% end %>
