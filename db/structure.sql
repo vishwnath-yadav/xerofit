@@ -413,8 +413,7 @@ CREATE TABLE moves (
     work character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    date_of_approval timestamp without time zone,
-    views_count integer DEFAULT 0
+    date_of_approval timestamp without time zone
 );
 
 
@@ -605,6 +604,42 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: video_infos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE video_infos (
+    id integer NOT NULL,
+    completed_video_views integer DEFAULT 0,
+    view_start_time timestamp without time zone,
+    view_completed_time timestamp without time zone,
+    status character varying(255),
+    move_id integer,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: video_infos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE video_infos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: video_infos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE video_infos_id_seq OWNED BY video_infos.id;
+
+
+--
 -- Name: workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -759,6 +794,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY video_infos ALTER COLUMN id SET DEFAULT nextval('video_infos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq'::regclass);
 
 
@@ -880,6 +922,14 @@ ALTER TABLE ONLY target_muscle_groups
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_infos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY video_infos
+    ADD CONSTRAINT video_infos_pkey PRIMARY KEY (id);
 
 
 --
@@ -1034,3 +1084,7 @@ INSERT INTO schema_migrations (version) VALUES ('20141009054052');
 INSERT INTO schema_migrations (version) VALUES ('20141009054121');
 
 INSERT INTO schema_migrations (version) VALUES ('20141010120250');
+
+INSERT INTO schema_migrations (version) VALUES ('20141013125534');
+
+INSERT INTO schema_migrations (version) VALUES ('20141014070647');

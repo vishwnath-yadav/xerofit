@@ -15,13 +15,13 @@
               <%= mov.status %>
             </p>
           </a>
-        <%else%>
+        <% else %>
           <a href="<%= params[:user].blank? ? edit_path(mov) :  edit_path(mov, user: params[:user])%>" data-no-turbolink="true" class="grid_block move">
             <% if mov.check_thumbnail() %>
               <img src="<%= mov.library_video.image %>" alt="cn_1" />
             <% else %>
               <img src="/assets/ex_2.png" alt="cn_1" />
-            <%end%>
+            <% end %>
             <h6 title="<%= mov.title %>"><%= truncate(mov.title, :length => 24, :seperator => ' ...') %></h6>
             <p class="block_status">
               <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />

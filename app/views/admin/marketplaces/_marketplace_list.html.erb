@@ -4,10 +4,10 @@
 
 <div class="col-md-12">
 	<h2>Active Lists</h2>
-	<%=render "listing", list: @active_list, type: 'active_list'%>
+	<%=render "listing", list: @active_list, type: 'active_list', list_type: 'active' %>
 </div>
 
 <div class="col-md-12">
 	<h2>InActive Lists</h2>
-	<%=render "listing", list: @inactive_list, type: 'inactive_list'%>
+	<%=render "listing", list: @inactive_list, type: 'inactive_list', list_type: 'Inactive'%>
 </div>

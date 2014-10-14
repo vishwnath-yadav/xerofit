@@ -10,6 +10,7 @@ class TargetMuscleGroup < ActiveRecord::Base
 	# MUSCLES_TYPE_OPT_7 = ["Legs", "Calves", "Hamstrings", "Quadriceps"]
 	# MUSCLES_TYPE_OPT_8 = ["Shoulders", "Anterior", "Posterior"]
 
+	TARGET_FOR_SEARCH = ["Arms","Back","Chest","Core","Hips","Legs","Shoulders"]
 	MUSCLES_TYPE_OPTION = {"Arms"=>["All Arms","Biceps", "Forearms", "Triceps"], 
 						   "Back" => ["All Back","Upper", "Lower", "Lats", "Traps", "Neck"],
 						   "Chest" => ["All Chest","Lower", "Upper", "Inner", "Outer"],
