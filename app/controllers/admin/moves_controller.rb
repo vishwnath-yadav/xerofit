@@ -45,15 +45,20 @@ class Admin::MovesController < Admin::AdminController
 
 	def status_approve
 		hist = History.new()
-		if params[:type] == Move::TYPE[1]
+
+		if params[:type] == Move::TYPE[2]
+			move = Workout.find_by_id(params[:id])
+			hist.workout_id = move.id
+		else
 			move = Move.find_by_id(params[:id])
 			if params[:status] == Move::STATUS[0]
 				move.date_of_approval = DateTime.now
+				market_list = MarketplaceList.find_by_title("Recently Added")
+				if market_list.present?
+					MarketplaceMove.create(move_id: move.id, marketplace_list_id: market_list.id)
+				end
 			end
 			hist.move_id = move.id
-		else
-			move = Workout.find_by_id(params[:id])
-			hist.workout_id = move.id
 		end
 		hist.status = params[:status]
 		move.status = params[:status]

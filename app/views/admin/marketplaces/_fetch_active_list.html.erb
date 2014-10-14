@@ -1,10 +1,15 @@
 <div>
 	<%= form_tag('/admin/discover/add_lists', method: :post, id: "add_move_to_list") do |f| %>
 		<%= hidden_field_tag "move_id", @move.id %>
-		<% if @marketplace_list.present? %>
-		<div class="move_list">
-		   <%= collection_check_boxes(:list_check, :list_ids, @marketplace_list, :id, :title, checked: @marketplace_selected_list)%>
-			
+		<% if @active_marketplace_list.present? %>
+			<div class="move_list">
+				<div class="active_list">
+				   <%= collection_check_boxes(:list_check, :list_ids, @active_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
+				</div>
+				<div class="inactive_list">
+				   <%= collection_check_boxes(:list_check, :list_ids, @inactive_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
+				</div>
+			</div>			
 		<% else %>
 			<p> No active Move is available.</p>
 		<% end %>

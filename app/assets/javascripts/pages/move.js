@@ -5,6 +5,10 @@ $(document).ready(function(){
   //    $('.replace_video').css('display','block');
   //    $('.lib_edit_botom').css('display','none');
   // });
+  $(document).on('change','.select_target_muscle_group',function(){
+    $('#search_in_discover_data').submit();
+  });
+
   $(document).on('change','.select_category',function(){
     $('#search_in_discover_data').submit();
   });

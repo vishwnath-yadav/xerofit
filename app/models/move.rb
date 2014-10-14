@@ -7,6 +7,7 @@ class Move < ActiveRecord::Base
 	has_many :target_muscle_groups
 	has_one :library_video
 	has_one :move_detail
+	has_one :video_info
 	has_many :move_blocks
 	has_many :histories
 	has_many :blocks, through: :move_blocks
@@ -44,6 +45,7 @@ class Move < ActiveRecord::Base
 	scope :by_name, lambda { |name| where('title ilike ?', name+"%") unless name.blank? }
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 	scope :by_category, lambda { |cat| where(category: cat) unless cat.blank? || cat.nil? }
+	scope :by_target, lambda { |trgt| includes(:target_muscle_groups).where("target_muscle_groups.target_muscle_group=?", trgt).references(:target_muscle_groups) unless trgt.blank? || trgt.nil? }
 	# scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 

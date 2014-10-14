@@ -39,8 +39,9 @@ class Admin::MarketplacesController < ApplicationController
 
 	def fetch_active_list
 		@move = Move.find_by_id(params[:id])
-		@marketplace_list = MarketplaceList.where(status: true)
-		@marketplace_selected_list = MarketplaceMove.all.select{|l| l.move_id == @move.id}.collect{|d|d.marketplace_list.id}.compact
+		@active_marketplace_list = MarketplaceList.where(status: true)
+		@inactive_marketplace_list = MarketplaceList.where(status: false)
+		@marketplace_selected_list = MarketplaceMove.all.select{|l| l.move_id == @move.id}.collect{|d| d.marketplace_list_id}.compact
 	end
 
 	def add_lists

@@ -1,5 +1,5 @@
 <%= form_tag('/admin/discover/update_lists', method: :put) do |f| %>
-	<%= hidden_field_tag :list_type, 'active' %>
+	<%= hidden_field_tag :list_type, list_type %>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th>ID</th>
