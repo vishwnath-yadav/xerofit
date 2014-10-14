@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :addresses
   has_many :subscriptions
   has_many :workouts
+  has_many :video_infos
   
   before_create :generate_token
   # after_update :reprocess_pic, :if => :cropping? 

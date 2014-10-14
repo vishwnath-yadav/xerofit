@@ -27,7 +27,6 @@
       </video>
     </div>
   </section>
-
   <div class="video_info_id">
   </div>
 
@@ -121,7 +120,8 @@
   var myVideo = document.getElementById("move_video");
   var data = $('#move_video').attr('data-attr');
   var data_id = data.split("_")[1];
-  // playPause();
+  // var user_id = $('.move_owner_id').val();
+
   window.addEventListener("keypress", function (evt) {
       var SPACEBAR = 32;
       if (evt.which === SPACEBAR) {
@@ -130,13 +130,9 @@
       }
   });
 
-
   myVideo.addEventListener("play", function () {
-
     console.log("video is play");
     if(flag == 0){
-      // var started_time = new Date($.now());
-      // console.log("started_time=" +started_time); 
       url = '/discover/discover_video_info';
       $.get(url, {move_id:data_id}, function (data) {
       });
@@ -147,11 +143,9 @@
   myVideo.addEventListener("ended", function () {
     if(flag == 1){
       console.log("video is completed");
-      // var completed_time = new Date($.now());
       var video_info_id = $('#move_video_info').val();
-      console.log(video_info_id);
       url = '/discover/discover_video_info';
-      $.get(url, {move_id:data_id, video_id:video_info_id}, function (data) {
+      $.get(url, {move_id:data_id,video_id:video_info_id}, function (data) {
       });
       flag = 0; 
     }

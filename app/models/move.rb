@@ -7,7 +7,7 @@ class Move < ActiveRecord::Base
 	has_many :target_muscle_groups
 	has_one :library_video
 	has_one :move_detail
-	has_one :video_info
+	has_many :video_infos
 	has_many :move_blocks
 	has_many :histories
 	has_many :blocks, through: :move_blocks

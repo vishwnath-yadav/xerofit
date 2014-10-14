@@ -1,1 +1,3 @@
-$('.video_info_id').html("<input id= 'move_video_info' type='hidden' name='video_info' value='<%= @video_info.id %>'>");
+<% if @video_info.present? %>
+	$('.video_info_id').html("<input id= 'move_video_info' type='hidden' name='video_info' value='<%= @video_info.id %>'>");
+<% end %>

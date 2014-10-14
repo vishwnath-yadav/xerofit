@@ -413,8 +413,7 @@ CREATE TABLE moves (
     work character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    date_of_approval timestamp without time zone,
-    views_count integer DEFAULT 0
+    date_of_approval timestamp without time zone
 );
 
 
@@ -610,11 +609,12 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 CREATE TABLE video_infos (
     id integer NOT NULL,
-    video_views integer DEFAULT 0,
     completed_video_views integer DEFAULT 0,
     view_start_time timestamp without time zone,
     view_completed_time timestamp without time zone,
+    status character varying(255),
     move_id integer,
+    user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -1083,3 +1083,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141009054121');
 INSERT INTO schema_migrations (version) VALUES ('20141010120250');
 
 INSERT INTO schema_migrations (version) VALUES ('20141013125534');
+
+INSERT INTO schema_migrations (version) VALUES ('20141014070647');
