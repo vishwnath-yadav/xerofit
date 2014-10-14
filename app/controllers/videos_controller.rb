@@ -7,7 +7,7 @@ class VideosController < ApplicationController
 		  @video = LibraryVideo.new(video: params[:file]) 
     else
     	@video = LibraryVideo.find(session[:video_id])
-    	@video.image = ''
+      @video.update_attributes(video: params[:file], image: '')
     end
     if @video.save
       p_video = Panda::Video.create!(source_url: @video.video.to_s, path_format: "panda_video/:video_id/:profile/:id")

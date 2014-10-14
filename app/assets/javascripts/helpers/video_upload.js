@@ -29,7 +29,7 @@ function upload_video_fancybox(obj){
         });
       },
       afterClose: function () {
-          window.location.reload();
+          // window.location.reload();
       }
   });
 }
