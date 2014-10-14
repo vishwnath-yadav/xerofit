@@ -239,8 +239,16 @@ $(document).ready(function(){
     $('#video-container').unbind('click');
   });
 
+ $(document).on('click','.upload_done',function(){
+    alert(">>>>>>");
+    $.fancybox.close();
+    window.location.reload();
+  });
+
 
 });
+
+
 
 // Not a Great solution (needs to be fixed)
 function check_selected_equipment(){
@@ -315,3 +323,5 @@ $(document).mouseup(function (e)
         container.hide();
     }
 });
+
+

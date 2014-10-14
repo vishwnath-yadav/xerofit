@@ -4,7 +4,7 @@ class VideosController < ApplicationController
 	respond_to :json, :js
 	def create
   	if session[:video_id].blank?
-		@video = LibraryVideo.new(video: params[:file]) 
+		  @video = LibraryVideo.new(video: params[:file]) 
     else
     	@video = LibraryVideo.find(session[:video_id])
     	@video.image = ''

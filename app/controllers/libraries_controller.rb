@@ -110,14 +110,7 @@ class LibrariesController < ApplicationController
 
 	def full_workout_content
 		session[:video_id] = !params[:video_id].blank? ? params[:video_id] : ''
-		if params[:popup].blank?
-			@max_size_allowed = 300
-		elsif !session[:video_id].blank?
-			video = LibraryVideo.find_by_id(session[:video_id])
-			@max_size_allowed = 300
-		else
-			@max_size_allowed = 1024
-		end
+		@max_size_allowed = 300
 		respond_to do |format|
 		    format.js
 	    end

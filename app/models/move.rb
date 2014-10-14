@@ -61,6 +61,7 @@ class Move < ActiveRecord::Base
 	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	# end
 
+
 	def self.get_library_list(params,cur_user,param_user_id)
 		if cur_user.admin? && param_user_id.present?
 			list = list_view(params,param_user_id)
@@ -118,13 +119,13 @@ class Move < ActiveRecord::Base
 
 	def get_thumbnail
 		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+			self.library_video.image = self.library_video.panda_thumbnail.screenshots[0]
 			self.library_video.save
 		end
 		size = []
 		size1 = []
 		if self.library_video.present? && self.library_video.panda_video.present?
-			size = self.library_video.panda_thumbnail.screenshots
+			size = self.library_video.panda_thumbnail.screenshots rescue []
 			@image = self.library_video.image
 			if size.include?(@image)
 				index = size.index(@image)
