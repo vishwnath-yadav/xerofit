@@ -26,6 +26,113 @@ $(document).ready(function() {
       $('#discover-video-header .show-on-scroll').remove('.header-title-wrap');
     }
   });
+
+  //Discover list page searching js
+
+  $(document).on('change','.select_target_muscle_group',function(){
+    $('#search_in_discover_data').submit();
+  });
+
+  $(document).on('change','.select_category',function(){
+    $('#search_in_discover_data').submit();
+  });
+
+  $(document).on("focus", '#search_approve_move', function(){
+    $(this).css('text-align', 'left');
+    $(".search_bar_clear1").removeClass('hide');
+    $('.search_bar_icon').addClass('hide');
+    $(this).css({
+      'padding-left': '12px',
+      'color': '#4C4D4E',
+    });
+  });
+
+  $(document).on("keyup, mouseup", '#search_approve_move', function(e){
+      if(e.which == 13){//Enter key pressed
+        $('#search_in_discover_data').submit();
+      }
+  });
+
+  $(document).on("blur", '#search_approve_move', function(){
+    var inputText = $.trim($(this).val());
+    if(inputText.length>0)
+    {
+    } else {
+      $(this).css('text-align', 'center');
+      $(".search_bar_clear1").addClass('hide');
+      $('.search_bar_icon').removeClass('hide');
+      $(this).css('padding-left', '30px');
+    }
+    $('#search_in_discover_data').submit();
+  });
+
+  $(document).on("click",".search_bar_clear1",function(e){
+    $("#search_approve_move").val('');
+    $(".search_bar_clear1").addClass('hide');
+    $('.search_bar_icon').removeClass('hide');
+    $('#search_approve_move').css({
+      'padding-left': '30px',
+      'text-align': 'center',
+      'color': '#CCCCCC'
+    });
+    $('#search_in_discover_data').submit();
+  });
+
+  $('#search_approve_move').bind('railsAutocomplete.select', function(event, data){
+    $('#search_in_discover_data').submit();
+  });
+
+  //Discover home page searching js
+
+  $(document).on('change','.move_category',function(){
+    $('#search_for_discover_home').submit();
+  });
+
+  $(document).on("focus", '#discover_home_move_title', function(){
+    $(this).css('text-align', 'left');
+    $(".search_bar_clear2").removeClass('hide');
+    $('.search_bar_icon').addClass('hide');
+    $(this).css({
+      'padding-left': '12px',
+      'color': '#4C4D4E',
+    });
+  });
+
+  $(document).on("keyup, mouseup", '#discover_home_move_title', function(e){
+      if(e.which == 13){//Enter key pressed
+        $('#search_for_discover_home').submit();
+      }
+  });
+
+  $(document).on("blur", '#discover_home_move_title', function(){
+    var inputText = $.trim($(this).val());
+    if(inputText.length>0)
+    {
+    } else {
+      $(this).css('text-align', 'center');
+      $(".search_bar_clear2").addClass('hide');
+      $('.search_bar_icon').removeClass('hide');
+      $(this).css('padding-left', '30px');
+    }
+    $('#search_for_discover_home').submit();
+  });
+
+  $(document).on("click",".search_bar_clear2",function(e){
+    $("#discover_home_move_title").val('');
+    $(".search_bar_clear2").addClass('hide');
+    $('.search_bar_icon').removeClass('hide');
+    $('#discover_home_move_title').css({
+      'padding-left': '30px',
+      'text-align': 'center',
+      'color': '#CCCCCC'
+    });
+    $('#search_for_discover_home').submit();
+  });
+
+  $('#discover_home_move_title').bind('railsAutocomplete.select', function(event, data){
+    $('#search_for_discover_home').submit();
+  });
+
 });
 
 function loadMarketplaceCarousel (listName) {

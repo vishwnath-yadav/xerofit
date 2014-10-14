@@ -119,8 +119,8 @@ class Move < ActiveRecord::Base
 	end
 
 	def get_thumbnail
-		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_thumbnail.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.panda_thumbnail.screenshots[0]
 			self.library_video.save
 		end
 		size = []
@@ -143,8 +143,8 @@ class Move < ActiveRecord::Base
 	def check_thumbnail
 		if self.library_video.present? && self.library_video.image.present?
 			return true
-		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_thumbnail.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.panda_thumbnail.screenshots[0]
 			self.library_video.save
 			return true
 		else
@@ -164,7 +164,7 @@ class Move < ActiveRecord::Base
 	end
 
 	def is_thumbnail_created
-		 self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present?
+		 self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_thumbnail.screenshots.present?
 	end
 
 	def target_muscles
