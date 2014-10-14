@@ -12,31 +12,47 @@ class LibraryVideo < ActiveRecord::Base
 	end
 
   def panda_mp4
-    self.panda_video.encodings['h264']
+    self.panda_video.encodings['h264'] rescue ''
   end
 
-  def panda_mp4_hd
-    self.panda_video.encodings['h264.1080p']
+  def panda_mp4_url
+    self.panda_video.encodings['h264'].url rescue ''
   end
 
-  def panda_ogg
-    self.panda_video.encodings['ogg']
+  def panda_mp4_hd_url
+    self.panda_video.encodings['h264.1080p'].url rescue ''
   end
 
-  def panda_ogg_hd
-    self.panda_video.encodings['ogg.720p']
+  def panda_ogg_url
+    self.panda_video.encodings['ogg'].url rescue ''
+  end
+
+  def panda_ogg_hd_url
+    self.panda_video.encodings['ogg.720p'].url rescue ''
   end
 
   def panda_thumbnail
-    self.panda_video.encodings['thumbnail']
+    self.panda_video.encodings['thumbnail'] rescue []
   end
 
-  def panda_thumbnail_hd
-    self.panda_video.encodings['thumbnail.HD']
+  def panda_thumbnail_hd_url
+    self.panda_video.encodings['thumbnail.HD'].url rescue ''
   end
 
   def video_title
 	  self.panda_video.original_filename rescue ''
+  end
+
+  def first_screenshot
+    self.panda_thumbnail.screenshots[0] rescue ''
+  end
+
+  def screenshots
+    self.panda_thumbnail.screenshots rescue []
+  end
+
+  def video_image
+    self.image rescue '/assets/ex_2.png'
   end
 
 end

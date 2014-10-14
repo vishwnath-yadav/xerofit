@@ -5,7 +5,7 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".full_workout", function(){
-    upload_video_fancybox($(this))
+    upload_video_fancybox($(this));
   });
 });
 
@@ -25,33 +25,20 @@ function upload_video_fancybox(obj){
       beforeLoad: function () {
         full_workout = true;
         var url = '/library/full_workout_content';
-        $.get(url, {popup:'true',video_id:is_edit_video}, function (data) {
+        $.get(url, {video_id:is_edit_video}, function (data) {
         });
       },
       afterClose: function () {
-        if(is_edit_video){
-          window.location.reload();
-        }
-        else{
-          full_workout = false;
-          var url = '/library/full_workout_content';
-          $.get(url, {}, function (data) {
-            });
-        }
+          // window.location.reload();
       }
   });
 }
 
 function html_setups(response){
   prg.parent().find('p').text('Upload Completed!');
-  if(full_workout){
-    var url = response.user != "" ? "/library?user="+response.user : '/library' 
-    window.location.replace(url);
-  }
-  else{
-    $(".video_id").val(response);
-    $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');  
-  }
+  $(".video_id").val(response);
+  $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
+  //$('a.upload_done').removeClass('hide');  
 }
 
 

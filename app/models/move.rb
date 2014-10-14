@@ -63,6 +63,7 @@ class Move < ActiveRecord::Base
 	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	# end
 
+
 	def self.get_library_list(params,cur_user,param_user_id)
 		if cur_user.admin? && param_user_id.present?
 			list = list_view(params,param_user_id)
@@ -119,14 +120,14 @@ class Move < ActiveRecord::Base
 	end
 
 	def get_thumbnail
-		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+		if self.library_video.present? && self.library_video.panda_video.present? && self.library_video.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.first_screenshot
 			self.library_video.save
 		end
 		size = []
 		size1 = []
 		if self.library_video.present? && self.library_video.panda_video.present?
-			size = self.library_video.panda_thumbnail.screenshots
+			size = self.library_video.screenshots
 			@image = self.library_video.image
 			if size.include?(@image)
 				index = size.index(@image)
@@ -143,8 +144,8 @@ class Move < ActiveRecord::Base
 	def check_thumbnail
 		if self.library_video.present? && self.library_video.image.present?
 			return true
-		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present? && !self.library_video.image.present?
-			self.library_video.image = self.library_video.panda_mp4.screenshots[0]
+		elsif self.library_video.present? && self.library_video.panda_video.present? && self.library_video.screenshots.present? && !self.library_video.image.present?
+			self.library_video.image = self.library_video.first_screenshot
 			self.library_video.save
 			return true
 		else
@@ -164,7 +165,7 @@ class Move < ActiveRecord::Base
 	end
 
 	def is_thumbnail_created
-		 self.library_video.present? && self.library_video.panda_video.present? && self.library_video.panda_mp4.screenshots.present?
+		 self.library_video.present? && self.library_video.panda_video.present? && self.library_video.screenshots.present?
 	end
 
 	def target_muscles

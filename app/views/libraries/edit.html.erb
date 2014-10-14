@@ -191,8 +191,6 @@
           </span>
       </div>
 
-
-      <%if current_user.admin?%>
         <div class="row">
           <div class="col-sm-6">
             <div class="lib_edit_botom replace_video_section">
@@ -206,7 +204,6 @@
             </div>
           </div>
         </div>
-      <% end %>
 
 
       <div class="row">
@@ -230,7 +227,7 @@
 </div>
 
 <%= render "common_templates/video_controls" %>
-<%#= render "common_templates/full_workout_upload" %>
+<%= render "common_templates/full_workout_upload" %>
 
 <script>
 $(document).ready(function(){

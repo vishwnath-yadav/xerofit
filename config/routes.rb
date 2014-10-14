@@ -193,6 +193,7 @@ Xerofit::Application.routes.draw do
     collection do
       get :autocomplete_move_title
       get :search_in_discover_data
+      get :search_for_discover_home
       get :discover_video_info
     end
   end
