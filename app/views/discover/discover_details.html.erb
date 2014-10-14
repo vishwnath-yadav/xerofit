@@ -21,10 +21,12 @@
 
   <section class="video-player">
     <div class="container-fluid">
-      <video id="move_video" data-attr="move_<%= @move.id %>" width="854" height="480" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
-          <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
-          <source src="<%= @move.library_video.panda_ogg.url %>" type="video/ogg">
-      </video>
+        <video id="move_video" data-attr="move_<%= @move.id %>" width="854" height="480" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" autoplay>
+            <source src="<%= @move.library_video.panda_mp4_hd.url %>" type="video/mp4">
+            <source src="<%= @move.library_video.panda_mp4.url %>" type="video/mp4">
+            <source src="<%= @move.library_video.panda_ogg_hd.url %>" type="video/ogg">
+            <source src="<%= @move.library_video.panda_ogg.url %>" type="video/ogg">
+        </video>
     </div>
   </section>
   <div class="video_info_id">
@@ -120,7 +122,6 @@
   var myVideo = document.getElementById("move_video");
   var data = $('#move_video').attr('data-attr');
   var data_id = data.split("_")[1];
-  // var user_id = $('.move_owner_id').val();
 
   window.addEventListener("keypress", function (evt) {
       var SPACEBAR = 32;
