@@ -36,7 +36,7 @@ class LibraryVideo < ActiveRecord::Base
   end
 
   def video_title
-	self.panda_video.original_filename rescue ''
+	  self.panda_video.original_filename rescue ''
   end
 
 end
