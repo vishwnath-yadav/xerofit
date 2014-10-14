@@ -193,7 +193,6 @@ $(document).ready(function(){
   });
 
  $(document).on('click','.upload_done',function(){
-    alert(">>>>>>");
     $.fancybox.close();
     window.location.reload();
   });
