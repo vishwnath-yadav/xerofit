@@ -43,6 +43,14 @@ class LibraryVideo < ActiveRecord::Base
 	 self.panda_video.original_filename rescue ''
   end
 
+  def first_screenshot
+    self.panda_thumbnail.screenshots[0] rescue ''
+  end
+
+  def screenshots
+    self.panda_thumbnail.screenshots rescue []
+  end
+
   def video_image
    self.image rescue '/assets/ex_2.png'
   end

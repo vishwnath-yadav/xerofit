@@ -5,7 +5,7 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".full_workout", function(){
-    upload_video_fancybox($(this))
+    upload_video_fancybox($(this));
   });
 });
 
@@ -38,7 +38,7 @@ function html_setups(response){
   prg.parent().find('p').text('Upload Completed!');
   $(".video_id").val(response);
   $('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
-  $('a.upload_done').removeClass('hide');  
+  //$('a.upload_done').removeClass('hide');  
 }
 
 
