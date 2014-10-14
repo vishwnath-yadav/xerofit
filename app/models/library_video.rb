@@ -15,8 +15,24 @@ class LibraryVideo < ActiveRecord::Base
     self.panda_video.encodings['h264']
   end
 
+  def panda_mp4_hd
+    self.panda_video.encodings['h264.1080p']
+  end
+
   def panda_ogg
     self.panda_video.encodings['ogg']
+  end
+
+  def panda_ogg_hd
+    self.panda_video.encodings['ogg.720p']
+  end
+
+  def panda_thumbnail
+    self.panda_video.encodings['thumbnail']
+  end
+
+  def panda_thumbnail_hd
+    self.panda_video.encodings['thumbnail.HD']
   end
 
   def video_title

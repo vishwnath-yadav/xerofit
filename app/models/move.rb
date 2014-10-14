@@ -123,8 +123,8 @@ class Move < ActiveRecord::Base
 		end
 		size = []
 		size1 = []
-		if self.library_video.present? && self.library_video.panda_video.present? 
-			size = self.library_video.panda_mp4.screenshots
+		if self.library_video.present? && self.library_video.panda_video.present?
+			size = self.library_video.panda_thumbnail.screenshots
 			@image = self.library_video.image
 			if size.include?(@image)
 				index = size.index(@image)
@@ -132,9 +132,9 @@ class Move < ActiveRecord::Base
 				size[index] = size[0]
 				size[0] = temp
 			end
-			size1 = size	
+			size1 = size
 		end
-		size1.size > 6 ? size1.pop() : size1
+		size1.size > 9 ? size1.pop() : size1
 		return size1
 	end
 
