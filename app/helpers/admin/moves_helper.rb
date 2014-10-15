@@ -10,4 +10,8 @@ module Admin::MovesHelper
 		end
 	end
 
+	def target_muscles(move)
+		(move.target_muscle_groups.map{|m| [m.target_muscle_group + "-" + m.sub_target_muscle_group]}.flatten - ["","-",nil]).join(', ') rescue 'N/A'
+	end
+
 end

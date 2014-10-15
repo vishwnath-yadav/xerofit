@@ -1,0 +1,38 @@
+<h4 class="section-title">Additional Details</h4>
+<aside class="move-details">
+  <ul>
+    <li>
+      <label>Category</label>
+      <p><%= @move.category %></p>
+    </li>
+
+    <li>
+      <label>Difficulty</label>
+      <p><%= @move.difficulty %></p>
+    </li>
+
+    <li>
+      <label>Date Added</label>
+      <% if @move.date_of_approval.present? %>
+        <p><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><p>
+      <% else %>
+        <p><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><p>
+      <% end %>
+    </li>
+
+    <% target_muscle = target_muscles(@move)%>
+    <% if target_muscle.present? && target_muscle != 'N/A' %>
+      <li>
+        <label>Target Muscles</label>
+        <p><%= target_muscle %></p>
+      </li>
+    <% end %>
+
+    <% if @move.equipment.present? %>
+      <li>
+        <label>Equipment</label>
+        <p><%= @move.equipment.join(', ') %></p>
+      </li>
+    <% end %>
+  </ul>
+</aside>

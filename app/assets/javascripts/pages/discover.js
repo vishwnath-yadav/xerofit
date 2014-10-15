@@ -166,3 +166,46 @@ function loadMarketplaceCarousel (listName) {
     //slideBy: 'page',
   })
 }
+
+function playPause(){ 
+  if (myVideo.paused){
+    myVideo.play(); 
+  }
+  else{
+    myVideo.pause(); 
+  } 
+} 
+
+function initialize_video_events(){
+  var flag = 0;
+  var myVideo = document.getElementById("move_video");
+  var data = $('#move_video').attr('data-attr');
+  var data_id = data.split("_")[1];
+
+  window.addEventListener("keypress", function (evt) {
+      var SPACEBAR = 32;
+      if (evt.which === SPACEBAR) {
+          playPause(myVideo);
+          evt.preventDefault();
+      }
+  });
+
+  myVideo.addEventListener("play", function () {
+    if(flag == 0){
+      url = '/discover/discover_video_info';
+      $.get(url, {move_id:data_id}, function (data) {
+      });
+      flag = 1;   
+    }
+  }, false);
+
+  myVideo.addEventListener("ended", function () {
+    if(flag == 1){
+      var video_info_id = $('#move_video_info').val();
+      url = '/discover/discover_video_info';
+      $.get(url, {move_id:data_id,video_id:video_info_id}, function (data) {
+      });
+      flag = 0; 
+    }
+  }, false);
+}

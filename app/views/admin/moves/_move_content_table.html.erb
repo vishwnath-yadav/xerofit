@@ -12,7 +12,7 @@
     <% @moves.each do |move| %>
       <tr>
         <td><%=move.id%></td>
-        <td><%=move.library_video.panda_video_id%></td>
+        <td><%=move.panda_id%></td>
         <td><%=move.title%></td>
         <td><%=move.user.email %></td>
         <td><%=move.user.time_zone.present? ? (move.updated_at.in_time_zone(move.user.time_zone).strftime("%m/%d/%y %I:%M%P %Z")) : (move.updated_at.time.strftime("%m/%d/%y %I:%M%P %Z")) %></td>
