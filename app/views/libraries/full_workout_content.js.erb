@@ -1,1 +1,5 @@
-$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
+<% if browser.ie? %>
+	$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content_for_ie')) %>");
+<% else %>
+	$('#upload_content').html("<%= escape_javascript(render(:partial => '/common_templates/upload_content',  locals: {:popup => ''})) %>");
+<% end %>
