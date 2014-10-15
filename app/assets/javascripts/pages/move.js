@@ -186,7 +186,7 @@ $(document).ready(function(){
 
   // Play video on video Poster click
   $(document).on('click','#video-container', '.video-poster-play',function(){
-    $('.video-poster-play').remove()
+    $('.video-poster-play').remove();
     $('#move_video').get(0).setAttribute("controls","controls");
     $('#move_video').get(0).play();
     $('#video-container').unbind('click');
@@ -196,7 +196,11 @@ $(document).ready(function(){
     $.fancybox.close();
     window.location.reload();
   });
-
+  
+  $(document).on('click','.upload_ie_btn',function(){
+    $('.uploading_report').text('Uploading Video Please Wait...');
+    $('#ie_upload_form').submit();    
+  });
 
 });
 
