@@ -3,9 +3,9 @@
     <div class="video_uplod_icon"></div>
     <div class="video_uplod_txt">
       <h2>Choose video file to upload</h2>
-      <%= form_tag "/videos/create" , :multipart => true, :remote => true  do |form| %>
-        <%= file_field_tag :file %>
-        <%= submit_tag 'upload'%>
+      <%= form_tag "/videos/create" , :multipart => true, :remote => true, id: "ie_upload_form"  do |form| %>
+        <%= file_field_tag :file, class: "filed_ml61" %>
+        <%= submit_tag 'upload', class: "uplod_lft_btn upload_ie_btn"%>
       <% end %>
       <div class="uploading_report"></div> 
     </div>
