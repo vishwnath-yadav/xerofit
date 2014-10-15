@@ -46,6 +46,7 @@ class Move < ActiveRecord::Base
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 	scope :by_category, lambda { |cat| where(category: cat) unless cat.blank? || cat.nil? }
 	scope :by_target, lambda { |trgt| includes(:target_muscle_groups).where("target_muscle_groups.target_muscle_group=?", trgt).references(:target_muscle_groups) unless trgt.blank? || trgt.nil? }
+	scope :by_email, lambda { |email| joins(:user).where("users.email = ?", email).references(:users) unless email.blank? || email.nil? }
 	# scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
@@ -90,7 +91,7 @@ class Move < ActiveRecord::Base
 		if params[:type] == TYPE[2] 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
 		elsif params[:type] == TYPE[1]
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable)
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).by_email(params[:email]).where(enable: enable)
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
 			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable).all

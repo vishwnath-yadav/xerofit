@@ -3,10 +3,21 @@
 //= require browser_timezone_rails/set_time_zone
 
 $(document).ready(function(){
+
   $(document).on("blur","#user_email",function () {
     var tz = jstz.determine();
     var zone_name = tz.name();
     $(".time_zone").val(zone_name);
+  });
+
+  $(document).on("click",".up_click",function () {
+    $(".hidden_order").val('ASC');
+    $('#admin_filter_form').submit();
+  });
+
+  $(document).on("click",".down_click",function () {
+    $(".hidden_order").val('DESC');
+    $('#admin_filter_form').submit();
   });
 
   $(document).on('change','#sorted',function(){

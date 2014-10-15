@@ -3,7 +3,6 @@ class VideoInfo < ActiveRecord::Base
 	belongs_to :user
 
 	def self.update_video_info(video_id, move, user)
-		# binding.pry
 		if video_id.present?
 			video_info = VideoInfo.find(video_id)
 			completed_video = VideoInfo.where(move_id: move.id, status: "completed")
