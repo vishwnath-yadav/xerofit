@@ -1,24 +1,3 @@
-<%if !@video.errors.present?%>
-	if($("#progressbar").length || $("#progressbar1").length){
-		if(prg.parent().find('h2').text())
-		{
-			$(".video_id").val("<%=@video.id%>");
-			// $('#library_title').val(prg.parent().find('h2').text());
-		}
-		$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
-		prg.parent().find('p').text('successfully uploaded');
-		if(prg.attr('id') == "progressbar1"){
-			$(".full_workout").val(true);
-		}
-		else{
-			$(".full_workout").val(false);
-		}
-		if($('#dragandrophandler').is(':visible')){
-			$("#video_move_info").submit();
-		}
-	}
-	else{
-		$("#edit_video_info").submit();	
-	}
-
-<%end%>
+$(".video_id").val("<%=@video.id%>");
+$('#panda_video_enable').removeClass('dis_cls').addClass('rht_active');
+$('.uploading_report').html("<p>uploaded successfully</p>");

@@ -1,3 +1,7 @@
 <div class="col-xs-8 lib_form_lft" id="video_cont">
-    <%=render "common_templates/upload_content", popup: ''%>
+	<% if browser.ie? %>
+		<%=render "common_templates/upload_content_for_ie", popup: ''%>
+	<% else %>
+		<%=render "common_templates/upload_content", popup: ''%>
+	<% end %>
 </div>

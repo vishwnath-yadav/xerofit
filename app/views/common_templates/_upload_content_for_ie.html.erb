@@ -1,0 +1,13 @@
+<div class="video_uplod upload_new_video">
+  <div class="upload_wrap">
+    <div class="video_uplod_icon"></div>
+    <div class="video_uplod_txt">
+      <h2>Choose video file to upload</h2>
+      <%= form_tag "/videos/create" , :multipart => true, :remote => true  do |form| %>
+        <%= file_field_tag :file %>
+        <%= submit_tag 'upload'%>
+      <% end %>
+      <div class="uploading_report"></div> 
+    </div>
+  </div>
+</div>

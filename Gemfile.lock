@@ -64,6 +64,7 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    browser (0.5.0)
     browser-timezone-rails (0.0.8)
       jquery-rails
       rails (>= 3.1)
@@ -357,6 +358,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   bootstrap-sass
+  browser
   browser-timezone-rails
   cancan
   carmen-rails

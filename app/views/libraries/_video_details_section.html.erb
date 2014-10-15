@@ -7,7 +7,7 @@
   <%if @move.library_video.present? && @move.library_video.panda_mp4.present?%>
     <%if @move.library_video.panda_mp4_url.present? %>
       <div id="video-container">
-        <video id="move_video" width="560" height="316" controls poster="<%= @move.library_video.video_image %>">
+        <video id="move_video" controls poster="<%= @move.library_video.video_image %>">
           <source src="<%= @move.library_video.panda_mp4_hd_url %>" type="video/mp4">
           <source src="<%= @move.library_video.panda_mp4_url %>" type="video/mp4">
           <source src="<%= @move.library_video.panda_ogg_hd_url %>" type="video/ogg">

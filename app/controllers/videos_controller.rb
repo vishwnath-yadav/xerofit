@@ -18,7 +18,13 @@ class VideosController < ApplicationController
      #    delayed_job = Delayed::Job.enqueue(PandaVideoUpload.new(@video.id), 0, update_scheduled_date)
      #    logger.debug(">>>>>>>>>>>>>>>>job work end>>>>>>>>>>>>>>")
     end
-  	render text: "#{@video.present? ? @video.id : ""}"
+    if browser.ie?
+      respond_to do |format|
+        format.js
+      end
+    else 
+  	 render text: "#{@video.present? ? @video.id : ""}"
+    end
 	end
 
 	def destroy

@@ -40,7 +40,7 @@ class LibraryVideo < ActiveRecord::Base
   end
 
   def video_title
-	 self.panda_video.original_filename rescue ''
+	  self.panda_video.original_filename rescue ''
   end
 
   def first_screenshot
@@ -52,7 +52,7 @@ class LibraryVideo < ActiveRecord::Base
   end
 
   def video_image
-   self.image rescue '/assets/ex_2.png'
+    self.image rescue '/assets/ex_2.png'
   end
 
 end
