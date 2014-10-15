@@ -1,7 +1,10 @@
 <div class="col-sm-12">
-    <div class="admin-sort-container">
+  <div class="admin-sort-container">
 		<span class="admin-sort-label" >Sort By: </span>
-        <%= select_tag :sorted, options_for_select(@sort_array), class: "form-control" %>
-
+    <%= select_tag :sorted, options_for_select(@sort_array), class: "form-control" %>
+    <% if controller_name == "moves" && action_name == "index" %>
+	    <span class='sort_span'><img src="/assets/tip_icon.png" class="up_click"/>
+    	<img src="/assets/tip_icon_down.png" class="down_click"/></span>
+	<% end %>
 	</div>
 </div>

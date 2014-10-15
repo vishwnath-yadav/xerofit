@@ -12,6 +12,12 @@
         @include gotham500();
     }
 
+    span.sort_span {
+        width: 10px;
+        line-height: 10px;
+        margin: 4px 0px 0px 6px;
+    }
+
     select {
         float: left;
         width: auto;

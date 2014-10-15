@@ -46,6 +46,7 @@ class Move < ActiveRecord::Base
 	scope :by_user, lambda { |user| where(user_id: user) unless user.blank? || user.nil? }
 	scope :by_category, lambda { |cat| where(category: cat) unless cat.blank? || cat.nil? }
 	scope :by_target, lambda { |trgt| includes(:target_muscle_groups).where("target_muscle_groups.target_muscle_group=?", trgt).references(:target_muscle_groups) unless trgt.blank? || trgt.nil? }
+	scope :by_email, lambda { |email| joins(:user).where("users.email = ?", email).references(:users) unless email.blank? || email.nil? }
 	# scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
@@ -53,6 +54,42 @@ class Move < ActiveRecord::Base
 		self.status = STATUS[4]
 		self.move_type = Move::TYPE[1]
 		self.save
+	end
+
+	def self.approve_status_by_admin(params, history)
+		if params[:type] == TYPE[2]
+			move = Workout.find_by_id(params[:id])
+			history.workout_id = move.id
+		else
+			move = Move.find_by_id(params[:id])
+			update_approval_date(params[:status], move)
+			history.move_id = move.id
+		end
+		update_status(params[:status], move, history)
+	end
+
+	def self.update_status(status, move, history)
+		history.status = status
+		move.status = status
+		if move.status == STATUS[2]
+			move.date_submitted_for_approval = move.updated_at
+		end
+		history.save
+		move.save
+	end
+
+	def self.update_approval_date(status, move)
+		if status == STATUS[0]
+			move.date_of_approval = DateTime.now
+			add_to_recently_added_list(move)
+		end
+	end
+
+	def self.add_to_recently_added_list(move)
+		market_list = MarketplaceList.find_by_title("Recently Added")
+		if market_list.present?
+			MarketplaceMove.create(move_id: move.id, marketplace_list_id: market_list.id)
+		end
 	end
 
 	# def previous_post
@@ -90,7 +127,7 @@ class Move < ActiveRecord::Base
 		if params[:type] == TYPE[2] 
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
 		elsif params[:type] == TYPE[1]
-			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable)
+			list = Move.by_name(params[:title]).by_status(params[:status]).by_user(user).by_email(params[:email]).where(enable: enable)
 		else
 			list = Workout.by_name(params[:title]).by_status(params[:status]).by_user(user).where(state: :completed, enable: enable)
 			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable).all

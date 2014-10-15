@@ -9,11 +9,16 @@
         <td><%= text_field_tag :title,"",class: "form-control input-wid usr_flter" %></td>
       </tr>
       <tr>
+        <th>User Email</th>
+        <td><%= text_field_tag :email,"",class: "form-control input-wid usr_flter" %></td>
+      </tr>
+      <tr>
         <th>Status</th>
         <td><%= select_tag :status, options_for_select(Move::STATUS), prompt: "Select Status", class: "form-control input-wid usr_flter" %></td>
           </tr>
         <%= hidden_field_tag :sorted_by, 'updated_at'%>
         <%= hidden_field_tag :type, model_type%>
+        <%= hidden_field_tag :order, 'DESC', class: "hidden_order"%>
       <tr>
         <th colspan="2"><%= submit_tag "Search", class: "btn btn-primary submit_form" %></th>
       </tr>

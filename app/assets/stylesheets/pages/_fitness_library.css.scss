@@ -933,6 +933,17 @@ a.cancel_btn {
             color: $silver51;
             @include gotham300();
         }
+
+        input[type="file"].filed_ml61{
+            margin-bottom: 9px; margin-left: 61px;
+        }
+        
+        .uplod_lft_btn{
+            margin-left: 61px;
+        }
+    }
+    .uploading_report{
+        margin: 57px;
     }
 }
 
