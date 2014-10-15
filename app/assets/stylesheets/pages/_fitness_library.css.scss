@@ -541,6 +541,7 @@ ul.exer_list_view li span.tx_rht.heading_txt{
     .title_col > div > img.list_view_img.move {
         float: left;
     }
+
     // Workout Cover Art Image
     .title_col > div > img.list_view_img.wrk {
         display: block;
@@ -1079,54 +1080,87 @@ input#library_video_video {
     &:hover { color:#000 }
 }
 
-.thumbnail_col ul{
-    list-style: none;
-    margin: 0 0 2px;
-    float: left;
-    width: 100%;
-    padding: 0px;
-}
 
-.thumbnail_col ul li{
-    width: 176px;
-    float: left;
+#video-container {
+    background: #000;
+    width: 100%;
     position: relative;
-    display: inline;
-    margin-bottom: 17px;
+    @include clearfix();
+
+    video {
+        //float: left;
+        width: 424px;
+        height: auto;
+        max-height: 240px;
+        object-fit: cover;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+
+        @media (min-width: 1200px) { width: 560px; max-height: 316px; }
+    }
+
 }
+
+
+// Library Video Image Thumbnails
+#video-thumbnails {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include clearfix();
+    position: relative;
+
+    li {
+        height: 76px;
+        width: 135px;
+        float: left;
+        position: relative;
+        display: block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-repeat: no-repeat;
+        @include background-size(cover);
+        background-position: center;
+        background-color: #000;
+        cursor: pointer;
+
+
+        @media (min-width: 1200px) { height: 98px; width: 180px; }
+
+        .video_title {
+            display: none;
+            position: absolute;
+            top: 0;
+            background: rgba(66,139,202,0.7);
+            width: 100%;
+            padding: 5px 2px;
+            text-align: center;
+            color: #fff;
+
+            &.div_blck { display: block; }
+        }
+
+        &:hover > .video_title {display: block;}
+
+        &.hide-thumb { display: none !important;}
+        &:nth-of-type(3n+3) { margin-right: 0px; }
+    }
+}
+
+
 .select_thumb {display: block !important;}
-.thumbnail_col ul li .video_title{
-    display: none;
-    position: absolute;
-    top: 0;
-    background: rgba(66,139,202,0.7);
-    width: 100%;
-    padding: 5px 2px;
-    text-align: center;
-    color: #fff;
-}
-.thumbnail_col ul li .video_title.div_blck{display: block;}
-.thumbnail_col ul li:hover > .video_title{display: block;}
 
-p.load_more {
+// Show more or show less buttons
+p.load-more,
+p.load-less {
     float: left;
     width: 100%;
     text-align: right;
 }
 
-p.load_less{
-    float: left;
-    width: 100%;
-    text-align: right;
-    display: none;
-}
+p.load-less { display: none; }
 
-.thumbnail_col ul li.margn45{margin:0px 16px;}
-.thumbnail_col ul li img{width:100%; height:auto;}
-
-// Library Image Thumbnails
-.li_class { cursor: pointer; }
-.image_hide { display:none !important;}
 
 
 // Make a play icon for the video
