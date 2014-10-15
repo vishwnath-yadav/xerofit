@@ -55,6 +55,42 @@ class Move < ActiveRecord::Base
 		self.save
 	end
 
+	def self.approve_status_by_admin(params, history)
+		if params[:type] == TYPE[2]
+			move = Workout.find_by_id(params[:id])
+			history.workout_id = move.id
+		else
+			move = Move.find_by_id(params[:id])
+			update_approval_date(params[:status], move)
+			history.move_id = move.id
+		end
+		update_status(params[:status], move, history)
+	end
+
+	def self.update_status(status, move, history)
+		history.status = status
+		move.status = status
+		if move.status == STATUS[2]
+			move.date_submitted_for_approval = move.updated_at
+		end
+		history.save
+		move.save
+	end
+
+	def self.update_approval_date(status, move)
+		if status == STATUS[0]
+			move.date_of_approval = DateTime.now
+			add_to_recently_added_list(move)
+		end
+	end
+
+	def self.add_to_recently_added_list(move)
+		market_list = MarketplaceList.find_by_title("Recently Added")
+		if market_list.present?
+			MarketplaceMove.create(move_id: move.id, marketplace_list_id: market_list.id)
+		end
+	end
+
 	# def previous_post
 	#   self.class.first(:conditions => ["id < ? and user_id = ?", id, self.user_id], :order => "id desc")
 	# end
