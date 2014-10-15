@@ -1,18 +1,6 @@
 <% if @move.present? %>
   <div class="control_bar">
-    <div class="container-fluid">
-      <div class="control_bar_wrap">
-        <div class="prev_lib_col control_bar_links">
-          <%= link_to "Discover Home", :back, :class => 'cb_breadcrumb' %>
-        </div>
-        <div id="discover-control-bar" class="control_bar_context">
-          <div class="header-title-wrap">
-            <img src="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" />
-            <h4><%= @move.title.titleize %></h4>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%=render "move_details_head_container"%>
   </div>
 
   <header id="discover-video-header">
@@ -20,96 +8,19 @@
   </header>
 
   <section class="video-player">
-    <div class="container-fluid">
-        <video id="move_video" data-attr="move_<%= @move.id %>" width="854" height="480" controls poster="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>">
-            <source src="<%= @move.library_video.panda_mp4_hd_url %>" type="video/mp4">
-            <source src="<%= @move.library_video.panda_mp4_url %>" type="video/mp4">
-            <source src="<%= @move.library_video.panda_ogg_hd_url %>" type="video/ogg">
-            <source src="<%= @move.library_video.panda_ogg_url %>" type="video/ogg">
-        </video>
-    </div>
+    <%=render "move_details_video_container"%>
   </section>
   <div class="video_info_id">
   </div>
-
 
   <section class="video-details">
     <div class="container">
       <div class="row">
         <div class="col-sm-8">
-
-          <div class="move-attribution">
-            <%= image_tag @move.user.pic.present? ? @move.user.pic.url(:medium) : "/assets/profile_img.jpg", class: "img_user trainer-avatar"%>
-            <div class="video-title">
-                <h3><%= @move.title.titleize %></h3>
-                <span>By <%= @move.user.fullname.humanize.titleize %></span>
-            </div>
-          </div>
-
-          <aside class="move-basic-info">
-            <h4 class="section-title">Basic Info</h4>
-            <ul>
-              <li>
-                <label>Directions</label>
-                <p><%= @move.directions %></p>
-              </li>
-
-              <% if @move.help.present? %>
-                <li>
-                    <label>Helpful tips and Tricks</label>
-                    <p><%= @move.help %></p>
-                </li>
-              <% end %>
-              <% if @move.work.present? %>
-                <li>
-                  <label>Why it works</label>
-                  <p><%= @move.work %></p>
-                </li>
-              <% end %>
-            </ul>
-          </aside>
+          <%=render "move_details_left_container"%>                  
         </div>
-
         <div class="col-sm-4">
-          <h4 class="section-title">Additional Details</h4>
-
-          <aside class="move-details">
-            <ul>
-              <li>
-                <label>Category</label>
-                <p><%= @move.category %></p>
-              </li>
-
-              <li>
-                <label>Difficulty</label>
-                <p><%= @move.difficulty %></p>
-              </li>
-
-              <li>
-                <label>Date Added</label>
-                <% if @move.date_of_approval.present? %>
-                  <p><%= @move.date_of_approval.strftime("%m/%d/%y %I:%M") %><p>
-                <% else %>
-                  <p><%= @move.updated_at.strftime("%m/%d/%y %I:%M") %><p>
-                <% end %>
-              </li>
-
-              <% target_muscle = @move.target_muscle_groups.map{|m| [m.target_muscle_group + "-" + m.sub_target_muscle_group]}.flatten - ["","-",nil]%>
-              <% if target_muscle.present? %>
-                <li>
-                  <label>Target Muscles</label>
-                  <p><%= target_muscle.join(', ') %></p>
-                </li>
-              <% end %>
-
-              <% if @move.equipment.present? %>
-                <li>
-                  <label>Equipment</label>
-                  <p><%= @move.equipment.join(', ') %></p>
-                </li>
-              <% end %>
-            </ul>
-          </aside>
+          <%=render "move_details_right_container"%>          
         </div>
       </div>
     </div>
@@ -118,47 +29,5 @@
 
 
 <script type="text/javascript">
-  var flag = 0;
-  var myVideo = document.getElementById("move_video");
-  var data = $('#move_video').attr('data-attr');
-  var data_id = data.split("_")[1];
-
-  window.addEventListener("keypress", function (evt) {
-      var SPACEBAR = 32;
-      if (evt.which === SPACEBAR) {
-          playPause();
-          evt.preventDefault();
-      }
-  });
-
-  myVideo.addEventListener("play", function () {
-    console.log("video is play");
-    if(flag == 0){
-      url = '/discover/discover_video_info';
-      $.get(url, {move_id:data_id}, function (data) {
-      });
-      flag = 1;   
-    }
-  }, false);
-
-  myVideo.addEventListener("ended", function () {
-    if(flag == 1){
-      console.log("video is completed");
-      var video_info_id = $('#move_video_info').val();
-      url = '/discover/discover_video_info';
-      $.get(url, {move_id:data_id,video_id:video_info_id}, function (data) {
-      });
-      flag = 0; 
-    }
-  }, false);
-
-  function playPause()
-  { 
-  if (myVideo.paused){
-    myVideo.play(); 
-  }
-  else{
-    myVideo.pause(); 
-  } 
-  } 
+  initialize_video_events();
 </script>

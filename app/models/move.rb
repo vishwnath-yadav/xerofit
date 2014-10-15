@@ -63,6 +63,14 @@ class Move < ActiveRecord::Base
 	#   self.class.first(:conditions => ["id > ? and user_id = ?", id,self.user_id], :order => "id asc")
 	# end
 
+	def panda_id
+	    self.library_video.panda_video_id rescue 'N/A'
+    end
+
+    def formated_user_name
+    	self.user.fullname.humanize.titleize rescue 'N/A'
+    end
+
 
 	def self.get_library_list(params,cur_user,param_user_id)
 		if cur_user.admin? && param_user_id.present?

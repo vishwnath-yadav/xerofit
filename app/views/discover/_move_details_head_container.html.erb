@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="control_bar_wrap">
+    <div class="prev_lib_col control_bar_links">
+      <%= link_to "Discover Home", :back, :class => 'cb_breadcrumb' %>
+    </div>
+    <div id="discover-control-bar" class="control_bar_context">
+      <div class="header-title-wrap">
+        <img src="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" />
+        <h4><%= @move.title.titleize %></h4>
+      </div>
+    </div>
+  </div>
+</div>
