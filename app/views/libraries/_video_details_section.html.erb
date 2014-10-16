@@ -1,36 +1,38 @@
 <div class="col-sm-12">
   <h3 class="lib_section_title">Video Details</h3>
 </div>
-
-<div class="col-sm-6">
-    <h5 class="input_label">Video File</h5>
-  <%if @move.library_video.present? && @move.library_video.panda_mp4.present?%>
-    <%if @move.library_video.panda_mp4_url.present? %>
-      <div id="video-container">
-        <video id="move_video" controls poster="<%= @move.library_video.video_image %>">
-          <source src="<%= @move.library_video.panda_mp4_hd_url %>" type="video/mp4">
-          <source src="<%= @move.library_video.panda_mp4_url %>" type="video/mp4">
-          <source src="<%= @move.library_video.panda_ogg_hd_url %>" type="video/ogg">
-          <source src="<%= @move.library_video.panda_ogg_url %>" type="video/ogg">
-        </video>
-        <div class="video-poster-play">
-          <div class="play-button"></div>
+<%if @move.library_video.present? && @move.library_video.panda_mp4.present? && @move.library_video.panda_mp4_url.present? && @move.library_video.screenshots.present?%>
+  <div class="col-sm-6">
+      <h5 class="input_label">Video File</h5>
+        <div id="video-container">
+          <video id="move_video" controls poster="<%= @move.library_video.video_image %>">
+            <source src="<%= @move.library_video.panda_mp4_hd_url %>" type="video/mp4">
+            <source src="<%= @move.library_video.panda_mp4_url %>" type="video/mp4">
+            <source src="<%= @move.library_video.panda_ogg_hd_url %>" type="video/ogg">
+            <source src="<%= @move.library_video.panda_ogg_url %>" type="video/ogg">
+          </video>
+          <div class="video-poster-play">
+            <div class="play-button"></div>
+          </div>
         </div>
-      </div>
+  </div>
 
-    <%else%>
-      <div class="no_video">
-        <span>Your video file is currently being processed.</span>
-      </div>
-    <%end%>
-  <%end%>
-</div>
-
-<div class="col-sm-6 thumbnail_col">
-  <h5 class="input_label">Video Thumbnail</h5>
-  <%= render 'thumbnail', disabled: disabled %>
-</div>
-
+  <div class="col-sm-6 thumbnail_col">
+    <h5 class="input_label">Video Thumbnail</h5>
+    <%= render 'thumbnail', disabled: disabled %>
+  </div>
+<% else %>
+  <div class="col-sm-6">
+    <h5 class="input_label">Video File</h5>
+    <div class="no_video">
+      <span>Your video file is currently being processed.</span>
+    </div>
+  </div>
+  <div class="col-sm-6 thumbnail_col">
+    <h5 class="input_label">Video Thumbnail</h5>
+    <p class="input_sub_text">Thumbnail selections will appear when the video has finished processing.</p>
+  </div>
+<% end %>
 <script>
 function toggleVideoControls() {
   var video = document.getElementsByTagName("video")[0];
