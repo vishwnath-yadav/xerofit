@@ -1,0 +1,30 @@
+<%= form_tag('/admin/discover/update_categories_list', method: :put) do |f| %>
+	<%= hidden_field_tag :list_type, list_type %>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Category ID</th>
+			<th>Category Name</th>
+			<th>Total # of Moves</th>
+			<th>Status</th>
+		</tr>
+		<% if list.present? %>
+			<% list.each do |active|%>
+				<tr>
+					<td><%= active.id %></td>
+					<td><%= active.name %></td>
+					<td><%= Move.category_moves_count(active.name) %></td>
+					<%= fields_for "#{type}[]", active do |f| %> 
+	 					<td><%= f.select :status, [['active',true],['inactive', false]] %></td>
+	 				<% end %>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr>
+				<td colspan='6'>No Active list is available</td>
+			</tr>
+		<% end %>
+	</table>
+	<div style="float:right;">
+		<%= submit_tag "save" %>
+	</div>
+<% end %>

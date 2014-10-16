@@ -8,6 +8,7 @@ class Move < ActiveRecord::Base
 	has_one :library_video
 	has_one :move_detail
 	has_many :video_infos
+	has_many :categories
 	has_many :move_blocks
 	has_many :histories
 	has_many :blocks, through: :move_blocks
@@ -316,6 +317,7 @@ class Move < ActiveRecord::Base
 		end
     end
 
+
     def video_encoding_process
     	begin
     		 self.library_video.panda_video.encodings.map(&:status).include? "processing" 
@@ -324,4 +326,7 @@ class Move < ActiveRecord::Base
     	end
     end
 
+    def self.category_moves_count category_name
+    	self.where(category: category_name, status: "Approved and Active").count
+    end
 end

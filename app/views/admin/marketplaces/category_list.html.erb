@@ -1,0 +1,19 @@
+<%= render 'marketplace_tabs' %>
+<div class="col-md-12">
+	<h2>Active Categories</h2>
+	<%=render "category_listing", list: @active_list, type: 'active_list', list_type: 'active' %>
+</div>
+
+<div class="col-md-12">
+	<h2>InActive Categories</h2>
+	<%=render "category_listing", list: @inactive_list, type: 'inactive_list', list_type: 'Inactive'%>
+</div>
+
+
+
+<script>
+ $('.admin_li').removeClass('active')
+ $('.admin_li.discover').addClass('active');
+ $('.discover_li').removeClass('active');
+  $('.discover_li.categories').addClass('active');
+</script>

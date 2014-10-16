@@ -37,6 +37,22 @@ class Admin::MarketplacesController < ApplicationController
 		@moves_list = Move.includes(:marketplace_lists).where(status: Move::STATUS[0]).order('updated_at desc')
 	end
 
+	def category_list
+		@active_list = Category.where(status: true)
+		@inactive_list = Category.where(status: false)
+	end
+
+	def update_categories_list
+		if params[:list_type].present?
+			if params[:list_type] == 'active'
+				Category.update(params[:active_list].keys, params[:active_list].values)
+			else
+				Category.update(params[:inactive_list].keys, params[:inactive_list].values)
+			end
+		end
+		redirect_to category_list_admin_marketplaces_path
+	end
+
 	def fetch_active_list
 		@move = Move.find_by_id(params[:id])
 		@active_marketplace_list = MarketplaceList.where(status: true)

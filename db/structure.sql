@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -102,6 +101,38 @@ CREATE SEQUENCE blocks_id_seq
 --
 
 ALTER SEQUENCE blocks_id_seq OWNED BY blocks.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255),
+    status boolean DEFAULT true,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
@@ -662,8 +693,7 @@ CREATE TABLE workouts (
     move_type character varying(255),
     date_submitted_for_approval timestamp without time zone,
     enable boolean DEFAULT true,
-    number_of_moves integer DEFAULT 0,
-    sort_index integer
+    number_of_moves integer DEFAULT 0
 );
 
 
@@ -698,6 +728,13 @@ ALTER TABLE ONLY addresses ALTER COLUMN id SET DEFAULT nextval('addresses_id_seq
 --
 
 ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
@@ -819,6 +856,14 @@ ALTER TABLE ONLY addresses
 
 ALTER TABLE ONLY blocks
     ADD CONSTRAINT blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -1074,8 +1119,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140920074532');
 
 INSERT INTO schema_migrations (version) VALUES ('20140926055644');
 
-INSERT INTO schema_migrations (version) VALUES ('20140926164951');
-
 INSERT INTO schema_migrations (version) VALUES ('20140926164952');
 
 INSERT INTO schema_migrations (version) VALUES ('20141007095738');
@@ -1089,3 +1132,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141010120250');
 INSERT INTO schema_migrations (version) VALUES ('20141013125534');
 
 INSERT INTO schema_migrations (version) VALUES ('20141014070647');
+
+INSERT INTO schema_migrations (version) VALUES ('20141016051343');
