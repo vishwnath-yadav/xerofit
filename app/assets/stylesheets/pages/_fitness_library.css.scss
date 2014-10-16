@@ -129,6 +129,22 @@ input.search_bar {
     &:hover {cursor: pointer;}
 }
 
+.search_bar_clear2:before {
+    content: '';
+    background: url(/assets/search_bar_clear_icon.png);
+    background-repeat: no-repeat;
+    @include background-size(contain);
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 11px;
+    top: 7px;
+    cursor: pointer;
+
+    &:hover {cursor: pointer;}
+}
+
 
 // Control Bar Filters
 .select_bar_col {

@@ -35,7 +35,7 @@ class Move < ActiveRecord::Base
 
 	ADMIN_MOVE_FILTER = [["Date Added", "updated_at"],["ID","id"],["Title","title"],["Status","status"],["User Email", "email"]]
 	ADMIN_UNCUT_FILTER = [["Date Added/Uploaded","updated_at"],["ID","id"],["Email","email"]]
-	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","updated_at"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
+	ADMIN_APPROVE_FILTER = [["Date Submitted for Approval","date_submitted_for_approval"],["ID","id"],["Title","title"],["Content Type","move_type"],["Status","status"],["Email","email"]]
 	ADMIN_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Title","title"],["Email","email"],["Content Type","move_type"]]
 	ADMIN_UNCUT_TRASH_FILTER = [["Date Trashed","updated_at"],["ID","id"],["Email","email"]]
 	ADMIN_STATISTICS = ['Trainer Count','Total number of moves','Average number of moves per trainer','Number of moves by Approved and Active','Number of moves by Needs Attention','Number of moves by Waiting for Approval','Number of moves by Ready to Submit','Number of moves by Saved as Draft','Number of total workouts','Average number of workouts per trainer','Number of workouts by Approved and Active','Number of workouts by Needs Attention','Number of workouts by Waiting for Approval','Number of workouts by Ready to Submit','Number of workouts by Saved as Draft']
@@ -134,6 +134,7 @@ class Move < ActiveRecord::Base
 			list << Move.by_name(params[:title]).by_status(params[:status]).by_user(user).where(enable: enable).all
 			list = list.flatten
 		end
+
 		if sort == "updated_at" || sort == "date_submitted_for_approval" || sort == "id"
 			list = order == "ASC" && list.size > 0 ? list.sort_by(&"#{sort}".to_sym) : list.sort_by(&"#{sort}".to_sym).reverse
 		elsif sort == "email"

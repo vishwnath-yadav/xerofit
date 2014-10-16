@@ -168,6 +168,7 @@ function loadMarketplaceCarousel (listName) {
 }
 
 function playPause(){ 
+  var myVideo = document.getElementById("move_video");
   if (myVideo.paused){
     myVideo.play(); 
   }

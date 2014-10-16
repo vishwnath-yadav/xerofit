@@ -152,7 +152,7 @@ class Admin::MovesController < Admin::AdminController
 	end
 
 	def approve_filter
-		parm = params.merge({status: Move::STATUS[2], sorted_by: "date_submitted_for_approval"}) 
+		parm = params.merge({status: Move::STATUS[2]}) 
 		@moves = Move.get_library_list(parm,current_user,'')
 	end
 
