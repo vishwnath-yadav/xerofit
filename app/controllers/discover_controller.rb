@@ -1,18 +1,17 @@
 class DiscoverController < ApplicationController
 	autocomplete :move, :title
-	# add_breadcrumb " Discover Home", :discover_path
 
 	def home
 		@sort_array = Move::CATEGORIES
 		@marketplaceList = MarketplaceList.where(status: true).order('list_order asc')
+		# if @marketplaceList.present?
+			#@moves = @marketplaceList.moves
+		# end
 	end
 
 	def Lists_move
 		@sort_array = Move::CATEGORIES
 		@discovered_moves = MarketplaceList.find_by_title(params[:name]).moves.page(params[:page]).per(25)
-		if @discovered_moves.present? 
-			add_breadcrumb params[:name], "/discover/#{params[:name]}"
-		end	
 	end
 
 	def search_in_discover_data
@@ -21,8 +20,10 @@ class DiscoverController < ApplicationController
 	end
 
 	def search_for_discover_home
-		@moves = Move.by_category(params[:category]).where(status: Move::STATUS[0])
 		@marketplaceList = MarketplaceList.where(status: true).order('list_order asc')
+		# if @marketplaceList.present?
+		# 	@moves = @marketplaceList.moves.by_category(params[:category]).where(status: Move::STATUS[0])
+		# end
 	end
 
 	def discover_details

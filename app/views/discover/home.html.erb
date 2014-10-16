@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <div class="control_bar_wrap">
       <%= render "search_for_discover_home" %>
-      <h4><%#= link_to "Browse All", discover_path %></h4>
     </div>
   </div>
 </div>
@@ -12,9 +11,7 @@
     <div class="page_content">
         <div class="container">
             <div class="row discover_home">
-                <% if @marketplaceList.present? %>
-                    <%= render "discover_lists" %>
-                <% end %>
+              <%= render "discover_lists" %>
             </div>
         </div>
     </div>

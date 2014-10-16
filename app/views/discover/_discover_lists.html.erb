@@ -1,24 +1,26 @@
-<% @marketplaceList.each do |list| %>
-    <section class="discover-gallery">
+<% if @marketplaceList.present? %>
+    <% @marketplaceList.each do |list| %>
+        <section class="discover-gallery">
 
-        <div class="list-heading">
-            <h3><%= list.title.humanize.titleize %></h3>
-            <%= link_to "See more", "/discover/#{list.title}" %>
-        </div>
-        <div class="discover-list xfit-gallery owl-carousel">
-            <% list.moves.each_with_index do |mov, index| %>
-                <% unless index > 19%>
-                    <a href="<%= params[:user].blank? ? discover_details_path(mov) : discover_details_path(mov, user: params[:user]) %>" data-no-turbolink="true" class="list-item">
-                        <figure class="list-item-img" style="background-image: url(<%= mov.library_video.image %>);"></figure>
+            <div class="list-heading">
+                <h3><%= list.title.humanize.titleize %></h3>
+                <%= link_to "See more", "/discover/#{list.title}" %>
+            </div>
+            <div class="discover-list xfit-gallery owl-carousel">
+                <% list.moves.each_with_index do |mov, index| %>
+                    <% unless index > 19%>
+                        <a href="<%= params[:user].blank? ? discover_details_path(mov) : discover_details_path(mov, user: params[:user]) %>" data-no-turbolink="true" class="list-item">
+                            <figure class="list-item-img" style="background-image: url(<%= mov.library_video.image %>);"></figure>
 
-                        <h5><%= truncate(mov.title, :length => 26, :seperator => ' ...') %></h5>
-                        <span><%= mov.user.fullname %></span>
-                    </a>
+                            <h5><%= truncate(mov.title, :length => 26, :seperator => ' ...') %></h5>
+                            <span><%= mov.user.fullname %></span>
+                        </a>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </div>
+            </div>
 
-    </section>
+        </section>
+    <% end %>
 <% end %>
 
 
