@@ -184,7 +184,10 @@ class Move < ActiveRecord::Base
 			end
 			size1 = size
 		end
-		size1.size > 9 ? size1.pop() : size1
+		length = (size1.size) - 9
+		(1..length).each do |s|
+			size1.pop()
+		end
 		return size1
 	end
 

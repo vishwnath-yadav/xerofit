@@ -14,6 +14,7 @@ development:
     bucket: 'xerofit-development'
     access_key_id: 'AKIAJQO4FI77C73MNHRA'
     secret_access_key: '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'
+    URL: 'http://xerofit-development.s3.amazonaws.com/'
 
 test:
   <<: *defaults
@@ -31,3 +32,4 @@ production:
     bucket: 'xerofit-production'
     access_key_id: 'AKIAJQO4FI77C73MNHRA'
     secret_access_key: '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'
+    URL: 'http://xerofit-production.s3.amazonaws.com/'

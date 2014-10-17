@@ -44,11 +44,16 @@ class LibraryVideo < ActiveRecord::Base
   end
 
   def first_screenshot
-    self.panda_thumbnail.screenshots[0] rescue ''
+    url = Settings.aws.URL + self.panda_thumbnail.files[0] 
+    return url 
   end
 
   def screenshots
-    self.panda_thumbnail.screenshots rescue []
+    arr = []
+    self.panda_thumbnail.files.each do |url|
+      arr << Settings.aws.URL + url
+    end
+    return arr 
   end
 
   def video_image
