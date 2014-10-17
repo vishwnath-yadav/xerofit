@@ -430,30 +430,6 @@ input.search_bar {
 
         @media (min-width: 1200px) { height: 140px; }
     }
-
-    h5 {
-        margin: 0;
-        @include gotham500();
-        color: $silver16;
-        font-size: 15px;
-        line-height: 18px;
-        width: 100%;
-        @include text-overflow();
-    }
-
-    span {
-        margin-top: 2px;
-        display: block;
-        color: $silver51;
-        font-size: 11px;
-        line-height: 14px;
-        @include gotham300();
-
-        >img {
-            height: 14px !important;
-            width: 14px !important;
-        }
-    }
 }
 
 
