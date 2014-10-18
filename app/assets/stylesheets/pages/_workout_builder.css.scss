@@ -817,7 +817,7 @@
         margin-top: -14px;
         color: #CCC;
 
-        // [icon] circle-close-
+        // [icon] circle-close-line
         &:before {
             @include xerofit-icon();
             font-size: 20px;
@@ -831,6 +831,7 @@
             cursor: pointer !important;
             color: $silver51 !important;
 
+            // [icon] circle-close-fill
             &:before { content: "\e62a"}
         }
     }
