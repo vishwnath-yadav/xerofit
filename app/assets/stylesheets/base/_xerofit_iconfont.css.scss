@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'xerofit-icons';
-    src: font-url('xerofit-icons.eot?-hn9mnr');
-    src: font-url('xerofit-icons.eot?#iefix-hn9mnr') format('embedded-opentype'),
-         font-url('xerofit-icons.woff?-hn9mnr') format('woff'),
-         font-url('xerofit-icons.ttf?-hn9mnr') format('truetype'),
-         font-url('xerofit-icons.svg?-hn9mnr#xerofit-icons') format('svg');
+    src: font-url('xerofit-icons.eot?-3mkjhh');
+    src: font-url('xerofit-icons.eot?#iefix-3mkjhh') format('embedded-opentype'),
+         font-url('xerofit-icons.woff?-3mkjhh') format('woff'),
+         font-url('xerofit-icons.ttf?-3mkjhh') format('truetype'),
+         font-url('xerofit-icons.svg?-3mkjhh#xerofit-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,6 +23,16 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+
+.xico-circle-close-empty:before {
+    content: "\e629";
+}
+.xico-circle-close-fill:before {
+    content: "\e62a";
+}
+.xico-circle-close-line:before {
+    content: "\e62b";
+}
 .xico-chevron-down-thick:before {
     content: "\e621";
 }
