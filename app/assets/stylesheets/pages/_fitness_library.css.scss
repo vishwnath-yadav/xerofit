@@ -337,7 +337,6 @@ input.search_bar {
         margin-right: 0;
     }
 
-
     li.border_left { border-left: 0px; }
     li.border_right { border-right: 0px; }
     li.first_row { border-top: 0px; }
@@ -361,6 +360,8 @@ input.search_bar {
             margin-top: 16px;
             margin-bottom: 8px;
             padding: 0px 14px;
+            @include text-overflow();
+            width: 100%;
         }
 
         img { height: 140px; }
@@ -403,7 +404,33 @@ input.search_bar {
 .library_col ul li.wdth_img > img { width: 100% !important}
 
 
+.grid_block {
+    .workout-img {
+        width: auto;
+        height: 98px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 14px;
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
 
+        @media (min-width: 1200px) { height: 140px; }
+    }
+
+    .move-img {
+        width: 100%;
+        height: 98px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 14px;
+        background-repeat: no-repeat;
+        @include background-size(cover);
+        background-position: center;
+
+        @media (min-width: 1200px) { height: 140px; }
+    }
+}
 
 
 
