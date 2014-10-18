@@ -108,4 +108,9 @@ $(document).ready(function(){
     $('#add_move_to_list').submit();
   });
 
+  $(document).on('click','.close_model',function(){
+    $('.mail_subject').val('');
+    $('.mail_message').val('');
+  })
+
 })

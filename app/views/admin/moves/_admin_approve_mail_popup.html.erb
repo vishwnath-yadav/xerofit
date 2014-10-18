@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close close_model" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Email Send Box</h4>
       </div>
     <%= form_tag('/admin/moves/admin_approve_workout_mail', remote: true, id: 'approve_popup') do |f| %>
@@ -10,13 +10,12 @@
       <%= hidden_field_tag :id, '', class: "admin_umcut_mail" %>
     	<%= hidden_field_tag :type, '', class: "admin_move_type" %>
     	<label>Subject</label>
-	    <%= text_field_tag :subject,"",class: "form-control input-wid usr_flter" %>
+	    <%= text_field_tag :subject,"",class: "form-control input-wid usr_flter mail_subject" %>
     	<label>Message</label>
-    	<%= text_area_tag :message,"",class: "form-control input-wid usr_flter ckeditor" %>
-	  	<%#=button_tag "Send", class: 'btn btn-primary send_mail'%>
+    	<%= text_area_tag :message,"",class: "form-control input-wid usr_flter ckeditor mail_message" %>
       </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    <button type="button" class="btn btn-default close_model" data-dismiss="modal">Close</button>
 	    <button type="button" class="btn btn-primary approve_mail">Send Email</button>
 	      </div>
 	<%end%>
