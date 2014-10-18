@@ -1,22 +1,30 @@
-<%= form_tag(search_in_discover_data_discover_index_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
-    <h4><%= link_to "Browse All", discover_path %></h4>
+<div class="control_bar_links">
+    <h4><%= link_to "Browse All", discover_path, :class=>'cb_breadcrumb' %></h4>
+</div>
 
-    <div class="search_bar_col">
-        <%= autocomplete_field_tag 'title', '', autocomplete_move_title_discover_index_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_approve_move" %>
-        <!-- <input type="button" id="lib_name_for_search"> -->
-        <div class="search_bar_icon"></div>
-        <div class="search_bar_clear1 hide"></div>
-    </div>
-    <%= hidden_field_tag :name, params[:name] %>
+<div class="control_bar_context">
+    <h4 class="title">List Title</h4>
 
-    <div class="select_bar_col">
-        <span class="custom_select type_select">
-            <%= select_tag :target_muscle_group, options_for_select(TargetMuscleGroup::TARGET_FOR_SEARCH), prompt: "select Target Muscle", class: "form-control select_target_muscle_group" %>
-        </span>
-    </div>
-    <div class="select_bar_col">
-        <span class="custom_select type_select">
-            <%= select_tag :category, options_for_select(@sort_array), prompt: "select category", class: "form-control select_category" %>
-        </span>
-    </div>
-<% end %>
+    <%= form_tag(search_in_discover_data_discover_index_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
+
+
+        <div class="search_bar_col">
+            <%= autocomplete_field_tag 'title', '', autocomplete_move_title_discover_index_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search_approve_move" %>
+            <!-- <input type="button" id="lib_name_for_search"> -->
+            <div class="search_bar_icon"></div>
+            <div class="search_bar_clear1 hide"></div>
+        </div>
+        <%= hidden_field_tag :name, params[:name] %>
+
+        <div class="select_bar_col">
+            <span class="custom_select type_select">
+                <%= select_tag :target_muscle_group, options_for_select(TargetMuscleGroup::TARGET_FOR_SEARCH), prompt: "select Target Muscle", class: "form-control select_target_muscle_group" %>
+            </span>
+        </div>
+        <div class="select_bar_col">
+            <span class="custom_select type_select">
+                <%= select_tag :category, options_for_select(@sort_array), prompt: "select category", class: "form-control select_category" %>
+            </span>
+        </div>
+    <% end %>
+</div>

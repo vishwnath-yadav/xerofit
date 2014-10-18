@@ -27,12 +27,12 @@ class DiscoverController < ApplicationController
 
 	def discover_details
 		@move = Move.find(params[:id])
-		previous_request = request.referer || discover_path		
+		previous_request = request.referer || discover_path
         title = ''
 		if previous_request.split("/").length >= 5
-			title = "< #{CGI.unescape(previous_request.split("/").last)}"
+			title = "#{CGI.unescape(previous_request.split("/").last)}"
 		else 
-			title = "< Discover Home"
+			title = "Discover Home"
 		end	
 		add_breadcrumb title, previous_request
 	end

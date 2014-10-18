@@ -127,6 +127,22 @@
 // -------------------------------------------------------------------------- //
 
 
+.discover .discover-cb-links a {
+    float: left;
+
+    &:before {
+        content: '';
+        background: url(/assets/icons/angle_left_blue.png);
+        background-repeat: no-repeat;
+        @include background-size(contain);
+        background-position: center;
+        display: block;
+        width: 7px;
+        height: 14px;
+        float: left;
+        margin-right: 7px;
+    }
+}
 
 
 
