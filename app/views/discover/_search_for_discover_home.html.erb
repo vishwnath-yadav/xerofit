@@ -1,5 +1,5 @@
 <%= form_tag(discover_path, remote: true, method: "get", id: "search_for_discover_home") do |f|%>
-    <h4><%= link_to "Browse All", discover_path %></h4>
+    <h4>Browse All</h4>
 
     <div class="search_bar_col">
         <%= autocomplete_field_tag 'title', '', autocomplete_move_title_discover_index_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "discover_home_move_title" %>
@@ -7,7 +7,7 @@
         <div class="search_bar_clear2 hide"></div>
     </div>
 
-    <div class="select_bar_col">
+    <div class="move-filters">
         <span class="custom_select type_select">
             <%= select_tag :category, options_for_select(@sort_array), prompt: "select category", class: "form-control move_category" %>
         </span>
