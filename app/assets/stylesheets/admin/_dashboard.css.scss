@@ -25,6 +25,43 @@
     }
 }
 
+// Add to move to list modal
+#marketplace_move_popup .move_list{
+    position: relative;
+    @include clearfix();
+
+    h4 { margin-top: 0px; margin-bottom: 14px;}
+
+    .active_list,
+    .inactive_list { width: 270px; }
+
+    .active_list { float: left; }
+    .inactive_list { float: right; }
+
+    input {
+        width: 14px;
+        height: 14px;
+        float: left;
+        margin: 0;
+    }
+
+    label {
+        float: left;
+        width: 250px;
+        margin: 0;
+        margin-left: 6px;
+        margin-bottom: 14px;
+        line-height: 14px;
+        @include gotham500();
+        font-size: 12px;
+        @include user-select(none);
+
+        &:last-of-type {margin-bottom: 0px;}
+    }
+}
+
+
+
 .admin-table {
     font-size: 11px;
     @include gotham-narrow400();

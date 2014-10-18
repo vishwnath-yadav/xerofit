@@ -221,7 +221,7 @@ $(document).ready(function() {
     }
     else if($('.workout-list').find('li.load_lib_detail').length <= 1){
       verify = false;
-      alert("Please create sub blocks with move.");
+      alert("Please make sure all your blocks have moves before saving.");
     }
     else if(check || check1){
       verify = false;
@@ -609,9 +609,9 @@ function load_library_content(lib_detail_id, block_id){
 function check_library_publish(li_size, block_type){
   var alrt = "";
   if((block_type == BLOCK_TYPE[1])&&(li_size<2)){
-    alrt = BLOCK_TYPE[1]+" Block must have exactly 2 libraries.";
+    alrt = BLOCK_TYPE[1]+" block requires a total of 2 moves.";
   }else if((block_type == BLOCK_TYPE[0])&&(li_size<3)){
-    alrt = BLOCK_TYPE[0]+" Block must have minimum 3 library";
+    alrt = BLOCK_TYPE[0]+" block requires at least 3 moves.";
   }
   return alrt;
 }

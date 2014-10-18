@@ -4,14 +4,16 @@
 		<% if @active_marketplace_list.present? %>
 			<div class="move_list">
 				<div class="active_list">
-				   <%= collection_check_boxes(:list_check, :list_ids, @active_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
+					<h4>Active Lists</h4>
+					<%= collection_check_boxes(:list_check, :list_ids, @active_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
 				</div>
 				<div class="inactive_list">
-				   <%= collection_check_boxes(:list_check, :list_ids, @inactive_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
+					<h4>Inactive Lists</h4>
+					<%= collection_check_boxes(:list_check, :list_ids, @inactive_marketplace_list, :id, :title, checked: @marketplace_selected_list )%>
 				</div>
-			</div>			
+			</div>
 		<% else %>
-			<p> No active Move is available.</p>
+			<p>There are no Lists to add moves to. Please create a new list.</p>
 		<% end %>
 	<% end %>
 </div>

@@ -1,17 +1,17 @@
 <div class="col-sm-12">
   <ul class="library_list_view sortable_list">
     <li class="table_header">
-        <span class="title_col column_sort" data-sort="title" data-order="<%=@order%>"><span>Name</span><div></div></span>
-        <span class="type_col">Type</span>
-        <span class="status_col">Status</span>
-        <span class="date_col" >Last Modified<div></div>
+        <span class="title_col move_title_col"><span>Name</span><div></div></span>
+        <span class="directions_col">Directions</span>
+        <span class="category_col">Category</span>
+        <span class="date_col discover">Date Added<div></div>
         </span>
     </li>
     <% if @discovered_moves.present? %>
       <% @discovered_moves.each_with_index do |mov, index| %>
         <li>
           <a href="<%= params[:user].blank? ? discover_details_path(mov) :   discover_details_path(mov, user: params[:user]) %>" title="<%= mov.title %>" data-no-turbolink="true">
-            <span class="title_col">
+            <span class="title_col move_title_col">
               <div>
                 <% if mov.check_thumbnail() %>
                   <img src="<%= mov.library_video.image %>" class="list_view_img move" />
@@ -21,19 +21,16 @@
               </div>
               <span><%= truncate(mov.title, :length => 35, :seperator => ' ...') %></span>
             </span>
-            <span class="type_col"><%= mov.move_type.titleize.singularize %></span>
-            <span class="status_col">
-              <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
-              <span><%= mov.status %></span>
-            </span>
-            <span class="date_col"><%= mov.updated_at.strftime("%B %d, %Y") %></span>
+            <span class="directions_col"><%= truncate(mov.directions, :length => 120, :seperator => ' ...') %></span>
+            <span class="category_col"><%= mov.category %></span>
+            <span class="date_col discover"><%= mov.date_of_approval.strftime("%B %d, %Y") %></span>
           </a>
         </li>
       <% end %>
     </ul>
   <% else %>
     <div class="empty-library">
-      <h3>Your have not any active and approved move!</h3>
+      <h3>There aren't any moves on this list with the selected filters.</h3>
     </div>
   <% end %>
 </div>
