@@ -1,0 +1,33 @@
+<div style="float:right">
+ 	<%= link_to "Add new Account", add_user_in_exempt_list_admin_marketplaces_path, class: "btn btn-primary" %>
+</div>
+
+<div class="col-md-12">
+	<h2>Exempt User Accounts</h2>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>User ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>User Type</th>
+			<th>Actions</th>
+		</tr>
+		<% if @users.present? %>
+			<% @users.each do |user|%>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.first_name %></td>
+					<td><%= user.last_name %></td>
+					<td><%= user.email %></td>
+					<td><%= user.role %></td>
+					<td><%= link_to "remove user", remove_user_in_exempt_list_admin_marketplace_path(user) %></td>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr>
+				<td colspan='6'>No User in Exempt list. </td>
+			</tr>
+		<% end %>
+	</table>
+</div>

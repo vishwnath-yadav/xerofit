@@ -48,6 +48,7 @@ class Move < ActiveRecord::Base
 	scope :by_category, lambda { |cat| where(category: cat) unless cat.blank? || cat.nil? }
 	scope :by_target, lambda { |trgt| includes(:target_muscle_groups).where("target_muscle_groups.target_muscle_group=?", trgt).references(:target_muscle_groups) unless trgt.blank? || trgt.nil? }
 	scope :by_email, lambda { |email| joins(:user).where("users.email = ?", email).references(:users) unless email.blank? || email.nil? }
+	scope :by_exempt, lambda { |exempt| joins(:user).where("users.is_exempt = ?", false).references(:users) unless exempt.blank? || exempt.nil? }
 	# scope :is_full_workout, lambda { |is_full_workout| where(is_full_workout: is_full_workout) if is_full_workout.present? }
 	# scope :admin_full_workout, lambda { |user| where(is_full_workout: false) unless user.blank? || user.nil? || user.admin? }
 
@@ -84,6 +85,9 @@ class Move < ActiveRecord::Base
 			move.date_of_approval = DateTime.now
 			add_to_recently_added_list(move)
 		end
+		if status != STATUS[0] && move.status == STATUS[0]
+			delete_from_marketplace_moves_list(move);
+		end 
 	end
 
 	def self.add_to_recently_added_list(move)
@@ -91,6 +95,10 @@ class Move < ActiveRecord::Base
 		if market_list.present?
 			MarketplaceMove.create(move_id: move.id, marketplace_list_id: market_list.id)
 		end
+	end
+
+	def self.delete_from_marketplace_moves_list move
+		MarketplaceMove.where(move_id: move.id).destroy_all
 	end
 
 	# def previous_post
@@ -331,6 +339,6 @@ class Move < ActiveRecord::Base
     end
 
     def self.category_moves_count category_name
-    	self.where(category: category_name, status: "Approved and Active").count
+    	self.where(category: category_name, status: "Approved and Active").by_exempt("abc").count
     end
 end

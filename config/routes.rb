@@ -69,6 +69,14 @@ Xerofit::Application.routes.draw do
         get :category_list
         put :update_categories_list
         post :add_lists
+
+        get :exempt_users
+        post :add_exempt_user
+        get :add_user_in_exempt_list
+      end
+
+      member do
+        get :remove_user_in_exempt_list
       end
     end
     

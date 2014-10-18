@@ -14,8 +14,8 @@
 				<th>Views</th>
 				<th>Actions</th>
 			</tr>
-			<% if @marketplace.moves.present? %>
-				<%@marketplace.moves.each_with_index do |move, index|%>
+			<% if @moves.present? %>
+				<% @moves.each_with_index do |move, index|%>
 					<tr>
 						<td><%=index + 1%></td>
 						<td><%=move.id%></td>

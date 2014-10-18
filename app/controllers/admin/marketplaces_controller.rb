@@ -11,6 +11,7 @@ class Admin::MarketplacesController < ApplicationController
 
 	def edit
 		@marketplace = MarketplaceList.find(params[:id])
+		@moves = @marketplace.moves.by_exempt("abc")
 	end
 
 	def create
@@ -34,12 +35,32 @@ class Admin::MarketplacesController < ApplicationController
 	end
 
 	def moves_list
-		@moves_list = Move.includes(:marketplace_lists).where(status: Move::STATUS[0]).order('updated_at desc')
+		@moves_list = Move.by_exempt("abc").includes(:marketplace_lists).where(status: Move::STATUS[0]).order('updated_at desc')
 	end
 
 	def category_list
 		@active_list = Category.where(status: true)
 		@inactive_list = Category.where(status: false)
+	end
+
+	def exempt_users
+		@users = User.where(is_exempt: 'true')
+	end
+
+	def add_user_in_exempt_list
+		@users = User.all
+	end
+
+	def add_exempt_user
+		User.update(params[:user].keys, params[:user].values)
+		redirect_to admin_marketplaces_path
+	end
+
+	def remove_user_in_exempt_list
+		user = User.find(params[:id])
+		user.is_exempt = false
+		user.save
+		redirect_to :back, notice: "User Remove from Exempt list successfully."
 	end
 
 	def update_categories_list

@@ -74,8 +74,6 @@ class Admin::MovesController < Admin::AdminController
 			@move = Move.find(params[:id])
 		elsif params[:type] == Move::TYPE[2]
 			@move = Workout.find(params[:id])
-		else
-			@move = FullWorkout.find(params[:id])
 		end
 		@move.enable = false
 		@move.save

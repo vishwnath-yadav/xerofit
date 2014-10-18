@@ -14,7 +14,7 @@
 				<tr>
 					<td><%= active.id %></td>
 					<td><%= active.title %></td>
-					<td><%= active.moves.count %></td>
+					<td><%= active.moves.by_exempt("abc").count %></td>
 					<%= fields_for "#{type}[]", active do |f| %>
 						<td><%= f.select :list_order, (1..list.count).to_a, prompt: "select order"%></td>
 						<td><%= f.select :status, [['active',true],['inactive', false]] %></td>

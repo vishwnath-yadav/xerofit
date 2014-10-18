@@ -1,0 +1,23 @@
+<%= form_tag('/admin/discover/add_exempt_user', method: :post, id: "add_exempt_user_to_list") do |f| %>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>User Email</th>
+      <th>Role</th>
+      <th>Add User to Exempt</th>
+    </tr>
+    <% @users.each do |user|%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.fullname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <%= fields_for "user[]", user do |f| %>
+        <td><%= f.check_box :is_exempt %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "save" %>
+<% end %>
