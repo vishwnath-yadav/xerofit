@@ -5,6 +5,9 @@
                 <div class="workout-title-wrap">
                     <%= render "workout_title_form" %>
                 </div>
+                <% unless @workout.new_record? %>
+                    <%= link_to("View in Fitness Library", params[:user].blank? ? workout_details_path(@workout) : workout_details_path(@workout, user: params[:user]), :class=> 'cb-link') %>
+                <% end %>
             </div>
         </div>
     </div>
@@ -13,11 +16,7 @@
 <div class="details_page_header">
     <div class="container-fluid">
         <div class="header-scroll">
-            <% unless @workout.new_record? %>
-                <%= link_to("Fitness Library", params[:user].blank? ? workout_details_path(@workout) : workout_details_path(@workout, user: params[:user]), :class=> 'cb_breadcrumb') %>
-            <% end %>
             <span class="show-on-scroll"></span>
-
             <div class="editor-buttons">
                 <a id="enter-fullscreen" class="fullscreen-toggle builder-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Fullscreen"></a>
                 <a id="exit-fullscreen" class="fullscreen-toggle builder-tooltip hide" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Exit Fullscreen"></a>

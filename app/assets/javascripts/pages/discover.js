@@ -167,15 +167,15 @@ function loadMarketplaceCarousel (listName) {
   })
 }
 
-function playPause(){ 
+function playPause(){
   var myVideo = document.getElementById("move_video");
   if (myVideo.paused){
-    myVideo.play(); 
+    myVideo.play();
   }
   else{
-    myVideo.pause(); 
-  } 
-} 
+    myVideo.pause();
+  }
+}
 
 function initialize_video_events(){
   var flag = 0;
@@ -196,7 +196,7 @@ function initialize_video_events(){
       url = '/discover/discover_video_info';
       $.get(url, {move_id:data_id}, function (data) {
       });
-      flag = 1;   
+      flag = 1;
     }
   }, false);
 
@@ -206,7 +206,7 @@ function initialize_video_events(){
       url = '/discover/discover_video_info';
       $.get(url, {move_id:data_id,video_id:video_info_id}, function (data) {
       });
-      flag = 0; 
+      flag = 0;
     }
   }, false);
 }

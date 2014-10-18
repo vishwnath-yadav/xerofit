@@ -102,6 +102,13 @@
     .workout-title-input { display: none; }
 }
 
+.workout-builder .control_bar .cb-link {
+    color: $xero-blue;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: none;
+    float: right;
+}
 
 
 // Middle Container for builder header
@@ -810,18 +817,21 @@
         margin-top: -14px;
         color: #CCC;
 
+        // [icon] circle-close-
         &:before {
             @include xerofit-icon();
             font-size: 20px;
             line-height: 28px;
             text-align: center;
             display: none;
-            content: "\e61a";
+            content: "\e62b";
         }
 
         &:hover {
             cursor: pointer !important;
             color: $silver51 !important;
+
+            &:before { content: "\e62a"}
         }
     }
 
