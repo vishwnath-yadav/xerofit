@@ -144,6 +144,60 @@
     }
 }
 
+.discover .control_bar .move-filters {
+    width: auto;
+    float: right;
+    position: relative;
+    @include clearfix();
+
+    span {
+        float: left;
+        display: block;
+        height: 28px;
+
+        select {
+            font-size: 12px;
+            line-height: 14px;
+            height: 28px;
+            background-color: #fff;
+            border: 1px solid $dropdown-borders;
+            color: $silver31;
+            padding: 6px 30px 6px 10px;
+            -webkit-transition: border-color .5s;
+            -moz-transition: border-color .5s;
+            -o-transition: border-color .5s;
+            transition: border-color .5s;
+            position: relative;
+            width: 100% !important;
+            @include border-radius(3px);
+            @include user-select(none);
+
+            &:hover,
+            &:focus { border-color: darken( $dropdown-borders, 5% ); }
+
+            &:after {
+                content: '';
+                background: url(/assets/icons/angle_down.png);
+                background-repeat: no-repeat;
+                @include background-size(contain);
+                display: block;
+                height: 5px;
+                width: 10px;
+                position: absolute;
+                top: 50%;
+                right: 8px;
+                margin-top: -2px;
+            }
+        }
+    }
+
+    .target-muscles { margin-right: 28px; }
+
+    .select_target_muscle_group {}
+
+
+}
+
 
 
 

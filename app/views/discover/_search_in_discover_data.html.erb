@@ -16,14 +16,16 @@
         </div>
         <%= hidden_field_tag :name, params[:name] %>
 
-        <div class="select_bar_col">
-            <span class="custom_select type_select">
-                <%= select_tag :target_muscle_group, options_for_select(TargetMuscleGroup::TARGET_FOR_SEARCH), prompt: "select Target Muscle", class: "form-control select_target_muscle_group" %>
+        <div class="move-filters target-muscles">
+        <!--div class="filter_control_wrap"-->
+
+            <span class="target-muscles">
+                <%= select_tag :target_muscle_group, options_for_select(TargetMuscleGroup::TARGET_FOR_SEARCH), prompt: "All target muscles", class: "select_target_muscle_group" %>
             </span>
-        </div>
-        <div class="select_bar_col">
-            <span class="custom_select type_select">
-                <%= select_tag :category, options_for_select(@sort_array), prompt: "select category", class: "form-control select_category" %>
+
+
+            <span class="">
+                <%= select_tag :category, options_for_select(@sort_array), prompt: "All categories", class: "select_category" %>
             </span>
         </div>
     <% end %>

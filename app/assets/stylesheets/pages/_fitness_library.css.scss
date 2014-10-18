@@ -569,6 +569,11 @@ ul.exer_list_view li span.tx_rht.heading_txt{
     .status_col { width: 20%; }
     .date_col { width: 15%; }
 
+    .title_col.move_title_col { width: 40%; }
+    .directions_col { width: 40%; padding-right: 28px; line-height: 21px; }
+    .category_col { width: 10%; }
+    .date_col.discover { width: 10%; }
+
     .title_col > div {
         float: left;
         width: 70px;
