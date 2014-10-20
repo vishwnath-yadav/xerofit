@@ -57,7 +57,6 @@ Xerofit::Application.routes.draw do
     # get '/uncut_workout', to: 'moves#uncut_workout', as: :uncut_workout
     get '/approval_page', to: 'moves#approval_page', as: :approval_page
     get '/trash_page', to: 'moves#trash_page', as: :trash_page
-    # get '/discover', to: 'marketplaces#admin_discover_page', as: :discover
 
     resources :marketplaces, path: :discover do
       collection do
@@ -66,8 +65,13 @@ Xerofit::Application.routes.draw do
         get :fetch_active_list
         get :delete_move_in_list
         get :delete_list
+
         get :category_list
+        get :new_category
+        post :create_new_category
+        
         put :update_categories_list
+        put :update_list_moves_order
         post :add_lists
 
         get :exempt_users
@@ -77,8 +81,10 @@ Xerofit::Application.routes.draw do
 
       member do
         get :remove_user_in_exempt_list
+        post :update_category
       end
     end
+    get '/discover/:id/edit_category', to: 'marketplaces#new_category', as: :edit_category_page
     
     resources :moves do
       collection do

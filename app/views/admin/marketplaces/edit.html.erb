@@ -4,37 +4,47 @@
 		<%= link_to "Go to list page", admin_marketplaces_path %>
 	</span>
 	<div>
-		<table class="table table-bordered table-striped">
-			<tr>
-				<th>#</th>
-				<th>Move ID</th>
-				<th>Move Name</th>
-				<th>Trainer Name</th>
-				<th>Category</th>
-				<th>Views</th>
-				<th>Actions</th>
-			</tr>
-			<% if @moves.present? %>
-				<% @moves.each_with_index do |move, index|%>
-					<tr>
-						<td><%=index + 1%></td>
-						<td><%=move.id%></td>
-						<td><%=move.title%></td>
-						<td><%=move.user.fullname%></td>
-						<td><%=move.category%></td>
-						<td><%=move.video_infos.count %></td>
-						<td><%= link_to "Delete From List", delete_move_in_list_admin_marketplaces_path(move_id: move.id, market_id: @marketplace.id) %> | <%= link_to "View", discover_details_path(move) %></td>
-					</tr>
-				<%end%>
-			<% else %>
+		<%= form_tag('/admin/discover/update_list_moves_order', method: :put) do |f| %>
+			<table class="table table-bordered table-striped">
 				<tr>
-					<td colspan='7'>
-						No Active list is available
-					</td>
+					<th>#</th>
+					<th>Move ID</th>
+					<th>Move Name</th>
+					<th>Trainer Name</th>
+					<th>Category</th>
+					<th>Views</th>
+					<th>Moves order</th>
+					<th>Actions</th>
 				</tr>
-			<% end %>
-		</table>
-		<%= link_to 'Delete List', delete_list_admin_marketplaces_path(list_id: @marketplace.id) , class: "btn btn-primary"%>
+				<% if @moves.present? %>
+					<% @moves.each_with_index do |move, index|%>
+						<tr>
+							<td><%=index + 1%></td>
+							<td><%=move.id%></td>
+							<td><%=move.title%></td>
+							<td><%=move.user.fullname%></td>
+							<td><%=move.category%></td>
+							<td><%=move.video_analytics.count %></td>
+							<%= fields_for "order[]", move.marketplace_moves.first do |f| %>
+								<td><%= f.select :moves_order, (1..@moves.count).to_a, prompt: "select order"%></td>
+							<% end %>
+							<td><%= link_to "Delete From List", delete_move_in_list_admin_marketplaces_path(move_id: move.id, market_id: @marketplace.id) %> | <%= link_to "View", discover_details_path(move) %></td>
+						</tr>
+					<%end%>
+				<% else %>
+					<tr>
+						<td colspan='7'>
+							No Active list is available
+						</td>
+					</tr>
+				<% end %>
+			</table>
+
+			<div style="float:right;">
+				<%= submit_tag "save" %>
+			</div>
+			<%= link_to 'Delete List', delete_list_admin_marketplaces_path(list_id: @marketplace.id) , class: "btn btn-primary"%>
+		<% end %>
 	</div>
 </div>
 

@@ -318,7 +318,8 @@ CREATE TABLE marketplace_moves (
     marketplace_list_id integer NOT NULL,
     move_id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    moves_order integer
 );
 
 
@@ -478,38 +479,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: statastics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE statastics (
-    id integer NOT NULL,
-    visits integer DEFAULT 0,
-    workout_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: statastics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE statastics_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: statastics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE statastics_id_seq OWNED BY statastics.id;
-
-
---
 -- Name: subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -637,10 +606,10 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: video_infos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: video_analytics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE video_infos (
+CREATE TABLE video_analytics (
     id integer NOT NULL,
     completed_video_views integer DEFAULT 0,
     view_start_time timestamp without time zone,
@@ -654,10 +623,10 @@ CREATE TABLE video_infos (
 
 
 --
--- Name: video_infos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: video_analytics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE video_infos_id_seq
+CREATE SEQUENCE video_analytics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -666,10 +635,10 @@ CREATE SEQUENCE video_infos_id_seq
 
 
 --
--- Name: video_infos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: video_analytics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE video_infos_id_seq OWNED BY video_infos.id;
+ALTER SEQUENCE video_analytics_id_seq OWNED BY video_analytics.id;
 
 
 --
@@ -805,13 +774,6 @@ ALTER TABLE ONLY moves ALTER COLUMN id SET DEFAULT nextval('moves_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY statastics ALTER COLUMN id SET DEFAULT nextval('statastics_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
 
 
@@ -833,7 +795,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY video_infos ALTER COLUMN id SET DEFAULT nextval('video_infos_id_seq'::regclass);
+ALTER TABLE ONLY video_analytics ALTER COLUMN id SET DEFAULT nextval('video_analytics_id_seq'::regclass);
 
 
 --
@@ -940,14 +902,6 @@ ALTER TABLE ONLY marketplace_moves
 
 
 --
--- Name: statastics_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY statastics
-    ADD CONSTRAINT statastics_pkey PRIMARY KEY (id);
-
-
---
 -- Name: subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -975,7 +929,7 @@ ALTER TABLE ONLY users
 -- Name: video_infos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY video_infos
+ALTER TABLE ONLY video_analytics
     ADD CONSTRAINT video_infos_pkey PRIMARY KEY (id);
 
 
@@ -992,13 +946,6 @@ ALTER TABLE ONLY workouts
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
-
-
---
--- Name: index_statastics_on_workout_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_statastics_on_workout_id ON statastics USING btree (workout_id);
 
 
 --
@@ -1139,3 +1086,7 @@ INSERT INTO schema_migrations (version) VALUES ('20141016051343');
 INSERT INTO schema_migrations (version) VALUES ('20141016125722');
 
 INSERT INTO schema_migrations (version) VALUES ('20141018070147');
+
+INSERT INTO schema_migrations (version) VALUES ('20141020081609');
+
+INSERT INTO schema_migrations (version) VALUES ('20141020105508');

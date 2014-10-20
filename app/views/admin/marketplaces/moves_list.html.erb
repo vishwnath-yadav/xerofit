@@ -18,7 +18,8 @@
 						<td><%= move.user.fullname %></td>
 						<td><%= move.category %></td>
 						<td><%=move.market_place_list%></td>
-						<td><%= link_to "Add to list", 'javascript:void(0)', class: "marketplace_move", data_attr: "#{move.id}"%></td>
+						<td><%= link_to "Add to list", 'javascript:void(0)', class: "marketplace_move", data_attr: "#{move.id}"%> | 
+							<%=link_to "View", edit_path(move, user: move.user.token)%></td>
 					</tr>
 				<% end %>
 			<% else %>

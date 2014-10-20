@@ -1,0 +1,28 @@
+<div class="create_list">
+  <% if @category.new_record? %>
+    <h2>Create new Category</h2>
+  <% else %>
+    <h2>Edit Category</h2>
+  <% end %>
+  <div class="setting_form ">
+    <%= simple_form_for(@category, url: @category.new_record? ? create_new_category_admin_marketplaces_path : update_category_admin_marketplace_path(@category), html: { method: :post }) do |f| %>
+      <div class="setting_form_field wdt_100">
+        
+        <label>Category Name</label>
+          <%= f.input :name, label: false, placeholder: "Category Name",required: true,autofocus: true, input_html:{class: "form-control input-wid create_list"} %>
+        
+        <label>List Status</label>
+        <%= f.input :status, collection: [['active',true],['inactive', false]], label: false, prompt: "select list status", as: :select, input_html:{class: "form-control input-wid create_list"} %>
+      </div>
+      <div class="save_col save_col1">
+        <%= f.button :submit, "Save List", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<script>
+  $('.admin_li').removeClass('active')
+  $('.admin_li.discover').addClass('active');
+</script>

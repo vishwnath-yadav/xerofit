@@ -6,6 +6,7 @@
 			<th>Category Name</th>
 			<th>Total # of Moves</th>
 			<th>Status</th>
+			<th>Actions</th>
 		</tr>
 		<% if list.present? %>
 			<% list.each do |active|%>
@@ -16,6 +17,7 @@
 					<%= fields_for "#{type}[]", active do |f| %> 
 	 					<td><%= f.select :status, [['active',true],['inactive', false]] %></td>
 	 				<% end %>
+					<td><%= link_to "edit", admin_edit_category_page_path(active.id) %></td>
 				</tr>
 			<% end %>
 		<% else %>

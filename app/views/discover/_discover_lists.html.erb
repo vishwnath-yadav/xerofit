@@ -1,13 +1,12 @@
 <% if @list_move_hash.present? %>
     <% @list_move_hash.each do |list_title, moves| %>
-        <section class="discover-gallery">
+        <% if moves.present? %>
+            <section class="discover-gallery">
+                <div class="list-heading">
+                    <h3><%= list_title.humanize.titleize %></h3>
+                    <%= link_to "See more", "/discover/#{list_title}" %>
+                </div>
 
-            <div class="list-heading">
-                <h3><%= list_title.humanize.titleize %></h3>
-                <%= link_to "See more", "/discover/#{list_title}" %>
-            </div>
-
-            <% if moves.present? %>
                 <div class="discover-list xfit-gallery owl-carousel">
                     <% moves.each_with_index do |mov, index| %>
                         <% unless index > 19%>
@@ -20,17 +19,12 @@
                         <% end %>
                     <% end %>
                 </div>
-             <% else %>
-                <div class="empty-library">
-                  <h3>There are no moves in this list</h3>
-                </div>
-            <% end %>
-
-        </section>
+            </section>
+        <% end %>
     <% end %>
 <% else %>
     <div class="empty-library">
-      <h3>There are no moves in this list</h3>
+      <h3>There are no list.</h3>
     </div>
 <% end %>
 

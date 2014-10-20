@@ -6,7 +6,7 @@ class Workout < ActiveRecord::Base
 
 	has_many :blocks
 	has_many :histories
-	has_one :statastic
+	# has_one :statastic
 	belongs_to :user
 	has_attached_file :pic, 
 	:styles => { :small => "100x100#", :extra_large => "800x800>", :medium => "300x300#", :large => "500x500>", :thumb => "150x150>", :square => "90x90>", :p_square => "55x55>", :w_square => "130x130>" },
@@ -98,18 +98,18 @@ class Workout < ActiveRecord::Base
 		"500x500"
 	end
 	
-	def increase_visit
-		if self.statastic.present?
-			self.statastic.visits += 1
-		else
-			self.statastic = Statastic.new(visits: 1)
-		end
-		self.save
-	end
+	# def increase_visit
+	# 	if self.statastic.present?
+	# 		self.statastic.visits += 1
+	# 	else
+	# 		self.statastic = Statastic.new(visits: 1)
+	# 	end
+	# 	self.save
+	# end
 
-	def most_popular
-		Workout.joins(:statastic).where(state: "completed").order('statastics.visits DESC').limit(5)
-	end
+	# def most_popular
+	# 	Workout.joins(:statastic).where(state: "completed").order('statastics.visits DESC').limit(5)
+	# end
 
 	def save_status
 		self.status = Move::STATUS[4]

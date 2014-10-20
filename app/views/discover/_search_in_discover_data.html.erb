@@ -1,9 +1,8 @@
 <div class="control_bar_links">
     <h4><%= link_to "Browse All", discover_path, :class=>'cb_breadcrumb' %></h4>
 </div>
-
 <div class="control_bar_context">
-    <h4 class="title">List Title</h4>
+    <h4 class="title"><%= params[:name] %></h4>
 
     <%= form_tag(search_in_discover_data_discover_index_path, remote: true, method: "get", id: "search_in_discover_data") do |f|%>
 

@@ -11,7 +11,7 @@ class Admin::MarketplacesController < ApplicationController
 
 	def edit
 		@marketplace = MarketplaceList.find(params[:id])
-		@moves = @marketplace.moves.by_exempt("abc")
+		@moves = Move.joins(:marketplace_moves).where('marketplace_moves.marketplace_list_id = ?', params[:id]).by_exempt("false").order('marketplace_moves.moves_order asc')
 	end
 
 	def create
@@ -41,6 +41,39 @@ class Admin::MarketplacesController < ApplicationController
 	def category_list
 		@active_list = Category.where(status: true)
 		@inactive_list = Category.where(status: false)
+	end
+
+	def update_list_moves_order
+		if params[:order].present?
+			MarketplaceMove.update(params[:order].keys, params[:order].values)
+		end
+		redirect_to :back
+	end
+
+	def new_category
+		if params[:id].present?
+			@category = Category.find(params[:id])
+		else
+			@category = Category.new
+		end
+	end
+
+	def create_new_category
+		@category = Category.new(category_params)
+		if @category.save
+			redirect_to category_list_admin_marketplaces_path, notice: "Category created successfully"
+		else
+			redirect_to :back, notice: "Category not Created"
+		end
+	end
+
+	def update_category
+		@category = Category.new(category_params)
+		if @category.save
+			redirect_to category_list_admin_marketplaces_path, notice: "Category updated successfully"
+		else
+			redirect_to :back, notice: "Category not Updated"
+		end
 	end
 
 	def exempt_users
@@ -124,5 +157,9 @@ class Admin::MarketplacesController < ApplicationController
 
 	def list_params
 		params.require(:marketplace_list).permit!
+	end
+
+	def category_params
+		params.require(:category).permit!
 	end
 end
