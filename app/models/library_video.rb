@@ -43,17 +43,36 @@ class LibraryVideo < ActiveRecord::Base
 	  self.panda_video.original_filename rescue ''
   end
 
+  def first_file
+    if self.panda_thumbnail.present? && self.panda_thumbnail.files.present?
+      Settings.aws.URL + self.panda_thumbnail.files[0]
+    elsif self.panda_mp4.present? && self.panda_mp4.screenshots.present?
+        self.panda_mp4.screenshots[0]
+    else
+      ''
+    end
+  end
+
+  def all_files
+    if self.panda_thumbnail.present? && self.panda_thumbnail.files.present?
+      arr = []
+      self.panda_thumbnail.files.each do |url|
+        arr << Settings.aws.URL + url
+      end
+      return arr
+    elsif self.panda_mp4.present? && self.panda_mp4.screenshots.present?
+        self.panda_mp4.screenshots
+    else
+      ''
+    end
+  end
+
   def first_screenshot
-    url = Settings.aws.URL + self.panda_thumbnail.files[0] 
-    return url 
+    self.first_file 
   end
 
   def screenshots
-    arr = []
-    self.panda_thumbnail.files.each do |url|
-      arr << Settings.aws.URL + url
-    end
-    return arr 
+    self.all_files
   end
 
   def video_image
