@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :pic_creating
 
   has_attached_file :pic, 
-                    :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>" }, 
+                    :styles => { :small => "100x100#", :medium => "300x300#",:large => "500x500>", :extra_large => "800x800>" }, 
                     :processors => [:cropper],
                     :storage => :s3, 
                     :path => "/image/user/:id/:style/:filename",

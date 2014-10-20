@@ -20,15 +20,15 @@
     //   marginLeft: '-' + Math.round(rx * coords.x) + 'px',
     //   marginTop: '-' + Math.round(ry * coords.y) + 'px'
     // });
-    var ratio = <%= @obj.pic_geometry(:original).width %> / <%= @obj.pic_geometry(:large).width %>;
+    var ratio = <%= @obj.pic_geometry(:original).width %> / <%= @obj.pic_geometry(:extra_large).width %>;
     $("#crop_x").val(Math.round(coords.x * ratio));
     $("#crop_y").val(Math.round(coords.y * ratio));
     $("#crop_w").val(Math.round(coords.w * ratio));
     $("#crop_h").val(Math.round(coords.h * ratio));
   }
 </script>
-<div style="width:800px;">
-  <%= image_tag @obj.pic.url(:large), :id => "cropbox" %>
+<div style="width:800px;margin-left: 30px;">
+  <%= image_tag @obj.pic.url(:extra_large), :id => "cropbox" %>
 
   <!-- <h4>Preview:</h4> -->
 
