@@ -68,8 +68,9 @@ class Admin::MarketplacesController < ApplicationController
 	end
 
 	def update_category
-		@category = Category.new(category_params)
-		if @category.save
+		@category = Category.find(params[:id])
+		if @category.present? 
+			@category.update(category_params)			
 			redirect_to category_list_admin_marketplaces_path, notice: "Category updated successfully"
 		else
 			redirect_to :back, notice: "Category not Updated"
