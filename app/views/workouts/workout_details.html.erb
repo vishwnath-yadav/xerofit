@@ -14,8 +14,8 @@
         </div>
         <div class="lib_text_box">
           <h4><%= @workout.title.titleize%></h4>
-          <p class="library_item_status" data-status="<%=@workout.status%>" data-status-icon="<%= status_icon(@workout.status)%>">
-            <img src="<%= status_icon(@workout.status)%>" />
+          <p class="library-status" data-status="<%=@workout.status%>" data-status-icon="<%= status_icon(@workout.status)%>">
+            <span class="status-indicator <%= status_icon(@workout.status)%>"></span>
             <%= @workout.status %>
           </p>
         </div>
@@ -153,7 +153,7 @@
 <script>
   $(document).ready(function(){
     var v = $('.smt_reviw').attr('work-attr');
-    var status = $('.library_item_status').attr('data-status');
+    var status = $('.library-status').attr('data-status');
     if(v == "true")
     {
       $('.smt_reviw').removeClass('dis_link')

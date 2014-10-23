@@ -244,17 +244,17 @@ function check_require_field(){
 
   if(flag == 1){
     $('.smt_reviw').removeClass('dis_link');
-    $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+    $('.library-status').html('<span class="status-indicator status-purple"></span>' +STATUS[3])
     $('.chg_save').attr('lib-status', STATUS[3]);
   }
   else{
     $('.smt_reviw').attr('class','cancel_btn rht_active edit_lib dis_link smt_reviw btn_right');
-    var status_icon = $('.library_item_status').attr('data-status-icon');
-    var status = $('.library_item_status').attr('data-status');
-    status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
+    var status_icon = $('.library-status').attr('data-status-icon');
+    var status = $('.library-status').attr('data-status');
+    status_icon = status == STATUS[3] ? 'status-gray' : status_icon
     status = status == STATUS[3] ? STATUS[4] : status
     $('.chg_save').attr('lib-status', status);
-    $('.library_item_status').html('<img src="'+status_icon+'"> '+status);
+    $('.library-status').html('<span class="status-indicator '+status_icon+'"></span>' +status);
   }
 }
 

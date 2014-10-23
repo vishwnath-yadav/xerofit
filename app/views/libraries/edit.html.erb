@@ -15,8 +15,8 @@
         </div>
         <div class="lib_text_box">
           <h4><%= @move.title%></h4>
-          <p class="library_item_status" data-status="<%=@move.status%>" data-status-icon="<%= status_icon(@move.status)%>">
-            <img src="<%= status_icon(@move.status)%>"/>
+          <p class="library-status" data-status="<%=@move.status%>" data-status-icon="<%= status_icon(@move.status)%>">
+            <span class="status-indicator <%= status_icon(@move.status)%>"></span>
             <%= @move.status %>
           </p>
         </div>
@@ -233,15 +233,6 @@
 
 <script>
 $(document).ready(function(){
-  // var v = $('.smt_reviw').attr('lib-attr');
-  // var status = $('.library_item_status').attr('data-status');
-  // if(v == "true")
-  // {
-  //   $('.smt_reviw').removeClass('dis_link');
-  // }
-  // if( status == "Waiting for Approval"){
-  //    $('.smt_reviw').addClass('dis_link');
-  // }
   show_text_actual_size();
 });
 $('.admin_li').removeClass('active')

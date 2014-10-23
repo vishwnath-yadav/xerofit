@@ -46,8 +46,12 @@
           <% end %>
             <span class="type_col"><%= mov.move_type.titleize.singularize %></span>
             <span class="status_col">
-              <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
-              <span><%= mov.status %></span>
+              <p class="library-status">
+                  <span class="status-indicator <%= status_icon(mov.status)%>"></span>
+                  <%= mov.status %>
+              </p>
+              <!--img src="<%#= status_icon(mov.status)%>" class="list_view_circle" />
+              <span><%#= mov.status %></span-->
             </span>
             <span class="date_col"><%= mov.updated_at.strftime("%B %d, %Y") %></span>
           </a>

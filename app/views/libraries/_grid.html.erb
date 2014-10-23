@@ -11,8 +11,8 @@
                             <figure class="workout-img" style="background-image: url(/assets/ex_1.png);"></figure>
                         <% end %>
                         <h6><%= mov.title %></h6>
-                        <p class="block_status">
-                            <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
+                        <p class="library-status">
+                            <span class="status-indicator <%= status_icon(mov.status)%>"></span>
                             <%= mov.status %>
                         </p>
                     </a>
@@ -25,8 +25,8 @@
                             <figure class="move-img" style="background-image: url(/assets/ex_2.png);"></figure>
                         <% end %>
                         <h6 title="<%= mov.title %>"><%= mov.title %></h6>
-                        <p class="block_status">
-                            <img src="<%= status_icon(mov.status)%>" class="list_view_circle" />
+                        <p class="library-status">
+                            <span class="status-indicator <%= status_icon(mov.status)%>"></span>
                             <%= mov.status %>
                         </p>
                     </a>

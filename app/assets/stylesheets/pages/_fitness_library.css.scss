@@ -394,25 +394,80 @@ input.search_bar {
         float: left;
         width: 100%;
     }
+}
 
-    p.block_status {
-        @include gotham300();
-        padding: 0px 14px;
-        color: $silver51;
-        font-size: 11px;
-        line-height: 14px;
-        height: 14px;
-        color: $silver31;
 
-        > img {
-            float: left;
-            margin-right: 6px;
-            height: 12px;
-            width: 12px;
-            margin-top: 1px;
-        }
+
+
+// Status Indicator
+.library-status {
+    @include gotham300();
+    padding: 0px 14px;
+    color: $silver51;
+    font-size: 11px;
+    line-height: 14px;
+    height: 14px;
+
+    span.status-indicator {
+        display: block;
+        height: 12px;
+        width: 12px;
+        float: left;
+        margin-top: 1px;
+        margin-right: 5px;
+        @include border-radius(12px);
     }
 }
+
+
+
+
+// Approved and Active
+span.status-indicator.status-green {
+    border: 1px solid darken( $status-green, 12% );
+    background: $status-green;
+}
+
+// Needs Attention
+span.status-indicator.status-red {
+    border: 1px solid darken( $status-red, 12% );
+    background: $status-red;
+}
+
+// Waiting to be approved
+span.status-indicator.status-yellow {
+    border: 1px solid darken( $status-yellow, 12% );
+    background: $status-yellow;
+}
+
+// Ready to Submit
+span.status-indicator.status-purple {
+    border: 1px solid darken( $status-purple, 12% );
+    background: $status-purple;
+}
+
+// Saved as draft
+span.status-indicator.status-gray {
+    border: 1px solid darken( $status-gray, 12% );
+    background: $status-gray;
+}
+
+
+
+// For status indicatior in Control Bar
+.control_bar_context .library-status { padding:0; margin-top: 6px; }
+
+// For status indicatior in Library Home List View
+.library_list_view .status_col .library-status {
+    padding: 0;
+    line-height: inherit;
+    color: $silver31;
+
+    .status-indicator { margin-top: 15px; }
+}
+
+
+
 
 .library_col ul li.wdth_img > img { width: 100% !important}
 
@@ -1389,7 +1444,7 @@ a.remove_video_btn {
     }
 }
 
-
+/*
 p.library_item_status {
     font-size: 12px;
     line-height: 14px;
@@ -1405,6 +1460,7 @@ p.library_item_status {
         width: 12px;
     }
 }
+*/
 
 .dis_cls {
     pointer-events: none;

@@ -1,15 +1,15 @@
 module LibrariesHelper
 	def status_icon(status)
 		if status == Move::STATUS[0]
-			status = "/assets/icons/status_icon_green.png"
+			status = "status-green"
 		elsif status == Move::STATUS[1]
-			status = "/assets/icons/status_icon_red.png"
+			status = "status-red"
 		elsif status == Move::STATUS[2]
-			status = "/assets/icons/status_icon_yellow.png"
+			status = "status-yellow"
 		elsif status == Move::STATUS[3]
-			status = "/assets/icons/status_icon_purple.png"
+			status = "status-purple"
 		elsif status == Move::STATUS[4]
-			status = "/assets/icons/status_icon_gray.png"
+			status = "status-gray"
 		end
 	end
 
