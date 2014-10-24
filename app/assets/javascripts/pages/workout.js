@@ -24,13 +24,17 @@ $(document).ready(function() {
 
     if(scroll >= 84){
       $('.show-on-scroll').css('display','block');
-      $('.workout-builder .control_bar .control_bar_context').remove('.workout-title-wrap');
-      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.workout-builder .header-scroll .show-on-scroll');
+      $('.workout-builder .control_bar .control_bar_context').remove('.library-thumbnail-container, .workout-title-wrap');
+      $('.workout-builder .control_bar .library-thumbnail-container').appendTo('.header-scroll.workout-builder .show-on-scroll');
+      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.header-scroll.workout-builder .show-on-scroll');
+      $('.workout-title-wrap').addClass('scrolling');
     }
     else{
       $('.show-on-scroll').css('display','none');
+      $('.library-thumbnail-container').appendTo('.workout-builder .control_bar .control_bar_context');
       $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
-      $('.workout-builder .header-scroll .show-on-scroll').remove('.workout-title-wrap');
+      $('.header-scroll.workout-builder .show-on-scroll').remove('.library-thumbnail-container, .workout-title-wrap');
+      $('.workout-title-wrap').removeClass('scrolling');
     }
   });
 
@@ -105,7 +109,6 @@ $(document).ready(function() {
   });
 
 
-
   $(document).on('click','#enter-fullscreen', function(){
     $.smoothScroll({
       scrollElement: $('body'),
@@ -115,8 +118,9 @@ $(document).ready(function() {
     $('#enter-fullscreen').addClass('hide');
     $('#exit-fullscreen').removeClass('hide');
 
-    $('.control_bar .control_bar_context span').remove('.workout-title-wrap');
-    $('.control_bar .workout-title-wrap').appendTo('.header-scroll .show-on-scroll');
+    $('.workout-builder .control_bar .control_bar_context').remove('.library-thumbnail-container, .workout-title-wrap');
+    $('.workout-builder .control_bar .library-thumbnail-container').appendTo('.header-scroll.workout-builder .show-on-scroll');
+    $('.workout-builder .control_bar .workout-title-wrap').appendTo('.header-scroll.workout-builder .show-on-scroll');
     return false;
   });
 
@@ -127,8 +131,9 @@ $(document).ready(function() {
     $('#exit-fullscreen').addClass('hide');
     $('#enter-fullscreen').removeClass('hide');
 
-    $('.workout-title-wrap').appendTo('.control_bar .control_bar_context span');
-    $('.header-scroll .show-on-scroll').remove('.workout-title-wrap');
+    $('.library-thumbnail-container').appendTo('.workout-builder .control_bar .control_bar_context');
+    $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
+    $('.header-scroll.workout-builder .show-on-scroll').remove('.library-thumbnail-container, .workout-title-wrap');
 
   });
 

@@ -27,8 +27,9 @@ $(document).ready(function() {
     }
   });
 
-  //Discover list page searching js
 
+
+  // Discover list page searching js
   $(document).on('change','.select_target_muscle_group',function(){
     $('#search_in_discover_data').submit();
   });
@@ -82,8 +83,9 @@ $(document).ready(function() {
     $('#search_in_discover_data').submit();
   });
 
-  //Discover home page searching js
 
+
+  // Discover home page searching js
   $(document).on('change','.move_category',function(){
     $('#search_for_discover_home').submit();
   });

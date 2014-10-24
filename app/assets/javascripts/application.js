@@ -46,24 +46,6 @@ $(document).ready(function() {
   $('.utility_menu_toggle').dropdown();
 
 
-  $(window).scroll(function(){
-    var sticky = $('.lib_img_coll'),
-    scroll = $(window).scrollTop();
-
-    if(scroll >= 126){
-      sticky.addClass('fixed');
-      $('.show_img_on_scol').css('display','block');
-      $('.lib_img_coll .rght_btns').css('margin-right','40px');
-      $('.lib_img_coll').css('border-bottom','1px solid #D8D8D8');
-    }
-    else{
-      sticky.removeClass('fixed');
-      $('.show_img_on_scol').css('display','none');
-      $('.lib_img_coll .rght_btns').css('margin-right','0px');
-      $('.lib_img_coll').css('border-bottom','0px');
-    }
-  });
-
 
   $(document).on("click", ".trg_num_edit", function() {
    var select_count = $(this).val();

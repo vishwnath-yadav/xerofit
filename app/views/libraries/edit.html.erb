@@ -10,16 +10,18 @@
         <%= link_to("Fitness Library", params[:user].blank? ? libraries_path : libraries_path(user: params[:user]), :class=>'cb_breadcrumb') %>
       </div>
       <div class="control_bar_context">
-        <div class="lib_image_box">
-          <img src="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" />
-        </div>
-        <div class="lib_text_box">
-          <h4><%= @move.title%></h4>
-          <p class="library-status" data-status="<%=@move.status%>" data-status-icon="<%= status_icon(@move.status)%>">
-            <span class="status-indicator <%= status_icon(@move.status)%>"></span>
-            <%= @move.status %>
-          </p>
-        </div>
+        <span>
+          <div class="library-thumbnail-container">
+            <figure class="move-thumb" style="background-image: url(<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>);"></figure>
+          </div>
+          <div class="cb-header-title">
+            <h4><%= @move.title%></h4>
+            <p class="library-status" data-status="<%=@move.status%>" data-status-icon="<%= status_icon(@move.status)%>">
+              <span class="status-indicator <%= status_icon(@move.status)%>"></span>
+              <%= @move.status %>
+            </p>
+          </div>
+        </span>
       </div>
     </div>
   </div>
@@ -28,16 +30,9 @@
 <div class="details_page_header">
   <div class="container-fluid">
   <%= simple_form_for(@move, url: (@move.new_record? ? libraries_path : library_path(@move)), html: {id: 'edit_video_info'}) do |mov| %>
-    <div class="lib_img_coll">
-      <span class="show_img_on_scol">
-        <div class="lib_image_box">
-          <img src="<%= @move.library_video && @move.library_video.image.present? ? @move.library_video.image : '/assets/ex_2.png' %>" />
-        </div>
-        <div class="lib_text_box">
-          <h4><%= @move.title%></h4>
-        </div>
-      </span>
-      <%dis_link = @move.status != Move::STATUS[3] ? 'dis_link' : ''%>
+    <div class="header-scroll fitness-library">
+      <span class="show-on-scroll"></span>
+      <% dis_link = @move.status != Move::STATUS[3] ? 'dis_link' : ''%>
       <div class="rght_btns">
         <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib dis_link chg_save" lib-status="<%=@move.status%>">Save</a>
           <a href="javascript:void(0)" class="cancel_btn rht_active edit_lib <%=dis_link%> smt_reviw btn_right" lib-attr="<%= @lib_attr %>" lib-status="<%= Move::STATUS[2] %>">Submit for review</a>

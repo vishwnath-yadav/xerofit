@@ -25,12 +25,12 @@
     .header-title {
         width: auto;
         float: left;
+    }
 
-        h4 {
-            font-size: 23px;
-            line-height: 28px;
-            margin: 0;
-        }
+    h4 {
+        font-size: 23px;
+        line-height: 28px;
+        margin: 0;
     }
 }
 
@@ -45,8 +45,12 @@
 .workout-builder .workout-title-wrap {
     float: left;
     width: auto;
+    padding-top: 7px;
+    padding-bottom: 7px;
     @include clearfix();
     @include user-select(none);
+
+    &.scrolling { padding: 0px; }
 
     // Contianer for the input textbox and title
     div.workout-title,
