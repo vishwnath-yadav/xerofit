@@ -232,7 +232,12 @@ $(document).ready(function() {
     var check1 = $('.workout-list').find('li').last().hasClass('break-block');
     if(!$('#workid').length){
       verify = false;
-      alert("Please enter a title for the workout before saving.");
+      swal({
+        title: "Unable to Save",
+        text: "Please enter a title for the workout before saving.",
+        //confirmButtonColor: "#DD6B55",
+        confirmButtonText: "OK, Got it."
+      });
     }
     else if($('.workout-list').find('li.load_lib_detail').length <= 1){
       verify = false;
