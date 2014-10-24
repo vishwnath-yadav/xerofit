@@ -222,7 +222,7 @@ $(document).ready(function() {
     var check1 = $('.workout-list').find('li').last().hasClass('break-block');
     if(!$('#workid').length){
       verify = false;
-      alert("Please fill workout details.");
+      alert("Please enter a title for the workout before saving.");
     }
     else if($('.workout-list').find('li.load_lib_detail').length <= 1){
       verify = false;
