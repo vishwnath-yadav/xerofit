@@ -400,16 +400,16 @@ input.search_bar {
 
 .grid_block {
     .workout-img {
-        width: auto;
+        width: 98px;
         height: 98px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 14px;
         background-repeat: no-repeat;
-        @include background-size(contain);
+        @include background-size(cover);
         background-position: center;
 
-        @media (min-width: 1200px) { height: 140px; }
+        @media (min-width: 1200px) { height: 140px; width: 140px; }
     }
 
     .move-img {
