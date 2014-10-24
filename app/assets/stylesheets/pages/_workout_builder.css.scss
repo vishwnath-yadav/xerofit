@@ -295,23 +295,43 @@
     position: relative;
     @include clearfix();
 
-    > h3 {
+    h3 {
         float: left;
         font-size: 14px;
-        line-height: 16px;
+        line-height: 18px;
         @include gotham500();
-        margin-bottom: 12px;
+        margin: 0;
+        margin-bottom: 10px;
 
-        &:after {
+        span {
+            height: 18px;
+            width: 18px;
+            position: relative;
             display: block;
             float: right;
             margin-left: 14px;
-            height: 16px;
-            width: 16px;
-            content: '';
-            background: url('/assets/icons/question_mark.png');
-            background-repeat: no-repeat;
-            @include background-size(contain);
+
+            background-color: #E3E3E3;
+            color: $silver51;
+
+            @include xerofit-icon();
+            @include border-radius(10px);
+            @include user-select(none);
+
+            &:before {
+                content: '\e651';
+                height: 18px;
+                width: 18px;
+                display: block;
+                font-size: 18px;
+                text-align: center;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: darken( #E3E3E3, 5% );
+                color: darken( $silver51, 5% );
+            }
         }
     }
 }

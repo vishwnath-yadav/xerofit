@@ -398,32 +398,31 @@ input.search_bar {
 
 .library_col ul li.wdth_img > img { width: 100% !important}
 
-.grid_block {
-    .workout-img {
-        width: 98px;
-        height: 98px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 14px;
-        background-repeat: no-repeat;
-        @include background-size(cover);
-        background-position: center;
 
-        @media (min-width: 1200px) { height: 140px; width: 140px; }
-    }
+.grid_block .workout-img {
+    width: 98px;
+    height: 98px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 14px;
+    background-repeat: no-repeat;
+    @include background-size(cover);
+    background-position: center;
 
-    .move-img {
-        width: 100%;
-        height: 98px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 14px;
-        background-repeat: no-repeat;
-        @include background-size(cover);
-        background-position: center;
+    @media (min-width: 1200px) { height: 140px; width: 140px; }
+}
 
-        @media (min-width: 1200px) { height: 140px; }
-    }
+.grid_block .move-img {
+    width: 100%;
+    height: 98px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 14px;
+    background-repeat: no-repeat;
+    @include background-size(cover);
+    background-position: center;
+
+    @media (min-width: 1200px) { height: 140px; }
 }
 
 

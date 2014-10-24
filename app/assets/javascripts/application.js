@@ -27,6 +27,7 @@
 //= require plugins/jquery.growl.js
 //= require plugins/jquery.placeholder.js
 //= require plugins/owl.carousel-v2.4-beta.js
+//= require plugins/sweet-alert.min
 
 //= require helpers/resource_constants.js
 //= require helpers/video_upload.js
@@ -197,5 +198,23 @@ function validate_target_muscle_group(){
 
 function remove_success_msg(){
   $('.success').removeClass('move_detail').html('');
+}
+
+
+// Questionmark tooltips (yellow helper)
+// target = html selector
+// orientation = arrow placement ( top, bottom, right, etc)
+// content = what the tooltip says
+function tooltipQuestion(target, orientation, content){
+  $(target).tooltip({
+    placement: orientation,
+    container: 'body',
+    trigger: 'click',
+    title: content,
+    template: '<div class="tooltip tooltip-question" role="tooltip">' +
+                '<div class="tooltip-arrow arrow-question"></div>' +
+                '<div class="tooltip-inner"></div>' +
+              '</div>',
+  });
 }
 

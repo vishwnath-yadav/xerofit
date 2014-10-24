@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  // Tooltip for fitness library panel questionmark
+  // target, orientation, content
+  tooltipQuestion(
+    '#library-panel-help',
+    'bottom',
+    'Moves that are saved as a draft are not allowed to be used in the Workout Builder.'
+  );
+
   popover_hide();
 
   $(document).click(function(event) {
@@ -44,6 +52,8 @@ $(document).ready(function() {
     placement: 'bottom',
     container: 'body'
   });
+
+
 
 
   // Delete circuit and superset block from popover
