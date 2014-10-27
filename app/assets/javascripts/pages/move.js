@@ -1,11 +1,39 @@
 $(document).ready(function(){
 
+  // Scrolling fixed header for Fitness Library Pages
+  $(window).scroll(function(){
+    scroll = $(window).scrollTop();
+    var sticky = $('.header-scroll.fitness-library');
+
+    if(scroll >= 84){
+      sticky.addClass('fixed');
+      sticky.css('border-bottom','1px solid #E3E3E3');
+      $('.header-scroll.fitness-library .show-on-scroll').css('display','block');
+      $('.control_bar .control_bar_context').remove('.cb-header-title, .library-thumbnail-container');
+      $('.control_bar .library-thumbnail-container').appendTo('.header-scroll.fitness-library .show-on-scroll');
+      $('.control_bar .cb-header-title').appendTo('.header-scroll.fitness-library .show-on-scroll');
+      $('.cb-header-title p').addClass('hide');
+      $('.rght_btns').addClass('scrolling');
+    }
+    else{
+      sticky.removeClass('fixed');
+      sticky.css('border-bottom','none');
+      $('.header-scroll.fitness-library .show-on-scroll').css('display','none');
+      $('.library-thumbnail-container').appendTo('.control_bar .control_bar_context');
+      $('.cb-header-title').appendTo('.control_bar .control_bar_context');
+      $('.header-scroll.fitness-library .show-on-scroll').remove('.cb-header-title, .library-thumbnail-container');
+      $('.cb-header-title p').removeClass('hide');
+      $('.rght_btns').removeClass('scrolling');
+    }
+  });
+
+
   // $(document).on("click", ".replace_video_btn", function() {
   //    $('.upload_edit').css('display','none');
   //    $('.replace_video').css('display','block');
   //    $('.lib_edit_botom').css('display','none');
   // });
-  
+
 
   $(document).on('keyup blur',"input[type=text], textarea", function(){
     var obj = $(this).closest('.input_field_wrap').find('span.detail_char');
@@ -196,10 +224,10 @@ $(document).ready(function(){
     $.fancybox.close();
     window.location.reload();
   });
-  
+
   $(document).on('click','.upload_ie_btn',function(){
     $('.uploading_report').text('Uploading Video Please Wait...');
-    $('#ie_upload_form').submit();    
+    $('#ie_upload_form').submit();
   });
 
 });
@@ -244,17 +272,17 @@ function check_require_field(){
 
   if(flag == 1){
     $('.smt_reviw').removeClass('dis_link');
-    $('.library_item_status').html('<img src="/assets/icons/status_icon_purple.png"> '+STATUS[3])
+    $('.library-status').html('<span class="status-indicator status-purple"></span>' +STATUS[3])
     $('.chg_save').attr('lib-status', STATUS[3]);
   }
   else{
     $('.smt_reviw').attr('class','cancel_btn rht_active edit_lib dis_link smt_reviw btn_right');
-    var status_icon = $('.library_item_status').attr('data-status-icon');
-    var status = $('.library_item_status').attr('data-status');
-    status_icon = status == STATUS[3] ? '/assets/icons/status_icon_gray.png' : status_icon
+    var status_icon = $('.library-status').attr('data-status-icon');
+    var status = $('.library-status').attr('data-status');
+    status_icon = status == STATUS[3] ? 'status-gray' : status_icon
     status = status == STATUS[3] ? STATUS[4] : status
     $('.chg_save').attr('lib-status', status);
-    $('.library_item_status').html('<img src="'+status_icon+'"> '+status);
+    $('.library-status').html('<span class="status-indicator '+status_icon+'"></span>' +status);
   }
 }
 

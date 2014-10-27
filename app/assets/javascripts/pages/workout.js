@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  // Tooltip for fitness library panel questionmark
+  // target, orientation, content
+  tooltipQuestion(
+    '#library-panel-help',
+    'bottom',
+    'Moves that are saved as a draft are not allowed to be used in the Workout Builder.'
+  );
+
   popover_hide();
 
   $(document).click(function(event) {
@@ -24,13 +32,17 @@ $(document).ready(function() {
 
     if(scroll >= 84){
       $('.show-on-scroll').css('display','block');
-      $('.workout-builder .control_bar .control_bar_context').remove('.workout-title-wrap');
-      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.workout-builder .header-scroll .show-on-scroll');
+      $('.workout-builder .control_bar .control_bar_context').remove('.library-thumbnail-container, .workout-title-wrap');
+      $('.workout-builder .control_bar .library-thumbnail-container').appendTo('.header-scroll.workout-builder .show-on-scroll');
+      $('.workout-builder .control_bar .workout-title-wrap').appendTo('.header-scroll.workout-builder .show-on-scroll');
+      $('.workout-title-wrap').addClass('scrolling');
     }
     else{
       $('.show-on-scroll').css('display','none');
+      $('.library-thumbnail-container').appendTo('.workout-builder .control_bar .control_bar_context');
       $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
-      $('.workout-builder .header-scroll .show-on-scroll').remove('.workout-title-wrap');
+      $('.header-scroll.workout-builder .show-on-scroll').remove('.library-thumbnail-container, .workout-title-wrap');
+      $('.workout-title-wrap').removeClass('scrolling');
     }
   });
 
@@ -40,6 +52,8 @@ $(document).ready(function() {
     placement: 'bottom',
     container: 'body'
   });
+
+
 
 
   // Delete circuit and superset block from popover
@@ -105,7 +119,6 @@ $(document).ready(function() {
   });
 
 
-
   $(document).on('click','#enter-fullscreen', function(){
     $.smoothScroll({
       scrollElement: $('body'),
@@ -115,8 +128,9 @@ $(document).ready(function() {
     $('#enter-fullscreen').addClass('hide');
     $('#exit-fullscreen').removeClass('hide');
 
-    $('.control_bar .control_bar_context span').remove('.workout-title-wrap');
-    $('.control_bar .workout-title-wrap').appendTo('.header-scroll .show-on-scroll');
+    $('.workout-builder .control_bar .control_bar_context').remove('.library-thumbnail-container, .workout-title-wrap');
+    $('.workout-builder .control_bar .library-thumbnail-container').appendTo('.header-scroll.workout-builder .show-on-scroll');
+    $('.workout-builder .control_bar .workout-title-wrap').appendTo('.header-scroll.workout-builder .show-on-scroll');
     return false;
   });
 
@@ -127,8 +141,9 @@ $(document).ready(function() {
     $('#exit-fullscreen').addClass('hide');
     $('#enter-fullscreen').removeClass('hide');
 
-    $('.workout-title-wrap').appendTo('.control_bar .control_bar_context span');
-    $('.header-scroll .show-on-scroll').remove('.workout-title-wrap');
+    $('.library-thumbnail-container').appendTo('.workout-builder .control_bar .control_bar_context');
+    $('.workout-title-wrap').appendTo('.workout-builder .control_bar .control_bar_context');
+    $('.header-scroll.workout-builder .show-on-scroll').remove('.library-thumbnail-container, .workout-title-wrap');
 
   });
 
@@ -217,7 +232,12 @@ $(document).ready(function() {
     var check1 = $('.workout-list').find('li').last().hasClass('break-block');
     if(!$('#workid').length){
       verify = false;
-      alert("Please fill workout details.");
+      swal({
+        title: "Unable to Save",
+        text: "Please enter a title for the workout before saving.",
+        //confirmButtonColor: "#DD6B55",
+        confirmButtonText: "OK, Got it."
+      });
     }
     else if($('.workout-list').find('li.load_lib_detail').length <= 1){
       verify = false;
