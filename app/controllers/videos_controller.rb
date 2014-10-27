@@ -43,7 +43,8 @@ class VideosController < ApplicationController
   end
 
 	private
-	def video_params
+	
+  def video_params
     params.require(:library_video).permit(:video)
   end
 end
