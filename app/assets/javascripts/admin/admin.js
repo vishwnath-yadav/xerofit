@@ -10,13 +10,21 @@ $(document).ready(function(){
     $(".time_zone").val(zone_name);
   });
 
-  $(document).on("click",".up_click",function () {
-    $(".hidden_order").val('ASC');
-    $('#admin_filter_form').submit();
-  });
+  // $(document).on("click",".up_click",function () {
+  //   $(".hidden_order").val('ASC');
+  //   $('#admin_filter_form').submit();
+  // });
 
-  $(document).on("click",".down_click",function () {
-    $(".hidden_order").val('DESC');
+  // $(document).on("click",".down_click",function () {
+  //   $(".hidden_order").val('DESC');
+  //   $('#admin_filter_form').submit();
+  // });
+
+  $(document).on("click",".admin_moves_filtering",function () {
+    var order = $('.order_selection').val();
+    var sort = $('.sorted_moves').val();
+    $(".hidden_order").val(order);
+    $('#sorted_by').val(sort);
     $('#admin_filter_form').submit();
   });
 

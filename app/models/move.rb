@@ -231,7 +231,7 @@ class Move < ActiveRecord::Base
 	end
 
 	def date_updated_for_approval(new_status, old_status)
-		if old_status != STATUS[2] && new_status == STATUS[2] && !self.date_submitted_for_approval.present?
+		if old_status != STATUS[2] && new_status == STATUS[2] #&& !self.date_submitted_for_approval.present?
 			self.date_submitted_for_approval = self.updated_at
 			self.save
 			admin_emails = User.where(:role=> "admin").pluck(:email)

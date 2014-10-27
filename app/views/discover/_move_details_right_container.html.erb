@@ -21,10 +21,23 @@
     </li>
 
     <% target_muscle = target_muscles(@move)%>
+    <%# if target_muscle.present? && target_muscle != 'N/A' %>
+      <!-- <li>
+        <label>Target Muscles</label>
+        <p><%#= target_muscle %></p>
+      </li> -->
+    <%# end %>
     <% if target_muscle.present? && target_muscle != 'N/A' %>
       <li>
         <label>Target Muscles</label>
-        <p><%= target_muscle %></p>
+        <span style="width: 100%;position: absolute;">
+          <% @move.target_muscle_groups.each_with_index do |target, index|%>
+            <% if target.target_muscle_group.present? %>
+
+              <p><%= TargetMuscleGroup::MUSCLES_TYPE[index][0] %> : <%= target.target_muscle_group + "-" + target.sub_target_muscle_group %></p></br>
+            <% end %>
+          <% end %>
+        </span>
       </li>
     <% end %>
 
