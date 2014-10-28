@@ -24,7 +24,7 @@
         <td>
           <%=link_to "View", edit_path(move, user: move.user.token)%> | <%=link_to "History", history_page_admin_moves_path(id: move, type: move.move_type)%> |
           <%= link_to "Trash", trash_admin_moves_path(id: move, type: move.move_type)%> |
-          <%=link_to "Replace", "javascript:void(0)",:class => "full_workout", "data-edit"=> move.library_video.id%>
+          <%=link_to "Replace", "javascript:void(0)",:class => "full_workout", "data-edit"=> move.library_video.try(:id)%>
           <%#= link_to "Replace", 'javascript:void(0)' %>
         </td>
       </tr>

@@ -63,7 +63,7 @@ class LibraryVideo < ActiveRecord::Base
     elsif self.panda_mp4.present? && self.panda_mp4.screenshots.present?
         self.panda_mp4.screenshots
     else
-      ''
+      []
     end
   end
 
