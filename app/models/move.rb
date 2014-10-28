@@ -58,6 +58,22 @@ class Move < ActiveRecord::Base
 		self.save
 	end
 
+	def change_status_to_ready_for_submit
+		if [STATUS[1], STATUS[4]].include? self.status
+			if self.check_details
+				self.status = STATUS[3]
+				self.save
+			end
+		end
+	end
+
+	def check_details
+	  target_muscles =  self.target_muscle_groups.map(&:target_muscle_group) - [nil, ""]
+		attributes = [self.title, self.directions, self.category, self.difficulty, self.status, self.equipment.join(",")]
+		req = attributes & [nil, ""]
+		req.size == 0 && target_muscles.size > 0 && self.is_thumbnail_created
+	end
+
 	def self.approve_status_by_admin(params, history)
 		if params[:type] == TYPE[2]
 			move = Workout.find_by_id(params[:id])

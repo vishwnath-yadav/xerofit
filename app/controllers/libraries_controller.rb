@@ -30,8 +30,9 @@ class LibrariesController < ApplicationController
 		@disabled = ([@move.status] & [Move::STATUS[0],Move::STATUS[2]]).present?
 		@max_size_allowed = 1024
 		@size = @move.get_thumbnail()
-		@count = @move.target_muscle_groups.collect{|t| t.target_muscle_group if t.target_muscle_group.blank?}.compact.count
-		@lib_attr = (@move.title.present? && @move.directions.present? && @move.category.present? && @move.difficulty.present? && @move.library_video.image.present? && @count!=5)
+		@count = @move.target_muscle_groups.select{|t| t.target_muscle_group.blank?}.compact.count
+		# binding.pry
+		@ready_for_submit = @move.change_status_to_ready_for_submit
 	end
 	
 	def create
