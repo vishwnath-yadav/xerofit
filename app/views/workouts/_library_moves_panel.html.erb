@@ -3,7 +3,7 @@
         <%= simple_form_for(Move.new, url: filter_libraries_path, remote: true, html: {id: 'filter_search_form'}) do |lib| %>
 
             <div class="builder-header">
-                <h3>Fitness Library</h3>
+                <h3>Fitness Library<span id="library-panel-help"></span></h3>
                 <div class="builder-search-bar">
                     <%= autocomplete_field_tag 'title', '', autocomplete_move_title_libraries_path, :class => "search_icon search_bar", :placeholder=>"Search", :id => "search-move-by-title" %>
                     <input type="button" id="search-move-titles" />

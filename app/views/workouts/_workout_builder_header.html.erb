@@ -2,6 +2,9 @@
     <div class="container-fluid">
         <div class="control_bar_wrap">
             <div class="control_bar_context">
+                <div class="library-thumbnail-container">
+                  <figure class="workout-thumb" style="background-image: url(<%= @workout.pic.present? ? @workout.pic.url : '/assets/ex_1.png' %>);"></figure>
+                </div>
                 <div class="workout-title-wrap">
                     <%= render "workout_title_form" %>
                 </div>
@@ -15,7 +18,7 @@
 
 <div class="details_page_header">
     <div class="container-fluid">
-        <div class="header-scroll">
+        <div class="header-scroll workout-builder">
             <span class="show-on-scroll"></span>
             <div class="editor-buttons">
                 <a id="enter-fullscreen" class="fullscreen-toggle builder-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Fullscreen"></a>

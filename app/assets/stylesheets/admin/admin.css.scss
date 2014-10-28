@@ -16,6 +16,7 @@
 @import 'vendor/normalize';
 @import 'vendor/bootstrap';
 @import 'vendor/fancybox';
+@import 'vendor/sweet_alert';
 
 
 // -------------------------------------------------------------------------- //
@@ -52,4 +53,7 @@ span.error{
 	margin-bottom: 15px;
 }
 
+.admin_moves_field{
+	width: 34%;
+}
 

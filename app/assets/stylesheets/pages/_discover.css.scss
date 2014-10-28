@@ -370,7 +370,7 @@ section.video-details {
         label {
             float: left;
             display: block;
-            @include gotham400();
+            @include gotham500();
             color: $silver16;
             text-align: right;
             width: 30%;
@@ -388,5 +388,17 @@ section.video-details {
             font-size: 12px;
             line-height: 14px;
         }
+
+        &.target-muscles div {
+            float: right;
+            width: 70%;
+
+            p { margin-bottom: 7px; }
+            p:last-of-type{ margin: 0; }
+
+            p > span { @include gotham400(); }
+        }
     }
+
+
 }

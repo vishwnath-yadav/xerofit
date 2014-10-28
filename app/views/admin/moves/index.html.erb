@@ -6,7 +6,15 @@
   <%= render "move_filter" %>
 </div>
 
-<%= render "common_templates/admin/sort_select" %>
+<%#= render "common_templates/admin/sort_select" %>
+<div class="col-sm-12">
+  <div class="admin-sort-container admin_moves_field">
+		<span class="admin-sort-label" >Sort By: </span>
+    <%= select_tag :sort_type, options_for_select(@sort_array), class: "form-control sorted_moves" %>
+   	<%= select_tag :order, options_for_select([["Descending",'DESC'],["Ascending",'ASC']]), class: "form-control order_selection" %>
+   	<%= button_tag "Go", class: "admin_moves_filtering" %>
+	</div>
+</div>
 
 <div class="col-sm-12 search_user">
   <%= render "move_content_table" %>

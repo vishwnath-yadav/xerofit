@@ -1,7 +1,9 @@
 <div>
 	<h2><%= @marketplace.title %></h2>
 	<span style="float: right;">
-		<%= link_to "Go to list page", admin_marketplaces_path %>
+		<% if @marketplace.status == true %>
+			<%= link_to "Go to list page", "/discover/#{@marketplace.title}" %>
+		<% end %>
 	</span>
 	<div>
 		<%= form_tag('/admin/discover/update_list_moves_order', method: :put) do |f| %>

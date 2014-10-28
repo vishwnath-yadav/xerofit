@@ -33,6 +33,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# PDF generation
+gem 'wicked_pdf'
+
 
 gem 'devise'
 

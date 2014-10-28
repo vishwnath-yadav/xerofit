@@ -1,6 +1,19 @@
 // Fitness Library App ===================================================================================== /
 
 
+// Error Messages
+.lib_error {
+    color: $xero-red;
+    width: 100%;
+    display: block;
+    float: left;
+    font-size: 10px;
+    margin-top: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+
 
 // -------------------------------------------------------------------------- //
 // Global Control Bar Styles
@@ -381,56 +394,114 @@ input.search_bar {
         float: left;
         width: 100%;
     }
-
-    p.block_status {
-        @include gotham300();
-        padding: 0px 14px;
-        color: $silver51;
-        font-size: 11px;
-        line-height: 14px;
-        height: 14px;
-        color: $silver31;
-
-        > img {
-            float: left;
-            margin-right: 6px;
-            height: 12px;
-            width: 12px;
-            margin-top: 1px;
-        }
-    }
 }
 
 .library_col ul li.wdth_img > img { width: 100% !important}
 
 
-.grid_block {
-    .workout-img {
-        width: auto;
-        height: 98px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 14px;
-        background-repeat: no-repeat;
-        @include background-size(contain);
-        background-position: center;
+.grid_block .workout-img {
+    width: 98px;
+    height: 98px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 14px;
+    background-repeat: no-repeat;
+    @include background-size(cover);
+    background-position: center;
 
-        @media (min-width: 1200px) { height: 140px; }
-    }
-
-    .move-img {
-        width: 100%;
-        height: 98px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 14px;
-        background-repeat: no-repeat;
-        @include background-size(cover);
-        background-position: center;
-
-        @media (min-width: 1200px) { height: 140px; }
-    }
+    @media (min-width: 1200px) { height: 140px; width: 140px; }
 }
+
+.grid_block .move-img {
+    width: 100%;
+    height: 98px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 14px;
+    background-repeat: no-repeat;
+    @include background-size(cover);
+    background-position: center;
+
+    @media (min-width: 1200px) { height: 140px; }
+}
+
+
+
+
+
+// -------------------------------------------------------------------------- //
+// Status Indicators
+// -------------------------------------------------------------------------- //
+
+
+
+// Container <p> element
+.library-status {
+    @include gotham300();
+    padding: 0px 14px;
+    margin: 0;
+    color: $silver51;
+    font-size: 11px;
+    line-height: 14px;
+    height: 14px;
+}
+
+// Colored Circle
+span.status-indicator {
+    display: block;
+    height: 12px;
+    width: 12px;
+    float: left;
+    margin-top: 1px;
+    margin-right: 5px;
+    @include border-radius(12px);
+}
+
+
+// Approved and Active
+span.status-indicator.status-green {
+    border: 1px solid darken( $status-green, 12% );
+    background: $status-green;
+}
+
+// Needs Attention
+span.status-indicator.status-red {
+    border: 1px solid darken( $status-red, 12% );
+    background: $status-red;
+}
+
+// Waiting to be approved
+span.status-indicator.status-yellow {
+    border: 1px solid darken( $status-yellow, 12% );
+    background: $status-yellow;
+}
+
+// Ready to Submit
+span.status-indicator.status-purple {
+    border: 1px solid darken( $status-purple, 12% );
+    background: $status-purple;
+}
+
+// Saved as draft
+span.status-indicator.status-gray {
+    border: 1px solid darken( $status-gray, 12% );
+    background: $status-gray;
+}
+
+
+
+// For status indicatior in Control Bar
+.control_bar_context .library-status { padding: 0; margin-top: 5px; }
+
+// For status indicatior in Library Home List View
+.library_list_view .status_col .library-status {
+    padding: 0;
+    line-height: inherit;
+    color: $silver31;
+
+    .status-indicator { margin-top: 15px; }
+}
+
 
 
 
@@ -613,6 +684,79 @@ ul.exer_list_view li span.tx_rht.heading_txt{
 
 
 
+
+
+// Thumbnail Images for Scrolling header and List View
+div.library-thumbnail-container {
+    position: relative;
+    width: 70px;
+    float: left;
+    margin-right: 21px;
+
+    figure {
+        height: 42px;
+        background-repeat: no-repeat;
+        @include background-size(cover);
+        background-position: center center;
+    }
+
+    // Workout Thumbnails (square)
+    figure.workout-thumb {
+        margin-left: auto;
+        margin-right: auto;
+        width: 42px;
+    }
+
+    // Move Thumbnails (16:9)
+    figure.move-thumb { width: 70px; }
+}
+
+
+// Larger images for Fitness Library control bar view
+.control_bar_context .library-thumbnail-container {
+    width: auto;
+
+    figure { height: 56px; }
+    figure.workout-thumb { width: 56px; }
+    figure.move-thumb { width: 98px; }
+}
+
+// Larger images for control bar view
+.workout-builder .control_bar_context .library-thumbnail-container {
+    width: auto;
+
+    figure { height: 42px; }
+    figure.workout-thumb { width: 42px; }
+    figure.move-thumb { width: 70px; }
+}
+
+// Smaller images for scrolling header
+.header-scroll .library-thumbnail-container {
+    width: auto;
+
+    figure { height: 28px; }
+    figure.workout-thumb { width: 28px; }
+    figure.move-thumb { width: 50px; }
+}
+
+.cb-header-title {
+    float: left;
+    width: auto;
+}
+
+.control_bar_context .cb-header-title {
+    padding-top: 3px;
+    padding-bottom: 6px;
+}
+
+
+// Left padding for Title and Image
+.header-scroll.fitness-library .show-on-scroll { padding-left: 40px; }
+.header-scroll.fitness-library .rght_btns.scrolling { margin-right: 40px; }
+
+
+
+
 // -------------------------------------------------------------------------- //
 // Fitness Library Home Pagination
 // -------------------------------------------------------------------------- //
@@ -621,7 +765,6 @@ ul.exer_list_view li span.tx_rht.heading_txt{
 
 .pagination_wrap {
     @include clearfix();
-    //width: 100%;
     position: relative;
     margin-top: 42px;
 
@@ -740,23 +883,6 @@ ul.exer_list_view li span.tx_rht.heading_txt{
     position: relative;
     padding: 7px 0px;
     @include clearfix();
-
-    .lib_image_box {
-        float: left;
-        margin-right: 21px;
-
-        img {
-            width: auto;
-            height: 56px;
-        }
-    }
-
-    .lib_text_box {
-        width: auto;
-        float: left;
-        padding-top: 2px;
-        padding-bottom: 2px;
-    }
 }
 
 .details_page_header {
@@ -795,8 +921,14 @@ ul.exer_list_view li span.tx_rht.heading_txt{
     margin-left: 40px;
 }
 
-.show_img_on_scol{
-    display: none;
+.show_img_on_scol{ display: none; }
+
+
+.lib_text_box {
+    width: auto;
+    float: left;
+    padding-top: 3px;
+    padding-bottom: 6px;
 }
 
 .lib_img_coll {
@@ -827,6 +959,8 @@ ul.exer_list_view li span.tx_rht.heading_txt{
         }
     }
 }
+
+
 
 // Buttons on the right of fixed header
 .rght_btns {
@@ -1373,23 +1507,6 @@ a.remove_video_btn {
             padding-top: 14px;
             text-align: center;
         }
-    }
-}
-
-
-p.library_item_status {
-    font-size: 12px;
-    line-height: 14px;
-    color: $silver31;
-    font-weight: 500;
-    margin: 0;
-    margin-top: 6px;
-
-    > img {
-        float: left;
-        margin-right: 6px;
-        height: 12px;
-        width: 12px;
     }
 }
 
