@@ -31,12 +31,12 @@ Xerofit::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # resources :home do
-  #   collection do
-  #     get 'confirmation'
-  #     get 'test'
-  #   end
-  # end
+  resources :home do
+    collection do
+      # get 'confirmation'
+      get 'test'
+    end
+  end
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :users do

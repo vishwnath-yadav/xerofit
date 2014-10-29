@@ -1,3 +1,4 @@
+<%= wicked_pdf_stylesheet_link_tag "pdf/pdf" -%>
 <div class="exer_lft_col">
   <div class="video_uplod">
    <div class="video_uplod_icon upload_video">
@@ -5,7 +6,9 @@
     </div>
     <div class="video_uplod_txt">
        <h2>No file choosen</h2>
-          <div id="progressbar"></div>
+          <div id="progressbar">
+            <%=Move.last.title%>
+          </div>
           <p></p>
       </div>
   </div>

@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
-  
-
-  
 
   def test
-    @library = Move.new
-    @libvideo = LibraryVideo.new
+  	respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "file_name"
+      end
+    end
   end
   
 end

@@ -1,0 +1,15 @@
+
+<%if @has_full_detail && status != Move::STATUS[1]%>
+	<%status_icon = status_icon(Move::STATUS[3])%>
+<!-- Checking if status is not need attention -->
+	<p class="library_item_status" data-status="<%=Move::STATUS[3]%>" data-status-icon="<%= status_icon%>">
+		<img src="<%= status_icon%>"/>
+		<%= Move::STATUS[3] %>
+	</p>
+<%else%>
+	<%status_icon = status_icon(status)%>
+	<p class="library_item_status" data-status="<%=status%>" data-status-icon="<%= status_icon%>">
+		<img src="<%= status_icon%>"/>
+		<%= status %>
+	</p>
+<%end%>

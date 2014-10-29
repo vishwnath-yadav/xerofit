@@ -35,6 +35,7 @@ end
 
 # PDF generation
 gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 
 gem 'devise'
